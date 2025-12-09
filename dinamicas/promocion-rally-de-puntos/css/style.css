@@ -1,0 +1,705 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins Ligth', sans-serif !important;
+}
+
+body {
+    overflow-x: hidden;
+    font-size: 62.5% !important;
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid rgb(141, 143, 11);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.main_class_rally_puntos {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(180deg, #27314f8a, #272b4f79, #27314f8a), url(/dinamicas/promocion-rally-de-puntos/resources/fondo_rally_premios_old_2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.content_logo_rally {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.content_logo_rally img {
+    width: 50px;
+}
+
+.content_opciones_rally {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 10;
+}
+
+.content_opciones_rally img {
+    width: 35px;
+    transition: all 0.4s ease;
+}
+
+.content_opciones_rally img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    transform: scale(1.1);
+}
+
+.content_all_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.content_img_form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1050px;
+    position: relative;
+    /* padding-top: 40px; */
+}
+
+.content_img_form img {
+    width: 410px;
+}
+
+.content_selec_casino {
+    position: absolute;
+    top: 50%;
+    left: 40px;
+}
+
+.content_btn_refresh {
+    position: absolute;
+    top: 50%;
+    right: 40px;
+}
+
+.content_btn_refresh button {
+    font-size: 10px !important;
+    background-color: #690092;
+}
+
+.content_form_rally {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.input_modal_rally {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.input_modal_rally input {
+    width: 200px;
+}
+
+.input_modal_rally select {
+    width: 200px;
+}
+
+.table-scrolld {
+    max-height: 550px;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.styled-table-rally {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 800px;
+}
+
+.styled-table-rally thead {
+    background: transparent;
+    color: #fff;
+}
+
+.styled-table-rally th,
+.styled-table-rally td {
+    padding: 12px 12px;
+    text-align: center;
+    color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table-rally tbody tr {
+    /* background-color: transparent; */
+    color: #000;
+}
+
+.styled-table-rally tbody tr:nth-child(even) {
+    /* background-color: transparent; */
+}
+
+.styled-table-rally tbody tr:hover {
+    background-color: #00000007;
+}
+
+.table-result-rally {
+    width: 100%;
+}
+
+.table-result-rally::-webkit-scrollbar {
+    width: 8px;
+    /* Adjust width as needed */
+    background-color: transparent;
+    /* Make the entire scrollbar area transparent */
+}
+
+.table-scrolld {
+    max-height: 550px;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 800px;
+}
+
+.styled-table thead {
+    background: #390280;
+    color: #fff;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.styled-table tbody tr {
+    background-color: #fff;
+    color: #000;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-result {
+    width: 100%;
+}
+
+.table-result::-webkit-scrollbar {
+    width: 8px;
+    /* Adjust width as needed */
+    background-color: transparent;
+    /* Make the entire scrollbar area transparent */
+}
+
+.styled-table {
+    width: 100%;
+}
+
+.table_input_bono_pp {
+    width: 60px;
+    font-size: 0.5rem;
+    border: rgb(219, 219, 219) solid 1px;
+    border-radius: 10px;
+    padding: 3px 4px;
+}
+
+.table_input_bono_pp:focus {
+    outline: none;
+    border: #aaaaaa solid 1px;
+}
+
+
+.table_input_bono_pp_cliente {
+    width: 40px;
+    font-size: 0.5rem;
+    border: rgb(219, 219, 219) solid 1px;
+    border-radius: 10px;
+    padding: 3px 4px;
+}
+
+.table_input_bono_pp_cliente:focus {
+    outline: none;
+    border: #aaaaaa solid 1px;
+}
+
+
+.table_input_puntaje_pp {
+    width: 80px;
+    font-size: 0.5rem;
+    border: rgb(219, 219, 219) solid 1px;
+    border-radius: 10px;
+    padding: 3px 4px;
+}
+
+.table_input_puntaje_pp:focus {
+    outline: none;
+    border: #aaaaaa solid 1px;
+}
+
+
+.table_ya_tiene_bono {
+    color: rgb(8, 209, 8);
+    font-size: 0.5rem;
+}
+
+.btn-enviar-pp {
+    font-size: 10px !important;
+    padding: 2px 5px !important;
+    border-radius: 10px !important;
+}
+
+.btn-enviar-puntaje {
+    font-size: 10px !important;
+    padding: 2px 5px !important;
+    border-radius: 10px !important;
+}
+
+.btn-enviar-bono {
+    font-size: 10px !important;
+    padding: 2px 5px !important;
+    border-radius: 10px !important;
+}
+
+.modal_opciones_rally {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.content_modal_rally {
+    width: 950px;
+    height: 100%;
+    max-height: 500px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
+}
+
+.content_head_modal {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 12px;
+}
+
+.content_head_modal p:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.select_menu {
+    border-bottom: #791706 1px solid;
+}
+
+.content_head_modal p:hover.select_menu {
+    border-bottom: #995d02 1px solid;
+}
+
+.close_modal_icon {
+    font-size: 16px;
+    position: absolute;
+    border-radius: 20px;
+    padding: 0 8px;
+    top: -10px;
+    right: 0px;
+    transition: all 0.4s ease;
+}
+
+.close_modal_icon:hover {
+    background-color: rgb(0, 0, 58);
+    color: white;
+    border-radius: 20px;
+    padding: 0 8px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.content_body_modal {
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.info_body_modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.input-buscar {
+    position: absolute;
+    left: 53px;
+    width: 180px !important;
+}
+
+.datos_column_modal {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.datos_column_modal select,
+.datos_column_modal input {
+    width: 180px;
+}
+
+.datos_column_modal textarea {
+    width: 300px;
+    height: 150px;
+    border-radius: 20px 20px 0 20px;
+    padding: 10px;
+    font-size: 1rem;
+    border: #eee solid 1px;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.datos_column_modal textarea:focus {
+    border: #aaaaaa solid 1px;
+}
+
+.barra_vida_ciclo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    height: 80px;
+    max-width: 1050px;
+    background-color: #cfcfcf;
+    margin: 40px 0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.barra_vida_ciclo::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0%;
+    height: 100px;
+    background: linear-gradient(90deg, #a4f600, #5f9200);
+    animation: cargaLunes 5s linear infinite;
+    z-index: 0;
+}
+
+.img_barra_vida {
+    position: absolute;
+    top: 0px;
+    right: 0;
+    width: 140px;
+}
+
+.img_cara_verde {
+    position: absolute;
+    bottom: -10px;
+    left: -40px;
+    width: 80px;
+    z-index: 2;
+}
+
+
+.img_cara_roja {
+    position: absolute;
+    top: -10px;
+    left: 300px;
+    width: 80px;
+    z-index: 2;
+}
+
+
+.img_cara_azul {
+    position: absolute;
+    bottom: -10px;
+    left: 650px;
+    width: 80px;
+    z-index: 2;
+}
+
+
+
+/* Animación de carga */
+@keyframes cargaLunes {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* Movimiento de transición al siguiente día */
+@keyframes moverSiguiente {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateX(180px);
+        opacity: 0;
+    }
+}
+
+
+.dia {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 150px;
+    height: 100%;
+    font-size: 25px;
+    object-fit: cover;
+    color: white;
+}
+
+.sabado_rally {
+    color: black;
+    background-color: #cfcfcf;
+}
+
+.domingo_rally {
+    color: black;
+    background-color: #cfcfcf;
+}
+
+.lunes_rally {
+    color: black;
+    background-color: #cfcfcf;
+}
+
+
+.martes_rally {
+    color: black;
+    background-color: #cfcfcf;
+}
+
+.miercoles_rally {
+    color: black;
+    background-color: #cfcfcf;
+}
+
+.jueves_rally {
+    color: black;
+    background-color: #cfcfcf;
+}
+
+.viernes_rally {
+    color: black;
+    background-color: #cfcfcf;
+}
+
+.gradient {
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.top1 {
+    background: #ffd9008a;
+    color: #000;
+    font-weight: bold;
+    font-size: 25px;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.top2 {
+    background: #004ca349;
+    color: #000;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.top3 {
+    background: #640c0075;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.top4 {
+    background: #65a53a7e;
+    color: #fff;
+}
+
+.top5 {
+    background: #973cae85;
+    color: #fff;
+}
+
+.top1,
+.top2,
+.top3 {
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+}
+
+.info_historial_rally {
+    width: 100%;
+    height: 100%;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.table_loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.cara_listado {
+    position: absolute;
+    left: 60px;
+    width: 40px;
+}
+
+@media(max-width: 1366px) {
+    .main_class_rally_puntos {
+        height: 100%;
+        min-height: 100vh;
+    }
+
+    .content_img_form {
+        padding-top: 10px;
+    }
+
+    .table-result-rally {
+        width: 100%;
+        max-height: 280px;
+        overflow: auto;
+    }
+
+
+    .img_cara_verde {
+        position: absolute;
+        bottom: 10px;
+        left: -40px;
+        width: 80px;
+        z-index: 2;
+    }
+
+
+    .img_cara_roja {
+        position: absolute;
+        top: -10px;
+        left: 300px;
+        width: 80px;
+        z-index: 2;
+    }
+
+
+    .img_cara_azul {
+        position: absolute;
+        bottom: 0px;
+        left: 720px;
+        width: 80px;
+        z-index: 2;
+    }
+
+
+    /* .content_img_form img {
+        width: 100px;
+    } */
+}

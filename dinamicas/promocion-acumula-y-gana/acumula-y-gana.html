@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Aladdin: Acumula y Gana.</title>
+    <link rel="stylesheet" href="/dinamicas/promocion-acumula-y-gana/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div id="main_class_acumula_y_gana" class="main_class_acumula_y_gana">
+        <div class="content_logo_acumula">
+            <img title="Logo Acumula y Gana" src="/dinamicas/promocion-acumula-y-gana/resources/logo_acumula.png"
+                alt="Integrador Aladdin">
+        </div>
+        <div class="content_configuracion">
+            <img id="opciones_acumula" title="Opciones"
+                src="/dinamicas/promocion-acumula-y-gana/resources/engranaje.png" alt="Integrador Aladdin">
+        </div>
+        <div class="board_acumula">
+            <div class="content_board_acumula">
+                <div class="content_logo_board">
+                    <img src="/dinamicas/promocion-acumula-y-gana/resources/logo_acumula.png" alt="Integrador Aladdin">
+                </div>
+                <div class="content_form_board">
+                    <select class="form-control" style="cursor: pointer;" id="casino">
+                        <option value="">Casino...</option>
+                        <option value="A05">A05</option>
+                        <option value="A07">A07</option>
+                        <option value="A08">A08</option>
+                        <option value="A09">A09</option>
+                        <option value="A12">A12</option>
+                        <option value="A12-MESAS">A12-MESAS</option>
+                        <option value="A15">A15</option>
+                        <option value="A15-MESAS">A15-MESAS</option>
+                        <option value="A16">A16</option>
+                        <option value="A19">A19</option>
+                        <option value="A35">A35</option>
+                        <option value="A36">A36</option>
+                        <option value="A36-MESAS">A36-MESAS</option>
+                        <option value="A38">A38</option>
+                        <option value="A39">A39</option>
+                        <option value="A43">A43</option>
+                        <option value="A48">A48</option>
+                        <option value="A48-MESAS">A48-MESAS</option>
+                        <option value="A49">A49</option>
+                        <option value="A50">A50</option>
+                        <option value="A53">A53</option>
+                        <option value="A70">A70</option>
+                        <option value="A781">A781</option>
+                        <option value="A88">A88</option>
+                        <option value="A100">A100</option>
+                        <option value="A108">A108</option>
+                        <option value="A108-MESAS">A108-MESAS</option>
+                    </select>
+                    <select class="form-control" style=" cursor: pointer;" id="categoria">
+                        <option value="">Categoría...</option>
+                        <option value="GENIUS">Genius</option>
+                        <option value="TITANIO">Titanio</option>
+                        <option value="LEGENDARIO">Legendario</option>
+                        <option value="GOLD">Gold</option>
+                        <option value="SILVER">Silver</option>
+                        <option value="BRONCE">Bronce</option>
+                        <option value="SUPERIOR">Superior</option>
+                        <option value="ESTANDAR">Estándar</option>
+                        <option value="ADICIONAL">Adicional</option>
+                    </select>
+                    <input class="form-control" type="text" id="nombre" placeholder="Nombre">
+                    <input style="display: none;" class="form-control" type="text" id="cedula" placeholder="Cedula">
+                    <select class="form-control" name="resultado" id="resultado">
+                        <option value="">Seleccionar...</option>
+                        <option value="0 a 5" data-valor="1">0 a 5</option>
+                        <option value="6 a 9" data-valor="2">6 a 9</option>
+                        <option value="10 a 15" data-valor="3">10 a 15</option>
+                        <option value="16 en adelante" data-valor="4">16 en adelante</option>
+                    </select>
+                </div>
+                <div>
+                    <button title="Validar el Premio del Participante" id="btn_validar" class="btn btn-primary">Validar
+                        Premio</button>
+                    <button title="Enviar formulario sin # Bono" id="btn_send" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal_opciones_acumula" class="modal_opciones_acumula">
+        <div class="content_modal_acumula">
+            <div class="head_modal_acumula">
+                <div class="content_opcion_head">
+                    <p id="btn_envio_secundario">Envió Secundario</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_envio_observacion">Observación</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_tabla_premios">Tabla de Premios</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_registros_dia">Registro del Dia</p>
+                    <span id="notificacion_registro_dia" class="notificacion_registro_dia"></span>
+                </div>
+                <div class="close_modal_x">
+                    <p id="cerrarmodaleopciones">&times;</p>
+                </div>
+            </div>
+            <div class="division_modal_acumula"></div>
+            <div id="view_envio_segundario" class="body_modal_acumula">
+                <h2 class="space_title_acumula">Envió segundario</h2>
+                <div class="datos_column_modal">
+                    <select class="form-control" style="cursor: pointer;" id="casino_secundario">
+                        <option value="">Casino...</option>
+                        <option value="A05">A05</option>
+                        <option value="A07">A07</option>
+                        <option value="A08">A08</option>
+                        <option value="A09">A09</option>
+                        <option value="A12">A12</option>
+                        <option value="A12-MESAS">A12-MESAS</option>
+                        <option value="A15">A15</option>
+                        <option value="A15-MESAS">A15-MESAS</option>
+                        <option value="A16">A16</option>
+                        <option value="A19">A19</option>
+                        <option value="A35">A35</option>
+                        <option value="A36">A36</option>
+                        <option value="A36-MESAS">A36-MESAS</option>
+                        <option value="A38">A38</option>
+                        <option value="A39">A39</option>
+                        <option value="A43">A43</option>
+                        <option value="A48">A48</option>
+                        <option value="A48-MESAS">A48-MESAS</option>
+                        <option value="A49">A49</option>
+                        <option value="A50">A50</option>
+                        <option value="MP53">MP53</option>
+                        <option value="A70">A70</option>
+                        <option value="A781">A781</option>
+                        <option value="A88">A88</option>
+                        <option value="A100">A100</option>
+                        <option value="A108">A108</option>
+                        <option value="A108-MESAS">A108-MESAS</option>
+                    </select>
+
+                    <select class="form-control" style=" cursor: pointer;" id="categoria-secundario">
+                        <option value="">Categoria...</option>
+                        <option value="GENIUS">Genius</option>
+                        <option value="TITANIO">Titanio</option>
+                        <option value="LEGENDARIO">Legendario</option>
+                        <option value="GOLD">Gold</option>
+                        <option value="SILVER">Silver</option>
+                        <option value="BRONCE">Bronce</option>
+                        <option value="SUPERIOR">Superior</option>
+                        <option value="ESTANDAR">Estándar</option>
+                        <option value="ADICIONAL">Adicional</option>
+                    </select>
+                </div>
+                <div class="datos_column_modal">
+                    <input class="form-control" type="text" name="cedula" id="cedula_secundario" placeholder="Cedula">
+                    <input class="form-control" type="text" name="nombre" id="nombre_secundario" placeholder="Nombre">
+                </div>
+                <div class="datos_column_modal">
+                    <input class="form-control" type="date" name="fecha_secundario" id="fecha_secundario"
+                        placeholder="Fecha">
+                    <input class="form-control" type="text" name="hora_secundario" id="hora_secundario"
+                        placeholder="Hora">
+                </div>
+                <div class="datos_column_modal">
+                    <input class="form-control" type="text" name="bono_secundario" id="bono_secundario"
+                        placeholder="Bono">
+                    <input class="form-control" type="text" name="bono_secundario" id="resultado_secundario"
+                        placeholder="Resultado">
+                </div>
+
+
+                <div class="content_btn_modal">
+                    <button style="display: none;" id="btn_clean_secundario"
+                        class="btn btn-primary btn_acumula">Limpiar</button>
+                    <button id="btn_submit_secundario" class="btn btn-primary btn_acumula">Enviar</button>
+                </div>
+            </div>
+            <div id="view_envio_observacion" class="body_modal_acumula">
+                <h2 class="space_title_acumula">Envió de Observación</h2>
+                <div class="datos_column_modal">
+                    <select class="form-control" style="cursor: pointer;" id="casino_observacion">
+                        <option value="">Casino...</option>
+                        <option value="A05">A05</option>
+                        <option value="A07">A07</option>
+                        <option value="A08">A08</option>
+                        <option value="A09">A09</option>
+                        <option value="A12">A12</option>
+                        <option value="A12-MESAS">A12-MESAS</option>
+                        <option value="A15">A15</option>
+                        <option value="A15-MESAS">A15-MESAS</option>
+                        <option value="A16">A16</option>
+                        <option value="A19">A19</option>
+                        <option value="A35">A35</option>
+                        <option value="A36">A36</option>
+                        <option value="A36-MESAS">A36-MESAS</option>
+                        <option value="A38">A38</option>
+                        <option value="A39">A39</option>
+                        <option value="A43">A43</option>
+                        <option value="A48">A48</option>
+                        <option value="A48-MESAS">A48-MESAS</option>
+                        <option value="A49">A49</option>
+                        <option value="A50">A50</option>
+                        <option value="MP53">MP53</option>
+                        <option value="A70">A70</option>
+                        <option value="A781">A781</option>
+                        <option value="A88">A88</option>
+                        <option value="A100">A100</option>
+                        <option value="A108">A108</option>
+                        <option value="A108-MESAS">A108-MESAS</option>
+                    </select>
+                </div>
+                <div class="datos_column_modal">
+                    <textarea placeholder="Descripcion" name="descripcion" id="descripcion_observacion"></textarea>
+                </div>
+                <div>
+                    <button style="display: none;" id="btn_clean_observacion"
+                        class="btn btn-primary btn_acumula">Limpiar</button>
+                    <button id="btn_envia_observacion" class="btn btn-primary btn_acumula">Enviar</button>
+                </div>
+            </div>
+            <div id="view_tabla_premios" class="body_modal_acumula">
+                <div class="vista_table_premios">
+                    <h2 class="text_acumula">Tabla de Premios</h2>
+
+                    <br />
+                    <p class="casinos_acumula">A19, A50 ,A70, A38, A35, A36, A39, A88, A48, A49, A781</p>
+                    <table class="table-wrapper styled-table">
+                        <thead>
+                            <tr>
+                                <th>Tiquetes Acumula y Gana</th>
+                                <th>ESTANDAR Y SUPERIOR</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0 a 5</td>
+                                <td>$ 50.000</td>
+                            </tr>
+                            <tr>
+                                <td>6 a 9</td>
+                                <td>$ 80.000</td>
+                            </tr>
+                            <tr>
+                                <td>10 a 15</td>
+                                <td>$ 100.000</td>
+                            </tr>
+                            <tr>
+                                <td>16 a más</td>
+                                <td>$ 150.000</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                    <p class="casinos_acumula">A05, A07, A08, A09, A12, MP15, A16</p>
+                    <table class="table-wrapper styled-table">
+                        <thead>
+                            <tr>
+                                <th>Tiquetes Acumula y Gana</th>
+                                <th>Bronce</th>
+                                <th>Silver</th>
+                                <th>Gold</th>
+                                <th>Legendario</th>
+                                <th>Titanio</th>
+                                <th>Genius</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0 a 5</td>
+                                <td>$ 50.000</td>
+                                <td>$ 60.000</td>
+                                <td>$ 70.000</td>
+                                <td>$ 80.000</td>
+                                <td>$ 90.000</td>
+                                <td>$ 100.000</td>
+                            </tr>
+                            <tr>
+                                <td>6 a 9</td>
+                                <td>$ 70.000</td>
+                                <td>$ 80.000</td>
+                                <td>$ 90.000</td>
+                                <td>$ 100.000</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                            </tr>
+                            <tr>
+                                <td>10 a 15</td>
+                                <td>$ 100.000</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 140.000</td>
+                                <td>$ 150.000</td>
+                            </tr>
+                            <tr>
+                                <td>16 o más</td>
+                                <td>$ 150.000</td>
+                                <td>$ 160.000</td>
+                                <td>$ 170.000</td>
+                                <td>$ 180.000</td>
+                                <td>$ 190.000</td>
+                                <td>$ 200.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                    <p class="casinos_acumula">A43, A53 Y MP108</p>
+                    <table class="table-wrapper styled-table">
+                        <thead>
+                            <tr>
+                                <th>Tiquetes Acumula y Gana</th>
+                                <th>Bronce</th>
+                                <th>Silver</th>
+                                <th>Gold</th>
+                                <th>Legendario</th>
+                                <th>Titanio</th>
+                                <th>Genius</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0 a 5</td>
+                                <td>$ 80.000</td>
+                                <td>$ 90.000</td>
+                                <td>$ 100.000</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                            </tr>
+                            <tr>
+                                <td>6 a 9</td>
+                                <td>$ 100.000</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 140.000</td>
+                                <td>$ 150.000</td>
+                            </tr>
+                            <tr>
+                                <td>10 a 15</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 140.000</td>
+                                <td>$ 150.000</td>
+                                <td>$ 160.000</td>
+                                <td>$ 170.000</td>
+                            </tr>
+                            <tr>
+                                <td>16 o más</td>
+                                <td>$ 150.000</td>
+                                <td>$ 160.000</td>
+                                <td>$ 170.000</td>
+                                <td>$ 180.000</td>
+                                <td>$ 190.000</td>
+                                <td>$ 200.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="justify-content: start;" id="view_registro_dia" class="body_modal_acumula">
+                <h2 class="space_title_acumula">Registro del Dia</h2>
+                <div id="Info_result_dia"></div>
+                <div class="result_dia_acumula" id="result_dia_acumula"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="/dinamicas/user.js"></script>
+    <script src="/dinamicas/promocion-acumula-y-gana/js/scripts.js"></script>
+</body>
+
+</html>

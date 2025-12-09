@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Integrador</title>
+
+  <!-- Estilos base -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/menu.css" />
+  <link rel="stylesheet" href="/view/modales/modal_info_user/modal_info_user.css">
+  <!-- libs opcionales -->
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+  <div id="background_login" class="background_login">
+    <div class="background_login_img">
+      <div id="loader-login" class="loader-login">
+        <div class="spinner-login"></div>
+      </div>
+      <div class="content_login_form">
+        <form onsubmit="return false;" id="content_login_form" class="content_login_form_content">
+          <h2>Login</h2>
+
+          <input type="text" id="nombre_login" placeholder="Usuario" autocomplete="current-password">
+          <input type="password" name="password" id="contraseña_login" placeholder="Contraseña"
+            autocomplete="current-password">
+
+          <div>
+            <button id="btn_iniciar_sesion" class="btn_a_1">Iniciar sesión</button>
+          </div>
+        </form>
+        <div id="content_register_form" class="content_register_form">
+          <h2>Registro</h2>
+          <div class="content_form_registro">
+            <input type="text" name="nombre" title="Nombre" id="nombre_registro" placeholder="Nombre">
+            <br />
+            <button class="btn_a_1" id="btn_registro">Registrar</button>
+          </div>
+        </div>
+
+        <div class="bottom_login_form">
+          <img src="/resource/aladdin.png" alt="integradorAladdin">
+          <div class="separator_vertical"></div>
+          <h2>Integrador <span id="año_integrador"></span></h2>
+        </div>
+        <div class="content_bottom_login_registro">
+          <span id="registro_form_view">Registrarse</span>
+          <span id="iniciar_form_view" class="btn_iniciar_sesion">Iniciar Sesion</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="app" id="app">
+    <!-- Header (solo móvil) -->
+    <div id="menu_login">
+      <header class="app-header" role="banner">
+        <button id="btnOpen" class="icon-btn" aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false">
+          <!-- ícono hamburguesa -->
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+        <div class="brand">
+          <div class="brand-logo"></div> <span>Integrador</span>
+        </div>
+      </header>
+
+      <!-- Sidebar -->
+      <aside id="sidebar" class="sidebar" aria-label="Menú lateral">
+        <div class="brand" aria-hidden="true">
+          <div class="brand-logo"></div> <span>Integrador</span>
+        </div>
+        <nav class="sidebar-nav" role="navigation">
+          <a class="nav-link" href="#inicio" title="Inicio" data-route>
+            <span class="nav-icon"><img src="/resource/pagina-de-inicio.png" alt="integradorAladdin"></span>
+            <span class="nav-label">Inicio</span>
+          </a>
+          <!-- externos: sin data-route -->
+          <a class="nav-link item_promotor" href="#gran_aladdin" title="Finalistas Casinos">
+            <span class="nav-icon"><img src="/resource/grand-aladdin.png" alt="integradorAladdin"></span>
+            <span class="nav-label">Grand Aladdin</span>
+          </a>
+          <a class="nav-link item_promotor" href="#dinamicas" title="Dinamicas">
+            <span class="nav-icon"><img src="/resource/dinamica_icon.png" alt="integradorAladdin"></span>
+            <span class="nav-label">Dinamicas</span>
+          </a>
+          <a class="nav-link item_admin_view" href="#otros" title="Otros">
+            <span class="nav-icon"><img src="/resource/otros_icon.png" alt="integradorAladdin"></span>
+            <span class="nav-label">Otros</span>
+          </a>
+          <a class="nav-link item_view_social" href="#publicacion_instagram" title="Publiacion Instagram">
+            <span class="nav-icon"><img src="/resource/instagram.png" alt="integradorAladdin"></span>
+            <span class="nav-label">Social Media</span>
+          </a>
+          <a class="nav-link item_infra" href="#infraestructura" title="Infraestructura">
+            <span class="nav-icon"><img src="/resource/infraestructura.png" alt="integradorAladdin"></span>
+            <span class="nav-label">Infraestructura</span>
+          </a>
+          <a class="nav-link" href="#ayuda" title="Ayuda">
+            <span class="nav-icon"><img src="/resource/info.png" alt="integradorAladdin"></span>
+            <span class="nav-label">Ayuda</span>
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="user">
+            <div class="avatar"></div>
+            <div>
+              <div onclick="OpenModalInfo()" id="user_name" class="user_name" style="font-weight:700">Aladdin</div>
+              <div class="view_info_user" id="view_info_user">
+                <div class="modal_info_funcionario">
+                  <div class="modal_content_funcionario">
+                    <span onclick="CloseModalInfo()" class="close_funcionario" id="close_funcionario">&times;</span>
+                    <h2>Información del Funcionario</h2>
+                    <div class="content_img_user">
+                      <img src="/resource/ala_oscuro.png" alt="integradorAladdin">
+                    </div>
+                    <div class="content_date_funcionario">
+                      <p><strong>Nombre:</strong> <span id="funcionario_nombre"></span></p>
+                      <p style="display: none;"><strong>Cédula:</strong> <span id="funcionario_cedula"></span></p>
+                    </div>
+                    <div class="content_date_funcionario">
+                      <p><strong>Cargo:</strong> <span id="funcionario_rol"></span></p>
+                      <p><strong>Email:</strong> <span id="funcionario_email"></span></p>
+                    </div>
+                    <div class="content_date_funcionario">
+                      <p><strong>Teléfono:</strong> <span id="funcionario_telefono"></span></p>
+                      <p><strong>Área:</strong> <span id="funcionario_area"></span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="user_rol" class="tag">Sin Rol</div>
+            </div>
+          </div>
+          <button class="olvidar_usuario" id="olvidar_usuario" title="Salir">Salir</button>
+          <button id="btnClose" class="icon-btn" aria-label="Cerrar menú">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M6 6l12 12M18 6l-12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+          </button>
+        </div>
+      </aside>
+
+      <div class="backdrop" id="backdrop" hidden></div>
+    </div>
+    <div class="main" id="main" tabindex="-1">
+      <!-- <h1 style="margin-top:0; text-align: center;">Bienvenido al integrador de Aladdin - MP.</h1> -->
+      <br />
+      <div id="view" class="view">
+        <!-- Aquí se inyectan las vistas -->
+        <p style="opacity:.8">Cargando…</p>
+      </div>
+      <br />
+
+      <footer id="footer_label_legal" class="title_footer">Todos los derechos reservados Aladdin <span
+          style="padding-left: 5px;" id="año_footer"></span>.</footer>
+    </div>
+  </div>
+
+  <!-- Router SPA -->
+  <script src="/js/store.js"></script>
+  <script type="module" src="funtions.js"></script>
+</body>
+
+</html>

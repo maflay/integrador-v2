@@ -1,0 +1,327 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-family: 'Poppins Ligth', sans-serif !important;
+}
+
+body {
+    overflow-x: hidden;
+    font-size: 62.5% !important;
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid rgb(141, 143, 11);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content_main_xpbreve {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    background-image:
+        linear-gradient(90deg, rgba(56, 56, 56, 0.849), rgba(56, 56, 56, 0.849)),
+        url(/formularios/experiencias-breve/resources/fondo_xp_breve.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content_logo_breve {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.content_logo_breve img {
+    width: 80px;
+}
+
+.content_info_xpbreve {
+    width: 100%;
+    max-width: 1100px;
+    height: 100%;
+    max-height: 70vh;
+    overflow: auto;
+    padding: 20px;
+    color: black;
+    background-color: rgba(255, 255, 255, 0.726);
+    border-radius: 20px;
+}
+
+.content_info_xpbreve input {
+    width: 250px;
+}
+
+.content_info_xpbreve::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+}
+
+.content_input_xpb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.content_input_xpb p {
+    margin: 0;
+}
+
+.content_input_xpb select {
+width: 250px;
+}
+.content_input_form_xpb {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    position: relative;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.content_input_form_xpb p {
+    margin: 0;
+    padding-right: 4px;
+}
+
+.content_form_xpbreve {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_check_xpb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.content_check_xpb input {
+    width: auto;
+}
+
+.content_check_xpb select {
+    width: auto;
+}
+
+.content_check_xpb textarea {
+    width: 100% !important;
+}
+
+.check_xpb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+}
+
+
+.table-scrolld {
+    max-height: 450px;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table input {
+    width: auto;
+}
+
+.styled-table thead {
+    background: #0d6efd;
+    color: #fff;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 4px 4px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.styled-table tbody tr {
+    background-color: #fff;
+    color: #000;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-result {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.content_premios_all {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    gap: 5px;
+}
+
+.premios_all {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.premios_all select {
+    width: auto;
+}
+
+.premios_all input {
+    width: 40px;
+}
+
+.casinos_calificacion {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+textarea {
+    width: 600px;
+    height: 150px;
+    border-radius: 20px 20px 0 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: #eee solid 1px;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+textarea:focus {
+    border: #aaaaaa solid 1px;
+}
+
+.check_edad {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.division_xpb {
+    width: 1px;
+    height: 20px;
+    background-color: rgb(117, 117, 117);
+}
+
+.item_disable{
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.img_intro {
+    width: 400px;
+}
+
+.texto_rojo {
+    color: rgb(175, 0, 0) !important;
+}
+
+@media (max-width: 768px) {
+
+    .content_main_xpbreve {
+        background-image:
+            linear-gradient(90deg, rgba(56, 56, 56, 0.849), rgba(56, 56, 56, 0.849)),
+            url(/formularios/experiencias-breve/resources/fondo_xpbreve_movil.jpg);
+    }
+
+    .content_form_xpbreve h1 {
+        text-align: center;
+    }
+
+    .content_info_xpbreve{
+        max-height: 80vh;
+    }
+
+    .content_input_xpb {
+        flex-direction: column;
+    }
+
+    .content_check_xpb {
+        flex-direction: column;
+    }
+
+    .content_check_xpb input[name="input_maquinas"] {
+        width: 100%;
+    }
+
+    .check_edad {
+        flex-direction: column;
+        justify-content: start;
+        align-items: start;
+    }
+
+    .check_xpb {
+        width: 100%;
+        justify-content: start;
+    }
+
+    .division_xpb {
+        display: none;
+    }
+
+    .img_intro{
+        width: 250px;
+    }
+}

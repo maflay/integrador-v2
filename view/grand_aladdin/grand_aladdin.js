@@ -1,0 +1,2 @@
+metodoprueba();
+const u = metodoprueba();

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>MYMAWI Te premia</title>
+    <link rel="stylesheet" href="/dinamicas/MYMAWI-Te-premia/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <section>
+        <div class="content-info-cliente">
+            <div class="content_logo_company">
+                <img src="/dinamicas/promocion-puntos-festivos/resources/logocasino.png" alt="Intragrdor" class="logo ">
+                <img src="/dinamicas/promocion-puntos-festivos/resources/aladdin.png" alt="Integrador"
+                    class="logo posici_compa_1">
+            </div>
+            <div class="bloque1">
+                <div class="bloque1-content-img">
+                    <img src="/dinamicas/MYMAWI-Te-premia/resources/MY-MAWI-BLANCO.png" alt="Logo" id="prueba" />
+                </div>
+                <br />
+                <!-- <button style="cursor: pointer;" id="toggleBtn" class="toggleBtn">Ocultar</button> -->
+                <button style="cursor: pointer;display: none;" class="toggleBtn" onclick="abrirModal()">Envio fuera de
+                    promocion.</button>
+                <button style="cursor: pointer; display: none;" class="toggleBtn2" onclick="abrirModal2()">Ver registro
+                    del
+                    dia.</button>
+                <div class="content_opciones_mtp">
+                    <img title="Opciones" id="modal_opciones" src="/resource/engranaje.png" alt="Integrador">
+                </div>
+                <div class="datos" id="formBox">
+                    <div class="casinos">
+                        <select class="form-control" style="width: auto; cursor: pointer;" id="casino">
+                            <option value="">Casino...</option>
+                            <option value="A05">A05</option>
+                            <option value="A07">A07</option>
+                            <option value="A08">A08</option>
+                            <option value="A09">A09</option>
+                            <option value="A12">A12</option>
+                            <option value="A12-MESAS">A12-MESAS</option>
+                            <option value="A15">A15</option>
+                            <option value="A15-MESAS">A15-MESAS</option>
+                            <option value="A16">A16</option>
+                            <option value="A19">A19</option>
+                            <option value="A35">A35</option>
+                            <option value="A36">A36</option>
+                            <option value="A36-MESAS">A36-MESAS</option>
+                            <option value="A38">A38</option>
+                            <option value="A39">A39</option>
+                            <option value="A43">A43</option>
+                            <option value="A48">A48</option>
+                            <option value="A48-MESAS">A48-MESAS</option>
+                            <option value="A49">A49</option>
+                            <option value="A50">A50</option>
+                            <option value="MP53">MP53</option>
+                            <option value="A70">A70</option>
+                            <option value="A781">A781</option>
+                            <option value="A88">A88</option>
+                            <option value="A100">A100</option>
+                            <option value="A108">A108</option>
+                            <option value="A108-MESAS">A108-MESAS</option>
+                        </select>
+                    </div>
+                    <div class="categoria">
+                        <select class="form-control" style=" cursor: pointer;" id="categoria">
+                            <option value="">Categoría...</option>
+                            <option value="GENIUS">Genius</option>
+                            <option value="TITANIO">Titanio</option>
+                            <option value="LEGENDARIO">Legendario</option>
+                            <option value="GOLD">Gold</option>
+                            <option value="SILVER">Silver</option>
+                            <option value="BRONCE">Bronce</option>
+                            <option value="SUPERIORMARCOPOLO">Superior</option>
+                            <option value="ESTANDARMARCOPOLO">Estándar</option>
+                            <option value="SUPERIORALADDIN">Superior Aladdin</option>
+                            <option value="ESTANDARALADDIN">Estándar Aladdin</option>
+                            <option value="ADICIONAL">Adicional</option>
+                        </select>
+                    </div>
+
+                    <div style="display: none;" class="cedula">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            <input class="form-control" style=" cursor: pointer;" type="text" id="cedula"
+                                placeholder="Cedúla" />
+                        </div>
+                    </div>
+                    <div class="nombre">
+                        <div style="display: flex; align-items: center; gap: 5px">
+                            <input class="form-control" style=" cursor: pointer;" type="text" id="nombre"
+                                placeholder="Nombre" />
+                        </div>
+                    </div>
+                </div>
+                <div id="content_btn" class="content-btn-enviar">
+                    <button id="validatepremio" onclick="validatePremio();" class="btn-dados">Validar Premio</button>
+                    <button id="send_adicional" style="display: none;" onclick="HandleSend()"
+                        class="btn-dados">Enviar</button>
+                </div>
+                <div id="valganado"></div>
+                <div id="bono" class="content-btn-enviar"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="modal_opciones_mtp" class="modal_opciones_MTP">
+        <div class="content_modal_MTP">
+            <div class="content_head_modal">
+                <div style="display: none;" class="content_opcion_head">
+                    <p id="btn_guardar_registro">Guardar Registro</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_envio_secundario">Envio Secundario</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_observacion">Observación</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_tabla_premios">Tabla de Premios</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_registro_dia">Registro del Dia</p>
+                    <span id="notificacion_registro_dia" class="notificacion_registro_dia"></span>
+                </div>
+                <div id="close_modal_icon" class="close_modal_icon">&times;</div>
+            </div>
+            <div style="width: 100%;height: 1px;background-color: rgb(206, 206, 206);"></div>
+            <div style="display: none;" id="view_guardar_registro" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Guardar Registro</h2>
+                </div>
+            </div>
+            <div id="view_envio_secundario" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Envió Secundario</h2>
+                    <div class="datos_column_modal">
+                        <div style="display: flex;gap: 10px;">
+                            <select class="form-control" id="casino-modal">
+                                <option value="">Casino...</option>
+                                <option value="A05">A05</option>
+                                <option value="A07">A07</option>
+                                <option value="A08">A08</option>
+                                <option value="A09">A09</option>
+                                <option value="A12">A12</option>
+                                <option value="A12-MESAS">A12-MESAS</option>
+                                <option value="A15">A15</option>
+                                <option value="A15-MESAS">A15-MESAS</option>
+                                <option value="A16">A16</option>
+                                <option value="A19">A19</option>
+                                <option value="A35">A35</option>
+                                <option value="A36">A36</option>
+                                <option value="A36-MESAS">A36-MESAS</option>
+                                <option value="A38">A38</option>
+                                <option value="A39">A39</option>
+                                <option value="A43">A43</option>
+                                <option value="A48">A48</option>
+                                <option value="A48-MESAS">A48-MESAS</option>
+                                <option value="A49">A49</option>
+                                <option value="A50">A50</option>
+                                <option value="MP53">MP53</option>
+                                <option value="A70">A70</option>
+                                <option value="A781">A781</option>
+                                <option value="A88">A88</option>
+                                <option value="A100">A100</option>
+                                <option value="A108">A108</option>
+                                <option value="A108-MESAS">A108-MESAS</option>
+                            </select>
+                            <select class="form-control" id="categoria-modal">
+                                <option value="">Categoria...</option>
+                                <option value="GENIUS">Genius</option>
+                                <option value="TITANIO">Titanio</option>
+                                <option value="LEGENDARIO">Legendario</option>
+                                <option value="GOLD">Gold</option>
+                                <option value="SILVER">Silver</option>
+                                <option value="BRONCE">Bronce</option>
+                                <option value="SUPERIORMARCOPOLO">Superior Marcopolo</option>
+                                <option value="ESTANDARMARCOPOLO">Estándar Marcopolo</option>
+                                <option value="SUPERIORALADDIN">Superior Aladdin</option>
+                                <option value="ESTANDARALADDIN">Estándar Aladdin</option>
+                            </select>
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <input class="form-control" style=" cursor: pointer;" type="text" id="bono-modal"
+                                placeholder="# Bono" />
+                            <input class="form-control" style=" cursor: pointer;" type="text" id="nombre-modal"
+                                placeholder="Nombre" />
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <input class="form-control" style=" cursor: pointer;" type="text" id="hora-modal"
+                                placeholder="Hora" />
+                            <input class="form-control" style=" cursor: pointer;" type="date" id="fecha-modal"
+                                placeholder="Fecha" />
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <input class="form-control" style=" cursor: pointer;display: none;" type="text"
+                                id="cedula-modal" placeholder="Cedúla" />
+                        </div>
+                        <div class="content_btn_modal">
+                            <button id="btn_send_secundario" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="view_envia_observacion" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Observación</h2>
+                    <div class="datos_column_modal">
+                        <select class="form-control" style="cursor: pointer;" id="casino_observacion">
+                            <option value="">Casino...</option>
+                            <option value="A05">A05</option>
+                            <option value="A07">A07</option>
+                            <option value="A08">A08</option>
+                            <option value="A09">A09</option>
+                            <option value="A12">A12</option>
+                            <option value="A12-MESAS">A12-MESAS</option>
+                            <option value="A15">A15</option>
+                            <option value="A15-MESAS">A15-MESAS</option>
+                            <option value="A16">A16</option>
+                            <option value="A19">A19</option>
+                            <option value="A35">A35</option>
+                            <option value="A36">A36</option>
+                            <option value="A36-MESAS">A36-MESAS</option>
+                            <option value="A38">A38</option>
+                            <option value="A39">A39</option>
+                            <option value="A43">A43</option>
+                            <option value="A48">A48</option>
+                            <option value="A48-MESAS">A48-MESAS</option>
+                            <option value="A49">A49</option>
+                            <option value="A50">A50</option>
+                            <option value="MP53">MP53</option>
+                            <option value="A70">A70</option>
+                            <option value="A781">A781</option>
+                            <option value="A88">A88</option>
+                            <option value="A100">A100</option>
+                            <option value="A108">A108</option>
+                            <option value="A108-MESAS">A108-MESAS</option>
+                        </select>
+                    </div>
+                    <div class="datos_column_modal">
+                        <textarea placeholder="Descripcion" name="descripcion" id="descripcion_observacion"></textarea>
+                    </div>
+                    <div class="content_btn_modal">
+                        <button style="display: none;" id="btn_clean_observacion"
+                            class="btn btn-primary btn_acumula">Limpiar</button>
+                        <button id="btn_envia_observacion" class="btn btn-primary btn_acumula">Enviar</button>
+                    </div>
+                </div>
+            </div>
+            <div id="view_tabla_premios" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Tabla de Premios</h2>
+                    <div class="table-result container">
+                        <p class="casinos_mymawi">A05, A07, A08, A09, A12, MP15, A16, MP108, A50, A70, A38, A35, A39,
+                            A88, A48, A49, MP100,
+                            A48m, MP100m</p>
+                        <table class="styled-table">
+                            <thead style="position: relative;">
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Bronce</th>
+                                    <th>Silver</th>
+                                    <th>Gold</th>
+                                    <th>Legendario</th>
+                                    <th>Titanio</th>
+                                    <th>Geniuns</th>
+                                    <th>Estándar</th>
+                                    <th>Superior</th>
+                                    <!-- <th>Estándar MarcoPolo</th>
+                                    <th>Superior MarcoPolo</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Todas</td>
+                                    <td>$ 50.000</td>
+                                    <td>$ 70.000</td>
+                                    <td>$ 90.000</td>
+                                    <td>$ 110.000</td>
+                                    <td>$ 130.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 50.000</td>
+                                    <td>$ 100.000</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                        <p class="casinos_mymawi">A-12m, MP-15m, A-36, A-36m, A-781, MP108m</p>
+                        <table class="styled-table">
+                            <thead style="position: relative;">
+                                <tr>
+                                    <th>Categoria</th>
+
+                                    <th>Estándar</th>
+                                    <th>Superior</th>
+                                    <!-- <th>Estándar MarcoPolo</th>
+                                    <th>Superior MarcoPolo</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Todas</td>
+
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                        <p class="casinos_mymawi">A-43, A-53</p>
+                        <table class="styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Bronce</th>
+                                    <th>Silver</th>
+                                    <th>Gold</th>
+                                    <th>Legendario</th>
+                                    <th>Titanio</th>
+                                    <th>Geniuns</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Todas</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 90.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 130.000</td>
+                                    <td>$ 150.000</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="view_registro_dia" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Registro del Dia</h2>
+                    <div id="ultimos-registros"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="modal-ultimos-registros" class="modal">
+        <div class="modal-content3">
+            <div style="display: flex;">
+                <div
+                    style="display: flex;text-align: center;justify-content: space-between;align-items: center;width: 100%;flex-direction: column;">
+                    <h1 style="display: flex; font-weight: bold; color: rgb(34, 79, 161);">Registros del dia, <p
+                            style="margin-left: 10px;" id="casino-numero"></p>
+                    </h1>
+                    <div id="Info"></div>
+                </div>
+                <span style="display: flex; justify-content: flex-end;" class="close"
+                    onclick="cerrarModal2()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="ultimos-registros"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="datos-modal" class="modal">
+        <div class="modal-content2">
+            <div
+                style="display: flex;text-align: center;justify-content: space-between;align-items: center;width: 100%;">
+                <h1 style="font-weight: bold; color: rgb(34, 79, 161);">Envio Fuera de Promocion</h1>
+                <span style="display: flex; justify-content: flex-end;" class="close"
+                    onclick="cerrarModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div id="table-container" class="styled-table-container2">
+                    <div class="datos2" id="formBox">
+                        <div class="casinos">
+                            <label for="casino">CASINO</label>
+                            <select class="form-control" style="width: auto; cursor: pointer;" id="casino-modal">
+                                <option value="">Seleccione...</option>
+                                <option value="A05">A05</option>
+                                <option value="A07">A07</option>
+                                <option value="A08">A08</option>
+                                <option value="A09">A09</option>
+                                <option value="A12">A12</option>
+                                <option value="A12-MESAS">A12-MESAS</option>
+                                <option value="A15">A15</option>
+                                <option value="A15-MESAS">A15-MESAS</option>
+                                <option value="A16">A16</option>
+                                <option value="A19">A19</option>
+                                <option value="A35">A35</option>
+                                <option value="A36">A36</option>
+                                <option value="A36-MESAS">A36-MESAS</option>
+                                <option value="A38">A38</option>
+                                <option value="A39">A39</option>
+                                <option value="A39">A43</option>
+                                <option value="A48">A48</option>
+                                <option value="A48-MESAS">A48-MESAS</option>
+                                <option value="A49">A49</option>
+                                <option value="A50">A50</option>
+                                <option value="A50">MP53</option>
+                                <option value="A70">A70</option>
+                                <option value="A781">A781</option>
+                                <option value="A88">A88</option>
+                                <option value="A100">A100</option>
+                                <option value="A108">A108</option>
+                                <option value="A108-MESAS">A108-MESAS</option>
+                            </select>
+                        </div>
+                        <div class="categoria">
+                            <label for="categoria">CATEGORIA</label>
+                            <select class="form-control" style=" cursor: pointer;" id="categoria-modal">
+                                <option value="">Seleccione...</option>
+                                <option value="GENIUS">Genius</option>
+                                <option value="TITANIO">Titanio</option>
+                                <option value="LEGENDARIO">Legendario</option>
+                                <option value="GOLD">Gold</option>
+                                <option value="SILVER">Silver</option>
+                                <option value="BRONCE">Bronce</option>
+                                <option value="SUPERIORMARCOPOLO">Superior Marcopolo</option>
+                                <option value="ESTANDARMARCOPOLO">Estandar Marcopolo</option>
+                                <option value="SUPERIORALADDIN">Superior Aladdin</option>
+                                <option value="ESTANDARALADDIN">Estandar Aladdin</option>
+                            </select>
+                        </div>
+
+                        <div class="cedula">
+                            <label for="cedula">CEDULA</label>
+                            <div style="display: flex; align-items: center; gap: 5px">
+                                <input class="form-control" style=" cursor: pointer;" type="text" id="cedula-modal"
+                                    placeholder="Cedula del cliente" />
+                            </div>
+                        </div>
+                        <div class="nombre">
+                            <label for="nombre">NOMBRE</label>
+                            <div style="display: flex; align-items: center; gap: 5px">
+                                <input class="form-control" style=" cursor: pointer;" type="text" id="nombre-modal"
+                                    placeholder="Nombre del cliente" />
+                            </div>
+                        </div>
+                        <div class="nombre">
+                            <label for="nombre">HORA</label>
+                            <div style="display: flex; align-items: center; gap: 5px">
+                                <input class="form-control" style=" cursor: pointer;" type="text" id="hora-modal"
+                                    placeholder="Hora del registro" />
+                            </div>
+                        </div>
+                        <div class="nombre">
+                            <label for="nombre">FECHA</label>
+                            <div style="display: flex; align-items: center; gap: 5px">
+                                <input class="form-control" style=" cursor: pointer;" type="date" id="fecha-modal"
+                                    placeholder="Fecha del registro" />
+                            </div>
+                        </div>
+                        <div class="nombre">
+                            <label for="nombre"># Bono</label>
+                            <div style="display: flex; align-items: center; gap: 5px">
+                                <input class="form-control" style=" cursor: pointer;" type="text" id="bono-modal"
+                                    placeholder="# Bono" />
+                            </div>
+                        </div>
+                        <br />
+                        <br />
+                        <div class="content-btn-enviar">
+                            <button id="validatepremio" onclick="HandleSecondSubmit();" class="btn-dados">Envio
+                                suplementario</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="/dinamicas/user.js"></script>
+    <script src="/dinamicas/MYMAWI-Te-premia/js/script.js"></script>
+</body>
+
+</html>

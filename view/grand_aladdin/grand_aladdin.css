@@ -1,0 +1,77 @@
+
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead {
+    background: rgba(34, 78, 161, 0);
+    color: #fff;
+}
+
+
+.styled-table th{
+    padding: 8px 0px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: 2rem;
+}
+.styled-table td {
+    padding: 8px 0px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table tbody tr {
+    background-color: #000;
+    color: #fff;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #000;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #292929;
+}
+
+.styled-table a {
+    transition: all 0.4s ease;
+    color: white;
+}
+
+.styled-table a:hover {
+    color: #858585;
+}
+
+.img_excel{
+    width: 20px;
+}
+
+.btn_admin_test{
+    display: none;
+}
+
+.header_table_no_2{
+    display: none;
+}
+
+@media(max-width: 1366px) {
+    .content_info_final {
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 768px) {
+    .content_actions_grand {
+        position: relative;
+    }
+
+    .styled-table th{
+        font-size: 1rem;
+    }
+}

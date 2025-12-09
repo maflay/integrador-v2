@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Aladdin: Halloween Misterioso</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/dinamicas/promocion-halloween-misterioso/css/style.css">
+    <link rel="stylesheet" href="/dinamicas/promocion-halloween-misterioso/css/fonts.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <!-- <audio style="position: absolute;" id="miAudio"
+        src="/dinamicas/promocion-9-portales/resources/Sonido_background.mp3"></audio> -->
+    <div id="content_halloween_misterioso" class="content_halloween_misterioso">
+        <div class="content_logo_misterioso">
+            <img src="/dinamicas/promocion-halloween-misterioso/resources/logo.png" alt="promoAladdin">
+            <div class="controls_audio">
+                <button title="Subir Volumen" class="img_control_audio btn_misterioso" id="subirVolumen"><img
+                        src="/dinamicas/promocion-halloween-misterioso/resources/volumen_subir.png"
+                        alt="integrador"></button>
+                <button title="Bajar Volumen" class="img_control_audio btn_misterioso" id="bajarVolumen"><img
+                        src="/dinamicas/promocion-halloween-misterioso/resources/bajar-volumen_2.png"
+                        alt="integrador"></button>
+                <button title="Pausar" class="img_control_audio btn_misterioso" id="pausarSonido"><img
+                        src="/dinamicas/promocion-halloween-misterioso/resources/pausa.png" alt="integrador"></button>
+                <button title="Reanuadar" class="img_control_audio btn_misterioso" id="reanudarSonido"><img
+                        src="/dinamicas/promocion-halloween-misterioso/resources/play.png" alt="integrador"></button>
+            </div>
+        </div>
+        <div class="content_logos_actions">
+            <div class="content_logo">
+                <img src="/dinamicas/promocion-halloween-misterioso/resources/ala_blanco.png" alt="promoAladdin">
+            </div>
+            <div class="content_actions">
+                <select class="form-control" style="cursor: pointer;" id="casino">
+                    <option value="">Casino...</option>
+                    <option value="A05">A05</option>
+                    <option value="A07">A07</option>
+                    <option value="A08">A08</option>
+                    <option value="A09">A09</option>
+                    <option value="A12">A12</option>
+                    <option value="A12-MESAS">A12-MESAS</option>
+                    <option value="A15">A15</option>
+                    <option value="A15-MESAS">A15-MESAS</option>
+                    <option value="A16">A16</option>
+                    <option value="A19">A19</option>
+                    <option value="A35">A35</option>
+                    <option value="A36">A36</option>
+                    <option value="A36-MESAS">A36-MESAS</option>
+                    <option value="A38">A38</option>
+                    <option value="A39">A39</option>
+                    <option value="A43">A43</option>
+                    <option value="A48">A48</option>
+                    <option value="A48-MESAS">A48-MESAS</option>
+                    <option value="A49">A49</option>
+                    <option value="A50">A50</option>
+                    <option value="A53">A53</option>
+                    <option value="A70">A70</option>
+                    <option value="A781">A781</option>
+                    <option value="A88">A88</option>
+                    <option value="A100">A100</option>
+                    <option value="A108">A108</option>
+                    <option value="A108-MESAS">A108-MESAS</option>
+                </select>
+                <select class="form-control" style=" cursor: pointer;" id="categoria">
+                    <option value="">Categoría...</option>
+                    <option value="GENIUS">Genius</option>
+                    <option value="TITANIO">Titanio</option>
+                    <option value="LEGENDARIO">Legendario</option>
+                    <option value="GOLD">Gold</option>
+                    <option value="SILVER">Silver</option>
+                    <option value="BRONCE">Bronce</option>
+                    <option value="SUPERIOR">Superior</option>
+                    <option value="ESTANDAR">Estándar</option>
+                    <option value="ADICIONAL">Adicional</option>
+                </select>
+                <img id="abrirOpciones" class="engranaje_misterioso"
+                    src="/dinamicas/promocion-halloween-misterioso/resources/engranaje.png" alt="promoAladdin">
+            </div>
+        </div>
+        <div class="content_boards">
+            <div class="board_2">
+                <img src="/dinamicas/promocion-halloween-misterioso/resources/aladdin.png" alt="promoAladdin">
+            </div>
+            <span class="content_title_premio">
+                <p id="label_acumulado">Acumulado :</p>
+                <p id="premio_acumulado"> $ 0</p>
+            </span>
+            <div id="board_1" class="board_1 ">
+                <div id="fondo_board_1" class="fondo_board_1"></div>
+                <!-- <h2>Tablero Fichas</h2> -->
+                <div class="content_img_board_1">
+                    <img id="img_esqueleto" title="Ficha Calavera"
+                        src="/dinamicas/promocion-halloween-misterioso/resources/esqueleto.png" alt="promoAladdin">
+                    <div id="img_esqueleto_1" class="img_esqueleto_all">
+                        <img id="ficha_img_esqueleto_1"
+                            src="/dinamicas/promocion-halloween-misterioso/resources/esqueleto.png" alt="promoAladdin">
+                    </div>
+                    <div id="img_esqueleto_2" class="img_esqueleto_all">
+                        <img id="ficha_img_esqueleto_2"
+                            src="/dinamicas/promocion-halloween-misterioso/resources/esqueleto.png" alt="promoAladdin">
+                    </div>
+                    <div id="img_esqueleto_3" class="img_esqueleto_all">
+                        <img id="ficha_img_esqueleto_3"
+                            src="/dinamicas/promocion-halloween-misterioso/resources/esqueleto.png" alt="promoAladdin">
+                    </div>
+                    <p>x<span id="score_esqueleto"></span></p>
+                </div>
+                <div title="Ficha Momia" class="content_img_board_1">
+                    <img id="img_momia" src="/dinamicas/promocion-halloween-misterioso/resources/momia.png"
+                        alt="promoAladdin">
+                    <div id="img_momia_1" class="img_momia_all">
+                        <img id="ficha_img_momia_1" src="/dinamicas/promocion-halloween-misterioso/resources/momia.png"
+                            alt="promoAladdin">
+                    </div>
+                    <div id="img_momia_2" class="img_momia_all">
+                        <img id="ficha_img_momia_2" src="/dinamicas/promocion-halloween-misterioso/resources/momia.png"
+                            alt="promoAladdin">
+                    </div>
+                    <div id="img_momia_3" class="img_momia_all">
+                        <img id="ficha_img_momia_3" src="/dinamicas/promocion-halloween-misterioso/resources/momia.png"
+                            alt="promoAladdin">
+                    </div>
+                    <p>x<span id="score_momia"></span></p>
+                </div>
+                <div title="Ficha Calabaza" class="content_img_board_1">
+                    <img id="img_calabaza" src="/dinamicas/promocion-halloween-misterioso/resources/calabaza.png"
+                        alt="promoAladdin">
+                    <div id="img_calabaza_1" class="img_calabaza_all">
+                        <img id="ficha_img_calabaza_1"
+                            src="/dinamicas/promocion-halloween-misterioso/resources/calabaza.png" alt="promoAladdin">
+                    </div>
+                    <div id="img_calabaza_2" class="img_calabaza_all">
+                        <img id="ficha_img_calabaza_2"
+                            src="/dinamicas/promocion-halloween-misterioso/resources/calabaza.png" alt="promoAladdin">
+                    </div>
+                    <div id="img_calabaza_3" class="img_calabaza_all">
+                        <img id="ficha_img_calabaza_3"
+                            src="/dinamicas/promocion-halloween-misterioso/resources/calabaza.png" alt="promoAladdin">
+                    </div>
+                    <p>x<span id="score_calabaza"></span></p>
+                </div>
+                <div class="conteo_turno">
+                    <p>Llevas
+                        <span id="conteo_turno">0</span> / 3 Lanzamientos.
+                    </p>
+
+                </div>
+                <div class="actions_controls_misterioso">
+                    <button id="btn_reset_tablero_misterioso" class="btn btn-primary btn_misterioso">Reiniciar
+                        tablero</button>
+                    <button id="btn_reset_misterioso" class="btn btn-primary btn_misterioso">Reiniciar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <section id="modal_opciones_misterioso" class="modal_misterioso">
+        <div class="content_modal_misterioso">
+            <div class="head_modal_misterioso">
+                <div class="content_opcion_head">
+                    <p id="btn_guardar_registro">Guardar Registro</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_envio_secundario">Envió Secundario</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_envio_observacion">Observación</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_tabla_premios">Tabla de Premios</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_registros_dia">Registro del Dia</p>
+                    <span id="notificacion_registro_dia" class="notificacion_registro_dia"></span>
+                </div>
+                <div class="close_modal_x">
+                    <p id="cerrarmodaleopciones">&times;</p>
+                </div>
+            </div>
+            <div class="division_modal_misterioso"></div>
+            <div id="view_guardar_registro" class="body_modal_misterioso">
+                <h2>Guardar Registro</h2>
+                <div class="datos_column_modal">
+                    <input id="nombre" class="form-control" type="text" placeholder="Nombre">
+                </div>
+                <div class="datos_column_modal">
+                    <input style="display: none;" id="cedula" class="form-control" type="number" placeholder="Cedula">
+                </div>
+                <br />
+                <div class="content_btn_modal">
+                    <button id="btn_clean_submit" class="btn_misterioso btn btn-primary">Limpiar</button>
+                    <button id="btn_submit" class="btn_misterioso btn btn-primary">Enviar</button>
+                </div>
+            </div>
+            <div id="view_envio_observacion" class="body_modal_misterioso">
+                <h2 class="space_title_misterioso">Envió de Observación</h2>
+                <div class="datos_column_modal">
+                    <select class="form-control" style="cursor: pointer;" id="casino_observacion">
+                        <option value="">Casino...</option>
+                        <option value="A05">A05</option>
+                        <option value="A07">A07</option>
+                        <option value="A08">A08</option>
+                        <option value="A09">A09</option>
+                        <option value="A12">A12</option>
+                        <option value="A12-MESAS">A12-MESAS</option>
+                        <option value="A15">A15</option>
+                        <option value="A15-MESAS">A15-MESAS</option>
+                        <option value="A16">A16</option>
+                        <option value="A19">A19</option>
+                        <option value="A35">A35</option>
+                        <option value="A36">A36</option>
+                        <option value="A36-MESAS">A36-MESAS</option>
+                        <option value="A38">A38</option>
+                        <option value="A39">A39</option>
+                        <option value="A43">A43</option>
+                        <option value="A48">A48</option>
+                        <option value="A48-MESAS">A48-MESAS</option>
+                        <option value="A49">A49</option>
+                        <option value="A50">A50</option>
+                        <option value="MP53">MP53</option>
+                        <option value="A70">A70</option>
+                        <option value="A781">A781</option>
+                        <option value="A88">A88</option>
+                        <option value="A100">A100</option>
+                        <option value="A108">A108</option>
+                        <option value="A108-MESAS">A108-MESAS</option>
+                    </select>
+                </div>
+                <div class="datos_column_modal">
+                    <textarea placeholder="Descripcion" name="descripcion" id="descripcion_observacion"></textarea>
+                </div>
+                <div>
+                    <button id="btn_clean_observacion" class="btn btn-primary btn_misterioso">Limpiar</button>
+                    <button id="btn_envia_observacion" class="btn btn-primary btn_misterioso">Enviar</button>
+                </div>
+            </div>
+            <div id="view_envio_secundario" class="body_modal_misterioso">
+                <h2 class="space_title_misterioso">Envió Secundario</h2>
+                <div class="datos_column_modal">
+                    <select class="form-control" style="cursor: pointer;" id="casino_secundario">
+                        <option value="">Casino...</option>
+                        <option value="A05">A05</option>
+                        <option value="A07">A07</option>
+                        <option value="A08">A08</option>
+                        <option value="A09">A09</option>
+                        <option value="A12">A12</option>
+                        <option value="A12-MESAS">A12-MESAS</option>
+                        <option value="A15">A15</option>
+                        <option value="A15-MESAS">A15-MESAS</option>
+                        <option value="A16">A16</option>
+                        <option value="A19">A19</option>
+                        <option value="A35">A35</option>
+                        <option value="A36">A36</option>
+                        <option value="A36-MESAS">A36-MESAS</option>
+                        <option value="A38">A38</option>
+                        <option value="A39">A39</option>
+                        <option value="A43">A43</option>
+                        <option value="A48">A48</option>
+                        <option value="A48-MESAS">A48-MESAS</option>
+                        <option value="A49">A49</option>
+                        <option value="A50">A50</option>
+                        <option value="MP53">MP53</option>
+                        <option value="A70">A70</option>
+                        <option value="A781">A781</option>
+                        <option value="A88">A88</option>
+                        <option value="A100">A100</option>
+                        <option value="A108">A108</option>
+                        <option value="A108-MESAS">A108-MESAS</option>
+                    </select>
+
+                    <select class="form-control" style=" cursor: pointer;" id="categoria-secundario">
+                        <option value="">Categoria...</option>
+                        <option value="GENIUS">Genius</option>
+                        <option value="TITANIO">Titanio</option>
+                        <option value="LEGENDARIO">Legendario</option>
+                        <option value="GOLD">Gold</option>
+                        <option value="SILVER">Silver</option>
+                        <option value="BRONCE">Bronce</option>
+                        <option value="SUPERIOR">Superior</option>
+                        <option value="ESTANDAR">Estándar</option>
+                        <option value="ADICIONAL">Adicional</option>
+                    </select>
+                </div>
+                <div class="datos_column_modal">
+                    <input style="display: none;" class="form-control" type="text" name="cedula" id="cedula_secundario" placeholder="Cedula">
+                    <input class="form-control" type="text" name="nombre" id="nombre_secundario" placeholder="Nombre">
+                </div>
+                <div class="datos_column_modal">
+                    <input class="form-control" type="date" name="fecha_secundario" id="fecha_secundario"
+                        placeholder="Fecha">
+                    <input class="form-control" type="text" name="hora_secundario" id="hora_secundario"
+                        placeholder="Hora">
+                </div>
+                <div class="datos_column_modal">
+                    <input class="form-control" type="text" name="bono_secundario" id="bono_secundario"
+                        placeholder="Bono">
+                </div>
+                <div class="datos_column_modal">
+                    <select class="form-control casilla_ficha" id="resultValor1_secundario">
+                        <option value="">Ficha 1...</option>
+                        <option value="Calavera">Calavera</option>
+                        <option value="Momia">Momia</option>
+                        <option value="Calabaza">Calabaza</option>
+                    </select>
+                    <select class="form-control casilla_ficha" id="resultValor2_secundario">
+                        <option value="">Ficha 2...</option>
+                        <option value="Calavera">Calavera</option>
+                        <option value="Momia">Momia</option>
+                        <option value="Calabaza">Calabaza</option>
+                    </select>
+                    <select class="form-control casilla_ficha" id="resultValor3_secundario">
+                        <option value="">Ficha 3...</option>
+                        <option value="Calavera">Calavera</option>
+                        <option value="Momia">Momia</option>
+                        <option value="Calabaza">Calabaza</option>
+                    </select>
+                </div>
+
+                <div class="content_btn_modal">
+                    <button id="btn_clean_secundario" class="btn btn-primary btn_misterioso">Limpiar</button>
+                    <button id="btn_submit_secundario" class="btn btn-primary btn_misterioso">Enviar</button>
+                </div>
+            </div>
+            <div id="view_tabla_premios" class="body_modal_misterioso">
+                <div class="vista_table_premios">
+                    <h2 class="text_misterioso">Tabla de Premios</h2>
+
+                    <br />
+                    <p class="casinos_misterioso">A05, A07, A08, A09, A12, MP15, A16, MP108</p>
+                    <table class="table-wrapper styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fichas</th>
+                                <th>Bronce</th>
+                                <th>Silver</th>
+                                <th>Gold</th>
+                                <th>Legendario</th>
+                                <th>Titanio</th>
+                                <th>Genius</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Calabaza</td>
+                                <td>$ 40.000</td>
+                                <td>$ 50.000</td>
+                                <td>$ 60.000</td>
+                                <td>$ 70.000</td>
+                                <td>$ 80.000</td>
+                                <td>$ 90.000</td>
+                            </tr>
+                            <tr>
+                                <td>Momia</td>
+                                <td>$ 30.000</td>
+                                <td>$ 40.000</td>
+                                <td>$ 40.000</td>
+                                <td>$ 50.000</td>
+                                <td>$ 50.000</td>
+                                <td>$ 50.000</td>
+                            </tr>
+                            <tr>
+                                <td>Calavera</td>
+                                <td>$ 20.000</td>
+                                <td>$ 30.000</td>
+                                <td>$ 30.000</td>
+                                <td>$ 40.000</td>
+                                <td>$ 40.000</td>
+                                <td>$ 40.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                    <p class="casinos_misterioso">A43, A53</p>
+                    <table class="table-wrapper styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fichas</th>
+                                <th>Bronce</th>
+                                <th>Silver</th>
+                                <th>Gold</th>
+                                <th>Legendario</th>
+                                <th>Titanio</th>
+                                <th>Genius</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Calabaza</td>
+                                <td>$ 50.000</td>
+                                <td>$ 60.000</td>
+                                <td>$ 70.000</td>
+                                <td>$ 80.000</td>
+                                <td>$ 90.000</td>
+                                <td>$ 100.000</td>
+                            </tr>
+                            <tr>
+                                <td>Momia</td>
+                                <td>$ 40.000</td>
+                                <td>$ 40.000</td>
+                                <td>$ 40.000</td>
+                                <td>$ 50.000</td>
+                                <td>$ 50.000</td>
+                                <td>$ 50.000</td>
+                            </tr>
+                            <tr>
+                                <td>Calavera</td>
+                                <td>$ 30.000</td>
+                                <td>$ 30.000</td>
+                                <td>$ 30.000</td>
+                                <td>$ 40.000</td>
+                                <td>$ 40.000</td>
+                                <td>$ 40.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                    <p class="casinos_misterioso">Otros Casinos</p>
+                    <table class="table-wrapper styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fichas</th>
+                                <th>Estándar</th>
+                                <th>Superior</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Calabaza</td>
+                                <td>$ 40.000</td>
+                                <td>$ 50.000</td>
+                            </tr>
+                            <tr>
+                                <td>Momia</td>
+                                <td>$ 30.000</td>
+                                <td>$ 40.000</td>
+                            </tr>
+                            <tr>
+                                <td>Calavera</td>
+                                <td>$ 20.000</td>
+                                <td>$ 30.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                    <p class="casinos_misterioso">A36, A781</p>
+                    <table class="table-wrapper styled-table">
+                        <thead>
+                            <tr>
+                                <th>Fichas</th>
+                                <th>Estándar</th>
+                                <th>Superior</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Calabaza</td>
+                                <td>$ 50.000</td>
+                                <td>$ 60.000</td>
+                            </tr>
+                            <tr>
+                                <td>Momia</td>
+                                <td>$ 40.000</td>
+                                <td>$ 50.000</td>
+                            </tr>
+                            <tr>
+                                <td>Calavera</td>
+                                <td>$ 30.000</td>
+                                <td>$ 40.000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div id="view_registros_dia" class="body_modal_misterioso">
+                <h2>Registro del Dia</h2>
+                <div id="Info_result_dia"></div>
+                <div class="result_dia_misterioso" id="result_dia_misterioso"></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/dinamicas/user.js"></script>
+    <script src="/dinamicas/promocion-halloween-misterioso/js/script.js"></script>
+</body>
+
+</html>

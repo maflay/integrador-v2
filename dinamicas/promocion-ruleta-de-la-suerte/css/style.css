@@ -1,0 +1,564 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins Ligth', sans-serif !important;
+}
+
+body {
+    overflow-x: hidden;
+    font-size: 62.5% !important;
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid rgb(141, 143, 11);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.main_content_ruleta_dela_suerte {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(180deg, #ee2b2b00, #2a157400), url(/dinamicas/promocion-ruleta-de-la-suerte/resources/FONDO-RULETA-DE-LA-SUERTE-MARCOPOLO-2025.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.content_logo_rs {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.content_logo_rs img {
+    width: 150px;
+}
+
+.board_rs {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content_board_rs {
+    width: 1350px;
+    height: 520px;
+    border-radius: 100px;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+}
+
+.content_form_rs {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.content_form_img_rs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.content_form_img_rs input {
+    width: 80px;
+}
+
+.content_form_img_rs img {
+    width: 420px;
+    margin-bottom: 20px;
+}
+
+.content_form_text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+.board_numbers {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(54px, 1fr));
+    gap: 6px;
+    padding: 10px;
+}
+
+.pocket {
+    display: grid;
+    place-items: center;
+    padding: 10px 5px;
+    height: 40px;
+    border-radius: 8px;
+    font: 600 16px/1 system-ui, sans-serif;
+    color: #fff;
+    user-select: none;
+    transition: transform .15s ease, box-shadow .15s ease, outline-color .15s ease;
+    outline: 2px solid transparent;
+    border: 2px solid transparent;
+}
+
+.pocket.red {
+    background: #C62828;
+}
+
+.pocket.black {
+    background: #212121;
+}
+
+.pocket.green {
+    background: #2E7D32;
+}
+
+.pocket.active {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, .15);
+    outline-color: rgba(255, 255, 255, .35);
+}
+
+.pocket.hit {
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, .9), 0 0 18px rgba(255, 215, 0, .75);
+    outline-color: gold;
+}
+
+.pocket.bloqueado {
+    opacity: 0.5;
+    filter: grayscale(80%);
+    pointer-events: none;
+    /* no se puede hacer clic */
+    border: 2px solid #888;
+    box-shadow: none;
+}
+
+.content_controls_board_lista {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    position: relative;
+}
+
+
+.content_configuracion {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.content_configuracion img {
+    width: 30px;
+    transition: all 0.3s ease;
+}
+
+.content_configuracion img:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.division_modal_suerte {
+    width: 95%;
+    height: 1px;
+    background-color: #791706;
+    position: absolute;
+    top: 70px;
+}
+
+.modal_suerte {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.content_modal_suerte {
+    width: 950px;
+    height: 100%;
+    max-height: 500px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
+}
+
+.content_modal_opciones_suerte {
+    width: 650px;
+    height: 100%;
+    max-height: 600px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
+}
+
+.content_cerrar_modal {
+    position: relative;
+}
+
+.content_cerrar_modal>p {
+    position: absolute;
+    right: 30px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.content_cerrar_modal p:hover {
+    background-color: #FF9A00;
+    color: white;
+}
+
+.content_modal_reglas_suerte {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.reglas_modal_imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 150px;
+}
+
+.reglas_modal_imagen>img {
+    width: 400px;
+}
+
+.reglas_modal_text {
+    width: 100%;
+    font-size: 16px;
+}
+
+.text_center_title {
+    text-align: center;
+}
+
+.result_modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2px;
+    position: absolute;
+    left: 30px;
+    color: rgb(209, 209, 209);
+}
+
+.head_modal_suerte {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.content_opcion_head {
+    position: relative;
+}
+
+.body_modal_suerte {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    overflow: auto;
+    padding-top: 10px;
+}
+
+.body_modal_suerte>h2 {
+    color: #791706;
+    font-weight: bold;
+}
+
+.space_title_suerte {
+    padding: 0;
+}
+
+.vista_table_premios {
+    /* padding-top: 80px; */
+    text-align: center;
+}
+
+.vista_table_premios>h2 {
+    color: #791706;
+    font-weight: bold;
+}
+
+.text_suerte {
+    color: #791706;
+    font-weight: bold;
+}
+
+.head_modal_suerte p {
+    color: #791706;
+    font-size: .8rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.select_menu {
+    color: white;
+    border-bottom: #791706 1px solid;
+}
+
+.head_modal_suerte p:hover {
+    color: #995d02;
+}
+
+.head_modal_suerte p:hover.select_menu {
+    border-bottom: #995d02 1px solid;
+}
+
+
+.close_modal_x {
+    position: relative;
+}
+
+.close_modal_x p {
+    position: absolute;
+    top: -30px;
+    left: -8px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    border-radius: 100%;
+}
+
+.close_modal_x p:hover {
+    background-color: #791706;
+    color: white;
+}
+
+.datos_column_modal {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.datos_column_modal select,
+.datos_column_modal input {
+    width: 180px;
+}
+
+.datos_column_modal textarea {
+    width: 300px;
+    height: 150px;
+    border-radius: 20px 20px 0 20px;
+    padding: 10px;
+    font-size: 1rem;
+    border: #eee solid 1px;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.datos_column_modal textarea:focus {
+    border: #aaaaaa solid 1px;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    font-size: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead {
+    background: #791706;
+    color: #fff;
+    transition: all 0.4s ease;
+}
+
+.styled-table thead:hover {
+    background: #bb7101;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 10px 15px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.styled-table tbody tr {
+    background-color: #fff;
+    color: #000;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.styled-table tr>:first-child {
+    font-weight: 700;
+}
+
+.table_btn_enviar_bono {
+    background-color: #791706;
+    color: white;
+    border: none;
+    padding: 2px 5px;
+    font-size: 0.5rem;
+    transition: all 0.4s ease;
+    border-radius: 4px;
+}
+
+.table_btn_enviar_bono:hover {
+    background-color: #b46e04;
+}
+
+.table_input_bono_suerte {
+    width: 40px;
+    font-size: 0.5rem;
+    border: rgb(219, 219, 219) solid 1px;
+    border-radius: 10px;
+    padding: 3px 4px;
+}
+
+.table_input_bono_suerte:focus {
+    outline: none;
+    border: #aaaaaa solid 1px;
+}
+
+.notificacion_registro_dia {
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    border-radius: 50%;
+    z-index: 10;
+    font-size: 4rem;
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: -5px;
+}
+
+.table_ya_tiene_bono {
+    color: rgb(8, 209, 8);
+    font-size: 0.5rem;
+    position: relative;
+    top: 9px;
+}
+
+.validate_done_lista {
+    color: rgb(8, 209, 8);
+    font-size: 1rem;
+}
+
+.content_inputs_registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.content_inputs_registro select,
+.content_inputs_registro input {
+    width: 100px;
+}
+
+.content_inputs_registro button {
+    font-size: 10px;
+    padding: 2px 5px;
+}
+
+.btn-enviar-api{
+     font-size: 10px !important;
+    padding: 2px 5px !important;
+    border-radius: 10px !important;
+}
+
+.btn-enviar-ganadores{
+     font-size: 10px !important;
+    padding: 2px 5px !important;
+    border-radius: 10px !important;
+}
+
+/* responsive */
+@media (min-width: 768px) {
+    .board_numbers {
+        grid-template-columns: repeat(12, 1fr);
+    }
+}
+
+
+@media(max-width: 1366px) {
+
+    .content_board_rs {
+        width: 900px;
+        height: 520px;
+        border-radius: 100px;
+        /* background-color: rgba(255, 255, 255, 0.8); */
+    }
+
+    .content_form_img_rs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .content_form_img_rs input {
+        width: 80px;
+    }
+
+    .content_form_img_rs img {
+        width: 320px;
+        margin-bottom: 20px;
+    }
+
+}

@@ -1,0 +1,861 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins Ligth', sans-serif !important;
+}
+
+body {
+    overflow-x: hidden;
+    font-size: 62.5% !important;
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid rgba(12, 12, 61);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.content_halloween_misterioso {
+    background-image: linear-gradient(180deg, #311ca944, #311ca944), url(/dinamicas/promocion-halloween-misterioso-mp/resources/TV-MARCOPOLO-HALLOWEEN-MISTERIOSO.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100%;
+    overflow-y: auto;
+    min-height: 100vh;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content_boards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+    gap: 30px;
+    position: relative;
+    padding: 20px 0;
+}
+
+.board_2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+    background-color: #1f253ab6;
+    padding: 10px;
+    border-radius: 20px;
+    border: #ccc 2px solid;
+}
+
+.board_2>img {
+    width: 450px;
+    pointer-events: none;
+    position: absolute;
+    opacity: 0.7;
+}
+
+.board_1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 350px;
+    padding: 10px;
+    gap: 20px;
+}
+
+.content_img_board_1 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 130px;
+}
+
+.content_img_board_1>img {
+    width: 100%;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 20;
+}
+
+.content_img_board_1>img:hover {
+    transform: scale(1.1);
+}
+
+.content_img_board_1>p {
+    font-size: 1.6rem;
+}
+
+.fondo_board_1 {
+    background-color: #311ca970;
+    position: absolute;
+    width: 485px;
+    height: 200px;
+    z-index: 100;
+    display: none;
+    border-radius: 40px;
+}
+
+.img_esqueleto_all {
+    position: absolute;
+    transition: top 0.4s ease, left 0.4s ease, all 0.4s ease;
+    width: 110px;
+    top: 492px;
+    left: 344px;
+    opacity: 0;
+}
+
+.img_esqueleto_all>img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.posicion_esqueleto_1 {
+    top: 150px;
+    left: 235px;
+    opacity: 1;
+}
+
+.posicion_esqueleto_2 {
+    top: 150px;
+    left: 123px;
+    opacity: 1;
+}
+
+.posicion_esqueleto_3 {
+    top: 150px;
+    left: 10px;
+    opacity: 1;
+}
+
+.img_momia_all {
+    position: absolute;
+    transition: top 0.4s ease, left 0.4s ease, all 0.4s ease;
+    width: 110px;
+    top: 495px;
+    left: 496px;
+    opacity: 0;
+}
+
+.img_momia_all>img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.posicion_momia_1 {
+    top: 150px;
+    left: 490px;
+    opacity: 1;
+}
+
+.posicion_momia_2 {
+    top: 150px;
+    left: 360px;
+    opacity: 1;
+}
+
+.posicion_momia_3 {
+    top: 150px;
+    left: 620px;
+    opacity: 1;
+}
+
+
+.img_calabaza_all {
+    position: absolute;
+    transition: top 0.4s ease, left 0.4s ease, all 0.4s ease;
+    width: 110px;
+    top: 492px;
+    left: 646px;
+    opacity: 0;
+}
+
+.img_calabaza_all>img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.posicion_calabaza_1 {
+    top: 150px;
+    left: 753px;
+    opacity: 1;
+}
+
+.posicion_calabaza_2 {
+    top: 150px;
+    left: 867px;
+    opacity: 1;
+}
+
+.posicion_calabaza_3 {
+    top: 150px;
+    left: 980px;
+    opacity: 1;
+}
+
+
+
+.content_logo_misterioso {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 100px;
+}
+
+.content_logo_misterioso>img {
+    width: 100%;
+}
+
+.content_logos_actions {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    gap: 10px;
+    width: 150px;
+}
+
+.content_logo {
+    width: 40px;
+}
+
+.content_logo>img {
+    width: 100%;
+}
+
+.content_actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+    position: relative;
+    right: 50px;
+}
+
+.content_actions>select {
+    width: 100px;
+}
+
+.content_actions>img {
+    width: 30px;
+}
+
+.ficha_disable {
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.ficha_disable_mov {
+    pointer-events: none;
+    opacity: 0.9;
+}
+
+.conteo_turno {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    z-index: 10;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.conteo_turno>p {
+    position: relative;
+    top: 0px;
+    left: 5px;
+    font-size: 1.2rem;
+}
+
+.actions_controls_misterioso {
+    position: absolute;
+    bottom: -20px;
+    z-index: 11;
+}
+
+.actions_controls_misterioso>button {
+    padding: 2px 5px;
+    font-size: 0.8rem;
+}
+
+.mi-popup {
+    background-color: #FF9A00;
+    color: white;
+    border-radius: 40%;
+}
+
+.content_swal_premio,
+.content_swal_premio h2 {
+    color: white;
+}
+
+.swal_premio_portal {
+    position: relative;
+    width: 100%;
+    width: 10px;
+}
+
+.img_corona_rama {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-35%);
+    top: -100px;
+}
+
+.swal_premio_portal>img {
+    position: relative;
+    width: 230px;
+    left: 115px;
+}
+
+.engranaje_misterioso {
+    transition: all 0.4s ease;
+    cursor: pointer;
+}
+
+.engranaje_misterioso:hover {
+    opacity: 0.7;
+}
+
+
+.modal_misterioso {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.content_modal_misterioso {
+    width: 650px;
+    height: 100%;
+    max-height: 500px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
+}
+
+.content_modal_opciones_misterioso {
+    width: 650px;
+    height: 100%;
+    max-height: 600px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
+}
+
+.content_cerrar_modal {
+    position: relative;
+}
+
+.content_cerrar_modal>p {
+    position: absolute;
+    right: 30px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    border-radius: 100%;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.content_cerrar_modal p:hover {
+    background-color: #FF9A00;
+    color: white;
+}
+
+.head_modal_misterioso {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.head_modal_misterioso p {
+    cursor: pointer;
+}
+
+.content_opcion_head {
+    position: relative;
+}
+
+
+.body_modal_portales {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    overflow: auto;
+    padding-top: 10px;
+}
+
+.body_modal_portales>h2 {
+    color: #FF9A00;
+    font-weight: bold;
+}
+
+.body_modal_misterioso {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    width: 100%;
+    overflow: auto;
+    padding-top: 10px;
+}
+
+.body_modal_misterioso>h2 {
+    color: #FF9A00;
+    font-weight: bold;
+}
+
+.space_title_portales {
+    padding: 0;
+}
+
+.division_modal_misterioso {
+    width: 95%;
+    height: 1px;
+    background-color: gray;
+    position: absolute;
+    top: 70px;
+}
+
+
+.head_modal_misterioso p {
+    color: #FF9A00;
+    font-size: .8rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.select_menu {
+    color: white;
+    border-bottom: #FF9A00 1px solid;
+}
+
+.head_modal_misterioso p:hover.select_menu {
+    border-bottom: #774904 1px solid;
+}
+
+.head_modal_misterioso p:hover {
+    color: #995d02;
+}
+
+
+.close_modal_x {
+    position: relative;
+}
+
+.close_modal_x p {
+    position: absolute;
+    top: -30px;
+    left: -8px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 10px;
+    border-radius: 100%;
+    transition: all 0.2s ease;
+}
+
+.close_modal_x p:hover {
+    background-color: #FF9A00;
+    color: white;
+}
+
+
+.datos_column_modal {
+    display: flex;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.datos_column_modal select,
+.datos_column_modal input {
+    width: 180px;
+}
+
+.datos_column_modal textarea {
+    width: 300px;
+    height: 150px;
+    border-radius: 20px 20px 0 20px;
+    padding: 10px;
+    font-size: 1rem;
+    border: #eee solid 1px;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.datos_column_modal textarea:focus {
+    border: #aaaaaa solid 1px;
+}
+
+.text_misterioso {
+    color: #FF9A00;
+    font-weight: bold;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    font-size: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead {
+    background: #FF9A00;
+    color: #fff;
+    transition: all 0.4s ease;
+}
+
+.styled-table thead:hover {
+    background: #bb7101;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 10px 5px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.styled-table tbody tr {
+    background-color: #fff;
+    color: #000;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.styled-table tr>:first-child {
+    font-weight: 700;
+}
+
+.table_btn_enviar_bono {
+    background-color: #ff9900;
+    color: white;
+    border: none;
+    padding: 2px 5px;
+    font-size: 0.5rem;
+    transition: all 0.4s ease;
+    border-radius: 4px;
+}
+
+.table_btn_enviar_bono:hover {
+    background-color: #b46e04;
+}
+
+.table_input_bono_portal {
+    width: 40px;
+    font-size: 0.5rem;
+    border: rgb(219, 219, 219) solid 1px;
+    border-radius: 10px;
+    padding: 3px 4px;
+}
+
+.table_input_bono_portal:focus {
+    outline: none;
+    border: #aaaaaa solid 1px;
+}
+
+.notificacion_registro_dia {
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    border-radius: 50%;
+    z-index: 10;
+    font-size: 4rem;
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: -5px;
+}
+
+.table_ya_tiene_bono {
+    color: rgb(8, 209, 8);
+    font-size: 0.5rem;
+}
+
+.table_sin_bono_modal {
+    color: rgb(192, 1, 1);
+    font-size: 0.5rem;
+}
+
+.casinos_misterioso {
+    text-align: center;
+    font-weight: bold;
+}
+
+.vista_table_premios {
+    padding-top: 380px;
+    text-align: center;
+}
+
+.btn_misterioso {
+    background: #FF9A00 !important;
+    border: none;
+    font-size: .85rem;
+    border-color: transparent !important;
+}
+
+.btn_misterioso:hover {
+    background: #ca7b05 !important;
+}
+
+.casilla_ficha {
+    width: 115px !important;
+}
+
+.content_title_premio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 320px;
+    font-size: 2.2rem;
+}
+
+.result_dia_misterioso {
+    height: 100%;
+    max-height: 323px;
+    overflow: auto;
+}
+
+.username_dinamica {
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.img_control_audio {
+    border-radius: 4px;
+}
+
+.img_control_audio img {
+    width: 20px;
+}
+
+@media (max-width:1366px) {
+
+    .content_boards {
+        max-width: 800px;
+    }
+
+    .board_1 {
+        height: 200px;
+    }
+
+    .board_2 {
+        height: 200px;
+    }
+
+
+    .img_esqueleto_all {
+        position: absolute;
+        transition: top 0.4s ease, left 0.4s ease, all 0.4s ease;
+        width: 80px;
+        top: 284px;
+        left: 260px;
+        opacity: 0;
+    }
+
+    .img_esqueleto_all>img {
+        width: 100%;
+    }
+
+    .posicion_esqueleto_1 {
+        top: 80px;
+        left: 170px;
+        opacity: 1;
+    }
+
+    .posicion_esqueleto_2 {
+        top: 80px;
+        left: 90px;
+        opacity: 1;
+    }
+
+    .posicion_esqueleto_3 {
+        top: 80px;
+        left: 10px;
+        opacity: 1;
+    }
+
+    .img_momia_all {
+        position: absolute;
+        transition: top 0.4s ease, left 0.4s ease, all 0.4s ease;
+        width: 80px;
+        top: 284px;
+        left: 360px;
+        opacity: 0;
+    }
+
+    .img_momia_all>img {
+        width: 100%;
+    }
+
+    .posicion_momia_1 {
+        top: 80px;
+        left: 360px;
+        opacity: 1;
+    }
+
+    .posicion_momia_2 {
+        top: 80px;
+        left: 280px;
+        opacity: 1;
+    }
+
+    .posicion_momia_3 {
+        top: 80px;
+        left: 440px;
+        opacity: 1;
+    }
+
+
+    .img_calabaza_all {
+        position: absolute;
+        transition: top 0.4s ease, left 0.4s ease, all 0.4s ease;
+        width: 80px;
+        top: 284px;
+        left: 460px;
+        opacity: 0;
+    }
+
+    .img_calabaza_all>img {
+        width: 100%;
+    }
+
+    .posicion_calabaza_1 {
+        top: 80px;
+        left: 540px;
+        opacity: 1;
+    }
+
+    .posicion_calabaza_2 {
+        top: 80px;
+        left: 625px;
+        opacity: 1;
+    }
+
+    .posicion_calabaza_3 {
+        top: 80px;
+        left: 710px;
+        opacity: 1;
+    }
+
+    .content_img_board_1 {
+        width: 80px;
+    }
+
+    .img_esqueleto_all {
+        width: 80px;
+    }
+
+    .img_momia_all {
+        width: 80px;
+    }
+
+    .img_calabaza_all {
+        width: 80px;
+    }
+
+    .content_actions {
+        right: 20px;
+    }
+
+    .content_actions>select {
+        width: 70px;
+        font-size: 0.8rem;
+        padding: 2px 5px;
+    }
+
+    .board_2>img {
+        width: 300px;
+    }
+
+    .content_title_premio {
+        font-size: 1.7rem;
+        bottom: 195px;
+    }
+
+    .fondo_board_1 {
+        background-color: #311ca970;
+        position: absolute;
+        width: 285px;
+        height: 140px;
+        z-index: 100;
+        display: none;
+        border-radius: 40px;
+    }
+}

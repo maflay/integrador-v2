@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Aladdin: Ruleta de Póker.</title>
+    <link rel="stylesheet" href="/dinamicas/promocion-dados-de-poker/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <section class="content_main_DP">
+        <div class="content_logo_DP">
+            <img src="/dinamicas/promocion-dados-de-poker/resource/LOGO-DADOS-DE-POKER_MP.png" alt="Integrador"
+                class="logo_DP posi_DP_1">
+            <img src="/dinamicas/promocion-dados-de-poker/resource/LOGO-DADOS-DE-POKER.png" alt="Integrador"
+                class="logo_DP posi_DP_2">
+        </div>
+
+        <div class="content_opciones_DP">
+            <select class="form-control" style=" cursor: pointer;" id="categoria">
+                <option value="">Categoría...</option>
+                <option value="GENIUS">Genius</option>
+                <option value="TITANIO">Titanio</option>
+                <option value="LEGENDARIO">Legendario</option>
+                <option value="GOLD">Gold</option>
+                <option value="SILVER">Silver</option>
+                <option value="BRONCE">Bronce</option>
+                <option value="SUPERIOR">Superior</option>
+                <option value="ESTANDAR">Estándar</option>
+                <option value="ADICIONAL">Adicional</option>
+            </select>
+            <img title="Opciones Dados de Póker" id="opciones_DP"
+                src="/dinamicas/promocion-dados-de-poker/resource/engranaje.png" alt="Integrador">
+        </div>
+        <div class="board_DP">
+            <div class="content_controls_box">
+                <button id="btn_un_par" title="Un par" class="btn btn-success btn_DP">Un Par</button>
+                <button id="btn_dos_pares" title="Dos Pares" class="btn btn-success btn_DP">Dos Pares</button>
+                <button id="btn_terna" title="Terna" class="btn btn-success btn_DP">Terna</button>
+                <button id="btn_full_house" title="Full House" class="btn btn-success btn_DP">Full House</button>
+                <button id="btn_poker" title="Póker" class="btn btn-success btn_DP">Póker</button>
+                <button id="btn_quintilla" title="Quintilla" class="btn btn-success btn_DP">Quintilla</button>
+            </div>
+            <div class="content_box_combi">
+                <div id="dado_1" class="card_box_"></div>
+                <div id="dado_2" class="card_box_"></div>
+                <div id="dado_3" class="card_box_"></div>
+                <div id="dado_4" class="card_box_"></div>
+                <div id="dado_5" class="card_box_"></div>
+            </div>
+            <div class="msj_combi" id="msj_combi"></div>
+            <div class="controls_board">
+                <button id="reiniciar_tbl_m" class="btn btn-primary">Reiniciar Tablero</button>
+                <button id="reiniciar_tbl" class="btn btn-primary">Reiniciar</button>
+            </div>
+
+        </div>
+    </section>
+    <div id="modal_opciones_DP" class="modal_opciones_DP">
+        <div class="content_modal_DP">
+            <div class="content_head_modal">
+                <div class="content_opcion_head">
+                    <p id="btn_guardar_registro">Guardar Registro</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_envio_secundario">Envio Secundario</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_observacion">Observación</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_tabla_premios">Tabla de Premios</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_registro_dia">Registro del Dia</p>
+                    <span id="notificacion_registro_dia" class="notificacion_registro_dia"></span>
+
+                </div>
+                <div id="close_modal_icon" class="close_modal_icon">&times;</div>
+            </div>
+            <div style="width: 100%;height: 1px;background-color: rgb(206, 206, 206);"></div>
+            <br />
+            <div id="view_guardar_registro" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Guardar Registro</h2>
+                    <div class="input_modal_DP">
+                        <select class="form-control" style="cursor: pointer;" id="casino">
+                            <option value="">Casino...</option>
+                            <option value="A05">A05</option>
+                            <option value="A07">A07</option>
+                            <option value="A08">A08</option>
+                            <option value="A09">A09</option>
+                            <option value="A12">A12</option>
+                            <option value="A12-MESAS">A12-MESAS</option>
+                            <option value="A15">A15</option>
+                            <option value="A15-MESAS">A15-MESAS</option>
+                            <option value="A16">A16</option>
+                            <option value="A19">A19</option>
+                            <option value="A35">A35</option>
+                            <option value="A36">A36</option>
+                            <option value="A36-MESAS">A36-MESAS</option>
+                            <option value="A38">A38</option>
+                            <option value="A39">A39</option>
+                            <option value="A43">A43</option>
+                            <option value="A48">A48</option>
+                            <option value="A48-MESAS">A48-MESAS</option>
+                            <option value="A49">A49</option>
+                            <option value="A50">A50</option>
+                            <option value="A53">A53</option>
+                            <option value="A70">A70</option>
+                            <option value="A781">A781</option>
+                            <option value="A88">A88</option>
+                            <option value="A100">A100</option>
+                            <option value="A108">A108</option>
+                            <option value="A108-MESAS">A108-MESAS</option>
+                        </select>
+                        <input id="nombre" placeholder="Nombre" type="text" class="form-control">
+                        <input style="display: none;" id="cedula" placeholder="Cedúla" type="text" class="form-control">
+                    </div>
+                    <br />
+                    <div>
+                        <button id="btn_submit" class="btn btn-primary">Enviar</button>
+                    </div>
+                </div>
+            </div>
+            <div id="view_envio_secundario" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2 class="space_title_acumula">Envió secundario</h2>
+                    <div class="datos_column_modal">
+                        <select class="form-control" style="cursor: pointer;" id="casino_secundario">
+                            <option value="">Casino...</option>
+                            <option value="A05">A05</option>
+                            <option value="A07">A07</option>
+                            <option value="A08">A08</option>
+                            <option value="A09">A09</option>
+                            <option value="A12">A12</option>
+                            <option value="A12-MESAS">A12-MESAS</option>
+                            <option value="A15">A15</option>
+                            <option value="A15-MESAS">A15-MESAS</option>
+                            <option value="A16">A16</option>
+                            <option value="A19">A19</option>
+                            <option value="A35">A35</option>
+                            <option value="A36">A36</option>
+                            <option value="A36-MESAS">A36-MESAS</option>
+                            <option value="A38">A38</option>
+                            <option value="A39">A39</option>
+                            <option value="A43">A43</option>
+                            <option value="A48">A48</option>
+                            <option value="A48-MESAS">A48-MESAS</option>
+                            <option value="A49">A49</option>
+                            <option value="A50">A50</option>
+                            <option value="MP53">MP53</option>
+                            <option value="A70">A70</option>
+                            <option value="A781">A781</option>
+                            <option value="A88">A88</option>
+                            <option value="A100">A100</option>
+                            <option value="A108">A108</option>
+                            <option value="A108-MESAS">A108-MESAS</option>
+                        </select>
+                        <select class="form-control" style=" cursor: pointer;" id="categoria-secundario">
+                            <option value="">Categoría ...</option>
+                            <option value="GENIUS">Genius</option>
+                            <option value="TITANIO">Titanio</option>
+                            <option value="LEGENDARIO">Legendario</option>
+                            <option value="GOLD">Gold</option>
+                            <option value="SILVER">Silver</option>
+                            <option value="BRONCE">Bronce</option>
+                            <option value="SUPERIOR">Superior</option>
+                            <option value="ESTANDAR">Estándar</option>
+                            <option value="ADICIONAL">Adicional</option>
+                        </select>
+                    </div>
+                    <div class="datos_column_modal">
+                        <input style="display: none;" class="form-control" type="text" name="cedula" id="cedula_secundario"
+                            placeholder="Cedula">
+                        <input class="form-control" type="text" name="nombre" id="nombre_secundario"
+                            placeholder="Nombre">
+                    </div>
+                    <div class="datos_column_modal">
+                        <input class="form-control" type="date" name="fecha_secundario" id="fecha_secundario"
+                            placeholder="Fecha">
+                        <input class="form-control" type="text" name="hora_secundario" id="hora_secundario"
+                            placeholder="Hora">
+                    </div>
+                    <div class="datos_column_modal">
+                        <input class="form-control" type="text" name="bono_secundario" id="bono_secundario"
+                            placeholder="Bono">
+                        <select class="form-control" name="resultado_secundario" id="resultado_secundario">
+                            <option value="">Resultado...</option>
+                            <option value="Par">Par</option>
+                            <option value="Dos Pares">Dos Pares</option>
+                            <option value="Terna">Terna</option>
+                            <option value="Full House">Full House</option>
+                            <option value="Poker">Póker</option>
+                            <option value="Quintilla">Quintilla</option>
+                        </select>
+                    </div>
+                    <div class="content_btn_modal">
+                        <button style="display: none;" id="btn_clean_secundario"
+                            class="btn btn-primary btn_acumula">Limpiar</button>
+                        <button id="btn_submit_secundario" class="btn btn-primary btn_acumula">Enviar</button>
+                    </div>
+                </div>
+            </div>
+            <div id="view_envia_observacion" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2 class="space_title_acumula">Observación</h2>
+                    <div class="datos_column_modal">
+                        <select class="form-control" style="cursor: pointer;" id="casino_observacion">
+                            <option value="">Casino...</option>
+                            <option value="A05">A05</option>
+                            <option value="A07">A07</option>
+                            <option value="A08">A08</option>
+                            <option value="A09">A09</option>
+                            <option value="A12">A12</option>
+                            <option value="A12-MESAS">A12-MESAS</option>
+                            <option value="A15">A15</option>
+                            <option value="A15-MESAS">A15-MESAS</option>
+                            <option value="A16">A16</option>
+                            <option value="A19">A19</option>
+                            <option value="A35">A35</option>
+                            <option value="A36">A36</option>
+                            <option value="A36-MESAS">A36-MESAS</option>
+                            <option value="A38">A38</option>
+                            <option value="A39">A39</option>
+                            <option value="A43">A43</option>
+                            <option value="A48">A48</option>
+                            <option value="A48-MESAS">A48-MESAS</option>
+                            <option value="A49">A49</option>
+                            <option value="A50">A50</option>
+                            <option value="MP53">MP53</option>
+                            <option value="A70">A70</option>
+                            <option value="A781">A781</option>
+                            <option value="A88">A88</option>
+                            <option value="A100">A100</option>
+                            <option value="A108">A108</option>
+                            <option value="A108-MESAS">A108-MESAS</option>
+                        </select>
+                    </div>
+                    <div class="datos_column_modal">
+                        <textarea placeholder="Descripcion" name="descripcion" id="descripcion_observacion"></textarea>
+                    </div>
+                    <div>
+                        <button style="display: none;" id="btn_clean_observacion"
+                            class="btn btn-primary btn_acumula">Limpiar</button>
+                        <button id="btn_envia_observacion" class="btn btn-primary btn_acumula">Enviar</button>
+                    </div>
+                </div>
+            </div>
+            <div id="view_tabla_premios" class="content_body_modal">
+                <div class="info_body_modal">
+                    <div class="vista_table_premios">
+                        <h2>Tabla de Premios</h2>
+                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                        <table class="table-wrapper styled-table">
+                            <thead>
+                                <tr>
+                                    <th>Combinación</th>
+                                    <th>Bronce</th>
+                                    <th>Silver</th>
+                                    <th>Gold</th>
+                                    <th>Legendario</th>
+                                    <th>Titanio</th>
+                                    <th>Genius</th>
+                                    <th>Estandar</th>
+                                    <th>Superior</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Quintilla</td>
+                                    <td>$ 500.000</td>
+                                    <td>$ 1.000.000</td>
+                                    <td>$ 1.300.000</td>
+                                    <td>$ 1.500.000</td>
+                                    <td>$ 1.800.000</td>
+                                    <td>$ 2.000.000</td>
+                                    <td>$ 500.000</td>
+                                    <td>$ 1.000.000</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Póker</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+                                    <td>$ 300.000</td>
+                                    <td>$ 350.000</td>
+                                    <td>$ 400.000</td>
+                                    <td>$ 450.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Full House</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 220.000</td>
+                                    <td>$ 240.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Terna</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 220.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Dos Pares</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Par</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                </div>
+            </div>
+            <div id="view_registro_dia" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Registro del Dia</h2>
+                    <br />
+                    <div id="Info_result_dia"></div>
+                    <div class="result_dia_dados" id="result_dia_dados"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="/dinamicas/user.js"></script>
+    <script src="/dinamicas/promocion-dados-de-poker/js/script.js"></script>
+</body>
+
+</html>
