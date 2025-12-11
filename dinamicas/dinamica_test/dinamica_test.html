@@ -13,414 +13,75 @@
 <body>
     <section class="main_dinamica_test">
         <div id="main_dinamica_test" class="content_all_test">
-            <div id="usuario_entrevista">prueba</div>
-            <span id="username_dinamica" class="username_dinamica"></span>
-            <div id="result_test"></div>
-
-            <!-- <div style="width: 100%;display: flex;justify-content: center;align-items: center;flex-direction: column;">
-                <h2>Nueva entrevista recibida</h2>
-                <p><b>Fecha:</b> ${data.valor_2 || ''} &nbsp; <b>Hora:</b> ${data.valor_1 || ''}</p>
-                <div style="display: flex;flex-direction: column;">
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Nombre</b></p>
-                            <p>${escapeHtml_(data.valor_3 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Cédula</b></p>
-                            <p>${escapeHtml_(data.valor_4 || '')} - ${escapeHtml_(data.valor_5 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Fecha de Nacimiento</b></p>
-                            <p>${escapeHtml_(data.valor_6 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Correo</b></p>
-                            <p>${escapeHtml_(data.valor_7 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Ciudad</b></p>
-                            <p>${escapeHtml_(data.valor_8 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Telefono</b></p>
-                            <p>${escapeHtml_(data.valor_9 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Cargo_Aspirar</b></p>
-                            <p>${escapeHtml_(data.valor_10 || '')}</p>
-                        </div>
-                    </div>
-                    <br />
-                    <h4>Educación</h4>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Ultimo Grado</b></p>
-                            <p>${escapeHtml_(data.valor_11 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Institución</b></p>
-                            <p>${escapeHtml_(data.valor_12 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Profesión</b></p>
-                            <p>${escapeHtml_(data.valor_12 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Institución</b></p>
-                            <p>${escapeHtml_(data.valor_13 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Cursos Adicionales</b></p>
-                            <p>${escapeHtml_(data.valor_14 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Ultimo Empleo</b></p>
-                            <p>${escapeHtml_(data.valor_15 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Funciones Anteriores</b></p>
-                            <p>${escapeHtml_(data.valor_16 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Tiempo Laborado</b></p>
-                            <p>${escapeHtml_(data.valor_16 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Motivo Retiro</b></p>
-                            <p>${escapeHtml_(data.valor_17 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Experiencia a tener en cuenta</b></p>
-                            <p>${escapeHtml_(data.valor_18 || '')}</p>
-                        </div>
-                    </div>
-                    <br />
-                    <h4>Competencias y habilidades.</h4>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Fortalezas</b></p>
-                            <p>${escapeHtml_(data.valor_19 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Aspecto a Mejorar</b></p>
-                            <p>${escapeHtml_(data.valor_20 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Uso de Herramientas</b></p>
-                            <p>${escapeHtml_(data.valor_21 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Trabajo Bajo Presión</b></p>
-                            <p>${escapeHtml_(data.valor_22 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Uso de Herramientas</b></p>
-                            <p>${escapeHtml_(data.valor_21 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Trabajo Bajo Presión</b></p>
-                            <p>${escapeHtml_(data.valor_22 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Trabajo en Equipo</b></p>
-                            <p>${escapeHtml_(data.valor_23 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Motivo de Postulación</b></p>
-                            <p>${escapeHtml_(data.valor_24 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Motivo de Postulación</b></p>
-                            <p>${escapeHtml_(data.valor_25 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Logro Profesional</b></p>
-                            <p>${escapeHtml_(data.valor_26 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Sabe de la Empresa</b></p>
-                            <p>${escapeHtml_(data.valor_27 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Diferencia a Otros</b></p>
-                            <p>${escapeHtml_(data.valor_28 || '')}</p>
-                        </div>
-                    </div>
-                    <br />
-                    <h4>Disponibilidad y condiciones.</h4>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Trabaja Actualmente</b></p>
-                            <p>${escapeHtml_(data.valor_29 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Disponibilidad de Inicio</b></p>
-                            <p>${escapeHtml_(data.valor_30 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Aspiración Salarial</b></p>
-                            <p>${escapeHtml_(data.valor_31 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Disposicion fin de semana</b></p>
-                            <p>${escapeHtml_(data.valor_32 || '')}</p>
-                        </div>
-                    </div>
-                    <div style="display: flex;gap: 5px;">
-                        <div>
-                            <p><b>Disposicion Traslado</b></p>
-                            <p>${escapeHtml_(data.valor_33 || '')}</p>
-                        </div>
-                        <div>
-                            <p><b>Comentarios del Candidato</b></p>
-                            <p>${escapeHtml_(data.valor_34 || '')}</p>
-                        </div>
-                    </div>
-                </div>
-                ${fotoHtml}
-            </div> -->
-
-
-            <!-- 
-                const FOLDER_ID = '1wrl8EGAk3_Zsv5qKrGgSB-kxHnnUTpDJ'; // carpeta en Drive
-const LINK_HOJA = SpreadsheetApp.getActiveSpreadsheet().getUrl(); // link a la hoja
-
-function doPost(e) {
-  const data = JSON.parse(e.postData.contents);
-  const libro = SpreadsheetApp.getActiveSpreadsheet();
-
-  // 1) Si viene foto base64 en valor_36 => guardar en Drive y reemplazar por URL embebible
-  let fotoFile = null; // por si queremos adjuntar
-  if (data.valor_36 && typeof data.valor_36 === 'string' && data.valor_36.startsWith('data:image')) {
-    try {
-      const foto = saveDataUrlToDrive_(data.valor_36, 'entrevista');
-      data.valor_36 = foto.publicViewUrl; // URL embebible para <img>
-      fotoFile = DriveApp.getFileById(foto.id); // para adjuntar si quieres
-    } catch (err) {
-      data.valor_36 = '';
-      console.error('Error guardando imagen:', err);
-    }
-  }
-
-  // 2) Guardar en la hoja
-  if (data.tipo === 'envio_1') {
-    const sheet = libro.getSheetByName('Entrevistas');
-    sheet.appendRow([
-      data.valor_1,  data.valor_2,  data.valor_3,  data.valor_4,  data.valor_5,
-      data.valor_6,  data.valor_7,  data.valor_8,  data.valor_9,  data.valor_10,
-      data.valor_11, data.valor_12, data.valor_13, data.valor_14, data.valor_15,
-      data.valor_16,
-      data.valor_17, data.valor_18, data.valor_19, data.valor_20,
-      data.valor_21, data.valor_22, data.valor_23, data.valor_24, data.valor_25,
-      data.valor_26, data.valor_27, data.valor_28, data.valor_29, data.valor_30,
-      data.valor_31, data.valor_32, data.valor_33, data.valor_34, data.valor_35,
-      data.valor_36, // aquí queda la URL pública de la foto (si hubo)
-      data.valor_37, data.valor_38, data.valor_39, data.valor_40
-    ]);
-  }
-
-  // 3) Enviar correo de notificación
-  try {
-    enviarCorreoNotificacion_(data, { fotoFile });
-  } catch (err) {
-    console.error('Error enviando correo:', err);
-  }
-
-  return ContentService
-    .createTextOutput(JSON.stringify({ status: 'success', mensaje: 'Registro guardado y correo enviado' }))
-    .setMimeType(ContentService.MimeType.JSON);
-}
-
-/** Guarda dataURL de imagen en Drive y devuelve {id, url, publicViewUrl, name} */
-function saveDataUrlToDrive_(dataUrl, filenamePrefix) {
-  const m = dataUrl.match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/);
-  if (!m) throw new Error('Data URL inválido');
-
-  const contentType = m[1];
-  const base64 = m[2];
-  const bytes = Utilities.base64Decode(base64);
-  const ext = (contentType.split('/')[1] || 'bin').replace('jpeg', 'jpg');
-
-  const ts = new Date().toISOString().replace(/[:.]/g, '-');
-  const name = `${filenamePrefix || 'imagen'}-${ts}.${ext}`;
-
-  const blob = Utilities.newBlob(bytes, contentType, name);
-  const folder = DriveApp.getFolderById(FOLDER_ID);
-  const file = folder.createFile(blob);
-
-  file.setSharing(DriveApp.Access.ANYONE_WITH_LINK, DriveApp.Permission.VIEW);
-
-  const id = file.getId();
-  const publicViewUrl = `https://drive.google.com/uc?export=view&id=${id}`;
-  return { id, url: file.getUrl(), publicViewUrl, name };
-}
-
-/** Envía el correo con resumen del registro (HTML). Adjunta foto si se pasa en options.fotoFile */
-function enviarCorreoNotificacion_(data, { fotoFile } = {}) {
-  // Usa el correo que viene en valor_37
-  const destinatario = data.valor_37 || 'pruebajfdm@gmail.com'; // fallback si no viene
-  
-  const asunto = `Nueva entrevista: ${data.valor_3 || 'Sin nombre'} (${data.valor_4 || 'Sin cédula'})`;
-  const fotoHtml = data.valor_36
-    ? `<p><b>Foto:</b><br><img src="${data.valor_36}" style="max-width:240px;border-radius:8px;"></p>`
-    : `<p><b>Foto:</b> (no adjunta)</p>`;
-
-  const html = `
-    <div style="font-family:Arial, sans-serif;">
-      <h2>Nueva entrevista recibida</h2>
-      <p><b>Fecha:</b> ${data.valor_2 || ''} &nbsp; <b>Hora:</b> ${data.valor_1 || ''}</p>
-      <table cellpadding="6" cellspacing="0" border="0" style="border-collapse:collapse;background:#fafafa">
-        <tr><td><b>Nombre:</b></td><td>${escapeHtml_(data.valor_3 || '')}</td></tr>
-        <tr><td><b>Tipo Documento:</b></td><td>${escapeHtml_(data.valor_4 || '')}</td></tr>
-        <tr><td><b>N. Documento:</b></td><td>${escapeHtml_(data.valor_5 || '')}</td></tr>
-        <tr><td><b>Fecha de Nacimiento:</b></td><td>${escapeHtml_(data.valor_6 || '')}</td></tr>
-        <tr><td><b>Correo:</b></td><td>${escapeHtml_(data.valor_7 || '')}</td></tr>
-        <tr><td><b>Ciudad:</b></td><td>${escapeHtml_(data.valor_8 || '')}</td></tr>
-        <tr><td><b>N. Telefono:</b></td><td>${escapeHtml_(data.valor_9 || '')}</td></tr>
-        <tr><td><b>Cargo que aspira:</b></td><td>${escapeHtml_(data.valor_10 || '')}</td></tr>
-        <br />
-        <tr><td><b>Educación</b></td></tr>
-        <tr><td><b>Ultimo Grado Cursado:</b></td><td>${escapeHtml_(data.valor_11 || '')}</td></tr>
-        <tr><td><b>Institución:</b></td><td>${escapeHtml_(data.valor_12 || '')}</td></tr>
-        <tr><td><b>Profesión:</b></td><td>${escapeHtml_(data.valor_13 || '')}</td></tr>
-        <tr><td><b>Cursos Adicionales:</b></td><td>${escapeHtml_(data.valor_14 || '')}</td></tr>
-                <br />
-        <tr><td><b>Experiencia Laboral</b></td></tr>
-        <tr><td><b>Ultimo Empleo:</b></td><td>${escapeHtml_(data.valor_15 || '')}</td></tr>
-        <tr><td><b>Funciones Ultimo Empleo:</b></td><td>${escapeHtml_(data.valor_16 || '')}</td></tr>
-        <tr><td><b>Tiempo Laborado:</b></td><td>${escapeHtml_(data.valor_17 || '')}</td></tr>
-        <tr><td><b>Motivo de Retiro:</b></td><td>${escapeHtml_(data.valor_18 || '')}</td></tr>
-        <tr><td><b>Experiencia a tener en cuenta:</b></td><td>${escapeHtml_(data.valor_19 || '')}</td></tr>
-        <tr><td><b>Ultimo Empleo:</b></td><td>${escapeHtml_(data.valor_20 || '')}</td></tr>
-                <br />
-        <tr><td><b>Competencia y Habilidades</b></td></tr>
-        <tr><td><b>Fortalezas:</b></td><td>${escapeHtml_(data.valor_21 || '')}</td></tr>
-        <tr><td><b>Aspectos a Mejorar:</b></td><td>${escapeHtml_(data.valor_22 || '')}</td></tr>
-        <tr><td><b>Uso de Herramientas:</b></td><td>${escapeHtml_(data.valor_23 || '')}</td></tr>
-        <tr><td><b>Trabajo Bajo Presión:</b></td><td>${escapeHtml_(data.valor_24 || '')}</td></tr>
-        <tr><td><b>Trabajo en Equipo:</b></td><td>${escapeHtml_(data.valor_25 || '')}</td></tr>
-                <br />
-        <tr><td><b>Motivación y objetivos.</b></td></tr>  
-        <tr><td><b>Motivo de Postulamiento:</b></td><td>${escapeHtml_(data.valor_26 || '')}</td></tr>
-        <tr><td><b>Logro Profesional:</b></td><td>${escapeHtml_(data.valor_27 || '')}</td></tr>
-        <tr><td><b>Sabe de la Empresa:</b></td><td>${escapeHtml_(data.valor_28 || '')}</td></tr>
-        <tr><td><b>Que lo diferencia:</b></td><td>${escapeHtml_(data.valor_29 || '')}</td></tr>
-        <br />
-        <tr><td><b>Motivación y objetivos.</b></td></tr>
-        <tr><td><b>Trabaja Actualmente:</b></td><td>${escapeHtml_(data.valor_30 || '')}</td></tr>
-        <tr><td><b>Disponibilidad de Iniciar Labores:</b></td><td>${escapeHtml_(data.valor_31 || '')}</td></tr>
-        <tr><td><b>Disponibilidad fines de semana:</b></td><td>${escapeHtml_(data.valor_32 || '')}</td></tr>
-        <tr><td><b>Disponibilidad de Traslado:</b></td><td>${escapeHtml_(data.valor_33 || '')}</td></tr>
-        <br />
-        <tr><td><b>Cierre.</b></td></tr>
-        <tr><td><b>Comentarios del Candidato:</b></td><td>${escapeHtml_(data.valor_34 || '')}</td></tr>
-
-
-      </table>
-      ${fotoHtml}
+            <div style="display: none;">
+                <div id="usuario_entrevista">prueba</div>
+                <span id="username_dinamica" class="username_dinamica"></span>
+                <div id="result_test"></div>
+            </div>
+<div class="content_balanza">
+    <div class="balanza-container">
+        <div class="soporte"></div>
+        <div class="viga-container">
+            <div class="viga"></div>
+            <div class="platillo platillo-izq"></div>
+            <div class="platillo platillo-der"></div>
+        </div>
     </div>
-  `;
-      /**<p>Ver hoja completa: <a href="${LINK_HOJA}" target="_blank">Abrir Google Sheet</a></p>*/
+</div>
 
-  const opciones = {
-    name: 'Sistema Entrevistas',
-    htmlBody: html
-  };
+            <div style="display: none;">
 
-  if (fotoFile) {
-    opciones.attachments = [fotoFile.getAs(fotoFile.getMimeType())];
-  }
+                <a href="/dinamicas/promocion-ruleta-dinamica/ruleta2.html">Ruleta2</a>
 
-  // Enviar el correo
-  MailApp.sendEmail(destinatario, asunto, 'Nueva entrevista registrada', opciones);
-}
-
-
-function escapeHtml_(s) {
-  return String(s).replace(/[&<>"']/g, m => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
-  })[m]);
-} -->
-
-
-
-            <a href="/dinamicas/promocion-ruleta-dinamica/ruleta2.html">Ruleta2</a>
-
-            <p onclick="handletestenvio()" class="btn btn-success">Envio test</p>
-            <div style="display: none;" class="content_item">
-                <div></div>
-            </div>
-            <ul style="display: none;">
-                <li>
-                    <button class="animation-button">Start animation</button>
-                </li>
-                <li>
-                    <label for="easing-select">Choose an easing function:</label>
-                    <select id="easing-select">
-                        <option selected>linear</option>
-                        <option>linear(0, 0.5 50%, 1)</option>
-                        <option>ease</option>
-                        <option>ease-in</option>
-                        <option>ease-in-out</option>
-                        <option>ease-out</option>
-                        <option>cubic-bezier(0.1, -0.6, 0.2, 0)</option>
-                        <option>cubic-bezier(0, 1.1, 0.8, 4)</option>
-                        <option>steps(5, end)</option>
-                        <option>steps(3, start)</option>
-                        <option>steps(4)</option>
-                    </select>
-                </li>
-            </ul>
-
-            <div style="display: none;" class="content_animacion_burro">
-                <button id="btnStart">Animar</button>
-
-                <div id="test_barra_inclinada" class="test_barra_inclinada">
-                    <div id="item_1" class="end end-left">PPP</div>
-                    <div id="item_2" class="end end-right"></div>
+                <p onclick="handletestenvio()" class="btn btn-success">Envio test</p>
+                <div style="display: none;" class="content_item">
+                    <div></div>
                 </div>
-                <div class="base_barra"><img src="/dinamicas/dinamica_test/resource/piedra_soporte.png"
-                        alt="Integrador"></div>
-            </div>
-            <br />
-            <br />
-            <br />
-            <br />
-            <div class="entrevistas">
-                <div class="lista" id="listaEntrevistas"></div>
-                <div class="detalle" id="detalleEntrevista">
-                    <p>Selecciona un candidato...</p>
+                <ul style="display: none;">
+                    <li>
+                        <button class="animation-button">Start animation</button>
+                    </li>
+                    <li>
+                        <label for="easing-select">Choose an easing function:</label>
+                        <select id="easing-select">
+                            <option selected>linear</option>
+                            <option>linear(0, 0.5 50%, 1)</option>
+                            <option>ease</option>
+                            <option>ease-in</option>
+                            <option>ease-in-out</option>
+                            <option>ease-out</option>
+                            <option>cubic-bezier(0.1, -0.6, 0.2, 0)</option>
+                            <option>cubic-bezier(0, 1.1, 0.8, 4)</option>
+                            <option>steps(5, end)</option>
+                            <option>steps(3, start)</option>
+                            <option>steps(4)</option>
+                        </select>
+                    </li>
+                </ul>
+
+                <div style="display: none;" class="content_animacion_burro">
+                    <button id="btnStart">Animar</button>
+
+                    <div id="test_barra_inclinada" class="test_barra_inclinada">
+                        <div id="item_1" class="end end-left">PPP</div>
+                        <div id="item_2" class="end end-right"></div>
+                    </div>
+                    <div class="base_barra"><img src="/dinamicas/dinamica_test/resource/piedra_soporte.png"
+                            alt="Integrador"></div>
                 </div>
+                <br />
+                <br />
+                <br />
+                <br />
+                <div class="entrevistas">
+                    <div class="lista" id="listaEntrevistas"></div>
+                    <div class="detalle" id="detalleEntrevista">
+                        <p>Selecciona un candidato...</p>
+                    </div>
+                </div>
+
+
             </div>
-
-
         </div>
 
 
@@ -432,6 +93,196 @@ function escapeHtml_(s) {
         crossorigin="anonymous"></script>
     <script src="/dinamicas/user.js"></script>
     <script src="/dinamicas/dinamica_test/dinamica_test.js"></script>
+</body>
+
+</html>
+<!-- 
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/dinamicas/dinamica_test/dinamica_test.css">
+  <title>Happy New Year Button Animation</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #141e30, #243b55);
+      font-family: "Arial", sans-serif;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 18px;
+      color: #fff;
+      background: #ff6f61;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #ff3d3d;
+    }
+
+    .new-year {
+      opacity: 0;
+      transform: scale(0.8);
+      animation: none;
+      display: none;
+    }
+
+    .new-year.active {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+      animation: fadeInScale 1s ease forwards;
+    }
+
+    .new-year h1 {
+      font-size: 50px;
+      color: #fff;
+      text-shadow: 0 0 10px #ff0066, 0 0 20px #ff3399, 0 0 30px #ff66cc;
+      animation: glow 1.5s infinite alternate;
+    }
+
+    .new-year p {
+      font-size: 20px;
+      color: #fff;
+      margin: 10px 0;
+    }
+
+    .fireworks {
+      position: relative;
+      margin: 30px auto;
+      width: 200px;
+      height: 200px;
+    }
+
+    .firework {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.8);
+      animation: fireworkExplode 2s ease-in-out infinite;
+    }
+
+    .firework:nth-child(1) {
+      left: 30%;
+      top: 20%;
+      background: #ff6f61;
+      animation-delay: 0s;
+    }
+
+    .firework:nth-child(2) {
+      left: 70%;
+      top: 30%;
+      background: #4caf50;
+      animation-delay: 0.5s;
+    }
+
+    .firework:nth-child(3) {
+      left: 50%;
+      top: 70%;
+      background: #ffd700;
+      animation-delay: 1s;
+    }
+
+    .firework:nth-child(4) {
+      left: 20%;
+      top: 60%;
+      background: #03a9f4;
+      animation-delay: 1.5s;
+    }
+
+    .firework:nth-child(5) {
+      left: 80%;
+      top: 40%;
+      background: #e91e63;
+      animation-delay: 2s;
+    }
+
+    @keyframes glow {
+      0% {
+        text-shadow: 0 0 10px #ff0066, 0 0 20px #ff3399, 0 0 30px #ff66cc;
+      }
+
+      100% {
+        text-shadow: 0 0 20px #ff3399, 0 0 30px #ff66cc, 0 0 40px #ff99ff;
+      }
+    }
+
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fireworkExplode {
+      0% {
+        transform: scale(0.5) translateY(0);
+        opacity: 0;
+      }
+
+      50% {
+        transform: scale(1) translateY(-50px);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.5) translateY(-100px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <button class="btn" onclick="showNewYear()">Celebrate New Year </button>
+    <div class="new-year" id="newYear">
+      <h1> Happy New Year 2025! </h1>
+      <p>Wishing you a year full of joy, prosperity, and endless opportunities.</p>
+      <div class="fireworks">
+     Fireworks animation -->
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showNewYear() {
+      const newYearElement = document.getElementById('newYear');
+      newYearElement.classList.add('active');
+    }
+  </script>
+  <script src="/dinamicas/user.js"></script>
+  <script src="/dinamicas/extension.js"></script>
+  <script src="/dinamicas/dinamica_test/dinamica_test.js"></script>
 </body>
 
 </html>

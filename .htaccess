@@ -1,0 +1,17 @@
+# Activar reescritura
+Options -MultiViews
+RewriteEngine On
+
+# 1. URLs limpias para cualquier .html (incluye /dinamicas/)
+# Si NO es un directorio real...
+RewriteCond %{REQUEST_FILENAME} !-d
+# ...pero sí existe un archivo .html con ese nombre
+RewriteCond %{REQUEST_FILENAME}\.html -f
+# Entonces sirve ese .html aunque no lo pongan en la URL
+RewriteRule ^(.+)$ $1.html [L,QSA]
+
+# 2. Fallback al SPA (index.html) si no existe archivo ni carpeta
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html !-f
+RewriteRule ^ index.html [L]

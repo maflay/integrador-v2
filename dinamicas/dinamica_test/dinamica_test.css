@@ -1,273 +1,106 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins Ligth', sans-serif !important;
-}
-
 body {
-    overflow-x: hidden;
-    font-size: 62.5% !important;
-}
-
-body>div {
-    position: relative;
-    height: 100px;
-}
-
-.main_dinamica_test {
-    position: relative;
-    width: 100%;
-}
-
-.content_all_test {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
-    width: 100%;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+.content_balanza {
+    width: auto;
     height: auto;
-}
-
-.content_item>div {
-    position: absolute;
-    left: 10%;
-    width: 50px;
-    height: 50px;
-    background-color: blue;
-    background-image: radial-gradient(circle at 10px 10px,
-            rgb(25 255 255 / 80%),
-            rgb(25 255 255 / 40%));
-    border-radius: 50%;
-    top: 25px;
-    animation: 3s infinite alternate;
-}
-
-@keyframes move-right {
-    from {
-        top: 25px;
-        left: 10%;
-    }
-
-    to {
-        top: 25px;
-        left: 90%;
-    }
-}
-
-@keyframes move-top {
-    from {
-        left: 90%;
-        top: 25px;
-    }
-
-    to {
-        left: 90%;
-        top: 800px;
-    }
-}
-
-.last_posicion {
-    position: absolute !important;
-    left: 90% !important;
-    top: 800px !important;
-}
-
-li {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-
-.test_barra_inclinada {
-    position: relative;
-    width: 500px;
-    height: 20px;
-    background-image: url(/dinamicas/dinamica_test/resource/balanza_test.png);
+    padding: 100px 200px;
+    background-image: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.842) 10%,
+            rgba(255, 255, 255, 0.63) 100%), url(/resource/juego_responsable.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    margin: 80px auto 50px;
-    transform-origin: center center;
-    transition: transform 0.4s ease;
-    overflow: visible;
 }
 
-/* extremos “pegados” a los bordes */
-.end {
-    position: absolute;
-    top: 50%;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: #4CAF50;
-    box-shadow: 0 0 10px rgba(0, 0, 0, .2);
-    transform-origin: center center;
-}
-
-/* izquierda y derecha */
-.end-left {
-    left: 0;
-    transform: translate(-50%, -50%);
-}
-
-.end-right {
-    right: 0;
-    transform: translate(50%, -50%);
-}
-
-/* animación de la barra */
-@keyframes inclinacion {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    25% {
-        transform: rotate(15deg);
-    }
-
-    50% {
-        transform: rotate(-15deg);
-    }
-
-    75% {
-        transform: rotate(10deg);
-    }
-
-    100% {
-        transform: rotate(0deg);
-    }
-}
-
-.animar-inclinacion {
-    animation: inclinacion 2s ease-in-out forwards;
-}
-
-/* --- compensar rotación: los items rotan al revés --- */
-.test_barra_inclinada.animar-inclinacion .end {
-    animation: compensar 2s ease-in-out forwards;
-}
-
-@keyframes compensar {
-    0% {
-        transform: translate(var(--x, 0), -50%) rotate(0deg);
-    }
-
-    25% {
-        transform: translate(var(--x, 0), -50%) rotate(-15deg);
-    }
-
-    50% {
-        transform: translate(var(--x, 0), -50%) rotate(15deg);
-    }
-
-    75% {
-        transform: translate(var(--x, 0), -50%) rotate(-10deg);
-    }
-
-    100% {
-        transform: translate(var(--x, 0), -50%) rotate(0deg);
-    }
-}
-
-/* variables para la compensación según el lado */
-.end-left {
-    --x: -50%;
-    position: absolute;
-    top: -55px;
-    left: 25px;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-image: linear-gradient(180deg, #a0a0a0, #aaaaaa);
-}
-
-.end-right {
-    --x: 50%;
-    position: absolute;
-    top: -55px;
-    right: 25px;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background-image: linear-gradient(180deg, #a0a0a0, #aaaaaa);
-
-}
-
-.content_animacion_burro {
-    width: 100%;
+.balanza-container {
     position: relative;
-    text-align: center;
+    width: 300px;
+    height: 200px;
 }
 
-.content_animacion_burro button {
+/* Soporte */
+.soporte {
+    width: 40px;
+    height: 150px;
+    background-color: #5a3a2a;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 20px 20px 0 0;
+    /* Parte superior redondeada */
+}
+
+/* Contenedor de la viga para rotación */
+.viga-container {
+    position: absolute;
+    top: 40px;
+    left: 18%;
+    width: 200px;
+    height: 20px;
+    /* Para centrar la rotación */
+    animation: equilibrar 1s ease-in-out infinite;
+    transform-origin: 50% 100%;
+}
+
+/* Viga */
+.viga {
+    width: 100%;
+    height: 10px;
+    background-color: #795548;
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    border-radius: 5px;
 }
 
-.base_barra {
+/* Platillos */
+.platillo {
+    width: 50px;
+    height: 50px;
+    background-color: #d2b48c;
+    border: 5px solid #8b4513;
+    border-radius: 50%;
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 80px;
-}
-
-.base_barra img {
-    width: 120px;
-}
-
-
-
-
-
-.lista {
-    max-height: 420px;
-    overflow: auto;
-    border: 1px solid #ddd;
-}
-
-.item {
-    padding: 8px 10px;
-    border-bottom: 1px solid #eee;
-    cursor: pointer;
-}
-
-.item:hover {
-    background: #f7f7f7;
-}
-
-.item.selected {
-    background: #e8f5e9;
-}
-
-/* verde claro */
-.detalle {
-    margin-left: 12px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    flex: 1;
-    max-height: 420px;
-    overflow: auto;
-}
-
-.entrevistas {
+    top: 10px;
     display: flex;
-    gap: 12px;
-    width: 100%;
-    max-width: 1100px;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
 
-.content_info_{
-    display: flex;
-    gap: 20px;
-    width: 100%;
+.platillo-izq {
+    left: -25px;
+    background-image: url(/resource/ala_blanco.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* Centrado con la viga */
 }
 
-.content_info_>p{
-    width: 50%;
+.platillo-der {
+    right: -25px;
+    background-image: url(/resource/juego_responsable_cartas.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    /* Centrado con la viga */
+}
+
+/* --- Animación para equilibrio --- */
+@keyframes equilibrar {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(2deg);
+    }
 }
