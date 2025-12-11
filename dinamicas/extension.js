@@ -1,6 +1,18 @@
+let url_seccion = window.location.origin;
+if (!url_seccion.includes("http://127.0.0")) {
+  document.addEventListener("DOMContentLoaded", () => {
+    if (location.pathname.endsWith(".html")) {
+      const cleanPath = location.pathname.replace(/\.html$/, "");
+      history.replaceState(null, "", cleanPath);
+    }
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  if (location.pathname.endsWith('.html')) {
-    const cleanPath = location.pathname.replace(/\.html$/, '');
-    history.replaceState(null, '', cleanPath);
-  }
+  const mainScript = document.body.dataset.mainScript;
+  if (!mainScript) return;
+
+  const s = document.createElement("script");
+  s.src = `${mainScript}?v=${Date.now()}`;
+  document.body.appendChild(s);
 });

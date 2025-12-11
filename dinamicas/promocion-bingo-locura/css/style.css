@@ -44,9 +44,18 @@ body {
 }
 
 .content_main_bingo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     background-color: #3498db71;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.514), black), url(/dinamicas/promocion-bingo-locura/resources/background_bingo.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .content_all_bingo {
@@ -83,7 +92,10 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgba(165, 42, 42, 0.493);
+    background-image: linear-gradient(180deg, rgba(165, 42, 42, 0.349), rgba(165, 42, 42, 0.349)), url(/dinamicas/promocion-bingo-locura/resources/detallado-fondo-acuarela-pintado-mano-color-purpura-oscuro_1048-16294.avif);
+    background-position: center;
+    background-size: cover;
+    background-size: cover;
     padding: 20px;
     border-radius: 20px;
 }

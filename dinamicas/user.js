@@ -16,19 +16,10 @@ function getCookie(name) {
   return null;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  if (location.pathname.endsWith(".html")) {
-    const cleanPath = location.pathname.replace(/\.html$/, "");
-    history.replaceState(null, "", cleanPath);
-  }
-});
-
 function validateSession() {
   // // script de cada vista
   let objUser = getCookie(CS_KEY);
   let username = objUser ? objUser.Nombre : "Sin usuario";
-  // document.getElementById("username_dinamica").textContent =
-  //   "Usuario: " + username;
   if (!objUser) {
     Swal.fire({
       icon: "warning",
@@ -75,8 +66,6 @@ function validateSession() {
   }
 
   return objUser;
-  // //   html para el usuario
-  // <span id="username_dinamica" class="username_dinamica"></span>;
 }
 
 validateSession();

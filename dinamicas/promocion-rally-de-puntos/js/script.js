@@ -3,7 +3,6 @@ window.addEventListener("load", () => {
   loader.style.display = "none";
 });
 
-window.addEventListener("DOMContentLoaded", () => {
   const btn_submit_rally = document.getElementById("btn_submit");
   const btn_envia_observacion = document.getElementById(
     "btn_envia_observacion"
@@ -1000,4 +999,3 @@ window.addEventListener("DOMContentLoaded", () => {
         });
       });
   }
-});
