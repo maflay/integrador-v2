@@ -525,21 +525,20 @@
                 ruleta.style.transform = "rotate(0deg)";
 
                 const labels = [];
-                console.log(config);
 
                 for (let i = 1; i <= config.cant_campos; i++) {
                     const valor = String(config[`campo_${i}`] ?? "").trim().substring(1);
 
-                    if (valor.includes("%")) {
-                        console.log("entro a %");
-                    }
+                    // if (valor.includes("%")) {
+                    //     console.log("entro a %");
+                    // }
 
                     if (valor !== "") {
                         labels.push(valor);
                     }
                 }
 
-                labels.forEach((val, i) => console.log(`Campo ${i + 1}: ${val}`));
+                // labels.forEach((val, i) => console.log(`Campo ${i + 1}: ${val}`));
 
                 const cantidad = labels.length;
                 if (cantidad === 0) return;
@@ -577,7 +576,6 @@
                 center.id = "roulette-center";
                 ruleta.appendChild(center);
 
-                // el giro
                 ruleta.dataset.totalSegmentos = cantidad;
                 ruleta.dataset.direccion = config.direccion || 1;
                 ruleta.dataset.girosMinimo = config.giros_minimo || 3;
@@ -640,24 +638,71 @@
                         resultado.textContent = `Resultado: ${resultText}`;
                     }
 
-                    if (resultText.toUpperCase().includes("GANA")) {
-                        let text = resultText.split(" ");
-                        let texto = text[1];
-                        Swal.fire({
-                            icon: "success",
-                            title: `Felicidades `,
-                            text: `Ganaste un ${texto} en casinos aladdin`,
-                            allowOutsideClick: false
-                        });
+                    const varOdo = { type: "ruleta_result", valor: resultText };
+
+                    if (window.parent && window.parent !== window) {
+                        window.parent.postMessage(varOdo, "https://asian.odoo.com");
                     }
 
-                    window.localStorage.setItem("valorOdo", resultText);
+                    // window.parent.postMessage(varOdo, "https://asian.odoo.com");
 
-                    // ruleta.style.transition = "transform 0.4s ease-out";
-                    // ruleta.style.transform = `rotate(${currentRotation + direccion * 5}deg)`;
-                    // setTimeout(() => {
-                    //     ruleta.style.transform = `rotate(${currentRotation}deg)`;
-                    // }, 400);
+                    const fechaCompleta = new Date().toLocaleString("es-CO", {
+                        timeZone: "America/Bogota",
+                        year: "numeric",
+                        month: "2-digit",
+                        day: "2-digit",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        second: "2-digit",
+                        hour12: false,
+                    });
+
+                    const [fecha, hora] = fechaCompleta.split(", ");
+
+                    document.getElementById("loader").style.display = "flex";
+
+                    fetch("https://script.google.com/macros/s/AKfycbzPThUDSzCFNJsKOk7dwDA8jwaRepMOGVxlGrLtzz_WDv1VNSeCxnJzvnphXvFqgQJv/exec", {
+                        method: "POST",
+                        mode: "no-cors",
+                        body: JSON.stringify(
+                            {
+                                tipo: "valor",
+                                Clave: "resultado_ruleta",
+                                Valor: resultText,
+                                Fecha: fecha + " - " + hora
+                            }
+                        )
+                    }).then((r) => r.text())
+                        .then(() => {
+                            saveLog(resultText, fecha + " - " + hora);
+                            document.getElementById("loader").style.display = "none";
+                            Swal.fire({
+                                icon: "success",
+                                title: `Exito`,
+                                text: `El resultado se envió de manera correcta.`,
+                                allowOutsideClick: false
+                            });
+                        })
+                        .catch(() => {
+                            document.getElementById("loader").style.display = "none";
+                            Swal.fire({
+                                icon: "error",
+                                title: `Error`,
+                                text: `Ha ocurrido un error en el envió, comunícate con área de comunicaciones.`,
+                                allowOutsideClick: false
+                            });
+                        });
+                    // if (resultText.toUpperCase().includes("GANA")) {
+                    //     let text = resultText.split(" ");
+                    //     let texto = text[1];
+                    //     Swal.fire({
+                    //         icon: "success",
+                    //         title: `Felicidades `,
+                    //         text: `Ganaste un ${texto} en casinos aladdin`,
+                    //         allowOutsideClick: false
+                    //     });
+                    // }
+                    // window.localStorage.setItem("valorOdo", resultText);
                 };
 
                 ruleta.addEventListener("transitionend", handler);
@@ -754,9 +799,24 @@
                     })
                 }, 3000);
             });
+
+            function saveLog(texto, fecha) {
+                fetch("https://script.google.com/macros/s/AKfycbzPThUDSzCFNJsKOk7dwDA8jwaRepMOGVxlGrLtzz_WDv1VNSeCxnJzvnphXvFqgQJv/exec", {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: JSON.stringify(
+                        {
+                            tipo: "log",
+                            Clave: "resultado_ruleta",
+                            Valor: texto,
+                            Fecha: fecha
+                        }
+                    )
+                })
+            }
         });
     </script>
- <script src="/dinamicas/extension.js"></script>
+    <script src="/dinamicas/extension.js"></script>
 </body>
 
 </html>

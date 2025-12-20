@@ -13,6 +13,15 @@ const fechaCompleta = new Date().toLocaleString("es-CO", {
   minute: "2-digit",
   second: "2-digit",
 });
+
+const input_menu = document.getElementById("input_menu");
+const btn_text_aviso = document.getElementById("btn_text_aviso");
+const text_aviso = document.getElementById("text_aviso");
+const loader_menu = document.getElementById("loader_menu");
+
+const url_menu =
+  "https://script.google.com/macros/s/AKfycby-mvnpDgPPn0tTQvEABeCPpJXkVIdF0PmFhWydwH-xQo7qVqjsXX_66myO0-95ExEc/exec";
+
 const [fecha, hora] = fechaCompleta.split(", ");
 const desc_obser_integrador = document.getElementById("desc_obser_integrador");
 const url =
@@ -127,3 +136,84 @@ getAllMensajes();
 btn_recargarcomentario.addEventListener("click", () => {
   getAllMensajes();
 });
+
+btn_text_aviso.addEventListener("click", () => {
+  let input_menu_V = input_menu.value;
+
+  if (input_menu_V == "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Introduce un Título Valido.",
+    });
+    return;
+  }
+
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  const [fecha, hora] = fechaCompleta.split(", ");
+
+  let data = {
+    tipo: "valor",
+    Clave: "AVISO_MENU",
+    Valor: input_menu_V,
+    Fecha: fecha + " - " + hora,
+  };
+
+  loader_menu.style.display = "flex";
+  fetch(url_menu, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.text())
+    .then(() => {
+      fetch(url_menu, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify({
+          tipo: "log",
+          Clave: "AVISO_MENU",
+          Valor: input_menu_V,
+          Fecha: fecha + " " + hora,
+        }),
+      });
+      input_menu.value = "";
+      loader_menu.style.display = "none";
+      GetValorMenu();
+      Swal.fire({
+        icon: "success",
+        title: "Envio Exitoso",
+        html: "La información se envió de manera correcta.",
+      });
+    })
+    .catch((error) => {
+      loader_menu.style.display = "none";
+
+      Swal.fire({
+        icon: "error",
+        title: "Error",
+        html: "Error 23423545#%#%34#43443546456$%34534&%345345$&$%32322#%#$%#$&/(&)/(=&/&$/%/%##.",
+      });
+    });
+});
+
+GetValorMenu();
+
+function GetValorMenu() {
+  loader_menu.style.display = "flex";
+  fetch(url_menu)
+    .then((res) => res.json())
+    .then((data) => {
+      loader_menu.style.display = "none";
+      text_aviso.textContent = data[0].Valor;
+    });
+}
