@@ -16,6 +16,7 @@ function getCookie(name) {
   return null;
 }
 
+
 function validateSession() {
   // // script de cada vista
   let objUser = getCookie(CS_KEY);

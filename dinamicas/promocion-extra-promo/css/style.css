@@ -1,0 +1,349 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid rgb(141, 143, 11);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content_main_extra_promo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.5)), url(/dinamicas/promocion-extra-promo/resources/red_diagonal_geometric_shape_with_halftone_detailed_background.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.content_extra_promo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.content_opciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.content_opciones img {
+    width: 30px;
+    transition: all 0.4s ease;
+}
+
+.content_opciones img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.content_logo_promo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: 5px;
+    margin-bottom: 40px;
+}
+
+.content_logo_promo img {
+    width: 50%;
+}
+
+.content_form_extra_promo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.425);
+    border: white solid 1px;
+    width: 100%;
+    max-width: 1000px;
+    border-radius: 20px;
+}
+
+.content_inputs_extra {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.content_inputs_extra input,
+.content_inputs_extra select {
+    width: 220px;
+}
+
+.autoriza {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: auto;
+    height: auto;
+}
+
+.autoriza p {
+    margin: 0;
+    padding-right: 5px;
+}
+
+.autoriza input {
+    width: auto;
+}
+
+
+/* modal */
+
+
+
+.modal_opciones_extrapromo {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.content_modal_extrapromo {
+    width: 950px;
+    height: 100%;
+    max-height: 500px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
+}
+
+.content_head_modal {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 12px;
+}
+
+.content_head_modal p:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.close_modal_icon {
+    font-size: 16px;
+    position: absolute;
+    border-radius: 20px;
+    padding: 0 8px;
+    top: -10px;
+    right: 0px;
+    transition: all 0.4s ease;
+}
+
+.close_modal_icon:hover {
+    background-color: rgb(0, 0, 58);
+    color: white;
+    border-radius: 20px;
+    padding: 0 8px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.content_body_modal {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.info_body_modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
+
+.info_body_modal h2 {
+    margin-top: 20px;
+}
+
+.input_modal_DP {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.input_modal_DP input {
+    width: 200px;
+}
+
+.input_modal_DP select {
+    width: 200px;
+}
+
+
+.select_menu {
+    border-bottom: #791706 1px solid;
+}
+
+.content_head_modal p:hover.select_menu {
+    border-bottom: #995d02 1px solid;
+}
+
+
+.datos_column_modal {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.datos_column_modal select,
+.datos_column_modal input {
+    width: 180px;
+    font-size: 16px;
+}
+
+.datos_column_modal textarea {
+    width: 300px;
+    height: 150px;
+    border-radius: 20px 20px 0 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: #eee solid 1px;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.datos_column_modal textarea:focus {
+    border: #aaaaaa solid 1px;
+}
+
+.content_btn_modal button {
+    font-size: 16px;
+}
+
+.content_opcion_head {
+    position: relative;
+}
+
+
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 800px;
+}
+
+.styled-table thead {
+    background: rgb(9, 24, 53);
+    color: #fff;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 8px 8px;
+    font-size: 10px !important;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.styled-table tbody tr {
+    background-color: #fff;
+    color: #000;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-result {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.color-gray {
+    font-size: 9px;
+    color: gray;
+}
+
+.item_full_screen {
+    width: 100vw !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+}
+
+.content_expand {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.content_expand img {
+    width: 15px;
+    transition: all 0.4s ease;
+}
+
+.content_expand img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    transform: scale(1.1);
+}

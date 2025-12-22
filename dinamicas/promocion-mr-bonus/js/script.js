@@ -521,6 +521,8 @@ function handleObservacion() {
     });
 }
 
+GetRegistroDia();
+
 function GetRegistroDia() {
   const content_registro_dia = document.getElementById("result_dia_mr");
   const info_result_dia = document.getElementById("Info_result_dia");
