@@ -98,10 +98,6 @@ function metodoprueba() {
       btn.style.display = "none"; // oculta
     }
   });
-
-
-
-
   
   // Grand aladdin
   // const user = getCookie("__Secure_1nf0_US3R");

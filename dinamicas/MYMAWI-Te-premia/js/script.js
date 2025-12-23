@@ -47,6 +47,13 @@ view_registro_dia.style.display = "none";
 
 const btn_opciones = document.getElementById("modal_opciones");
 const btn_close_opciones = document.getElementById("close_modal_icon");
+
+document.getElementById("expandir").addEventListener("click", () => {
+  document
+    .getElementById("content_modal_MTP")
+    .classList.toggle("item_full_screen");
+});
+
 btn_opciones.addEventListener("click", () => {
   document.getElementById("modal_opciones_mtp").style.display = "flex";
   btn_envio_secundario.classList.add("select_menu");

@@ -60,6 +60,7 @@ btn_opciones.addEventListener("click", () => {
   document.getElementById("modal_opciones_extrapromo").style.display = "flex";
   btn_envio_secundario.classList.add("select_menu");
   btn_observacion.classList.remove("select_menu");
+  btn_informacion.classList.remove("select_menu");
   btn_registro_dia.classList.remove("select_menu");
 
   view_envio_secundario.style.display = "flex";
@@ -70,9 +71,15 @@ btn_opciones.addEventListener("click", () => {
 
 close_modal_icon.addEventListener("click", () => {
   document.getElementById("modal_opciones_extrapromo").style.display = "none";
+  btn_envio_secundario.classList.remove("select_menu");
+  btn_observacion.classList.remove("select_menu");
+  btn_informacion.classList.remove("select_menu");
+  btn_registro_dia.classList.remove("select_menu");
+
   view_envio_secundario.style.display = "none";
   view_envia_observacion.style.display = "none";
   view_registro_dia.style.display = "none";
+  view_informacion.style.display = "none";
 });
 
 btn_envio_secundario.addEventListener("click", () => {
@@ -198,7 +205,7 @@ function handleSubmit() {
       });
     })
     .catch((error) => {
-      console.log(error);
+      console.warn(error);
       loader.style.display = "none";
       Swal.fire({
         icon: "error",

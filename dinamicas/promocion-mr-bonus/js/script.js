@@ -137,7 +137,7 @@ function getPremio(categoriaKey, local, numSorteos) {
   const tablaPorCategoria = {
     ESTANDAR: "tabla-mrbonus-estandar",
     SUPERIOR: "tabla-mrbonus-superior",
-    OTRO: "tabla-mrbonus-otros",
+    "VERSION 7": "tabla-mrbonus-otros",
   };
 
   const tablaId = tablaPorCategoria[categoriaKey];
