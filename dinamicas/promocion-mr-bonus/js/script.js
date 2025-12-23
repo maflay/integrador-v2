@@ -142,13 +142,11 @@ function getPremio(categoriaKey, local, numSorteos) {
 
   const tablaId = tablaPorCategoria[categoriaKey];
   if (!tablaId) {
-    // console.warn("Categoría no válida:", categoriaKey);
     return null;
   }
 
   const tabla = document.getElementById(tablaId);
   if (!tabla) {
-    // console.warn("No se encontró la tabla:", tablaId);
     return null;
   }
 
@@ -177,7 +175,6 @@ function getPremio(categoriaKey, local, numSorteos) {
   const colIndex = 1 + numSorteos; // numSorteos = 1..7
   const cell = filaEncontrada.cells[colIndex];
   if (!cell) {
-    // console.warn("No existe la columna para sorteo:", numSorteos);
     return null;
   }
 
@@ -194,8 +191,6 @@ function getPremio(categoriaKey, local, numSorteos) {
 btn_validate_premio.addEventListener("click", () => {
   validatePremio();
 });
-
-btn_validate_premio.addEventListener("click", validatePremio);
 
 const formatoCOP = new Intl.NumberFormat("es-CO", {
   style: "currency",
