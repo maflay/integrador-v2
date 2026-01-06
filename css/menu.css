@@ -124,6 +124,7 @@ nav.sidebar-nav {
     overflow-y: auto;
     scrollbar-width: none;
     gap: 6px;
+    padding: 5px 0;
 }
 
 
@@ -397,6 +398,11 @@ nav.sidebar-nav {
     display: none;
 }
 
+.item_disable {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
 @media(max-width: 1025px) {
 
     .icon-btn {
@@ -423,7 +429,7 @@ nav.sidebar-nav {
     }
 }
 
-@media(max-width:768px) {
+@media(max-width: 768px) {
     .title_footer {
         width: 100%;
     }

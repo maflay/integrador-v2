@@ -62,6 +62,18 @@ if (userRoute.Nivel == 2 || userRoute.Nivel == 4) {
       css: ["/view/dinamicas/dinamicas.css"],
       js: "/view/dinamicas/dinamicas.js",
     },
+    "#crear_usuario": {
+      title: "Crear Usuario",
+      file: "/view/create_user/create_user.html",
+      css: ["/view/create_user/create_user.css"],
+      js: "/view/create_user/create_user.js",
+    },
+    "#usuarios": {
+      title: "Usuarios",
+      file: "/view/usuarios/usuarios.html",
+      css: ["/view/usuarios/usuarios.css"],
+      js: "/view/usuarios/usuarios.js",
+    },
     "#ayuda": {
       title: "Ayuda",
       file: "/view/ayuda/ayuda.html",
@@ -157,6 +169,12 @@ if (userRoute.Nivel == 2 || userRoute.Nivel == 4) {
       file: "/view/usuarios/usuarios.html",
       css: ["/view/usuarios/usuarios.css"],
       js: "/view/usuarios/usuarios.js",
+    },
+    "#crear_usuario": {
+      title: "Crear Usuario",
+      file: "/view/create_user/create_user.html",
+      css: ["/view/create_user/create_user.css"],
+      js: "/view/create_user/create_user.js",
     },
     "#ayuda": {
       title: "Ayuda",
@@ -308,7 +326,7 @@ document.getElementById("btn_iniciar_sesion").addEventListener("click", () => {
         return;
       }
       location.hash = "#inicio";
-      console.log(data, "data resulta de API;");
+      // console.log(data, "data resulta de API;");
       // loader.style.display = "none";
       // localStorage.setItem(LS_KEY, cedula);
       user_name.innerHTML =
@@ -352,9 +370,9 @@ document.getElementById("btn_iniciar_sesion").addEventListener("click", () => {
         UserName: data[0].UserName,
         Cedula: cedula,
         Nivel: data[0].lvl,
+        Url: url,
       };
 
-      // console.log(user, "user");
       document.getElementById("app").style.display = "flex";
 
       setCookie(CS_KEY, user);
@@ -512,8 +530,8 @@ validateSeccion();
 
 document
   .getElementById("olvidar_usuario")
-  .addEventListener("click", OlivdarUsuario);
-function OlivdarUsuario() {
+  .addEventListener("click", OlvidarUsuario);
+function OlvidarUsuario() {
   Swal.fire({
     title: "Seguro de salir?",
     text: "Se olvidara el usuario y la contraseña",

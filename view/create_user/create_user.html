@@ -1,0 +1,32 @@
+<section class="item_admin_promotor content_main_create">
+    <div id="content_form" class="content_form">
+        <a title="Promotores" class="ver_usuarios" href="#usuarios">Ver promotores</a>
+        <h2>Crear Promotor</h2>
+        <small><strong style="color: red;">*</strong>Este formulario solo sirve para crear promotores o promotores
+            Admin.<strong style="color: red;">*</strong>
+            <br />
+            Por favor crear el usuario con un # de Documento valido
+        </small>
+        <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombres">
+        <input class="form-control" type="text" name="nombre" id="apellido" placeholder="Apellidos">
+        <input class="form-control" type="text" name="cedula" id="cedula" placeholder="Cédula">
+        <select class="form-control" name="rol" id="rol">
+            <option value="">Rol...</option>
+            <option value="Promotor">Promotor</option>
+            <option value="Coordinador">Coordinador</option>
+        </select>
+        <select class="form-control" name="area" id="area">
+            <option value="">Area...</option>
+            <option value="Mercadeo(Promociones)">Mercadeo(Promociones)</option>
+            <option value="Mercadeo">Mercadeo</option>
+        </select>
+        <input class="form-control" type="text" name="telefono" id="telefono" placeholder="Telefono">
+        <input class="form-control" type="text" name="correo" id="correo" placeholder="Correo">
+        <select class="form-control" name="permisos" id="permisos">
+            <option value="">Permisos...</option>
+            <option value="4">Permiso Promotor</option>
+            <option value="2">Permiso Promotor Admin</option>
+        </select>
+        <button id="btn_create_user" title="Crear Usuario" class="btn btn-primary">Enviar</button>
+    </div>
+</section>

@@ -1,5 +1,24 @@
 .inicio {
     width: 100%;
+    position: relative;
+}
+
+.crear_usuario {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+}
+
+.crear_usuario:hover {
+    opacity: 0.7;
+}
+
+.crear_usuario img{
+    width: 30px;
 }
 
 .inicio>h2 {
@@ -66,7 +85,6 @@
 .notifiacion_resultado_partido a:hover {
     color: rgb(117, 173, 33);
     cursor: pointer;
-
 }
 
 .notifiacion_comunicado_partido {

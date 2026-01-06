@@ -25,7 +25,7 @@ const Promocion = "Feliz Cumpleaños";
 const url =
   "https://script.google.com/macros/s/AKfycbyZpwaJUPQKSt4nWte9ogChno-Hw5rqcHBC4JNxOa6MbHFZKltgaJHrVwZw45DW5wlL/exec";
 
-//   datos guardar registro
+// datos guardar registro
 const casino = document.getElementById("casino");
 const nombre = document.getElementById("nombre");
 const cedula = document.getElementById("cedula");
@@ -214,7 +214,6 @@ async function randomizar() {
     });
     return;
   }
-
   const total = casillasDisponibles.length;
   const numerAleatorio = Math.floor(Math.random() * total); // índice del array
   const casillaGanadora = casillasDisponibles[numerAleatorio];
@@ -241,7 +240,7 @@ async function randomizar() {
       ? 3
       : total <= 40
       ? 2
-      : 0;
+      : 1;
 
   const pasosTotales = vueltas * total + numerAleatorio + 1;
 
@@ -253,7 +252,6 @@ async function randomizar() {
 
     if (actual) actual.classList.add("posicion_cum_seleccionado");
     if (prev) prev.classList.remove("posicion_cum_seleccionado");
-
     await delay(total <= 40 ? 60 : 120);
   }
 
@@ -324,8 +322,6 @@ function handleSubmit() {
     second: "2-digit",
     hour12: false,
   });
-
-  console.log(ultimaCasilla);
 
   const [fecha, hora] = fechaCompleta.split(", ");
 
@@ -460,8 +456,6 @@ function getDataLocal() {
   const ultimosRegistros = document.getElementById("ultimos-registros");
   const registro = JSON.parse(localStorage.getItem(LS_KEY)) || [];
   const filtrados = registro;
-
-  console.log(registro);
 
   if (filtrados.length != 0) {
     ultimosRegistros.innerHTML = `

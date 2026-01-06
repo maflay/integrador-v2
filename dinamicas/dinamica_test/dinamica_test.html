@@ -2,97 +2,97 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="/dinamicas/dinamica_test/dinamica_test.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        crossorigin="anonymous">
-    <title>Aladdin: Dinamica_TEST</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/dinamicas/dinamica_test/dinamica_test.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous">
+  <title>Aladdin: Dinamica_TEST</title>
 </head>
 
 <body>
-    <section class="main_dinamica_test">
-        <div id="main_dinamica_test" class="content_all_test">
-            <div style="display: none;">
-                <div id="usuario_entrevista">prueba</div>
-                <span id="username_dinamica" class="username_dinamica"></span>
-                <div id="result_test"></div>
-            </div>
-<div class="content_balanza">
-    <div class="balanza-container">
-        <div class="soporte"></div>
-        <div class="viga-container">
+  <section class="main_dinamica_test">
+    <div id="main_dinamica_test" class="content_all_test">
+      <div style="display: none;">
+        <div id="usuario_entrevista">prueba</div>
+        <span id="username_dinamica" class="username_dinamica"></span>
+        <div id="result_test"></div>
+      </div>
+      <div class="content_balanza">
+        <div class="balanza-container">
+          <div class="soporte"></div>
+          <div class="viga-container">
             <div class="viga"></div>
             <div class="platillo platillo-izq"></div>
             <div class="platillo platillo-der"></div>
+          </div>
         </div>
+      </div>
+
+      <div style="display: none;">
+
+        <a href="/dinamicas/promocion-ruleta-dinamica/ruleta2.html">Ruleta2</a>
+
+        <p onclick="handletestenvio()" class="btn btn-success">Envio test</p>
+        <div style="display: none;" class="content_item">
+          <div></div>
+        </div>
+        <ul style="display: none;">
+          <li>
+            <button class="animation-button">Start animation</button>
+          </li>
+          <li>
+            <label for="easing-select">Choose an easing function:</label>
+            <select id="easing-select">
+              <option selected>linear</option>
+              <option>linear(0, 0.5 50%, 1)</option>
+              <option>ease</option>
+              <option>ease-in</option>
+              <option>ease-in-out</option>
+              <option>ease-out</option>
+              <option>cubic-bezier(0.1, -0.6, 0.2, 0)</option>
+              <option>cubic-bezier(0, 1.1, 0.8, 4)</option>
+              <option>steps(5, end)</option>
+              <option>steps(3, start)</option>
+              <option>steps(4)</option>
+            </select>
+          </li>
+        </ul>
+
+        <div style="display: none;" class="content_animacion_burro">
+          <button id="btnStart">Animar</button>
+
+          <div id="test_barra_inclinada" class="test_barra_inclinada">
+            <div id="item_1" class="end end-left">PPP</div>
+            <div id="item_2" class="end end-right"></div>
+          </div>
+          <div class="base_barra"><img src="/dinamicas/dinamica_test/resource/piedra_soporte.png" alt="Aladdin">
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <div class="entrevistas">
+          <div class="lista" id="listaEntrevistas"></div>
+          <div class="detalle" id="detalleEntrevista">
+            <p>Selecciona un candidato...</p>
+          </div>
+        </div>
+
+
+      </div>
     </div>
-</div>
-
-            <div style="display: none;">
-
-                <a href="/dinamicas/promocion-ruleta-dinamica/ruleta2.html">Ruleta2</a>
-
-                <p onclick="handletestenvio()" class="btn btn-success">Envio test</p>
-                <div style="display: none;" class="content_item">
-                    <div></div>
-                </div>
-                <ul style="display: none;">
-                    <li>
-                        <button class="animation-button">Start animation</button>
-                    </li>
-                    <li>
-                        <label for="easing-select">Choose an easing function:</label>
-                        <select id="easing-select">
-                            <option selected>linear</option>
-                            <option>linear(0, 0.5 50%, 1)</option>
-                            <option>ease</option>
-                            <option>ease-in</option>
-                            <option>ease-in-out</option>
-                            <option>ease-out</option>
-                            <option>cubic-bezier(0.1, -0.6, 0.2, 0)</option>
-                            <option>cubic-bezier(0, 1.1, 0.8, 4)</option>
-                            <option>steps(5, end)</option>
-                            <option>steps(3, start)</option>
-                            <option>steps(4)</option>
-                        </select>
-                    </li>
-                </ul>
-
-                <div style="display: none;" class="content_animacion_burro">
-                    <button id="btnStart">Animar</button>
-
-                    <div id="test_barra_inclinada" class="test_barra_inclinada">
-                        <div id="item_1" class="end end-left">PPP</div>
-                        <div id="item_2" class="end end-right"></div>
-                    </div>
-                    <div class="base_barra"><img src="/dinamicas/dinamica_test/resource/piedra_soporte.png"
-                            alt="Integrador"></div>
-                </div>
-                <br />
-                <br />
-                <br />
-                <br />
-                <div class="entrevistas">
-                    <div class="lista" id="listaEntrevistas"></div>
-                    <div class="detalle" id="detalleEntrevista">
-                        <p>Selecciona un candidato...</p>
-                    </div>
-                </div>
 
 
-            </div>
-        </div>
+  </section>
 
-
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        crossorigin="anonymous"></script>
-    <script src="/dinamicas/user.js"></script>
-    <script src="/dinamicas/dinamica_test/dinamica_test.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
+  <script src="/dinamicas/user.js"></script>
+  <script src="/dinamicas/dinamica_test/dinamica_test.js"></script>
 </body>
 
 </html>
@@ -265,24 +265,24 @@
       <p>Wishing you a year full of joy, prosperity, and endless opportunities.</p>
       <div class="fireworks">
      Fireworks animation -->
-        <div class="firework"></div>
-        <div class="firework"></div>
-        <div class="firework"></div>
-        <div class="firework"></div>
-        <div class="firework"></div>
-      </div>
-    </div>
-  </div>
+<div class="firework"></div>
+<div class="firework"></div>
+<div class="firework"></div>
+<div class="firework"></div>
+<div class="firework"></div>
+</div>
+</div>
+</div>
 
-  <script>
-    function showNewYear() {
-      const newYearElement = document.getElementById('newYear');
-      newYearElement.classList.add('active');
-    }
-  </script>
-  <script src="/dinamicas/user.js"></script>
-  <script src="/dinamicas/extension.js"></script>
-  <script src="/dinamicas/dinamica_test/dinamica_test.js"></script>
+<script>
+  function showNewYear() {
+    const newYearElement = document.getElementById('newYear');
+    newYearElement.classList.add('active');
+  }
+</script>
+<script src="/dinamicas/user.js"></script>
+<script src="/dinamicas/extension.js"></script>
+<script src="/dinamicas/dinamica_test/dinamica_test.js"></script>
 </body>
 
 </html>

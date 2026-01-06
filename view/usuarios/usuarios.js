@@ -1,3 +1,12 @@
+const u = metodoprueba();
+console.log(u.Nivel);
+if (u.Nivel != "1" && u.Nivel != "2") {
+  console.log("entro");
+  location.hash = "#inicio";
+} else {
+  document.querySelector(".content_info_usuarios").style.display = "flex";
+}
+
 function getAllUser() {
   const contenedor_usuarios = document.getElementById("content_table_info");
   const url =
@@ -16,6 +25,7 @@ function getAllUser() {
                 <th>Rol</th>
                 <th>Area</th>
                 <th># Cel</th>
+                <th style="display: none;">Nivel</th>
               </tr>
             </thead>
             <tbody>
@@ -29,6 +39,7 @@ function getAllUser() {
                     <td>${registro.Rol || ""}</td>
                     <td>${registro.Area || ""}</td>
                     <td>${registro.Telefono || ""}</td>
+                    <td style="display: none;">${registro.lvl}</td>
                   </tr>
                 `
               )
@@ -37,6 +48,19 @@ function getAllUser() {
           </table>
         </div>
       `;
+
+      const filas = contenedor_usuarios.querySelectorAll("tbody tr");
+
+      filas.forEach((fila) => {
+        const celdaLvl = fila.querySelector("td:nth-child(6)");
+        if (!celdaLvl) return;
+
+        const lvl = celdaLvl.textContent.trim();
+
+        if (lvl !== "2" && lvl !== "4") {
+          fila.style.display = "none";
+        }
+      });
     })
     .catch(() => {
       contenedor_usuarios.innerHTML = `Error al cargar la informaión, Por favor refresca.`;
@@ -44,4 +68,3 @@ function getAllUser() {
 }
 
 getAllUser();
-
