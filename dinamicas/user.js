@@ -76,4 +76,6 @@ function inforUser() {
   return objUser;
 }
 
+// const user = inforUser();
+
 window.inforUser = inforUser;

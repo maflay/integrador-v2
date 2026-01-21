@@ -64,8 +64,8 @@
 
 .content_img_user img {
     width: 100px;
+    border-radius: 50%;
 }
-
 
 .content_date_funcionario {
     display: flex;
@@ -78,6 +78,47 @@
 
 .content_date_funcionario>p {
     width: 50%;
+}
+
+.content_date_funcionario input {
+    width: 100%;
+}
+
+.update_user {
+    display: none;
+}
+
+
+.loader-user-u {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 255, 255);
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner-user-u {
+    border: 6px solid #ccc;
+    border-top: 6px solid #dc3545;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 @media(max-width: 768px) {

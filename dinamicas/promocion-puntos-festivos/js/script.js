@@ -37,7 +37,7 @@ function handleSendInfo() {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
-    hour12: false
+    hour12: false,
   });
 
   const [fecha, hora] = fechaCompleta.split(", ");
@@ -168,7 +168,9 @@ function getCliente() {
                         : `Ya contiene Bono`
                     }
                         </td>
-                    <td>${String(registro.Cedula).substring(0, 4)+"..." || ""}</td>
+                    <td>${
+                      String(registro.Cedula).substring(0, 4) + "..." || ""
+                    }</td>
                     <td>${registro.Casino || ""}</td>
                   </tr>
                 `
@@ -303,7 +305,9 @@ function getData() {
                         : `Ya contiene Bono`
                     }
                         </td>
-                    <td>${String(registro.Cedula).substring(0, 4)+"..."  || ""}</td>
+                    <td>${
+                      String(registro.Cedula).substring(0, 4) + "..." || ""
+                    }</td>
                     <td>${registro.Casino || ""}</td>
                   </tr>
                 `

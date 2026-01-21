@@ -1,3 +1,35 @@
+.loader-user {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(255, 255, 255);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner-user {
+  border: 6px solid #ccc;
+  border-top: 6px solid #dc3545;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .content_main_usuarios {
   width: 100%;
 }
@@ -18,6 +50,7 @@
   left: 20px;
   transition: all 0.4s ease;
   text-decoration: none;
+  z-index: 10;
 }
 
 .content_info_usuarios>a:hover {
@@ -25,8 +58,21 @@
 }
 
 .content_title_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: relative;
   font-size: 1.5rem;
   padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+.search_promo {
+  display: none;
+  width: 250px;
+  position: relative;
+  left: 50px;
 }
 
 .content_table_info {
@@ -78,4 +124,104 @@
 .table-result {
   width: 100%;
   overflow-x: auto;
+}
+
+.content_nuevo_rol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.content_nuevo_rol input,
+.content_nuevo_rol select {
+  width: auto;
+  margin: 0;
+  padding: 5px;
+}
+
+.content_nuevo_rol button {
+  padding: 2px 5px;
+  font-size: 10px;
+  margin: 0;
+}
+
+.btn_opciones_user {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.btn_opciones_user img {
+  width: 20px;
+}
+
+
+.modal_user {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal_content_user {
+  width: 450px;
+  height: 100%;
+  max-height: 500px;
+  background-color: white;
+  border-radius: 20px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  position: relative;
+  color: black;
+}
+
+.modal_content_user>p {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 20px;
+  transition: all 0.4s ease;
+}
+
+.modal_content_user>p:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.content_input_modal_user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.input_modal_user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.input_modal_user input {
+  width: 300px;
+}
+
+.btn_modal_user {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
 }

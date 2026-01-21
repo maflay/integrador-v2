@@ -229,9 +229,9 @@ function getData() {
         </div>
       `;
 
-      const userTest = inforUser();
-      console.log(userTest, "userTest");
-      let lvlTest = userTest.Nivel;
+      const user = inforUser();
+      console.log(user, "user");
+      let lvlTest = user.Nivel;
       console.log(lvlTest, "lvl");
 
       if (lvlTest == "2" || lvlTest == "1") {

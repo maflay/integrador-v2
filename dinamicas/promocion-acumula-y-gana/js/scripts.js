@@ -13,7 +13,7 @@ const btn_validar = document.getElementById("btn_validar");
 const opciones_acumula = document.getElementById("opciones_acumula");
 const btn_envia_observacion = document.getElementById("btn_envia_observacion");
 const close_modal_opciones_acumula = document.getElementById(
-  "cerrarmodaleopciones"
+  "cerrarmodaleopciones",
 );
 
 const loader = document.getElementById("loader");
@@ -40,7 +40,7 @@ close_modal_opciones_acumula.addEventListener("click", () => {
 });
 
 const notificacion_registro_dia = document.getElementById(
-  "notificacion_registro_dia"
+  "notificacion_registro_dia",
 );
 
 notificacion_registro_dia.style.display = "none";
@@ -56,7 +56,7 @@ const btn_registros_dia = document.getElementById("btn_registros_dia");
 //   menu modal view
 const view_envio_segundario = document.getElementById("view_envio_segundario");
 const view_envio_observacion = document.getElementById(
-  "view_envio_observacion"
+  "view_envio_observacion",
 );
 const view_tabla_premios = document.getElementById("view_tabla_premios");
 const view_registro_dia = document.getElementById("view_registro_dia");
@@ -345,8 +345,6 @@ function handleSubmit() {
     }
   }
 
-  console.log(data);
-
   loader.style.display = "flex";
   const registro = JSON.parse(localStorage.getItem(LS_KEY)) || [];
   registro.push(data);
@@ -408,9 +406,8 @@ function handleSubmit() {
       icon: "info",
       title: "Guardado local",
       html: `
-      <div >
-      <p>Se guardó el registro sin # de bono. Puedes asignarlo y enviarlo después.</p>
-      
+      <div>
+        <p>Se guardó el registro sin # de bono. Puedes asignarlo y enviarlo después.</p>
       </div>
       `,
       allowOutsideClick: false,
@@ -515,7 +512,7 @@ function GetResgistroDia() {
 
   function updateLocalBono(
     { casino, categoria, nombre, cedula, fecha, hora, resultado },
-    valBono
+    valBono,
   ) {
     const regs = getRegs();
     const idx = regs.findIndex(
@@ -525,7 +522,7 @@ function GetResgistroDia() {
         String(r.valor_5).trim() === String(casino).trim() &&
         String(r.valor_3).trim() === String(nombre).trim() &&
         String(r.valor_2).trim() === String(fecha).trim() &&
-        String(r.valor_1).trim() === String(hora).trim()
+        String(r.valor_1).trim() === String(hora).trim(),
     );
     if (idx === -1) return false;
 
@@ -545,14 +542,14 @@ function GetResgistroDia() {
           ">": "&gt;",
           '"': "&quot;",
           "'": "&#39;",
-        }[m])
+        })[m],
     );
   }
 
   if (content_registro_dia._clickHandler) {
     content_registro_dia.removeEventListener(
       "click",
-      content_registro_dia._clickHandler
+      content_registro_dia._clickHandler,
     );
   }
 
@@ -628,7 +625,7 @@ function GetResgistroDia() {
           hora,
           resultado,
         },
-        valBonoregistr
+        valBonoregistr,
       );
 
       if (tr) {
@@ -699,7 +696,7 @@ function GetResgistroDia() {
   };
   content_registro_dia.addEventListener(
     "click",
-    content_registro_dia._clickHandler
+    content_registro_dia._clickHandler,
   );
 }
 GetResgistroDia();
@@ -707,7 +704,7 @@ GetResgistroDia();
 btn_envia_observacion.addEventListener("click", () => {
   const casino_observacion = document.getElementById("casino_observacion");
   const descripcion_observacion = document.getElementById(
-    "descripcion_observacion"
+    "descripcion_observacion",
   );
 
   const fechaCompletaObs = new Date().toLocaleString("es-CO", {

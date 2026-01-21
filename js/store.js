@@ -44,11 +44,9 @@ function validateAdmin() {
   });
 }
 
-
 function AlertaDesarrollo() {
   alert("En desarrollo");
 }
-
 
 function metodoprueba() {
   let objUser = getCookie("__Secure_1nf0_US3R");
@@ -58,12 +56,41 @@ function metodoprueba() {
   const funcionario_email = document.getElementById("funcionario_email");
   const funcionario_telefono = document.getElementById("funcionario_telefono");
   const funcionario_area = document.getElementById("funcionario_area");
+  const avatar_img = document.getElementById("avatar_img");
+
+  const avatar_img_modal = document.getElementById("avatar_img_modal");
+  const funcionario_nombre_u = document.getElementById("funcionario_nombre_u");
+  const funcionario_cedula_u = document.getElementById("funcionario_cedula_u");
+  const funcionario_rol_u = document.getElementById("funcionario_rol_u");
+  const funcionario_email_u = document.getElementById("funcionario_email_u");
+  const funcionario_telefono_u = document.getElementById(
+    "funcionario_telefono_u",
+  );
+  const funcionario_area_u = document.getElementById("funcionario_area_u");
+  const funcionario_user_u = document.getElementById("funcionario_user_u");
+  const funcionario_permiso_u = document.getElementById(
+    "funcionario_permiso_u",
+  );
+
+  avatar_img.src =
+    objUser.ImageUser == "" ? "/resource/ala_blanco.png" : objUser.ImageUser;
   funcionario_nombre.textContent = objUser.Nombre + ".";
   funcionario_cedula.textContent = objUser.Cedula + ".";
   funcionario_rol.textContent = objUser.rol + ".";
   funcionario_email.textContent = objUser.Correo + ".";
   funcionario_telefono.textContent = objUser.Telefono + ".";
   funcionario_area.textContent = objUser.Area + ".";
+
+  avatar_img_modal.src =
+    objUser.ImageUser == "" ? "/resource/ala_oscuro.png" : objUser.ImageUser;
+  funcionario_nombre_u.value = objUser.Nombre;
+  funcionario_cedula_u.value = objUser.Cedula;
+  funcionario_rol_u.value = objUser.rol;
+  funcionario_email_u.value = objUser.Correo;
+  funcionario_telefono_u.value = objUser.Telefono;
+  funcionario_area_u.value = objUser.Area;
+  funcionario_user_u.value = objUser.UserName;
+  funcionario_permiso_u.value = objUser.Nivel;
 
   // admin
   const btn_info = document.querySelectorAll(".item_admin_view");
@@ -98,7 +125,7 @@ function metodoprueba() {
       btn.style.display = "none"; // oculta
     }
   });
-  
+
   // Grand aladdin
   // const user = getCookie("__Secure_1nf0_US3R");
   item_admin_promotor.forEach((btn) => {
@@ -143,7 +170,6 @@ function metodoprueba() {
       htn2.style.display = "none"; // oculta
     }
   });
-
 
   // Recorremos cada item
   item_view_social.forEach((item) => {
@@ -214,10 +240,9 @@ function registroUser() {
   //   });
 }
 
-
-function getDate(fecha){
- const fechaLocal = new Date(fecha);
-    const local = fechaLocal.toLocaleString("es-CO", {
+function getDate(fecha) {
+  const fechaLocal = new Date(fecha);
+  const local = fechaLocal.toLocaleString("es-CO", {
     timeZone: "America/Bogota",
     year: "numeric",
     month: "2-digit",

@@ -238,7 +238,7 @@ function validatePremio() {
   });
   confetti({
     particleCount: 200,
-    spread: 70,
+    spread: 120,
     origin: { y: 0.6 },
   });
 

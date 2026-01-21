@@ -231,7 +231,7 @@ function validatePremio() {
   const loader = document.getElementById("loader");
   const valBono = document.getElementById("bono");
 
-  // Validaci贸n
+  // Validacion
   if (!casino || !categoria || !nombre) {
     Swal.fire({
       icon: "warning",
@@ -309,7 +309,7 @@ function HandleSend() {
     localStorage.setItem("fecha", hoy);
   }
 
-  // Validaci贸n
+  // Validacion
   if (!casino || !categoria || !nombre) {
     Swal.fire({
       icon: "warning",

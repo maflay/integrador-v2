@@ -40,7 +40,8 @@
                     </div>
                     <div class="content_marcador_partido">
                         <div class="content_equipo_1">
-                            <img src="/dinamicas/promocion-futbolera-COL-BOL/resource/colombia_96x96.png" alt="futbolera">
+                            <img src="/dinamicas/promocion-futbolera-COL-BOL/resource/colombia_96x96.png"
+                                alt="futbolera">
                         </div>
                         <div class="content_equipo_2">
                             <img src="/dinamicas/promocion-futbolera-COL-BOL/resource/bolivia.png" alt="futbolera">
@@ -60,7 +61,7 @@
                     </div>
                     <div class="content_actions_casino">
                         <select class="form-control" style="cursor: pointer;" id="casino_marca_gol">
-                            <option value="">Casino...</option>
+                            <option value="">Seleccione...</option>
                             <option value="A05">A05</option>
                             <option value="A07">A07</option>
                             <option value="A08">A08</option>
@@ -76,18 +77,21 @@
                             <option value="A36-MESAS">A36-MESAS</option>
                             <option value="A38">A38</option>
                             <option value="A39">A39</option>
-                            <option value="A43">A43</option>
+                            <option value="A39">A43</option>
                             <option value="A48">A48</option>
                             <option value="A48-MESAS">A48-MESAS</option>
                             <option value="A49">A49</option>
                             <option value="A50">A50</option>
-                            <option value="MP53">MP53</option>
+                            <option value="A53">A53</option>
                             <option value="A70">A70</option>
                             <option value="A781">A781</option>
                             <option value="A88">A88</option>
                             <option value="A100">A100</option>
+                            <option value="A100-MESAS">A100-MESAS</option>
                             <option value="A108">A108</option>
                             <option value="A108-MESAS">A108-MESAS</option>
+                            <option value="A127">A127</option>
+                            <option value="A127-MESAS">A127-MESAS</option>
                         </select>
                         <button onclick="getCasino()" class="btn btn-primary">Consulta</button>
                     </div>
@@ -129,7 +133,7 @@
                     <h4>Guardar Participante</h4>
                     <div class="datos_column">
                         <select class="form-control" style="cursor: pointer;" id="casino">
-                            <option value="">Casino...</option>
+                            <option value="">Seleccione...</option>
                             <option value="A05">A05</option>
                             <option value="A07">A07</option>
                             <option value="A08">A08</option>
@@ -145,18 +149,21 @@
                             <option value="A36-MESAS">A36-MESAS</option>
                             <option value="A38">A38</option>
                             <option value="A39">A39</option>
-                            <option value="A43">A43</option>
+                            <option value="A39">A43</option>
                             <option value="A48">A48</option>
                             <option value="A48-MESAS">A48-MESAS</option>
                             <option value="A49">A49</option>
                             <option value="A50">A50</option>
-                            <option value="MP53">MP53</option>
+                            <option value="A53">A53</option>
                             <option value="A70">A70</option>
                             <option value="A781">A781</option>
                             <option value="A88">A88</option>
                             <option value="A100">A100</option>
+                            <option value="A100-MESAS">A100-MESAS</option>
                             <option value="A108">A108</option>
                             <option value="A108-MESAS">A108-MESAS</option>
+                            <option value="A127">A127</option>
+                            <option value="A127-MESAS">A127-MESAS</option>
                         </select>
 
                         <select class="form-control" style=" cursor: pointer;" id="categoria">
@@ -180,7 +187,8 @@
                         <p>Resultado</p>
                         <div class="">
                             <div class="datos_column content_resultado_modal">
-                                <img src="/dinamicas/promocion-futbolera-COL-BOL/resource/colombia_96x96.png" alt="marcagol">
+                                <img src="/dinamicas/promocion-futbolera-COL-BOL/resource/colombia_96x96.png"
+                                    alt="marcagol">
                                 <input id="resultado_local" type="text" name="resultado_colombia" class="form-control">
                                 --
                                 <input id="resultado_visitante" type="text" name="resultado_bolivia"
@@ -216,7 +224,7 @@
                 <div class="content_form_observacion" id="content_form_observacion">
                     <h4>Enviar Observación</h4>
                     <select class="form-control" style="cursor: pointer;" id="casino_marca_gol_observacion">
-                        <option value="">Casino...</option>
+                        <option value="">Seleccione...</option>
                         <option value="A05">A05</option>
                         <option value="A07">A07</option>
                         <option value="A08">A08</option>
@@ -232,18 +240,21 @@
                         <option value="A36-MESAS">A36-MESAS</option>
                         <option value="A38">A38</option>
                         <option value="A39">A39</option>
-                        <option value="A43">A43</option>
+                        <option value="A39">A43</option>
                         <option value="A48">A48</option>
                         <option value="A48-MESAS">A48-MESAS</option>
                         <option value="A49">A49</option>
                         <option value="A50">A50</option>
-                        <option value="MP53">MP53</option>
+                        <option value="A53">A53</option>
                         <option value="A70">A70</option>
                         <option value="A781">A781</option>
                         <option value="A88">A88</option>
                         <option value="A100">A100</option>
+                        <option value="A100-MESAS">A100-MESAS</option>
                         <option value="A108">A108</option>
                         <option value="A108-MESAS">A108-MESAS</option>
+                        <option value="A127">A127</option>
+                        <option value="A127-MESAS">A127-MESAS</option>
                     </select>
                     <br />
                     <textarea placeholder="Detalle su Observación" name="descripcion_observacion"
@@ -262,10 +273,10 @@
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-     <script src="/dinamicas/extension.js"></script>
+    <script src="/dinamicas/extension.js"></script>
     <script src="/dinamicas/promocion-futbolera-COL-BOL/js/script.js"></script>
 </body>
 

@@ -105,10 +105,11 @@
             <span class="nav-label">Ayuda</span>
           </a>
         </nav>
-
         <div class="sidebar-footer">
           <div class="user">
-            <div class="avatar"></div>
+            <div class="avatar">
+              <img id="avatar_img" alt="ImgPerfil">
+            </div>
             <div>
               <div onclick="OpenModalInfo()" id="user_name" class="user_name" style="font-weight:700">Aladdin</div>
               <div class="view_info_user" id="view_info_user">
@@ -117,19 +118,56 @@
                     <span onclick="CloseModalInfo()" class="close_funcionario" id="close_funcionario">&times;</span>
                     <h2>Información</h2>
                     <div class="content_img_user">
-                      <img src="/resource/ala_oscuro.png" alt="Aladdin">
+                      <img id="avatar_img_modal" alt="Aladdin">
                     </div>
-                    <div class="content_date_funcionario">
-                      <p><strong>Nombre:</strong> <span id="funcionario_nombre"></span></p>
-                      <p style="display: none;"><strong>Cédula:</strong> <span id="funcionario_cedula"></span></p>
+                    <div id="info_user_" style="width: 100%;">
+                      <div class="content_date_funcionario">
+                        <p><strong>Nombre:</strong> <span id="funcionario_nombre"></span></p>
+                        <p style="display: none;"><strong>Cédula:</strong> <span id="funcionario_cedula"></span></p>
+                      </div>
+                      <div class="content_date_funcionario">
+                        <p><strong>Cargo:</strong> <span id="funcionario_rol"></span></p>
+                        <p><strong>Email:</strong> <span id="funcionario_email"></span></p>
+                      </div>
+                      <div class="content_date_funcionario">
+                        <p><strong>Teléfono:</strong> <span id="funcionario_telefono"></span></p>
+                        <p><strong>Área:</strong> <span id="funcionario_area"></span></p>
+                      </div>
+                      <br />
+                      <div class="item_admin_promotor content_date_funcionario">
+                        <button id="btn_to_actualizar" class="btn btn-danger">Actualizar</button>
+                      </div>
                     </div>
-                    <div class="content_date_funcionario">
-                      <p><strong>Cargo:</strong> <span id="funcionario_rol"></span></p>
-                      <p><strong>Email:</strong> <span id="funcionario_email"></span></p>
-                    </div>
-                    <div class="content_date_funcionario">
-                      <p><strong>Teléfono:</strong> <span id="funcionario_telefono"></span></p>
-                      <p><strong>Área:</strong> <span id="funcionario_area"></span></p>
+                    <div id="update_user_" class="update_user">
+                      <div id="loader-user-u" class="loader-user-u">
+                        <div class="spinner-user-u"></div>
+                      </div>
+                      <div class="content_date_funcionario">
+                        <p><strong>Nombre:</strong> <input class="form-control" id="funcionario_nombre_u"></input></p>
+                        <p><strong>Usuario:</strong> <input disabled class="form-control"
+                            id="funcionario_user_u"></input></p>
+                      </div>
+                      <div class="content_date_funcionario">
+                        <p><strong>Cargo:</strong> <input class="form-control" id="funcionario_rol_u" /></p>
+                        <p><strong>Email:</strong> <input class="form-control" id="funcionario_email_u"/></p>
+                      </div>
+                      <div class="content_date_funcionario">
+                        <p><strong>Teléfono:</strong> <input class="form-control" id="funcionario_telefono_u"/>
+                        </p>
+                        <p><strong>Área:</strong> <input class="form-control" id="funcionario_area_u"/></p>
+                      </div>
+                      <div class="content_date_funcionario">
+                        <p><strong>Cedúla:</strong> <input class="form-control" id="funcionario_cedula_u"
+                            disabled/>
+                        </p>
+                        <p><strong>Permisos:</strong> <input class="form-control" id="funcionario_permiso_u"
+                            disabled/></p>
+                      </div>
+                      <br />
+                      <div class="content_date_funcionario">
+                        <button id="btn_cancelar_actualizacion" class="btn btn-danger">Cancelar</button>
+                        <button id="btn_envio_actualizacion" class="btn btn-primary">Enviar</button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -164,6 +202,7 @@
 
   <!-- Router SPA -->
   <script src="/js/store.js"></script>
+  <script src="/view/modales/modal_info_user/modal_info_user.js"></script>
   <script type="module" src="funtions.js"></script>
 </body>
 

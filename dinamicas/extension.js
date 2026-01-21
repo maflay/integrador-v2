@@ -8,6 +8,10 @@ if (!url_seccion.includes("http://127.0.0")) {
   });
 }
 
+// window.addEventListener("load", () => {
+//   document.getElementById("loader").style.display = "none";
+// });
+
 document.addEventListener("DOMContentLoaded", () => {
   const mainStyle = document.body.dataset.mainStyle;
   if (mainStyle) {

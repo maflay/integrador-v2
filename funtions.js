@@ -176,6 +176,12 @@ if (userRoute.Nivel == 2 || userRoute.Nivel == 4) {
       css: ["/view/create_user/create_user.css"],
       js: "/view/create_user/create_user.js",
     },
+    "#all_user": {
+      title: "Usuarios",
+      file: "/view/usuarios/all_user/all_user.html",
+      css: ["/view/usuarios/all_user/all_user.css"],
+      js: "/view/usuarios/all_user/all_user.js",
+    },
     "#ayuda": {
       title: "Ayuda",
       file: "/view/ayuda/ayuda.html",
@@ -278,7 +284,7 @@ function setActive(hash, { force = false } = {}) {
   );
 
   const route = routes[hash] || routes["#inicio"];
-  document.title = `Integrador`;
+  document.title = `Aladdin`;
   loadView(route);
   if (!prefersDesktop()) closeSidebar();
 }
@@ -307,7 +313,7 @@ document.getElementById("btn_iniciar_sesion").addEventListener("click", () => {
   }
 
   const url =
-    "https://script.google.com/macros/s/AKfycbwoQFpBcbOBhNbIvqo6UPlv9oV1H8IHKJMlonFOiK1T9cW6J0I8uZHAe5bPps4NxdmD3Q/exec";
+    "https://script.google.com/macros/s/AKfycbwd-FlakNOMgO6YjqaStaSNWpeXQPNEFMh9KREptVbVK51XELWzYHG3rfHXZp48HMGy_Q/exec";
 
   let cedula = cedulaEl.value;
   loader.style.display = "flex";
@@ -370,6 +376,7 @@ document.getElementById("btn_iniciar_sesion").addEventListener("click", () => {
         UserName: data[0].UserName,
         Cedula: cedula,
         Nivel: data[0].lvl,
+        ImageUser: data[0].Avatar,
         Url: url,
       };
 

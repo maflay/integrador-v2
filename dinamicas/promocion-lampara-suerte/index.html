@@ -2,17 +2,175 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Error Page | Redirigiendo...</title>
-    <link rel="stylesheet" href="/dinamicas/page-error/page-error.css">
-    <meta http-equiv="refresh" content="0; url=/dinamicas/page-error/page-error.html">
-    <script>
-        window.location.replace("/dinamicas/page-error/page-error.html");
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Cargar Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <title>Interfaz con Slot Machine</title>
 </head>
 
-<body>
-    <p>Redirigiendo a la dinámica de Error Page...</p>
+<body data-main-style="/dinamicas/promocion-lampara-suerte/css/style.css"
+  data-main-script="/dinamicas/promocion-lampara-suerte/js/main.js">
+  <div id="loader" class="loader-overlay">
+    <div class="spinner"></div>
+  </div>
+  <div class="container">
+    <!-- Bloque 1 -->
+    <div class="bloque bloque1">
+      <div class="sub-bloque sub2">
+        <img src="./images/logo.png" alt="Logo" id="prueba" />
+      </div>
+      <button style="cursor: pointer;" id="toggleBtn" class="toggleBtn">Ocultar</button>
+      <div class="datos" id="formBox">
+        <div class="sub-bloque sub4">
+          <label for="casino">CASINO</label>
+          <select style="width: auto; cursor: pointer;" id="casino">
+            <option value="">Seleccione...</option>
+            <option value="A05">A05</option>
+            <option value="A07">A07</option>
+            <option value="A08">A08</option>
+            <option value="A09">A09</option>
+            <option value="A12">A12</option>
+            <option value="A12-MESAS">A12-MESAS</option>
+            <option value="A15">A15</option>
+            <option value="A15-MESAS">A15-MESAS</option>
+            <option value="A16">A16</option>
+            <option value="A19">A19</option>
+            <option value="A35">A35</option>
+            <option value="A36">A36</option>
+            <option value="A36-MESAS">A36-MESAS</option>
+            <option value="A38">A38</option>
+            <option value="A39">A39</option>
+            <option value="A39">A43</option>
+            <option value="A48">A48</option>
+            <option value="A48-MESAS">A48-MESAS</option>
+            <option value="A49">A49</option>
+            <option value="A50">A50</option>
+            <option value="A53">A53</option>
+            <option value="A70">A70</option>
+            <option value="A781">A781</option>
+            <option value="A88">A88</option>
+            <option value="A100">A100</option>
+            <option value="A100-MESAS">A100-MESAS</option>
+            <option value="A108">A108</option>
+            <option value="A108-MESAS">A108-MESAS</option>
+            <option value="A127">A127</option>
+            <option value="A127-MESAS">A127-MESAS</option>
+          </select>
+        </div>
+        <div class="sub-bloque sub4">
+          <label for="categoria">CATEGORÍA</label>
+          <select style=" cursor: pointer;" id="categoria">
+            <option value="">Seleccione...</option>
+            <option value="GENIUS">Genius</option>
+            <option value="TITANIO">Titanio</option>
+            <option value="LEGENDARIO">Legendario</option>
+            <option value="GOLD">Gold</option>
+            <option value="SILVER">Silver</option>
+            <option value="BRONCE">Bronce</option>
+            <option value="SUPERIORMARCOPOLO">Superior Marcopolo</option>
+            <option value="ESTANDARMARCOPOLO">Estandar Marcopolo</option>
+            <option value="SUPERIORALADDIN">Superior Aladdin</option>
+            <option value="ESTANDARALADDIN">Estandar Aladdin</option>
+          </select>
+        </div>
+
+        <div class="sub-bloque sub3">
+          <label for="cedula">CEDULA</label>
+          <div style="display: flex; align-items: center; gap: 5px">
+            <input style=" cursor: pointer;" type="text" id="cedula" placeholder="Cedula del cliente" />
+          </div>
+        </div>
+        <div class="sub-bloque sub3">
+          <label for="nombre">NOMBRE</label>
+          <div style="display: flex; align-items: center; gap: 5px">
+            <input style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre del cliente" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloque 2 -->
+    <div class="bloque bloque2">
+      <div>
+        <img src="./images/tiros/1er.png" alt="1er" />
+        <div style="display: flex;align-items: center;gap: 10px;" class="inputtiro">
+          <select id="listad-1er">
+            <option value="">Seleccionar...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+          <button style="cursor: pointer;" class="btn-restart" onclick="restarlanz1()">⟳</button>
+        </div>
+      </div>
+      <div>
+        <img src="./images/tiros/2do.png" alt="2do" />
+        <div style="display: flex;align-items: center;gap: 10px;">
+          <select id="listad-2do">
+            <option value="">Seleccionar...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+          <button style="cursor: pointer;" class="btn-restart" onclick="restarlanz2()">⟳</button>
+        </div>
+      </div>
+      <div>
+        <img src="./images/tiros/3er.png" alt="3er" />
+        <div style="display: flex;align-items: center;gap: 10px;">
+          <select id="listad-3er">
+            <option value="">Seleccionar...</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+          <button style="cursor: pointer;" class="btn-restart" onclick="restarlanz3()">⟳</button>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Bloque 3 -->
+    <div class="bloque bloque3">
+      <div class="slot" id="slot-1er"></div>
+      <div class="slot" id="slot-2do"></div>
+      <div class="slot" id="slot-3er"></div>
+    </div>
+    <div>
+      <div style="color: white;">
+        <div style="text-align: center; " id="resultado"></div>
+      </div>
+      <div>
+        <div style="color: white;text-align: center;display: flex;justify-content: center;align-items: center;"
+          id="bonos"></div>
+      </div>
+    </div>
+  </div>
+  <!-- Bloque 4 -->
+  <div class=" bloque4">
+    <button style="width: auto;cursor: pointer;" class="btn-lampara" onclick="newGame()">Nuevo juego</button>
+    <!-- <button class="btn-lampara">Vuelve y juega</button> -->
+
+    <button style="width: auto; cursor: pointer;" class="btn-lampara" onclick="handleSend()">Enviar /
+      Consolidar</button>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+  <script src="/dinamicas/user.js"></script>
+  <script src="/dinamicas/extension.js"></script>
 </body>
 
 </html>

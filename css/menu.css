@@ -188,14 +188,24 @@ nav.sidebar-nav {
 }
 
 .avatar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 32px;
     height: 32px;
-    border-radius: 10px;
+    overflow: hidden;
     background: linear-gradient(135deg, #2C16B0, #6622F8);
     background-image: url(/resource/ala_blanco.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.avatar img {
+    object-fit: cover;
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
 }
 
 /* Backdrop móvil */

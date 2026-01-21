@@ -104,3 +104,16 @@ body {
         transform: rotate(2deg);
     }
 }
+
+.content_iframe {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 450px;
+}
+
+.content_iframe iframe {
+    width: 100%;
+    height: 100%;
+}
