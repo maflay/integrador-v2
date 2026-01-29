@@ -125,80 +125,29 @@ function renderRuletas(nums, nombres) {
     const dur = 4200;
 
     // ✅ acumulamos la rotación REAL (esto arregla el efecto y el cálculo)
-    const delta = vueltas * 360 + extraDeg;
+    const delta = 13 * 360 + extraDeg;
     rotacionTotalNums += delta; // números giran normal
-    rotacionTotalNames -= delta; // nombres giran contrario
+    // rotacionTotalNames -= delta; // nombres giran contrario
 
     // ✅ animación hacia la rotación total acumulada
     animarRotacion(ruletaNums, rotacionTotalNums, dur);
-    animarRotacion(ruletaNames, rotacionTotalNames, dur);
+    // animarRotacion(ruletaNames, rotacionTotalNames, dur);
 
     setTimeout(() => {
-      // ✅ ganador REAL usando la rotación total (no extraDeg)
-      const rotacionActual = ((rotacionTotalNums % 360) + 360) % 360;
-      console.log(rotacionActual);
-      const idx = indiceDesdeRotacion(rotacionActual, nums.length);
-
-      console.log(idx,"idx");
-      const numeroGanador = nums[idx];
-      const nombreGanador = nombres[idx];
-
-      // ✅ guardar resultado (ahora sí queda bien)
-      ultimoResultado = {
-        numero: numeroGanador,
-        nombre: nombreGanador,
-        fecha: new Date().toISOString(),
-        idx,
-      };
-
-      // ✅ mapa ordenado como quedó la ruleta (posición 1 = arriba)
-      const inicio = idx;
-      const mapaOrdenado = [];
-      for (let i = 0; i < nums.length; i++) {
-        const j = (inicio + i) % nums.length;
-        mapaOrdenado.push({
-          posicion: i + 1,
-          numero: nums[j],
-          nombre: nombres[j],
-        });
-      }
-
-      console.log(
-        mapaOrdenado
-          .map(
-            (p) =>
-              `${
-                p.posicion == "37"
-                  ? "0"
-                  : p.posicion == "38"
-                  ? "00"
-                  : p.posicion
-              }: ${p.numero} - ${p.nombre}`
-          )
-          .join(",")
-      );
-      // mostrar listado real post-giro
+      const shift = calcularShiftDOM(ruletaNums, ruletaNames, nums.length);
+      const listado = construirListadoNombreNumero(nums, nombres, shift);
+console.log(
+  listado.map((p) => `${p.posicion}: ${p.nombre} - ${p.numero}`));
       resultado.innerHTML = `
-      <div class="lista_parti">
-        <b>Ganador:</b> ${numeroGanador} - ${nombreGanador}<br><br>
-        ${mapaOrdenado
-          .map(
-            (p) =>
-              `${
-                p.posicion == "37"
-                  ? "0"
-                  : p.posicion == "38"
-                  ? "00"
-                  : p.posicion
-              }: ${p.nombre} - ${p.numero}`
-          )
-          .join("<br>")}
-      </div>
-      `;
+    <div class="lista_parti">
+      <b>Listado (Nombre → Número):</b><br><br>
+      ${listado.map((p) => `${p.posicion}: ${p.nombre} - ${p.numero}`).join("<br>")}
+    </div>
+  `;
 
-      console.log("Resultado guardado:", ultimoResultado);
+      ultimoResultado = { listado, shift, fecha: new Date().toISOString() };
       girando = false;
-    }, dur + 80);
+    }, dur + 120);
   });
 }
 
@@ -211,12 +160,12 @@ function indiceDesdeRotacion(rotacion, total) {
 function construirSegmentosNumeros(container, nums) {
   const N = nums.length;
   const angle = 360 / N;
-
   container.innerHTML = "";
 
   nums.forEach((val, i) => {
     const seg = document.createElement("div");
     seg.className = "segmento";
+    seg.dataset.index = i; // ✅
     seg.style.transform = `rotate(${i * angle}deg)`;
 
     const chip = document.createElement("div");
@@ -231,17 +180,16 @@ function construirSegmentosNumeros(container, nums) {
 function construirSegmentosNombres(container, nombres) {
   const N = nombres.length;
   const angle = 360 / N;
-
   container.innerHTML = "";
 
   nombres.forEach((name, i) => {
     const seg = document.createElement("div");
     seg.className = "segmento";
+    seg.dataset.index = i; // ✅
     seg.style.transform = `rotate(${i * angle}deg)`;
 
     const span = document.createElement("span");
-    span.textContent = name.length > 16 ? name.slice(0, 16) + "…" : name;
-
+    span.textContent = name.length > 8 ? name.slice(0, 16) + "…" : name;
     span.style.transform = "translateX(45px)";
 
     seg.appendChild(span);
@@ -266,6 +214,80 @@ function indiceGanador(extraDeg, total) {
 
 function randInt(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function norm360(deg) {
+  return ((deg % 360) + 360) % 360;
+}
+
+function shiftPasos(rotNumsDeg, offsetNamesDeg, total) {
+  const angle = 360 / total;
+
+  // rotación relativa: números respecto a nombres fijos (con offset)
+  const diff = norm360(rotNumsDeg - offsetNamesDeg);
+
+  return Math.round(diff / angle) % total;
+}
+
+// Devuelve listado: para cada nombre i (posición fija), qué número quedó enfrente
+function mapaNombreNumero(nums, nombres, rotNumsDeg, offsetNamesDeg = 0) {
+  const N = nums.length;
+  const shift = shiftPasos(rotNumsDeg, offsetNamesDeg, N);
+
+  const out = [];
+  for (let i = 0; i < N; i++) {
+    // nombre i fijo, número que le queda enfrente:
+    const j = (i + shift) % N;
+    // const j = (i - shift + N) % N;
+    out.push({ posicion: i + 1, nombre: nombres[i], numero: nums[j] });
+  }
+  return out;
+}
+
+function angleOfElementFromCenter(el, centerX, centerY) {
+  const r = el.getBoundingClientRect();
+  const x = r.left + r.width / 2;
+  const y = r.top + r.height / 2;
+  const ang = Math.atan2(y - centerY, x - centerX); // rad
+  return ang;
+}
+
+function norm2PI(a) {
+  const two = Math.PI * 2;
+  return ((a % two) + two) % two;
+}
+
+// shift = cuántos pasos hay que mover números para alinearlos con nombres
+function calcularShiftDOM(ruletaNums, ruletaNames, total) {
+  const angleStep = (Math.PI * 2) / total;
+
+  // centros (usa el mismo centro para ambas)
+  const r = ruletaNums.getBoundingClientRect();
+  const cx = r.left + r.width / 2;
+  const cy = r.top + r.height / 2;
+
+  // ✅ IMPORTANTÍSIMO: medir el ángulo del MISMO rayo (segmento), no del chip/span
+  const segNum0 = ruletaNums.querySelector('.segmento[data-index="0"]');
+  const segNam0 = ruletaNames.querySelector('.segmento[data-index="0"]');
+
+  if (!segNum0 || !segNam0) return 0;
+
+  const aNum = angleOfElementFromCenter(segNum0, cx, cy);
+  const aNam = angleOfElementFromCenter(segNam0, cx, cy);
+
+  const diff = norm2PI(aNum - aNam);
+  return Math.round(diff / angleStep) % total;
+}
+
+
+function construirListadoNombreNumero(nums, nombres, shift) {
+  const N = nums.length;
+  const out = [];
+  for (let i = 0; i < N; i++) {
+    const numIndex = (i + shift) % N;
+    out.push({ posicion: i + 1, nombre: nombres[i], numero: nums[numIndex] });
+  }
+  return out;
 }
 
 function colorRuletaAmericana(val, idx) {

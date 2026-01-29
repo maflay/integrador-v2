@@ -55,11 +55,9 @@
     </div>
   </div>
   <div class="app" id="app">
-    <!-- Header (solo móvil) -->
     <div id="menu_login">
       <header class="app-header" role="banner">
         <button id="btnOpen" class="icon-btn" aria-label="Abrir menú" aria-controls="sidebar" aria-expanded="false">
-          <!-- ícono hamburguesa -->
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           </svg>
@@ -69,7 +67,6 @@
         </div>
       </header>
 
-      <!-- Sidebar -->
       <aside id="sidebar" class="sidebar" aria-label="Menú lateral">
         <div class="brand" aria-hidden="true">
           <div class="brand-logo"></div> <span>Aladdin</span>
@@ -79,7 +76,6 @@
             <span class="nav-icon"><img src="/resource/pagina-de-inicio.png" alt="Aladdin"></span>
             <span class="nav-label">Inicio</span>
           </a>
-          <!-- externos: sin data-route -->
           <a class="nav-link item_promotor" href="#gran_aladdin" title="Finalistas Casinos">
             <span class="nav-icon"><img src="/resource/grand-aladdin.png" alt="Aladdin"></span>
             <span class="nav-label">Grand Aladdin</span>
@@ -87,6 +83,11 @@
           <a class="nav-link item_promotor" href="#dinamicas" title="Dinamicas">
             <span class="nav-icon"><img src="/resource/dinamica_icon.png" alt="Aladdin"></span>
             <span class="nav-label">Dinamicas</span>
+          </a>
+          <a class="nav-link item_promotor" target="_blank" href="https://www.futbolred.com/parrilla-de-futbol"
+            title="Horarios">
+            <span class="nav-icon"><img src="/resource/w_play.png" alt="Aladdin"></span>
+            <span class="nav-label">WPlay - Hor</span>
           </a>
           <a class="nav-link item_admin_view" href="#otros" title="Otros">
             <span class="nav-icon"><img src="/resource/otros_icon.png" alt="Aladdin"></span>
@@ -149,19 +150,18 @@
                       </div>
                       <div class="content_date_funcionario">
                         <p><strong>Cargo:</strong> <input class="form-control" id="funcionario_rol_u" /></p>
-                        <p><strong>Email:</strong> <input class="form-control" id="funcionario_email_u"/></p>
+                        <p><strong>Email:</strong> <input class="form-control" id="funcionario_email_u" /></p>
                       </div>
                       <div class="content_date_funcionario">
-                        <p><strong>Teléfono:</strong> <input class="form-control" id="funcionario_telefono_u"/>
+                        <p><strong>Teléfono:</strong> <input class="form-control" id="funcionario_telefono_u" />
                         </p>
-                        <p><strong>Área:</strong> <input class="form-control" id="funcionario_area_u"/></p>
+                        <p><strong>Área:</strong> <input class="form-control" id="funcionario_area_u" /></p>
                       </div>
                       <div class="content_date_funcionario">
-                        <p><strong>Cedúla:</strong> <input class="form-control" id="funcionario_cedula_u"
-                            disabled/>
+                        <p><strong>Cedúla:</strong> <input class="form-control" id="funcionario_cedula_u" disabled />
                         </p>
-                        <p><strong>Permisos:</strong> <input class="form-control" id="funcionario_permiso_u"
-                            disabled/></p>
+                        <p><strong>Permisos:</strong> <input class="form-control" id="funcionario_permiso_u" disabled />
+                        </p>
                       </div>
                       <br />
                       <div class="content_date_funcionario">
@@ -187,10 +187,8 @@
       <div class="backdrop" id="backdrop" hidden></div>
     </div>
     <div class="main" id="main" tabindex="-1">
-      <!-- <h1 style="margin-top:0; text-align: center;">Bienvenido.</h1> -->
       <br />
       <div id="view" class="view">
-        <!-- Aquí se inyectan las vistas -->
         <p style="opacity:.8">Cargando…</p>
       </div>
       <br />

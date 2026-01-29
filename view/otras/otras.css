@@ -58,7 +58,6 @@
 
 @media(max-width:768px) {
     .content_otras_acciones {
-        height: 100vh;
         flex-direction: column;
     }
 }

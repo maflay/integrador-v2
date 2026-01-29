@@ -1,5 +1,3 @@
-
-
 .styled-table {
     width: 100%;
     border-collapse: collapse;
@@ -14,12 +12,13 @@
 }
 
 
-.styled-table th{
+.styled-table th {
     padding: 8px 0px;
     text-align: center;
     border-bottom: 1px solid #ddd;
     font-size: 2rem;
 }
+
 .styled-table td {
     padding: 8px 0px;
     text-align: center;
@@ -48,15 +47,15 @@
     color: #858585;
 }
 
-.img_excel{
+.img_excel {
     width: 20px;
 }
 
-.btn_admin_test{
+.btn_admin_test {
     display: none;
 }
 
-.header_table_no_2{
+.header_table_no_2 {
     display: none;
 }
 
@@ -71,7 +70,7 @@
         position: relative;
     }
 
-    .styled-table th{
+    .styled-table th {
         font-size: 1rem;
     }
 }

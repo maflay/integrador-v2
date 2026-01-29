@@ -36,7 +36,7 @@
                 <div class="control-finalista">
                     <!-- <input placeholder="Fecha" class="form-control" id="fecha" type="date"> -->
                     <input placeholder="Cedula" class="form-control" id="cedula" type="number">
-                    <input placeholder="Nombre" class="form-control" id="nombre" type="text">
+                    <input onkeyup="this.value = this.value.toUpperCase()" placeholder="Nombre" class="form-control" id="nombre" type="text">
                     <select class="form-control" style="cursor: pointer;" id="casino">
                         <option value="">Seleccione...</option>
                         <option value="A05">A05</option>

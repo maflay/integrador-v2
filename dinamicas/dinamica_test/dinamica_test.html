@@ -1,217 +1,417 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/dinamicas/dinamica_test/dinamica_test.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    crossorigin="anonymous">
-  <title>Aladdin: Dinamica_TEST</title>
-</head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ruleta doble (38) - Número → Nombre (alineación visual)</title>
 
-<body>
-  <div>
-    <img src="https://drive.usercontent.google.com/download?id=1vE6vF2Pqy4xJRKnHWQMubPARb88akdNM&export=view&authuser=0" alt="prueba">
-    <img src="https://drive.google.com/uc?export=view&id=1hhzUBS4XJyn4LPFtaAWh5b5gIO7ce_0_" alt="prueba 2"/>
-    <a target="_blank" href="https://drive.google.com/uc?export=view&id=1vE6vF2Pqy4xJRKnHWQMubPARb88akdNM">Image</a>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    crossorigin="anonymous"></script>
-  <script src="/dinamicas/dinamica_test/dinamica_test.js"></script>
-</body>
-
-</html>
-<!-- 
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/dinamicas/dinamica_test/dinamica_test.css">
-  <title>Happy New Year Button Animation</title>
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #141e30, #243b55);
-      font-family: "Arial", sans-serif;
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-family:system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:#0b0b0f;
+      color:#fff;
+      padding:24px;
     }
 
-    .container {
-      text-align: center;
+    .wrap{
+      width:min(1100px, 100%);
+      display:flex;
+      gap:24px;
+      align-items:flex-start;
+      justify-content:center;
+      flex-wrap:wrap;
     }
 
-    .btn {
-      padding: 15px 30px;
-      font-size: 18px;
-      color: #fff;
-      background: #ff6f61;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-      transition: background 0.3s ease;
+    .panel{
+      width:440px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      align-items:center;
     }
 
-    .btn:hover {
-      background: #ff3d3d;
+    .ruletas{
+      position:relative;
+      width:400px;
+      height:400px;
     }
 
-    .new-year {
-      opacity: 0;
-      transform: scale(0.8);
-      animation: none;
-      display: none;
+    /* Marca visual arriba (referencia para el listado) */
+    .marker{
+      position:absolute;
+      left:50%;
+      top:-4px;
+      transform:translateX(-50%);
+      width:0;height:0;
+      border-left:10px solid transparent;
+      border-right:10px solid transparent;
+      border-bottom:18px solid #efb810;
+      filter:drop-shadow(0 4px 10px rgba(0,0,0,.5));
+      z-index:10;
     }
 
-    .new-year.active {
-      display: block;
-      opacity: 1;
-      transform: scale(1);
-      animation: fadeInScale 1s ease forwards;
+    .wheel{
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+      border:5px solid #efb810;
+      background:rgba(255,255,255,.06);
+      box-shadow:0 0 25px rgba(0,0,0,.35);
+      overflow:hidden;
+      transform:rotate(0deg);
+      will-change: transform;
+    }
+    .wheel.names{
+      border-color: rgba(239,184,16,.55);
+      opacity:.96;
     }
 
-    .new-year h1 {
-      font-size: 50px;
-      color: #fff;
-      text-shadow: 0 0 10px #ff0066, 0 0 20px #ff3399, 0 0 30px #ff66cc;
-      animation: glow 1.5s infinite alternate;
+    /* Segmento tipo rayo (0° apunta a la derecha = 3 en punto) */
+    .seg{
+      position:absolute;
+      left:50%;
+      top:50%;
+      width:50%;
+      height:2px;
+      transform-origin: 0% 50%;
     }
 
-    .new-year p {
-      font-size: 20px;
-      color: #fff;
-      margin: 10px 0;
+    /* Ficha número al borde */
+    .chip{
+      width:26px;height:26px;border-radius:50%;
+      position:absolute; right:5px; top:-12px;
+      display:grid; place-items:center;
+      font-weight:900; font-size:12px;
+      border:2px solid rgba(255,255,255,.75);
+      box-shadow:0 2px 10px rgba(0,0,0,.35);
+      background:#111; color:#fff;
+    }
+    .chip.rojo{background:#c1121f}
+    .chip.negro{background:#111}
+    .chip.verde{background:#1b8f3a}
+
+    /* Nombre: lo ponemos en el MISMO radio que el número (solo un poco más adentro) */
+    .name{
+      position:absolute;
+      right:44px;
+      top:-11px;
+      font-size:11px;
+      font-weight:900;
+      color:#fff;
+      white-space:nowrap;
+      text-shadow:0 2px 8px rgba(0,0,0,.7);
+      transform-origin: right center;
+      pointer-events:none;
     }
 
-    .fireworks {
-      position: relative;
-      margin: 30px auto;
-      width: 200px;
-      height: 200px;
+    .actions{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      justify-content:center;
     }
 
-    .firework {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.8);
-      animation: fireworkExplode 2s ease-in-out infinite;
+    button{
+      background:#efb810;
+      border:none;
+      padding:10px 16px;
+      font-weight:900;
+      border-radius:10px;
+      cursor:pointer;
+    }
+    button:disabled{opacity:.6;cursor:not-allowed}
+
+    .result{
+      width:min(560px, 100%);
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:14px;
+      padding:14px;
     }
 
-    .firework:nth-child(1) {
-      left: 30%;
-      top: 20%;
-      background: #ff6f61;
-      animation-delay: 0s;
+    .result h3{margin-bottom:10px}
+
+    .muted{opacity:.82;font-size:12px;margin-bottom:10px}
+
+    .list{
+      max-height:460px;
+      overflow:auto;
+      font-size:12px;
+      line-height:1.55;
+      padding-right:6px;
     }
 
-    .firework:nth-child(2) {
-      left: 70%;
-      top: 30%;
-      background: #4caf50;
-      animation-delay: 0.5s;
+    .row{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      border-bottom:1px dashed rgba(255,255,255,.12);
+      padding:6px 0;
     }
-
-    .firework:nth-child(3) {
-      left: 50%;
-      top: 70%;
-      background: #ffd700;
-      animation-delay: 1s;
-    }
-
-    .firework:nth-child(4) {
-      left: 20%;
-      top: 60%;
-      background: #03a9f4;
-      animation-delay: 1.5s;
-    }
-
-    .firework:nth-child(5) {
-      left: 80%;
-      top: 40%;
-      background: #e91e63;
-      animation-delay: 2s;
-    }
-
-    @keyframes glow {
-      0% {
-        text-shadow: 0 0 10px #ff0066, 0 0 20px #ff3399, 0 0 30px #ff66cc;
-      }
-
-      100% {
-        text-shadow: 0 0 20px #ff3399, 0 0 30px #ff66cc, 0 0 40px #ff99ff;
-      }
-    }
-
-    @keyframes fadeInScale {
-      0% {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    @keyframes fireworkExplode {
-      0% {
-        transform: scale(0.5) translateY(0);
-        opacity: 0;
-      }
-
-      50% {
-        transform: scale(1) translateY(-50px);
-        opacity: 1;
-      }
-
-      100% {
-        transform: scale(0.5) translateY(-100px);
-        opacity: 0;
-      }
-    }
+    .row b{font-size:13px}
   </style>
 </head>
 
 <body>
-  <div class="container">
-    <button class="btn" onclick="showNewYear()">Celebrate New Year </button>
-    <div class="new-year" id="newYear">
-      <h1> Happy New Year 2025! </h1>
-      <p>Wishing you a year full of joy, prosperity, and endless opportunities.</p>
-      <div class="fireworks">
-     Fireworks animation -->
-<div class="firework"></div>
-<div class="firework"></div>
-<div class="firework"></div>
-<div class="firework"></div>
-<div class="firework"></div>
-</div>
-</div>
-</div>
+  <div class="wrap">
+    <div class="panel">
+      <div class="ruletas">
+        <div class="marker" title="Referencia visual: arriba"></div>
+        <div id="wheelNums" class="wheel nums"></div>
+        <div id="wheelNames" class="wheel names"></div>
+      </div>
+
+      <div class="actions">
+        <button id="btnSpin">Girar</button>
+        <button id="btnCSV" disabled>Descargar CSV</button>
+      </div>
+
+      <div class="muted">
+        Emparejamiento por <b>alineación visual de segmento</b> (número frente a nombre).
+        El listado empieza desde la <b>marca amarilla superior</b>.
+      </div>
+    </div>
+
+    <div class="result">
+      <h3>Listado 38 (Número → Nombre)</h3>
+      <div id="info" class="muted">Gira la ruleta para generar el mapa.</div>
+      <div id="list" class="list"></div>
+    </div>
+  </div>
 
 <script>
-  function showNewYear() {
-    const newYearElement = document.getElementById('newYear');
-    newYearElement.classList.add('active');
-  }
-</script>
-<script src="/dinamicas/user.js"></script>
-<script src="/dinamicas/extension.js"></script>
-<script src="/dinamicas/dinamica_test/dinamica_test.js"></script>
-</body>
+/** =========================
+ *  CONFIG
+ *  ========================= */
+const NUMS = [
+  "0","28","9","26","30","11","7","20","32","17","5","22","34","15","3","24","36","13","1",
+  "00","27","10","25","29","12","8","19","31","18","6","21","33","16","4","23","35","14","2"
+];
 
+// Pon aquí tus 38 nombres (si llegan menos, se repiten; si llegan más, se recortan)
+let NAMES = Array.from({length:38}, (_,i)=>`Participante ${i+1}`);
+
+/** =========================
+ *  DOM
+ *  ========================= */
+const wheelNums  = document.getElementById("wheelNums");
+const wheelNames = document.getElementById("wheelNames");
+const btnSpin    = document.getElementById("btnSpin");
+const btnCSV     = document.getElementById("btnCSV");
+const info       = document.getElementById("info");
+const list       = document.getElementById("list");
+
+/** =========================
+ *  STATE
+ *  ========================= */
+const N = 38;
+const ANGLE = 360 / N;
+
+// rotación acumulada en grados
+let rotNums = 0;
+let rotNames = 0;
+let lastMap = null;
+
+/** =========================
+ *  HELPERS
+ *  ========================= */
+function randInt(min, max){ return Math.floor(Math.random()*(max-min+1))+min; }
+function norm360(deg){ return ((deg % 360) + 360) % 360; }
+
+function ajustarA38(arr){
+  const clean = arr.map(x=>String(x||"").trim()).filter(Boolean);
+  const base = clean.length ? clean : Array.from({length:38}, (_,i)=>`Participante ${i+1}`);
+  const out = [];
+  for(let i=0;i<38;i++) out.push(base[i % base.length]);
+  return out.slice(0,38);
+}
+
+function colorRuletaAmericana(val, idx){
+  if(val==="0" || val==="00") return "verde";
+  // alternancia simple para visual (si quieres, mete el patrón real rojo/negro)
+  return idx % 2 === 0 ? "rojo" : "negro";
+}
+
+/**
+ * SHIFT entre ruletas: diferencia relativa en "pasos" (segmentos).
+ * IMPORTANTE: como ambas ruletas se dibujan igual y giran en el MISMO sentido,
+ * este shift funciona perfecto para alinear visualmente.
+ */
+function shiftEntreRuletas(rotNumsDeg, rotNamesDeg){
+  const diff = norm360(rotNamesDeg - rotNumsDeg);
+  return Math.round(diff / ANGLE) % N;
+}
+
+/**
+ * Mapa completo: para cada número (posición i), qué nombre quedó alineado.
+ */
+function mapaPorAlineacion(rotNumsDeg, rotNamesDeg){
+  const shift = shiftEntreRuletas(rotNumsDeg, rotNamesDeg);
+  const out = [];
+  for(let i=0;i<N;i++){
+    const j = (i + shift) % N;
+    out.push({ numero: NUMS[i], nombre: NAMES[j] });
+  }
+  return out;
+}
+
+/**
+ * Para que el listado coincida EXACTO con lo que ves:
+ * el segmento que está en la MARCA de arriba (12 en punto) debe ser la fila 1.
+ *
+ * Nuestros segmentos nacen en 3 en punto (0° a la derecha),
+ * por eso usamos offset 90° para convertir "arriba" en índice correcto.
+ */
+function indexArriba(rotDeg, total, offsetDeg = 90){
+  const angle = 360 / total;
+  const r = norm360(rotDeg + offsetDeg);
+  const normalized = (360 - r) % 360;
+  return Math.floor(normalized / angle) % total;
+}
+
+function ordenarDesdeArriba(mapa, rotNumsDeg){
+  const start = indexArriba(rotNumsDeg, N, 90);
+  const out = [];
+  for(let k=0;k<N;k++){
+    out.push(mapa[(start + k) % N]);
+  }
+  return out;
+}
+
+function descargarCSV(nombreArchivo, filas){
+  const header = "numero,nombre\n";
+  const body = filas.map(r => `${r.numero},"${String(r.nombre).replaceAll('"','""')}"`).join("\n");
+  const blob = new Blob([header + body], {type:"text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = nombreArchivo;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+/** =========================
+ *  RENDER
+ *  ========================= */
+function construirWheelNums(){
+  wheelNums.innerHTML = "";
+  for(let i=0;i<N;i++){
+    const seg = document.createElement("div");
+    seg.className = "seg";
+    seg.style.transform = `rotate(${i*ANGLE}deg)`;
+
+    const chip = document.createElement("div");
+    chip.className = `chip ${colorRuletaAmericana(NUMS[i], i)}`;
+    chip.textContent = NUMS[i];
+
+    seg.appendChild(chip);
+    wheelNums.appendChild(seg);
+  }
+}
+
+function construirWheelNames(){
+  wheelNames.innerHTML = "";
+  for(let i=0;i<N;i++){
+    const seg = document.createElement("div");
+    seg.className = "seg";
+    seg.style.transform = `rotate(${i*ANGLE}deg)`;
+
+    const span = document.createElement("div");
+    span.className = "name";
+    const name = NAMES[i];
+
+    // Texto corto + mantiene lectura "recta"
+    span.textContent = name.length > 18 ? name.slice(0,18) + "…" : name;
+
+    // “des-rotar” el texto para que no quede girado con el rayo
+    span.style.transform = `rotate(${-i*ANGLE}deg)`;
+
+    seg.appendChild(span);
+    wheelNames.appendChild(seg);
+  }
+}
+
+function animarRotacion(el, deg, ms){
+  el.style.transition = "none";
+  el.getBoundingClientRect(); // reflow
+  el.style.transition = `transform ${ms}ms cubic-bezier(.12,.72,.2,1)`;
+  el.style.transform = `rotate(${deg}deg)`;
+}
+
+function pintarMapa(mapa){
+  list.innerHTML = mapa.map(p => `
+    <div class="row">
+      <div><b>${p.numero}</b></div>
+      <div>${p.nombre}</div>
+    </div>
+  `).join("");
+
+  info.textContent = `Generado: ${new Date().toLocaleString("es-CO")}`;
+}
+
+/** =========================
+ *  INIT
+ *  ========================= */
+NAMES = ajustarA38(NAMES);
+construirWheelNums();
+construirWheelNames();
+
+/** =========================
+ *  ACTIONS
+ *  ========================= */
+btnSpin.addEventListener("click", () => {
+  btnSpin.disabled = true;
+  btnCSV.disabled = true;
+  info.textContent = "Girando...";
+  list.innerHTML = "";
+
+  // Random independiente para cada ruleta
+  const vueltasNums  = randInt(6, 10);
+  const extraNums    = randInt(0, 359);
+  const vueltasNames = randInt(6, 10);
+  const extraNames   = randInt(0, 359);
+
+  const deltaNums  = vueltasNums * 360 + extraNums;
+  const deltaNames = vueltasNames * 360 + extraNames;
+
+  const dur = 4200;
+
+  // MISMO sentido para ambas (clave para que el mapa sea consistente)
+  rotNums  += deltaNums;
+  rotNames += deltaNames;
+
+  animarRotacion(wheelNums,  rotNums, dur);
+  animarRotacion(wheelNames, rotNames, dur);
+
+  setTimeout(() => {
+    const rN = norm360(rotNums);
+    const rP = norm360(rotNames);
+
+    // 1) mapa por alineación
+    const mapa = mapaPorAlineacion(rN, rP);
+
+    // 2) ordenar para que la fila 1 sea lo que está en la marca de arriba
+    const mapaVisual = ordenarDesdeArriba(mapa, rN);
+
+    lastMap = mapaVisual;
+    pintarMapa(mapaVisual);
+
+    btnSpin.disabled = false;
+    btnCSV.disabled = false;
+  }, dur + 80);
+});
+
+btnCSV.addEventListener("click", () => {
+  if(!lastMap) return;
+  descargarCSV("ruleta_38_parejas.csv", lastMap);
+});
+</script>
+</body>
 </html>

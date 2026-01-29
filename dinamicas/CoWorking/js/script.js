@@ -3,7 +3,6 @@ window.addEventListener("load", () => {
   loader.style.display = "none";
 });
 
-window.addEventListener("DOMContentLoaded", () => {
   const loader_envio = document.getElementById("loader-envio");
   loader_envio.style.display = "none";
   const loader = document.getElementById("loader");
@@ -370,4 +369,3 @@ window.addEventListener("DOMContentLoaded", () => {
       btn_enviar_pedido.disabled = false;
     }
   }
-});

@@ -70,7 +70,7 @@
                     <div class="nombre">
                         <label for="nombre">NOMBRE</label>
                         <div style="display: flex; align-items: center; gap: 5px">
-                            <input class="form-control" style=" cursor: pointer;" type="text" id="nombre"
+                            <input onkeyup="this.value = this.value.toUpperCase()" class="form-control" style=" cursor: pointer;" type="text" id="nombre"
                                 placeholder="Nombre del cliente" />
                         </div>
                     </div>

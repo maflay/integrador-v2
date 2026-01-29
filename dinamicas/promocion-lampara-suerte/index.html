@@ -2,11 +2,14 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <!-- Cargar Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <title>Interfaz con Slot Machine</title>
+  <title>Aladdin: Lampara de la suerte</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="/dinamicas/promocion-halloween-misterioso/css/style.css">
+  <link rel="stylesheet" href="/dinamicas/promocion-halloween-misterioso/css/fonts.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 </head>
 
 <body data-main-style="/dinamicas/promocion-lampara-suerte/css/style.css"
@@ -14,83 +17,66 @@
   <div id="loader" class="loader-overlay">
     <div class="spinner"></div>
   </div>
-  <div class="container">
-    <!-- Bloque 1 -->
-    <div class="bloque bloque1">
-      <div class="sub-bloque sub2">
-        <img src="./images/logo.png" alt="Logo" id="prueba" />
-      </div>
-      <button style="cursor: pointer;" id="toggleBtn" class="toggleBtn">Ocultar</button>
-      <div class="datos" id="formBox">
-        <div class="sub-bloque sub4">
-          <label for="casino">CASINO</label>
-          <select style="width: auto; cursor: pointer;" id="casino">
-            <option value="">Seleccione...</option>
-            <option value="A05">A05</option>
-            <option value="A07">A07</option>
-            <option value="A08">A08</option>
-            <option value="A09">A09</option>
-            <option value="A12">A12</option>
-            <option value="A12-MESAS">A12-MESAS</option>
-            <option value="A15">A15</option>
-            <option value="A15-MESAS">A15-MESAS</option>
-            <option value="A16">A16</option>
-            <option value="A19">A19</option>
-            <option value="A35">A35</option>
-            <option value="A36">A36</option>
-            <option value="A36-MESAS">A36-MESAS</option>
-            <option value="A38">A38</option>
-            <option value="A39">A39</option>
-            <option value="A39">A43</option>
-            <option value="A48">A48</option>
-            <option value="A48-MESAS">A48-MESAS</option>
-            <option value="A49">A49</option>
-            <option value="A50">A50</option>
-            <option value="A53">A53</option>
-            <option value="A70">A70</option>
-            <option value="A781">A781</option>
-            <option value="A88">A88</option>
-            <option value="A100">A100</option>
-            <option value="A100-MESAS">A100-MESAS</option>
-            <option value="A108">A108</option>
-            <option value="A108-MESAS">A108-MESAS</option>
-            <option value="A127">A127</option>
-            <option value="A127-MESAS">A127-MESAS</option>
-          </select>
-        </div>
-        <div class="sub-bloque sub4">
-          <label for="categoria">CATEGORÍA</label>
-          <select style=" cursor: pointer;" id="categoria">
-            <option value="">Seleccione...</option>
-            <option value="GENIUS">Genius</option>
-            <option value="TITANIO">Titanio</option>
-            <option value="LEGENDARIO">Legendario</option>
-            <option value="GOLD">Gold</option>
-            <option value="SILVER">Silver</option>
-            <option value="BRONCE">Bronce</option>
-            <option value="SUPERIORMARCOPOLO">Superior Marcopolo</option>
-            <option value="ESTANDARMARCOPOLO">Estandar Marcopolo</option>
-            <option value="SUPERIORALADDIN">Superior Aladdin</option>
-            <option value="ESTANDARALADDIN">Estandar Aladdin</option>
-          </select>
-        </div>
+  <div class="content_logo">
+    <img src="./images/logo.png" alt="Logo" id="prueba" />
+  </div>
+  <div class="content_actions">
+    <button style="cursor: pointer; display: none;" id="toggleBtn" class="toggleBtn">Ocultar</button>
+    <div class="datos" id="formBox">
+      <select class="form-control" id="casino">
+        <option value="">Casino...</option>
+        <option value="A05">A05</option>
+        <option value="A07">A07</option>
+        <option value="A08">A08</option>
+        <option value="A09">A09</option>
+        <option value="A12">A12</option>
+        <option value="A12-MESAS">A12-MESAS</option>
+        <option value="A15">A15</option>
+        <option value="A15-MESAS">A15-MESAS</option>
+        <option value="A16">A16</option>
+        <option value="A19">A19</option>
+        <option value="A35">A35</option>
+        <option value="A36">A36</option>
+        <option value="A36-MESAS">A36-MESAS</option>
+        <option value="A38">A38</option>
+        <option value="A39">A39</option>
+        <option value="A43">A43</option>
+        <option value="A48">A48</option>
+        <option value="A48-MESAS">A48-MESAS</option>
+        <option value="A49">A49</option>
+        <option value="A50">A50</option>
+        <option value="A53">A53</option>
+        <option value="A70">A70</option>
+        <option value="A781">A781</option>
+        <option value="A88">A88</option>
+        <option value="A100">A100</option>
+        <option value="A108">A108</option>
+        <option value="A108-MESAS">A108-MESAS</option>
+        <option value="A127">A127</option>
+        <option value="A127-MESAS">A127-MESAS</option>
+      </select>
+      <select class="form-control" id="categoria">
+        <option value="">CATEGORÍA...</option>
+        <option value="GENIUS">Genius</option>
+        <option value="TITANIO">Titanio</option>
+        <option value="LEGENDARIO">Legendario</option>
+        <option value="GOLD">Gold</option>
+        <option value="SILVER">Silver</option>
+        <option value="BRONCE">Bronce</option>
+        <option value="SUPERIOR">Superior</option>
+        <option value="ESTANDAR">Estandar</option>
+        <option value="ADICIONAL">Adicional</option>
+      </select>
+      <img title="Opciones" id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
 
-        <div class="sub-bloque sub3">
-          <label for="cedula">CEDULA</label>
-          <div style="display: flex; align-items: center; gap: 5px">
-            <input style=" cursor: pointer;" type="text" id="cedula" placeholder="Cedula del cliente" />
-          </div>
-        </div>
-        <div class="sub-bloque sub3">
-          <label for="nombre">NOMBRE</label>
-          <div style="display: flex; align-items: center; gap: 5px">
-            <input style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre del cliente" />
-          </div>
+      <div style="display: none;" class="sub-bloque sub3">
+        <div style="display: flex; align-items: center; gap: 5px">
+          <input style=" cursor: pointer;" type="text" id="cedula" placeholder="Cédula" />
         </div>
       </div>
     </div>
-
-    <!-- Bloque 2 -->
+  </div>
+  <div>
     <div class="bloque bloque2">
       <div>
         <img src="./images/tiros/1er.png" alt="1er" />
@@ -140,7 +126,6 @@
       </div>
     </div>
 
-    <!-- Bloque 3 -->
     <div class="bloque bloque3">
       <div class="slot" id="slot-1er"></div>
       <div class="slot" id="slot-2do"></div>
@@ -151,7 +136,7 @@
         <div style="text-align: center; " id="resultado"></div>
       </div>
       <div>
-        <div style="color: white;text-align: center;display: flex;justify-content: center;align-items: center;"
+        <div style="color: white;text-align: center;display: none;justify-content: center;align-items: center;"
           id="bonos"></div>
       </div>
     </div>
@@ -161,16 +146,500 @@
     <button style="width: auto;cursor: pointer;" class="btn-lampara" onclick="newGame()">Nuevo juego</button>
     <!-- <button class="btn-lampara">Vuelve y juega</button> -->
 
-    <button style="width: auto; cursor: pointer;" class="btn-lampara" onclick="handleSend()">Enviar /
-      Consolidar</button>
+    <!-- <button style="width: auto; cursor: pointer;" class="btn-lampara" onclick="handleSend()">Enviar /
+      Consolidar</button> -->
 
   </div>
 
+  <section id="modal_opciones_dinamica" class="modal_opciones_dinamica">
+    <div id="content_modal_dinamica" class="content_modal_dinamica">
+      <div class="content_expand">
+        <img id="expandir" title="Expandir" src="/resource/expandir.png" alt="Aladdin">
+      </div>
+      <div class="content_head_modal">
+        <div class="content_opcion_head">
+          <p id="btn_guardar_registro">Guardar Registro</p>
+        </div>
+        <div class="content_opcion_head">
+          <p id="btn_envio_secundario">Envio Secundario</p>
+        </div>
+        <div class="content_opcion_head">
+          <p id="btn_observacion">Observación</p>
+        </div>
+        <div class="content_opcion_head">
+          <p id="btn_tabla_premios">Tabla de Premios</p>
+        </div>
+        <div class="content_opcion_head">
+          <p id="btn_registro_dia">Registro del Dia</p>
+          <span id="notificacion_registro_dia" class="notificacion_registro_dia"></span>
+        </div>
+        <div id="close_modal_icon" class="close_modal_icon">&times;</div>
+      </div>
+      <div style="width: 100%;height: 1px;background-color: rgb(206, 206, 206);"></div>
+      <div style="display: none;" id="view_guardar_registro" class="content_body_modal">
+        <div class="info_body_modal">
+          <h2>Guardar Registro</h2>
+          <div class="datos_column_modal">
+            <div style="display: flex;gap: 10px;">
+              <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" style=" cursor: pointer;"
+                type="text" id="nombre" placeholder="Nombre" />
+            </div>
+            <div class="content_btn_modal">
+              <button onclick="handleSend()" title="Enviar" id="btn_enviar" class="btn btn-primary">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display: none;" id="view_envio_secundario" class="content_body_modal">
+        <div class="info_body_modal">
+          <h2>Envió Secundario</h2>
+          <div class="datos_column_modal">
+            <div style="display: flex;gap: 10px;">
+              <select class="form-control" id="casino_modal">
+                <option value="">Casino...</option>
+                <option value="A05">A05</option>
+                <option value="A07">A07</option>
+                <option value="A08">A08</option>
+                <option value="A09">A09</option>
+                <option value="A12">A12</option>
+                <option value="A12-MESAS">A12-MESAS</option>
+                <option value="A15">A15</option>
+                <option value="A15-MESAS">A15-MESAS</option>
+                <option value="A16">A16</option>
+                <option value="A19">A19</option>
+                <option value="A35">A35</option>
+                <option value="A36">A36</option>
+                <option value="A36-MESAS">A36-MESAS</option>
+                <option value="A38">A38</option>
+                <option value="A39">A39</option>
+                <option value="A43">A43</option>
+                <option value="A48">A48</option>
+                <option value="A48-MESAS">A48-MESAS</option>
+                <option value="A49">A49</option>
+                <option value="A50">A50</option>
+                <option value="A53">A53</option>
+                <option value="A70">A70</option>
+                <option value="A781">A781</option>
+                <option value="A88">A88</option>
+                <option value="A100">A100</option>
+                <option value="A108">A108</option>
+                <option value="A108-MESAS">A108-MESAS</option>
+                <option value="A127">A127</option>
+                <option value="A127-MESAS">A127-MESAS</option>
+              </select>
+              <select class="item_hide form-control" id="categoria_modal">
+                <option value="">Categoría...</option>
+                <option value="GENIUS">Genius</option>
+                <option value="TITANIO">Titanio</option>
+                <option value="LEGENDARIO">Legendario</option>
+                <option value="GOLD">Gold</option>
+                <option value="SILVER">Silver</option>
+                <option value="BRONCE">Bronce</option>
+                <option value="SUPERIOR">Superior</option>
+                <option value="ESTANDAR">Estándar</option>
+                <option value="ADICIONAL">Adicional</option>
+              </select>
+            </div>
+            <div style="display: flex;gap: 10px;">
+              <input class="form-control" style=" cursor: pointer;" type="text" id="hora_modal" placeholder="Hora" />
+              <input class="form-control" style=" cursor: pointer;" type="date" id="fecha_modal" placeholder="Fecha" />
+            </div>
+            <div style="display: flex;gap: 10px;">
+              <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" style=" cursor: pointer;"
+                type="text" id="nombre_modal" placeholder="Nombre" />
+              <input class="form-control" style=" cursor: pointer;" type="text" id="bono_modal" placeholder="# Bono" />
+            </div>
+            <div style="display: flex;gap: 10px;">
+              <select class="form-control" name="valor_promo" id="resultado_1_modal">
+                <option value="">Resultado 1...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+              <select class="form-control" name="valor_promo" id="resultado_2_modal">
+                <option value="">Resultado 2...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            <div style="display: flex;gap: 10px;">
+              <select class="form-control" name="valor_promo" id="resultado_3_modal">
+                <option value="">Resultado 3...</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            <div class="content_btn_modal">
+              <button onclick="secondSubmit()" id="btn_send_secundario" class="btn btn-primary">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="display: none;" id="view_envia_observacion" class="content_body_modal">
+        <div class="info_body_modal">
+          <h2>Observación</h2>
+          <div class="datos_column_modal">
+            <select class="form-control" style="cursor: pointer;" id="casino_observacion">
+              <option value="">Casino...</option>
+              <option value="A05">A05</option>
+              <option value="A07">A07</option>
+              <option value="A08">A08</option>
+              <option value="A09">A09</option>
+              <option value="A12">A12</option>
+              <option value="A12-MESAS">A12-MESAS</option>
+              <option value="A15">A15</option>
+              <option value="A15-MESAS">A15-MESAS</option>
+              <option value="A16">A16</option>
+              <option value="A19">A19</option>
+              <option value="A35">A35</option>
+              <option value="A36">A36</option>
+              <option value="A36-MESAS">A36-MESAS</option>
+              <option value="A38">A38</option>
+              <option value="A39">A39</option>
+              <option value="A43">A43</option>
+              <option value="A48">A48</option>
+              <option value="A48-MESAS">A48-MESAS</option>
+              <option value="A49">A49</option>
+              <option value="A50">A50</option>
+              <option value="A53">A53</option>
+              <option value="A70">A70</option>
+              <option value="A781">A781</option>
+              <option value="A88">A88</option>
+              <option value="A100">A100</option>
+              <option value="A108">A108</option>
+              <option value="A108-MESAS">A108-MESAS</option>
+              <option value="A127">A127</option>
+              <option value="A127-MESAS">A127-MESAS</option>
+            </select>
+          </div>
+          <div class="datos_column_modal">
+            <textarea placeholder="Descripcion" name="descripcion" id="descripcion_observacion"></textarea>
+          </div>
+          <div class="content_btn_modal">
+            <button style="display: none;" id="btn_clean_observacion"
+              class="btn btn-primary btn_acumula">Limpiar</button>
+            <button onclick="handleObservacion()" id="btn_envia_observacion" class="btn btn-primary btn_acumula">Enviar</button>
+          </div>
+        </div>
+      </div>
+      <div style="display: none;" id="view_tabla_premios" class="content_body_modal">
+        <div class="info_body_modal">
+          <h2>Tabla de Premios</h2>
+          <div class="table-result container">
+            <h5>A19, A50, A70, A38, A35, A39, A88, A48, A48m, A49, MP100, MP100m </h5>
+            <table class="styled-table" id="tabla-all-categoria">
+              <thead style="position: relative;">
+                <tr>
+                  <th>Fig. 1</th>
+                  <th>Fig. 2</th>
+                  <th>Fig. 3</th>
+                  <th>Estandar</th>
+                  <th>Superior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>$ 300.000</td>
+                  <td>$ 500.000</td>
+                </tr>
+                <tr>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>$ 150.000</td>
+                  <td>$ 250.000</td>
+                </tr>
+                <tr>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>$ 100.000</td>
+                  <td>$ 150.000</td>
+                </tr>
+                <tr>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>Dos bar en cualquier orden</td>
+                  <td>$ 80.000</td>
+                  <td>$ 100.000</td>
+                </tr>
+                <tr>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>Dos limones en cualquier orden</td>
+                  <td>$ 70.000</td>
+                  <td>$ 90.000</td>
+                </tr>
+                <tr>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>Dos cereza en cualquier orden</td>
+                  <td>$ 50.000</td>
+                  <td>$ 70.000</td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+            <h5>A36, A781, Mp108m, A127m, A12m, MP15m, A36m </h5>
+            <table class="styled-table" id="tabla-all-categoria">
+              <thead style="position: relative;">
+                <tr>
+                  <th>Fig. 1</th>
+                  <th>Fig. 2</th>
+                  <th>Fig. 3</th>
+                  <th>Estandar</th>
+                  <th>Superior</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>$ 300.000</td>
+                  <td>$ 500.000</td>
+                </tr>
+                <tr>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>$ 150.000</td>
+                  <td>$ 250.000</td>
+                </tr>
+                <tr>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>$ 120.000</td>
+                  <td>$ 150.000</td>
+                </tr>
+                <tr>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>Dos bar en cualquier orden</td>
+                  <td>$ 100.000</td>
+                  <td>$ 120.000</td>
+                </tr>
+                <tr>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>Dos limones en cualquier orden</td>
+                  <td>$ 90.000</td>
+                  <td>$ 110.000</td>
+                </tr>
+                <tr>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>Dos cereza en cualquier orden</td>
+                  <td>$ 80.000</td>
+                  <td>$ 100.000</td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+            <h5>A36, A781, Mp108m, A127m, A12m, MP15m, A36m </h5>
+            <table class="styled-table" id="tabla-all-categoria">
+              <thead style="position: relative;">
+                <tr>
+                  <th>Fig. 1</th>
+                  <th>Fig. 2</th>
+                  <th>Fig. 3</th>
+                  <th>Bronce</th>
+                  <th>Silver</th>
+                  <th>Gold</th>
+                  <th>Legendario</th>
+                  <th>Titanio</th>
+                  <th>Genius</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>$ 300.000</td>
+                  <td>$ 400.000</td>
+                  <td>$ 500.000</td>
+                  <td>$ 800.000</td>
+                  <td>$ 900.000</td>
+                  <td>$ 1.000.000</td>
+                </tr>
+                <tr>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>$ 150.000</td>
+                  <td>$ 200.000</td>
+                  <td>$ 250.000</td>
+                  <td>$ 300.000</td>
+                  <td>$ 400.000</td>
+                  <td>$ 500.000</td>
+                </tr>
+                <tr>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>$ 120.000</td>
+                  <td>$ 130.000</td>
+                  <td>$ 150.000</td>
+                  <td>$ 160.000</td>
+                  <td>$ 170.000</td>
+                  <td>$ 200.000</td>
+                </tr>
+                <tr>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>Dos bar en cualquier orden</td>
+                  <td>$ 100.000</td>
+                  <td>$ 110.000</td>
+                  <td>$ 120.000</td>
+                  <td>$ 130.000</td>
+                  <td>$ 140.000</td>
+                  <td>$ 170.000</td>
+                </tr>
+                <tr>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>Dos limones en cualquier orden</td>
+                  <td>$ 90.000</td>
+                  <td>$ 100.000</td>
+                  <td>$ 110.000</td>
+                  <td>$ 120.000</td>
+                  <td>$ 130.000</td>
+                  <td>$ 160.000</td>
+                </tr>
+                <tr>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>Dos cereza en cualquier orden</td>
+                  <td>$ 80.000</td>
+                  <td>$ 90.000</td>
+                  <td>$ 100.000</td>
+                  <td>$ 110.000</td>
+                  <td>$ 120.000</td>
+                  <td>$ 150.000</td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+            <h5>A05, A07, A08, A09, A12, MP15, A16 </h5>
+            <table class="styled-table" id="tabla-all-categoria">
+              <thead style="position: relative;">
+                <tr>
+                  <th>Fig. 1</th>
+                  <th>Fig. 2</th>
+                  <th>Fig. 3</th>
+                  <th>Bronce</th>
+                  <th>Silver</th>
+                  <th>Gold</th>
+                  <th>Legendario</th>
+                  <th>Titanio</th>
+                  <th>Genius</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>$ 300.000</td>
+                  <td>$ 400.000</td>
+                  <td>$ 500.000</td>
+                  <td>$ 800.000</td>
+                  <td>$ 900.000</td>
+                  <td>$ 1.000.000</td>
+                </tr>
+                <tr>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>$ 150.000</td>
+                  <td>$ 200.000</td>
+                  <td>$ 250.000</td>
+                  <td>$ 300.000</td>
+                  <td>$ 400.000</td>
+                  <td>$ 500.000</td>
+                </tr>
+                <tr>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>$ 100.000</td>
+                  <td>$ 120.000</td>
+                  <td>$ 130.000</td>
+                  <td>$ 160.000</td>
+                  <td>$ 170.000</td>
+                  <td>$ 200.000</td>
+                </tr>
+                <tr>
+                  <td>BAR</td>
+                  <td>BAR</td>
+                  <td>Dos bar en cualquier orden</td>
+                  <td>$ 80.000</td>
+                  <td>$ 100.000</td>
+                  <td>$ 110.000</td>
+                  <td>$ 130.000</td>
+                  <td>$ 140.000</td>
+                  <td>$ 170.000</td>
+                </tr>
+                <tr>
+                  <td>LIMON</td>
+                  <td>LIMON</td>
+                  <td>Dos limones en cualquier orden</td>
+                  <td>$ 70.000</td>
+                  <td>$ 90.000</td>
+                  <td>$ 100.000</td>
+                  <td>$ 120.000</td>
+                  <td>$ 130.000</td>
+                  <td>$ 160.000</td>
+                </tr>
+                <tr>
+                  <td>CEREZA</td>
+                  <td>CEREZA</td>
+                  <td>Dos cereza en cualquier orden</td>
+                  <td>$ 50.000</td>
+                  <td>$ 70.000</td>
+                  <td>$ 90.000</td>
+                  <td>$ 110.000</td>
+                  <td>$ 120.000</td>
+                  <td>$ 150.000</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div style="display: none;" id="view_registro_dia" class="content_body_modal">
+        <div class="info_body_modal">
+          <h2>Registro del Dia</h2>
+          <div id="Info_result_dia"></div>
+          <div class="result_dia_acumula" id="result_dia_acumula"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
-  <script src="/dinamicas/user.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    crossorigin="anonymous"></script>
   <script src="/dinamicas/extension.js"></script>
+  <script src="/dinamicas/user.js"></script>
 </body>
 
 </html>

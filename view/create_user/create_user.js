@@ -168,9 +168,6 @@ btn_create_user.addEventListener("click", () => {
           content_form.classList.remove("item_disable");
           btn_create_user.textContent = "Enviar";
           img_perfil.value = "";
-          btn_create_user.textContent = "Enviar";
-          content_form.classList.remove("item_disable");
-
           Swal.fire({
             icon: "success",
             title: "Usuario creado correctamente",

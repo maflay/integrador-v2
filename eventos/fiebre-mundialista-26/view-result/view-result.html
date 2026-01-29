@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+    <title>Aladdin: Quiniela</title>
+</head>
+
+<body data-main-style="/eventos/fiebre-mundialista-26/view-result/view-result.css"
+    data-main-script="/eventos/fiebre-mundialista-26/view-result/view-result.js">
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="main_content_results">
+        <h3 style="color: white;">Haz tu Quiniela <br /> Con</h3>
+        <div class="content_logo_marca">
+            <img src="/resource/aladdin.png" alt="Aladdin">
+            <p class="user_logeado" id="user_logeado"></p>
+            <button id="btn_cerrar_session" class="btn btn-danger btn_cerrar_session">Cerrar Session</button>
+        </div>
+        <div id="View_iniciar_quiniela" class="content_validate_user">
+            <input id="nombre" onkeyup="this.value = this.value.toLowerCase()" class="form-control"
+                placeholder="Usuario..." type="text" autocomplete="name">
+            <br />
+            <input id="codigo" class="form-control" placeholder="Numero..." type="password" autocomplete="password">
+            <br />
+            <div class="content_btn_iniciar">
+                <button id="btn_iniciar" class="btn btn-primary btn_inciar">Iniciar</button>
+                <button id="btn_register" class="btn btn-danger btn_register">Registrarse</button>
+            </div>
+        </div>
+        <div id="View_inputs_quiniela" class="content_inputs_results">
+            <br />
+            <div class="content_card_marcador">
+                <p>11/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo A</p>
+                <div class="card_marcador">
+                    <p>México</p>
+                    <img src="/eventos/resources/mexico.png" alt="Aladdin">
+                    <input name="mex_partido_1" id="mex_partido_1" class="form-control" type="number">
+                    -
+                    <input name="suda_partido_1" id="suda_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/sudafrica.png" alt="Aladdin">
+                    <p>Sudáfrica</p>
+                </div>
+            </div>
+            <div class="content_card_marcador">
+                <p>11/06/26</p>
+                <p>9:00 p.m</p>
+                <p>Grupo A</p>
+                <div class="card_marcador">
+                    <p>Corea del Sur</p>
+                    <img src="/eventos/resources/corea_del_sur.png" alt="Aladdin">
+                    <input name="corea_partido_1" id="corea_partido_1" class="form-control" type="number">
+                    -
+                    <input name="definir_grupo_a_partido_1" id="definir_grupo_a_partido_1" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <p>Por Definirse</p>
+                </div>
+            </div>
+            <div class="content_card_marcador">
+                <p>12/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo B</p>
+                <div class="card_marcador">
+                    <p>Canadá</p>
+                    <img src="/eventos/resources/canada.png" alt="Aladdin">
+                    <input name="canada_partido_1" id="canada_partido_1" class="form-control" type="number">
+                    -
+                    <input name="definir_grupo_b_partido_1" id="definir_grupo_b_partido_1" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <p>Por Definirse</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>12/06/26</p>
+                <p>8:00 p.m</p>
+                <p>Grupo D</p>
+                <div class="card_marcador">
+                    <p>Estados Unidos</p>
+                    <img src="/eventos/resources/usa.png" alt="Aladdin">
+                    <input name="usa_partido_1" id="usa_partido_1" class="form-control" type="number">
+                    -
+                    <input name="paraguay_partido_1" id="paraguay_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/paraguay.png" alt="Aladdin">
+                    <p>Paraguay</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>13/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo B</p>
+                <div class="card_marcador">
+                    <p>Catar</p>
+                    <img src="/eventos/resources/qatar.png" alt="Aladdin">
+                    <input name="catar_partido_1" id="catar_partido_1" class="form-control" type="number">
+                    -
+                    <input name="suiza_partido_1" id="suiza_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/suiza.png" alt="Aladdin">
+                    <p>Suiza</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>13/06/26</p>
+                <p>5:00 p.m</p>
+                <p>Grupo C</p>
+                <div class="card_marcador">
+                    <p>Brasil</p>
+                    <img src="/eventos/resources/brazil.png" alt="Aladdin">
+                    <input name="brasil_partido_1" id="brasil_partido_1" class="form-control" type="number">
+                    -
+                    <input name="marruecos_partido_1" id="marruecos_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/marruecos.png" alt="Aladdin">
+                    <p>Marruecos</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>13/06/26</p>
+                <p>8:00 p.m</p>
+                <p>Grupo C</p>
+                <div class="card_marcador">
+                    <p>Haití</p>
+                    <img src="/eventos/resources/haiti.png" alt="Aladdin">
+                    <input name="haiti_partido_1" id="haiti_partido_1" class="form-control" type="number">
+                    -
+                    <input name="escocia_partido_1" id="escocia_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/escosia.png" alt="Aladdin">
+                    <p>Escocia</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>13/06/26</p>
+                <p>11:00 p.m</p>
+                <p>Grupo D</p>
+                <div class="card_marcador">
+                    <p>Australia</p>
+                    <img src="/eventos/resources/australia.png" alt="Aladdin">
+                    <input name="australia_partido_1" id="australia_partido_1" class="form-control" type="number">
+                    -
+                    <input name="definir_grupo_d_partido_1" id="definir_grupo_d_partido_1" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <p>Por Definirse</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>14/06/26</p>
+                <p>12:00 p.m</p>
+                <p>Grupo E</p>
+                <div class="card_marcador">
+                    <p>Alemania</p>
+                    <img src="/eventos/resources/alemania.png" alt="Aladdin">
+                    <input name="alemania_partido_1" id="alemania_partido_1" class="form-control" type="number">
+                    -
+                    <input name="curazao_partido_1" id="curazao_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/curazao.png" alt="Aladdin">
+                    <p>Curazao</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>14/06/26</p>
+                <p>3:00 p.m</p>
+                <p>Grupo F</p>
+                <div class="card_marcador">
+                    <p>Países Bajos</p>
+                    <img src="/eventos/resources/paises_bajos.png" alt="Aladdin">
+                    <input name="paises_bajos_partido_1" id="paises_bajos_partido_1" class="form-control" type="number">
+                    -
+                    <input name="japon_partido_1" id="japon_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/japon.png" alt="Aladdin">
+                    <p>Japón</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>14/06/26</p>
+                <p>6:00 p.m</p>
+                <p>Grupo E</p>
+                <div class="card_marcador">
+                    <p>Costa de Marfil</p>
+                    <img src="/eventos/resources/costa_de_marfil.png" alt="Aladdin">
+                    <input name="costa_de_marfil_partido_1" id="costa_de_marfil_partido_1" class="form-control"
+                        type="number">
+                    -
+                    <input name="ecuador_partido_1" id="ecuador_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/ecuador.png" alt="Aladdin">
+                    <p>Ecuador</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>14/06/26</p>
+                <p>9:00 p.m</p>
+                <p>Grupo F</p>
+                <div class="card_marcador">
+                    <p>Por Definirse</p>
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <input name="definir_grupo_f_partido_1" id="definir_grupo_f_partido_1" class="form-control"
+                        type="number">
+                    -
+                    <input name="tunez_partido_1" id="tunez_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/tunez.png" alt="Aladdin">
+                    <p>Túnez</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>15/06/26</p>
+                <p>11:00 a.m</p>
+                <p>Grupo H</p>
+                <div class="card_marcador">
+                    <p>España</p>
+                    <img src="/eventos/resources/espania.png" alt="Aladdin">
+                    <input name="espania_partido_1" id="espania_partido_1" class="form-control" type="number">
+                    -
+                    <input name="cabo_verde_partido_1" id="cabo_verde_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/cabo_verde.png" alt="Aladdin">
+                    <p>Cabo Verde</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>15/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo G</p>
+                <div class="card_marcador">
+                    <p>Bélgica</p>
+                    <img src="/eventos/resources/belgica.png" alt="Aladdin">
+                    <input name="belgica_partido_1" id="belgica_partido_1" class="form-control" type="number">
+                    -
+                    <input name="egipto_partido_1" id="egipto_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/egipto.png" alt="Aladdin">
+                    <p>Egipto</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>15/06/26</p>
+                <p>5:00 p.m</p>
+                <p>Grupo H</p>
+                <div class="card_marcador">
+                    <p>Arabia Saudita</p>
+                    <img src="/eventos/resources/arabia_saudi.png" alt="Aladdin">
+                    <input name="arabia_saudi_partido_1" id="arabia_saudi_partido_1" class="form-control" type="number">
+                    -
+                    <input name="uruguay_partido_1" id="uruguay_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/uruguay.png" alt="Aladdin">
+                    <p>uruguay</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>15/06/26</p>
+                <p>8:00 p.m</p>
+                <p>Grupo G</p>
+                <div class="card_marcador">
+                    <p>Irán</p>
+                    <img src="/eventos/resources/iran.png" alt="Aladdin">
+                    <input name="iran_partido_1" id="iran_partido_1" class="form-control" type="number">
+                    -
+                    <input name="nueva_zelanda_partido_1" id="nueva_zelanda_partido_1" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/nueva_zelanda.png" alt="Aladdin">
+                    <p>Nueva Zelanda</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>16/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo I</p>
+                <div class="card_marcador">
+                    <p>Francia</p>
+                    <img src="/eventos/resources/francia.png" alt="Aladdin">
+                    <input name="francia_partido_1" id="francia_partido_1" class="form-control" type="number">
+                    -
+                    <input name="senegal_partido_1" id="senegal_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/senegal.png" alt="Aladdin">
+                    <p>Senegal</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>16/06/26</p>
+                <p>5:00 p.m</p>
+                <p>Grupo I</p>
+                <div class="card_marcador">
+                    <p>Por Definirse</p>
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <input name="definir_grupo_i_partido_1" id="definir_grupo_i_partido_1" class="form-control"
+                        type="number">
+                    -
+                    <input name="noruega_partido_1" id="noruega_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/noruega.png" alt="Aladdin">
+                    <p>Noruega</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>16/06/26</p>
+                <p>8:00 p.m</p>
+                <p>Grupo J</p>
+                <div class="card_marcador">
+                    <p>Argentina</p>
+                    <img src="/eventos/resources/argentina.png" alt="Aladdin">
+                    <input name="argentina_partido_1" id="argentina_partido_1" class="form-control" type="number">
+                    -
+                    <input name="argelia_partido_1" id="argelia_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/argelia.png" alt="Aladdin">
+                    <p>Argelia</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>16/06/26</p>
+                <p>11:00 p.m</p>
+                <p>Grupo J</p>
+                <div class="card_marcador">
+                    <p>Austria</p>
+                    <img src="/eventos/resources/austria.png" alt="Aladdin">
+                    <input name="austria_partido_1" id="austria_partido_1" class="form-control" type="number">
+                    -
+                    <input name="jordania_partido_1" id="jordania_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/jordania.png" alt="Aladdin">
+                    <p>Jordania</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>17/06/26</p>
+                <p>12:00 p.m</p>
+                <p>Grupo K</p>
+                <div class="card_marcador">
+                    <p>Portugal</p>
+                    <img src="/eventos/resources/portugal.png" alt="Aladdin">
+                    <input name="portugal_partido_1" id="portugal_partido_1" class="form-control" type="number">
+                    -
+                    <input name="definir_grupo_k_partido_1" id="definir_grupo_k_partido_1" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <p>Por Definirse</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>17/06/26</p>
+                <p>3:00 p.m</p>
+                <p>Grupo L</p>
+                <div class="card_marcador">
+                    <p>Inglaterra</p>
+                    <img src="/eventos/resources/inglaterra.png" alt="Aladdin">
+                    <input name="inglaterra_partido_1" id="inglaterra_partido_1" class="form-control" type="number">
+                    -
+                    <input name="croacia_partido_1" id="croacia_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/croacia.png" alt="Aladdin">
+                    <p>Croacia</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>17/06/26</p>
+                <p>6:00 p.m</p>
+                <p>Grupo L</p>
+                <div class="card_marcador">
+                    <p>Ghana</p>
+                    <img src="/eventos/resources/ghana.png" alt="Aladdin">
+                    <input name="ghana_partido_1" id="ghana_partido_1" class="form-control" type="number">
+                    -
+                    <input name="panama_partido_1" id="panama_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/panama.png" alt="Aladdin">
+                    <p>Panamá</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>17/06/26</p>
+                <p>9:00 p.m</p>
+                <p>Grupo K</p>
+                <div class="card_marcador">
+                    <p>Uzbekistán</p>
+                    <img src="/eventos/resources/uzbekistan.png" alt="Aladdin">
+                    <input name="uzbekistan_partido_1" id="uzbekistan_partido_1" class="form-control" type="number">
+                    -
+                    <input name="colombia_partido_1" id="colombia_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/colombia.png" alt="Aladdin">
+                    <p>Colombia</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>18/06/26</p>
+                <p>11:00 a.m</p>
+                <p>Grupo A</p>
+                <div class="card_marcador">
+                    <p>Por Definirse</p>
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <input name="definir_grupo_a_partido_2" id="definir_grupo_a_partido_2" class="form-control"
+                        type="number">
+                    -
+                    <input name="suda_partido_2" id="suda_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/sudafrica.png" alt="Aladdin">
+                    <p>Sudáfrica</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>18/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo B</p>
+                <div class="card_marcador">
+                    <p>Suiza</p>
+                    <img src="/eventos/resources/suiza.png" alt="Aladdin">
+                    <input name="suiza_partido_2" id="suiza_partido_2" class="form-control" type="number">
+                    -
+                    <input name="definir_grupo_b_partido_2" id="definir_grupo_b_partido_2" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <p>Por Definirse</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>18/06/26</p>
+                <p>5:00 p.m</p>
+                <p>Grupo B</p>
+                <div class="card_marcador">
+                    <p>Canadá</p>
+                    <img src="/eventos/resources/canada.png" alt="Aladdin">
+                    <input name="canada_partido_2" id="canada_partido_2" class="form-control" type="number">
+                    -
+                    <input name="catar_partido_2" id="catar_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/qatar.png" alt="Aladdin">
+                    <p>Catar</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>18/06/26</p>
+                <p>8:00 p.m</p>
+                <p>Grupo A</p>
+                <div class="card_marcador">
+                    <p>México</p>
+                    <img src="/eventos/resources/mexico.png" alt="Aladdin">
+                    <input name="mex_partido_2" id="mex_partido_2" class="form-control" type="number">
+                    -
+                    <input name="corea_partido_2" id="corea_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/corea_del_sur.png" alt="Aladdin">
+                    <p>Corea del Sur</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>19/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo D</p>
+                <div class="card_marcador">
+                    <p>Estados Unidos</p>
+                    <img src="/eventos/resources/usa.png" alt="Aladdin">
+                    <input name="usa_partido_2" id="usa_partido_2" class="form-control" type="number">
+                    -
+                    <input name="australia_partido_2" id="australia_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/australia.png" alt="Aladdin">
+                    <p>Australia</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>19/06/26</p>
+                <p>5:00 p.m</p>
+                <p>Grupo C</p>
+                <div class="card_marcador">
+                    <p>Escocia</p>
+                    <img src="/eventos/resources/escosia.png" alt="Aladdin">
+                    <input name="escocia_partido_2" id="escocia_partido_2" class="form-control" type="number">
+                    -
+                    <input name="marruecos_partido_2" id="marruecos_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/marruecos.png" alt="Aladdin">
+                    <p>Marruecos</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>19/06/26</p>
+                <p>8:00 p.m</p>
+                <p>Grupo C</p>
+                <div class="card_marcador">
+                    <p>Brasil</p>
+                    <img src="/eventos/resources/brazil.png" alt="Aladdin">
+                    <input name="brasil_partido_2" id="brasil_partido_2" class="form-control" type="number">
+                    -
+                    <input name="haiti_partido_2" id="haiti_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/haiti.png" alt="Aladdin">
+                    <p>Haití</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>19/06/26</p>
+                <p>11:00 p.m</p>
+                <p>Grupo D</p>
+                <div class="card_marcador">
+                    <p>Por Definirse</p>
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <input name="definir_grupo_d_partido_2" id="definir_grupo_d_partido_2" class="form-control"
+                        type="number">
+                    -
+                    <input name="paraguay_partido_2" id="paraguay_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/paraguay.png" alt="Aladdin">
+                    <p>Paraguay</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>20/06/26</p>
+                <p>12:00 p.m</p>
+                <p>Grupo F</p>
+                <div class="card_marcador">
+                    <p>Países Bajos</p>
+                    <img src="/eventos/resources/paises_bajos.png" alt="Aladdin">
+                    <input name="paises_bajos_partido_2" id="paises_bajos_partido_2" class="form-control" type="number">
+                    -
+                    <input name="definir_grupo_f_partido_2" id="definir_grupo_f_partido_2" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <p>Por Definirse</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>20/06/26</p>
+                <p>3:00 p.m</p>
+                <p>Grupo E</p>
+                <div class="card_marcador">
+                    <p>Alemania</p>
+                    <img src="/eventos/resources/alemania.png" alt="Aladdin">
+                    <input name="alemania_partido_2" id="alemania_partido_2" class="form-control" type="number">
+                    -
+                    <input name="costa_de_marfil_partido_2" id="costa_de_marfil_partido_2" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/costa_de_marfil.png" alt="Aladdin">
+                    <p>Costa de Marfil</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>20/06/26</p>
+                <p>7:00 p.m</p>
+                <p>Grupo E</p>
+                <div class="card_marcador">
+                    <p>Ecuador</p>
+                    <img src="/eventos/resources/ecuador.png" alt="Aladdin">
+                    <input name="ecuador_partido_2" id="ecuador_partido_2" class="form-control" type="number">
+                    -
+                    <input name="curazao_partido_2" id="curazao_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/curazao.png" alt="Aladdin">
+                    <p>Curazao</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>20/06/26</p>
+                <p>11:00 p.m</p>
+                <p>Grupo F</p>
+                <div class="card_marcador">
+                    <p>Túnez</p>
+                    <img src="/eventos/resources/tunez.png" alt="Aladdin">
+                    <input name="tunez_partido_2" id="tunez_partido_2" class="form-control" type="number">
+                    -
+                    <input name="japon_partido_2" id="japon_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/japon.png" alt="Aladdin">
+                    <p>Japon</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>21/06/26</p>
+                <p>11:00 a.m</p>
+                <p>Grupo H</p>
+                <div class="card_marcador">
+                    <p>España</p>
+                    <img src="/eventos/resources/espania.png" alt="Aladdin">
+                    <input name="espania_partido_2" id="espania_partido_2" class="form-control" type="number">
+                    -
+                    <input name="arabia_saudi_partido_2" id="arabia_saudi_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/arabia_saudi.png" alt="Aladdin">
+                    <p>Arabia Saudita</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>21/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo G</p>
+                <div class="card_marcador">
+                    <p>Bélgica</p>
+                    <img src="/eventos/resources/belgica.png" alt="Aladdin">
+                    <input name="belgica_partido_2" id="belgica_partido_2" class="form-control" type="number">
+                    -
+                    <input name="iran_partido_2" id="iran_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/iran.png" alt="Aladdin">
+                    <p>Irán</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>21/06/26</p>
+                <p>5:00 p.m</p>
+                <p>Grupo H</p>
+                <div class="card_marcador">
+                    <p>Uruguay</p>
+                    <img src="/eventos/resources/uruguay.png" alt="Aladdin">
+                    <input name="uruguay_partido_2" id="uruguay_partido_2" class="form-control" type="number">
+                    -
+                    <input name="cabo_verde_partido_2" id="cabo_verde_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/cabo_verde.png" alt="Aladdin">
+                    <p>Cabo Verde</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>21/06/26</p>
+                <p>8:00 p.m</p>
+                <p>Grupo G</p>
+                <div class="card_marcador">
+                    <p>Nueva Zelanda</p>
+                    <img src="/eventos/resources/nueva_zelanda.png" alt="Aladdin">
+                    <input name="nueva_zelanda_partido_2" id="nueva_zelanda_partido_2" class="form-control"
+                        type="number">
+                    -
+                    <input name="egipto_partido_2" id="egipto_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/egipto.png" alt="Aladdin">
+                    <p>Egipto</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>22/06/26</p>
+                <p>12:00 p.m</p>
+                <p>Grupo J</p>
+                <div class="card_marcador">
+                    <p>Argentina</p>
+                    <img src="/eventos/resources/argentina.png" alt="Aladdin">
+                    <input name="argentina_partido_2" id="argentina_partido_2" class="form-control" type="number">
+                    -
+                    <input name="austria_partido_2" id="austria_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/austria.png" alt="Aladdin">
+                    <p>Austria</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>22/06/26</p>
+                <p>4:00 p.m</p>
+                <p>Grupo I</p>
+                <div class="card_marcador">
+                    <p>Francia</p>
+                    <img src="/eventos/resources/francia.png" alt="Aladdin">
+                    <input name="francia_partido_2" id="francia_partido_2" class="form-control" type="number">
+                    -
+                    <input name="definir_grupo_i_partido_2" id="definir_grupo_i_partido_2" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <p>Por Definirse</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>22/06/26</p>
+                <p>7:00 p.m</p>
+                <p>Grupo I</p>
+                <div class="card_marcador">
+                    <p>Noruega</p>
+                    <img src="/eventos/resources/noruega.png" alt="Aladdin">
+                    <input name="noruega_partido_2" id="noruega_partido_2" class="form-control" type="number">
+                    -
+                    <input name="senegal_partido_2" id="senegal_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/senegal.png" alt="Aladdin">
+                    <p>Senegal</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>22/06/26</p>
+                <p>10:00 p.m</p>
+                <p>Grupo J</p>
+                <div class="card_marcador">
+                    <p>Jordania</p>
+                    <img src="/eventos/resources/jordania.png" alt="Aladdin">
+                    <input name="jordania_partido_2" id="jordania_partido_2" class="form-control" type="number">
+                    -
+                    <input name="argelia_partido_2" id="argelia_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/argelia.png" alt="Aladdin">
+                    <p>Argelia</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>23/06/26</p>
+                <p>12:00 p.m</p>
+                <p>Grupo K</p>
+                <div class="card_marcador">
+                    <p>Portugal</p>
+                    <img src="/eventos/resources/portugal.png" alt="Aladdin">
+                    <input name="portugal_partido_2" id="portugal_partido_2" class="form-control" type="number">
+                    -
+                    <input name="uzbekistan_partido_2" id="uzbekistan_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/uzbekistan.png" alt="Aladdin">
+                    <p>Uzbekistán</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>23/06/26</p>
+                <p>3:00 p.m</p>
+                <p>Grupo L</p>
+                <div class="card_marcador">
+                    <p>Inglaterra</p>
+                    <img src="/eventos/resources/inglaterra.png" alt="Aladdin">
+                    <input name="inglaterra_partido_2" id="inglaterra_partido_2" class="form-control" type="number">
+                    -
+                    <input name="ghana_partido_2" id="ghana_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/ghana.png" alt="Aladdin">
+                    <p>Ghana</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>23/06/26</p>
+                <p>6:00 p.m</p>
+                <p>Grupo L</p>
+                <div class="card_marcador">
+                    <p>Panamá</p>
+                    <img src="/eventos/resources/panama.png" alt="Aladdin">
+                    <input name="panama_partido_2" id="panama_partido_2" class="form-control" type="number">
+                    -
+                    <input name="croacia_partido_2" id="croacia_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/croacia.png" alt="Aladdin">
+                    <p>Croacia</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>23/06/26</p>
+                <p>9:00 p.m</p>
+                <p>Grupo K</p>
+                <div class="card_marcador">
+                    <p>Colombia</p>
+                    <img src="/eventos/resources/colombia.png" alt="Aladdin">
+                    <input name="colombia_partido_2" id="colombia_partido_2" class="form-control" type="number">
+                    -
+                    <input name="definir_grupo_k_partido_2" id="definir_grupo_k_partido_2" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <p>Por Definirse</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>24/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo B</p>
+                <div class="card_marcador">
+                    <p>Suiza</p>
+                    <img src="/eventos/resources/suiza.png" alt="Aladdin">
+                    <input name="suiza_partido_3" id="suiza_partido_3" class="form-control" type="number">
+                    -
+                    <input name="canada_partido_3" id="canada_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/canada.png" alt="Aladdin">
+                    <p>Canadá</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>24/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo B</p>
+                <div class="card_marcador">
+                    <p>Por Definirse</p>
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <input name="definir_grupo_b_partido_3" id="definir_grupo_b_partido_3" class="form-control"
+                        type="number">
+                    -
+                    <input name="catar_partido_3" id="catar_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/qatar.png" alt="Aladdin">
+                    <p>Catar</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>24/06/26</p>
+                <p>5:00 p.m</p>
+                <p>Grupo C</p>
+                <div class="card_marcador">
+                    <p>Marruecos</p>
+                    <img src="/eventos/resources/marruecos.png" alt="Aladdin">
+                    <input name="marruecos_partido_3" id="marruecos_partido_3" class="form-control" type="number">
+                    -
+                    <input name="haiti_partido_3" id="haiti_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/haiti.png" alt="Aladdin">
+                    <p>Haití</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>24/06/26</p>
+                <p>5:00 p.m</p>
+                <p>Grupo C</p>
+                <div class="card_marcador">
+                    <p>Escocia</p>
+                    <img src="/eventos/resources/escosia.png" alt="Aladdin">
+                    <input name="escocia_partido_3" id="escocia_partido_3" class="form-control" type="number">
+                    -
+                    <input name="brasil_partido_3" id="brasil_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/brazil.png" alt="Aladdin">
+                    <p>Brasil</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>24/06/26</p>
+                <p>8:00 p.m</p>
+                <p>Grupo A</p>
+                <div class="card_marcador">
+                    <p>Sudáfrica</p>
+                    <img src="/eventos/resources/sudafrica.png" alt="Aladdin">
+                    <input name="suda_partido_3" id="suda_partido_3" class="form-control" type="number">
+                    -
+                    <input name="corea_partido_3" id="corea_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/corea_del_sur.png" alt="Aladdin">
+                    <p>Corea del Sur</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>24/06/26</p>
+                <p>8:00 p.m</p>
+                <p>Grupo A</p>
+                <div class="card_marcador">
+                    <p>Por Definirse</p>
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <input name="definir_grupo_a_partido_3" id="definir_grupo_a_partido_3" class="form-control"
+                        type="number">
+                    -
+                    <input name="mex_partido_3" id="mex_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/mexico.png" alt="Aladdin">
+                    <p>México</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>25/06/26</p>
+                <p>3:00 p.m</p>
+                <p>Grupo E</p>
+                <div class="card_marcador">
+                    <p>Curazao</p>
+                    <img src="/eventos/resources/curazao.png" alt="Aladdin">
+                    <input name="curazao_partido_3" id="curazao_partido_3" class="form-control" type="number">
+                    -
+                    <input name="costa_de_marfil_partido_3" id="costa_de_marfil_partido_3" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/costa_de_marfil.png" alt="Aladdin">
+                    <p>Costa de Marfil</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>25/06/26</p>
+                <p>3:00 p.m</p>
+                <p>Grupo E</p>
+                <div class="card_marcador">
+                    <p>Ecuador</p>
+                    <img src="/eventos/resources/ecuador.png" alt="Aladdin">
+                    <input name="ecuador_partido_3" id="ecuador_partido_3" class="form-control" type="number">
+                    -
+                    <input name="alemania_partido_3" id="alemania_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/alemania.png" alt="Aladdin">
+                    <p>Alemania</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>25/06/26</p>
+                <p>6:00 p.m</p>
+                <p>Grupo F</p>
+                <div class="card_marcador">
+                    <p>Túnez</p>
+                    <img src="/eventos/resources/tunez.png" alt="Aladdin">
+                    <input name="tunez_partido_3" id="tunez_partido_3" class="form-control" type="number">
+                    -
+                    <input name="paises_bajos_partido_3" id="paises_bajos_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/paises_bajos.png" alt="Aladdin">
+                    <p>Paises Bajos</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>25/06/26</p>
+                <p>6:00 p.m</p>
+                <p>Grupo F</p>
+                <div class="card_marcador">
+                    <p>Japón</p>
+                    <img src="/eventos/resources/japon.png" alt="Aladdin">
+                    <input name="japon_partido_3" id="japon_partido_3" class="form-control" type="number">
+                    -
+                    <input name="definir_grupo_f_partido_3" id="definir_grupo_f_partido_3" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <p>Por Definirse</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>25/06/26</p>
+                <p>9:00 p.m</p>
+                <p>Grupo D</p>
+                <div class="card_marcador">
+                    <p>Por Definirse</p>
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <input name="definir_grupo_d_partido_3" id="definir_grupo_d_partido_3" class="form-control"
+                        type="number">
+                    -
+                    <input name="usa_partido_3" id="usa_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/usa.png" alt="Aladdin">
+                    <p>Estados Unidos</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>25/06/26</p>
+                <p>9:00 p.m</p>
+                <p>Grupo D</p>
+                <div class="card_marcador">
+                    <p>Paraguay</p>
+                    <img src="/eventos/resources/paraguay.png" alt="Aladdin">
+                    <input name="paraguay_partido_3" id="paraguay_partido_3" class="form-control" type="number">
+                    -
+                    <input name="australia_partido_3" id="australia_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/australia.png" alt="Aladdin">
+                    <p>Australia</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>26/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo I</p>
+                <div class="card_marcador">
+                    <p>Noruega</p>
+                    <img src="/eventos/resources/noruega.png" alt="Aladdin">
+                    <input name="noruega_partido_3" id="noruega_partido_3" class="form-control" type="number">
+                    -
+                    <input name="francia_partido_3" id="francia_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/francia.png" alt="Aladdin">
+                    <p>Francia</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>26/06/26</p>
+                <p>2:00 p.m</p>
+                <p>Grupo I</p>
+                <div class="card_marcador">
+                    <p>Senegal</p>
+                    <img src="/eventos/resources/senegal.png" alt="Aladdin">
+                    <input name="senegal_partido_3" id="senegal_partido_3" class="form-control" type="number">
+                    -
+                    <input name="definir_grupo_i_partido_3" id="definir_grupo_i_partido_3" class="form-control"
+                        type="number">
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <p>Por Definirse</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>26/06/26</p>
+                <p>7:00 p.m</p>
+                <p>Grupo H</p>
+                <div class="card_marcador">
+                    <p>Cabo Verde</p>
+                    <img src="/eventos/resources/cabo_verde.png" alt="Aladdin">
+                    <input name="cabo_verde_partido_3" id="cabo_verde_partido_3" class="form-control" type="number">
+                    -
+                    <input name="arabia_saudi_partido_3" id="arabia_saudi_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/arabia_saudi.png" alt="Aladdin">
+                    <p>Arabia Saudita</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>26/06/26</p>
+                <p>7:00 p.m</p>
+                <p>Grupo H</p>
+                <div class="card_marcador">
+                    <p>Uruguay</p>
+                    <img src="/eventos/resources/uruguay.png" alt="Aladdin">
+                    <input name="uruguay_partido_3" id="uruguay_partido_3" class="form-control" type="number">
+                    -
+                    <input name="espania_partido_3" id="espania_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/espania.png" alt="Aladdin">
+                    <p>España</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>26/06/26</p>
+                <p>10:00 p.m</p>
+                <p>Grupo G</p>
+                <div class="card_marcador">
+                    <p>Nueva Zelanda</p>
+                    <img src="/eventos/resources/nueva_zelanda.png" alt="Aladdin">
+                    <input name="nueva_zelanda_partido_3" id="nueva_zelanda_partido_3" class="form-control"
+                        type="number">
+                    -
+                    <input name="belgica_partido_3" id="belgica_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/belgica.png" alt="Aladdin">
+                    <p>Bélgica</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>26/06/26</p>
+                <p>10:00 p.m</p>
+                <p>Grupo G</p>
+                <div class="card_marcador">
+                    <p>Egipto</p>
+                    <img src="/eventos/resources/egipto.png" alt="Aladdin">
+                    <input name="egipto_partido_3" id="egipto_partido_3" class="form-control" type="number">
+                    -
+                    <input name="iran_partido_3" id="iran_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/iran.png" alt="Aladdin">
+                    <p>Irán</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>27/06/26</p>
+                <p>4:00 p.m</p>
+                <p>Grupo L</p>
+                <div class="card_marcador">
+                    <p>Panamá</p>
+                    <img src="/eventos/resources/panama.png" alt="Aladdin">
+                    <input name="panama_partido_3" id="panama_partido_3" class="form-control" type="number">
+                    -
+                    <input name="inglaterra_partido_3" id="inglaterra_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/inglaterra.png" alt="Aladdin">
+                    <p>Inglaterra</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>27/06/26</p>
+                <p>4:00 p.m</p>
+                <p>Grupo L</p>
+                <div class="card_marcador">
+                    <p>Croacia</p>
+                    <img src="/eventos/resources/croacia.png" alt="Aladdin">
+                    <input name="croacia_partido_3" id="croacia_partido_3" class="form-control" type="number">
+                    -
+                    <input name="ghana_partido_3" id="ghana_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/ghana.png" alt="Aladdin">
+                    <p>Ghana</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>27/06/26</p>
+                <p>6:30 p.m</p>
+                <p>Grupo K</p>
+                <div class="card_marcador">
+                    <p>Colombia</p>
+                    <img src="/eventos/resources/colombia.png" alt="Aladdin">
+                    <input name="colombia_partido_3" id="colombia_partido_3" class="form-control" type="number">
+                    -
+                    <input name="portugal_partido_3" id="portugal_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/portugal.png" alt="Aladdin">
+                    <p>Portugal</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>27/06/26</p>
+                <p>6:30 p.m</p>
+                <p>Grupo K</p>
+                <div class="card_marcador">
+                    <p>Por Definirse</p>
+                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
+                    <input name="definir_grupo_k_partido_3" id="definir_grupo_k_partido_3" class="form-control"
+                        type="number">
+                    -
+                    <input name="uzbekistan_partido_3" id="uzbekistan_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/uzbekistan.png" alt="Aladdin">
+                    <p>Uzbekistán</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>27/06/26</p>
+                <p>9:00 p.m</p>
+                <p>Grupo J</p>
+                <div class="card_marcador">
+                    <p>Argelia</p>
+                    <img src="/eventos/resources/argelia.png" alt="Aladdin">
+                    <input name="argelia_partido_3" id="argelia_partido_3" class="form-control" type="number">
+                    -
+                    <input name="austria_partido_3" id="austria_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/austria.png" alt="Aladdin">
+                    <p>Austria</p>
+                </div>
+            </div>
+
+            <div class="content_card_marcador">
+                <p>27/06/26</p>
+                <p>9:00 p.m</p>
+                <p>Grupo J</p>
+                <div class="card_marcador">
+                    <p>Jordania</p>
+                    <img src="/eventos/resources/jordania.png" alt="Aladdin">
+                    <input name="jordania_partido_3" id="jordania_partido_3" class="form-control" type="number">
+                    -
+                    <input name="argentina_partido_3" id="argentina_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/argentina.png" alt="Aladdin">
+                    <p>Argentina</p>
+                </div>
+            </div>
+
+            <div class="content_btn_marcador">
+                <button id="btn_actualizar_score" class="btn btn-primary">Actualizar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="/dinamicas/extension.js"></script>
+</body>
+
+</html>

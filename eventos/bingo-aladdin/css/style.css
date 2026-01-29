@@ -1,0 +1,297 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.background_bingo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-image: linear-gradient(90deg, #ffffff50, #ffffffbe), url(/eventos/bingo-aladdin/resources/background_bingo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.content_logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.content_logo img {
+    width: 80px;
+}
+
+.cerrar_sesion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 10px;
+    top: 5px;
+    right: 5px;
+}
+
+.cerrar_sesion img {
+    width: 20px;
+}
+
+.cerrar_sesion p {
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    margin: 0;
+}
+
+.cerrar_sesion p:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.cerrar_sesion a {
+    font-size: 12px;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    margin: 0;
+}
+
+.cerrar_sesion a:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.container_bingo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_form_bingo_login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    max-width: 1000px;
+}
+
+.content_form_bingo {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    max-width: 1000px;
+}
+
+.input-group {
+    display: flex;
+    position: relative;
+}
+
+.input-group input {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    padding: 8px 0;
+    font-size: 16px;
+    background: transparent;
+}
+
+.input-group label {
+    position: absolute;
+    top: 12px;
+    left: 0;
+    color: #000;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.2s ease all;
+}
+
+.input-group input:focus~label,
+.input-group input:valid~label {
+    top: -3px;
+    font-size: 10px;
+    color: #424242;
+}
+
+.input-group input:focus {
+    border-bottom: 2px solid #eeeeee;
+}
+
+.input_form {
+    display: flex;
+    width: 95%;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.content_date_naci {
+    display: flex;
+    position: relative;
+}
+
+.content_date_naci input {
+    width: 100%;
+}
+
+.content_date_naci>label {
+    position: absolute;
+    top: -20px;
+    font-size: 10px;
+    color: #424242;
+}
+
+.separator {
+    margin-bottom: 0px;
+}
+
+.off_screen {
+    display: none !important;
+}
+
+.on_screen {
+    display: flex !important;
+}
+
+.tablas_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.content_input_l{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.seccion_consultar_jugador {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    max-width: 1000px;
+}
+
+.content_actions_consul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead {
+    background: #dc3545;
+    color: white;
+}
+
+
+.styled-table th {
+    padding: 8px 20px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    font-size: .8rem;
+}
+
+.styled-table td {
+    padding: 8px 0px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table tbody tr {
+    background-color: #d1d1d185;
+    color: #000;
+    font-size: 12px;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #d1d1d191;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #919191;
+    color: #fff;
+}
+
+.styled-table a {
+    transition: all 0.4s ease;
+    color: white;
+}
+
+.styled-table a:hover {
+    color: #858585;
+}
+
+@media(max-width: 768px) {
+    .input_form {
+        flex-direction: column;
+    }
+
+    .content_date_naci>label {
+        position: absolute;
+        top: 40px;
+        font-size: 10px;
+        color: #424242;
+    }
+
+    .separator {
+        margin-bottom: 0;
+    }
+
+    .input-group label {
+        font-size: 12px;
+    }
+
+    .tablas_container{
+        margin-bottom: 0px;
+        font-size: 10px;
+    }
+
+}

@@ -24,6 +24,8 @@ function CloseModalInfo() {
   const contenedor = document.getElementById("view_info_user");
   unlockBodyScroll();
   contenedor.style.display = "none";
+  document.getElementById("info_user_").style.display = "block";
+  document.getElementById("update_user_").style.display = "none";
 }
 
 window.CloseModalInfo = CloseModalInfo;

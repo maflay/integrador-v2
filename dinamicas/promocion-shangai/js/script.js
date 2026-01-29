@@ -75,7 +75,7 @@ function handleSendInfo() {
               Swal.fire({
                 icon: "info",
                 title: "Limite",
-                text: `Ya tienes los 3 Números.`,
+                text: `El jugador ya cuento con 3 números.`,
                 confirmButtonColor: "#a13b22",
               });
             } else {
