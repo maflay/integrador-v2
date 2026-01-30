@@ -121,53 +121,40 @@ function renderRuletas(nums, nombres) {
     girando = true;
     resultado.textContent = "";
 
+    const N = nums.length;
+    const step = 360 / N;
+
     const vueltas = randInt(6, 10);
+
+    // ✅ elegimos un índice final exacto (0..N-1)
+    const kFinal = randInt(0, N - 1);
+
+    // ✅ extraDeg queda exacto en el centro del segmento kFinal
+    const extraDeg = (kFinal * step) % 360;
+
     const dur = 4200;
+    const delta = vueltas * 360 + extraDeg;
 
-    // ✅ acumulamos la rotación REAL (esto arregla el efecto y el cálculo)
-    const extraDeg = randInt(0, 359);
-    const delta = 13 * 360 + extraDeg;
-    //     const extraDeg = 0;
-    // const delta = 0;
-    rotacionTotalNums += delta; // números giran normal
-    // rotacionTotalNames -= delta; // nombres giran contrario
-
-    // ✅ animación hacia la rotación total acumulada
+    rotacionTotalNums += delta;
     animarRotacion(ruletaNums, rotacionTotalNums, dur);
-    // animarRotacion(ruletaNames, rotacionTotalNames, dur);
 
-setTimeout(() => {
-  const step = 360 / nums.length;
+    setTimeout(() => {
+      const baseShift = calcularShiftPorRotacion(rotacionTotalNums, N);
+      const shift = (baseShift + OFFSET_STEPS) % N;
 
-  // rotación actual normalizada 0..359
-  const mod = ((rotacionTotalNums % 360) + 360) % 360;
+      const listado = construirListadoNombreNumero(nums, nombres, shift);
 
-  // ✅ snap al centro del segmento más cercano
-  const snapped = Math.round(mod / step) * step;
+      resultado.innerHTML = `
+      <div class="lista_parti">
+        <b>Listado (Nombre → Número):</b><br><br>
+        ${listado.map((p) => `${p.posicion}: ${p.nombre} - ${p.numero}`).join("<br>")}
+      </div>
+    `;
 
-  // aplicamos el snap a la rotación total
-  rotacionTotalNums = rotacionTotalNums - mod + snapped;
-
-  // micro ajuste visual (corto)
-  animarRotacion(ruletaNums, rotacionTotalNums, 200);
-
-  // ✅ ahora sí calculas shift con la rotación final real
-  const baseShift = calcularShiftPorRotacion(rotacionTotalNums, nums.length);
-  const shift = (baseShift + OFFSET_STEPS) % nums.length;
-
-  const listado = construirListadoNombreNumero(nums, nombres, shift);
-
-  resultado.innerHTML = `
-    <div class="lista_parti">
-      <b>Listado (Nombre → Número):</b><br><br>
-      ${listado.map((p) => `${p.posicion}: ${p.nombre} - ${p.numero}`).join("<br>")}
-    </div>
-  `;
-
-  girando = false;
-}, dur + 120);
-
+      girando = false;
+    }, dur + 120);
   });
+
 }
 
 function indiceDesdeRotacion(rotacion, total) {
