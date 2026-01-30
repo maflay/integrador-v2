@@ -46,6 +46,9 @@ const num_rule = [
   "2",
 ];
 
+const OFFSET_STEPS = 0; // lo ajustamos
+
+
 const board = document.querySelector(".board_reuleta");
 
 let participantes38 = []; // exactamente 38
@@ -97,12 +100,10 @@ function renderRuletas(nums, nombres) {
     <div id="resultado" class="resultado-map"></div>
   `;
 
-  const mapa38 = nums.map((n, i) => ({
-    numero: n,
-    nombre: nombres[i],
-  }));
-
-  console.log(mapa38);
+  // const mapa38 = nums.map((n, i) => ({
+  //   numero: n,
+  //   nombre: nombres[i],
+  // }));
 
   const ruletaNums = document.getElementById("ruletaNums");
   const ruletaNames = document.getElementById("ruletaNames");
@@ -121,11 +122,13 @@ function renderRuletas(nums, nombres) {
     resultado.textContent = "";
 
     const vueltas = randInt(6, 10);
-    const extraDeg = randInt(0, 359);
     const dur = 4200;
 
     // ✅ acumulamos la rotación REAL (esto arregla el efecto y el cálculo)
+    const extraDeg = randInt(0, 359);
     const delta = 13 * 360 + extraDeg;
+    //     const extraDeg = 0;
+    // const delta = 0;
     rotacionTotalNums += delta; // números giran normal
     // rotacionTotalNames -= delta; // nombres giran contrario
 
@@ -133,21 +136,37 @@ function renderRuletas(nums, nombres) {
     animarRotacion(ruletaNums, rotacionTotalNums, dur);
     // animarRotacion(ruletaNames, rotacionTotalNames, dur);
 
-    setTimeout(() => {
-      const shift = calcularShiftDOM(ruletaNums, ruletaNames, nums.length);
-      const listado = construirListadoNombreNumero(nums, nombres, shift);
-console.log(
-  listado.map((p) => `${p.posicion}: ${p.nombre} - ${p.numero}`));
-      resultado.innerHTML = `
+setTimeout(() => {
+  const step = 360 / nums.length;
+
+  // rotación actual normalizada 0..359
+  const mod = ((rotacionTotalNums % 360) + 360) % 360;
+
+  // ✅ snap al centro del segmento más cercano
+  const snapped = Math.round(mod / step) * step;
+
+  // aplicamos el snap a la rotación total
+  rotacionTotalNums = rotacionTotalNums - mod + snapped;
+
+  // micro ajuste visual (corto)
+  animarRotacion(ruletaNums, rotacionTotalNums, 200);
+
+  // ✅ ahora sí calculas shift con la rotación final real
+  const baseShift = calcularShiftPorRotacion(rotacionTotalNums, nums.length);
+  const shift = (baseShift + OFFSET_STEPS) % nums.length;
+
+  const listado = construirListadoNombreNumero(nums, nombres, shift);
+
+  resultado.innerHTML = `
     <div class="lista_parti">
       <b>Listado (Nombre → Número):</b><br><br>
       ${listado.map((p) => `${p.posicion}: ${p.nombre} - ${p.numero}`).join("<br>")}
     </div>
   `;
 
-      ultimoResultado = { listado, shift, fecha: new Date().toISOString() };
-      girando = false;
-    }, dur + 120);
+  girando = false;
+}, dur + 120);
+
   });
 }
 
@@ -156,6 +175,11 @@ function indiceDesdeRotacion(rotacion, total) {
   const normalized = (360 - rotacion + 360) % 360;
   return Math.floor(normalized / angle) % total;
 }
+
+function calcularOffsetInicial(nums, nombreIndex0NumeroVisual) {
+  return nums.indexOf(String(nombreIndex0NumeroVisual));
+}
+
 
 function construirSegmentosNumeros(container, nums) {
   const N = nums.length;
@@ -279,16 +303,35 @@ function calcularShiftDOM(ruletaNums, ruletaNames, total) {
   return Math.round(diff / angleStep) % total;
 }
 
+function calcularShiftPorRotacion(rotacionTotalNums, total) {
+  const step = 360 / total;
+  const rot = ((rotacionTotalNums % 360) + 360) % 360;
+
+  // ✅ tomar el centro del segmento
+  const rotCentro = (rot + step / 2) % 360;
+
+  const k = Math.floor(rotCentro / step) % total;
+  return (total - k) % total;
+}
+
+
 
 function construirListadoNombreNumero(nums, nombres, shift) {
   const N = nums.length;
   const out = [];
+
   for (let i = 0; i < N; i++) {
     const numIndex = (i + shift) % N;
-    out.push({ posicion: i + 1, nombre: nombres[i], numero: nums[numIndex] });
+    out.push({
+      posicion: i + 1,
+      nombre: nombres[i],
+      numero: nums[numIndex]
+    });
   }
+
   return out;
 }
+
 
 function colorRuletaAmericana(val, idx) {
   if (val === "0" || val === "00") return "verde";
