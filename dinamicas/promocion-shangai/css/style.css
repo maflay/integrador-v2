@@ -15,7 +15,7 @@ body {
 
 
 .background-promo {
-    background-image: linear-gradient(180deg, #00000075, #00000075), url(/dinamicas/promocion-shangai/resources/shanghai-03008_result.webp);
+    background-image: linear-gradient(180deg, #00000075, #00000075), url(/dinamicas/promocion-shangai/resources/37181.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -428,7 +428,6 @@ body {
     }
 
     .table-scrolld {
-        max-width: 350px;
         max-height: 450px;
     }
 

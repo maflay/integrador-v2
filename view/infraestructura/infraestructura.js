@@ -3,3 +3,5 @@
 // .then((data) => {
 //     console.log(data[0],"data");
 // })
+
+metodoprueba();

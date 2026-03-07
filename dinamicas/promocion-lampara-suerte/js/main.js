@@ -108,6 +108,12 @@ const IN_FLIGHT = new Set();
 const LS_KEY = "registrosLamparaSuerte";
 const FECHA_KEY = "fechaLamparaSuerte";
 
+const hoy = new Date().toDateString();
+if (localStorage.getItem(FECHA_KEY) !== hoy) {
+  localStorage.setItem(LS_KEY, JSON.stringify([]));
+  localStorage.setItem(FECHA_KEY, hoy);
+}
+
 const url =
   "https://script.google.com/macros/s/AKfycbxaTUBg0CicvSCUDD99_vSQ3RmJWI0pIxtUJNeJgW0xAawiEEn6ocERXKOtGobQkQNI/exec";
 
@@ -919,12 +925,12 @@ function handleSend() {
     };
   } else {
     if (
-      !valselect1 ||
-      !valselect2 ||
-      !valselect3 ||
-      !casino ||
-      !categoria ||
-      !nombre
+      !valselect1.value ||
+      !valselect2.value ||
+      !valselect3.value ||
+      !casino.value ||
+      !categoria.value ||
+      !nombre.value
     ) {
       Swal.fire({
         icon: "warning",
@@ -1008,25 +1014,27 @@ function handleSend() {
 }
 
 function newGame() {
-  const val1 = document.getElementById("listad-1er").value;
-  const val2 = document.getElementById("listad-2do").value;
-  const val3 = document.getElementById("listad-3er").value;
 
-  document.getElementById("listad-1er").value = "";
-  document.getElementById("listad-2do").value = "";
-  document.getElementById("listad-3er").value = "";
-  document.getElementById("casino").value = "";
-  document.getElementById("categoria").value = "";
-  document.getElementById("nombre").value = "";
-  document.getElementById("cedula").value = "";
-  ValorFinal_lamp.textContent = ``;
-  BonosRepartir.innerHTML = "";
-  if (val1 == "" && val2 == "" && val3 == "") {
-  } else {
-    slot1.start();
-    slot2.start();
-    slot3.start();
-  }
+  window.location.reload();
+  // const val1 = document.getElementById("listad-1er").value;
+  // const val2 = document.getElementById("listad-2do").value;
+  // const val3 = document.getElementById("listad-3er").value;
+
+  // document.getElementById("listad-1er").value = "";
+  // document.getElementById("listad-2do").value = "";
+  // document.getElementById("listad-3er").value = "";
+  // document.getElementById("casino").value = "";
+  // document.getElementById("categoria").value = "";
+  // document.getElementById("nombre").value = "";
+  // document.getElementById("cedula").value = "";
+  // ValorFinal_lamp.textContent = ``;
+  // BonosRepartir.innerHTML = "";
+  // if (val1 == "" && val2 == "" && val3 == "") {
+  // } else {
+  //   slot1.start();
+  //   slot2.start();
+  //   slot3.start();
+  // }
 }
 
 function vuelveyjuega() {
@@ -1307,9 +1315,6 @@ function GetResgistroDia() {
         icon: ok ? "success" : "info",
         title: ok ? "Bono asignado" : "Registro no encontrado",
         customClass: {
-          popup: "mi-popup",
-          title: "mi-titulo",
-          confirmButton: "btn btn-danger",
         },
         html: `<div>
             <p>${

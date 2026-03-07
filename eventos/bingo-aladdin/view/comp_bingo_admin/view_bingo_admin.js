@@ -2,12 +2,33 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
+const formatearFechaHora = (isoString, tipo) => {
+  if (!isoString) return "-";
+  const date = new Date(isoString);
+
+  if (isNaN(date.getTime())) return isoString;
+
+  if (tipo === "hora") {
+    return date.toLocaleTimeString("es-ES", {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+    });
+  } else {
+    return date.toLocaleDateString("es-ES", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  }
+};
+
 function setCookie(name, value, opts = {}) {
   const {
     hours = 3,
     path = "/",
-    sameSite = "Lax", // recomendado
-    secure = location.protocol === "https:", // true si estás en https
+    sameSite = "Lax",
+    secure = location.protocol === "https:",
   } = opts;
 
   const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString();
@@ -63,7 +84,7 @@ document
   .addEventListener("click", exportarTablaXLSX);
 
 function exportarTablaXLSX() {
-  const table = document.querySelector(".styled-table");
+  const table = document.querySelector(".table_all_data");
 
   if (!table) {
     Swal.fire({
@@ -73,14 +94,30 @@ function exportarTablaXLSX() {
     return;
   }
 
-  // Crear libro y hoja desde la tabla HTML
   const wb = XLSX.utils.book_new();
   const ws = XLSX.utils.table_to_sheet(table);
-
-  // Agregar hoja al libro
   XLSX.utils.book_append_sheet(wb, ws, "Registros");
+  XLSX.writeFile(wb, "consulta_tablas.xlsx");
+}
 
-  // Descargar archivo
+document
+  .getElementById("btn_export_excel_for_document")
+  .addEventListener("click", exportarTablaXLSXD);
+
+function exportarTablaXLSXD() {
+  const table = document.querySelector(".table_all_data_for_document");
+
+  if (!table) {
+    Swal.fire({
+      icon: "warning",
+      title: "No hay datos para exportar",
+    });
+    return;
+  }
+
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.table_to_sheet(table);
+  XLSX.utils.book_append_sheet(wb, ws, "Registros");
   XLSX.writeFile(wb, "consulta_tablas.xlsx");
 }
 
@@ -205,6 +242,183 @@ function consultaPornumero() {
         loader.style.display = "none";
       } else {
         loader.style.display = "none";
+        container.innerHTML = "Sin Registros";
+      }
+    })
+    .catch((error) => {
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "error",
+        title: "Error al cargar",
+        html: "Intentalo mas tarde",
+      });
+    });
+}
+
+getAllData();
+
+function getAllData() {
+  const container = document.getElementById("table_all_result");
+  const inputBuscar = document.getElementById("buscar_usuario");
+
+  container.innerHTML = "Cargando...";
+  loader.style.display = "flex";
+  fetch(`${url}?hoja=tablas`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.length > 0) {
+        container.innerHTML = `
+          <div class="table-result table-scrolld">
+            <table class="styled-table table_all_data">
+              <thead>
+                <tr>
+                  <th>Cant. Tablas</th>
+                  <th>Jugador</th>
+                  <th># de Tabla</th>
+                  <th>Documento</th>
+                  <th># Documento</th>
+                  <th>Correo</th>
+                  <th># Celular</th>
+                  <th>Creado por</th>
+                  <th>Certifica que no es func.</th>
+                  <th>Autorizo de Datos</th>
+                  <th>Total de la Compra</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${data
+                  .reverse()
+                  .map(
+                    (registro, i) => `
+                      <tr>
+                        <td>${i + 1}</td>
+                        <td>${registro.Nombre}</td>
+                        <td>${registro.Num_tabla}</td>
+                        <td>${registro.Tipo_documento}</td>
+                        <td>${registro.Num_documento}</td>
+                        <td>${registro.Correo}</td>
+                        <td>${registro.Num_celular}</td>
+                        <td>${registro.Usuario_crea}</td>
+                        <td>${registro.Funcionario}</td>
+                        <td>${registro.Autorizo}</td>
+                        <td>${registro.Total_compra}</td>
+                      </tr>
+                    `,
+                  )
+                  .join("")}
+              </tbody>
+            </table>
+          </div>
+        `;
+        document.getElementById("btn_export_excel").style.display = "block";
+
+        inputBuscar.addEventListener("keyup", () => {
+          const texto = inputBuscar.value.toLowerCase().trim();
+          const filas = container.querySelectorAll("tbody tr");
+
+          const columnas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+
+          filas.forEach((fila) => {
+            const nombre = columnas
+              .map(
+                (i) =>
+                  fila
+                    .querySelector(`td:nth-child(${i})`)
+                    ?.textContent.toLocaleLowerCase() || "",
+              )
+              .join(" ")
+              .toLowerCase();
+            fila.style.display = nombre.includes(texto) ? "" : "none";
+          });
+        });
+      } else {
+        container.innerHTML = "Sin Registros";
+      }
+    })
+    .catch((error) => {
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "error",
+        title: "Error al cargar",
+        html: "Intentalo mas tarde",
+      });
+    });
+}
+
+getAllforDocument();
+
+function getAllforDocument() {
+  const container = document.getElementById("table_for_document");
+
+  container.innerHTML = "Cargando...";
+  loader.style.display = "flex";
+  fetch(`${url}?hoja=tablas`)
+    .then((res) => res.json())
+    .then((data) => {
+      const normalizado = [...data].reverse();
+
+      const vistos = new Set();
+      const sinDuplicados = [];
+
+      for (const r of normalizado) {
+        const doc = String(r.Num_documento || "").trim();
+        if (!doc) continue;
+        if (vistos.has(doc)) continue;
+        vistos.add(doc);
+        sinDuplicados.push(r);
+      }
+
+      data = sinDuplicados;
+      if (data.length > 0) {
+        container.innerHTML = `
+          <div class="table-result table-scrolld">
+            <table class="styled-table table_all_data_for_document">
+              <thead>
+                <tr>
+                  <th>Cant. Tablas</th>
+                  <th>Jugador</th>
+                  <th># de Tabla</th>
+                  <th>Documento</th>
+                  <th># Documento</th>
+                  <th>Correo</th>
+                  <th># Celular</th>
+                  <th>Creado por</th>
+                  <th>Certifica que no es func.</th>
+                  <th>Autorizo de Datos</th>
+                  <th>Total de la Compra</th>
+                  <th>Hora</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+               ${data
+                 .map(
+                   (registro, i) => `
+                      <tr>
+                        <td>${i + 1}</td>
+                        <td>${registro.Nombre}</td>
+                        <td>${registro.Num_tabla}</td>
+                        <td>${registro.Tipo_documento}</td>
+                        <td>${registro.Num_documento}</td>
+                        <td>${registro.Correo}</td>
+                        <td>${registro.Num_celular}</td>
+                        <td>${registro.Usuario_crea}</td>
+                        <td>${registro.Funcionario}</td>
+                        <td>${registro.Autorizo}</td>
+                        <td>${registro.Total_compra}</td>
+                        <td>${formatearFechaHora(registro.Hora, "hora")}</td>
+                        <td>${formatearFechaHora(registro.Fecha, "fecha")}</td>
+                      </tr>
+                    `,
+                 )
+                 .join("")}
+              </tbody>
+            </table>
+          </div>
+        `;
+        document.getElementById("btn_export_excel_for_document").style.display =
+          "block";
+      } else {
         container.innerHTML = "Sin Registros";
       }
     })

@@ -223,7 +223,7 @@
                             <input class="form-control" style=" cursor: pointer; display: none;" type="number"
                                 id="cedula" placeholder="Cedúla" />
 
-                            <input class="form-control" style=" cursor: pointer;" type="text" id="nombre"
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" style=" cursor: pointer;" type="text" id="nombre"
                                 placeholder="Nombre" />
                             <div class="content_btn_modal">
                                 <button id="btn_submit" class="btn btn-danger">Enviar</button>

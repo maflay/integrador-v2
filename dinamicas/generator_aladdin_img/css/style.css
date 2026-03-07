@@ -1,0 +1,946 @@
+@font-face {
+    font-family: 'TT Interphases DemiBold';
+    src: url('/dinamicas/generator_aladdin_img/fonts/TT-Interphases-Pro-Trial-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Poppins-Bold';
+    src: url('/dinamicas/generator_aladdin_img/fonts/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('/dinamicas/generator_aladdin_img/fonts/Poppins-Light.ttf');
+}
+
+body {
+    font-family: 'Poppins-Light', sans-serif !important;
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content_main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    gap: 15px;
+    padding-top: 20px;
+}
+
+.content_all_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 600px;
+    height: 1200px;
+}
+
+.content_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.content_img img {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+}
+
+.content_campos {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(22, 180, 43, 0.562); */
+}
+
+._campo_bolsa_entregar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    top: 330px;
+    width: 100%;
+
+}
+
+.btn_descargar_img {
+    position: absolute;
+    bottom: -40px;
+}
+
+._campo_titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 47px;
+    top: 178px;
+    width: 100%;
+    color: #fff;
+}
+
+._campo_titulo_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 47px;
+    top: 178px;
+    width: 100%;
+    color: #fff;
+}
+
+._campo_monto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 6rem;
+    top: 350px;
+    width: 100%;
+    color: #F5B249 !important;
+    /* dorado sólido */
+}
+
+._campo_monto_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 70px;
+    top: 354px;
+    width: 100%;
+    color: #F5B249 !important;
+}
+
+._campo_primer_lugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 26px;
+    top: 444px;
+    width: 100%;
+    color: white;
+}
+
+._campo_fecha {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    top: 535px;
+    width: 100%;
+}
+
+._campo_fecha_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    top: 545px;
+    width: 100%;
+}
+
+._campo_fecha_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 2rem;
+    top: 545px;
+    width: 100%;
+}
+
+._campo_entrada_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 1.8rem;
+    bottom: 515px;
+    left: 73px;
+}
+
+._campo_entrada_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 26px;
+    bottom: 528px;
+    left: 161px;
+}
+
+._campo_entrada_primerlugar_p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 27px;
+    bottom: 498px;
+    left: 83px;
+}
+
+._campo_entrada_descuento_sit_and_go_p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 27px;
+    bottom: 554px;
+    left: 160px;
+}
+
+._campo_entrada_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    bottom: 498px;
+    left: 43px;
+}
+
+._campo_entrada_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    bottom: 525px;
+    left: 46px;
+}
+
+._campo_re_entry {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 1.8rem;
+    bottom: 515px;
+    left: 206px;
+}
+
+._campo_re_entry_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 1.8rem;
+    bottom: 495px;
+    left: 271px;
+}
+
+._campo_re_entry_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 28px;
+    bottom: 497px;
+    left: 207px;
+}
+
+._campo_re_entry_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 28px;
+    bottom: 520px;
+    left: 276px;
+}
+
+._campo_cupos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 48px;
+    bottom: 520px;
+    left: 353px;
+}
+
+._campo_cupos_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 43px;
+    bottom: 518px;
+    left: 400px;
+    transform: scale(0.7, 1);
+    margin: 0;
+}
+
+._campo_cupos_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 48px;
+    bottom: 503px;
+    left: 346px;
+    transform: scale(0.7, 1);
+}
+
+._campo_cupos_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 45px;
+    bottom: 526px;
+    transform: scale(0.7, 1);
+    left: 400px;
+}
+
+._campo_stack_inicial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 23px;
+    bottom: 471px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+._campo_stack_inicial_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 23px;
+    bottom: 454px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+._campo_stack_inicial_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 23px;
+    bottom: 454px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+._campo_stack_inicial_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 23px;
+    bottom: 454px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+._campo_registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 22px;
+    bottom: 408px;
+    left: 237px;
+}
+
+._campo_registro_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 22px;
+    bottom: 394px;
+    left: 237px;
+}
+
+._campo_registro_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 22px;
+    bottom: 394px;
+    left: 237px;
+}
+
+._campo_registro_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 22px;
+    bottom: 392px;
+    left: 140px;
+}
+
+._campo_registro_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 22px;
+    bottom: 408px;
+    left: 137px;
+}
+
+._campo_nivel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 27px;
+    bottom: 406px;
+    left: 412px;
+}
+
+._campo_nivel_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 23px;
+    bottom: 408px;
+    left: 313px;
+}
+
+._campo_nivel_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 27px;
+    bottom: 392px;
+    left: 412px;
+}
+
+._campo_nivel_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 27px;
+    bottom: 392px;
+    left: 412px;
+}
+
+._campo_nivel_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 24px;
+    bottom: 392px;
+    left: 316px;
+}
+
+._campo_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 23px;
+    bottom: 408px;
+    left: 483px;
+}
+
+._campo_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 26px;
+    bottom: 391px;
+    left: 483px;
+}
+
+._campo_puntualidad {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 27px;
+    bottom: 360px;
+    left: 279px;
+}
+
+._campo_puntualidad_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 27px;
+    bottom: 347px;
+    left: 279px;
+}
+
+._campo_puntualidad_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 27px;
+    bottom: 347px;
+    left: 279px;
+}
+
+._campo_puntualidad_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 27px;
+    bottom: 347px;
+    left: 279px;
+}
+
+._campo_dealer_tip {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    bottom: 311px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+._campo_dealer_tip_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    bottom: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+._campo_dealer_tip_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    bottom: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+._campo_dealer_tip_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    bottom: 300px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+._campo_premio_completa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 348px;
+    position: absolute;
+    font-size: 14px;
+    bottom: 257px;
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+._campo_premio_completa_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 348px;
+    position: absolute;
+    font-size: 14px;
+    bottom: 248px;
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+._campo_premio_completa_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 348px;
+    position: absolute;
+    font-size: 14px;
+    bottom: 248px;
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+._campo_premio_completa_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 348px;
+    position: absolute;
+    font-size: 14px;
+    bottom: 248px;
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+._campo_premio_aplica {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 348px;
+    position: absolute;
+    font-size: 14px;
+    bottom: 237px;
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+._campo_premio_aplica_entrada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 348px;
+    position: absolute;
+    font-size: 14px;
+    bottom: 232px;
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+._campo_premio_aplica_primerlugar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 348px;
+    position: absolute;
+    font-size: 14px;
+    bottom: 232px;
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+._campo_premio_aplica_descuento_sit_and_go {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 348px;
+    position: absolute;
+    font-size: 14px;
+    bottom: 232px;
+    color: black;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+}
+
+/* 
+@media(max-width: 768px) {
+
+    .content_img img {
+        height: auto;
+    }
+
+    .content_all_img {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+    }
+
+    ._campo_bolsa_entregar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-size: 24px;
+        top: 192px;
+        width: 100%;
+    }
+
+    ._campo_monto {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        font-weight: bold;
+        font-size: 70px;
+        top: 201px;
+        width: 100%;
+        color: #F5B249 !important;
+    }
+
+    ._campo_fecha {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        color: white;
+        font-size: 24px;
+        top: 322px;
+        width: 100%;
+    }
+
+    ._campo_cupos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        color: white;
+        font-size: 33px;
+        bottom: 523px;
+        left: 205px;
+        width: 215px;
+    }
+
+    ._campo_entrada_ {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        color: white;
+        font-size: 18px;
+        bottom: 775px;
+        left: 56px;
+    }
+
+    ._campo_re_entry {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        color: white;
+        font-size: 18px;
+        bottom: 775px;
+        left: 146px;
+    }
+
+    ._campo_cupos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        color: white;
+        font-size: 33px;
+        bottom: 776px;
+        left: 205px;
+        width: 215px;
+    }
+
+    ._campo_stack_inicial {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        color: white;
+        font-size: 14px;
+        bottom: 748px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    ._campo_registro {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        color: white;
+        font-size: 18px;
+        bottom: 711px;
+        left: 155px;
+    }
+
+    ._campo_nivel {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        color: white;
+        font-size: 18px;
+        bottom: auto;
+        left: auto;
+        top: 446px;
+        right: 68px;
+    }
+
+    ._campo_puntualidad {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        color: white;
+        font-size: 18px;
+        bottom: 683px;
+        left: 191px;
+    }
+
+    ._campo_dealer_tip {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        color: white;
+        font-size: 14px;
+        bottom: 661px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .btn_descargar_img {
+        position: absolute;
+        bottom: 412px;
+    }
+} */

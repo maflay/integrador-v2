@@ -70,7 +70,7 @@
                         <option value="ESTANDARALADDIN">Estándar Aladdin</option>
                         <option value="ADICIONAL">Adicional</option>
                     </select>
-                    <input class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre">
+                    <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" type="text" name="nombre" id="nombre" placeholder="Nombre">
                     <input class="form-control" type="number" name="valor" id="valor" placeholder="Valor">
                     <input class="form-control" type="text" name="motivo" id="motivo" placeholder="Motivo">
                     <input class="form-control" type="text" name="bono" id="bono" placeholder="Bono">

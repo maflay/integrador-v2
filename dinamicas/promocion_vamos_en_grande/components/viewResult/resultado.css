@@ -1,0 +1,153 @@
+.content_main_info_vamos {
+    background-image: linear-gradient(180deg, #680000, #680000);
+    color: white;
+    height: 100vh;
+}
+
+.sin_registros {
+    font-size: 4rem;
+}
+
+.slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+}
+
+.posi_btn_slider_resutl_1 {
+    position: absolute;
+    bottom: 80px;
+    left: 45%;
+    transform: translateX(-50%);
+}
+
+.posi_btn_slider_resutl_2 {
+    position: absolute;
+    bottom: 80px;
+    right: 45%;
+    transform: translateX(50%);
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(0, 0, 0, .25);
+    color: #fff;
+    font-size: 25px;
+    line-height: 1;
+    padding: 0 0 6px 0px;
+}
+
+.nav:disabled {
+    opacity: .35;
+}
+
+.slider-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform .35s ease;
+    will-change: transform;
+}
+
+.slide {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.col {
+    background: rgba(0, 0, 0, .25);
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.row-item {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(3, 52, 143, 0.712);
+    margin-bottom: 10px;
+    height: 140px;
+    border: rgba(255, 255, 0, 0.699) 5px solid;
+}
+
+.row-item:last-child {
+    margin-bottom: 0;
+}
+
+.num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 58px;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.555);
+    border: rgba(0, 144, 163, 0.384) 8px solid;
+
+    padding: 6px 8px;
+    width: 100px;
+}
+
+.color_red {
+    color: red !important;
+}
+
+.color_green {
+    color: green !important;
+}
+
+.color_black {
+    color: black !important;
+}
+
+.name {
+    font-size: 58px;
+    line-height: 1.2;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    padding-left: 50px;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 0 20px;
+    color: black;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 0;
+    background: rgba(49, 49, 49, 0.35);
+}
+
+.dot.active {
+    background: rgba(0, 0, 0, 0.9);
+}
+
+/* móvil: sigue siendo 2 columnas, pero si quieres 1 columna en móvil, descomenta:
+@media (max-width: 520px){
+  .slide{ grid-template-columns: 1fr; }
+}
+*/

@@ -16,7 +16,6 @@ function getCookie(name) {
   return null;
 }
 
-
 function validateSession() {
   // // script de cada vista
   let objUser = getCookie(CS_KEY);
@@ -29,40 +28,9 @@ function validateSession() {
       allowOutsideClick: false,
     }).then((result) => {
       if (result.isConfirmed) {
-        window.location.href = "/#inicio";
+        window.location.href = "/#login";
       }
     });
-    if (document.getElementById("content_halloween_misterioso")) {
-      document.getElementById("content_halloween_misterioso").style.display =
-        "none";
-    }
-
-    if (document.getElementById("content_halloween_misterioso_mp")) {
-      document.getElementById("content_halloween_misterioso_mp").style.display =
-        "none";
-    }
-
-    if (document.getElementById("content_principal_portales")) {
-      document.getElementById("content_principal_portales").style.display =
-        "none";
-    }
-
-    if (document.getElementById("content_main_bingo")) {
-      document.getElementById("content_main_bingo").style.display = "none";
-    }
-
-    if (document.getElementById("main_dinamica_test")) {
-      document.getElementById("main_dinamica_test").style.display = "none";
-    }
-
-    if (document.getElementById("main_class_acumula_y_gana")) {
-      document.getElementById("main_class_acumula_y_gana").style.display =
-        "none";
-    }
-
-    if (document.getElementById("main_class_rally_puntos")) {
-      document.getElementById("main_class_rally_puntos").style.display = "none";
-    }
     return;
   }
 
@@ -74,6 +42,14 @@ validateSession();
 function inforUser() {
   let objUser = getCookie(CS_KEY);
   return objUser;
+}
+
+function confettiAl() {
+  confetti({
+    particleCount: 200,
+    spread: 70,
+    origin: { y: 0.6 },
+  });
 }
 
 // const user = inforUser();

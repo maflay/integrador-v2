@@ -38,11 +38,32 @@ body {
     background-color: #ffffff;
 }
 
-.contenedor-inicial a{
+.search_promo {
     position: absolute;
-    top: 20px;
-    right: 100px;
-    text-decoration: none;
+    top: 15px;
+    right: 20px;
+    width: 250px;
+}
+
+.title_form {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    position: relative;
+    left: 20px;
+}
+
+.actions_veg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 6px;
+    right: 16px;
+    width: auto;
+    z-index: 5;
 }
 
 .control-finalista {
@@ -388,11 +409,16 @@ tr.selected {
     }
 
     .table-scrolld {
-        max-width: 350px;
         max-height: 450px;
     }
 
     .modal-content2-gran {
         width: 90%;
+    }
+
+    .actions_veg {
+        position: relative;
+        right: 0;
+        height: 100px;
     }
 }

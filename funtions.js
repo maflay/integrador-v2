@@ -176,6 +176,12 @@ if (userRoute.Nivel == 2 || userRoute.Nivel == 4) {
       css: ["/view/create_user/create_user.css"],
       js: "/view/create_user/create_user.js",
     },
+     "#directorio": {
+      title: "Directorio",
+      file: "/view/registrodirectorio/directorio.html",
+      css: ["/view/registrodirectorio/directorio.css"],
+      js: "/view/registrodirectorio/directorio.js",
+    },
     "#all_user": {
       title: "Usuarios",
       file: "/view/usuarios/all_user/all_user.html",

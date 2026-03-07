@@ -1,3 +1,4 @@
+metodoprueba();
 const desiredHash = "#publicacion_instagram";
 let lastHash = null;
 const links = Array.from(

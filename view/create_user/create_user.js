@@ -23,7 +23,7 @@ async function uploadAvatar() {
     throw new Error(data.mensaje || "Error subiendo imagen");
   }
 
-  return data.url; // ✅ URL pública de la imagen
+  return data.url;
 }
 
 const content_form = document.getElementById("content_form");
@@ -97,10 +97,8 @@ btn_create_user.addEventListener("click", () => {
           btn_create_user.textContent = "Enviando...";
           content_form.classList.add("item_disable");
 
-          // 🔹 1. Subir imagen (si hay)
           const avatarUrl = await uploadAvatar();
 
-          // 🔹 2. Verificar usuario existente (tu lógica actual)
           const res = await fetch(
             `${u.Url}?cedula=${encodeURIComponent(cedula.value)}`,
           );
@@ -114,7 +112,6 @@ btn_create_user.addEventListener("click", () => {
             throw new Error("Usuario existente");
           }
 
-          // 🔹 3. Fecha / hora (igual que antes)
           const fechaCompleta = new Date().toLocaleString("es-CO", {
             timeZone: "America/Bogota",
             year: "numeric",
@@ -133,7 +130,6 @@ btn_create_user.addEventListener("click", () => {
             "." +
             apellido.value.toLowerCase().split(" ")[0];
 
-          // 🔹 4. Enviar datos del usuario (AGREGAMOS avatarUrl)
           let data = {
             tipo: "envio_1",
             valor_1: hora,
@@ -146,7 +142,7 @@ btn_create_user.addEventListener("click", () => {
             valor_8: correo.value,
             valor_9: username,
             valor_10: permisos.value,
-            valor_11: avatarUrl, // ✅ AQUÍ VA LA IMAGEN
+            valor_11: avatarUrl, //LA IMAGEN
           };
 
           await fetch(u.Url, {
@@ -155,7 +151,6 @@ btn_create_user.addEventListener("click", () => {
             body: JSON.stringify(data),
           });
 
-          // 🔹 5. Limpiar formulario
           content_form.reset?.();
           nombre.value = "";
           apellido.value = "";

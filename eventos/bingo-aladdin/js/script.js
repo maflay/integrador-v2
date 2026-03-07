@@ -6,8 +6,8 @@ function setCookie(name, value, opts = {}) {
   const {
     hours = 3,
     path = "/",
-    sameSite = "Lax", // recomendado
-    secure = location.protocol === "https:", // true si estás en https
+    sameSite = "Lax",
+    secure = location.protocol === "https:",
   } = opts;
 
   const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString();
@@ -193,13 +193,31 @@ function getTablasFromUI() {
     tablas.push(val);
   }
 
-  // evitar duplicadas en el mismo envío
   const set = new Set(tablas);
   if (set.size !== tablas.length)
     return { error: "No puedes repetir números de tabla." };
 
   return { tablas };
 }
+
+document.getElementById("num_documento").addEventListener("change", () => {
+  console.log(document.getElementById("num_documento").value);
+  if (document.getElementById("num_documento").value.length >= 7) {
+    loader.style.display = "flex";
+    fetch(
+      `${url}?hoja=tablas&num_documento=${document.getElementById("num_documento").value}`,
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire({
+          icon: "warning",
+          title: `${data.length}`,
+          html: "El cliente tiene esta cantidad de Tablas",
+        });
+        loader.style.display = "none";
+      });
+  }
+});
 
 btn_send.addEventListener("click", () => {
   handleSendTabla();

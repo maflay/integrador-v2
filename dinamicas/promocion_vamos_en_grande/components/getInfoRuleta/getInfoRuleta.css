@@ -1,0 +1,143 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content_main_info_vamos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    background-image: linear-gradient(180deg, #00000093, #00000093), url(/dinamicas/promocion_vamos_en_grande/resources/background_vamos.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 950px;
+    /* padding: 200px 0; */
+}
+
+.content_info_ruleta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_form_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 95%;
+    max-width: 800px;
+    color: white;
+}
+
+.controls_filtro{
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.content_img {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.content_img img {
+    width: 250px;
+}
+
+.table-scrolld {
+    max-height: 450px;
+}
+
+.table-result {
+    width: 100%;
+    max-width: 800px;
+    overflow-x: auto;
+}
+
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.styled-table thead {
+    background: rgb(124, 0, 21);
+    color: #fff;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.styled-table tbody tr {
+    background-color: #fff;
+    color: #000;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.btn_ganador{
+    font-size: 10px;
+    padding: 2px 5px;
+}
+
+@media(max-width: 768px) {
+    .content_img {
+        position: absolute;
+        top: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

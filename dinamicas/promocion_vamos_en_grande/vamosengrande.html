@@ -29,39 +29,41 @@
                 <h3>Ingrese el Semi-finalista</h3>
                 <div class="control-finalista">
                     <!-- <input placeholder="Fecha" class="form-control" id="fecha" type="date"> -->
-                    <input style="display: none;" placeholder="Cedula" class="form-control" id="cedula" type="number">
-                    <input placeholder="Nombre" onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                        id="nombre" type="text">
                     <select class="form-control" style="cursor: pointer;" id="casino">
-                        <option value="">Casino...</option>
-                        <option value="A05">A05</option>
-                        <option value="A07">A07</option>
-                        <option value="A08">A08</option>
-                        <option value="A09">A09</option>
-                        <option value="A12">A12</option>
-                        <option value="A12-MESAS">A12-MESAS</option>
-                        <option value="A15">A15</option>
-                        <option value="A15-MESAS">A15-MESAS</option>
-                        <option value="A16">A16</option>
-                        <option value="A19">A19</option>
-                        <option value="A35">A35</option>
-                        <option value="A36">A36</option>
-                        <option value="A36-MESAS">A36-MESAS</option>
-                        <option value="A38">A38</option>
-                        <option value="A39">A39</option>
-                        <option value="A43">A43</option>
-                        <option value="A48">A48</option>
-                        <option value="A48-MESAS">A48-MESAS</option>
-                        <option value="A49">A49</option>
-                        <option value="A50">A50</option>
-                        <option value="A53">A53</option>
-                        <option value="A70">A70</option>
-                        <option value="A781">A781</option>
-                        <option value="A88">A88</option>
-                        <option value="A100">A100</option>
-                        <option value="A108">A108</option>
-                        <option value="A108-MESAS">A108-MESAS</option>
+                         <option value="">Casino...</option>
+                                <option value="A05">A05</option>
+                                <option value="A07">A07</option>
+                                <option value="A08">A08</option>
+                                <option value="A09">A09</option>
+                                <option value="A12">A12</option>
+                                <option value="A12-MESAS">A12-MESAS</option>
+                                <option value="A15">A15</option>
+                                <option value="A15-MESAS">A15-MESAS</option>
+                                <option value="A16">A16</option>
+                                <option value="A19">A19</option>
+                                <option value="A35">A35</option>
+                                <option value="A36">A36</option>
+                                <option value="A36-MESAS">A36-MESAS</option>
+                                <option value="A38">A38</option>
+                                <option value="A39">A39</option>
+                                <option value="A43">A43</option>
+                                <option value="A48">A48</option>
+                                <option value="A48-MESAS">A48-MESAS</option>
+                                <option value="A49">A49</option>
+                                <option value="A50">A50</option>
+                                <option value="A53">A53</option>
+                                <option value="A70">A70</option>
+                                <option value="A781">A781</option>
+                                <option value="A88">A88</option>
+                                <option value="A100">A100</option>
+                                <option value="A108">A108</option>
+                                <option value="A108-MESAS">A108-MESAS</option>
+                                <option value="A127">A127</option>
+                                <option value="A127-MESAS">A127-MESAS</option>
                     </select>
+                    <input placeholder="Nombre" onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                    id="nombre" type="text">
+                    <input placeholder="Cedúla" class="form-control" id="cedula" type="number">
 
                 </div>
                 <br />
@@ -100,14 +102,25 @@
         </div>
         <br />
         <div class="contenedor-inicial">
-            <h3>Todos los registro (Semi-finalista)</h3>
-            <div id="content-all-result"></div>
+            <h3 class="title_form">Todos los registro (Semi-finalista)</h3>
+            <input style="display: none;" onkeyup="this.value = this.value.toUpperCase()" type="text"
+                id="buscar_usuario" class="form-control search_promo" placeholder="Buscar...">
+            <div style="width: 100%;" id="content-all-result"></div>
         </div>
         <br />
         <div class="contenedor-inicial">
-            <a style="display: none;" id="ir_dinamica" href="/dinamicas/promocion_vamos_en_grande/components/ruleta-dinamica/ruleta-dinamica.html">Dinamica</a>
-            <h3>Todos los registro (finalista)</h3>
-            <div id="content-all-result-finalista"></div>
+            <div style="display: none;" id="ir_dinamica" class="actions_veg">
+                <input onkeyup="this.value = this.value.toUpperCase()" type="text" id="buscar_usuario_fin"
+                    class="form-control" placeholder="Buscar...">
+                <a href="/dinamicas/promocion_vamos_en_grande/components/getInfoRuleta/getInfoRuleta.html">Conocer
+                    Resultados</a>
+                <a class="btn btn-primary" target="_blank"
+                    href="/dinamicas/promocion_vamos_en_grande/components/ruleta-dinamica/ruleta-dinamica.html">Dinámica</a>
+                <button title="Ganadores del Mes" style="display: none;" id="last_ganador"
+                    class="btn btn-danger">Ganador</button>
+            </div>
+            <h3 class="title_form">Todos los registro (finalista)</h3>
+            <div style="width: 100%;" id="content-all-result-finalista"></div>
         </div>
         <br />
     </div>
@@ -126,7 +139,7 @@
                             <label for="casino">CASINO</label>
                             <select class="input-gran form-control" style="cursor: pointer;"
                                 id="casino-modal-observacion">
-                                <option value="">Seleccione...</option>
+                                <option value="">Casino...</option>
                                 <option value="A05">A05</option>
                                 <option value="A07">A07</option>
                                 <option value="A08">A08</option>
@@ -142,19 +155,20 @@
                                 <option value="A36-MESAS">A36-MESAS</option>
                                 <option value="A38">A38</option>
                                 <option value="A39">A39</option>
-                                <option value="A39">A43</option>
+                                <option value="A43">A43</option>
                                 <option value="A48">A48</option>
                                 <option value="A48-MESAS">A48-MESAS</option>
                                 <option value="A49">A49</option>
                                 <option value="A50">A50</option>
-                                <option value="A50">MP53</option>
+                                <option value="A53">A53</option>
                                 <option value="A70">A70</option>
                                 <option value="A781">A781</option>
                                 <option value="A88">A88</option>
                                 <option value="A100">A100</option>
-                                <option value="A100-MESAS">A100-MESAS</option>
                                 <option value="A108">A108</option>
                                 <option value="A108-MESAS">A108-MESAS</option>
+                                <option value="A127">A127</option>
+                                <option value="A127-MESAS">A127-MESAS</option>
                             </select>
                         </div>
 
@@ -190,10 +204,6 @@
                 <div id="table-container-gran">
                     <div class="control-finalista">
                         <!-- <input placeholder="Fecha" class="form-control" id="fecha" type="date"> -->
-                        <input style="display: none;" placeholder="Cedula" class="form-control" id="cedula_finalista"
-                            type="number">
-                        <input placeholder="Nombre" onkeyup="this.value = this.value.toUpperCase();"
-                            class="form-control" id="nombre_finalista" type="text">
                         <select class="form-control" style="cursor: pointer;" id="casino_finalista">
                             <option value="">Casino...</option>
                             <option value="A05">A05</option>
@@ -216,14 +226,19 @@
                             <option value="A48-MESAS">A48-MESAS</option>
                             <option value="A49">A49</option>
                             <option value="A50">A50</option>
-                            <option value="MP50">MP53</option>
+                            <option value="A53">A53</option>
                             <option value="A70">A70</option>
                             <option value="A781">A781</option>
                             <option value="A88">A88</option>
                             <option value="A100">A100</option>
                             <option value="A108">A108</option>
                             <option value="A108-MESAS">A108-MESAS</option>
+                            <option value="A127">A127</option>
+                            <option value="A127-MESAS">A127-MESAS</option>
                         </select>
+                        <input placeholder="Nombre" onkeyup="this.value = this.value.toUpperCase();"
+                        class="form-control" id="nombre_finalista" type="text">
+                        <input placeholder="Cedula" class="form-control" id="cedula_finalista" type="number">
                         <div>
                             <button onclick="handleCreateFinalista()" class="btn btn-primary">Crear</button>
                         </div>

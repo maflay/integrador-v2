@@ -1,0 +1,1000 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content_main_vuelta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url(/dinamicas/promocion-vuelta-al-mundo/resources/fondo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.content_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 95%;
+    max-width: 600px;
+    background-color: #6f4e37d5;
+    padding: 30px;
+    color: white;
+}
+
+.content_form img {
+    width: 200px;
+}
+
+.content_input_lanz {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 15px;
+}
+
+.content_logo {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+
+.content_logo img {
+    width: 10vw;
+}
+
+.content_opciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 10;
+}
+
+.content_opciones img {
+    width: 30px;
+    transition: all 0.4s ease;
+}
+
+.content_opciones img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.content_opciones button {
+    position: absolute;
+    right: 0;
+    bottom: -45px;
+}
+
+.aeropuerto {
+    position: absolute;
+    width: 247px;
+    top: 280px;
+    left: 250px;
+}
+
+.board {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1170px;
+    max-height: 800px;
+    background-color: rgba(0, 0, 0, 0.562);
+    border-radius: 40px;
+}
+
+.board_img {
+    width: 180px;
+    transition: all 0.4s ease;
+}
+
+.board_img:hover {
+    transform: scale(1.1);
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.ubicacion_inicio {
+    position: absolute;
+    left: 340px;
+    top: -15px;
+}
+
+.posicion_6_8 {
+    transform: rotate(90deg) !important;
+}
+
+.posicion_9_14 {
+    transform: rotate(180deg) !important;
+}
+
+.posicion_15_17 {
+    transform: rotate(270deg) !important;
+}
+
+.posicion_18_ {
+    transform: rotate(300deg) !important;
+}
+
+.posicion_panama {
+    position: absolute;
+    width: 168px !important;
+    top: 23px;
+    left: 295px;
+    transition: all 0.4s ease;
+}
+
+.posicion_buenos_aires {
+    position: absolute;
+    width: 153px !important;
+    top: 46px;
+    left: 430px;
+    transition: all 0.4s ease;
+}
+
+.posicion_rio_de_janeiro {
+    position: absolute;
+    width: 175px !important;
+    top: 58px;
+    left: 573px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.posicion_nueva_york {
+    position: absolute;
+    width: 169px !important;
+    top: 15px;
+    left: 735px;
+    transition: all 0.4s ease;
+}
+
+.posicion_las_vegas {
+    position: absolute;
+    width: 185px !important;
+    top: 49px;
+    left: 880px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.posicion_quebec {
+    position: absolute;
+    width: 225px !important;
+    top: 147px;
+    left: 956px;
+    transition: all 0.4s ease;
+}
+
+.posicion_madrid {
+    position: absolute;
+    width: 165px !important;
+    top: 332px;
+    left: 980px;
+    transition: all 0.4s ease;
+}
+
+.posicion_roma {
+    position: absolute;
+    width: 197px !important;
+    top: 485px;
+    left: 956px;
+    transition: all 0.4s ease;
+}
+
+.posicion_paris {
+    position: absolute;
+    width: 213px !important;
+    top: 586px;
+    left: 883px;
+    transition: all 0.4s ease;
+}
+
+.posicion_londres {
+    position: absolute;
+    width: 164px !important;
+    top: 587px;
+    left: 717px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.posicion_amsterdam {
+    position: absolute;
+    width: 175px !important;
+    top: 589px;
+    left: 581px;
+    transition: all 0.4s ease;
+}
+
+.posicion_berlin {
+    position: absolute;
+    width: 143px !important;
+    top: 609px;
+    left: 443px;
+    transition: all 0.4s ease;
+}
+
+.posicion_el_cairo {
+    position: absolute;
+    width: 179px !important;
+    top: 613px;
+    left: 281px;
+    transition: all 0.4s ease;
+}
+
+.posicion_dubai {
+    position: absolute;
+    width: 191px !important;
+    top: 576px;
+    left: 99px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.posicion_moscu {
+    position: absolute;
+    width: 182px !important;
+    top: 479px;
+    left: 30px;
+    transition: all 0.4s ease;
+}
+
+.posicion_tokyo {
+    position: absolute;
+    width: 152px !important;
+    top: 334px;
+    left: 42px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.posicion_sydney {
+    position: absolute;
+    width: 191px !important;
+    top: 156px;
+    left: 42px;
+    transition: all 0.4s ease;
+}
+
+.posicion_beijin {
+    position: absolute;
+    width: 197px !important;
+    top: 64px;
+    left: 92px;
+    transition: all 0.4s ease;
+}
+
+.avion_back {
+    width: 101px !important;
+    background: #000000a3;
+    border: white 1px solid;
+    border-radius: 20px;
+    animation: sombra-animada-img 2s infinite;
+}
+
+.avance_1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 312px;
+    transform: translateX(-50%) rotate(-89deg);
+    top: 284px;
+    width: 102px !important;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.avance_1:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.avance_2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 312px;
+    transform: translateX(-50%) rotate(-89deg);
+    top: 398px;
+    width: 102px !important;
+    z-index: 1;
+}
+
+.avance_2:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+
+.avance_3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 427px;
+    transform: translateX(-50%) rotate(-180deg);
+    top: 421px;
+    width: 102px !important;
+    z-index: 1;
+}
+
+.avance_3:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.item_disable {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.notificacion_registro_dia {
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    border-radius: 50%;
+    z-index: 10;
+    font-size: 4rem;
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: -5px;
+}
+
+.dinero_promo {
+    font-size: 16px;
+}
+
+
+@keyframes sombra-animada-img {
+    0% {
+        filter: drop-shadow(0 0 20px #fff);
+    }
+
+    5% {
+        filter: drop-shadow(0 0 18px #fff);
+    }
+
+    10% {
+        filter: drop-shadow(0 0 16px #fff);
+    }
+
+    15% {
+        filter: drop-shadow(0 0 14px #fff);
+    }
+
+    20% {
+        filter: drop-shadow(0 0 12px #fff);
+    }
+
+    25% {
+        filter: drop-shadow(0 0 10px #fff);
+    }
+
+    30% {
+        filter: drop-shadow(0 0 12px #fff);
+    }
+
+    35% {
+        filter: drop-shadow(0 0 14px #fff);
+    }
+
+    40% {
+        filter: drop-shadow(0 0 16px #fff);
+    }
+
+    45% {
+        filter: drop-shadow(0 0 18px #fff);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 20px #fff);
+    }
+
+    55% {
+        filter: drop-shadow(0 0 18px #fff);
+    }
+
+    60% {
+        filter: drop-shadow(0 0 16px #fff);
+    }
+
+    65% {
+        filter: drop-shadow(0 0 14px #fff);
+    }
+
+    70% {
+        filter: drop-shadow(0 0 12px #fff);
+    }
+
+    75% {
+        filter: drop-shadow(0 0 10px #fff);
+    }
+
+    80% {
+        filter: drop-shadow(0 0 12px #fff);
+    }
+
+    85% {
+        filter: drop-shadow(0 0 14px #fff);
+    }
+
+    90% {
+        filter: drop-shadow(0 0 16px #fff);
+    }
+
+    95% {
+        filter: drop-shadow(0 0 18px #fff);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 20px #fff);
+    }
+}
+
+@font-face {
+    font-family: 'super wonder';
+    src: url('/fonts/Super\ Wonder.ttf') format('truetype');
+}
+
+
+.acumula_avion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 350px;
+    right: 350px;
+    font-size: 38px;
+    color: white;
+    font-weight: bold;
+    font-family: 'super wonder', sans-serif !important;
+    z-index: 3;
+}
+
+
+/* MODAL */
+.modal_opciones_dinamica {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.content_modal_dinamica {
+    width: 950px;
+    height: 100%;
+    max-height: 500px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    position: relative;
+}
+
+.content_head_modal {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    padding: 10px 0;
+    width: 100%;
+    font-size: 12px;
+}
+
+.content_head_modal p:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.close_modal_icon {
+    font-size: 16px;
+    position: absolute;
+    border-radius: 20px;
+    padding: 0 8px;
+    top: -10px;
+    right: 0px;
+    transition: all 0.4s ease;
+}
+
+.close_modal_icon:hover {
+    background-color: rgb(0, 0, 58);
+    color: white;
+    border-radius: 20px;
+    padding: 0 8px;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.content_body_modal {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.info_body_modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+}
+
+.info_body_modal h2 {
+    margin-top: 20px;
+}
+
+.input_modal_DP {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    gap: 10px;
+}
+
+.input_modal_DP input {
+    width: 200px;
+}
+
+.input_modal_DP select {
+    width: 200px;
+}
+
+
+.select_menu {
+    border-bottom: #791706 1px solid;
+}
+
+.content_head_modal p:hover.select_menu {
+    border-bottom: #995d02 1px solid;
+}
+
+.table_ya_tiene_bono {
+    color: rgb(8, 209, 8);
+    font-size: 0.5rem;
+}
+
+.table_btn_enviar_bono {
+    background-color: #10101a;
+    color: white;
+    border: none;
+    padding: 2px 5px;
+    font-size: 0.5rem;
+    transition: all 0.4s ease;
+    border-radius: 4px;
+}
+
+.table_btn_enviar_bono:hover {
+    background-color: #4c4c69;
+}
+
+.table_input_bono_portal {
+    width: 40px;
+    font-size: 0.5rem;
+    border: rgb(219, 219, 219) solid 1px;
+    border-radius: 10px;
+    padding: 3px 4px;
+}
+
+.table_input_bono_portal:focus {
+    outline: none;
+    border: #aaaaaa solid 1px;
+}
+
+.datos_column_modal {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+    padding: 10px 0;
+}
+
+.datos_column_modal select,
+.datos_column_modal input {
+    width: 180px;
+    font-size: 16px;
+}
+
+.datos_column_modal textarea {
+    width: 300px;
+    height: 150px;
+    border-radius: 20px 20px 0 20px;
+    padding: 10px;
+    font-size: 16px;
+    border: #eee solid 1px;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.datos_column_modal textarea:focus {
+    border: #aaaaaa solid 1px;
+}
+
+.content_btn_modal button {
+    font-size: 16px;
+}
+
+.content_opcion_head {
+    position: relative;
+}
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 800px;
+}
+
+.styled-table thead {
+    background: rgb(9, 24, 53);
+    color: #fff;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 8px 8px;
+    font-size: 10px !important;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.styled-table tbody tr {
+    background-color: #fff;
+    color: #000;
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.table-result {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.color-gray {
+    font-size: 9px;
+    color: gray;
+}
+
+.item_full_screen {
+    width: 100vw !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+}
+
+.content_expand {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.content_expand img {
+    width: 15px;
+    transition: all 0.4s ease;
+}
+
+.content_expand img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    transform: scale(1.1);
+}
+
+.prueba_de_clase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 320px;
+    background-color: #a52a2acc;
+    position: absolute;
+    top: 300px;
+    left: 49%;
+    z-index: 0;
+    border-radius: 20px;
+    border: #fff 1px solid;
+}
+
+@media(max-width: 768px) {
+    .content_input_lanz {
+        flex-direction: column;
+    }
+}
+
+@media(max-width: 1366px) {
+
+    .content_main_vuelta {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        background-image: linear-gradient(180deg, #0000007c, #0000007c), url(/dinamicas/promocion-vuelta-al-mundo/resources/fondo.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
+    .board {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .posicion_panama {
+        position: absolute;
+        width: 128px !important;
+        top: 2px;
+        left: 341px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_buenos_aires {
+        position: absolute;
+        width: 117px !important;
+        top: 20px;
+        left: 440px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_rio_de_janeiro {
+        position: absolute;
+        width: 133px !important;
+        top: 29px;
+        left: 550px;
+        transition: all 0.4s ease;
+        z-index: 1;
+    }
+
+    .posicion_nueva_york {
+        position: absolute;
+        width: 127px !important;
+        top: 0px;
+        left: 671px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_las_vegas {
+        position: absolute;
+        width: 138px !important;
+        top: 29px;
+        left: 780px;
+        transition: all 0.4s ease;
+        z-index: 1;
+    }
+
+    .posicion_quebec {
+        position: absolute;
+        width: 162px !important;
+        top: 105px;
+        left: 836px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_madrid {
+        position: absolute;
+        width: 120px !important;
+        top: 237px;
+        left: 853px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_roma {
+        position: absolute;
+        width: 142px !important;
+        top: 347px;
+        left: 836px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_paris {
+        position: absolute;
+        width: 152px !important;
+        top: 418px;
+        left: 783px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_londres {
+        position: absolute;
+        width: 118px !important;
+        top: 418px;
+        left: 660px;
+        transition: all 0.4s ease;
+        z-index: 1;
+    }
+
+    .posicion_amsterdam {
+        position: absolute;
+        width: 125px !important;
+        top: 420px;
+        left: 561px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_berlin {
+        position: absolute;
+        width: 102px !important;
+        top: 434px;
+        left: 461px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_el_cairo {
+        position: absolute;
+        width: 129px !important;
+        top: 436px;
+        left: 342px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_dubai {
+        position: absolute;
+        width: 140px !important;
+        top: 410px;
+        left: 204px;
+        transition: all 0.4s ease;
+        z-index: 1;
+    }
+
+    .posicion_moscu {
+        position: absolute;
+        width: 130px !important;
+        top: 340px;
+        left: 153px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_tokyo {
+        position: absolute;
+        width: 107px !important;
+        top: 237px;
+        left: 162px;
+        transition: all 0.4s ease;
+        z-index: 1;
+    }
+
+    .posicion_sydney {
+        position: absolute;
+        width: 136px !important;
+        top: 106px;
+        left: 162px;
+        transition: all 0.4s ease;
+    }
+
+    .posicion_beijin {
+        position: absolute;
+        width: 149px !important;
+        top: 33px;
+        left: 191px;
+        transition: all 0.4s ease;
+    }
+
+    .aeropuerto {
+        position: absolute;
+        width: 190px;
+        top: 200px;
+        left: 301px;
+    }
+
+    .avance_1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 348px;
+        transform: translateX(-50%) rotate(-89deg);
+        top: 196px;
+        width: 80px !important;
+        transition: all 0.4s ease;
+        z-index: 1;
+    }
+
+    .avance_2 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 347px;
+        transform: translateX(-50%) rotate(-89deg);
+        top: 289px;
+        width: 80px !important;
+        z-index: 1;
+    }
+
+    .avance_3 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 438px;
+        transform: translateX(-50%) rotate(-180deg);
+        top: 308px;
+        width: 80px !important;
+        z-index: 1;
+    }
+
+    .acumula_avion {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 228px;
+        right: 410px;
+        font-size: 38px;
+        color: white;
+        font-weight: bold;
+        font-family: 'super wonder', sans-serif !important;
+        z-index: 3;
+    }
+
+    .avion_back {
+        width: 80px !important;
+    }
+
+
+    .avance_1,
+    .avance_2,
+    .avance_3 {
+        width: 80px !important;
+    }
+}

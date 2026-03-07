@@ -1,7 +1,8 @@
+metodoprueba();
 const img_send_obs = document.getElementById("img_send_obs");
 const rol_desc_obser = document.getElementById("rol_desc_obser");
 const mini_spinner_observacion_integrador = document.getElementById(
-  "mini_spinner_observacion_integrador"
+  "mini_spinner_observacion_integrador",
 );
 const mini_spinner_any = document.getElementById("mini_spinner_any");
 const fechaCompleta = new Date().toLocaleString("es-CO", {
@@ -29,9 +30,9 @@ const url =
 
 const btn_admin_mensaje = document.getElementById("admin_excel");
 btn_admin_mensaje.addEventListener("click", () => {
-  (window.href =
+  ((window.href =
     "https://docs.google.com/spreadsheets/d/1oZVs6mlve0hngitQLMmGnJx_W9spofKnm13aIZb5gJw/edit?gid=0#gid=0"),
-    "_blank";
+    "_blank");
 });
 metodoprueba();
 const btn_recargarcomentario = document.getElementById("recargarcomentario");

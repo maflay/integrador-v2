@@ -25,7 +25,7 @@
         </div>
         <div class="container container_bingo">
             <div id="content_form_bingo_login_admin" class="content_form_bingo_login">
-                <h2>Iniciar Sesion</h2>
+                <h2>Iniciar Sesion Admin</h2>
                 <div class="input_form">
                     <div class="input-group">
                         <input id="usuario" name="usuario" type="text" required />
@@ -56,10 +56,30 @@
                     </div>
                     <div class="content_actions_consul">
                         <button id="btn_consultar_por_dato" class="btn btn-danger">Consultar</button>
-                        <button style="display: none;" id="btn_export_excel" class="btn btn-success"><img style="width: 20px;" src="/resource/excel_logo.png" alt="Aladdin"></button>
+                        <button style="display: none;" id="btn_export_excel" class="btn btn-success"><img
+                                style="width: 20px;" src="/resource/excel_logo.png" alt="Aladdin"></button>
                     </div>
                 </div>
                 <div style="width: 100%;" id="table_result" class="table_result"></div>
+                <br />
+                <br />
+                <br />
+                <h2>Todos los registros</h2>
+                <div style="display: flex;flex-direction: column; width: 100%;">
+                    <input type="text" id="buscar_usuario" class="form-control search_promo" placeholder="Buscar...">
+                    <br />
+                    <div class="content_get_data table_result" id="table_all_result"></div>
+                </div>
+                <br />
+                <br />
+                <h2>Registro sin Duplicados</h2>
+                <div style="display: flex;flex-direction: column; width: 100%;position: relative;">
+                    <div class="excel_document">
+                        <button style="display: none;" id="btn_export_excel_for_document" class="btn btn-success "><img style="width: 20px;"
+                                src="/resource/excel_logo.png" alt="Aladdin"></button>
+                    </div>
+                    <div class="content_get_data table_result" id="table_for_document"></div>
+                </div>
             </div>
         </div>
     </div>

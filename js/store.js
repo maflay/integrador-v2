@@ -33,11 +33,9 @@ window.CloseModalInfo = CloseModalInfo;
 function validateAdmin() {
   let user = getCookie("__Secure_1nf0_US3R");
   const btn_info = document.querySelectorAll(".btn_admin_test");
-  // Recorremos cada botón
   btn_info.forEach((btn) => {
     const valor = user.Nivel;
 
-    // Ejemplo: ocultar los que no cumplan condición
     if (valor != "1") {
       btn.style.display = "none"; // oculta
     } else {
@@ -46,12 +44,11 @@ function validateAdmin() {
   });
 }
 
-function AlertaDesarrollo() {
-  alert("En desarrollo");
-}
-
 function metodoprueba() {
   let objUser = getCookie("__Secure_1nf0_US3R");
+  if (!objUser) {
+    window.location.reload();
+  }
   const funcionario_nombre = document.getElementById("funcionario_nombre");
   const funcionario_cedula = document.getElementById("funcionario_cedula");
   const funcionario_rol = document.getElementById("funcionario_rol");

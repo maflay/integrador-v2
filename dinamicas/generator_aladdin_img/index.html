@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <title>Genera IMG</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+
+</head>
+
+<body data-main-style="/dinamicas/generator_aladdin_img/css/style.css"
+    data-main-script="/dinamicas/generator_aladdin_img/js/script.js">
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="container">
+        <div class="content_main">
+            <div class="content_controls">
+                <h2>Datos de la plantilla</h2>
+                <select class="form-control" name="plantilla" id="_plantilla">
+                    <option value="">Plantilla...</option>
+                    <option value="martes">Martes</option>
+                    <option value="martes_sit_and_go">Martes Sit & Go</option>
+                    <option value="martes_entrada">Martes Entrada Inicial</option>
+                    <option value="martes_primer_lugar">Martes Primer Lugar</option>
+                    <option value="martes_descuento_sitandgo">Martes Descuento y Sit & Go</option>
+                    <option value="jueves">Jueves</option>
+                    <option value="jueves_sit_and_go">Jueves Sit & Go</option>
+                    <option value="jueves_entrada">Jueves Entrada Inicial</option>
+                    <option value="jueves_primer_lugar">Jueves Primer Lugar</option>
+                    <option value="jueves_descuento_sitandgo">Jueves Descuento y Sit & Go</option>
+                    <option value="sabado">Sábado</option>
+                    <option value="sabado_sit_and_go">Sábado Sit & Go</option>
+                    <option value="sabado_entrada">Sábado Entrada Inicial</option>
+                    <option value="sabado_primer_lugar">Sábado Primer Lugar</option>
+                    <option value="sabado_descuento_sitandgo">Sábado Descuento y Sit & Go</option>
+                </select>
+                <input type="text" id="_titulo" class="form-control" placeholder="Titulo...">
+                <input type="text" id="_bolsa_entregar" class="form-control" placeholder="Bolsa a entregr...">
+                <input type="text" id="_monto" class="form-control" placeholder="Monto...">
+                <input style="display: none;" type="text" id="_monto_primer_lugar" class="form-control"
+                    placeholder="Premio Primer Lugar...">
+                <input type="text" id="_fecha" class="form-control" placeholder="Fecha..."
+                    title="Fecha saldra como la escribas.">
+                <input type="text" id="_entrada_" class="form-control" placeholder="Entrada...">
+                <input style="display: none;" type="text" id="_entrada_primer_lugar" class="form-control"
+                    placeholder="Entrada Primer Lugar...">
+                <input type="text" id="_re_entry" class="form-control" placeholder="Re-Entry...">
+                <input type="text" id="_cupos" class="form-control" placeholder="Cupos...">
+                <input type="text" id="_stack_inicial" class="form-control" placeholder="Stack Inicial...">
+                <input type="text" id="_registro" class="form-control" placeholder="Registro...">
+                <input type="text" id="_nivel" class="form-control" placeholder="Nivel...">
+                <input style="display: none;" type="text" id="_sit_and_go" class="form-control"
+                    placeholder="Sit and Go...">
+                <input type="text" id="_puntualidad" maxlength="23" class="form-control" placeholder="Puntualidad...">
+                <input type="text" id="_dealer_tip" class="form-control" placeholder="Dealer Tip...">
+                <input type="text" id="_premio_completa" class="form-control" placeholder="El premio se com...">
+                <input type="text" id="_premio_aplica" class="form-control" placeholder="El premio aplica...">
+                <div>
+                    <button onclick="location.reload()" class="btn btn-danger">Reiniciar</button>
+                    <button id="btn_generar" class="btn btn-primary">Generar</button>
+                </div>
+            </div>
+            <div style="width: 100%;height: 1px;background-color: rgba(138, 138, 138, 0.39);margin: 30px 0;"></div>
+            <div class="content_all_img" id="export_area">
+                <div id="_content_img" class="content_img"></div>
+                <div id="content_campos" class="content_campos">
+                </div>
+                <button style="display:  none;" id="btn_descargar" class="btn btn-success btn_descargar_img">Descargar
+                    PNG</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/dinamicas/extension.js"></script>
+</body>
+
+</html>

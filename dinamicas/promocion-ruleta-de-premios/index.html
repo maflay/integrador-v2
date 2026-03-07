@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Aladdin: Ruleta de Premios</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+</head>
+
+<body data-main-style="/dinamicas/promocion-ruleta-de-premios/css/style.css"
+    data-main-script="/dinamicas/promocion-ruleta-de-premios/js/script.js">
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="content_main_ruleta">
+        <div id="contenedor-caracol" class="grid-caracol"></div>
+        <div id="contenedor_premios" class="content_premios">
+            <div class="content_title_premios">
+                <img class="img_logo" src="/dinamicas/promocion-ruleta-de-premios/resources/logo_ruleta_premios.png"
+                    alt="Aladdin">
+                <div class="img_engranaje">
+                    <button id="btn_reiniciar" class="btn btn-danger">Reiniciar</button>
+                    <select class="item_hide form-control" id="casino">
+                        <option value="">Casino...</option>
+                        <option value="A05">A05</option>
+                        <option value="A07">A07</option>
+                        <option value="A08">A08</option>
+                        <option value="A09">A09</option>
+                        <option value="A12">A12</option>
+                        <option value="A12-MESAS">A12-MESAS</option>
+                        <option value="A15">A15</option>
+                        <option value="A15-MESAS">A15-MESAS</option>
+                        <option value="A16">A16</option>
+                        <option value="A19">A19</option>
+                        <option value="A35">A35</option>
+                        <option value="A36">A36</option>
+                        <option value="A36-MESAS">A36-MESAS</option>
+                        <option value="A38">A38</option>
+                        <option value="A39">A39</option>
+                        <option value="A43">A43</option>
+                        <option value="A48">A48</option>
+                        <option value="A48-MESAS">A48-MESAS</option>
+                        <option value="A49">A49</option>
+                        <option value="A50">A50</option>
+                        <option value="A53">A53</option>
+                        <option value="A70">A70</option>
+                        <option value="A781">A781</option>
+                        <option value="A88">A88</option>
+                        <option value="A100">A100</option>
+                        <option value="A108">A108</option>
+                        <option value="A108-MESAS">A108-MESAS</option>
+                        <option value="A127">A127</option>
+                        <option value="A127-MESAS">A127-MESAS</option>
+                    </select>
+                    <select class="item_hide form-control" id="categoria">
+                        <option value="">Categoría...</option>
+                        <option value="GENIUS">Genius</option>
+                        <option value="TITANIO">Titanio</option>
+                        <option value="LEGENDARIO">Legendario</option>
+                        <option value="GOLD">Gold</option>
+                        <option value="SILVER">Silver</option>
+                        <option value="BRONCE">Bronce</option>
+                        <option value="ESTANDAR">Estándar</option>
+                        <option value="SUPERIOR">Superior</option>
+                        <option value="ADICIONAL">Adicional</option>
+                    </select>
+                    <img id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
+                </div>
+            </div>
+            <div class="content_fichas_sec_1">
+                <div id="content_xfichas" class="content_xfichas">
+                    <img id="moneda_mymawi_1" src="/dinamicas/promocion-ruleta-de-premios/resources/ficha_mymawi.png" alt="Aladdin">
+                </div>
+                <div class="content_xfichas">
+                    <img id="moneda_5_1" src="/dinamicas/promocion-ruleta-de-premios/resources/X5.png" alt="Aladdin">
+                </div>
+                <div class="content_xfichas">
+                    <img id="moneda_3_1" src="/dinamicas/promocion-ruleta-de-premios/resources/X3.png" alt="Aladdin">
+                </div>
+            </div>
+            <div class="content_fichas_sec_2">
+                <div class="content_xfichas">
+                    <img id="moneda_2_1" src="/dinamicas/promocion-ruleta-de-premios/resources/X2.png" alt="Aladdin">
+                    <img id="moneda_2_2" src="/dinamicas/promocion-ruleta-de-premios/resources/X2.png" alt="Aladdin">
+                    <img id="moneda_2_3" src="/dinamicas/promocion-ruleta-de-premios/resources/X2.png" alt="Aladdin">
+                    <img id="moneda_2_4" src="/dinamicas/promocion-ruleta-de-premios/resources/X2.png" alt="Aladdin">
+                    <img id="moneda_2_5" src="/dinamicas/promocion-ruleta-de-premios/resources/X2.png" alt="Aladdin">
+                    <img id="moneda_2_6" src="/dinamicas/promocion-ruleta-de-premios/resources/X2.png" alt="Aladdin">
+                </div>
+            </div>
+        </div>
+        <section id="modal_opciones_dinamica" class="modal_opciones_dinamica">
+            <div id="content_modal_dinamica" class="content_modal_dinamica">
+                <div class="content_expand">
+                    <img id="expandir" title="Expandir" src="/resource/expandir.png" alt="Aladdin">
+                </div>
+                <div class="content_head_modal">
+                    <div class="content_opcion_head">
+                        <p id="btn_guardar_registro">Guardar Registro</p>
+                    </div>
+                    <div class="content_opcion_head">
+                        <p id="btn_envio_secundario">Envio Secundario</p>
+                    </div>
+                    <div class="content_opcion_head">
+                        <p id="btn_observacion">Observación</p>
+                    </div>
+                    <div class="content_opcion_head">
+                        <p id="btn_tabla_premios">Tabla de Premios</p>
+                    </div>
+                    <div class="content_opcion_head">
+                        <p id="btn_registro_dia">Registro del Dia</p>
+                        <span id="notificacion_registro_dia" class="notificacion_registro_dia"></span>
+                    </div>
+                    <div id="close_modal_icon" class="close_modal_icon">&times;</div>
+                </div>
+                <div style="width: 100%;height: 1px;background-color: rgb(206, 206, 206);"></div>
+                <div style="display: none;" id="view_guardar_registro" class="content_body_modal">
+                    <div class="info_body_modal">
+                        <h2>Guardar Registro</h2>
+                        <div class="datos_column_modal">
+                            <div style="display: flex;gap: 10px;">
+                                <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                    style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre" />
+                            </div>
+                            <div class="content_btn_modal">
+                                <button title="Enviar" id="btn_enviar" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none;" id="view_envio_secundario" class="content_body_modal">
+                    <div class="info_body_modal">
+                        <h2>Envió Secundario</h2>
+                        <div class="datos_column_modal">
+                            <div style="display: flex;gap: 10px;">
+                                <select class="form-control" id="casino_modal">
+                                    <option value="">Casino...</option>
+                                    <option value="A05">A05</option>
+                                    <option value="A07">A07</option>
+                                    <option value="A08">A08</option>
+                                    <option value="A09">A09</option>
+                                    <option value="A12">A12</option>
+                                    <option value="A12-MESAS">A12-MESAS</option>
+                                    <option value="A15">A15</option>
+                                    <option value="A15-MESAS">A15-MESAS</option>
+                                    <option value="A16">A16</option>
+                                    <option value="A19">A19</option>
+                                    <option value="A35">A35</option>
+                                    <option value="A36">A36</option>
+                                    <option value="A36-MESAS">A36-MESAS</option>
+                                    <option value="A38">A38</option>
+                                    <option value="A39">A39</option>
+                                    <option value="A43">A43</option>
+                                    <option value="A48">A48</option>
+                                    <option value="A48-MESAS">A48-MESAS</option>
+                                    <option value="A49">A49</option>
+                                    <option value="A50">A50</option>
+                                    <option value="A53">A53</option>
+                                    <option value="A70">A70</option>
+                                    <option value="A781">A781</option>
+                                    <option value="A88">A88</option>
+                                    <option value="A100">A100</option>
+                                    <option value="A108">A108</option>
+                                    <option value="A108-MESAS">A108-MESAS</option>
+                                    <option value="A127">A127</option>
+                                    <option value="A127-MESAS">A127-MESAS</option>
+                                </select>
+                                <select class="item_hide form-control" id="categoria_modal">
+                                    <option value="">Categoría...</option>
+                                    <option value="GENIUS">Genius</option>
+                                    <option value="TITANIO">Titanio</option>
+                                    <option value="LEGENDARIO">Legendario</option>
+                                    <option value="GOLD">Gold</option>
+                                    <option value="SILVER">Silver</option>
+                                    <option value="BRONCE">Bronce</option>
+                                    <option value="SUPERIOR">Superior</option>
+                                    <option value="ESTANDAR">Estándar</option>
+                                    <option value="ADICIONAL">Adicional</option>
+                                </select>
+                            </div>
+                            <div style="display: flex;gap: 10px;">
+                                <input class="form-control" style=" cursor: pointer;" type="text" id="hora_modal"
+                                    placeholder="Hora" />
+                                <input class="form-control" style=" cursor: pointer;" type="date" id="fecha_modal"
+                                    placeholder="Fecha" />
+                            </div>
+                            <div style="display: flex;gap: 10px;">
+                                <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                    style=" cursor: pointer;" type="text" id="nombre_modal" placeholder="Nombre" />
+                                <input class="form-control" style=" cursor: pointer;" type="text" id="bono_modal"
+                                    placeholder="# Bono" />
+                            </div>
+                            <div style="display: flex;gap: 10px;">
+                                <select class="form-control" name="valor_promo" id="valor_promo_modal">
+                                    <option value="">Resultado...</option>
+                                    <option value="X1">X1</option>
+                                    <option value="X2">X2</option>
+                                    <option value="X3">X3</option>
+                                    <option value="X5">X5</option>
+                                    <option value="X-MYMAWI">X-MYMAWI</option>
+                                </select>
+                                <input placeholder="Número" class="form-control" type="number" id="numero_mostrado">
+                            </div>
+                            <div class="content_btn_modal">
+                                <button id="btn_send_secundario" class="btn btn-primary">Enviar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none;" id="view_envia_observacion" class="content_body_modal">
+                    <div class="info_body_modal">
+                        <h2>Observación</h2>
+                        <div class="datos_column_modal">
+                            <select class="form-control" style="cursor: pointer;" id="casino_observacion">
+                                <option value="">Casino...</option>
+                                <option value="A05">A05</option>
+                                <option value="A07">A07</option>
+                                <option value="A08">A08</option>
+                                <option value="A09">A09</option>
+                                <option value="A12">A12</option>
+                                <option value="A12-MESAS">A12-MESAS</option>
+                                <option value="A15">A15</option>
+                                <option value="A15-MESAS">A15-MESAS</option>
+                                <option value="A16">A16</option>
+                                <option value="A19">A19</option>
+                                <option value="A35">A35</option>
+                                <option value="A36">A36</option>
+                                <option value="A36-MESAS">A36-MESAS</option>
+                                <option value="A38">A38</option>
+                                <option value="A39">A39</option>
+                                <option value="A43">A43</option>
+                                <option value="A48">A48</option>
+                                <option value="A48-MESAS">A48-MESAS</option>
+                                <option value="A49">A49</option>
+                                <option value="A50">A50</option>
+                                <option value="A53">A53</option>
+                                <option value="A70">A70</option>
+                                <option value="A781">A781</option>
+                                <option value="A88">A88</option>
+                                <option value="A100">A100</option>
+                                <option value="A108">A108</option>
+                                <option value="A108-MESAS">A108-MESAS</option>
+                                <option value="A127">A127</option>
+                                <option value="A127-MESAS">A127-MESAS</option>
+                            </select>
+                        </div>
+                        <div class="datos_column_modal">
+                            <textarea placeholder="Descripcion" name="descripcion"
+                                id="descripcion_observacion"></textarea>
+                        </div>
+                        <div class="content_btn_modal">
+                            <button style="display: none;" id="btn_clean_observacion"
+                                class="btn btn-primary btn_acumula">Limpiar</button>
+                            <button id="btn_envia_observacion" class="btn btn-primary btn_acumula">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none;" id="view_tabla_premios" class="content_body_modal">
+                    <div class="info_body_modal">
+                        <h2>Tabla de Premios</h2>
+                        <div class="table-result container">
+                            <h5>A43, A53, MP108, A127</h5>
+                            <table class="styled-table" id="tabla-grupo-1">
+                                <thead style="position: relative;">
+                                    <tr>
+                                        <th>Multiplicador</th>
+                                        <th>BRONCE</th>
+                                        <th>SILVER</th>
+                                        <th>GOLD</th>
+                                        <th>LEGENDARIO</th>
+                                        <th>TITANIO</th>
+                                        <th>GENIUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MYMAWI</td>
+                                        <td>$ 500.000</td>
+                                        <td>$ 500.000</td>
+                                        <td>$ 600.000</td>
+                                        <td>$ 600.000</td>
+                                        <td>$ 700.000</td>
+                                        <td>$ 700.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X5</td>
+                                        <td>$ 400.000</td>
+                                        <td>$ 400.000</td>
+                                        <td>$ 450.000</td>
+                                        <td>$ 450.000</td>
+                                        <td>$ 500.000</td>
+                                        <td>$ 500.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X3</td>
+                                        <td>$ 240.000</td>
+                                        <td>$ 240.000</td>
+                                        <td>$ 270.000</td>
+                                        <td>$ 270.000</td>
+                                        <td>$ 300.000</td>
+                                        <td>$ 300.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X2</td>
+                                        <td>$ 160.000</td>
+                                        <td>$ 160.000</td>
+                                        <td>$ 180.000</td>
+                                        <td>$ 180.000</td>
+                                        <td>$ 200.000</td>
+                                        <td>$ 200.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X1</td>
+                                        <td>$ 80.000</td>
+                                        <td>$ 80.000</td>
+                                        <td>$ 90.000</td>
+                                        <td>$ 90.000</td>
+                                        <td>$ 100.000</td>
+                                        <td>$ 100.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                            <h5>A05, A07, A08, A09, A12, A15, A16</h5>
+                            <table class="styled-table" id="tabla-grupo-2">
+                                <thead style="position: relative;">
+                                    <tr>
+                                        <th>Multiplicador</th>
+                                        <th>BRONCE</th>
+                                        <th>SILVER</th>
+                                        <th>GOLD</th>
+                                        <th>LEGENDARIO</th>
+                                        <th>TITANIO</th>
+                                        <th>GENIUS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MYMAWI</td>
+                                        <td>$ 400.000</td>
+                                        <td>$ 400.000</td>
+                                        <td>$ 600.000</td>
+                                        <td>$ 600.000</td>
+                                        <td>$ 700.000</td>
+                                        <td>$ 700.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X5</td>
+                                        <td>$ 300.000</td>
+                                        <td>$ 300.000</td>
+                                        <td>$ 400.000</td>
+                                        <td>$ 400.000</td>
+                                        <td>$ 500.000</td>
+                                        <td>$ 500.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X3</td>
+                                        <td>$ 180.000</td>
+                                        <td>$ 180.000</td>
+                                        <td>$ 240.000</td>
+                                        <td>$ 240.000</td>
+                                        <td>$ 300.000</td>
+                                        <td>$ 300.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X2</td>
+                                        <td>$ 120.000</td>
+                                        <td>$ 120.000</td>
+                                        <td>$ 160.000</td>
+                                        <td>$ 160.000</td>
+                                        <td>$ 200.000</td>
+                                        <td>$ 200.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X1</td>
+                                        <td>$ 60.000</td>
+                                        <td>$ 60.000</td>
+                                        <td>$ 80.000</td>
+                                        <td>$ 80.000</td>
+                                        <td>$ 100.000</td>
+                                        <td>$ 100.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                            <h5>A36, A781, MP108M, A127M, A12M, MP15M, A36M</h5>
+                            <table class="styled-table" id="tabla-grupo-3">
+                                <thead style="position: relative;">
+                                    <tr>
+                                        <th>Multiplicador</th>
+                                        <th>ESTÁNDAR</th>
+                                        <th>SUPERIOR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MYMAWI</td>
+                                        <td>$ 0</td>
+                                        <td>$ 500.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X5</td>
+                                        <td>$ 300.000</td>
+                                        <td>$ 400.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X3</td>
+                                        <td>$ 180.000</td>
+                                        <td>$ 240.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X2</td>
+                                        <td>$ 120.000</td>
+                                        <td>$ 160.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X1</td>
+                                        <td>$ 60.000</td>
+                                        <td>$ 80.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                            <h5>A19, A50, A70, A38, A35, A39, A88, A48, A48M, A49, MP100, MP100M,A100</h5>
+                            <table class="styled-table" id="tabla-grupo-3">
+                                <thead style="position: relative;">
+                                    <tr>
+                                        <th>Multiplicador</th>
+                                        <th>ESTÁNDAR</th>
+                                        <th>SUPERIOR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MYMAWI</td>
+                                        <td>$ 0</td>
+                                        <td>$ 500.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X5</td>
+                                        <td>$ 250.000</td>
+                                        <td>$ 350.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X3</td>
+                                        <td>$ 150.000</td>
+                                        <td>$ 210.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X2</td>
+                                        <td>$ 100.000</td>
+                                        <td>$ 140.000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>X1</td>
+                                        <td>$ 50.000</td>
+                                        <td>$ 70.000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div style="display: none;" id="view_registro_dia" class="content_body_modal">
+                    <div class="info_body_modal">
+                        <h2>Registro del Dia</h2>
+                        <div id="Info_result_dia"></div>
+                        <div class="result_dia_acumula" id="result_dia_acumula"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/dinamicas/user.js"></script>
+    <script src="/dinamicas/extension.js"></script>
+</body>
+
+</html>

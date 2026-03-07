@@ -2,18 +2,6 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
-// btn modal
-const btn_guardar_registro = document.getElementById("btn_guardar_registro");
-const btn_envio_secundario = document.getElementById("btn_envio_secundario");
-const btn_observacion = document.getElementById("btn_observacion");
-const btn_tabla_premios = document.getElementById("btn_tabla_premios");
-const btn_registro_dia = document.getElementById("btn_registro_dia");
-
-const btn_validar = document.getElementById("btn_validar");
-const btn_enviar = document.getElementById("btn_enviar");
-const btn_reset = document.getElementById("btn_reset");
-const btn_send_secundario = document.getElementById("btn_send_secundario");
-const btn_envia_observacion = document.getElementById("btn_envia_observacion");
 
 const loader = document.getElementById("loader");
 
@@ -41,6 +29,9 @@ if (localStorage.getItem(FECHA_KEY) !== hoy) {
 const user = inforUser();
 
 const items_hide = document.querySelectorAll(".item_hide");
+const btn_opcion = document.getElementById("btn_opcion");
+
+
 
 // view modal
 const view_guardar_registro = document.getElementById("view_guardar_registro");
@@ -51,7 +42,6 @@ const view_envia_observacion = document.getElementById(
 const view_tabla_premios = document.getElementById("view_tabla_premios");
 const view_registro_dia = document.getElementById("view_registro_dia");
 
-const btn_opcion = document.getElementById("btn_opcion");
 const close_modal_icon = document.getElementById("close_modal_icon");
 const expandir = document.getElementById("expandir");
 
@@ -293,9 +283,10 @@ const CASINOS_VALIDOS = [
   "A100",
   "A781",
   "A12-MESAS",
-  "MP15-MESAS",
-  "MP108-MESAS",
+  "A15-MESAS",
+  "A108-MESAS",
   "A127-MESAS",
+  "A36-MESAS"
 ];
 
 const CASINOS_ALL = [
@@ -304,18 +295,18 @@ const CASINOS_ALL = [
   "A08",
   "A09",
   "A12",
-  "MP15",
+  "A15",
   "A16",
-  "MP108",
-  "MP127",
+  "A108",
+  "A127",
   "A43",
   "A53",
 ];
 
 const PREMIOS = {
   VALIDOS: {
-    TRIPLE_1_5: { ESTANDAR: "$ 200.000", SUPERIOR: "$ 250.000" },
-    TRIPLE_6: { ESTANDAR: "$ 500.000", SUPERIOR: "$ 700.000" },
+    TRIPLE_1_5: { ESTANDAR: "$ 200.000", SUPERIOR: "$ 300.000" },
+    TRIPLE_6: { ESTANDAR: "$ 500.000", SUPERIOR: "$ 1.000.000" },
 
     SUMAS: {
       "9,10,11,12": { ESTANDAR: "$ 80.000", SUPERIOR: "$ 100.000" },
@@ -382,8 +373,7 @@ const PREMIOS = {
 function normalizarCasino(casino) {
   return String(casino || "")
     .trim()
-    .toUpperCase()
-    .replace("-MESAS", "");
+    .toUpperCase();
 }
 
 function obtenerGrupoCasino(casinoNorm) {
@@ -424,6 +414,9 @@ function validatePremio() {
 
   const casinoNorm = normalizarCasino(casino);
   const grupo = obtenerGrupoCasino(casinoNorm);
+
+  console.log(casinoNorm);
+  console.log(grupo);
 
   if (!grupo) {
     Swal.fire({
