@@ -42,12 +42,12 @@ const btn_observacion = document.getElementById("btn_observacion");
 const btn_tabla_premios = document.getElementById("btn_tabla_premios");
 const btn_registro_dia = document.getElementById("btn_registro_dia");
 const notificacion_registro_dia = document.getElementById(
-  "notificacion_registro_dia"
+  "notificacion_registro_dia",
 );
 
 const view_envio_secundario = document.getElementById("view_envio_secundario");
 const view_envia_observacion = document.getElementById(
-  "view_envia_observacion"
+  "view_envia_observacion",
 );
 const view_tabla_premios = document.getElementById("view_tabla_premios");
 const view_registro_dia = document.getElementById("view_registro_dia");
@@ -453,7 +453,7 @@ btn_envia_observacion.addEventListener("click", () => {
 function handleObservacion() {
   let casino_observacion = document.getElementById("casino_observacion");
   let descripcion_observacion = document.getElementById(
-    "descripcion_observacion"
+    "descripcion_observacion",
   );
 
   const fechaCompleta = new Date().toLocaleString("es-CO", {
