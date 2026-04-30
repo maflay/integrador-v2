@@ -201,11 +201,6 @@ body {
   cursor: pointer;
 }
 
-.color-gray {
-  font-size: 0.8rem;
-  color: gray;
-}
-
 .content_btn_lugares {
   display: flex;
   justify-content: center;

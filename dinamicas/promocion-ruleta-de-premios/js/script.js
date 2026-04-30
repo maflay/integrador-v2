@@ -439,7 +439,7 @@ const TABLA_PREMIOS = {
     },
     X3: {
       ESTANDAR: 150000,
-      SUPERIOR: 140000,
+      SUPERIOR: 210000,
     },
     X2: {
       ESTANDAR: 100000,

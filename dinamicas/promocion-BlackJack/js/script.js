@@ -11,34 +11,115 @@ window.addEventListener("load", () => {
   renderCard();
 });
 
-const toggleBtnView = document.getElementById("toggleBtnView");
+const user = inforUser();
 
-toggleBtnView.addEventListener("click", () => {
-  const contentView = document.getElementById("formBox");
-  const btnObs = document.getElementById("btn-send-obs");
-  const btnPremios = document.getElementById("btn-tabla-premios");
-  const btnRegistroDia = document.getElementById("btn-registro-dia");
-  const btnFueraPromo = document.getElementById("btn-envio-fuera-promocion");
-  contentView.classList.toggle("hidden");
-  btnObs.classList.toggle("hidden");
-  btnPremios.classList.toggle("hidden");
-  btnRegistroDia.classList.toggle("hidden");
-  btnFueraPromo.classList.toggle("hidden");
+const btn_enviar = document.getElementById("btn_enviar");
+const btn_send_secundario = document.getElementById("btn_send_secundario");
+const btn_envia_observacion = document.getElementById("btn_envia_observacion");
+const casino = document.getElementById("casino");
+const categoria = document.getElementById("categoria");
 
-  const ocultoView = contentView.classList.contains("hidden");
-  toggleBtnView.textContent = ocultoView ? "Mostrar" : "Ocultar";
+casino.addEventListener("change", () => {
+  if (casino.value == "" || categoria.value == "") {
+    disableCards();
+  } else {
+    enableCards();
+  }
 });
 
-const requiredFields = ["casino", "categoria", "cedula", "nombre"];
+categoria.addEventListener("change", () => {
+  if (casino.value == "" || categoria.value == "") {
+    disableCards();
+  } else {
+    enableCards();
+  }
+});
 
 const types = ["C", "D", "H", "S"];
 const specials = ["A", "J", "Q", "K"];
-const valBono = document.getElementById("valBono");
 let deck = [];
 let totalScore = 0;
 const promocion = "BlackJack Express";
 const url =
-  "https://script.google.com/macros/s/AKfycbzcLJC2UrDaUKpG-HJZrtfOgJKBhSlhRUngd3wuPe12tBlJP0TqMMfjKSMDOzG2nVsigA/exec";
+  "https://script.google.com/macros/s/AKfycbzsRIbB9JLNb8DC_83wgp7G8ojnKcqUn_OiQ1W7J2vvdH8L9YRJF4ps7A1piyti8LI79g/exec";
+
+const IN_FLIGHT = new Set();
+const LS_KEY = "registrosBlackJack";
+const FECHA_KEY = "fechaBlackJack";
+const hoy = new Date().toDateString();
+if (localStorage.getItem(FECHA_KEY) !== hoy) {
+  localStorage.setItem(LS_KEY, JSON.stringify([]));
+  localStorage.setItem(FECHA_KEY, hoy);
+}
+
+const casino_table_1 = [
+  "A05",
+  "A07",
+  "A08",
+  "A09",
+  "A12",
+  "MP15",
+  "A15",
+  "A16",
+];
+
+const casino_table_2 = ["A43", "A53", "A108", "MP108", "A127"];
+
+const casino_table_3 = [
+  "A12-MESAS",
+  "A19",
+  "A50",
+  "A70",
+  "A38",
+  "A35",
+  "A39",
+  "A88",
+  "A48",
+  "A48-MESAS",
+  "A49",
+  "MP100",
+];
+
+const casino_table_4 = [
+  "A36",
+  "A36-MESAS",
+  "A781",
+  "MP15-MESAS",
+  "A15-MESAS",
+  "MP108-MESAS",
+  "A108-MESAS",
+  "A127-MESAS",
+];
+
+// premios WIN
+
+const premios_tabla_1 = {
+  GENIUS: "$120.000",
+  TITANIO: "$110.000",
+  LEGENDARIO: "$100.000",
+  GOLD: "$90.000",
+  SILVER: "$80.000",
+  BRONCE: "$70.000",
+};
+
+const premios_tabla_2 = {
+  GENIUS: "$150.000",
+  TITANIO: "$140.000",
+  LEGENDARIO: "$130.000",
+  GOLD: "$120.000",
+  SILVER: "$110.000",
+  BRONCE: "$100.000",
+};
+
+const premios_tabla_3 = {
+  ESTANDAR: "$70.000",
+  SUPERIOR: "$90.000",
+};
+
+const premios_tabla_4 = {
+  ESTANDAR: "$100.000",
+  SUPERIOR: "$120.000",
+};
 
 const premiosWin = {
   GENIUS: "$170.000",
@@ -47,10 +128,36 @@ const premiosWin = {
   GOLD: "$110.000",
   SILVER: "$90.000",
   BRONCE: "$70.000",
-  SUPERIORMARCOPOLO: "$120.000",
-  ESTANDARMARCOPOLO: "$100.000",
-  SUPERIORALADDIN: "$90.000",
-  ESTANDARALADDIN: "$70.000",
+};
+
+// PREMIOS BLACKJACK
+
+const blackjack_tabla_1 = {
+  GENIUS: "$400.000",
+  TITANIO: "$350.000",
+  LEGENDARIO: "$300.000",
+  GOLD: "$250.000",
+  SILVER: "$200.000",
+  BRONCE: "$150.000",
+};
+
+const blackjack_tabla_2 = {
+  GENIUS: "$400.000",
+  TITANIO: "$350.000",
+  LEGENDARIO: "$300.000",
+  GOLD: "$250.000",
+  SILVER: "$200.000",
+  BRONCE: "$150.000",
+};
+
+const blackjack_tabla_3 = {
+  ESTANDAR: "$150.000",
+  SUPERIOR: "$300.000",
+};
+
+const blackjack_tabla_4 = {
+  ESTANDAR: "$150.000",
+  SUPERIOR: "$300.000",
 };
 
 const premiosBJ = {
@@ -60,11 +167,39 @@ const premiosBJ = {
   GOLD: "$350.000",
   SILVER: "$300.000",
   BRONCE: "$150.000",
-  SUPERIORMARCOPOLO: "$300.000",
-  ESTANDARMARCOPOLO: "$150.000",
-  SUPERIORALADDIN: "$300.000",
-  ESTANDARALADDIN: "$150.000",
 };
+
+// PREMIOS SUPERIOR A 21
+
+const lose_tabla_1 = {
+  GENIUS: "$100.000",
+  TITANIO: "$90.000",
+  LEGENDARIO: "$80.000",
+  GOLD: "$70.000",
+  SILVER: "$60.000",
+  BRONCE: "$50.000",
+};
+
+const lose_tabla_2 = {
+  GENIUS: "$130.000",
+  TITANIO: "$120.000",
+  LEGENDARIO: "$110.000",
+  GOLD: "$100.000",
+  SILVER: "$90.000",
+  BRONCE: "$80.000",
+};
+
+const lose_tabla_3 = {
+  ESTANDAR: "$50.000",
+  SUPERIOR: "$70.000",
+};
+
+const lose_tabla_4 = {
+  ESTANDAR: "$80.000",
+  SUPERIOR: "$100.000",
+};
+
+// PREMIOS SE PASO
 
 const premiosLose = {
   GENIUS: "$150.000",
@@ -73,10 +208,6 @@ const premiosLose = {
   GOLD: "$90.000",
   SILVER: "$70.000",
   BRONCE: "$50.000",
-  SUPERIORMARCOPOLO: "$100.000",
-  ESTANDARMARCOPOLO: "$80.000",
-  SUPERIORALADDIN: "$70.000",
-  ESTANDARALADDIN: "$50.000",
 };
 
 const drawCard = () => {
@@ -106,6 +237,7 @@ const createDeck = () => {
   }
   return shuffleDeck(deck);
 };
+
 function renderCard() {
   const container = document.getElementById("content-card-player");
   container.innerHTML = "";
@@ -224,20 +356,34 @@ function callCard(card) {
 
   const perder = () => {
     disableCards();
-    alertLose(premiosLose[valCategoria] || "0", valCategoria);
-    valBono.innerHTML = getBonoForm();
+    if (casino_table_1.includes(casino.value)) {
+      alertLose(lose_tabla_1[valCategoria] || "0", valCategoria);
+    } else if (casino_table_2.includes(casino.value)) {
+      alertLose(lose_tabla_2[valCategoria] || "0", valCategoria);
+    } else if (casino_table_3.includes(casino.value)) {
+      alertLose(lose_tabla_3[valCategoria] || "0", valCategoria);
+    } else if (casino_table_4.includes(casino.value)) {
+      alertLose(lose_tabla_4[valCategoria] || "0", valCategoria);
+    }
   };
 
   const ganar = (monto, tipo) => {
     alertWin(valCategoria, monto, tipo);
-    valBono.innerHTML = getBonoForm();
   };
 
   if (cantidad >= 2) {
     if (ajustado > 21) {
       perder();
     } else if ([18, 19, 20, 21].includes(ajustado)) {
-      ganar(premiosWin[valCategoria] || "$0", "Ganaste");
+      if (casino_table_1.includes(casino.value)) {
+        ganar(premios_tabla_1[valCategoria] || "$0", "Ganaste");
+      } else if (casino_table_2.includes(casino.value)) {
+        ganar(premios_tabla_2[valCategoria] || "$0", "Ganaste");
+      } else if (casino_table_3.includes(casino.value)) {
+        ganar(premios_tabla_3[valCategoria] || "$0", "Ganaste");
+      } else if (casino_table_4.includes(casino.value)) {
+        ganar(premios_tabla_4[valCategoria] || "$0", "Ganaste");
+      }
     }
   }
 
@@ -245,7 +391,15 @@ function callCard(card) {
     if (ajustado > 21) {
       perder();
     } else if (ajustado === 21) {
-      ganar(premiosBJ[valCategoria] || "$0", "BlackJack");
+      if (casino_table_1.includes(casino.value)) {
+        ganar(blackjack_tabla_1[valCategoria] || "$0", "BlackJack");
+      } else if (casino_table_2.includes(casino.value)) {
+        ganar(blackjack_tabla_2[valCategoria] || "$0", "BlackJack");
+      } else if (casino_table_3.includes(casino.value)) {
+        ganar(blackjack_tabla_3[valCategoria] || "$0", "BlackJack");
+      } else if (casino_table_4.includes(casino.value)) {
+        ganar(blackjack_tabla_4[valCategoria] || "$0", "BlackJack");
+      }
     }
   }
 
@@ -255,15 +409,6 @@ function callCard(card) {
   } else {
     scorePlayer.innerHTML = `${ajustado}`;
   }
-}
-
-function getBonoForm() {
-  return `
-    <div style="display:flex;gap:10px;">
-      <div><br /><input class="form-control" id="valBonoB" type="text" placeholder="# bono." /></div>
-      
-    </div>
-  `;
 }
 
 function resetGame() {
@@ -292,8 +437,6 @@ function resetGame() {
   categoria.value = "";
   cedula.value = "";
 
-  valBono.innerHTML = ``;
-
   totalScore = 0;
   disableCards();
 }
@@ -311,7 +454,6 @@ function resetTablero() {
   btnReinicioTablero.style.display = "none";
   btnPlantarse.style.display = "none";
   document.getElementById("textoGanador").innerHTML = ``;
-  valBono.innerHTML = ``;
   totalScore = 0;
 }
 
@@ -411,11 +553,13 @@ function alertWin(categoria, valor, opcion) {
     },
   });
   confettiVictoria();
+  document.getElementById("casino").classList.add("item_disable");
+  document.getElementById("categoria").classList.add("item_disable");
 
   document.getElementById("textoGanador").innerHTML = getTextWinForm(
     categoria,
     valor,
-    opcion
+    opcion,
   );
 }
 
@@ -440,6 +584,11 @@ function alertLose(valor, categoria) {
     },
   });
 }
+
+btn_enviar.addEventListener("click", () => {
+  handleSendInfo();
+});
+
 function handleSendInfo() {
   const loader = document.getElementById("loader");
   loader.style.display = "flex";
@@ -447,8 +596,6 @@ function handleSendInfo() {
   const nombre = document.getElementById("nombre").value.trim();
   const casino = document.getElementById("casino").value.trim();
   const categoria = document.getElementById("categoria").value.trim();
-  const cedula = document.getElementById("cedula").value.trim();
-  const valBono = document.getElementById("valBonoB")?.value.trim();
 
   const fechaCompleta = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
@@ -458,69 +605,87 @@ function handleSendInfo() {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
+    hour12: false,
   });
   const [fecha, hora] = fechaCompleta.split(", ");
-
-  if (!nombre || !casino || !categoria || !cedula) {
-    showAlert(
-      "warning",
-      "Campos obligatorios",
-      "Por favor, completa todos los campos."
-    );
-    loader.style.display = "none";
-    return;
-  }
-
-  if (categoria === "ADICIONAL") {
-    enviarDatos({
-      tipo: "dinamica",
-      hora,
-      fecha,
-      nombre,
-      cedula,
-      casino,
-      categoria,
-      resultado: "0",
-      valBono: "0",
-      promocion,
-    });
-    return;
-  }
-
-  if (!valBono || valBono === "0") {
-    showAlert(
-      "warning",
-      "Bono obligatorio",
-      "Debes ingresar un valor válido para el bono."
-    );
-    loader.style.display = "none";
-    return;
-  }
-
-  const hoy = new Date().toDateString();
-  if (localStorage.getItem("fechaBlackJack") !== hoy) {
-    localStorage.setItem("registrosBlackJack", JSON.stringify([]));
-    localStorage.setItem("fechaBlackJack", hoy);
-  }
-
   const cartas = document.querySelectorAll("#CallCard img");
   const { ajustado, totalOriginal } = calcularScore(cartas);
   let resultado = calcularResultado(ajustado, cartas.length);
 
-  const data = {
-    tipo: "dinamica",
-    hora,
-    fecha,
-    nombre,
-    cedula,
-    casino,
-    categoria,
-    resultado,
-    valBono,
-    promocion,
+  let data = {
+    tipo: "envio_1",
+    valor_1: hora,
+    valor_2: fecha,
+    valor_3: nombre,
+    valor_5: casino,
+    valor_6: categoria,
+    valor_7: categoria == "ADICIONAL" ? "0" : resultado,
+    valBono: categoria == "ADICIONAL" ? "0" : "",
+    ...(categoria == "ADICIONAL" ? { valor_8: "0" } : ""),
+    valor_9: promocion,
+    valor_10: user.Nombre,
   };
 
-  enviarDatos(data);
+  if (!nombre || !casino || !categoria) {
+    showAlert(
+      "warning",
+      "Campos obligatorios",
+      "Por favor, completa todos los campos.",
+    );
+    loader.style.display = "none";
+    return;
+  }
+
+  loader.style.display = "flex";
+  const registro = JSON.parse(localStorage.getItem(LS_KEY)) || [];
+  registro.push(data);
+  localStorage.setItem(LS_KEY, JSON.stringify(registro));
+
+  if (typeof GetResgistroDia === "function") GetResgistroDia();
+  if (categoria === "ADICIONAL") {
+    fetch(url, {
+      method: "POST",
+      mode: "no-cors",
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.text())
+      .then(() => {
+        loader.style.display = "none";
+
+        Swal.fire({
+          icon: "success",
+          title: "Envió Exitoso",
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        loader.style.display = "none";
+        Swal.fire({
+          icon: "error",
+          title: "Error en el Envió",
+        });
+      });
+    return;
+  }
+
+  setTimeout(() => {
+    document.getElementById("casino").value = "";
+    document.getElementById("categoria").value = "";
+    document.getElementById("nombre").value = "";
+  }, 1500);
+
+  setTimeout(() => {
+    loader.style.display = "none";
+    Swal.fire({
+      icon: "info",
+      title: "Guardado local",
+      html: `<div>
+              <p>Se guardó el registro sin # de bono. Puedes asignarlo y enviarlo después.</p>
+            </div>`,
+      allowOutsideClick: false,
+      confirmButtonColor: "#dc3545",
+    });
+  }, 3000);
 }
 
 function enviarDatos(data) {
@@ -539,7 +704,7 @@ function enviarDatos(data) {
         showAlert(
           "success",
           "Envio Exitoso.",
-          "La información fue enviada correctamente."
+          "La información fue enviada correctamente.",
         );
       }, 2000);
     })
@@ -548,7 +713,7 @@ function enviarDatos(data) {
       showAlert(
         "error",
         "Error",
-        "No se pudo enviar la información. Intenta nuevamente."
+        "No se pudo enviar la información. Intenta nuevamente.",
       );
     });
 }
@@ -602,129 +767,24 @@ function verificarResetRegistro() {
 }
 verificarResetRegistro();
 
-function abrirModal2() {
-  const valCasino = document.getElementById("casino").value;
-
-  if (valCasino == "") {
-    Swal.fire({
-      icon: "warning",
-      title: "Advertencia",
-      text: "Seleccione un casino.",
-      confirmButtonColor: "#dc3545",
-      customClass: {
-        popup: "mi-popup",
-        title: "mi-titulo",
-        confirmButton: "btn-Send mi-boton",
-      },
-    });
-    return;
-  } else {
-    mostrarRegistros();
-    document.getElementById("modal-ultimos-registros-blackjack").style.display =
-      "flex";
-  }
-}
-
-function cerrarModal2() {
-  document.getElementById("modal-ultimos-registros-blackjack").style.display =
-    "none";
-}
-
-function abrirModal3() {
-  document.getElementById("modal-tabla-premios").style.display = "flex";
-}
-
-function cerrarModal3() {
-  document.getElementById("modal-tabla-premios").style.display = "none";
-}
-
-function abrirModal4() {
-  document.getElementById("datos-modal-observacion").style.display = "flex";
-}
-
-function cerrarModal4() {
-  document.getElementById("datos-modal-observacion").style.display = "none";
-}
-
-function mostrarRegistros() {
-  const ultimosRegistros = document.getElementById(
-    "ultimos-registros-blackjack"
-  );
-  const registros =
-    JSON.parse(localStorage.getItem("registrosBlackJack")) || [];
-  const casinoNumero = document.getElementById("casino-numero-blackjack");
-  const valInfo = document.getElementById("Info-blackjack");
-  const valCasino = document.getElementById("casino").value;
-  const filtrados = registros.filter((item) => item.casino === valCasino);
-  casinoNumero.innerHTML = valCasino;
-
-  if (filtrados.length === 0) {
-    ultimosRegistros.innerHTML = `<p class="color-gray">No hay registros para este casino.</p>`;
-    valInfo.innerHTML = ``;
-  } else {
-    valInfo.innerHTML = `<small class="color-gray">* Estos registros son temporales (se reinicia a las 00:00), por favor tener en
-                          cuenta.</small>`;
-    ultimosRegistros.innerHTML = `
-  <div class="table-result-blackjack">
-    <table class="styled-table-blackjack">
-      <thead>
-        <tr>
-          <th># Registro</th>
-          <th>Casino</th>
-          <th>Categoria</th>
-          <th>Nombre</th>
-          <th>Cedula</th>
-          <th>Bono</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${filtrados
-          .map(
-            (registro, i) => `
-              <tr>
-                <td>${i + 1}</td>
-                <td>${registro.casino}</td>
-                <td>${registro.categoria}</td>
-                <td>${registro.nombre}</td>
-                <td>${registro.cedula}</td>
-                <td>${registro.valBono}</td>
-                <td>${registro.fecha} ${registro.hora}</td>
-              </tr>
-            `
-          )
-          .join("")}
-      </tbody>
-    </table>
-  </div>
-`;
-  }
-}
-
-function abrirModal() {
-  document.getElementById("datos-modal-blackjack").style.display = "flex";
-}
-
-function cerrarModal() {
-  document.getElementById("datos-modal-blackjack").style.display = "none";
-}
+btn_send_secundario.addEventListener("click", () => {
+  HandleSecondSubmit();
+});
 
 function HandleSecondSubmit() {
-  const casinoModal = document.getElementById("casino-modal-blackjack");
-  const categoriaModal = document.getElementById("categoria-modal-blackjack");
-  const cedulaModal = document.getElementById("cedula-modal-blackjack");
-  const nombreModal = document.getElementById("nombre-modal-blackjack");
-  const horaModal = document.getElementById("hora-modal-blackjack");
-  const fechaModal = document.getElementById("fecha-modal-blackjack");
-  const bonoModal = document.getElementById("bono-modal-blackjack");
-  const opcionModal = document.getElementById("opcion-modal-blackjack");
+  const casinoModal = document.getElementById("casino_modal");
+  const categoriaModal = document.getElementById("categoria_modal");
+  const nombreModal = document.getElementById("nombre_modal");
+  const horaModal = document.getElementById("hora_modal");
+  const fechaModal = document.getElementById("fecha_modal");
+  const bonoModal = document.getElementById("bono_modal");
+  const opcionModal = document.getElementById("opcion_modal");
   const loader = document.getElementById("loader");
 
   if (categoriaModal.value == "ADICIONAL") {
     if (
       casinoModal.value == "" ||
       categoriaModal.value == "" ||
-      cedulaModal.value == "" ||
       nombreModal.value == "" ||
       horaModal.value == "" ||
       fechaModal.value == ""
@@ -746,7 +806,6 @@ function HandleSecondSubmit() {
     if (
       casinoModal.value == "" ||
       categoriaModal.value == "" ||
-      cedulaModal.value == "" ||
       nombreModal.value == "" ||
       horaModal.value == "" ||
       fechaModal.value == "" ||
@@ -768,7 +827,6 @@ function HandleSecondSubmit() {
   }
 
   const nomModal = nombreModal.value;
-  const cedModal = cedulaModal.value;
   const casModal = casinoModal.value;
   const catModal = categoriaModal.value;
   const valBonoModal = bonoModal.value;
@@ -789,20 +847,19 @@ function HandleSecondSubmit() {
   }
 
   const data = {
-    tipo: "dinamica",
-    hora: valHora,
-    fecha: valFecha,
-    nombre: nomModal,
-    cedula: cedModal,
-    casino: casModal,
-    categoria: catModal,
-    promocion,
-    valBono: valBonoModal,
-    resultado: tipoOpcion,
+    tipo: "envio_1",
+    valor_1: valHora,
+    valor_2: valFecha,
+    valor_3: nomModal,
+    valor_5: casModal,
+    valor_6: catModal,
+    valor_7: tipoOpcion,
+    valor_8: valBonoModal,
+    valor_9: promocion,
+    valor_10: user.Nombre,
   };
 
   loader.style.display = "flex";
-
   fetch(url, {
     method: "POST",
     mode: "no-cors",
@@ -812,7 +869,6 @@ function HandleSecondSubmit() {
     .then((res) => {
       casinoModal.value = "";
       categoriaModal.value = "";
-      cedulaModal.value = "";
       nombreModal.value = "";
       horaModal.value = "";
       fechaModal.value = "";
@@ -821,8 +877,7 @@ function HandleSecondSubmit() {
         loader.style.display = "none";
         Swal.fire({
           icon: "success",
-          title: "Exito",
-          text: "Envio Secundario Exitoso.",
+          title: "Exito en el Envió",
           confirmButtonColor: "#dc3545",
           customClass: {
             popup: "mi-popup",
@@ -868,17 +923,53 @@ function handlePlantarse() {
   const { ajustado } = calcularScore();
   if (ajustado === 17) {
     if (valCategoria == "GENIUS") {
-      alertWin(valCategoria, "$160.000", "Ancar");
+      if (casino_table_1.includes(casino.value)) {
+        alertWin(valCategoria, "$110.000", "Ancar");
+      } else if (casino_table_2.includes(casino.value)) {
+        alertWin(valCategoria, "$140.000", "Ancar");
+      }
     } else if (valCategoria == "TITANIO") {
-      alertWin(valCategoria, "$140.000", "Ancar");
+      if (casino_table_1.includes(casino.value)) {
+        alertWin(valCategoria, "$100.000", "Ancar");
+      } else if (casino_table_2.includes(casino.value)) {
+        alertWin(valCategoria, "$130.000", "Ancar");
+      }
     } else if (valCategoria == "LEGENDARIO") {
-      alertWin(valCategoria, "$120.000", "Ancar");
+      if (casino_table_1.includes(casino.value)) {
+        alertWin(valCategoria, "$90.000", "Ancar");
+      } else if (casino_table_2.includes(casino.value)) {
+        alertWin(valCategoria, "$120.000", "Ancar");
+      }
     } else if (valCategoria == "GOLD") {
-      alertWin(valCategoria, "$100.000", "Ancar");
+      if (casino_table_1.includes(casino.value)) {
+        alertWin(valCategoria, "$80.000", "Ancar");
+      } else if (casino_table_2.includes(casino.value)) {
+        alertWin(valCategoria, "$110.000", "Ancar");
+      }
     } else if (valCategoria == "SILVER") {
-      alertWin(valCategoria, "$80.000", "Ancar");
+      if (casino_table_1.includes(casino.value)) {
+        alertWin(valCategoria, "$70.000", "Ancar");
+      } else if (casino_table_2.includes(casino.value)) {
+        alertWin(valCategoria, "$100.000", "Ancar");
+      }
     } else if (valCategoria == "BRONCE") {
-      alertWin(valCategoria, "$60.000", "Ancar");
+      if (casino_table_1.includes(casino.value)) {
+        alertWin(valCategoria, "$60.000", "Ancar");
+      } else if (casino_table_2.includes(casino.value)) {
+        alertWin(valCategoria, "$90.000", "Ancar");
+      }
+    } else if (valCategoria == "ESTANDAR") {
+      if (casino_table_3.includes(casino.value)) {
+        alertWin(valCategoria, "$60.000", "Ancar");
+      } else if (casino_table_4.includes(casino.value)) {
+        alertWin(valCategoria, "$90.000", "Ancar");
+      }
+    } else if (valCategoria == "SUPERIOR") {
+      if (casino_table_3.includes(casino.value)) {
+        alertWin(valCategoria, "$80.000", "Ancar");
+      } else if (casino_table_4.includes(casino.value)) {
+        alertWin(valCategoria, "$110.000", "Ancar");
+      }
     } else if (valCategoria == "SUPERIORMARCOPOLO") {
       alertWin(valCategoria, "$110.000", "Ancar");
     } else if (valCategoria == "ESTANDARMARCOPOLO") {
@@ -912,9 +1003,13 @@ function handlePlantarse() {
   }
 }
 
+btn_envia_observacion.addEventListener("click", () => {
+  HandleObservacionSend();
+});
+
 function HandleObservacionSend() {
-  const valCasino = document.getElementById("casino-modal-observacion");
-  const valObservacion = document.getElementById("casino-modal-descripcion");
+  const valCasino = document.getElementById("casino_observacion");
+  const valObservacion = document.getElementById("descripcion_observacion");
   const loader = document.getElementById("loader");
 
   const valCasinoObs = valCasino.value.trim();
@@ -928,6 +1023,7 @@ function HandleObservacionSend() {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
+    hour12: false,
   });
 
   const [fecha, hora] = fechaCompleta.split(", ");
@@ -950,11 +1046,12 @@ function HandleObservacionSend() {
   loader.style.display = "flex";
 
   const data = {
-    tipo: "observacion",
-    hora,
-    fecha,
-    casino: valCasinoObs,
-    observacion: valObservacionObs,
+    tipo: "envio_2",
+    valor_1: hora,
+    valor_2: fecha,
+    valor_3: valCasinoObs,
+    valor_4: valObservacionObs,
+    valor_5: user.Nombre,
   };
 
   fetch(url, {
@@ -969,11 +1066,10 @@ function HandleObservacionSend() {
       valObservacion.value = "";
 
       loader.style.display = "none";
-
+      getDataObs();
       Swal.fire({
         icon: "success",
-        title: "Éxito",
-        text: "El envío de la información fue exitoso.",
+        title: "Éxito en el Envió",
         confirmButtonColor: "#dc3545",
         customClass: {
           popup: "mi-popup",
@@ -999,19 +1095,315 @@ function HandleObservacionSend() {
     });
 }
 
-requiredFields.forEach((id) => {
-  const el = document.getElementById(id);
-  el.addEventListener("input", checkFields);
-});
-function checkFields() {
-  const allFilled = requiredFields.every((id) => {
-    const el = document.getElementById(id);
-    return el && el.value.trim() !== "";
-  });
+function GetResgistroDia() {
+  const content_registro_dia = document.getElementById("result_dia_acumula");
+  const info_result_dia = document.getElementById("Info_result_dia");
+  const registros = JSON.parse(localStorage.getItem(LS_KEY)) || [];
+  const valCasino = (document.getElementById("casino")?.value || "").trim();
 
-  if (allFilled) {
-    enableCards();
-  } else {
-    disableCards();
+  const filtrados = valCasino
+    ? registros.filter((item) => item.valor_5)
+    : registros;
+
+  if (filtrados.length === 0) {
+    content_registro_dia.innerHTML = `<p class="color-gray">No hay registros ${
+      valCasino ? "para este casino." : "aún."
+    }</p>`;
+    info_result_dia.innerHTML = "";
+    return;
   }
+  const isBlank = (v) =>
+    v == null || (typeof v === "string" && v.trim() === "");
+  const hayBonoVacio = filtrados.some((item) => isBlank(item.valBono));
+  notificacion_registro_dia.style.display = hayBonoVacio ? "flex" : "none";
+
+  info_result_dia.innerHTML = `<small class="color-gray"><spam style="color: red">*</spam> Estos registros son temporales (se reinicia a las 00:00), por favor tener en cuenta.</small>`;
+
+  content_registro_dia.innerHTML = `
+    <div class="table-wrapper">
+      <table class="styled-table table-scrolld ajuste_table_result">
+        <thead>
+          <tr>
+            <th># Registro</th>
+            <th>Casino</th>
+            <th>Categoría</th>
+            <th>Nombre</th>
+            <th>Bono</th>
+            <th>Acciones</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${filtrados
+            .map((r, i) => {
+              const bono = r.valBono ? r.valBono : "";
+              const accion =
+                bono === ""
+                  ? `<button
+                    class="table_btn_enviar_bono"
+                    data-casino="${r.valor_5}"
+                    data-categoria="${r.valor_6}"
+                    data-nombre="${r.valor_3}"
+                    data-bono="${bono || "0"}"
+                    data-fecha="${r.valor_2}"
+                    data-hora="${r.valor_1}"
+                    data-resultado="${r.valor_7}"
+                 >Enviar</button>`
+                  : `<small class="table_ya_tiene_bono">Ya contiene Bono.</small>`;
+
+              return `
+              <tr>
+                <td>${i + 1}</td>
+                <td>${r.valor_5}</td>
+                <td>${r.valor_6}</td>
+                <td>${r.valor_3}</td>
+                <td>${
+                  bono ||
+                  `<input class="table_input_bono_portal" type="text" placeholder="#Bono">`
+                }</td>
+                <td>${accion}</td>
+                <td>${r.valor_2} ${r.valor_1}</td>
+              </tr>`;
+            })
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+    `;
+
+  function getRegs() {
+    try {
+      return JSON.parse(localStorage.getItem(LS_KEY)) || [];
+    } catch {
+      localStorage.setItem(LS_KEY, "[]");
+      return [];
+    }
+  }
+
+  function updateLocalBono(
+    { casino, categoria, nombre, cedula, fecha, hora, resultado },
+    valBono,
+  ) {
+    const regs = getRegs();
+    const idx = regs.findIndex(
+      (r) =>
+        String(r.valor_7).trim() === String(resultado).trim() &&
+        String(r.valor_6).trim() === String(categoria).trim() &&
+        String(r.valor_5).trim() === String(casino).trim() &&
+        String(r.valor_3).trim() === String(nombre).trim() &&
+        String(r.valor_2).trim() === String(fecha).trim() &&
+        String(r.valor_1).trim() === String(hora).trim(),
+    );
+    if (idx === -1) return false;
+
+    regs[idx].valBono = valBono;
+    regs[idx].bonoAsignado = true;
+    localStorage.setItem(LS_KEY, JSON.stringify(regs));
+    return true;
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(
+      /[&<>"']/g,
+      (m) =>
+        ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;",
+        })[m],
+    );
+  }
+
+  if (content_registro_dia._clickHandler) {
+    content_registro_dia.removeEventListener(
+      "click",
+      content_registro_dia._clickHandler,
+    );
+  }
+
+  content_registro_dia._clickHandler = async (e) => {
+    const btn = e.target.closest(".table_btn_enviar_bono");
+    if (!btn) return;
+
+    const tr = btn.closest("tr");
+    const bonoInput = tr?.querySelector(".table_input_bono_portal");
+    const valBonoregistr = bonoInput?.value?.trim() || "";
+    if (!valBonoregistr) {
+      Swal.fire({
+        icon: "warning",
+        title: "Falta el bono",
+        text: "Ingresa el # de bono antes de enviar.",
+        allowOutsideClick: false,
+      });
+      return;
+    }
+
+    const {
+      casino = "",
+      categoria = "",
+      nombre = "",
+      cedula = "",
+      fecha = "",
+      hora = "",
+      resultado = "",
+    } = btn.dataset;
+
+    const data = {
+      tipo: "envio_1",
+      valor_1: hora,
+      valor_2: fecha,
+      valor_3: nombre,
+      valor_5: casino,
+      valor_6: categoria,
+      valor_7: resultado,
+      valor_8: valBonoregistr,
+      valor_9: promocion,
+      valor_10: user.Nombre,
+    };
+
+    const key = [casino, categoria, nombre, cedula, fecha, hora].join("|");
+    if (IN_FLIGHT.has(key)) return;
+    IN_FLIGHT.add(key);
+
+    if (btn.dataset.sending === "1") return;
+    btn.dataset.sending = "1";
+
+    const prevText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Enviando…";
+    if (loader?.style) loader.style.display = "flex";
+
+    try {
+      await fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        body: JSON.stringify(data),
+      });
+
+      const ok = updateLocalBono(
+        {
+          casino,
+          categoria,
+          nombre,
+          cedula,
+          fecha,
+          hora,
+          resultado,
+        },
+        valBonoregistr,
+      );
+
+      if (tr) {
+        const tdBono = tr.querySelector("td:nth-child(6)");
+        const tdAcc = tr.querySelector("td:nth-child(7)");
+        if (tdBono) tdBono.innerHTML = escapeHtml(valBonoregistr);
+        if (tdAcc)
+          tdAcc.innerHTML = `<small class="table_ya_tiene_bono">Ya contiene Bono.</small>`;
+      }
+
+      Swal.fire({
+        icon: ok ? "success" : "info",
+        title: ok ? "Bono asignado" : "Registro no encontrado",
+        customClass: {
+          popup: "",
+          title: "",
+          confirmButton: "",
+        },
+        html: `<div>
+            <p>${
+              ok
+                ? "Se envió la información de manera correcta."
+                : "No se pudo localizar el registro en localStorage."
+            }</p>
+            </div>
+            `,
+        allowOutsideClick: false,
+      });
+      btn.textContent = prevText;
+      GetResgistroDia();
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Ha ocurrido un error",
+        customClass: {
+          popup: "mi-popup",
+          title: "mi-titulo",
+          confirmButton: "btn btn-danger",
+        },
+        html: `<div >
+                <p>Ha ocurrido un error en el envió.</p>
+              </div>`,
+        allowOutsideClick: false,
+      });
+      btn.textContent = prevText;
+    } finally {
+      IN_FLIGHT.delete(key);
+
+      if (loader?.style) loader.style.display = "none";
+
+      if (document.body.contains(btn)) {
+        btn.disabled = false;
+        btn.textContent = prevText;
+        delete btn.dataset.sending;
+      }
+    }
+  };
+  content_registro_dia.addEventListener(
+    "click",
+    content_registro_dia._clickHandler,
+  );
 }
+GetResgistroDia();
+
+function getDataObs() {
+  const container = document.getElementById("result_observaciones_dinamica");
+  container.innerHTML = "Cargando...";
+  fetch(`${url}?hoja=observaciones`)
+    .then((res) => res.json())
+    .then((data) => {
+      container.innerHTML = `
+          <div class="table-result table-scrolld">
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th># Registro</th>
+                  <th>Usuario</th>
+                  <th>Hora</th>
+                  <th>Fecha</th>
+                  <th>Observación</th>
+                  <th>Casino</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+               ${data
+                 .reverse()
+                 .map((registro, i) => {
+                   const horaFormateada = new Date(
+                     registro.Hora,
+                   ).toLocaleTimeString("es-CO", {
+                     hour: "2-digit",
+                     minute: "2-digit",
+                   });
+
+                   return `<tr>
+                              <td>${i + 1}</td>
+                              <td>${registro.Usuario}</td>
+                              <td>${horaFormateada}</td> 
+                              <td>${registro.Fecha.substring(0, 10)}</td>
+                              <td>${registro.Observacion}</td>
+                              <td>${registro.Casino}</td>
+                              ${registro.Estado == "" ? `<td class="pendi_obs">Pendiente</td>` : `<td class="corre_obs">Corregido</td>`}
+                              
+                            </tr>`;
+                 })
+                 .join("")}
+              </tbody>
+            </table>
+          </div>
+        `;
+    });
+}
+getDataObs();

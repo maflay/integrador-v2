@@ -14,131 +14,278 @@
 <body data-main-style="/dinamicas/promocion_vamos_en_grande/css/style.css"
     data-main-script="/dinamicas/promocion_vamos_en_grande/js/script.js">
     <div class="background-promo">
-        <div>
-
-            <div id="loader" class="loader-overlay">
-                <div class="spinner"></div>
-            </div>
-            <div class="content-logos">
-                <img src="/dinamicas/promocion_vamos_en_grande/resources/logo_vamos_en_grande.png" alt="Aladdin"
-                    class="logo posi_logo_1">
-                <img src="/dinamicas/promocion_vamos_en_grande/resources/logo_vamos_en_grande.png" alt="Aladdin"
-                    class="logo posi_logo_2">
-            </div>
-            <div class="contenedor-inicial">
-                <h3>Ingrese el Semi-finalista</h3>
-                <div class="control-finalista">
-                    <!-- <input placeholder="Fecha" class="form-control" id="fecha" type="date"> -->
-                    <select class="form-control" style="cursor: pointer;" id="casino">
-                         <option value="">Casino...</option>
-                                <option value="A05">A05</option>
-                                <option value="A07">A07</option>
-                                <option value="A08">A08</option>
-                                <option value="A09">A09</option>
-                                <option value="A12">A12</option>
-                                <option value="A12-MESAS">A12-MESAS</option>
-                                <option value="A15">A15</option>
-                                <option value="A15-MESAS">A15-MESAS</option>
-                                <option value="A16">A16</option>
-                                <option value="A19">A19</option>
-                                <option value="A35">A35</option>
-                                <option value="A36">A36</option>
-                                <option value="A36-MESAS">A36-MESAS</option>
-                                <option value="A38">A38</option>
-                                <option value="A39">A39</option>
-                                <option value="A43">A43</option>
-                                <option value="A48">A48</option>
-                                <option value="A48-MESAS">A48-MESAS</option>
-                                <option value="A49">A49</option>
-                                <option value="A50">A50</option>
-                                <option value="A53">A53</option>
-                                <option value="A70">A70</option>
-                                <option value="A781">A781</option>
-                                <option value="A88">A88</option>
-                                <option value="A100">A100</option>
-                                <option value="A108">A108</option>
-                                <option value="A108-MESAS">A108-MESAS</option>
-                                <option value="A127">A127</option>
-                                <option value="A127-MESAS">A127-MESAS</option>
-                    </select>
-                    <input placeholder="Nombre" onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+        <div id="loader" class="loader-overlay">
+            <div class="spinner"></div>
+        </div>
+        <div class="content-logos">
+            <img src="/dinamicas/promocion_vamos_en_grande/resources/logo_vamos_en_grande.png" alt="Aladdin">
+            <!-- <img src="/dinamicas/promocion_vamos_en_grande/resources/logo_vamos_en_grande.png" alt="Aladdin"
+                class="logo posi_logo_2"> -->
+        </div>
+        <div class="contenedor-inicial">
+            <h3>Ingrese el Semi-finalista</h3>
+            <div class="control-finalista">
+                <!-- <input placeholder="Fecha" class="form-control" id="fecha" type="date"> -->
+                <select class="form-control" style="cursor: pointer;" id="casino">
+                    <option value="">Casino...</option>
+                    <option value="A05">A05</option>
+                    <option value="A07">A07</option>
+                    <option value="A08">A08</option>
+                    <option value="A09">A09</option>
+                    <option value="A12">A12</option>
+                    <option value="A12-MESAS">A12-MESAS</option>
+                    <option value="A15">A15</option>
+                    <option value="A15-MESAS">A15-MESAS</option>
+                    <option value="A16">A16</option>
+                    <option value="A19">A19</option>
+                    <option value="A35">A35</option>
+                    <option value="A36">A36</option>
+                    <option value="A36-MESAS">A36-MESAS</option>
+                    <option value="A38">A38</option>
+                    <option value="A39">A39</option>
+                    <option value="A43">A43</option>
+                    <option value="A48">A48</option>
+                    <option value="A48-MESAS">A48-MESAS</option>
+                    <option value="A49">A49</option>
+                    <option value="A50">A50</option>
+                    <option value="A53">A53</option>
+                    <option value="A70">A70</option>
+                    <option value="A781">A781</option>
+                    <option value="A88">A88</option>
+                    <option value="A100">A100</option>
+                    <option value="A108">A108</option>
+                    <option value="A108-MESAS">A108-MESAS</option>
+                    <option value="A127">A127</option>
+                    <option value="A127-MESAS">A127-MESAS</option>
+                </select>
+                <input placeholder="Nombre" onkeyup="this.value = this.value.toUpperCase();" class="form-control"
                     id="nombre" type="text">
-                    <input placeholder="Cedúla" class="form-control" id="cedula" type="number">
-
+                <input placeholder="Cédula" class="form-control" id="cedula" type="number">
+            </div>
+            <br />
+            <div>
+                <button id="btn_send_semis" class="btn btn-primary" onclick="handleSubmitSemis()">Enviar</button>
+            </div>
+        </div>
+        <br />
+        <div class="contenedor-inicial">
+            <div class="content-actions">
+                <div style="display: none;" class="content-actions-1">
+                    <h3>Consultar Semi-finalista</h3>
+                    <div class="control-finalista">
+                        <input placeholder="Cedula" class="form-control" id="cedulaGet" type="text">
+                    </div>
+                    <br />
+                    <div>
+                        <button class="btn btn-primary" onclick="cleanTable()">Limpiar tabla</button>
+                        <button class="btn btn-primary" onclick="getCliente()">Consultar</button>
+                    </div>
                 </div>
-                <br />
-                <div>
-                    <button class="btn btn-primary" onclick="handleSubmitSemis()">Enviar</button>
+                <div class="content-actions-3">
+                    <button onclick="openmodalfinalista()" class="btn btn-primary">Crear finalista</button>
+                </div>
+                <div class="content-actions-2">
+                    <h3>Enviar Observación</h3>
+                    <br />
+                    <div>
+                        <button class="btn btn-primary" onclick="abrirModal()">Enviar Observación</button>
+                    </div>
                 </div>
             </div>
             <br />
+            <div id="content-result-cliente"></div>
+        </div>
+        <br />
+        <div style="width: 100%;height: 2px;background-color: #ffffff80;"></div>
+        <br />
+        <div class="_content_tabla_result_">
             <div class="contenedor-inicial">
-                <div class="content-actions">
-                    <div style="display: none;" class="content-actions-1">
-                        <h3>Consultar Semi-finalista</h3>
-                        <div class="control-finalista">
-                            <input placeholder="Cedula" class="form-control" id="cedulaGet" type="text">
-                        </div>
-                        <br />
-                        <div>
-                            <button class="btn btn-primary" onclick="cleanTable()">Limpiar tabla</button>
-                            <button class="btn btn-primary" onclick="getCliente()">Consultar</button>
-                        </div>
-                    </div>
-                    <div class="content-actions-3">
-                        <button onclick="openmodalfinalista()" class="btn btn-primary">Crear finalista</button>
-                    </div>
-                    <div class="content-actions-2">
-                        <h3>Enviar Observación</h3>
-                        <br />
-                        <div>
-                            <button class="btn btn-primary" onclick="abrirModal()">Enviar Observación</button>
+                <h3 class="title_form">Todos los registro (Semi-finalista)</h3>
+                <input style="display: none;" onkeyup="this.value = this.value.toUpperCase()" type="text"
+                    id="buscar_usuario" class="form-control search_promo" placeholder="Buscar...">
+                <br />
+                <br />
+                <div style="width: 100%;" id="content-all-result"></div>
+            </div>
+            <br />
+            <div style="display: none;" id="filtro_semis" class="contenedor-inicial">
+                <p>Semis-Finalista por Casino</p>
+                <div class="content_ficha_filter">
+                    <button class="btn btn-primary actions_semis" id="A05">A05</button>
+                    <button class="btn btn-primary actions_semis" id="A07">A07</button>
+                    <button class="btn btn-primary actions_semis" id="A08">A08</button>
+                    <button class="btn btn-primary actions_semis" id="A09">A09</button>
+                    <button class="btn btn-primary actions_semis" id="A12">A12</button>
+                    <button class="btn btn-primary actions_semis" id="A12-MESAS">A12-MESAS</button>
+                    <button class="btn btn-primary actions_semis" id="A15">A15</button>
+                    <button class="btn btn-primary actions_semis" id="A15-MESAS">A15-MESAS</button>
+                    <button class="btn btn-primary actions_semis" id="A16">A16</button>
+                    <button class="btn btn-primary actions_semis" id="A19">A19</button>
+                    <button class="btn btn-primary actions_semis" id="A35">A35</button>
+                    <button class="btn btn-primary actions_semis" id="A36">A36</button>
+                    <button class="btn btn-primary actions_semis" id="A36-MESAS">A36-MESAS</button>
+                    <button class="btn btn-primary actions_semis" id="A38">A38</button>
+                    <button class="btn btn-primary actions_semis" id="A39">A39</button>
+                    <button class="btn btn-primary actions_semis" id="A43">A43</button>
+                    <button class="btn btn-primary actions_semis" id="A48">A48</button>
+                    <button class="btn btn-primary actions_semis" id="A48-MESAS">A48-MESAS</button>
+                    <button class="btn btn-primary actions_semis" id="A49">A49</button>
+                    <button class="btn btn-primary actions_semis" id="A50">A50</button>
+                    <button class="btn btn-primary actions_semis" id="A53">A53</button>
+                    <button class="btn btn-primary actions_semis" id="A70">A70</button>
+                    <button class="btn btn-primary actions_semis" id="A781">A781</button>
+                    <button class="btn btn-primary actions_semis" id="A88">A88</button>
+                    <button class="btn btn-primary actions_semis" id="A100">A100</button>
+                    <button class="btn btn-primary actions_semis" id="A108">A108</button>
+                    <button class="btn btn-primary actions_semis" id="A108-MESAS">A108-MESAS</button>
+                    <button class="btn btn-primary actions_semis" id="A127">A127</button>
+                    <button class="btn btn-primary actions_semis" id="A127-MESAS">A127-MESAS</button>
+                </div>
+                <div id="content_ficha_filter_table" style="width: 100%;"></div>
+            </div>
+            <br />
+            <div style="width: 100%;height: 2px;background-color: #ffffff80;"></div>
+            <br />
+            <div class="contenedor-inicial">
+                <div style="display: none;" id="ir_dinamica" class="actions_veg">
+                    <input onkeyup="this.value = this.value.toUpperCase()" type="text" id="buscar_usuario_fin"
+                        class="form-control" placeholder="Buscar...">
+                    <a class="btn_resultados btn btn-primary"
+                        href="/dinamicas/promocion_vamos_en_grande/components/getInfoRuleta/getInfoRuleta.html">Conocer
+                        Resultados</a>
+                    <!-- <button id="btn_resultados" class="btn btn-primary btn_resultados">Números Asignados</button> -->
+                    <a style="display: none;" class="btn btn-primary" target="_blank"
+                        href="/dinamicas/promocion_vamos_en_grande/components/ruleta-dinamica/ruleta-dinamica.html">Dinámica</a>
+                    <button title="Ganadores del Mes" style="display: none;" id="last_ganador"
+                        class="btn btn-danger">Ganador</button>
+                </div>
+                <h3 class="title_form">Todos los registro (finalista)</h3>
+                <br />
+                <br />
+                <div style="width: 100%;" id="content-all-result-finalista"></div>
+            </div>
+        </div>
+        <br />
+        <div style="display: none;" id="filtro_finas" class="contenedor-inicial">
+            <p>Finalista por Casino</p>
+            <div class="content_ficha_filter">
+                <button class="btn btn-primary actions_finas" id="A05">A05</button>
+                <button class="btn btn-primary actions_finas" id="A07">A07</button>
+                <button class="btn btn-primary actions_finas" id="A08">A08</button>
+                <button class="btn btn-primary actions_finas" id="A09">A09</button>
+                <button class="btn btn-primary actions_finas" id="A12">A12</button>
+                <button class="btn btn-primary actions_finas" id="A12-MESAS">A12-MESAS</button>
+                <button class="btn btn-primary actions_finas" id="A15">A15</button>
+                <button class="btn btn-primary actions_finas" id="A15-MESAS">A15-MESAS</button>
+                <button class="btn btn-primary actions_finas" id="A16">A16</button>
+                <button class="btn btn-primary actions_finas" id="A19">A19</button>
+                <button class="btn btn-primary actions_finas" id="A35">A35</button>
+                <button class="btn btn-primary actions_finas" id="A36">A36</button>
+                <button class="btn btn-primary actions_finas" id="A36-MESAS">A36-MESAS</button>
+                <button class="btn btn-primary actions_finas" id="A38">A38</button>
+                <button class="btn btn-primary actions_finas" id="A39">A39</button>
+                <button class="btn btn-primary actions_finas" id="A43">A43</button>
+                <button class="btn btn-primary actions_finas" id="A48">A48</button>
+                <button class="btn btn-primary actions_finas" id="A48-MESAS">A48-MESAS</button>
+                <button class="btn btn-primary actions_finas" id="A49">A49</button>
+                <button class="btn btn-primary actions_finas" id="A50">A50</button>
+                <button class="btn btn-primary actions_finas" id="A53">A53</button>
+                <button class="btn btn-primary actions_finas" id="A70">A70</button>
+                <button class="btn btn-primary actions_finas" id="A781">A781</button>
+                <button class="btn btn-primary actions_finas" id="A88">A88</button>
+                <button class="btn btn-primary actions_finas" id="A100">A100</button>
+                <button class="btn btn-primary actions_finas" id="A108">A108</button>
+                <button class="btn btn-primary actions_finas" id="A108-MESAS">A108-MESAS</button>
+                <button class="btn btn-primary actions_finas" id="A127">A127</button>
+                <button class="btn btn-primary actions_finas" id="A127-MESAS">A127-MESAS</button>
+            </div>
+
+            <div id="content_ficha_filter_tabla_finas" style="width: 100%;"></div>
+        </div>
+        <br />
+        <div class="modal_resultados" id="modal_resultados">
+            <div style="width: 95%;" id="modal_resultados_part"></div>
+            <p class="closeModal" id="closeModal">&times;</p>
+        </div>
+        <section id="datos-modal-observacion" class="modal-gran">
+            <div class="modal-content2-gran">
+                <div
+                    style="display: flex;text-align: center;justify-content: space-between;align-items: center;width: 100%;">
+                    <h1 style="font-weight: bold; color: #224fa1;">Envio de observación</h1>
+                    <span style="display: flex; justify-content: flex-end;" class="close-gran"
+                        onclick="cerraModal()">&times;</span>
+                </div>
+                <div class="modal-body-gran">
+                    <div id="table-container-gran">
+                        <div id="formBox">
+                            <div class="casinos-modal">
+                                <label for="casino">CASINO</label>
+                                <select class="input-gran form-control" style="cursor: pointer;"
+                                    id="casino-modal-observacion">
+                                    <option value="">Casino...</option>
+                                    <option value="A05">A05</option>
+                                    <option value="A07">A07</option>
+                                    <option value="A08">A08</option>
+                                    <option value="A09">A09</option>
+                                    <option value="A12">A12</option>
+                                    <option value="A12-MESAS">A12-MESAS</option>
+                                    <option value="A15">A15</option>
+                                    <option value="A15-MESAS">A15-MESAS</option>
+                                    <option value="A16">A16</option>
+                                    <option value="A19">A19</option>
+                                    <option value="A35">A35</option>
+                                    <option value="A36">A36</option>
+                                    <option value="A36-MESAS">A36-MESAS</option>
+                                    <option value="A38">A38</option>
+                                    <option value="A39">A39</option>
+                                    <option value="A43">A43</option>
+                                    <option value="A48">A48</option>
+                                    <option value="A48-MESAS">A48-MESAS</option>
+                                    <option value="A49">A49</option>
+                                    <option value="A50">A50</option>
+                                    <option value="A53">A53</option>
+                                    <option value="A70">A70</option>
+                                    <option value="A781">A781</option>
+                                    <option value="A88">A88</option>
+                                    <option value="A100">A100</option>
+                                    <option value="A108">A108</option>
+                                    <option value="A108-MESAS">A108-MESAS</option>
+                                    <option value="A127">A127</option>
+                                    <option value="A127-MESAS">A127-MESAS</option>
+                                </select>
+                            </div>
+
+                            <div class="nombre-modal">
+                                <label for="bono">Observación</label>
+                                <div class="content-text-area">
+                                    <textarea name="descripcion" id="casino-modal-descripcion"
+                                        placeholder="Detalle su observación"></textarea>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div style="display: flex;justify-content: end;" class="content-btn-enviar">
+                                <button id="validatepremio" onclick="handleObservacionSubmit()"
+                                    class="btn btn-primary">Enviar
+                                    observación</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <br />
-                <div id="content-result-cliente"></div>
             </div>
-        </div>
-        <br />
-        <div class="contenedor-inicial">
-            <h3 class="title_form">Todos los registro (Semi-finalista)</h3>
-            <input style="display: none;" onkeyup="this.value = this.value.toUpperCase()" type="text"
-                id="buscar_usuario" class="form-control search_promo" placeholder="Buscar...">
-            <div style="width: 100%;" id="content-all-result"></div>
-        </div>
-        <br />
-        <div class="contenedor-inicial">
-            <div style="display: none;" id="ir_dinamica" class="actions_veg">
-                <input onkeyup="this.value = this.value.toUpperCase()" type="text" id="buscar_usuario_fin"
-                    class="form-control" placeholder="Buscar...">
-                <a href="/dinamicas/promocion_vamos_en_grande/components/getInfoRuleta/getInfoRuleta.html">Conocer
-                    Resultados</a>
-                <a class="btn btn-primary" target="_blank"
-                    href="/dinamicas/promocion_vamos_en_grande/components/ruleta-dinamica/ruleta-dinamica.html">Dinámica</a>
-                <button title="Ganadores del Mes" style="display: none;" id="last_ganador"
-                    class="btn btn-danger">Ganador</button>
-            </div>
-            <h3 class="title_form">Todos los registro (finalista)</h3>
-            <div style="width: 100%;" id="content-all-result-finalista"></div>
-        </div>
-        <br />
-    </div>
-    <section id="datos-modal-observacion" class="modal-gran">
-        <div class="modal-content2-gran">
-            <div
-                style="display: flex;text-align: center;justify-content: space-between;align-items: center;width: 100%;">
-                <h1 style="font-weight: bold; color: rgb(34, 79, 161);">Envio de observación</h1>
-                <span style="display: flex; justify-content: flex-end;" class="close-gran"
-                    onclick="cerraModal()">&times;</span>
-            </div>
-            <div class="modal-body-gran">
-                <div id="table-container-gran">
-                    <div id="formBox">
-                        <div class="casinos-modal">
-                            <label for="casino">CASINO</label>
-                            <select class="input-gran form-control" style="cursor: pointer;"
-                                id="casino-modal-observacion">
+        </section>
+        <section id="datos-modal-finalista" class="modal-gran">
+            <div class="modal-content2-gran">
+                <div
+                    style="display: flex;text-align: center;justify-content: space-between;align-items: center;width: 100%;">
+                    <h1 style="font-weight: bold; color: #224fa1;text-align: center;">Crear Finalista</h1>
+                    <span style="display: flex; justify-content: flex-end;" class="close-gran"
+                        onclick="closemodalfinalista()">&times;</span>
+                </div>
+                <div class="modal-body-gran">
+                    <div id="table-container-gran">
+                        <div class="control-finalista">
+                            <!-- <input placeholder="Fecha" class="form-control" id="fecha" type="date"> -->
+                            <select class="form-control" style="cursor: pointer;" id="casino_finalista">
                                 <option value="">Casino...</option>
                                 <option value="A05">A05</option>
                                 <option value="A07">A07</option>
@@ -170,83 +317,19 @@
                                 <option value="A127">A127</option>
                                 <option value="A127-MESAS">A127-MESAS</option>
                             </select>
-                        </div>
-
-                        <div class="nombre-modal">
-                            <label for="bono">Observación</label>
-                            <div class="content-text-area">
-                                <textarea name="descripcion" id="casino-modal-descripcion"
-                                    placeholder="Detalle su observación"></textarea>
+                            <input placeholder="Nombre" onkeyup="this.value = this.value.toUpperCase();"
+                                class="form-control" id="nombre_finalista" type="text">
+                            <input placeholder="Cédula" class="form-control" id="cedula_finalista" type="number">
+                            <div>
+                                <button onclick="handleCreateFinalista()" class="btn btn-primary">Crear</button>
                             </div>
                         </div>
-                        <br /><br />
-                        <div style="display: flex;justify-content: end;" class="content-btn-enviar">
-                            <button id="validatepremio" onclick="handleObservacionSubmit()"
-                                class="btn btn-primary">Enviar
-                                observación</button>
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 
-
-    <section id="datos-modal-finalista" class="modal-gran">
-        <div class="modal-content2-gran">
-            <div
-                style="display: flex;text-align: center;justify-content: space-between;align-items: center;width: 100%;">
-                <h1 style="font-weight: bold; color: rgb(34, 79, 161);text-align: center;">Crear Finalista</h1>
-                <span style="display: flex; justify-content: flex-end;" class="close-gran"
-                    onclick="closemodalfinalista()">&times;</span>
-            </div>
-            <div class="modal-body-gran">
-                <div id="table-container-gran">
-                    <div class="control-finalista">
-                        <!-- <input placeholder="Fecha" class="form-control" id="fecha" type="date"> -->
-                        <select class="form-control" style="cursor: pointer;" id="casino_finalista">
-                            <option value="">Casino...</option>
-                            <option value="A05">A05</option>
-                            <option value="A07">A07</option>
-                            <option value="A08">A08</option>
-                            <option value="A09">A09</option>
-                            <option value="A12">A12</option>
-                            <option value="A12-MESAS">A12-MESAS</option>
-                            <option value="A15">A15</option>
-                            <option value="A15-MESAS">A15-MESAS</option>
-                            <option value="A16">A16</option>
-                            <option value="A19">A19</option>
-                            <option value="A35">A35</option>
-                            <option value="A36">A36</option>
-                            <option value="A36-MESAS">A36-MESAS</option>
-                            <option value="A38">A38</option>
-                            <option value="A39">A39</option>
-                            <option value="A43">A43</option>
-                            <option value="A48">A48</option>
-                            <option value="A48-MESAS">A48-MESAS</option>
-                            <option value="A49">A49</option>
-                            <option value="A50">A50</option>
-                            <option value="A53">A53</option>
-                            <option value="A70">A70</option>
-                            <option value="A781">A781</option>
-                            <option value="A88">A88</option>
-                            <option value="A100">A100</option>
-                            <option value="A108">A108</option>
-                            <option value="A108-MESAS">A108-MESAS</option>
-                            <option value="A127">A127</option>
-                            <option value="A127-MESAS">A127-MESAS</option>
-                        </select>
-                        <input placeholder="Nombre" onkeyup="this.value = this.value.toUpperCase();"
-                        class="form-control" id="nombre_finalista" type="text">
-                        <input placeholder="Cedula" class="form-control" id="cedula_finalista" type="number">
-                        <div>
-                            <button onclick="handleCreateFinalista()" class="btn btn-primary">Crear</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -255,6 +338,54 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/dinamicas/user.js"></script>
     <script src="/dinamicas/extension.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import {
+            getDatabase, ref, set, onValue, update, push
+        } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAXCMyH4zx--kZvJ_W1F1KAi5HKjPNxPHo",
+            authDomain: "prueba-f0c25.firebaseapp.com",
+            databaseURL: "https://prueba-f0c25-default-rtdb.firebaseio.com",
+            projectId: "prueba-f0c25",
+            storageBucket: "prueba-f0c25.firebasestorage.app",
+            messagingSenderId: "984894736026",
+            appId: "1:984894736026:web:a04d1ab923391236698123"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const NS = "apps/admin_vamos";
+
+        // crear las secciones para actualizar
+        const ROOM = "sala_ejemplo";
+        const ROOM_FINAL = "sala_finalista";
+
+        const roomRef = ref(db, `${NS}/rooms/${ROOM}`);
+        const roomFinal = ref(db, `${NS}/rooms/${ROOM_FINAL}`);
+
+        // SEMIS
+        window.notificarEnvioFirebase = function () {
+            update(roomRef, {
+                numero: Date.now()
+            });
+        };
+        onValue(roomRef, (snapshot) => {
+            getSemis();
+        });
+
+        // FINAL
+        window.notificarEnvioFirebaseFinal = function () {
+            update(roomFinal, {
+                numero: Date.now()
+            });
+        }
+
+        onValue(roomFinal, (snapshot) => {
+            getDataFinalista();
+        })
+    </script>
 </body>
 
 </html>

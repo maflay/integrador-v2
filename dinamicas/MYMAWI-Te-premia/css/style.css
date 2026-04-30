@@ -346,11 +346,6 @@ body {
     text-align: center;
 }
 
-.color-gray {
-    font-size: 0.8rem;
-    color: gray;
-}
-
 .content_expand {
     position: absolute;
     right: 20px;

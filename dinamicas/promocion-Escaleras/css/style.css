@@ -1203,12 +1203,6 @@ input:disabled {
   cursor: pointer;
 }
 
-.color-gray {
-  font-size: 0.8rem;
-  color: gray;
-}
-
-
 .mi-popup {
   background-color: #1F253A;
   color: white;

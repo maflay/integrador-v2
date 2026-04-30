@@ -312,11 +312,6 @@
     overflow-x: auto;
 }
 
-.color-gray {
-    font-size: 9px;
-    color: gray;
-}
-
 .item_full_screen {
     width: 100vw !important;
     max-height: 100vh !important;

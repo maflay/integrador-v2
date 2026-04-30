@@ -35,10 +35,8 @@
                 <h3>Ingrese el Jugador</h3>
                 <div class="control-finalista">
                     <!-- <input placeholder="Fecha" class="form-control" id="fecha" type="date"> -->
-                    <input placeholder="Cedula" class="form-control" id="cedula" type="number">
-                    <input onkeyup="this.value = this.value.toUpperCase()" placeholder="Nombre" class="form-control" id="nombre" type="text">
                     <select class="form-control" style="cursor: pointer;" id="casino">
-                        <option value="">Seleccione...</option>
+                        <option value="">Casino...</option>
                         <option value="A05">A05</option>
                         <option value="A07">A07</option>
                         <option value="A08">A08</option>
@@ -54,7 +52,7 @@
                         <option value="A36-MESAS">A36-MESAS</option>
                         <option value="A38">A38</option>
                         <option value="A39">A39</option>
-                        <option value="A39">A43</option>
+                        <option value="A43">A43</option>
                         <option value="A48">A48</option>
                         <option value="A48-MESAS">A48-MESAS</option>
                         <option value="A49">A49</option>
@@ -64,12 +62,27 @@
                         <option value="A781">A781</option>
                         <option value="A88">A88</option>
                         <option value="A100">A100</option>
-                        <option value="A100-MESAS">A100-MESAS</option>
                         <option value="A108">A108</option>
                         <option value="A108-MESAS">A108-MESAS</option>
                         <option value="A127">A127</option>
                         <option value="A127-MESAS">A127-MESAS</option>
                     </select>
+                    <input onkeyup="this.value = this.value.toUpperCase()" placeholder="Nombre" class="form-control"
+                        id="nombre" type="text">
+                    <input placeholder="Cédula" class="form-control" id="cedula" type="number">
+                    <div style="position: relative; width: 100%;">
+                        <select class="form-control better_view" name="dia_pp" id="dia_pp">
+                            <option value="">Festivo</option>
+                            <option value="lunes">Lunes</option>
+                            <option value="martes">Martes</option>
+                            <option value="miercoles">Miércoles</option>
+                            <option value="jueves">Jueves</option>
+                            <option value="viernes">Viernes</option>
+                            <option value="sabado">Sábado</option>
+                            <option value="domingo">Domingo</option>
+                        </select>
+                        <p class="dia_actual" id="dia_actual"></p>
+                    </div>
                     <!-- <input placeholder="Bono" class="form-control" id="bono" type="number"> -->
 
                 </div>
@@ -84,7 +97,7 @@
                     <div class="content-actions-1">
                         <h3>Consultar el Jugador</h3>
                         <div class="control-finalista">
-                            <input placeholder="Cedula" class="form-control" id="cedulaGet" type="text">
+                            <input placeholder="Cédula" class="form-control" id="cedulaGet" type="text">
                         </div>
                         <br />
                         <div>
@@ -108,7 +121,7 @@
         <div style="margin-bottom: 50px;position: relative;" class="contenedor-inicial">
             <div id="filtro-casino" class="filtro-casino">
                 <select class="form-control" id="filtroCasino">
-                    <option value="">Seleccione...</option>
+                    <option value="">Casino...</option>
                     <option value="A05">A05</option>
                     <option value="A07">A07</option>
                     <option value="A08">A08</option>
@@ -124,7 +137,7 @@
                     <option value="A36-MESAS">A36-MESAS</option>
                     <option value="A38">A38</option>
                     <option value="A39">A39</option>
-                    <option value="A39">A43</option>
+                    <option value="A43">A43</option>
                     <option value="A48">A48</option>
                     <option value="A48-MESAS">A48-MESAS</option>
                     <option value="A49">A49</option>
@@ -134,7 +147,48 @@
                     <option value="A781">A781</option>
                     <option value="A88">A88</option>
                     <option value="A100">A100</option>
-                    <option value="A100-MESAS">A100-MESAS</option>
+                    <option value="A108">A108</option>
+                    <option value="A108-MESAS">A108-MESAS</option>
+                    <option value="A127">A127</option>
+                    <option value="A127-MESAS">A127-MESAS</option>
+                </select>
+            </div>
+
+            <h3>Registro de los Jugadores del mes</h3>
+            <div id="content-all-result"></div>
+        </div>
+
+        <br />
+        <div id="content_all_register" style="margin-bottom: 50px;position: relative;"
+            class="contenedor-inicial no_screen">
+            <div id="filtro-casino-all" class="filtro-casino">
+                <select class="form-control" id="filtroCasinoAll">
+                    <option value="">Casino...</option>
+                    <option value="A05">A05</option>
+                    <option value="A07">A07</option>
+                    <option value="A08">A08</option>
+                    <option value="A09">A09</option>
+                    <option value="A12">A12</option>
+                    <option value="A12-MESAS">A12-MESAS</option>
+                    <option value="A15">A15</option>
+                    <option value="A15-MESAS">A15-MESAS</option>
+                    <option value="A16">A16</option>
+                    <option value="A19">A19</option>
+                    <option value="A35">A35</option>
+                    <option value="A36">A36</option>
+                    <option value="A36-MESAS">A36-MESAS</option>
+                    <option value="A38">A38</option>
+                    <option value="A39">A39</option>
+                    <option value="A43">A43</option>
+                    <option value="A48">A48</option>
+                    <option value="A48-MESAS">A48-MESAS</option>
+                    <option value="A49">A49</option>
+                    <option value="A50">A50</option>
+                    <option value="A53">A53</option>
+                    <option value="A70">A70</option>
+                    <option value="A781">A781</option>
+                    <option value="A88">A88</option>
+                    <option value="A100">A100</option>
                     <option value="A108">A108</option>
                     <option value="A108-MESAS">A108-MESAS</option>
                     <option value="A127">A127</option>
@@ -143,8 +197,13 @@
             </div>
 
             <h3>Todos los registro de los Jugadores</h3>
-            <div id="content-all-result"></div>
+            <div id="content-all-result_FULL"></div>
         </div>
+        <br />
+        <div class="container">
+            <button id="btn_open_all_register" class="btn btn-primary">Ver todos</button>
+        </div>
+        <br />
     </div>
 
     <section id="datos-modal-observacion" class="modal-gran">
@@ -162,7 +221,7 @@
                             <label for="casino">CASINO</label>
                             <select class="input-gran form-control" style="cursor: pointer;"
                                 id="casino-modal-observacion">
-                                <option value="">Seleccione...</option>
+                                <option value="">Casino...</option>
                                 <option value="A05">A05</option>
                                 <option value="A07">A07</option>
                                 <option value="A08">A08</option>
@@ -178,7 +237,7 @@
                                 <option value="A36-MESAS">A36-MESAS</option>
                                 <option value="A38">A38</option>
                                 <option value="A39">A39</option>
-                                <option value="A39">A43</option>
+                                <option value="A43">A43</option>
                                 <option value="A48">A48</option>
                                 <option value="A48-MESAS">A48-MESAS</option>
                                 <option value="A49">A49</option>
@@ -188,7 +247,6 @@
                                 <option value="A781">A781</option>
                                 <option value="A88">A88</option>
                                 <option value="A100">A100</option>
-                                <option value="A100-MESAS">A100-MESAS</option>
                                 <option value="A108">A108</option>
                                 <option value="A108-MESAS">A108-MESAS</option>
                                 <option value="A127">A127</option>

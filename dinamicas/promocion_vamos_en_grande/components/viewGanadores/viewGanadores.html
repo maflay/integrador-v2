@@ -18,14 +18,18 @@
     </div>
     <div class="content_v_view_ganadores">
         <div class="content_card_winner">
-            <div class="content_bar"><p>BAR</p></div>
+            <div class="content_bar">
+                <p>BAR</p>
+            </div>
             <div class="content_casino_win" id="content_casino_win"></div>
             <div class="content_nombre_win" id="content_nombre_win"></div>
         </div>
         <div class="content_num_premio">
             <div class="content_num">
                 <!-- <p>NÚMERO GANADOR</p> -->
-                <img id="numero_ganador" src="/dinamicas/promocion_vamos_en_grande/resources/istockphoto-1295474183-612x612.jpg" alt="Aladdin">
+                <img id="numero_ganador"
+                    src="/dinamicas/promocion_vamos_en_grande/resources/istockphoto-1295474183-612x612.jpg"
+                    alt="Aladdin">
             </div>
             <!-- <div class="content_premio">
                 <div id="content_titulo_premio" class="content_titulo_premio">
@@ -45,6 +49,44 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/dinamicas/extension.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+        const firebaseConfig = {
+            apiKey: "AIzaSyAXCMyH4zx--kZvJ_W1F1KAi5HKjPNxPHo",
+            authDomain: "prueba-f0c25.firebaseapp.com",
+            databaseURL: "https://prueba-f0c25-default-rtdb.firebaseio.com",
+            projectId: "prueba-f0c25",
+            storageBucket: "prueba-f0c25.firebasestorage.app",
+            messagingSenderId: "984894736026",
+            appId: "1:984894736026:web:a04d1ab923391236698123"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const NS = "apps/vamos_en_grande";
+        const ROOM = "sala1";
+
+        // Refs apuntando al namespace NUEVO
+        const roomRef = ref(db, `${NS}/rooms/${ROOM}`);
+        const numeroRef = ref(db, `${NS}/rooms/${ROOM}/numero`);
+        const winnerRef = ref(db, `${NS}/rooms/${ROOM}/winner`);
+        const casinoRef = ref(db, `${NS}/rooms/${ROOM}/casino`);
+
+        onValue(roomRef, (snapshot) => {
+            const data = snapshot.val();
+            if (!data) return;
+            content_casino_win.innerHTML = obtenerCasino(data.casino);
+            content_nombre_win.innerHTML =
+                data.winner.length > 18
+                    ? data.winner.substring(0, 18) + "..."
+                    : data.winner;
+            numero_ganador.src =
+                `/dinamicas/promocion_lo_hacemos_en_grande/resources/numeros/${data.numero}.png`;
+        });
+
+    </script>
+
 </body>
 
 </html>

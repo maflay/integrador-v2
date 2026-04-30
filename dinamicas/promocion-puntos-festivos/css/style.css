@@ -14,6 +14,10 @@ body {
 }
 
 
+.no_screen {
+    display: none !important;
+}
+
 .background-promo {
     background-image: url(/dinamicas/promocion-puntos-festivos/resources/FONDO-TV-DADOS-DE-POKER-MARCOPOLO-2025.jpg);
     background-position: center;
@@ -75,6 +79,24 @@ body {
         transform: rotate(360deg);
     }
 }
+
+.dia_actual {
+    position: absolute;
+    font-size: 10px;
+    top: -15px;
+    width: 200px;
+}
+
+.better_view {
+    border: 1px solid #d3d3d3;
+    animation: show_better_view 4s infinite;
+}
+
+@keyframes show_better_view {
+    0%, 66% { border-color: #d3d3d3; }
+    33%, 100% { border-color: red; }
+}
+
 
 .content-logos {
     display: flex;
@@ -335,11 +357,6 @@ body {
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-}
-
-.color-gray {
-    font-size: 0.8rem;
-    color: gray;
 }
 
 .table_input_bono_pp {

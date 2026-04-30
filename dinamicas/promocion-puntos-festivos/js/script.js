@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
 });
 
 const url =
-  "https://script.google.com/macros/s/AKfycbxWslC1MauSS3ZxkiB3gqQ6igsx10XZNKjDliTpKQyp0D847xfXEUhigZ_tOGGM2oEt/exec";
+  "https://script.google.com/macros/s/AKfycbxrAuFsnPvm_IjiAdVAfcWDJ2fW-YPWkvCz3p7hnvC4_QUjinNfBVfCKlGJ0YuNOjB9/exec";
 
 function mostrarLoader(container, mensaje) {
   container.innerHTML = `
@@ -20,6 +20,7 @@ function handleSendInfo() {
   const nombre = document.getElementById("nombre");
   const casino = document.getElementById("casino");
   const loader = document.getElementById("loader");
+  const dia_pp = document.getElementById("dia_pp");
   // const bono = document.getElementById("bono");
 
   const urlBase = url;
@@ -27,6 +28,7 @@ function handleSendInfo() {
   const cedulaVal = cedula.value.trim();
   const nombreVal = nombre.value.trim();
   const casinoVal = casino.value.trim();
+  const dia_ppVal = dia_pp.value.trim();
   // const bonoVal = bono.value.trim();
 
   const fechaCompleta = new Date().toLocaleString("es-CO", {
@@ -42,6 +44,28 @@ function handleSendInfo() {
 
   const [fecha, hora] = fechaCompleta.split(", ");
 
+  const fechaMes = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    month: "long",
+    hour12: false,
+  });
+
+  const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "long",
+  });
+
+  const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
+
+  if (!dia_ppVal) {
+    Swal.fire({
+      icon: "warning",
+      title: "Selecciona un festivo valido",
+    });
+    return;
+  }
+
   if (!cedulaVal || !nombreVal || !casinoVal) {
     Swal.fire({
       icon: "warning",
@@ -53,7 +77,9 @@ function handleSendInfo() {
   }
 
   loader.style.display = "flex";
-  fetch(`${urlBase}?cedula=${cedulaVal}`)
+  fetch(
+    `${urlBase}?cedula=${cedulaVal}&dia=${dia_ppVal}&mesbus=${fechaMes}&anobus=${anio_res}`,
+  )
     .then((res) => res.json())
     .then((data) => {
       if (data.length > 0) {
@@ -67,11 +93,15 @@ function handleSendInfo() {
       } else {
         const dataToSend = {
           tipo: "registro",
-          nombre: nombreVal,
-          edad: fecha,
-          cedula: cedulaVal,
-          correo: casinoVal,
-          bono: "",
+          Nombre: nombreVal,
+          Fecha: fecha,
+          Hora: hora,
+          Cedula: cedulaVal,
+          Casino: casinoVal,
+          Bono: "",
+          Dia_registro: dia_ppVal,
+          Ano_registro: anio_res,
+          Mes_registro: fechaMes,
         };
         fetch(urlBase, {
           method: "POST",
@@ -83,6 +113,7 @@ function handleSendInfo() {
             casino.value = "";
             cedula.value = "";
             getData();
+            getAllData();
             setTimeout(() => {
               loader.style.display = "none";
               Swal.fire({
@@ -120,13 +151,51 @@ function cleanTable() {
   document.getElementById("cedulaGet").value = "";
 }
 
+validateDiaFestivo();
+
+function validateDiaFestivo() {
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "long",
+    weekday: "long",
+    day: "2-digit",
+    hour12: false,
+  });
+
+  document.getElementById("dia_actual").textContent =
+    `Fecha Actual: ${fechaCompleta}`;
+
+  let valor_dia_festivo = localStorage.getItem("dia_festivo");
+  if (valor_dia_festivo) {
+    document.getElementById("dia_pp").value = valor_dia_festivo;
+  }
+}
+
+document.getElementById("dia_pp").addEventListener("change", () => {
+  if (document.getElementById("dia_pp").value != "") {
+    localStorage.setItem(
+      "dia_festivo",
+      document.getElementById("dia_pp").value,
+    );
+  }
+});
+
 function getCliente() {
   const cedula = document.getElementById("cedulaGet").value;
   const loader = document.getElementById("loader");
   const resultCliente = document.getElementById("content-result-cliente");
 
+  const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "long",
+  });
+
+  const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
+
   loader.style.display = "flex";
-  fetch(`${url}?cedula=${cedula}`)
+  fetch(`${url}?cedula=${cedula}&mesbus=${fecha_reg}&anobus=${anio_res}`)
     .then((res) => res.json())
     .then((data) => {
       if (data.length > 0) {
@@ -156,7 +225,7 @@ function getCliente() {
                     <td>${
                       registro.Bono == ""
                         ? `
-              <input placeholder="# Bono" class="table_input_bono_pp_cliente" type="text" name="Bono Ganador" id="bono_ganador">`
+                        <input placeholder="# Bono" class="table_input_bono_pp_cliente" type="text" name="Bono Ganador" id="bono_ganador">`
                         : registro.Bono
                     }</td>
                     <td>${
@@ -168,12 +237,10 @@ function getCliente() {
                         : `Ya contiene Bono`
                     }
                         </td>
-                    <td>${
-                      String(registro.Cedula).substring(0, 4) + "..." || ""
-                    }</td>
+                    <td>${"..." + String(registro.Cedula).slice(-4) || ""}</td>
                     <td>${registro.Casino || ""}</td>
                   </tr>
-                `
+                `,
               )
               .join("")}
             </tbody>
@@ -185,7 +252,7 @@ function getCliente() {
           btn.addEventListener("click", async () => {
             const fila = btn.closest("tr");
             const bonoInput = fila.querySelector(
-              ".table_input_bono_pp_cliente"
+              ".table_input_bono_pp_cliente",
             );
             const bono = (bonoInput?.value || "").trim();
 
@@ -205,6 +272,9 @@ function getCliente() {
               tipo: "update_bono",
               cedula: String(registro.Cedula), // fuerza a string para comparación
               bono: Number(bono), // vuelve número si corresponde
+              dia: String(registro.Dia_registro),
+              mes: String(registro.Mes_registro),
+              anio: String(registro.Ano_registro),
             };
 
             fetch(url, {
@@ -216,31 +286,26 @@ function getCliente() {
               .then(() => {
                 btn.textContent = prevText;
                 loader.style.display = "none";
-
+                getCliente();
                 Swal.fire({
                   icon: "success",
+                  allowOutsideClick: false,
                   title: `Envio Exitoso.`,
                   text: `Información enviada de manera correcta.`,
-                  allowOutsideClick: false,
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    getData();
-                    getCliente();
-                  }
                 });
+                getData();
               })
               .catch((error) => {
                 Swal.fire({
                   icon: "error",
+                  allowOutsideClick: false,
                   title: `Error.`,
                   text: `Ha ocurrido un error.`,
-                  allowOutsideClick: false,
                 });
               });
           });
         });
       } else {
-        console.log("No se encontró ninguna coincidencia.");
         Swal.fire({
           icon: "error",
           title: `Error en la verificación.`,
@@ -260,7 +325,15 @@ function getData() {
   mostrarLoader(container, "Cargando lista de jugadores...");
   const loader = document.getElementById("loader");
 
-  fetch(url)
+  const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "long",
+  });
+
+  const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
+
+  fetch(`${url}?mesbus=${fecha_reg}&anobus=${anio_res}`)
     .then((response) => response.json())
     .then((data) => {
       if (!Array.isArray(data) || data.length === 0) {
@@ -275,6 +348,7 @@ function getData() {
                 <th># Registro</th>
                 <th>Nombre</th>
                 <th>Fecha</th>
+                <th>Festivo</th>
                 <th>Bono</th>
                 <th>Opción</th>
                 <th>Cédula</th>
@@ -290,10 +364,11 @@ function getData() {
                     <td>${i + 1}</td>
                     <td>${registro.Nombre}</td>
                     <td>${registro.Fecha.substring(0, 10)}</td>
+                    <td>${registro.Dia_registro}</td>
                     <td>${
                       registro.Bono == ""
                         ? `
-              <input placeholder="# Bono" class="table_input_bono_pp" type="text" name="Bono Ganador" id="bono_ganador">`
+                          <input placeholder="# Bono" class="table_input_bono_pp" type="text" name="Bono Ganador" id="bono_ganador">`
                         : registro.Bono
                     }</td>
                     <td>${
@@ -305,12 +380,10 @@ function getData() {
                         : `Ya contiene Bono`
                     }
                         </td>
-                    <td>${
-                      String(registro.Cedula).substring(0, 4) + "..." || ""
-                    }</td>
+                    <td>${"..." + String(registro.Cedula).slice(-4) || ""}</td>
                     <td>${registro.Casino || ""}</td>
                   </tr>
-                `
+                `,
               )
               .join("")}
             </tbody>
@@ -326,7 +399,7 @@ function getData() {
         const valor = e.target.value.trim();
 
         filas.forEach((fila) => {
-          const casino = fila.cells[6]?.textContent.trim(); // Columna 7 (índice 6)
+          const casino = fila.cells[7]?.textContent.trim(); // Columna 7 (índice 6)
           if (valor === "" || casino === valor) {
             fila.style.display = "";
           } else {
@@ -357,6 +430,9 @@ function getData() {
             tipo: "update_bono",
             cedula: String(registro.Cedula), // fuerza a string para comparación
             bono: Number(bono), // vuelve número si corresponde
+            dia: String(registro.Dia_registro),
+            mes: String(registro.Mes_registro),
+            anio: String(registro.Ano_registro),
           };
 
           fetch(url, {
@@ -375,6 +451,7 @@ function getData() {
                 text: `Información enviada de manera correcta.`,
               });
               getData();
+              getAllData();
             })
             .catch((error) => {
               Swal.fire({
@@ -454,6 +531,89 @@ function handleObservacionSubmit() {
         icon: "error",
         title: `Error.`,
         text: `Ha ocurrido un error.`,
+      });
+    });
+}
+
+document
+  .getElementById("btn_open_all_register")
+  .addEventListener("click", () => {
+    document
+      .getElementById("content_all_register")
+      .classList.toggle("no_screen");
+    if (
+      document
+        .getElementById("content_all_register")
+        .classList.contains("no_screen")
+    ) {
+      document.getElementById("btn_open_all_register").textContent =
+        "Ver todos";
+    } else {
+      document.getElementById("btn_open_all_register").textContent = "Ocutar";
+    }
+  });
+
+getAllData();
+function getAllData() {
+  const container = document.getElementById("content-all-result_FULL");
+  container.textContent = "Cargando...";
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      if (!Array.isArray(data) || data.length === 0) {
+        container.innerHTML = `<p>No hay datos disponibles.</p>`;
+        return;
+      }
+      container.innerHTML = `
+        <div class="table-result table-scrolld">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th># Registro</th>
+                <th>Nombre</th>
+                <th>Fecha</th>
+                <th>Festivo</th>
+                <th>Cédula</th>
+                <th>Casino</th>
+              </tr>
+            </thead>
+            <tbody>
+            ${[...data]
+              .reverse()
+              .map(
+                (registro, i) =>
+                  `<tr>
+                    <td>${i + 1}</td>
+                    <td>${registro.Nombre}</td>
+                    <td>${registro.Fecha.substring(0, 10)}</td>
+                    <td>${registro.Dia_registro}</td>
+                    
+                    <td>${"..." + String(registro.Cedula).slice(-4) || ""}</td>
+                    <td>${registro.Casino || ""}</td>
+                  </tr>
+                `,
+              )
+              .join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      document.getElementById("filtro-casino-all").style.display = "flex";
+      const filtroCasino = document.getElementById("filtroCasinoAll");
+      const filas = container.querySelectorAll("tbody tr");
+
+      filtroCasino.addEventListener("change", (e) => {
+        const valor = e.target.value.trim();
+
+        filas.forEach((fila) => {
+          const casino = fila.cells[5]?.textContent.trim(); // Columna 7 (índice 6)
+          if (valor === "" || casino === valor) {
+            fila.style.display = "";
+          } else {
+            fila.style.display = "none";
+          }
+        });
       });
     });
 }

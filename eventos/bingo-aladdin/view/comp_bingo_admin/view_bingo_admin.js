@@ -72,7 +72,7 @@ const btn_consultar_por_dato = document.getElementById(
 const btn_cerrar_session = document.getElementById("btn_cerrar_session");
 
 const url =
-  "https://script.google.com/macros/s/AKfycbyYZtWAnE949LyW70sjx0QU393NuBnA9OBOQq6cU-_NjuQvpFsHP7uLfDhHLyj-pFYa/exec";
+  "https://script.google.com/macros/s/AKfycbx2-GWnUb1parZsr6MkVn6DhA_TSqdhpRuYAAiteCxlDkeWzossx8pBIpXwAa5N8uTr/exec";
 
 const loader = document.getElementById("loader");
 const usuario = document.getElementById("usuario");
@@ -171,6 +171,7 @@ function validateSession() {
     content_form_bingo_login_admin.style.display = "none";
     content_form_bingo_admin.style.display = "flex";
     content_actions_head_admin.style.display = "flex";
+    getDataBingos();
   }
 }
 
@@ -283,6 +284,7 @@ function getAllData() {
                   <th>Certifica que no es func.</th>
                   <th>Autorizo de Datos</th>
                   <th>Total de la Compra</th>
+                  <th>Nombre de la Campaña</th>
                 </tr>
               </thead>
               <tbody>
@@ -302,6 +304,7 @@ function getAllData() {
                         <td>${registro.Funcionario}</td>
                         <td>${registro.Autorizo}</td>
                         <td>${registro.Total_compra}</td>
+                        <td>${registro.Nom_bingo}</td>
                       </tr>
                     `,
                   )
@@ -329,6 +332,21 @@ function getAllData() {
               .join(" ")
               .toLowerCase();
             fila.style.display = nombre.includes(texto) ? "" : "none";
+          });
+        });
+        const filtroCasino = document.getElementById("campania_sele");
+
+        filtroCasino.addEventListener("change", (e) => {
+          const filas = container.querySelectorAll("tbody tr");
+          const valor = e.target.value.trim();
+
+          filas.forEach((fila) => {
+            const casino = fila.cells[11]?.textContent.trim(); // Columna 7 (índice 6)
+            if (valor === "" || casino === valor) {
+              fila.style.display = "";
+            } else {
+              fila.style.display = "none";
+            }
           });
         });
       } else {
@@ -462,4 +480,80 @@ function cerrarSession() {
       });
     }
   });
+}
+
+document.getElementById("btn_crear_bingo").addEventListener("click", () => {
+  handleNuevoBingo();
+});
+
+function handleNuevoBingo() {
+  const nombre_nuevo_bingo = document.getElementById("nombre_nuevo_bingo");
+
+  if (!nombre_nuevo_bingo.value) {
+    Swal.fire({
+      icon: "warning",
+      title: "Ingresa un nombre valido",
+    });
+    return;
+  }
+
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  const [fecha, hora] = fechaCompleta.split(", ");
+
+  let data = {
+    tipo: "bingos",
+    Hora: hora,
+    Fecha: fecha,
+    Nombre: nombre_nuevo_bingo.value,
+  };
+
+  loader.style.display = "flex";
+  fetch(`${url}?hoja=bingos`, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.text())
+    .then(() => {
+      nombre_nuevo_bingo.value = "";
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "success",
+        title: "Bingo Creado",
+      });
+    })
+    .catch((erro) => {
+      Swal.fire({
+        icon: "error",
+        title: "No se pudo crear el Bingo",
+      });
+    });
+}
+
+function getDataBingos() {
+  loader.style.display = "flex";
+  const select = document.getElementById("campania_sele");
+  select.innerHTML = '<option value="">Cargando...</option>';
+  fetch(`${url}?hoja=bingos`)
+    .then((res) => res.json())
+    .then((data) => {
+      select.innerHTML = '<option value="">Selecciona una campaña</option>';
+      loader.style.display = "none";
+      data.forEach((item) => {
+        const option = document.createElement("option");
+        option.value = item.Nombre; // Lo que se envía al servidor
+        option.textContent = item.Nombre; // Lo que ve el usuario
+        select.appendChild(option);
+      });
+    });
 }

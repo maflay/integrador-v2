@@ -33,6 +33,37 @@ function mostrarLoader(container, mensaje) {
 
 const user = inforUser();
 
+const AllCasinos = {
+  CALI: [
+    "A07",
+    "A08",
+    "A12",
+    "A16",
+    "A15",
+    "A19",
+    "A50",
+    "A58",
+    "A70",
+    "A108",
+    "A05",
+  ],
+  TULUA: ["A38"],
+  PEREIRA: ["A35", "A36", "A39", "A88"],
+  BOGOTA: ["A48", "A49", "A127", "A100"],
+  BARRANQUILLA: ["A43", "A53"],
+  MONTERIA: ["A781"],
+  BUGA: ["A09"],
+};
+
+function obtenerCiudad(codigo) {
+  for (const ciudad in AllCasinos) {
+    if (AllCasinos[ciudad].includes(codigo)) {
+      return ciudad;
+    }
+  }
+  return null; // si no lo encuentra
+}
+
 function handleCreateFinalista() {
   const cedula_finalista = document.getElementById("cedula_finalista");
   const nombre_finalista = document.getElementById("nombre_finalista");
@@ -71,6 +102,8 @@ function handleCreateFinalista() {
     return;
   }
 
+  let ciudadCasino = obtenerCiudad(casino_finalista.value);
+
   loader.style.display = "flex";
   fetch(
     `${url}?hoja=finalista&cedula=${cedula_finalista.value}&mesbus=${fecha_reg}&anobus=${anio_res}`,
@@ -105,6 +138,7 @@ function handleCreateFinalista() {
                 Usuario: user.Nombre,
                 Mes_registro: fecha_reg,
                 Ano_registro: anio_res,
+                Ciudad: ciudadCasino,
               };
               fetch(`${url}?hoja=finalista`, {
                 method: "POST",
@@ -113,7 +147,11 @@ function handleCreateFinalista() {
               })
                 .then((res) => res.text())
                 .then(() => {
-                  getDataFinalista();
+                  if (
+                    typeof window.notificarEnvioFirebaseFinal === "function"
+                  ) {
+                    window.notificarEnvioFirebaseFinal();
+                  }
                   cedula_finalista.value = "";
                   nombre_finalista.value = "";
                   casino_finalista.value = "";
@@ -162,6 +200,8 @@ function handleSubmitSemis() {
 
   const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
 
+  let ciudadCasino = obtenerCiudad(casino.value);
+
   if (!nombre.value || !casino.value || !cedula.value) {
     Swal.fire({
       icon: "warning",
@@ -185,38 +225,54 @@ function handleSubmitSemis() {
           confirmButtonColor: "#a13b22",
         });
       } else {
-        let data = {
-          tipo: "semis",
-          Nombre: nombre.value,
-          Fecha: fecha + " - " + hora,
-          Cedula: cedula.value,
-          Casino: casino.value,
-          Usuario: user.Nombre,
-          Mes_registro: fecha_reg,
-          Ano_registro: anio_res,
-        };
-        fetch(`${url}?hoja=semis`, {
-          method: "POST",
-          mode: "no-cors",
-          body: JSON.stringify(data),
-        })
-          .then((res) => res.text())
-          .then(() => {
-            getSemis();
-            cedula.value = "";
-            nombre.value = "";
-            casino.value = "";
-            loader.style.display = "none";
-            Swal.fire({
-              icon: "success",
-              title: "Envio Exitoso",
-            });
-          })
-          .catch(() => {
-            Swal.fire({
-              icon: "error",
-              title: "Error en el Envio",
-            });
+        fetch(`${url}?hoja=semis`)
+          .then((res) => res.json())
+          .then((resp) => {
+            if (resp.length > 168) {
+              loader.style.display = "none";
+              Swal.fire({
+                icon: "warning",
+                title: "Limite Alcanzado",
+                confirmButtonColor: "#a13b22",
+              });
+            } else {
+              let data = {
+                tipo: "semis",
+                Nombre: nombre.value,
+                Fecha: fecha + " - " + hora,
+                Cedula: cedula.value,
+                Casino: casino.value,
+                Usuario: user.Nombre,
+                Mes_registro: fecha_reg,
+                Ano_registro: anio_res,
+                Ciudad: ciudadCasino,
+              };
+              fetch(`${url}?hoja=semis`, {
+                method: "POST",
+                mode: "no-cors",
+                body: JSON.stringify(data),
+              })
+                .then((res) => res.text())
+                .then(() => {
+                  if (typeof window.notificarEnvioFirebase === "function") {
+                    window.notificarEnvioFirebase();
+                  }
+                  cedula.value = "";
+                  nombre.value = "";
+                  casino.value = "";
+                  loader.style.display = "none";
+                  Swal.fire({
+                    icon: "success",
+                    title: "Envio Exitoso",
+                  });
+                })
+                .catch(() => {
+                  Swal.fire({
+                    icon: "error",
+                    title: "Error en el Envio",
+                  });
+                });
+            }
           });
       }
     });
@@ -312,7 +368,7 @@ function getCliente() {
                   <th># Registro</th>
                   <th>Nombre</th>
                   <th>Fecha</th>
-                  <th>Cedula</th>
+                  <th>Cédula</th>
                   <th>Casino</th>
                 </tr>
               </thead>
@@ -362,6 +418,49 @@ function getCliente() {
     });
 }
 
+function renderTabla(container, data) {
+  const dataMostrar = [...data];
+  let cual_contenedor = container.id;
+  if (cual_contenedor == "content_ficha_filter_table") {
+    while (dataMostrar.length < 6) {
+      dataMostrar.push({
+        Nombre: "",
+        Fecha: "",
+        Casino: "",
+      });
+    }
+  }
+
+  container.innerHTML = `
+    <div class="table-result table-scrolld">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th># Registro</th>
+            <th>Nombre</th>
+            <th>Fecha</th>
+            <th>Casino</th>
+          </tr>
+        </thead>
+        <tbody>
+        ${[...dataMostrar]
+          .reverse()
+          .map(
+            (registro, i) =>
+              `<tr>
+                <td>${registro.Nombre || registro.Fecha || registro.Casino ? i + 1 : ""}</td>
+                <td>${registro.Nombre || ""}</td>
+                <td>${registro.Fecha || ""}</td>
+                <td>${registro.Casino || ""}</td>
+              </tr>`,
+          )
+          .join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
 getSemis();
 function getSemis() {
   const container = document.getElementById("content-all-result");
@@ -372,6 +471,10 @@ function getSemis() {
     year: "numeric",
     month: "long",
   });
+
+  const containerFiltro = document.getElementById("content_ficha_filter_table");
+
+  containerFiltro.innerHTML = "";
 
   const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
 
@@ -392,6 +495,7 @@ function getSemis() {
                 <th>Nombre</th>
                 <th>Fecha</th>
                 <th>Casino</th>
+                <th>Ciudad</th>
               </tr>
             </thead>
             <tbody>
@@ -404,6 +508,7 @@ function getSemis() {
                     <td>${registro.Nombre}</td>
                     <td>${registro.Fecha}</td>
                     <td>${registro.Casino || ""}</td>
+                    <td>${registro.Ciudad || ""}</td>
                   </tr>
                 `,
               )
@@ -413,13 +518,33 @@ function getSemis() {
         </div>
       `;
 
+      document.getElementById("filtro_semis").style.display = "flex";
+
+      const actions_semis = document.querySelectorAll(".actions_semis");
+
+      actions_semis.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filtro = btn.id.toLowerCase();
+
+          const dataFiltrada = data.filter(
+            (registro) => (registro.Casino || "").toLowerCase() === filtro,
+          );
+
+          renderTabla(containerFiltro, dataFiltrada);
+        });
+      });
+
       const inputBuscar = document.getElementById("buscar_usuario");
       inputBuscar.style.display = "flex";
 
       inputBuscar.addEventListener("keyup", () => {
         const texto = inputBuscar.value.toLowerCase().trim();
         // container donde se esta dibujando la tabla
-        const filas = container.querySelectorAll("tbody tr");
+        const contenedorActivo =
+          document.querySelector("#content_ficha_filter_table tbody") ||
+          container;
+
+        const filas = contenedorActivo.querySelectorAll("tr");
 
         const columnas = [1, 2, 3, 4, 5, 6];
 
@@ -436,19 +561,19 @@ function getSemis() {
         });
       });
 
-      let lvlTest = user.Nivel;
+      // let lvlTest = user.Nivel;
 
-      if (lvlTest == "2" || lvlTest == "1") {
-        const filas = container.querySelectorAll("tbody tr");
+      // if (lvlTest == "2" || lvlTest == "1") {
+      //   const filas = container.querySelectorAll("tbody tr");
 
-        filas.forEach((fila) => {
-          fila.addEventListener("click", () => {
-            filas.forEach((f) => {
-              fila.classList.toggle("selected");
-            });
-          });
-        });
-      }
+      //   filas.forEach((fila) => {
+      //     fila.addEventListener("click", () => {
+      //       filas.forEach((f) => {
+      //         f.classList.toggle("selected");
+      //       });
+      //     });
+      //   });
+      // }
     })
     .catch((error) => {
       console.warn("Error al cargar los datos:", error);
@@ -466,6 +591,11 @@ function getDataFinalista() {
     year: "numeric",
     month: "long",
   });
+
+  const containerFiltro = document.getElementById(
+    "content_ficha_filter_tabla_finas",
+  );
+  containerFiltro.innerHTML = "";
 
   const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
 
@@ -487,6 +617,7 @@ function getDataFinalista() {
                 <th>Nombre</th>
                 <th>Fecha</th>
                 <th>Casino</th>
+                <th>Ciudad</th>
               </tr>
             </thead>
             <tbody>
@@ -499,6 +630,7 @@ function getDataFinalista() {
                     <td>${registro.Nombre}</td>
                     <td>${registro.Fecha}</td>
                     <td>${registro.Casino || ""}</td>
+                    <td>${registro.Ciudad || ""}</td>
                   </tr>
                 `,
               )
@@ -507,6 +639,25 @@ function getDataFinalista() {
           </table>
         </div>
       `;
+
+      document.getElementById("filtro_finas").style.display = "flex";
+
+      const actions_semis = document.querySelectorAll(".actions_finas");
+
+      actions_semis.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const filtro = btn.id.toLowerCase();
+          const containerFiltro = document.getElementById(
+            "content_ficha_filter_tabla_finas",
+          );
+
+          const dataFiltrada = data.filter(
+            (registro) => (registro.Casino || "").toLowerCase() === filtro,
+          );
+
+          renderTabla(containerFiltro, dataFiltrada);
+        });
+      });
 
       const inputBuscar = document.getElementById("buscar_usuario_fin");
 
@@ -536,58 +687,87 @@ function getDataFinalista() {
     });
 }
 
-validateGanador();
-function validateGanador() {
-  const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
-    timeZone: "America/Bogota",
-    year: "numeric",
-    month: "long",
-  });
+// document.getElementById("btn_resultados").addEventListener("click", () => {
+//   document.getElementById("modal_resultados").style.display = "flex";
+//   lockBodyScroll();
+//   fetch(
+//     "/dinamicas/promocion_vamos_en_grande/components/getInfoRuleta/getInfoRuleta.html",
+//   )
+//     .then((res) => res.text())
+//     .then((html) => {
+//       const contenedor = document.getElementById("modal_resultados_part");
+//       contenedor.innerHTML = html;
 
-  const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
-  fetch(`${url}?hoja=ganador&mesbus=${fecha_reg}&anobus=${anio_res}`)
-    .then((res) => res.json())
-    .then((data) => {
+//       const estilo = document.createElement("link");
+//       estilo.rel = "stylesheet";
+//       estilo.href =
+//         "/dinamicas/promocion_vamos_en_grande/components/getInfoRuleta/getInfoRuleta.css";
+//       document.head.appendChild(estilo);
+//       // Cargar script dinámicamente
+//       const script = document.createElement("script");
+//       script.src =
+//         "/dinamicas/promocion_vamos_en_grande/components/getInfoRuleta/getInfoRuleta.js";
+//       document.body.appendChild(script);
+//     });
 
-      document.getElementById("last_ganador").addEventListener("click", () => {
-        if (data.length == 0) {
-          Swal.fire({
-            icon: "warning",
-            title: "Sin Ganadores",
-          });
-          return;
-        }
+//   document.getElementById("closeModal").addEventListener("click", () => {
+//     document.getElementById("modal_resultados").style.display = "none";
+//     unlockBodyScroll();
+//   });
+// });
 
-        loader.style.display = "flex";
-        const fechaCompleta_validate_register = new Date().toLocaleString(
-          "es-CO",
-          {
-            timeZone: "America/Bogota",
-            year: "numeric",
-            month: "long",
-          },
-        );
+// validateGanador();
+// function validateGanador() {
+//   const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
+//     timeZone: "America/Bogota",
+//     year: "numeric",
+//     month: "long",
+//   });
 
-        const [fecha_reg, anio_res] =
-          fechaCompleta_validate_register.split(" de ");
+//   const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
+//   fetch(`${url}?hoja=ganador&mesbus=${fecha_reg}&anobus=${anio_res}`)
+//     .then((res) => res.json())
+//     .then((data) => {
 
-        document.getElementById("last_ganador").style.display = "flex";
-        loader.style.display = "none";
-        let allData = data.reverse();
-        let last_player = allData[0];
-        let seg_player = allData[1];
-        let ter_player = allData[2];
-        Swal.fire({
-          icon: "info",
-          title: `Ganadores de ${fecha_reg}`,
-          html: `
-                El ${last_player.Player} es ${last_player.Nombre}, <br/> En el casino ${last_player.Casino} <br/> Con el numero ${last_player.Numero}<br/><br/>
-                ${!seg_player ? "" : `El ${seg_player.Player} es ${seg_player.Nombre}, <br/> En el casino ${seg_player.Casino} <br/> Con el numero ${seg_player.Numero}<br/><br/>`}
-                ${!ter_player ? "" : `El ${ter_player.Player} es ${ter_player.Nombre}, <br/> En el casino ${ter_player.Casino} <br/> Con el numero ${ter_player.Numero}<br/>`}
-                <br/>
-                En el mes de ${last_player.Mes_registro} - ${last_player.Ano_registro}
-                `,
-        });
-      });
-    });
-}
+//       document.getElementById("last_ganador").addEventListener("click", () => {
+//         if (data.length == 0) {
+//           Swal.fire({
+//             icon: "warning",
+//             title: "Sin Ganadores",
+//           });
+//           return;
+//         }
+
+//         loader.style.display = "flex";
+//         const fechaCompleta_validate_register = new Date().toLocaleString(
+//           "es-CO",
+//           {
+//             timeZone: "America/Bogota",
+//             year: "numeric",
+//             month: "long",
+//           },
+//         );
+
+//         const [fecha_reg, anio_res] =
+//           fechaCompleta_validate_register.split(" de ");
+
+//         document.getElementById("last_ganador").style.display = "flex";
+//         loader.style.display = "none";
+//         let allData = data.reverse();
+//         let last_player = allData[0];
+//         let seg_player = allData[1];
+//         let ter_player = allData[2];
+//         Swal.fire({
+//           icon: "info",
+//           title: `Ganadores de ${fecha_reg}`,
+//           html: `
+//                 El ${last_player.Player} es ${last_player.Nombre}, <br/> En el casino ${last_player.Casino} <br/> Con el numero ${last_player.Numero}<br/><br/>
+//                 ${!seg_player ? "" : `El ${seg_player.Player} es ${seg_player.Nombre}, <br/> En el casino ${seg_player.Casino} <br/> Con el numero ${seg_player.Numero}<br/><br/>`}
+//                 ${!ter_player ? "" : `El ${ter_player.Player} es ${ter_player.Nombre}, <br/> En el casino ${ter_player.Casino} <br/> Con el numero ${ter_player.Numero}<br/>`}
+//                 <br/>
+//                 En el mes de ${last_player.Mes_registro} - ${last_player.Ano_registro}
+//                 `,
+//         });
+//       });
+//     });
+// }

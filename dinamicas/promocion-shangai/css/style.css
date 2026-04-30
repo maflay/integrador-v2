@@ -355,11 +355,6 @@ body {
     cursor: pointer;
 }
 
-.color-gray {
-    font-size: 0.8rem;
-    color: gray;
-}
-
 .table_input_bono_pp {
     width: 40px;
     font-size: 0.5rem;

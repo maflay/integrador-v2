@@ -1,0 +1,211 @@
+@font-face {
+    font-family: 'super wonder';
+    src: url('/fonts/Super\ Wonder.ttf') format('truetype');
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #356adc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.content_all_88 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    gap: 10px;
+    background-image: linear-gradient(90deg, #800004d7, #8000048a), url(/dinamicas/promocion-88-fortune/resources/38130.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.content_opciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.content_opciones img {
+    width: 30px;
+    transition: all 0.4s ease;
+}
+
+.content_opciones img:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.board_88 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 40px 0;
+    background-color: rgba(0, 0, 0, 0.493);
+    border-radius: 20px;
+    border: rgba(255, 255, 255, 0.753) 1px solid;
+}
+
+.controls_88 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.controls_88 select {
+    width: 200px;
+}
+
+.content_imgs_88 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+}
+
+.content_imgs_88 img {
+    width: 180px;
+    animation: girarInfinito 8s linear infinite;
+}
+
+@keyframes girarInfinito {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.item_disable {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+._alert_intentar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+}
+
+._alert_intentar img {
+    position: absolute;
+    width: 300px;
+    left: 0;
+}
+
+._alert_intentar p {
+    position: absolute;
+    width: 190px;
+    left: 50%;
+    transform: translateX(50%);
+    color: white;
+    text-shadow: black 1px 1px 10px;
+    top: 120px;
+    font-size: 36px;
+    font-family: 'super wonder', sans-serif !important;
+}
+
+.mi-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    background-color: transparent;
+}
+
+._alert_ganador {
+    background-color: transparent;
+}
+
+.content_alert_ganador {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white;
+    font-family: 'super wonder', sans-serif !important;
+    font-size: 32px;
+    gap: 20px;
+}
+
+.content_alert_ganador img {
+    width: 100%;
+}
+
+.content_alert_ganador>div {
+    position: absolute;
+    bottom: 0;
+    text-shadow: black 1px 1px 10px;
+}
+
+._text_premio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-family: 'super wonder', sans-serif !important;
+    font-size: 32px;
+}
+
+.notificacion_registro_dia {
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    border-radius: 50%;
+    z-index: 10;
+    font-size: 4rem;
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: -5px;
+}

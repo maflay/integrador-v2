@@ -2,7 +2,7 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: "Bebas Neue", sans-serif;
+    /* font-family: "Bebas Neue", sans-serif; */
 }
 
 body {
@@ -39,6 +39,16 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+
+.ViewDesk {
+    position: relative;
+    font-family: "Bebas Neue", sans-serif !important;
+}
+
+.item_disable {
+    opacity: 0.7;
+    pointer-events: none;
 }
 
 .content-img-promo {
@@ -267,9 +277,22 @@ body {
 
 
 .content-info-cliente {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    top: 0;
-    left: 50%;
+    gap: 10px;
+    top: 10px;
+    right: 10px;
+}
+
+.content-info-cliente>img{
+    width: 30px;
+    transition: all 0.4s ease;
+}
+.content-info-cliente>img:hover{
+    cursor: pointer;
+    opacity: 0.7;
 }
 
 .datos {
@@ -463,11 +486,6 @@ body {
     font-size: 24px;
     font-weight: bold;
     cursor: pointer;
-}
-
-.color-gray {
-    font-size: 0.8rem;
-    color: gray;
 }
 
 .content-btn-enviar {

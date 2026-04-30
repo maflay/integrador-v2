@@ -91,11 +91,11 @@ html {
     width: 100px;
 }
 
-.card-premios:hover .desc_carro {
+/* .card-premios:hover .desc_carro {
     opacity: 1;
     transform: scale(1);
     pointer-events: auto;
-}
+} */
 
 .title_premios {
     text-align: center;
@@ -105,6 +105,7 @@ html {
 
 
 .navigation-ubicaciones {
+    display: none;
     margin-top: 20px;
     margin-bottom: 20px;
 }

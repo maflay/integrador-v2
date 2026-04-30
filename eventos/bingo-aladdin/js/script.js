@@ -66,7 +66,7 @@ const seccion_consultar_jugador = document.getElementById(
   "seccion_consultar_jugador",
 );
 const url =
-  "https://script.google.com/macros/s/AKfycbzIH2b__OG_Ez383hyZp_XUMYerZctUjZN8M4nppUsznxgIsQwhw53DX333u_fh4_RD/exec";
+  "https://script.google.com/macros/s/AKfycbx2-GWnUb1parZsr6MkVn6DhA_TSqdhpRuYAAiteCxlDkeWzossx8pBIpXwAa5N8uTr/exec";
 
 btn_iniciar_promo.addEventListener("click", () => {
   inciar_sesion_promo();
@@ -119,6 +119,16 @@ function validateSession() {
     content_form_bingo_login.style.display = "none";
     content_form_bingo.style.display = "flex";
     content_actions_head.style.display = "flex";
+    let typeUser = user.Usuario == "" ? user_admin.Usuario : user.Usuario;
+    let identifyUser = typeUser.split("agente")[1];
+    console.log(identifyUser);
+    if (identifyUser >= 1 && identifyUser <= 10) {
+      btn_consultar_jugadores.style.display = "flex";
+    } else {
+      btn_consultar_jugadores.style.display = "none";
+    }
+
+    getDataBingos();
   }
 
   if (user_admin) {
@@ -201,7 +211,6 @@ function getTablasFromUI() {
 }
 
 document.getElementById("num_documento").addEventListener("change", () => {
-  console.log(document.getElementById("num_documento").value);
   if (document.getElementById("num_documento").value.length >= 7) {
     loader.style.display = "flex";
     fetch(
@@ -276,6 +285,7 @@ function handleSendTabla() {
 
   const esNoFuncionario = no_soy_del_casino.checked ? "Si" : "No";
   const autorizoDatos = autorizo_uso_datos.checked ? "Si" : "No";
+  const select = document.getElementById("campania_sele");
 
   loader.style.display = "flex";
 
@@ -304,6 +314,7 @@ function handleSendTabla() {
           Funcionario: esNoFuncionario,
           Autorizo: autorizoDatos,
           Total_compra: formatoPesos_monto_efectivo.format(valCompra.value),
+          Nom_bingo: select.value,
         };
         fetch(`${url}?hoja=tablas`, {
           method: "POST",
@@ -413,6 +424,24 @@ function consultaPornumero() {
         icon: "error",
         title: "Error al cargar",
         html: "Intentalo mas tarde",
+      });
+    });
+}
+
+function getDataBingos() {
+  loader.style.display = "flex";
+  const select = document.getElementById("campania_sele");
+  select.innerHTML = '<option value="">Cargando...</option>';
+  fetch(`${url}?hoja=bingos`)
+    .then((res) => res.json())
+    .then((data) => {
+      select.innerHTML = '<option value="">Selecciona una campaña</option>';
+      loader.style.display = "none";
+      data.forEach((item) => {
+        const option = document.createElement("option");
+        option.value = item.Nombre; // Lo que se envía al servidor
+        option.textContent = item.Nombre; // Lo que ve el usuario
+        select.appendChild(option);
       });
     });
 }

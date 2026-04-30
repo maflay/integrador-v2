@@ -31,18 +31,46 @@
 }
 
 .content_main_info_vamos {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     position: relative;
     width: 100%;
-    background-image: linear-gradient(180deg, #00000093, #00000093), url(/dinamicas/promocion_vamos_en_grande/resources/background_vamos.jpg);
+    /* background-image: linear-gradient(180deg, #00000093, #00000093), url(/dinamicas/promocion_vamos_en_grande/resources/background_vamos.jpg); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 950px;
+    height: 100vh;
+    overflow-y: auto;
     /* padding: 200px 0; */
+}
+
+.space_top_table {
+    top: 100px;
+}
+
+.seccion_out_city {
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    gap: 30px;
+}
+
+.card_select_out_city {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.card_select_out_city p {
+    margin: 0;
+    font-size: 40px;
+}
+
+.card_select_out_city input[type="checkbox"] {
+  transform: scale(2.5); 
+  margin: 10px;         
 }
 
 .content_info_ruleta {
@@ -59,11 +87,12 @@
     align-items: center;
     position: relative;
     width: 95%;
-    max-width: 800px;
-    color: white;
+    height: 95%;
+    min-height: 450px;
+    color: black;
 }
 
-.controls_filtro{
+.controls_filtro {
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -86,51 +115,49 @@
 
 .table-result {
     width: 100%;
-    max-width: 800px;
     overflow-x: auto;
 }
-
 
 .table-wrapper {
     width: 100%;
     overflow-x: auto;
 }
 
-.styled-table {
+.styled-table-rule {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.styled-table thead {
+.styled-table-rule thead {
     background: rgb(124, 0, 21);
     color: #fff;
 }
 
-.styled-table th,
-.styled-table td {
+.styled-table-rule th,
+.styled-table-rule td {
     padding: 12px 12px;
     text-align: center;
     border: 1px solid #ddd;
 }
 
-.styled-table tbody tr {
+.styled-table-rule tbody tr {
     background-color: #fff;
     color: #000;
 }
 
-.styled-table tbody tr:nth-child(even) {
+.styled-table-rule tbody tr:nth-child(even) {
     background-color: #f9f9f9;
 }
 
-.styled-table tbody tr:hover {
+.styled-table-rule tbody tr:hover {
     background-color: #f1f1f1;
 }
 
-.btn_ganador{
-    font-size: 10px;
-    padding: 2px 5px;
+.btn_ganador {
+    font-size: 10px !important;
+    padding: 2px 5px !important;
 }
 
 @media(max-width: 768px) {

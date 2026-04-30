@@ -14,7 +14,6 @@ const totalLanz = document.getElementById("totalLanz");
 const num_bono = document.getElementById("num_bono");
 const loader = document.getElementById("loader");
 const btn_enviar = document.getElementById("btn_enviar");
-const btn_opcion = document.getElementById("btn_opciones");
 
 const avance_1 = document.getElementById("avance_1");
 const avance_2 = document.getElementById("avance_2");
@@ -22,7 +21,32 @@ const avance_3 = document.getElementById("avance_3");
 
 const acumula_avion = document.getElementById("acumula_avion");
 
+document.getElementById("btn_refrescar").addEventListener("click", () => {
+  Swal.fire({
+    title: "Seguro de refrescar?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si Quiero!",
+    allowOutsideClick: false,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.fire({
+        title: "Exito!",
+        text: "Se refrescara todo en pantalla.",
+        icon: "success",
+        allowOutsideClick: false,
+      }).then((res) => {
+        if (res.isConfirmed) {
+          location.reload();
+        }
+      });
+    }
+  });
+});
 // btn modal
+const btn_opcion = document.getElementById("btn_opciones");
 const btn_guardar_registro = document.getElementById("btn_guardar_registro");
 const btn_envio_secundario = document.getElementById("btn_envio_secundario");
 const btn_observacion = document.getElementById("btn_observacion");
@@ -50,31 +74,6 @@ const notificacion_registro_dia = document.getElementById(
   "notificacion_registro_dia",
 );
 notificacion_registro_dia.style.display = "none";
-
-document.getElementById("btn_refrescar").addEventListener("click", () => {
-  Swal.fire({
-    title: "Seguro de refrescar?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Si Quiero!",
-    allowOutsideClick: false,
-  }).then((result) => {
-    if (result.isConfirmed) {
-      Swal.fire({
-        title: "Exito!",
-        text: "Se refrescara todo en pantalla.",
-        icon: "success",
-        allowOutsideClick: false,
-      }).then((res) => {
-        if (res.isConfirmed) {
-          location.reload();
-        }
-      });
-    }
-  });
-});
 
 btn_opcion.addEventListener("click", () => {
   document.getElementById("modal_opciones_dinamica").style.display = "flex";

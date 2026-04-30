@@ -18,7 +18,6 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    min-height: 100vh;
 }
 
 .contenedor-inicial {
@@ -38,20 +37,70 @@ body {
     background-color: #ffffff;
 }
 
+.content_ficha_filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    gap: 10px;
+}
+
 .search_promo {
+    position: absolute !important;
+    top: 15px !important;
+    right: 20px !important;
+    width: 250px !important;
+}
+
+.modal_resultados {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 500;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    overflow: hidden;
+    -ms-overflow-style: none;
+}
+
+
+.body-lock {
+    position: fixed;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+.closeModal {
     position: absolute;
-    top: 15px;
-    right: 20px;
-    width: 250px;
+    top: 5px;
+    right: 10px;
+    z-index: 10;
+    width: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: all 0.4s ease;
+}
+
+.closeModal:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.btn_resultados {
+    font-size: 10.5px !important;
+    padding: 2px 10px !important;
 }
 
 .title_form {
-    display: flex;
-    justify-content: start;
-    align-items: start;
-    width: 100%;
-    position: relative;
+    position: absolute;
     left: 20px;
+    top: 0;
 }
 
 .actions_veg {
@@ -60,7 +109,7 @@ body {
     align-items: center;
     gap: 10px;
     position: absolute;
-    top: 6px;
+    top: 15px;
     right: 16px;
     width: auto;
     z-index: 5;
@@ -101,6 +150,14 @@ body {
     100% {
         transform: rotate(360deg);
     }
+}
+
+._content_tabla_result_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .content-logos {
@@ -366,11 +423,6 @@ body {
     cursor: pointer;
 }
 
-.color-gray {
-    font-size: 0.8rem;
-    color: gray;
-}
-
 tr.selected {
     background-color: #c8facc !important;
     /* verde claro */
@@ -420,5 +472,37 @@ tr.selected {
         position: relative;
         right: 0;
         height: 100px;
+    }
+
+    .content-logos img {
+        width: 250px;
+    }
+
+    .posi_logo_1 {
+        position: relative;
+        top: 0;
+        left: 150px;
+    }
+
+    .posi_logo_2 {
+        position: relative;
+        top: 0;
+        right: 150px;
+    }
+
+    .search_promo {
+        position: relative !important;
+        top: 0px !important;
+        right: 0px !important;
+        width: 250px !important;
+        margin-bottom: 20px;
+    }
+
+    ._content_tabla_result_ {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 98%;
     }
 }

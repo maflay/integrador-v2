@@ -512,10 +512,25 @@ function existeCookie() {
   return document.cookie.split("; ").some((c) => c.startsWith(CS_KEY + "="));
 }
 
-// if (existeCookie("session_token")) {
+let tiempo;
+
+function resetearTemporizador() {
+  clearTimeout(tiempo);
+  tiempo = setTimeout(accionInactividad, 1200000);
+}
+
+function accionInactividad() {
+  window.location.href = "/#login";
+}
+
+// Escuchamos los eventos para reiniciar el conteo
+window.onload = resetearTemporizador;
+document.onmousemove = resetearTemporizador;
+document.onkeypress = resetearTemporizador;
+document.onscroll = resetearTemporizador;
+document.onclick = resetearTemporizador;
+
 getUsersLogin();
-// } else {
-// }
 
 function validateSeccion() {
   if (getCookie(CS_KEY)) {

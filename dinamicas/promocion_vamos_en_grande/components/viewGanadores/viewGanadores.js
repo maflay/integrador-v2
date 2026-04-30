@@ -67,15 +67,6 @@ function obtenerCasino(codigo) {
   }
 }
 
-let urlInterval = window.location.origin;
-if (!urlInterval.includes("http://127.0.0")) {
-  setInterval(() => {
-    getLastaWinner();
-  }, 35000);
-}
-
-getLastaWinner();
-
 function getLastaWinner() {
   const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",

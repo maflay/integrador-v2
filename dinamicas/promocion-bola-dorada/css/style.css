@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'super wonder';
+    src: url('/fonts/Super\ Wonder.ttf') format('truetype');
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #356adc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.content_main_bola_dorada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(180deg, #8f7f52a9, #8f7f52a9), url(/dinamicas/promocion-bola-dorada/resources/fondo.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.content_opciones {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.content_opciones img {
+    width: 30px;
+    transition: all 0.4s ease;
+}
+
+.content_opciones img:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.content_form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.705);
+    border: white 1px solid;
+    padding: 40px;
+    gap: 20px;
+    border-radius: 40px;
+    width: 95%;
+    min-width: 800px;
+}
+
+.content_form img {
+    width: 400px;
+}
+
+
+._alert_ganador {
+    background-color: transparent;
+}
+
+.content_alert_ganador {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: white;
+    font-family: 'super wonder', sans-serif !important;
+    font-size: 32px;
+    gap: 20px;
+}
+
+.content_alert_ganador img {
+    width: 100%;
+}
+
+.content_alert_ganador>div {
+    position: absolute;
+    bottom: 0;
+    text-shadow: black 1px 1px 10px;
+}
+
+.content_premios_bd {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_premios_bd img {
+    width: 250px;
+}

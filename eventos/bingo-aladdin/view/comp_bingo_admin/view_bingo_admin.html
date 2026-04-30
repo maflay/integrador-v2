@@ -24,24 +24,24 @@
                     src="/eventos/bingo-aladdin/resources/cerrar-sesion_blanco.png" alt="Aladdin"></button>
         </div>
         <div class="container container_bingo">
-            <div id="content_form_bingo_login_admin" class="content_form_bingo_login">
+            <form onsubmit="return false;" id="content_form_bingo_login_admin" class="content_form_bingo_login">
                 <h2>Iniciar Sesion Admin</h2>
                 <div class="input_form">
                     <div class="input-group">
-                        <input id="usuario" name="usuario" type="text" required />
+                        <input id="usuario" name="usuario" type="text" required autocomplete="name" />
                         <label>Usuario</label>
                     </div>
                 </div>
                 <div class="input_form">
                     <div class="input-group">
-                        <input id="password" name="password" type="password" required />
+                        <input id="password" name="password" type="password" required autocomplete="current-password" />
                         <label>password</label>
                     </div>
                 </div>
                 <div class="content_actions">
                     <button id="btn_iniciar_promo" class="btn btn-primary">Iniciar Sesion</button>
                 </div>
-            </div>
+            </form>
             <div id="content_form_bingo_admin" class="content_form_bingo_admin">
                 <h2>Consultar Jugador</h2>
                 <div class="input_form">
@@ -64,9 +64,26 @@
                 <br />
                 <br />
                 <br />
+                <h2>Nombre Campaña</h2>
+                <div class="input_form">
+                    <div class="input-group">
+                        <input id="nombre_nuevo_bingo" name="numero_buscado" type="text" required />
+                        <label>Nombre de Campaña</label>
+                    </div>
+                    <div class="content_actions_consul">
+                        <button id="btn_crear_bingo" class="btn btn-danger">Crear</button>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
                 <h2>Todos los registros</h2>
                 <div style="display: flex;flex-direction: column; width: 100%;">
-                    <input type="text" id="buscar_usuario" class="form-control search_promo" placeholder="Buscar...">
+                    <div style="display: flex;justify-content: center;align-items: center; gap: 30px;">
+                        <input type="text" id="buscar_usuario" class="form-control search_promo" placeholder="Buscar...">
+                        <select class="form-control" name="tipo_documento" id="campania_sele">
+                        </select>
+                    </div>
                     <br />
                     <div class="content_get_data table_result" id="table_all_result"></div>
                 </div>
@@ -75,8 +92,8 @@
                 <h2>Registro sin Duplicados</h2>
                 <div style="display: flex;flex-direction: column; width: 100%;position: relative;">
                     <div class="excel_document">
-                        <button style="display: none;" id="btn_export_excel_for_document" class="btn btn-success "><img style="width: 20px;"
-                                src="/resource/excel_logo.png" alt="Aladdin"></button>
+                        <button style="display: none;" id="btn_export_excel_for_document" class="btn btn-success "><img
+                                style="width: 20px;" src="/resource/excel_logo.png" alt="Aladdin"></button>
                     </div>
                     <div class="content_get_data table_result" id="table_for_document"></div>
                 </div>

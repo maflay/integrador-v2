@@ -15,28 +15,68 @@
         <div class="spinner"></div>
     </div>
     <div class="main_content_results">
-        <h3 style="color: white;">Haz tu Quiniela <br /> Con</h3>
         <div class="content_logo_marca">
+            <a id="volver_resultados" title="Volver a los resultados"
+                href="/eventos/fiebre-mundialista-26/game-fiebre/fiebre-26.html" class="back_marcador">
+                <img src="/resource/flechas_blancas.png" alt="Aladdin">
+            </a>
+            <img style="width: 80px;" src="/eventos/resources/Copa_mundial_FIFA-.png" alt="Aladdin">
             <img src="/resource/aladdin.png" alt="Aladdin">
             <p class="user_logeado" id="user_logeado"></p>
             <button id="btn_cerrar_session" class="btn btn-danger btn_cerrar_session">Cerrar Session</button>
+            <select class="form-control fecha_match" name="fecha_match" id="fecha_match">
+                <option value="">Fecha...</option>
+                <option value="11/06/2026">11/06/2026</option>
+                <option value="12/06/2026">12/06/2026</option>
+                <option value="13/06/2026">13/06/2026</option>
+                <option value="14/06/2026">14/06/2026</option>
+                <option value="15/06/2026">15/06/2026</option>
+                <option value="16/06/2026">16/06/2026</option>
+                <option value="17/06/2026">17/06/2026</option>
+                <option value="18/06/2026">18/06/2026</option>
+                <option value="19/06/2026">19/06/2026</option>
+                <option value="20/06/2026">20/06/2026</option>
+                <option value="21/06/2026">21/06/2026</option>
+                <option value="22/06/2026">22/06/2026</option>
+                <option value="23/06/2026">23/06/2026</option>
+                <option value="24/06/2026">24/06/2026</option>
+                <option value="25/06/2026">25/06/2026</option>
+                <option value="26/06/2026">26/06/2026</option>
+                <option value="27/06/2026">27/06/2026</option>
+            </select>
         </div>
-        <div id="View_iniciar_quiniela" class="content_validate_user">
-            <input id="nombre" onkeyup="this.value = this.value.toLowerCase()" class="form-control"
-                placeholder="Usuario..." type="text" autocomplete="name">
+        <form onsubmit="return false;" id="View_iniciar_quiniela" class="content_validate_user">
+
             <br />
-            <input id="codigo" class="form-control" placeholder="Numero..." type="password" autocomplete="password">
+            <input id="codigo" name="password" class="form-control" placeholder="Cédula..." type="text"
+                autocomplete="password">
             <br />
+            <input style="display: none;" id="nombre" onkeyup="this.value = this.value.toLowerCase()"
+                class="form-control _input_register" placeholder="Nombre..." type="text" autocomplete="name">
+            <br />
+            <input style="display: none;" id="telefono" onkeyup="this.value = this.value.toLowerCase()"
+                class="form-control _input_register" placeholder="Télefono..." type="text" autocomplete="name">
+            <br />
+            <input style="display: none;" id="correo" onkeyup="this.value = this.value.toLowerCase()"
+                class="form-control _input_register" placeholder="Correo..." type="text" autocomplete="name">
+
             <div class="content_btn_iniciar">
                 <button id="btn_iniciar" class="btn btn-primary btn_inciar">Iniciar</button>
                 <button id="btn_register" class="btn btn-danger btn_register">Registrarse</button>
             </div>
-        </div>
+        </form>
+        <!-- <div id="contenedor-mundial"></div>
+        <button onclick="procesarResultados()">Guardar Pronósticos</button> -->
+
         <div id="View_inputs_quiniela" class="content_inputs_results">
             <br />
+            <div id="no-partidos-msg" style="display: none;">
+                No hay partidos programados para esta fecha.
+            </div>
+
             <div class="content_card_marcador">
-                <p>11/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">11/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo A</p>
                 <div class="card_marcador">
                     <p>México</p>
@@ -49,39 +89,37 @@
                 </div>
             </div>
             <div class="content_card_marcador">
-                <p>11/06/26</p>
-                <p>9:00 p.m</p>
+                <p class="fecha_partido_26">11/06/2026</p>
+                <p class="hora_partido_26">9:00 p.m</p>
                 <p>Grupo A</p>
                 <div class="card_marcador">
                     <p>Corea del Sur</p>
                     <img src="/eventos/resources/corea_del_sur.png" alt="Aladdin">
                     <input name="corea_partido_1" id="corea_partido_1" class="form-control" type="number">
                     -
-                    <input name="definir_grupo_a_partido_1" id="definir_grupo_a_partido_1" class="form-control"
-                        type="number">
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <p>Por Definirse</p>
+                    <input name="cequia_partido_1" id="cequia_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/checa.png" alt="Aladdin">
+                    <p>Rep. Checa</p>
                 </div>
             </div>
             <div class="content_card_marcador">
-                <p>12/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">12/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo B</p>
                 <div class="card_marcador">
                     <p>Canadá</p>
                     <img src="/eventos/resources/canada.png" alt="Aladdin">
                     <input name="canada_partido_1" id="canada_partido_1" class="form-control" type="number">
                     -
-                    <input name="definir_grupo_b_partido_1" id="definir_grupo_b_partido_1" class="form-control"
-                        type="number">
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <p>Por Definirse</p>
+                    <input name="bosnia_partido_1" id="bosnia_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/bosnia.png" alt="Aladdin">
+                    <p>Bosnia</p>
                 </div>
             </div>
 
             <div class="content_card_marcador">
-                <p>12/06/26</p>
-                <p>8:00 p.m</p>
+                <p class="fecha_partido_26">12/06/2026</p>
+                <p class="hora_partido_26">8:00 p.m</p>
                 <p>Grupo D</p>
                 <div class="card_marcador">
                     <p>Estados Unidos</p>
@@ -95,8 +133,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>13/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">13/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo B</p>
                 <div class="card_marcador">
                     <p>Catar</p>
@@ -110,8 +148,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>13/06/26</p>
-                <p>5:00 p.m</p>
+                <p class="fecha_partido_26">13/06/2026</p>
+                <p class="hora_partido_26">5:00 p.m</p>
                 <p>Grupo C</p>
                 <div class="card_marcador">
                     <p>Brasil</p>
@@ -125,8 +163,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>13/06/26</p>
-                <p>8:00 p.m</p>
+                <p class="fecha_partido_26">13/06/2026</p>
+                <p class="hora_partido_26">8:00 p.m</p>
                 <p>Grupo C</p>
                 <div class="card_marcador">
                     <p>Haití</p>
@@ -140,24 +178,23 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>13/06/26</p>
-                <p>11:00 p.m</p>
+                <p class="fecha_partido_26">13/06/2026</p>
+                <p class="hora_partido_26">11:00 p.m</p>
                 <p>Grupo D</p>
                 <div class="card_marcador">
                     <p>Australia</p>
                     <img src="/eventos/resources/australia.png" alt="Aladdin">
                     <input name="australia_partido_1" id="australia_partido_1" class="form-control" type="number">
                     -
-                    <input name="definir_grupo_d_partido_1" id="definir_grupo_d_partido_1" class="form-control"
-                        type="number">
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <p>Por Definirse</p>
+                    <input name="turquia_partido_1" id="turquia_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/turkia.png" alt="Aladdin">
+                    <p>Turquía</p>
                 </div>
             </div>
 
             <div class="content_card_marcador">
-                <p>14/06/26</p>
-                <p>12:00 p.m</p>
+                <p class="fecha_partido_26">14/06/2026</p>
+                <p class="hora_partido_26">12:00 p.m</p>
                 <p>Grupo E</p>
                 <div class="card_marcador">
                     <p>Alemania</p>
@@ -171,8 +208,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>14/06/26</p>
-                <p>3:00 p.m</p>
+                <p class="fecha_partido_26">14/06/2026</p>
+                <p class="hora_partido_26">3:00 p.m</p>
                 <p>Grupo F</p>
                 <div class="card_marcador">
                     <p>Países Bajos</p>
@@ -186,8 +223,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>14/06/26</p>
-                <p>6:00 p.m</p>
+                <p class="fecha_partido_26">14/06/2026</p>
+                <p class="hora_partido_26">6:00 p.m</p>
                 <p>Grupo E</p>
                 <div class="card_marcador">
                     <p>Costa de Marfil</p>
@@ -202,14 +239,13 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>14/06/26</p>
-                <p>9:00 p.m</p>
+                <p class="fecha_partido_26">14/06/2026</p>
+                <p class="hora_partido_26">9:00 p.m</p>
                 <p>Grupo F</p>
                 <div class="card_marcador">
-                    <p>Por Definirse</p>
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <input name="definir_grupo_f_partido_1" id="definir_grupo_f_partido_1" class="form-control"
-                        type="number">
+                    <p>Suecia</p>
+                    <img src="/eventos/resources/suecia.png" alt="Aladdin">
+                    <input name="suecia_partido_1" id="suecia_partido_1" class="form-control" type="number">
                     -
                     <input name="tunez_partido_1" id="tunez_partido_1" class="form-control" type="number">
                     <img src="/eventos/resources/tunez.png" alt="Aladdin">
@@ -218,8 +254,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>15/06/26</p>
-                <p>11:00 a.m</p>
+                <p class="fecha_partido_26">15/06/2026</p>
+                <p class="hora_partido_26">11:00 a.m</p>
                 <p>Grupo H</p>
                 <div class="card_marcador">
                     <p>España</p>
@@ -233,8 +269,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>15/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">15/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo G</p>
                 <div class="card_marcador">
                     <p>Bélgica</p>
@@ -248,8 +284,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>15/06/26</p>
-                <p>5:00 p.m</p>
+                <p class="fecha_partido_26">15/06/2026</p>
+                <p class="hora_partido_26">5:00 p.m</p>
                 <p>Grupo H</p>
                 <div class="card_marcador">
                     <p>Arabia Saudita</p>
@@ -263,8 +299,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>15/06/26</p>
-                <p>8:00 p.m</p>
+                <p class="fecha_partido_26">15/06/2026</p>
+                <p class="hora_partido_26">8:00 p.m</p>
                 <p>Grupo G</p>
                 <div class="card_marcador">
                     <p>Irán</p>
@@ -279,8 +315,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>16/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">16/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo I</p>
                 <div class="card_marcador">
                     <p>Francia</p>
@@ -294,14 +330,13 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>16/06/26</p>
-                <p>5:00 p.m</p>
+                <p class="fecha_partido_26">16/06/2026</p>
+                <p class="hora_partido_26">5:00 p.m</p>
                 <p>Grupo I</p>
                 <div class="card_marcador">
-                    <p>Por Definirse</p>
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <input name="definir_grupo_i_partido_1" id="definir_grupo_i_partido_1" class="form-control"
-                        type="number">
+                    <p>Irak</p>
+                    <img src="/eventos/resources/irak.png" alt="Aladdin">
+                    <input name="irak_partido_1" id="irak_partido_1" class="form-control" type="number">
                     -
                     <input name="noruega_partido_1" id="noruega_partido_1" class="form-control" type="number">
                     <img src="/eventos/resources/noruega.png" alt="Aladdin">
@@ -310,8 +345,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>16/06/26</p>
-                <p>8:00 p.m</p>
+                <p class="fecha_partido_26">16/06/2026</p>
+                <p class="hora_partido_26">8:00 p.m</p>
                 <p>Grupo J</p>
                 <div class="card_marcador">
                     <p>Argentina</p>
@@ -325,8 +360,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>16/06/26</p>
-                <p>11:00 p.m</p>
+                <p class="fecha_partido_26">16/06/2026</p>
+                <p class="hora_partido_26">11:00 p.m</p>
                 <p>Grupo J</p>
                 <div class="card_marcador">
                     <p>Austria</p>
@@ -340,24 +375,23 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>17/06/26</p>
-                <p>12:00 p.m</p>
+                <p class="fecha_partido_26">17/06/2026</p>
+                <p class="hora_partido_26">12:00 p.m</p>
                 <p>Grupo K</p>
                 <div class="card_marcador">
                     <p>Portugal</p>
                     <img src="/eventos/resources/portugal.png" alt="Aladdin">
                     <input name="portugal_partido_1" id="portugal_partido_1" class="form-control" type="number">
                     -
-                    <input name="definir_grupo_k_partido_1" id="definir_grupo_k_partido_1" class="form-control"
-                        type="number">
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <p>Por Definirse</p>
+                    <input name="congo_partido_1" id="congo_partido_1" class="form-control" type="number">
+                    <img src="/eventos/resources/congo.png" alt="Aladdin">
+                    <p>RD Congo</p>
                 </div>
             </div>
 
             <div class="content_card_marcador">
-                <p>17/06/26</p>
-                <p>3:00 p.m</p>
+                <p class="fecha_partido_26">17/06/2026</p>
+                <p class="hora_partido_26">3:00 p.m</p>
                 <p>Grupo L</p>
                 <div class="card_marcador">
                     <p>Inglaterra</p>
@@ -371,8 +405,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>17/06/26</p>
-                <p>6:00 p.m</p>
+                <p class="fecha_partido_26">17/06/2026</p>
+                <p class="hora_partido_26">6:00 p.m</p>
                 <p>Grupo L</p>
                 <div class="card_marcador">
                     <p>Ghana</p>
@@ -386,8 +420,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>17/06/26</p>
-                <p>9:00 p.m</p>
+                <p class="fecha_partido_26">17/06/2026</p>
+                <p class="hora_partido_26">9:00 p.m</p>
                 <p>Grupo K</p>
                 <div class="card_marcador">
                     <p>Uzbekistán</p>
@@ -401,14 +435,13 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>18/06/26</p>
-                <p>11:00 a.m</p>
+                <p class="fecha_partido_26">18/06/2026</p>
+                <p class="hora_partido_26">11:00 a.m</p>
                 <p>Grupo A</p>
                 <div class="card_marcador">
-                    <p>Por Definirse</p>
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <input name="definir_grupo_a_partido_2" id="definir_grupo_a_partido_2" class="form-control"
-                        type="number">
+                    <p>Rep. Checa</p>
+                    <img src="/eventos/resources/checa.png" alt="Aladdin">
+                    <input name="cequia_partido_2" id="cequia_partido_2" class="form-control" type="number">
                     -
                     <input name="suda_partido_2" id="suda_partido_2" class="form-control" type="number">
                     <img src="/eventos/resources/sudafrica.png" alt="Aladdin">
@@ -417,24 +450,23 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>18/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">18/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo B</p>
                 <div class="card_marcador">
                     <p>Suiza</p>
                     <img src="/eventos/resources/suiza.png" alt="Aladdin">
                     <input name="suiza_partido_2" id="suiza_partido_2" class="form-control" type="number">
                     -
-                    <input name="definir_grupo_b_partido_2" id="definir_grupo_b_partido_2" class="form-control"
-                        type="number">
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <p>Por Definirse</p>
+                    <input name="bosnia_partido_2" id="bosnia_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/bosnia.png" alt="Aladdin">
+                    <p>Bosnia</p>
                 </div>
             </div>
 
             <div class="content_card_marcador">
-                <p>18/06/26</p>
-                <p>5:00 p.m</p>
+                <p class="fecha_partido_26">18/06/2026</p>
+                <p class="hora_partido_26">5:00 p.m</p>
                 <p>Grupo B</p>
                 <div class="card_marcador">
                     <p>Canadá</p>
@@ -448,8 +480,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>18/06/26</p>
-                <p>8:00 p.m</p>
+                <p class="fecha_partido_26">18/06/2026</p>
+                <p class="hora_partido_26">8:00 p.m</p>
                 <p>Grupo A</p>
                 <div class="card_marcador">
                     <p>México</p>
@@ -463,8 +495,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>19/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">19/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo D</p>
                 <div class="card_marcador">
                     <p>Estados Unidos</p>
@@ -478,8 +510,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>19/06/26</p>
-                <p>5:00 p.m</p>
+                <p class="fecha_partido_26">19/06/2026</p>
+                <p class="hora_partido_26">5:00 p.m</p>
                 <p>Grupo C</p>
                 <div class="card_marcador">
                     <p>Escocia</p>
@@ -493,8 +525,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>19/06/26</p>
-                <p>8:00 p.m</p>
+                <p class="fecha_partido_26">19/06/2026</p>
+                <p class="hora_partido_26">8:00 p.m</p>
                 <p>Grupo C</p>
                 <div class="card_marcador">
                     <p>Brasil</p>
@@ -508,14 +540,13 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>19/06/26</p>
-                <p>11:00 p.m</p>
+                <p class="fecha_partido_26">19/06/2026</p>
+                <p class="hora_partido_26">11:00 p.m</p>
                 <p>Grupo D</p>
                 <div class="card_marcador">
-                    <p>Por Definirse</p>
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <input name="definir_grupo_d_partido_2" id="definir_grupo_d_partido_2" class="form-control"
-                        type="number">
+                    <p>Turquía</p>
+                    <img src="/eventos/resources/turkia.png" alt="Aladdin">
+                    <input name="turquia_partido_2" id="turquia_partido_2" class="form-control" type="number">
                     -
                     <input name="paraguay_partido_2" id="paraguay_partido_2" class="form-control" type="number">
                     <img src="/eventos/resources/paraguay.png" alt="Aladdin">
@@ -524,24 +555,23 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>20/06/26</p>
-                <p>12:00 p.m</p>
+                <p class="fecha_partido_26">20/06/2026</p>
+                <p class="hora_partido_26">12:00 p.m</p>
                 <p>Grupo F</p>
                 <div class="card_marcador">
                     <p>Países Bajos</p>
                     <img src="/eventos/resources/paises_bajos.png" alt="Aladdin">
                     <input name="paises_bajos_partido_2" id="paises_bajos_partido_2" class="form-control" type="number">
                     -
-                    <input name="definir_grupo_f_partido_2" id="definir_grupo_f_partido_2" class="form-control"
-                        type="number">
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <p>Por Definirse</p>
+                    <input name="suecia_partido_2" id="suecia_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/suecia.png" alt="Aladdin">
+                    <p>Suecia</p>
                 </div>
             </div>
 
             <div class="content_card_marcador">
-                <p>20/06/26</p>
-                <p>3:00 p.m</p>
+                <p class="fecha_partido_26">20/06/2026</p>
+                <p class="hora_partido_26">3:00 p.m</p>
                 <p>Grupo E</p>
                 <div class="card_marcador">
                     <p>Alemania</p>
@@ -556,8 +586,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>20/06/26</p>
-                <p>7:00 p.m</p>
+                <p class="fecha_partido_26">20/06/2026</p>
+                <p class="hora_partido_26">7:00 p.m</p>
                 <p>Grupo E</p>
                 <div class="card_marcador">
                     <p>Ecuador</p>
@@ -571,8 +601,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>20/06/26</p>
-                <p>11:00 p.m</p>
+                <p class="fecha_partido_26">20/06/2026</p>
+                <p class="hora_partido_26">11:00 p.m</p>
                 <p>Grupo F</p>
                 <div class="card_marcador">
                     <p>Túnez</p>
@@ -586,8 +616,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>21/06/26</p>
-                <p>11:00 a.m</p>
+                <p class="fecha_partido_26">21/06/2026</p>
+                <p class="hora_partido_26">11:00 a.m</p>
                 <p>Grupo H</p>
                 <div class="card_marcador">
                     <p>España</p>
@@ -601,8 +631,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>21/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">21/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo G</p>
                 <div class="card_marcador">
                     <p>Bélgica</p>
@@ -616,8 +646,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>21/06/26</p>
-                <p>5:00 p.m</p>
+                <p class="fecha_partido_26">21/06/2026</p>
+                <p class="hora_partido_26">5:00 p.m</p>
                 <p>Grupo H</p>
                 <div class="card_marcador">
                     <p>Uruguay</p>
@@ -631,8 +661,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>21/06/26</p>
-                <p>8:00 p.m</p>
+                <p class="fecha_partido_26">21/06/2026</p>
+                <p class="hora_partido_26">8:00 p.m</p>
                 <p>Grupo G</p>
                 <div class="card_marcador">
                     <p>Nueva Zelanda</p>
@@ -647,8 +677,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>22/06/26</p>
-                <p>12:00 p.m</p>
+                <p class="fecha_partido_26">22/06/2026</p>
+                <p class="hora_partido_26">12:00 p.m</p>
                 <p>Grupo J</p>
                 <div class="card_marcador">
                     <p>Argentina</p>
@@ -662,24 +692,23 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>22/06/26</p>
-                <p>4:00 p.m</p>
+                <p class="fecha_partido_26">22/06/2026</p>
+                <p class="hora_partido_26">4:00 p.m</p>
                 <p>Grupo I</p>
                 <div class="card_marcador">
                     <p>Francia</p>
                     <img src="/eventos/resources/francia.png" alt="Aladdin">
                     <input name="francia_partido_2" id="francia_partido_2" class="form-control" type="number">
                     -
-                    <input name="definir_grupo_i_partido_2" id="definir_grupo_i_partido_2" class="form-control"
-                        type="number">
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <p>Por Definirse</p>
+                    <input name="irak_partido_2" id="irak_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/irak.png" alt="Aladdin">
+                    <p>Irak</p>
                 </div>
             </div>
 
             <div class="content_card_marcador">
-                <p>22/06/26</p>
-                <p>7:00 p.m</p>
+                <p class="fecha_partido_26">22/06/2026</p>
+                <p class="hora_partido_26">7:00 p.m</p>
                 <p>Grupo I</p>
                 <div class="card_marcador">
                     <p>Noruega</p>
@@ -693,8 +722,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>22/06/26</p>
-                <p>10:00 p.m</p>
+                <p class="fecha_partido_26">22/06/2026</p>
+                <p class="hora_partido_26">10:00 p.m</p>
                 <p>Grupo J</p>
                 <div class="card_marcador">
                     <p>Jordania</p>
@@ -708,8 +737,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>23/06/26</p>
-                <p>12:00 p.m</p>
+                <p class="fecha_partido_26">23/06/2026</p>
+                <p class="hora_partido_26">12:00 p.m</p>
                 <p>Grupo K</p>
                 <div class="card_marcador">
                     <p>Portugal</p>
@@ -723,8 +752,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>23/06/26</p>
-                <p>3:00 p.m</p>
+                <p class="fecha_partido_26">23/06/2026</p>
+                <p class="hora_partido_26">3:00 p.m</p>
                 <p>Grupo L</p>
                 <div class="card_marcador">
                     <p>Inglaterra</p>
@@ -738,8 +767,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>23/06/26</p>
-                <p>6:00 p.m</p>
+                <p class="fecha_partido_26">23/06/2026</p>
+                <p class="hora_partido_26">6:00 p.m</p>
                 <p>Grupo L</p>
                 <div class="card_marcador">
                     <p>Panamá</p>
@@ -753,24 +782,23 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>23/06/26</p>
-                <p>9:00 p.m</p>
+                <p class="fecha_partido_26">23/06/2026</p>
+                <p class="hora_partido_26">9:00 p.m</p>
                 <p>Grupo K</p>
                 <div class="card_marcador">
                     <p>Colombia</p>
                     <img src="/eventos/resources/colombia.png" alt="Aladdin">
                     <input name="colombia_partido_2" id="colombia_partido_2" class="form-control" type="number">
                     -
-                    <input name="definir_grupo_k_partido_2" id="definir_grupo_k_partido_2" class="form-control"
-                        type="number">
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <p>Por Definirse</p>
+                    <input name="congo_partido_2" id="congo_partido_2" class="form-control" type="number">
+                    <img src="/eventos/resources/congo.png" alt="Aladdin">
+                    <p>RD Congo</p>
                 </div>
             </div>
 
             <div class="content_card_marcador">
-                <p>24/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">24/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo B</p>
                 <div class="card_marcador">
                     <p>Suiza</p>
@@ -784,14 +812,13 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>24/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">24/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo B</p>
                 <div class="card_marcador">
-                    <p>Por Definirse</p>
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <input name="definir_grupo_b_partido_3" id="definir_grupo_b_partido_3" class="form-control"
-                        type="number">
+                    <p>Bosnia</p>
+                    <img src="/eventos/resources/bosnia.png" alt="Aladdin">
+                    <input name="bosnia_partido_3" id="bosnia_partido_3" class="form-control" type="number">
                     -
                     <input name="catar_partido_3" id="catar_partido_3" class="form-control" type="number">
                     <img src="/eventos/resources/qatar.png" alt="Aladdin">
@@ -800,8 +827,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>24/06/26</p>
-                <p>5:00 p.m</p>
+                <p class="fecha_partido_26">24/06/2026</p>
+                <p class="hora_partido_26">5:00 p.m</p>
                 <p>Grupo C</p>
                 <div class="card_marcador">
                     <p>Marruecos</p>
@@ -815,8 +842,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>24/06/26</p>
-                <p>5:00 p.m</p>
+                <p class="fecha_partido_26">24/06/2026</p>
+                <p class="hora_partido_26">5:00 p.m</p>
                 <p>Grupo C</p>
                 <div class="card_marcador">
                     <p>Escocia</p>
@@ -830,8 +857,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>24/06/26</p>
-                <p>8:00 p.m</p>
+                <p class="fecha_partido_26">24/06/2026</p>
+                <p class="hora_partido_26">8:00 p.m</p>
                 <p>Grupo A</p>
                 <div class="card_marcador">
                     <p>Sudáfrica</p>
@@ -845,14 +872,13 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>24/06/26</p>
-                <p>8:00 p.m</p>
+                <p class="fecha_partido_26">24/06/2026</p>
+                <p class="hora_partido_26">8:00 p.m</p>
                 <p>Grupo A</p>
                 <div class="card_marcador">
-                    <p>Por Definirse</p>
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <input name="definir_grupo_a_partido_3" id="definir_grupo_a_partido_3" class="form-control"
-                        type="number">
+                    <p>Rep. Checa</p>
+                    <img src="/eventos/resources/checa.png" alt="Aladdin">
+                    <input name="cequia_partido_3" id="cequia_partido_3" class="form-control" type="number">
                     -
                     <input name="mex_partido_3" id="mex_partido_3" class="form-control" type="number">
                     <img src="/eventos/resources/mexico.png" alt="Aladdin">
@@ -861,8 +887,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>25/06/26</p>
-                <p>3:00 p.m</p>
+                <p class="fecha_partido_26">25/06/2026</p>
+                <p class="hora_partido_26">3:00 p.m</p>
                 <p>Grupo E</p>
                 <div class="card_marcador">
                     <p>Curazao</p>
@@ -877,8 +903,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>25/06/26</p>
-                <p>3:00 p.m</p>
+                <p class="fecha_partido_26">25/06/2026</p>
+                <p class="hora_partido_26">3:00 p.m</p>
                 <p>Grupo E</p>
                 <div class="card_marcador">
                     <p>Ecuador</p>
@@ -892,8 +918,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>25/06/26</p>
-                <p>6:00 p.m</p>
+                <p class="fecha_partido_26">25/06/2026</p>
+                <p class="hora_partido_26">6:00 p.m</p>
                 <p>Grupo F</p>
                 <div class="card_marcador">
                     <p>Túnez</p>
@@ -907,30 +933,28 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>25/06/26</p>
-                <p>6:00 p.m</p>
+                <p class="fecha_partido_26">25/06/2026</p>
+                <p class="hora_partido_26">6:00 p.m</p>
                 <p>Grupo F</p>
                 <div class="card_marcador">
                     <p>Japón</p>
                     <img src="/eventos/resources/japon.png" alt="Aladdin">
                     <input name="japon_partido_3" id="japon_partido_3" class="form-control" type="number">
                     -
-                    <input name="definir_grupo_f_partido_3" id="definir_grupo_f_partido_3" class="form-control"
-                        type="number">
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <p>Por Definirse</p>
+                    <input name="suecia_partido_3" id="suecia_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/suecia.png" alt="Aladdin">
+                    <p>Suecia</p>
                 </div>
             </div>
 
             <div class="content_card_marcador">
-                <p>25/06/26</p>
-                <p>9:00 p.m</p>
+                <p class="fecha_partido_26">25/06/2026</p>
+                <p class="hora_partido_26">9:00 p.m</p>
                 <p>Grupo D</p>
                 <div class="card_marcador">
-                    <p>Por Definirse</p>
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <input name="definir_grupo_d_partido_3" id="definir_grupo_d_partido_3" class="form-control"
-                        type="number">
+                    <p>Turquía</p>
+                    <img src="/eventos/resources/turkia.png" alt="Aladdin">
+                    <input name="turquia_partido_3" id="turquia_partido_3" class="form-control" type="number">
                     -
                     <input name="usa_partido_3" id="usa_partido_3" class="form-control" type="number">
                     <img src="/eventos/resources/usa.png" alt="Aladdin">
@@ -939,8 +963,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>25/06/26</p>
-                <p>9:00 p.m</p>
+                <p class="fecha_partido_26">25/06/2026</p>
+                <p class="hora_partido_26">9:00 p.m</p>
                 <p>Grupo D</p>
                 <div class="card_marcador">
                     <p>Paraguay</p>
@@ -954,8 +978,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>26/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">26/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo I</p>
                 <div class="card_marcador">
                     <p>Noruega</p>
@@ -969,24 +993,23 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>26/06/26</p>
-                <p>2:00 p.m</p>
+                <p class="fecha_partido_26">26/06/2026</p>
+                <p class="hora_partido_26">2:00 p.m</p>
                 <p>Grupo I</p>
                 <div class="card_marcador">
                     <p>Senegal</p>
                     <img src="/eventos/resources/senegal.png" alt="Aladdin">
                     <input name="senegal_partido_3" id="senegal_partido_3" class="form-control" type="number">
                     -
-                    <input name="definir_grupo_i_partido_3" id="definir_grupo_i_partido_3" class="form-control"
-                        type="number">
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <p>Por Definirse</p>
+                    <input name="irak_partido_3" id="irak_partido_3" class="form-control" type="number">
+                    <img src="/eventos/resources/irak.png" defi alt="Aladdin">
+                    <p>Irak</p>
                 </div>
             </div>
 
             <div class="content_card_marcador">
-                <p>26/06/26</p>
-                <p>7:00 p.m</p>
+                <p class="fecha_partido_26">26/06/2026</p>
+                <p class="hora_partido_26">7:00 p.m</p>
                 <p>Grupo H</p>
                 <div class="card_marcador">
                     <p>Cabo Verde</p>
@@ -1000,8 +1023,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>26/06/26</p>
-                <p>7:00 p.m</p>
+                <p class="fecha_partido_26">26/06/2026</p>
+                <p class="hora_partido_26">7:00 p.m</p>
                 <p>Grupo H</p>
                 <div class="card_marcador">
                     <p>Uruguay</p>
@@ -1015,8 +1038,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>26/06/26</p>
-                <p>10:00 p.m</p>
+                <p class="fecha_partido_26">26/06/2026</p>
+                <p class="hora_partido_26">10:00 p.m</p>
                 <p>Grupo G</p>
                 <div class="card_marcador">
                     <p>Nueva Zelanda</p>
@@ -1031,8 +1054,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>26/06/26</p>
-                <p>10:00 p.m</p>
+                <p class="fecha_partido_26">26/06/2026</p>
+                <p class="hora_partido_26">10:00 p.m</p>
                 <p>Grupo G</p>
                 <div class="card_marcador">
                     <p>Egipto</p>
@@ -1046,8 +1069,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>27/06/26</p>
-                <p>4:00 p.m</p>
+                <p class="fecha_partido_26">27/06/2026</p>
+                <p class="hora_partido_26">4:00 p.m</p>
                 <p>Grupo L</p>
                 <div class="card_marcador">
                     <p>Panamá</p>
@@ -1061,8 +1084,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>27/06/26</p>
-                <p>4:00 p.m</p>
+                <p class="fecha_partido_26">27/06/2026</p>
+                <p class="hora_partido_26">4:00 p.m</p>
                 <p>Grupo L</p>
                 <div class="card_marcador">
                     <p>Croacia</p>
@@ -1076,8 +1099,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>27/06/26</p>
-                <p>6:30 p.m</p>
+                <p class="fecha_partido_26">27/06/2026</p>
+                <p class="hora_partido_26">6:30 p.m</p>
                 <p>Grupo K</p>
                 <div class="card_marcador">
                     <p>Colombia</p>
@@ -1091,14 +1114,13 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>27/06/26</p>
-                <p>6:30 p.m</p>
+                <p class="fecha_partido_26">27/06/2026</p>
+                <p class="hora_partido_26">6:30 p.m</p>
                 <p>Grupo K</p>
                 <div class="card_marcador">
-                    <p>Por Definirse</p>
-                    <img src="/eventos/resources/bandera_N_A.png" alt="Aladdin">
-                    <input name="definir_grupo_k_partido_3" id="definir_grupo_k_partido_3" class="form-control"
-                        type="number">
+                    <p>RD Congo</p>
+                    <img src="/eventos/resources/congo.png" alt="Aladdin">
+                    <input name="congo_partido_3" id="congo_partido_3" class="form-control" type="number">
                     -
                     <input name="uzbekistan_partido_3" id="uzbekistan_partido_3" class="form-control" type="number">
                     <img src="/eventos/resources/uzbekistan.png" alt="Aladdin">
@@ -1107,8 +1129,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>27/06/26</p>
-                <p>9:00 p.m</p>
+                <p class="fecha_partido_26">27/06/2026</p>
+                <p class="hora_partido_26">9:00 p.m</p>
                 <p>Grupo J</p>
                 <div class="card_marcador">
                     <p>Argelia</p>
@@ -1122,8 +1144,8 @@
             </div>
 
             <div class="content_card_marcador">
-                <p>27/06/26</p>
-                <p>9:00 p.m</p>
+                <p class="fecha_partido_26">27/06/2026</p>
+                <p class="hora_partido_26">9:00 p.m</p>
                 <p>Grupo J</p>
                 <div class="card_marcador">
                     <p>Jordania</p>
@@ -1137,7 +1159,543 @@
             </div>
 
             <div class="content_btn_marcador">
-                <button id="btn_actualizar_score" class="btn btn-primary">Actualizar</button>
+                <button id="btn_actualizar_score" class="btn btn-primary">Predecir</button>
+            </div>
+        </div>
+
+        <!-- FASE 32 -->
+
+        <div id="_seccion_32_equipo_" class="content_seccion_32_equipo_">
+            <h2>Fase de 32 Equipos</h2>
+            <div class="_seccion_32_equipo_">
+                <div class="content_card_marcador">
+                    <p class="">28/06/2026</p>
+                    <p class="">2:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_1" class="form-control" type="number">
+                        -   
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">29/06/2026</p>
+                    <p class="">12:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_2"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_2" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_2" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_2" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div> 
+
+                <div class="content_card_marcador">
+                    <p class="">29/06/2026</p>
+                    <p class="">3:30 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_3"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_3" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_3" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_3" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">29/06/2026</p>
+                    <p class="">8:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_4"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_4" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_4" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_4" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">30/06/2026</p>
+                    <p class="">12:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_5"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_5" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_5" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_5" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">30/06/2026</p>
+                    <p class="">4:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_6"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_6" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_6" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_6" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">30/06/2026</p>
+                    <p class="">8:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_7"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_7" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_7" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_7" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">1/07/2026</p>
+                    <p class="">11:00 a.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_8"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_8" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_8" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_8" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">1/07/2026</p>
+                    <p class="">3:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_9"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_9" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_9" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_9" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">1/7/2026</p>
+                    <p class="">7:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_10"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_10" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_10" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_10" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">2/07/2026</p>
+                    <p class="">2:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_11"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_11" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_11" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_11" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">2/07/2026</p>
+                    <p class="">6:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_12"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_12" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_12" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_12" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">2/07/2026</p>
+                    <p class="">10:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_13"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_13" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_13" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_13" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">3/07/2026</p>
+                    <p class="">1:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_14"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_14" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_14" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_14" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">3/07/2026</p>
+                    <p class="">5:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_15"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_15" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_15" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_15" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">3/07/2026</p>
+                    <p class="">8:30 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="fase_32_equipo_1_nombre_partido_16"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="fase_32_equipo_1_partido_16" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="fase_32_equipo_2_partido_16" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="fase_32_equipo_2_nombre_partido_16" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_btn_marcador">
+                    <button id="btn_actualizar_score_32_fase" class="btn btn-primary">Predecir</button>
+                </div>
+            </div>
+        </div>
+        <div id="_seccion_octavos_final_" class="content_octavos_final">
+            <h2>Octavos de Final</h2>
+            <div class="_octavos_final">
+                <div class="content_card_marcador">
+                    <p class="">4/07/2026</p>
+                    <p class="">12:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_card_marcador">
+                    <p class="">4/07/2026</p>
+                    <p class="">4:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">5/07/2026</p>
+                    <p class="">3:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">5/07/2026</p>
+                    <p class="">7:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">6/07/2026</p>
+                    <p class="">2:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">6/07/2026</p>
+                    <p class="">7:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">7/07/2026</p>
+                    <p class="">11:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+
+                <div class="content_card_marcador">
+                    <p class="">7/07/2026</p>
+                    <p class="">3:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_btn_marcador">
+                    <button id="btn_actualizar_score" class="btn btn-primary">Predecir</button>
+                </div>
+            </div>
+
+        </div>
+        <div id="_seccion_cuartos_final_" class="content_cuartos_final">
+            <h2>Cuartos de Final</h2>
+            <div class="_cuartos_final">
+                <div class="content_card_marcador">
+                    <p class="">9/07/2026</p>
+                    <p class="">3:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_card_marcador">
+                    <p class="">10/07/2026</p>
+                    <p class="">2:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_card_marcador">
+                    <p class="">11/07/2026</p>
+                    <p class="">4:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_card_marcador">
+                    <p class="">11/07/2026</p>
+                    <p class="">8:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_btn_marcador">
+                    <button id="btn_actualizar_score" class="btn btn-primary">Predecir</button>
+                </div>
+            </div>
+        </div>
+        <div id="_seccion_tercer_lugar" class="content_tercer_lugar">
+            <h2>Tercer Lugar</h2>
+            <div class="_tercer_lugar_">
+                <div class="content_card_marcador">
+                    <p class="">14/07/2026</p>
+                    <p class="">2:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_card_marcador">
+                    <p class="">15/07/2026</p>
+                    <p class="">2:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_btn_marcador">
+                    <button id="btn_actualizar_score" class="btn btn-primary">Predecir</button>
+                </div>
+            </div>
+        </div>
+        <div id="_seccion_semifinal" class="content_semifinal_">
+            <h2>Semifinal</h2>
+            <div class="_semifinal_">
+                <div class="content_card_marcador">
+                    <p class="">14/07/2026</p>
+                    <p class="">2:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_card_marcador">
+                    <p class="">15/07/2026</p>
+                    <p class="">2:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_btn_marcador">
+                    <button id="btn_actualizar_score" class="btn btn-primary">Predecir</button>
+                </div>
+            </div>
+        </div>
+        <div id="_seccion_final_" class="_content_final_">
+            <h2>Final</h2>
+            <div class="_final_">
+                <div style="width: 100%" class="content_card_marcador">
+                    <p class="">18/07/2026</p>
+                    <p class="">4:00 p.m</p>
+                    <div class="card_marcador">
+                        <input name="clas_equipo_1_partido_1" id="clas_equipo_1_partido_1"
+                            class="form-control _input_equipo_" type="text" placeholder="Equipo">
+                        <input name="clas_1_partido_1" id="clas_1_partido_1" class="form-control" type="number">
+                        -
+                        <input name="clas_equipo_2_partido_1" id="clas_equipo_2_partido_1" class="form-control"
+                            type="number">
+                        <input name="clas_2_partido_1" id="clas_2_partido_1" class="form-control _input_equipo_"
+                            type="text" placeholder="Equipo">
+                    </div>
+                </div>
+                <div class="content_btn_marcador">
+                    <button id="btn_actualizar_score" class="btn btn-primary">Predecir</button>
+                </div>
             </div>
         </div>
     </div>

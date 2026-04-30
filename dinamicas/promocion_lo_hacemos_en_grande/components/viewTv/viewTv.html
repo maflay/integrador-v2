@@ -15,7 +15,14 @@
 
 <body>
   <div class="content_View">
-    <div class="number" id="result_vista"></div>
+    <div class="number" id="result_vista">
+      <div class="content_video">
+        <video loop playsinline webkit-playsinline autoplay>
+          <source src="/dinamicas/promocion_lo_hacemos_en_grande/resources/videos/bg-default-numero-ganador-final.webm"
+            type="video/mp4">
+        </video>
+      </div>
+    </div>
     <div class="content-primer-lugar" id="premio-media"></div>
     <div class="content-primer-lugar-img" id="premio-img"></div>
     <div class="grand-video" id="grand-video"></div>
@@ -33,7 +40,6 @@
     crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="/components/viewTv/viewTv.js"></script>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
@@ -82,6 +88,7 @@
         imgEl.style.maxWidth = "100%";
         imgEl.style.height = "auto";
         imgEl.style.display = "none";
+        imgEl.style.zIndex = "2";
         cont.appendChild(imgEl);
       }
 
@@ -125,7 +132,7 @@
     const cachedWinner = localStorage.getItem("ultimo_winner");
     const cachedImg = localStorage.getItem("ultimo_numero_img");   // NUEVO
 
-    renderNumero(); // nunca pintamos número como texto
+    // renderNumero(); // nunca pintamos número como texto
 
     if (cachedImg) {
       setNumeroImg(cachedImg);
@@ -148,7 +155,7 @@
 
       if (val === "__RESET__") {
         localStorage.removeItem("ultimo_numero");
-        renderNumero();
+        // renderNumero();
         setNumeroImg(null);
         hasNumeroImg = false;
         reevaluateIdle();
@@ -237,19 +244,31 @@
     const gv = document.getElementById("grand-video");
 
     function ensureVideoEl() {
+      let videoSite = document.createElement("video");
+      videoSite.src = "/dinamicas/promocion_lo_hacemos_en_grande/resources/videos/overlay-stinger-numero-ganador-final.webm";
+      videoSite.classList.add("numero-ganador-final");
+      videoSite.muted = true;
+      videoSite.playsInline = true;
+      videoSite.controls = false;
+      videoSite.style.maxWidth = "100%";
+      videoSite.style.height = "auto";
+      videoSite.autoplay = true;
+      videoSite.currentTime = 0; // Reinicia el video desde el principio
+      videoSite.play().catch(error => console.log("Esperando interacción:", error));
+      gv.appendChild(videoSite);
       let v = document.getElementById("grandVideo");
       if (!v) {
-        v = document.createElement("video");
+        v = document.createElement("img");
         v.id = "grandVideo";
-        v.autoplay = true;
-        v.loop = true;
-        v.muted = true;        // autoplay confiable
-        v.playsInline = true;  // iOS
-        v.controls = false;     // quítalo si no quieres controles
+        v.classList = "_item_ganadores";
+        v.classList.add("_item_show_slow");
+        v.alt = "Número";
         v.style.maxWidth = "100%";
         v.style.height = "auto";
+
         gv.appendChild(v);
       }
+
       return v;
     }
 
@@ -271,15 +290,15 @@
       if (v.src !== data.videoUrl) {
         v.src = data.videoUrl;
         v.currentTime = 0;
-        v.play().catch(() => {
-          // Si autoplay falla, muestra un botón para iniciar
-          const btn = document.createElement("button");
-          btn.textContent = "Reproducir video";
-          btn.className = "btn btn-primary";
-          btn.style.display = "none";
-          btn.onclick = () => v.play();
-          gv.appendChild(btn);
-        });
+        // v.play().catch(() => {
+        //   // Si autoplay falla, muestra un botón para iniciar
+        //   const btn = document.createElement("button");
+        //   btn.textContent = "Reproducir video";
+        //   btn.className = "btn btn-primary";
+        //   btn.style.display = "none";
+        //   btn.onclick = () => v.play();
+        //   gv.appendChild(btn);
+        // });
       }
     });
 

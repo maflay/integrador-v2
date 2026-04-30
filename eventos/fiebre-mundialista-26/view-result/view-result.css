@@ -35,7 +35,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-image: linear-gradient(180deg, #000000a6, #000000a6), url(/eventos/resources/people-celebrating-world-population-day.jpg);
+    background-image: linear-gradient(180deg, #000000a6, #000000a6),
+        url(/eventos/resources/people-celebrating-world-population-day.jpg);
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -50,16 +51,32 @@
     text-align: center;
 }
 
+.back_marcador {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    font-style: bold;
+    text-decoration: none;
+}
+
+.back_marcador img {
+    width: 100%;
+}
+
 .content_logo_marca {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 100%;
+    width: 90%;
     max-width: 1000px;
 }
 
-.content_logo_marca img {
+.content_logo_marca>img {
     width: 250px;
     margin-bottom: 20px;
 }
@@ -70,6 +87,8 @@
     width: 95%;
     max-width: 1000px;
     height: 100%;
+    max-height: 400px;
+    overflow-y: auto;
     padding: 20px;
     border: white 1px solid;
     border-radius: 20px;
@@ -106,6 +125,7 @@
 
 .btn_register {
     display: none;
+    margin-top: 20px;
 }
 
 .content_card_marcador {
@@ -116,6 +136,7 @@
     border-bottom: white 1px solid;
     width: 50%;
     margin-bottom: 10px;
+    padding-bottom: 4px;
 }
 
 .content_card_marcador p {
@@ -146,10 +167,29 @@
     width: 60px;
 }
 
+.card_marcador input::-webkit-outer-spin-button,
+.card_marcador input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+._input_equipo_ {
+    width: 120px !important;
+}
+
 .btn_cerrar_session {
+    display: none;
     position: absolute;
     bottom: 0;
     right: 0;
+}
+
+.fecha_match {
+    display: none;
+    position: absolute;
+    right: 150px;
+    bottom: 0;
+    width: auto;
 }
 
 .user_logeado {
@@ -159,8 +199,205 @@
     color: white;
 }
 
+.item_disable {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.content_seccion_32_equipo_ {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_seccion_32_equipo_ h2 {
+    margin-top: 20px;
+    color: white;
+}
+
+._seccion_32_equipo_ {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 95%;
+    height: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    border: white 1px solid;
+    border-radius: 20px;
+    color: white;
+    position: relative;
+}
+
+.content_octavos_final {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_octavos_final h2 {
+    margin-top: 20px;
+    color: white;
+}
+
+._octavos_final {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 95%;
+    height: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    border: white 1px solid;
+    border-radius: 20px;
+    color: white;
+    position: relative;
+}
+
+.content_cuartos_final {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_cuartos_final {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_cuartos_final h2 {
+    margin-top: 20px;
+    color: white;
+}
+
+._cuartos_final {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 95%;
+    height: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    border: white 1px solid;
+    border-radius: 20px;
+    color: white;
+    position: relative;
+}
+
+.content_semifinal_ {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_semifinal_ h2 {
+    margin-top: 20px;
+    color: white;
+}
+
+._semifinal_ {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 95%;
+    height: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    border: white 1px solid;
+    border-radius: 20px;
+    color: white;
+    position: relative;
+}
+
+.content_tercer_lugar {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content_tercer_lugar h2 {
+    margin-top: 20px;
+    color: white;
+}
+
+._tercer_lugar_ {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 95%;
+    height: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    border: white 1px solid;
+    border-radius: 20px;
+    color: white;
+    position: relative;
+}
+
+._content_final_ {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+._content_final_ h2 {
+    margin-top: 20px;
+    color: white;
+}
+
+._final_ {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    width: 95%;
+    height: 100%;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 20px;
+    border: white 1px solid;
+    border-radius: 20px;
+    color: white;
+    position: relative;
+}
+
 @media(max-width: 768px) {
+    .user_logeado {
+        position: relative;
+    }
+
+    .btn_cerrar_session {
+        position: relative;
+    }
+
+    .fecha_match {
+        position: relative;
+    }
+
     .content_card_marcador {
         width: 100%;
+    }
+
+    .content_logo_marca {
+        flex-direction: column;
     }
 }

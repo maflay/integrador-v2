@@ -335,12 +335,6 @@ body {
   cursor: pointer;
 }
 
-.color-gray {
-  font-size: 0.8rem;
-  color: gray;
-}
-
-
 .content-info-modal {
   display: flex;
   flex-direction: column;

@@ -19,12 +19,12 @@ const btn_submit_secundario = document.getElementById("btn_submit_secundario");
 const btn_envia_observacion = document.getElementById("btn_envia_observacion");
 
 const notificacion_registro_dia = document.getElementById(
-  "notificacion_registro_dia"
+  "notificacion_registro_dia",
 );
 notificacion_registro_dia.style.display = "none";
 
 const url =
-  "https://script.google.com/macros/s/AKfycbwkU4mjIXr1bxU08Jdj-gpqQ-b94IBU7Fw9oby2tzoebABhWw-Twie1itJma_x-B4Rs/exec";
+  "https://script.google.com/macros/s/AKfycbxDJt2IUMyYujIvrfRZ4jArWSWFziz71TkZvaMARIfXNgC3xQHw1i4jTS-1xKlXydx6/exec";
 
 const promocion = "Dado de Póker";
 const IN_FLIGHT = new Set();
@@ -37,23 +37,11 @@ if (localStorage.getItem(FECHA_KEY) !== hoy) {
   localStorage.setItem(FECHA_KEY, hoy);
 }
 
-const fechaCompleta = new Date().toLocaleString("es-CO", {
-  timeZone: "America/Bogota",
-  year: "numeric",
-  month: "2-digit",
-  day: "2-digit",
-  hour: "2-digit",
-  minute: "2-digit",
-  second: "2-digit",
-  hour12: false,
-});
-const [fecha, hora] = fechaCompleta.split(", ");
-
 // view modal
 const view_guardar_registro = document.getElementById("view_guardar_registro");
 const view_envio_secundario = document.getElementById("view_envio_secundario");
 const view_envia_observacion = document.getElementById(
-  "view_envia_observacion"
+  "view_envia_observacion",
 );
 const view_tabla_premios = document.getElementById("view_tabla_premios");
 const view_registro_dia = document.getElementById("view_registro_dia");
@@ -82,56 +70,56 @@ const tablaPremios = [
   },
   {
     combinacion: "Póker",
-    bronce: 200000,
-    silver: 250000,
-    gold: 300000,
-    legendario: 350000,
-    titanio: 400000,
-    genius: 450000,
+    bronce: 150000,
+    silver: 200000,
+    gold: 250000,
+    legendario: 300000,
+    titanio: 350000,
+    genius: 400000,
     estandar: 200000,
     superior: 250000,
   },
   {
     combinacion: "Full House",
-    bronce: 140000,
-    silver: 160000,
-    gold: 180000,
-    legendario: 200000,
-    titanio: 220000,
-    genius: 240000,
+    bronce: 110000,
+    silver: 120000,
+    gold: 130000,
+    legendario: 140000,
+    titanio: 150000,
+    genius: 160000,
     estandar: 140000,
     superior: 160000,
   },
   {
     combinacion: "Terna",
-    bronce: 120000,
-    silver: 140000,
-    gold: 160000,
-    legendario: 180000,
-    titanio: 200000,
-    genius: 220000,
+    bronce: 100000,
+    silver: 110000,
+    gold: 120000,
+    legendario: 130000,
+    titanio: 140000,
+    genius: 150000,
     estandar: 120000,
     superior: 140000,
   },
   {
     combinacion: "Dos Pares",
-    bronce: 100000,
-    silver: 120000,
-    gold: 140000,
-    legendario: 160000,
-    titanio: 180000,
-    genius: 200000,
+    bronce: 90000,
+    silver: 100000,
+    gold: 110000,
+    legendario: 120000,
+    titanio: 130000,
+    genius: 140000,
     estandar: 100000,
     superior: 120000,
   },
   {
     combinacion: "Par",
     bronce: 80000,
-    silver: 100000,
-    gold: 120000,
-    legendario: 140000,
-    titanio: 160000,
-    genius: 180000,
+    silver: 90000,
+    gold: 100000,
+    legendario: 110000,
+    titanio: 120000,
+    genius: 130000,
     estandar: 80000,
     superior: 100000,
   },
@@ -471,13 +459,12 @@ let valorPremio = "";
 let valorCombi = "";
 function obtenerPremio(combinacion, cate) {
   const fila = tablaPremios.find(
-    (item) => item.combinacion.toLowerCase() === combinacion.toLowerCase()
+    (item) => item.combinacion.toLowerCase() === combinacion.toLowerCase(),
   );
-  if (!fila) return "❌ Combinación no encontrada";
+  if (!fila) return "Combinación no encontrada";
 
   const premio = fila[cate.toLowerCase()];
-  if (premio === undefined) return "❌ Categoría no encontrada";
-  console.log(premio);
+  if (premio === undefined) return "Categoría no encontrada";
 
   valorPremio = premio;
   valorCombi = combinacion;
@@ -485,7 +472,7 @@ function obtenerPremio(combinacion, cate) {
     icon: "success",
     title: `Combinación: ${combinacion}`,
     html: `Ganaste un premio de ${formatoCOP.format(
-      premio
+      premio,
     )} en Dinero Promocional, con categoría  ${cate}`,
   });
 
@@ -508,7 +495,7 @@ function obtenerPremio(combinacion, cate) {
   });
 
   msj_combi.innerHTML = `<p class="title_msg_premio">Combinación: ${combinacion}, ganaste un premio de ${formatoCOP.format(
-    premio
+    premio,
   )} en Dinero Promocional, con categoría  ${cate}</p>`;
 
   return `$ ${premio.toLocaleString()}`;
@@ -540,6 +527,18 @@ function handleSubmit() {
   let casinoValue = casino.value;
   let nombreValue = nombre.value;
   let cedulaValue = cedula.value;
+
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+  const [fecha, hora] = fechaCompleta.split(", ");
 
   if (categoriaValue == "" || casinoValue == "" || nombreValue == "") {
     Swal.fire({
@@ -675,7 +674,6 @@ function GetResgistroDia() {
   const isBlank = (v) =>
     v == null || (typeof v === "string" && v.trim() === "");
   const hayBonoVacio = filtrados.some((item) => isBlank(item.valBono));
-  console.log(hayBonoVacio);
   notificacion_registro_dia.style.display = hayBonoVacio ? "flex" : "none";
 
   info_result_dia.innerHTML = `<small class="color-gray"><spam style="color: red">*</spam> Estos registros son temporales (se reinicia a las 00:00), por favor tener en cuenta.</small>`;
@@ -745,7 +743,7 @@ function GetResgistroDia() {
 
   function updateLocalBono(
     { casino, categoria, nombre, cedula, fecha, hora, resultado },
-    valBono
+    valBono,
   ) {
     const regs = getRegs();
     const idx = regs.findIndex(
@@ -755,7 +753,7 @@ function GetResgistroDia() {
         String(r.valor_5).trim() === String(casino).trim() &&
         String(r.valor_3).trim() === String(nombre).trim() &&
         String(r.valor_2).trim() === String(fecha).trim() &&
-        String(r.valor_1).trim() === String(hora).trim()
+        String(r.valor_1).trim() === String(hora).trim(),
     );
     if (idx === -1) return false;
 
@@ -775,14 +773,14 @@ function GetResgistroDia() {
           ">": "&gt;",
           '"': "&quot;",
           "'": "&#39;",
-        }[m])
+        })[m],
     );
   }
 
   if (content_registro_dia._clickHandler) {
     content_registro_dia.removeEventListener(
       "click",
-      content_registro_dia._clickHandler
+      content_registro_dia._clickHandler,
     );
   }
 
@@ -858,7 +856,7 @@ function GetResgistroDia() {
           hora,
           resultado,
         },
-        valBonoregistr
+        valBonoregistr,
       );
 
       if (tr) {
@@ -929,7 +927,7 @@ function GetResgistroDia() {
   };
   content_registro_dia.addEventListener(
     "click",
-    content_registro_dia._clickHandler
+    content_registro_dia._clickHandler,
   );
 }
 GetResgistroDia();
@@ -963,7 +961,7 @@ function handleEnvioSecundario() {
   });
 
   if (categoria == "ADICIONAL") {
-    (bono = "0"), (resultado = "0");
+    ((bono = "0"), (resultado = "0"));
   }
 
   if (
@@ -1043,6 +1041,18 @@ function handleEnvioObs() {
   let casinoV = casino.value;
   let descripcionV = descripcion.value;
 
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+  const [fecha, hora] = fechaCompleta.split(", ");
+
   if (casinoV == "" || descripcionV == "") {
     Swal.fire({
       icon: "warning",
@@ -1054,8 +1064,8 @@ function handleEnvioObs() {
 
   let data = {
     tipo: "envio_2",
-    valor_1: casinoV,
-    valor_2: descripcionV,
+    valor_1: hora,
+    valor_2: fecha,
     valor_3: casinoV,
     valor_4: descripcionV,
     valor_5: user.Nombre,
@@ -1079,5 +1089,59 @@ function handleEnvioObs() {
           html: "La Observación se envio de manera correcta.",
         });
       }, 2000);
+    });
+}
+
+
+getDataObs();
+function getDataObs() {
+  const container = document.getElementById("result_observaciones_dinamica");
+  container.innerHTML = "Cargando...";
+  fetch(`${url}?hoja=observaciones`)
+    .then((res) => res.json())
+    .then((data) => {
+      container.innerHTML = `
+          <div class="table-result table-scrolld">
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th># Registro</th>
+                  <th>Usuario</th>
+                  <th>Hora</th>
+                  <th>Fecha</th>
+                  <th>Observación</th>
+                  <th>Casino</th>
+                  <th>Estado</th>
+                </tr>
+              </thead>
+              <tbody>
+               ${data
+                 .reverse()
+                 .map((registro, i) => {
+                   // Formateamos la hora aquí mismo
+                   const horaFormateada = new Date(
+                     registro.Hora,
+                   ).toLocaleTimeString("es-CO", {
+                     hour: "2-digit",
+                     minute: "2-digit",
+                   });
+
+                   return `
+                            <tr>
+                              <td>${i + 1}</td>
+                              <td>${registro.Usuario}</td>
+                              <td>${horaFormateada}</td> 
+                              <td>${registro.Fecha.substring(0, 10)}</td>
+                              <td>${registro.Observacion}</td>
+                              <td>${registro.Casino}</td>
+                              ${registro.Estado == "" ? `<td class="pendi_obs">Pendiente</td>` : `<td class="corre_obs">Corregido</td>`} 
+                            </tr>
+                          `;
+                 })
+                 .join("")}
+              </tbody>
+            </table>
+          </div>
+        `;
     });
 }
