@@ -46,13 +46,24 @@ btn_send_encuesta_m.addEventListener("click", () => {
 
 function handleEncuestaMy() {
   if (
-    !nombre.value &&
-    !casino.value &&
-    !cedula.value &&
-    si_usa.checked == false &&
-    no_usa.checked == false &&
-    !_motivo_no_uso_.value
+    !nombre.value ||
+    !casino.value ||
+    !cedula.value   
   ) {
+    Swal.fire({
+      icon: "warning",
+      title: "Completa la información",
+    });
+    return;
+  }
+
+  if(si_usa.checked == true){
+
+  }
+
+  if(si_usa.checked == false &&
+    no_usa.checked == false ||
+    no_usa.checked == true ? !_motivo_no_uso_.value : ""){
     Swal.fire({
       icon: "warning",
       title: "Completa la información",
