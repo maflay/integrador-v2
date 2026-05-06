@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Aladdin: MYMAWI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+</head>
+
+<body data-main-style="/dinamicas/encuesta-mymawy/style.css" data-main-script="/dinamicas/encuesta-mymawy/script.js">
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="_main_content_encuesta_">
+        <div class="container _content_encuesta_">
+            <div class="_encuesta_">
+                <img src="/dinamicas/encuesta-mymawy/resources/mymawy_encuesta_logo.png" alt="Aladdin">
+                <select class="item_hide form-control" id="casino">
+                    <option value="">Casino...</option>
+                    <option value="A05">A05</option>
+                    <option value="A07">A07</option>
+                    <option value="A08">A08</option>
+                    <option value="A09">A09</option>
+                    <option value="A12">A12</option>
+                    <option value="A12-MESAS">A12-MESAS</option>
+                    <option value="A15">A15</option>
+                    <option value="A15-MESAS">A15-MESAS</option>
+                    <option value="A16">A16</option>
+                    <option value="A19">A19</option>
+                    <option value="A35">A35</option>
+                    <option value="A36">A36</option>
+                    <option value="A36-MESAS">A36-MESAS</option>
+                    <option value="A38">A38</option>
+                    <option value="A39">A39</option>
+                    <option value="A43">A43</option>
+                    <option value="A48">A48</option>
+                    <option value="A48-MESAS">A48-MESAS</option>
+                    <option value="A49">A49</option>
+                    <option value="A50">A50</option>
+                    <option value="A53">A53</option>
+                    <option value="A58">A58</option>
+                    <option value="A70">A70</option>
+                    <option value="A781">A781</option>
+                    <option value="A88">A88</option>
+                    <option value="A100">A100</option>
+                    <option value="A108">A108</option>
+                    <option value="A108-MESAS">A108-MESAS</option>
+                    <option value="A127">A127</option>
+                    <option value="A127-MESAS">A127-MESAS</option>
+                </select>
+                <input onkeyup="this.value = this.value.toUpperCase()" type="text" name="nombre" id="nombre"
+                    class="form-control" placeholder="Nombre">
+                <input type="numb" name="cedula" id="cedula" class="form-control" placeholder="Cédula">
+                <div class="_chose_uso_m_">
+                    <p>¿Usa la tarjeta MYMAWI?</p>
+                    <div class="_content_ans_m">
+                        <div class="_box_ans_m_">
+                            <p>Si</p>
+                            <input type="checkbox" name="si_usa" id="si_usa">
+                        </div>
+                        <div class="_box_ans_m_">
+                            <p>No</p>
+                            <input type="checkbox" name="no_usa" id="no_usa">
+                        </div>
+                    </div>
+                    <textarea placeholder="¿Porque no usa la tarjeta MYMAWY?" class="form-control"
+                        name="_motivo_no_uso_" id="_motivo_no_uso_"></textarea>
+                </div>
+                <div>
+                    <button id="btn_send_encuesta_m" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/dinamicas/actions_js/menu_modal.js"></script>
+    <script src="/dinamicas/user.js"></script>
+    <script src="/dinamicas/extension.js"></script>
+</body>
+
+</html>

@@ -6,7 +6,6 @@ if (document.getElementById("modal_opciones_dinamica")) {
   const btn_tabla_premios = document.getElementById("btn_tabla_premios");
   const btn_registro_dia = document.getElementById("btn_registro_dia");
   const btn_modal_opcion_6 = document.getElementById("btn_modal_opcion_6");
-  console.log("tiene la modal");
   // view modal
   const view_guardar_registro = document.getElementById(
     "view_guardar_registro",

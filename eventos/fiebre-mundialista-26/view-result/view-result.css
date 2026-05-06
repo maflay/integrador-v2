@@ -111,8 +111,14 @@
     padding: 20px 0;
 }
 
+.content_validate_user select,
 .content_validate_user input {
     width: 250px;
+}
+
+.content_validate_user input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .content_btn_iniciar {

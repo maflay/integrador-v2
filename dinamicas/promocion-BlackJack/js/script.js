@@ -19,22 +19,6 @@ const btn_envia_observacion = document.getElementById("btn_envia_observacion");
 const casino = document.getElementById("casino");
 const categoria = document.getElementById("categoria");
 
-casino.addEventListener("change", () => {
-  if (casino.value == "" || categoria.value == "") {
-    disableCards();
-  } else {
-    enableCards();
-  }
-});
-
-categoria.addEventListener("change", () => {
-  if (casino.value == "" || categoria.value == "") {
-    disableCards();
-  } else {
-    enableCards();
-  }
-});
-
 const types = ["C", "D", "H", "S"];
 const specials = ["A", "J", "Q", "K"];
 let deck = [];
@@ -52,24 +36,87 @@ if (localStorage.getItem(FECHA_KEY) !== hoy) {
   localStorage.setItem(FECHA_KEY, hoy);
 }
 
-const casino_table_1 = [
-  "A05",
-  "A07",
-  "A08",
-  "A09",
-  "A12",
-  "MP15",
-  "A15",
-  "A16",
-];
+casino.addEventListener("change", () => {
+  if (casino.value == "" || categoria.value == "") {
+    disableCards();
+  } else {
+    enableCards();
+    const tablaCorrecta = casino_table_[casino.value];
 
-const casino_table_2 = ["A43", "A53", "A108", "MP108", "A127"];
+    if (!tablaCorrecta) {
+      alert("Casino no reconocido");
+      return;
+    }
+
+    if (tablaCorrecta !== tablaSeleccionada) {
+      alert("❌ Este casino no tiene esta categoría");
+      return;
+    }
+  }
+});
+
+function validarCasino(casino, tablaSeleccionada) {
+  const tablaCorrecta = CASINO_TO_TABLA[casino];
+
+  if (!tablaCorrecta) {
+    return "Casino no reconocido";
+  }
+
+  if (tablaCorrecta !== tablaSeleccionada) {
+    return "Este casino no tiene esta categoría";
+  }
+
+  return null; // todo bien
+}
+
+categoria.addEventListener("change", () => {
+  if (casino.value == "" || categoria.value == "") {
+    disableCards();
+  } else {
+    enableCards();
+  }
+});
+
+const casino_table_ = {
+  A05: 1,
+  A07: 1,
+  A08: 1,
+  A09: 1,
+  A12: 1,
+  A16: 1,
+  A70: 1,
+  A43: 2,
+  A53: 2,
+  A108: 2,
+  MP108: 2,
+  A127: 2,
+  A15: 2,
+  "A12-MESAS": 3,
+  A19: 3,
+  A50: 3,
+  A38: 3,
+  A35: 3,
+  A39: 3,
+  A88: 3,
+  A48: 3,
+  "A48-MESAS": 3,
+  A49: 3,
+  MP100: 3,
+  A100: 3,
+  A36: 4,
+  "A36-MESAS": 4,
+  A781: 4,
+  "A15-MESAS": 4,
+};
+
+const casino_table_1 = ["A05", "A07", "A08", "A09", "A12", "A16", "A70"];
+
+const casino_table_2 = ["A43", "A53", "A108", "MP108", "A127", "A15"];
 
 const casino_table_3 = [
   "A12-MESAS",
   "A19",
   "A50",
-  "A70",
   "A38",
   "A35",
   "A39",
@@ -78,18 +125,10 @@ const casino_table_3 = [
   "A48-MESAS",
   "A49",
   "MP100",
+  "A100",
 ];
 
-const casino_table_4 = [
-  "A36",
-  "A36-MESAS",
-  "A781",
-  "MP15-MESAS",
-  "A15-MESAS",
-  "MP108-MESAS",
-  "A108-MESAS",
-  "A127-MESAS",
-];
+const casino_table_4 = ["A36", "A36-MESAS", "A781", "A15-MESAS"];
 
 // premios WIN
 
@@ -209,6 +248,17 @@ const premiosLose = {
   SILVER: "$70.000",
   BRONCE: "$50.000",
 };
+
+const PREMIOS = {
+  1: premios_tabla_1,
+  2: premios_tabla_2,
+  3: premios_tabla_3,
+  4: premios_tabla_4,
+};
+
+function obtenerTablaDesdeCasino(casino) {
+  return casino_table_[casino] || null;
+}
 
 const drawCard = () => {
   if (deck.length === 0) createDeck();
@@ -364,16 +414,51 @@ function callCard(card) {
       alertLose(lose_tabla_3[valCategoria] || "0", valCategoria);
     } else if (casino_table_4.includes(casino.value)) {
       alertLose(lose_tabla_4[valCategoria] || "0", valCategoria);
+    } else {
+      alertCasinoExiste();
     }
   };
 
   const ganar = (monto, tipo) => {
+    const _casino = casino.value;
+    const categoria_ = categoria.value;
+    const tabla = obtenerTablaDesdeCasino(_casino);
+    const premiosTabla = PREMIOS[tabla];
+
+    console.log(tabla);
+    if (!tabla) {
+      Swal.fire({
+        icon: "warning",
+        title: "Casino no válido.",
+      });
+      return;
+    }
+
+    if (!(categoria_ in premiosTabla)) {
+      Swal.fire({
+        icon: "warning",
+        title: "Este casino no tiene esa categoría",
+      }).then((res) => {
+        if (res.isConfirmed) {
+          resetTablero();
+        }
+      });
+      return;
+    }
+
+
     alertWin(valCategoria, monto, tipo);
   };
 
   if (cantidad >= 2) {
     if (ajustado > 21) {
       perder();
+      alertCasinoExiste();
+      // const premiosTablaCorrecta = PREMIOS[tabla];
+      // if (!(categoria_ in premiosTablaCorrecta)) {
+      //   alert("Este casino no tiene esa categoría");
+      //   return;
+      // }
     } else if ([18, 19, 20, 21].includes(ajustado)) {
       if (casino_table_1.includes(casino.value)) {
         ganar(premios_tabla_1[valCategoria] || "$0", "Ganaste");
@@ -390,6 +475,7 @@ function callCard(card) {
   if (cantidad === 2) {
     if (ajustado > 21) {
       perder();
+      alertCasinoExiste();
     } else if (ajustado === 21) {
       if (casino_table_1.includes(casino.value)) {
         ganar(blackjack_tabla_1[valCategoria] || "$0", "BlackJack");
@@ -893,6 +979,33 @@ function HandleSecondSubmit() {
     });
 }
 
+function alertCasinoExiste() {
+  const _casino = casino.value;
+  const categoria_ = categoria.value;
+  const tabla = obtenerTablaDesdeCasino(_casino);
+  const premiosTabla = PREMIOS[tabla];
+
+  if (!tabla) {
+    Swal.fire({
+      icon: "warning",
+      title: "Casino no válido.",
+    });
+    return;
+  }
+
+  if (!(categoria_ in premiosTabla)) {
+    Swal.fire({
+      icon: "warning",
+      title: "Este casino no tiene esa categoría",
+    }).then((res) => {
+      if (res.isConfirmed) {
+        resetTablero();
+      }
+    });
+    return;
+  }
+}
+
 function handlePlantarse() {
   const valCategoria = document.getElementById("categoria").value;
 
@@ -927,48 +1040,64 @@ function handlePlantarse() {
         alertWin(valCategoria, "$110.000", "Ancar");
       } else if (casino_table_2.includes(casino.value)) {
         alertWin(valCategoria, "$140.000", "Ancar");
+      } else {
+        alertCasinoExiste();
       }
     } else if (valCategoria == "TITANIO") {
       if (casino_table_1.includes(casino.value)) {
         alertWin(valCategoria, "$100.000", "Ancar");
       } else if (casino_table_2.includes(casino.value)) {
         alertWin(valCategoria, "$130.000", "Ancar");
+      } else {
+        alertCasinoExiste();
       }
     } else if (valCategoria == "LEGENDARIO") {
       if (casino_table_1.includes(casino.value)) {
         alertWin(valCategoria, "$90.000", "Ancar");
       } else if (casino_table_2.includes(casino.value)) {
         alertWin(valCategoria, "$120.000", "Ancar");
+      } else {
+        alertCasinoExiste();
       }
     } else if (valCategoria == "GOLD") {
       if (casino_table_1.includes(casino.value)) {
         alertWin(valCategoria, "$80.000", "Ancar");
       } else if (casino_table_2.includes(casino.value)) {
         alertWin(valCategoria, "$110.000", "Ancar");
+      } else {
+        alertCasinoExiste();
       }
     } else if (valCategoria == "SILVER") {
       if (casino_table_1.includes(casino.value)) {
         alertWin(valCategoria, "$70.000", "Ancar");
       } else if (casino_table_2.includes(casino.value)) {
         alertWin(valCategoria, "$100.000", "Ancar");
+      } else {
+        alertCasinoExiste();
       }
     } else if (valCategoria == "BRONCE") {
       if (casino_table_1.includes(casino.value)) {
         alertWin(valCategoria, "$60.000", "Ancar");
       } else if (casino_table_2.includes(casino.value)) {
         alertWin(valCategoria, "$90.000", "Ancar");
+      } else {
+        alertCasinoExiste();
       }
     } else if (valCategoria == "ESTANDAR") {
       if (casino_table_3.includes(casino.value)) {
         alertWin(valCategoria, "$60.000", "Ancar");
       } else if (casino_table_4.includes(casino.value)) {
         alertWin(valCategoria, "$90.000", "Ancar");
+      } else {
+        alertCasinoExiste();
       }
     } else if (valCategoria == "SUPERIOR") {
       if (casino_table_3.includes(casino.value)) {
         alertWin(valCategoria, "$80.000", "Ancar");
       } else if (casino_table_4.includes(casino.value)) {
         alertWin(valCategoria, "$110.000", "Ancar");
+      } else {
+        alertCasinoExiste();
       }
     } else if (valCategoria == "SUPERIORMARCOPOLO") {
       alertWin(valCategoria, "$110.000", "Ancar");
@@ -979,8 +1108,6 @@ function handlePlantarse() {
     } else if (valCategoria == "ESTANDARALADDIN") {
       alertWin(valCategoria, "$60.000", "Ancar");
     }
-
-    valBono.innerHTML = getBonoForm();
   } else {
     Swal.fire({
       title: "Estas seguro de plantarte?",

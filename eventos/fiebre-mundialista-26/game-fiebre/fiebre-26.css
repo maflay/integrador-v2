@@ -85,6 +85,8 @@
     align-items: center;
     width: 97%;
     height: 100%;
+    max-height: 400px;
+    overflow-y: auto;
     padding: 20px;
     gap: 30px;
     border: white 1px solid;
@@ -104,6 +106,13 @@
     align-items: center;
     position: relative;
     width: 400px;
+    border-bottom: white 1px solid;
+    padding-bottom: 5px;
+    margin-top: 10px;
+}
+
+.content_card_marcador p {
+    margin: 0;
 }
 
 .card_marcador {
@@ -119,8 +128,8 @@
 
 .card_marcador input::-webkit-outer-spin-button,
 .card_marcador input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .card_marcador img {
@@ -128,11 +137,21 @@
     height: 40px;
 }
 
+#allNames .card_marcador input:nth-child(1),
+#allNames .card_marcador input:nth-child(4) {
+    width: 95px;
+}
+
 .item_disable {
     opacity: 0.7;
     pointer-events: none;
 }
 
+._content_final_,
+.content_semifinal_,
+.content_tercer_lugar,
+.content_cuartos_final,
+.content_octavos_final,
 .content_seccion_32_equipo_ {
     display: flex;
     flex-direction: column;
@@ -141,11 +160,21 @@
     width: 100%;
 }
 
+._content_final_ h2,
+.content_semifinal_ h2,
+.content_tercer_lugar h2,
+.content_cuartos_final h2,
+.content_octavos_final h2,
 .content_seccion_32_equipo_ h2 {
     margin-top: 20px;
     color: white;
 }
 
+._final_,
+._semifinal_,
+._tercer_lugar_,
+._cuartos_final,
+._octavos_final,
 ._seccion_32_equipo_ {
     display: flex;
     justify-content: center;
@@ -163,7 +192,22 @@
 }
 
 .content_btn_marcador {
-    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.content_btn_update_names_ {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.content_btn_update_names_ button {
+    font-size: 12px;
+    padding: 5px 8px;
 }
 
 @media(max-width: 768px) {

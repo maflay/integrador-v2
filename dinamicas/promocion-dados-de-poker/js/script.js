@@ -513,6 +513,13 @@ function resetBoxes() {
   dado_4.classList.remove("no_figura", "par", "par-full-house");
   dado_5.classList.remove("no_figura", "par", "par-full-house");
 
+  btn_un_par.classList.remove("disable_btn_board");
+  btn_dos_pares.classList.remove("disable_btn_board");
+  btn_terna.classList.remove("disable_btn_board");
+  btn_full_house.classList.remove("disable_btn_board");
+  btn_poker.classList.remove("disable_btn_board");
+  btn_quintilla.classList.remove("disable_btn_board");
+
   msj_combi.textContent = "";
 
   // validateBtn();
