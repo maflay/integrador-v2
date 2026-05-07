@@ -103,6 +103,7 @@ const casino_table_ = {
   A49: 3,
   MP100: 3,
   A100: 3,
+  "A127-MESAS": 3,
   A36: 4,
   "A36-MESAS": 4,
   A781: 4,
@@ -126,6 +127,7 @@ const casino_table_3 = [
   "A49",
   "MP100",
   "A100",
+  "A127-MESAS"
 ];
 
 const casino_table_4 = ["A36", "A36-MESAS", "A781", "A15-MESAS"];

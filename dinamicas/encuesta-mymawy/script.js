@@ -57,9 +57,6 @@ function handleEncuestaMy() {
     return;
   }
 
-  if(si_usa.checked == true){
-
-  }
 
   if(si_usa.checked == false &&
     no_usa.checked == false ||
