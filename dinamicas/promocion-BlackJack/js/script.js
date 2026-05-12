@@ -130,6 +130,8 @@ const casino_table_3 = [
   
 ];
 
+// casinos
+
 const casino_table_4 = ["A36", "A36-MESAS", "A781", "A15-MESAS","A127-MESAS"];
 
 // premios WIN
