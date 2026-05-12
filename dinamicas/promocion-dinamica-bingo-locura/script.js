@@ -52,11 +52,31 @@ function obtenerBingo(numero) {
   return "Número inválido";
 }
 
+let min_step = 0;
+let max_step = 0;
+
 _letra_bingo_.addEventListener("change", () => {
   if (_letra_bingo_.value) {
     _board_bingo_.innerHTML = "";
 
-    for (let i = 0; i < 15; i++) {
+    if (_letra_bingo_.value == "B") {
+      min_step = 0;
+      max_step = 15;
+    } else if (_letra_bingo_.value == "I") {
+      min_step = 15;
+      max_step = 30;
+    } else if (_letra_bingo_.value == "N") {
+      min_step = 30;
+      max_step = 45;
+    } else if (_letra_bingo_.value == "G") {
+      min_step = 45;
+      max_step = 60;
+    } else if (_letra_bingo_.value == "O") {
+      min_step = 60;
+      max_step = 75;
+    }
+
+    for (let i = min_step; i < max_step; i++) {
       let casilla = document.createElement("div");
       casilla.id = `posicion_${i + 1}`;
       casilla.className = "_bola_bingo_locu";
@@ -104,7 +124,7 @@ btn_iniciar_bingo.addEventListener("click", () => {
 });
 
 async function randomizar() {
-  if (!document.getElementById("posicion_1")) {
+  if (!document.getElementById(`posicion_${Number(min_step) + 1}`)) {
     Swal.fire({
       icon: "warning",
       title: "Antes de Continuar",
@@ -112,7 +132,6 @@ async function randomizar() {
     });
     return;
   }
-
 
   // Tomar SOLO las casillas activas (no opacadas)
   const casillasDisponibles = Array.from(
@@ -310,4 +329,5 @@ function resetBoard() {
   _anterior_posicion_3_.style.display = "none";
   _anterior_posicion_4_.style.display = "none";
   _anterior_posicion_5_.style.display = "none";
+  _letra_bingo_.value = "";
 }
