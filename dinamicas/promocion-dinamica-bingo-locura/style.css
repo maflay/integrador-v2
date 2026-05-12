@@ -1,0 +1,206 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #356adc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+._main_content_bingo_locura_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+    background-image: linear-gradient(180deg, #292929d8, #292929a8, #292929f3), url(/dinamicas/promocion-dinamica-bingo-locura/resources/fondo_bingo_locura.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+._content_bingo_locura_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    gap: 30px;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+}
+
+._content_controls_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    right: 0;
+    gap: 10px;
+}
+
+._content_controls_ button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    padding: 8px 1px;
+    width: 100%;
+}
+
+._content_controls_ input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+._content_controls_ img {
+    width: 30px;
+    transition: all 0.4s ease;
+}
+
+._content_controls_ img:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+._board_bingo_ {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+}
+
+._bola_bingo_locu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.posicion_cum_opacada {
+    opacity: 0.4;
+    filter: grayscale(100%);
+    pointer-events: none;
+    transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.posicion_cum_seleccionado {
+    border: 1px white solid;
+    background-color: green;
+    transform: scale(1.1);
+    color: white !important;
+}
+
+.casillaGanadora {
+    font-size: 5.5rem;
+}
+
+.numeroFicha {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls_bingo {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+._content_lasts_fichas_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    gap: 10px;
+}
+
+._bola_bingo_locu_control_ {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+._ultima_bola_ {
+    display: none;
+    width: 100px;
+    height: 100px;
+    font-size: 30px;
+    border: black 5px solid;
+}
+
+._anterior_posicion_2_ {
+    display: none;
+    width: 90px;
+    height: 90px;
+    border: black 5px solid;
+}
+
+._anterior_posicion_3_ {
+    display: none;
+    width: 80px;
+    height: 80px;
+    border: black 5px solid;
+}
+
+._anterior_posicion_4_ {
+    display: none;
+    width: 70px;
+    height: 70px;
+    font-size: 22px;
+    border: black 5px solid;
+}
+
+._anterior_posicion_5_ {
+    display: none;
+    width: 70px;
+    height: 70px;
+    font-size: 20px;
+    border: black 5px solid;
+}
