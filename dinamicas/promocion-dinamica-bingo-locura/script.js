@@ -112,14 +112,7 @@ async function randomizar() {
     });
     return;
   }
-  if (readBoard.value == "") {
-    Swal.fire({
-      icon: "warning",
-      title: "Antes de Continuar",
-      html: "Debes Digitar la cantidad de numeros.",
-    });
-    return;
-  }
+
 
   // Tomar SOLO las casillas activas (no opacadas)
   const casillasDisponibles = Array.from(
