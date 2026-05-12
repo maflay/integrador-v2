@@ -18,8 +18,17 @@
     <div class="_main_content_bingo_locura_">
         <div class="_content_bingo_locura_">
             <div class="_content_controls_">
+                <select name="_letra_bingo:" id="_letra_bingo_" class="form-control">
+                    <option value="">Letra</option>
+                    <option value="B">B</option>
+                    <option value="I">I</option>
+                    <option value="N">N</option>
+                    <option value="G">G</option>
+                    <option value="O">O</option>
+                </select>
                 <input placeholder="Tamaño del Bingo" type="number" class="form-control" id="readBoard">
                 <button id="btn_pintar_tablero" class="btn btn-primary">Pintar Tablero</button>
+                <button title="Enviar" id="btn_reset" class="btn btn-danger">Reiniciar</button>
                 <img id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
             </div>
             <div class="_content_opciones">
@@ -28,7 +37,6 @@
             </div>
             <div class="controls_bingo" id="controls_bingo">
                 <button id="btn_iniciar_bingo" class="btn btn-primary">Iniciar</button>
-                <button title="Enviar" id="btn_reset" class="btn btn-danger">Reiniciar</button>
             </div>
         </div>
         <div class="_content_lasts_fichas_">

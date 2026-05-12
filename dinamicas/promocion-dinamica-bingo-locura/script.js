@@ -17,6 +17,7 @@ const _anterior_posicion_2_ = document.getElementById("_anterior_posicion_2_");
 const _anterior_posicion_3_ = document.getElementById("_anterior_posicion_3_");
 const _anterior_posicion_4_ = document.getElementById("_anterior_posicion_4_");
 const _anterior_posicion_5_ = document.getElementById("_anterior_posicion_5_");
+const _letra_bingo_ = document.getElementById("_letra_bingo_");
 
 const promocion = "Bingo Locura";
 
@@ -50,6 +51,28 @@ function obtenerBingo(numero) {
 
   return "Número inválido";
 }
+
+_letra_bingo_.addEventListener("change", () => {
+  if (_letra_bingo_.value) {
+    _board_bingo_.innerHTML = "";
+
+    for (let i = 0; i < 15; i++) {
+      let casilla = document.createElement("div");
+      casilla.id = `posicion_${i + 1}`;
+      casilla.className = "_bola_bingo_locu";
+      casilla.textContent = _letra_bingo_.value + `-${i + 1}`;
+
+      casilla.addEventListener("click", () => {
+        casilla.classList.add("posicion_cum_opacada");
+      });
+
+      _board_bingo_.appendChild(casilla);
+      controls_bingo.style.display = "flex";
+    }
+  } else {
+    _board_bingo_.innerHTML = "";
+  }
+});
 
 btn_pintar_tablero.addEventListener("click", () => {
   _board_bingo_.innerHTML = "";
@@ -152,7 +175,7 @@ async function randomizar() {
     casillaGanadora.classList.add("posicion_cum_seleccionado");
     await delay(800);
     casillaGanadora.classList.add("posicion_cum_opacada");
-      validateLastFicha(obtenerBingo(casillaGanadora.id.split("_")[1]));
+    validateLastFicha(obtenerBingo(casillaGanadora.id.split("_")[1]));
 
     if (casillaGanadora.id) {
       confetti({
@@ -177,28 +200,28 @@ function delay(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function validateLastFicha (numero){
+function validateLastFicha(numero) {
   let ultimonumeroSave = "";
-  if(!_ultima_bola_.textContent){
+  if (!_ultima_bola_.textContent) {
     _ultima_bola_.textContent = String(numero);
     _ultima_bola_.style.display = "flex";
     ultimonumeroSave = String(numero);
-  } else if(!_anterior_posicion_2_.textContent){
+  } else if (!_anterior_posicion_2_.textContent) {
     _anterior_posicion_2_.style.display = "flex";
     _anterior_posicion_2_.textContent = _ultima_bola_.textContent;
     _ultima_bola_.textContent = String(numero);
-  } else if(!_anterior_posicion_3_.textContent){
+  } else if (!_anterior_posicion_3_.textContent) {
     _anterior_posicion_3_.style.display = "flex";
     _anterior_posicion_3_.textContent = _anterior_posicion_2_.textContent;
     _anterior_posicion_2_.textContent = _ultima_bola_.textContent;
     _ultima_bola_.textContent = String(numero);
-  } else if(!_anterior_posicion_4_.textContent){
+  } else if (!_anterior_posicion_4_.textContent) {
     _anterior_posicion_4_.style.display = "flex";
     _anterior_posicion_4_.textContent = _anterior_posicion_3_.textContent;
     _anterior_posicion_3_.textContent = _anterior_posicion_2_.textContent;
     _anterior_posicion_2_.textContent = _ultima_bola_.textContent;
     _ultima_bola_.textContent = String(numero);
-  } else if(!_anterior_posicion_5_.textContent){
+  } else if (!_anterior_posicion_5_.textContent) {
     _anterior_posicion_5_.style.display = "flex";
     _anterior_posicion_5_.textContent = _anterior_posicion_4_.textContent;
     _anterior_posicion_4_.textContent = _anterior_posicion_3_.textContent;
@@ -210,8 +233,7 @@ function validateLastFicha (numero){
     _anterior_posicion_4_.textContent = _anterior_posicion_3_.textContent;
     _anterior_posicion_3_.textContent = _anterior_posicion_2_.textContent;
     _anterior_posicion_2_.textContent = _ultima_bola_.textContent;
-    _ultima_bola_.textContent = String(numero)
-
+    _ultima_bola_.textContent = String(numero);
   }
 }
 
@@ -290,4 +312,9 @@ function resetBoard() {
   categoria.value = "";
   readBoard.value = "";
   controls_bingo.style.display = "none";
+  _ultima_bola_.style.display = "none";
+  _anterior_posicion_2_.style.display = "none";
+  _anterior_posicion_3_.style.display = "none";
+  _anterior_posicion_4_.style.display = "none";
+  _anterior_posicion_5_.style.display = "none";
 }
