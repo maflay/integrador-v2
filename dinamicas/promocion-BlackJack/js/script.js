@@ -85,6 +85,7 @@ const casino_table_ = {
   A12: 1,
   A16: 1,
   A70: 1,
+  A19: 1,
   A43: 2,
   A53: 2,
   A108: 2,
@@ -92,7 +93,6 @@ const casino_table_ = {
   A127: 2,
   A15: 2,
   "A12-MESAS": 3,
-  A19: 3,
   A50: 3,
   A38: 3,
   A35: 3,
@@ -110,13 +110,13 @@ const casino_table_ = {
   "A15-MESAS": 4,
 };
 
-const casino_table_1 = ["A05", "A07", "A08", "A09", "A12", "A16", "A70"];
+const casino_table_1 = ["A05", "A19", "A07", "A08", "A09", "A12", "A16", "A70"];
 
 const casino_table_2 = ["A43", "A53", "A108", "MP108", "A127", "A15"];
 
 const casino_table_3 = [
   "A12-MESAS",
-  "A19",
+ 
   "A50",
   "A38",
   "A35",

@@ -1,0 +1,267 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffffcc;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #356adc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+._main_content_jugada_ {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    background: #6D912F;
+    background-image: linear-gradient(180deg, #ffffff7c, #ffffff7c, #ffffff7c),
+        url(/dinamicas/promocion-jugada-ganadora/resources/background_jugada_ganadora_.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+._content_jugada_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+._content_btn_reiniciar_ {
+    position: absolute;
+    bottom: 30px;
+}
+
+._board_jugada_ {
+    position: relative;
+    width: 1000px;
+    height: 700px;
+    background: black;
+    background-image: linear-gradient(180deg, #ffffff00, #ffffff00, #ffffff00),
+        url(/dinamicas/promocion-jugada-ganadora/resources/CAMPO-CON-BOLAS_4.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: #00000062 0px 0px 10px;
+}
+
+._content_opciotns_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+._content_opciotns_ img {
+    width: 30px;
+    transition: all .4s ease;
+}
+
+._content_opciotns_ img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+._content_control_jugada {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    gap: 10px;
+    bottom: 5px;
+    left: 5px;
+}
+
+._content_control_jugada select {
+    font-size: 12px;
+}
+
+._content_alerta_ {
+    width: 100%;
+    max-width: 700px;
+    background-color: transparent;
+    color: white;
+}
+
+._content_alerta_ p{
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+._content_alerta_ span{
+    font-size: 26px;
+}
+
+._ficha_player_ {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 140px;
+}
+
+._id_balon_ {
+    position: absolute;
+    width: 60px;
+    bottom: 120px;
+    right: 140px;
+    transition:
+        right 0.6s ease,
+        bottom 0.6s ease,
+        transform 0.6s ease,
+        opacity 0.4s ease;
+    transform: scale(1);
+}
+
+._id_balon_:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.posicion_111 {
+    width: 60px;
+    right: 520px;
+    bottom: 308px;
+}
+
+.posicion_222 {
+    width: 60px;
+    right: 506px;
+    bottom: 250px;
+}
+
+.posicion_333 {
+    width: 60px;
+    right: 430px;
+    bottom: 318px;
+}
+
+.posicion_444 {
+    width: 60px;
+    right: 360px;
+    bottom: 356px;
+}
+
+.posicion_555 {
+    width: 60px;
+    right: 389px;
+    bottom: 383px;
+}
+
+.posicion_666 {
+    width: 60px;
+    right: 712px;
+    opacity: 0.3;
+    bottom: 350px;
+}
+
+.posicion_suma_4 {
+    width: 60px;
+    right: 673px;
+    bottom: 201px;
+}
+
+.posicion_suma_5 {
+    width: 60px;
+    right: 673px;
+    bottom: 382px;
+}
+
+.posicion_suma_6 {
+    width: 60px;
+    right: 622px;
+    bottom: 419px;
+}
+
+.posicion_suma_7 {
+    width: 60px;
+    right: 460px;
+    bottom: 512px;
+}
+
+.posicion_suma_8 {
+    width: 60px;
+    right: 405px;
+    bottom: 546px;
+}
+
+.posicion_suma_9 {
+    width: 60px;
+    right: 858px;
+    bottom: 207px;
+}
+
+.posicion_suma_10 {
+    width: 60px;
+    right: 821px;
+    bottom: 480px;
+}
+
+.posicion_suma_11 {
+    width: 60px;
+    right: 590px;
+    bottom: 581px;
+}
+
+.posicion_suma_12 {
+    width: 60px;
+    right: 289px;
+    bottom: 515px;
+}
+
+.posicion_suma_13 {
+    width: 60px;
+    right: 405px;
+    bottom: 490px;
+}
+
+.posicion_suma_14 {
+    width: 60px;
+    right: 395px;
+    bottom: 433px;
+}
+
+.posicion_suma_15 {
+    width: 60px;
+    right: 567px;
+    bottom: 447px;
+}
+
+.posicion_suma_16 {
+    width: 60px;
+    right: 516px;
+    bottom: 483px;
+}
+
+.posicion_suma_17 {
+    width: 60px;
+    right: 673px;
+    bottom: 279px;
+}
