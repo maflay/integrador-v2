@@ -49,7 +49,7 @@ casino.addEventListener("change", () => {
     }
 
     if (tablaCorrecta !== tablaSeleccionada) {
-      alert("❌ Este casino no tiene esta categoría");
+      alert("Este casino no tiene esta categoría");
       return;
     }
   }
@@ -116,7 +116,6 @@ const casino_table_2 = ["A43", "A53", "A108", "MP108", "A127", "A15"];
 
 const casino_table_3 = [
   "A12-MESAS",
- 
   "A50",
   "A38",
   "A35",
@@ -127,12 +126,11 @@ const casino_table_3 = [
   "A49",
   "MP100",
   "A100",
-  
 ];
 
 // casinos
 
-const casino_table_4 = ["A36", "A36-MESAS", "A781", "A15-MESAS","A127-MESAS"];
+const casino_table_4 = ["A36", "A36-MESAS", "A781", "A15-MESAS", "A127-MESAS"];
 
 // premios WIN
 
@@ -450,7 +448,6 @@ function callCard(card) {
       return;
     }
 
-
     alertWin(valCategoria, monto, tipo);
   };
 
@@ -681,7 +678,6 @@ btn_enviar.addEventListener("click", () => {
 
 function handleSendInfo() {
   const loader = document.getElementById("loader");
-  loader.style.display = "flex";
 
   const nombre = document.getElementById("nombre").value.trim();
   const casino = document.getElementById("casino").value.trim();
@@ -701,6 +697,15 @@ function handleSendInfo() {
   const cartas = document.querySelectorAll("#CallCard img");
   const { ajustado, totalOriginal } = calcularScore(cartas);
   let resultado = calcularResultado(ajustado, cartas.length);
+  if (categoria != "ADICIONAL") {
+    if (resultado == "SIN RESULTADO") {
+      Swal.fire({
+        icon: "warning",
+        title: "Debe existir un juego.",
+      });
+      return;
+    }
+  }
 
   let data = {
     tipo: "envio_1",
@@ -730,6 +735,7 @@ function handleSendInfo() {
   const registro = JSON.parse(localStorage.getItem(LS_KEY)) || [];
   registro.push(data);
   localStorage.setItem(LS_KEY, JSON.stringify(registro));
+  loader.style.display = "flex";
 
   if (typeof GetResgistroDia === "function") GetResgistroDia();
   if (categoria === "ADICIONAL") {
@@ -741,7 +747,7 @@ function handleSendInfo() {
       .then((res) => res.text())
       .then(() => {
         loader.style.display = "none";
-
+        document.getElementById("nombre").value = "";
         Swal.fire({
           icon: "success",
           title: "Envió Exitoso",

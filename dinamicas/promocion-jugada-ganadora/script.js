@@ -17,7 +17,7 @@ const categoria = document.getElementById("categoria");
 const numeroAfuera = ["9", "10", "11", "12"];
 const numeroPalo = ["4", "17", "5", "6", "15", "16", "7", "8", "13", "14"];
 const numeroArquero = ["111", "222", "333", "444", "555"];
-const numeroGol = ["666"];
+const numeroGol = ["666", "18"];
 
 let accion1 = "Marcaste un gran gol";
 let accion2 = "El arquero te lo tapo";
@@ -36,22 +36,29 @@ categoria.addEventListener("change", () => {
 
 function moveBallDina(posi, num) {
   _id_balon_.classList.add(`posicion_${posi}`);
+  let realNum;
+  if (posi.includes("suma_")) {
+    realNum = posi.split("suma_")[1];
+  } else {
+    realNum = posi;
+  }
   setTimeout(() => {
-    validateAlert(num);
+    validateAlert(realNum);
   }, 800);
 }
 
 function validateAlert(num) {
-  let Allitem = obtenerPremio(categoria.value, num);
+  let Allitem = obtenerPremio(categoria.value, Number(num));
   let valPremio = Allitem.premio;
   let valAccion = Allitem.accion;
 
   Swal.fire({
     html: `<div class="_content_msj_alerta_">
-    <p>Con categoria ${categoria.value}</p>
-    <br/>
-    <span>${valAccion} y obtuviste un premio de ${formatoPesos_monto_efectivo.format(valPremio)}, en Dinero Promocional</span>
-    </div>`,
+    <img src="/dinamicas/promocion-jugada-ganadora/resources/jugador_ala.png" alt="Aladdin">
+            <p>Con ${categoria.value}</p>
+            <br/>
+            <span>${valAccion} y obtuviste un premio de ${formatoPesos_monto_efectivo.format(valPremio)}, en Dinero Promocional</span>
+          </div>`,
     customClass: {
       popup: "_content_alerta_",
     },
@@ -63,13 +70,13 @@ function validateAlert(num) {
 const premiosCategorias = {
   BRONCE: {
     TRIPLE_6: {
-      numeros: [6],
+      numeros: [666],
       premio: 500000,
       accion: accion1,
     },
 
     TRIPLE_1_2_3_4_5: {
-      numeros: [1, 2, 3, 4, 5],
+      numeros: [111, 222, 333, 444, 555],
       premio: 200000,
       accion: accion2,
     },
@@ -101,13 +108,13 @@ const premiosCategorias = {
 
   SILVER: {
     TRIPLE_6: {
-      numeros: [6],
+      numeros: [666],
       premio: 700000,
       accion: accion1,
     },
 
     TRIPLE_1_2_3_4_5: {
-      numeros: [1, 2, 3, 4, 5],
+      numeros: [111, 222, 333, 444, 555],
       premio: 250000,
       accion: accion2,
     },
@@ -139,13 +146,13 @@ const premiosCategorias = {
 
   GOLD: {
     TRIPLE_6: {
-      numeros: [6],
+      numeros: [666],
       premio: 1000000,
       accion: accion1,
     },
 
     TRIPLE_1_2_3_4_5: {
-      numeros: [1, 2, 3, 4, 5],
+      numeros: [111, 222, 333, 444, 555],
       premio: 300000,
       accion: accion2,
     },
@@ -177,13 +184,13 @@ const premiosCategorias = {
 
   LEGENDARIO: {
     TRIPLE_6: {
-      numeros: [6],
+      numeros: [666],
       premio: 1300000,
       accion: accion1,
     },
 
     TRIPLE_1_2_3_4_5: {
-      numeros: [1, 2, 3, 4, 5],
+      numeros: [111, 222, 333, 444, 555],
       premio: 350000,
       accion: accion2,
     },
@@ -215,13 +222,13 @@ const premiosCategorias = {
 
   TITANIO: {
     TRIPLE_6: {
-      numeros: [6],
+      numeros: [666],
       premio: 1500000,
       accion: accion1,
     },
 
     TRIPLE_1_2_3_4_5: {
-      numeros: [1, 2, 3, 4, 5],
+      numeros: [111, 222, 333, 444, 555],
       premio: 400000,
       accion: accion2,
     },
@@ -253,13 +260,13 @@ const premiosCategorias = {
 
   GENIUS: {
     TRIPLE_6: {
-      numeros: [6],
+      numeros: [666],
       premio: 2000000,
       accion: accion1,
     },
 
     TRIPLE_1_2_3_4_5: {
-      numeros: [1, 2, 3, 4, 5],
+      numeros: [111, 222, 333, 444, 555],
       premio: 500000,
       accion: accion2,
     },
@@ -291,13 +298,13 @@ const premiosCategorias = {
 
   ESTANDAR: {
     TRIPLE_6: {
-      numeros: [6],
+      numeros: [666],
       premio: 500000,
       accion: accion1,
     },
 
     TRIPLE_1_2_3_4_5: {
-      numeros: [1, 2, 3, 4, 5],
+      numeros: [111, 222, 333, 444, 555],
       premio: 200000,
       accion: accion2,
     },
@@ -329,13 +336,13 @@ const premiosCategorias = {
 
   SUPERIOR: {
     TRIPLE_6: {
-      numeros: [6],
+      numeros: [666],
       premio: 1000000,
       accion: accion1,
     },
 
     TRIPLE_1_2_3_4_5: {
-      numeros: [1, 2, 3, 4, 5],
+      numeros: [111, 222, 333, 444, 555],
       premio: 300000,
       accion: accion2,
     },
@@ -447,7 +454,7 @@ dado_3.addEventListener("change", () => {
     } else {
       valorPosi = "suma_" + totalLanza;
     }
-
+    categoria.disabled = true;
     setTimeout(() => {
       moveBallDina(valorPosi, totalLanza);
     }, 800);

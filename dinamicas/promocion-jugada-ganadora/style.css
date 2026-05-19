@@ -111,13 +111,19 @@
     color: white;
 }
 
-._content_alerta_ p{
+._content_alerta_ p {
     font-size: 3rem;
     font-weight: bold;
+    text-shadow: black 0px 0px 10px;
 }
 
-._content_alerta_ span{
+._content_alerta_ span {
+    text-shadow: black 0px 0px 10px;
     font-size: 26px;
+}
+
+._content_alerta_ img {
+    width: 250px;
 }
 
 ._ficha_player_ {
