@@ -36,7 +36,7 @@
     height: 100vh;
     overflow-y: auto;
     background: #6D912F;
-    background-image: linear-gradient(180deg, #ffffff7c, #ffffff7c, #ffffff7c),
+    background-image: linear-gradient(180deg, #000000ad, #ffffff7c, #000000ad),
         url(/dinamicas/promocion-jugada-ganadora/resources/background_jugada_ganadora_.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -70,6 +70,11 @@
     box-shadow: #00000062 0px 0px 10px;
 }
 
+.board_temp {
+    background-image: linear-gradient(180deg, #ffffff00, #ffffff00, #ffffff00),
+        url(/dinamicas/promocion-jugada-ganadora/resources/CAMPO_CON_NUMEROS.png) !important;
+}
+
 ._content_opciotns_ {
     display: flex;
     justify-content: center;
@@ -88,6 +93,12 @@
 ._content_opciotns_ img:hover {
     cursor: pointer;
     opacity: 0.7;
+}
+
+._content_opciotns_ button {
+    font-size: 12px;
+    padding: 4px;
+    white-space: nowrap;
 }
 
 ._content_control_jugada {

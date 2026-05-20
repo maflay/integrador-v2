@@ -18,6 +18,7 @@
     <section class="_main_content_jugada_">
         <div class="_content_jugada_">
             <div class="_content_opciotns_">
+                <button id="btn_back_show_number" class="btn btn-danger">Revelar Numeros</button>
                 <select class="item_hide form-control" id="categoria">
                     <option value="">Categoría...</option>
                     <option value="GENIUS">Genius</option>
@@ -32,7 +33,7 @@
                 </select>
                 <img id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
             </div>
-            <div class="_board_jugada_">
+            <div id="_board_jugada_" class="_board_jugada_">
                 <div class="_content_control_jugada">
                     <select disabled name="dado_1" id="dado_1" class="form-control">
                         <option value="">Dado 1</option>
@@ -111,17 +112,38 @@
                                 style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre" />
                         </div>
                         <div style="display: flex;gap: 10px;">
-                            <select class="form-control" id="categoria">
-                                <option value="">Categoría...</option>
-                                <option value="GENIUS">Genius</option>
-                                <option value="TITANIO">Titanio</option>
-                                <option value="LEGENDARIO">Legendario</option>
-                                <option value="GOLD">Gold</option>
-                                <option value="SILVER">Silver</option>
-                                <option value="BRONCE">Bronce</option>
-                                <option value="ESTANDAR">Estándar</option>
-                                <option value="SUPERIOR">Superior</option>
-                                <option value="ADICIONAL">Adicional</option>
+                            <select class="form-control" id="casino">
+                                <option value="">Casino...</option>
+                                <option value="A05">A05</option>
+                                <option value="A07">A07</option>
+                                <option value="A08">A08</option>
+                                <option value="A09">A09</option>
+                                <option value="A12">A12</option>
+                                <option value="A12-MESAS">A12-MESAS</option>
+                                <option value="A15">A15</option>
+                                <option value="A15-MESAS">A15-MESAS</option>
+                                <option value="A16">A16</option>
+                                <option value="A19">A19</option>
+                                <option value="A35">A35</option>
+                                <option value="A36">A36</option>
+                                <option value="A36-MESAS">A36-MESAS</option>
+                                <option value="A38">A38</option>
+                                <option value="A39">A39</option>
+                                <option value="A43">A43</option>
+                                <option value="A48">A48</option>
+                                <option value="A48-MESAS">A48-MESAS</option>
+                                <option value="A49">A49</option>
+                                <option value="A50">A50</option>
+                                <option value="A53">A53</option>
+                                <option value="A58">A58</option>
+                                <option value="A70">A70</option>
+                                <option value="A781">A781</option>
+                                <option value="A88">A88</option>
+                                <option value="A100">A100</option>
+                                <option value="A108">A108</option>
+                                <option value="A108-MESAS">A108-MESAS</option>
+                                <option value="A127">A127</option>
+                                <option value="A127-MESAS">A127-MESAS</option>
                             </select>
                         </div>
                         <div class="content_btn_modal">
@@ -194,28 +216,28 @@
                                 placeholder="# Bono" />
                         </div>
                         <div style="display: flex;gap: 10px;">
-                            <select class="form-control" name="ficha1" id="ficha1_modal">
-                                <option value="">Ficha 1</option>
-                                <option value="aguila">Águila</option>
-                                <option value="tortuga">Tortuga</option>
-                                <option value="barco">Barco</option>
-                                <option value="comodin">Comodín</option>
-                            </select>
-                            <select class="form-control" name="ficha2" id="ficha2_modal">
-                                <option value="">Ficha 2</option>
-                                <option value="aguila">Águila</option>
-                                <option value="tortuga">Tortuga</option>
-                                <option value="barco">Barco</option>
-                                <option value="comodin">Comodín</option>
-                            </select>
-                        </div>
-                        <div style="display: flex;gap: 10px;">
-                            <select class="form-control" name="ficha3" id="ficha3_modal">
-                                <option value="">Ficha 3</option>
-                                <option value="aguila">Águila</option>
-                                <option value="tortuga">Tortuga</option>
-                                <option value="barco">Barco</option>
-                                <option value="comodin">Comodín</option>
+                            <select class="form-control" name="ficha1" id="resultado_modal">
+                                <option value="">Combinación...</option>
+                                <option value="111">111</option>
+                                <option value="222">222</option>
+                                <option value="333">333</option>
+                                <option value="444">444</option>
+                                <option value="555">555</option>
+                                <option value="666">666</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
                             </select>
                         </div>
                         <div class="content_btn_modal">
@@ -282,7 +304,96 @@
             <div style="display: none;" id="view_tabla_premios" class="content_body_modal">
                 <div class="info_body_modal">
                     <h2>Tabla de Premios</h2>
+                    <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                    <table class="table-wrapper styled-table">
+                        <thead>
+                            <tr>
+                                <th>Combinación</th>
+                                <th>Bronce</th>
+                                <th>Silver</th>
+                                <th>Gold</th>
+                                <th>Legendario</th>
+                                <th>Titanio</th>
+                                <th>Genius</th>
+                                <th>Estandar</th>
+                                <th>Superior</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TRIPLE 6</td>
+                                <td>$ 500.000</td>
+                                <td>$ 700.000</td>
+                                <td>$ 1.000.000</td>
+                                <td>$ 1.300.000</td>
+                                <td>$ 1.500.000</td>
+                                <td>$ 2.000.000</td>
+                                <td>$ 500.000</td>
+                                <td>$ 1.000.000</td>
+                            </tr>
 
+                            <tr>
+                                <td>TRIPLE 1,2,3,4,5</td>
+                                <td>$ 200.000</td>
+                                <td>$ 250.000</td>
+                                <td>$ 300.000</td>
+                                <td>$ 350.000</td>
+                                <td>$ 400.000</td>
+                                <td>$ 500.000</td>
+                                <td>$ 200.000</td>
+                                <td>$ 300.000</td>
+                            </tr>
+
+                            <tr>
+                                <td>SUMA 4 ó 17</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 140.000</td>
+                                <td>$ 150.000</td>
+                                <td>$ 160.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 150.000</td>
+                            </tr>
+
+                            <tr>
+                                <td>SUMA 5,6, 15 ó 16</td>
+                                <td>$ 100.000</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 140.000</td>
+                                <td>$ 150.000</td>
+                                <td>$ 100.000</td>
+                                <td>$ 120.000</td>
+                            </tr>
+
+                            <tr>
+                                <td>SUMA 7,8, 13 ó 14</td>
+                                <td>$ 90.000</td>
+                                <td>$ 100.000</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 140.000</td>
+                                <td>$ 90.000</td>
+                                <td>$ 110.000</td>
+                            </tr>
+
+                            <tr>
+                                <td>SUMA 9,10, 11 ó 12</td>
+                                <td>$ 80.000</td>
+                                <td>$ 90.000</td>
+                                <td>$ 100.000</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 80.000</td>
+                                <td>$ 100.000</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <div style="display: none;" id="view_registro_dia" class="content_body_modal">

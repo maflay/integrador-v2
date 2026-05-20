@@ -180,7 +180,6 @@ function obtenerPremio(casinoID, ficha1, ficha2, ficha3, categoria) {
     grupo1: [
       "A19",
       "A50",
-      
       "A38",
       "A35",
       "A39",
@@ -199,7 +198,7 @@ function obtenerPremio(casinoID, ficha1, ficha2, ficha3, categoria) {
       "A15-MESAS",
       "A36-MESAS",
     ],
-    grupo3: ["A05", "A07", "A08", "A09", "A12", "A15","A70", "A16"],
+    grupo3: ["A05", "A07", "A08", "A09", "A12", "A15", "A70", "A16"],
     grupo4: ["A43", "A53", "A108", "A127"],
   };
 
@@ -342,10 +341,8 @@ function obtenerPremio(casinoID, ficha1, ficha2, ficha3, categoria) {
         D_TORTUGA: 130000,
       },
     },
-    // Nota: Se pueden agregar grupo2 y grupo4 siguiendo el mismo formato de la imagen
   };
 
-  // 3. Identificar a qué grupo pertenece el casino enviado
   let grupoPertenece = Object.keys(gruposCasinos).find((key) =>
     gruposCasinos[key].includes(id),
   );
@@ -486,11 +483,11 @@ function handleSendFortune() {
     return;
   }
 
-  if(categoria.value != "ADICIONAL"){
-    if(ficha_2.value == "" || ficha_1.value == "" || ficha_3.value == ""){
+  if (categoria.value != "ADICIONAL") {
+    if (ficha_2.value == "" || ficha_1.value == "" || ficha_3.value == "") {
       Swal.fire({
         icon: "warning",
-        title: "Campos en Blanco"
+        title: "Campos en Blanco",
       });
       return;
     }
@@ -517,7 +514,7 @@ function handleSendFortune() {
   const registro = JSON.parse(localStorage.getItem(LS_KEY)) || [];
   registro.push(data);
   localStorage.setItem(LS_KEY, JSON.stringify(registro));
-  
+
   if (typeof GetResgistroDia === "function") GetResgistroDia();
 
   if (categoria.value == "ADICIONAL") {
@@ -739,6 +736,7 @@ function resetGame() {
     "/dinamicas/promocion-88-fortune/resources/cuadro_blanco.png";
 }
 
+GetResgistroDia();
 function GetResgistroDia() {
   const content_registro_dia = document.getElementById("result_dia_acumula");
   const info_result_dia = document.getElementById("Info_result_dia");
@@ -1009,7 +1007,6 @@ function GetResgistroDia() {
     content_registro_dia._clickHandler,
   );
 }
-GetResgistroDia();
 
 getDataObs();
 function getDataObs() {
