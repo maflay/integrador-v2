@@ -85,6 +85,7 @@
             </div>
             <div id="_contenedor_inputs_" class="_content_form_ _contenedor_inputs_">
             </div>
+            <div style="display: none;" id="_content_num_mix_"></div>
             <button id="btn_send_info" class="btn btn-danger">Enviar</button>
         </div>
         <div id="_content_video_show_" class="_content_video_show_ _mascara_back_">
@@ -182,11 +183,23 @@
                     <h2>Controles</h2>
                     <div class="_content_controls_tesla_">
                         <a target="_blank" class="btn btn-danger"
-                            href="/dinamicas/promocion-tesla/table_result.html">Números</a>
+                            href="/dinamicas/promocion-tesla/table_result.html">Pantalla TV Números</a>
                         <div class="_actions_view_admin">
-                            <p class="btn btn-danger" id="accion_1">Acción 1</p>
-                            <p class="btn btn-danger" id="accion_2">Acción 2</p>
-                            <p class="btn btn-danger" id="accion_3">Acción 3</p>
+                            <p class="btn btn-danger" id="accion_1">Mostrar/Ocultar Núm.</p>
+                        </div>
+                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                        <h2>Ganador</h2>
+                        <div class="_content_controls_ganador_">
+                            <select name="_ganador_tesla_" id="_ganador_telsa_" class="form-control">
+                                <option value="">Ganador</option>
+                                <option value="1">Mix 1</option>
+                                <option value="2">Mix 2</option>
+                                <option value="3">Mix 3</option>
+                                <option value="4">Mix 4</option>
+                                <option value="5">Mix 5</option>
+                                <option value="6">Mix 6</option>
+                            </select>
+                            <p id="_mostrar_mixes_" class="btn btn-danger">Mostrar</p>
                         </div>
                     </div>
                 </div>
@@ -241,10 +254,12 @@
         const VIDEO = "video_tesla";
         const TABLA = "tabla_tesla";
         const NUMEROS = "numeros_tesla";
+        const BACKVIDEO = "back_video";
 
-        const videoref = ref(db, `${NS}/rooms/${VIDEO}`);
-        const tablaref = ref(db, `${NS}/rooms/${TABLA}`);
-        const numeroref = ref(db, `${NS}/rooms/${NUMEROS}`);
+        const videoref = ref(db, `${NS}/rooms/${VIDEO}/numero`);
+        const tablaref = ref(db, `${NS}/rooms/${TABLA}/numero`);
+        const numeroref = ref(db, `${NS}/rooms/${NUMEROS}/numero`);
+        const backnumref = ref(db, `${NS}/rooms/${BACKVIDEO}/numero`);
 
         window.notificacionVideo = function () {
             update(videoref, {
@@ -254,6 +269,35 @@
 
         onValue(videoref, (snapshot) => {
             showVideo();
+            document.getElementById("_ganador_telsa_").value = "";
+        })
+
+        let numeros_ = document.getElementById("_ganador_telsa_");
+
+        window.notificacionMix = function () {
+            update(numeroref, {
+                numero: numeros_.value
+            })
+        }
+
+        onValue(numeroref, (snapshot) => {
+            showMix(document.getElementById("numeros").value || 0);
+        });
+
+        window.notificacionOnly = function(){
+            update(numeroref,{
+                numero: "0"
+            })
+        }
+
+        window.notificacionBackvideo = function() {
+            update(backnumref, {
+                numero: Date.now()
+            })
+        }
+
+        onValue(backnumref, (spanshot) => {
+            changeBackVideo();
         })
 
     </script>

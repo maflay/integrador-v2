@@ -15,11 +15,21 @@ const numeros = document.getElementById("numeros");
 const _content_table_result_ = document.getElementById(
   "_content_table_result_",
 );
+const _content_table_result_result_ = document.getElementById(
+  "_content_table_result_result_",
+);
+const _content_num_mix_ = document.getElementById("_content_num_mix_");
+const accion_1 = document.getElementById("accion_1");
+const _mostrar_mixes_ = document.getElementById("_mostrar_mixes_");
+const accion_3 = document.getElementById("accion_3");
 const promocion = "Promocion TESLA";
 const btn_send_info = document.getElementById("btn_send_info");
 const btn_envia_observacion = document.getElementById("btn_envia_observacion");
 const _contenedor_inputs_ = document.getElementById("_contenedor_inputs_");
 const _content_video_show_ = document.getElementById("_content_video_show_");
+const _content_video_show_result_ = document.getElementById(
+  "_content_video_show_result_",
+);
 const url =
   "https://script.google.com/macros/s/AKfycbx_wtN46FbP0M9hE0eMMLtSTaxeTzsBqCCcuhc_gSX1v1NTiaQ7J4--pkvxbaWq5ha2/exec";
 
@@ -183,27 +193,27 @@ function handleObs() {
     });
 }
 
-function iniciarCicloImagenes() {
-  const imagenes = document.querySelectorAll("#_content_table_result_ img");
-  let indiceActual = 0;
-  const tiempoVisible = 3000;
-  function cambiarImagen() {
-    imagenes[indiceActual].classList.remove("activa");
+// function iniciarCicloImagenes() {
+//   const imagenes = document.querySelectorAll("#_content_table_result_ img");
+//   let indiceActual = 0;
+//   const tiempoVisible = 3000;
+//   function cambiarImagen() {
+//     imagenes[indiceActual].classList.remove("activa");
 
-    indiceActual = (indiceActual + 1) % imagenes.length;
+//     indiceActual = (indiceActual + 1) % imagenes.length;
 
-    imagenes[indiceActual].classList.add("activa");
-  }
+//     imagenes[indiceActual].classList.add("activa");
+//   }
 
-  if (imagenes.length > 0) {
-    imagenes[0].classList.add("activa");
-  }
+//   if (imagenes.length > 0) {
+//     imagenes[0].classList.add("activa");
+//   }
 
-  setInterval(cambiarImagen, tiempoVisible);
-}
+//   setInterval(cambiarImagen, tiempoVisible);
+// }
 
-window.addEventListener("DOMContentLoaded", iniciarCicloImagenes);
-_content_table_result_ ? iniciarCicloImagenes() : "";
+// window.addEventListener("DOMContentLoaded", iniciarCicloImagenes);
+// _content_table_result_ ? iniciarCicloImagenes() : "";
 
 function getDataObs() {
   const container = document.getElementById("result_observaciones_dinamica");
@@ -268,3 +278,60 @@ function getDataObs() {
     });
 }
 getDataObs();
+
+accion_1
+  ? accion_1.addEventListener("click", () => {
+      if (typeof window.notificacionVideo === "function") {
+        window.notificacionVideo();
+      }
+
+      if (typeof window.notificacionOnly === "function") {
+        window.notificacionOnly();
+      }
+
+      let i = 0;
+      showMix(i);
+    })
+  : "";
+
+function showVideo() {
+  _content_table_result_result_
+    ? _content_table_result_result_.classList.toggle("display_none")
+    : "";
+}
+
+_mostrar_mixes_
+  ? _mostrar_mixes_.addEventListener("click", () => {
+      if (typeof window.notificacionMix === "function") {
+        window.notificacionMix();
+      }
+    })
+  : "";
+
+function showMix(num) {
+  _content_num_mix_.innerHTML = "";
+  let img = document.createElement("img");
+  let img_2 = document.createElement("img");
+  if (!num || num == 0 || num == "0") {
+    img.style.display = "none";
+    _content_num_mix_.classList.remove("_mascara_back_");
+  } else {
+    _content_num_mix_.classList.add("_mascara_back_");
+    img.src = `/dinamicas/promocion-tesla/resources/mix_con_numero_${num}.jpeg`;
+    img.style.display = "flex";
+    img.classList.add("_img_mix_");
+    img_2.src = `/dinamicas/promocion-tesla/resources/mix_numero_${num}.jpeg`;
+    img_2.style.display = "flex";
+    img_2.classList.add("_img_mix_all_");
+    _content_table_result_result_.classList.add("display_none");
+    _content_num_mix_.appendChild(img);
+    _content_num_mix_.appendChild(img_2);
+  }
+}
+
+function changeBackVideo() {
+  console.log("entro");
+  _content_video_show_result_
+    ? _content_video_show_result_.classList.toggle("_mascara_back_")
+    : "";
+}
