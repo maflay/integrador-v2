@@ -18,6 +18,7 @@ const _content_table_result_ = document.getElementById(
 const _content_table_result_result_ = document.getElementById(
   "_content_table_result_result_",
 );
+const _ganador_telsa_ = document.getElementById("_ganador_telsa_");
 const _content_num_mix_ = document.getElementById("_content_num_mix_");
 const accion_1 = document.getElementById("accion_1");
 const _mostrar_mixes_ = document.getElementById("_mostrar_mixes_");
@@ -38,7 +39,7 @@ show_video.addEventListener("click", () => {
   _content_table_result_
     ? _content_table_result_.classList.toggle("display_none")
     : "";
-  _content_tesla_ ? _content_tesla_.classList.toggle("display_none") : "";
+  _content_tesla_ ? _content_tesla_.classList.toggle("displa  y_none") : "";
   _content_opcions_ ? _content_opcions_.classList.toggle("display_none") : "";
 });
 
@@ -302,6 +303,13 @@ function showVideo() {
 
 _mostrar_mixes_
   ? _mostrar_mixes_.addEventListener("click", () => {
+      if (!_ganador_telsa_.value) {
+        Swal.fire({
+          icon: "warning",
+          title: "Elíge un Mix",
+        });
+        return;
+      }
       if (typeof window.notificacionMix === "function") {
         window.notificacionMix();
       }
@@ -317,10 +325,10 @@ function showMix(num) {
     _content_num_mix_.classList.remove("_mascara_back_");
   } else {
     _content_num_mix_.classList.add("_mascara_back_");
-    img.src = `/dinamicas/promocion-tesla/resources/mix_con_numero_${num}.jpeg`;
+    img.src = `/dinamicas/promocion-tesla/resources/mix_con_numero_${num}.png`;
     img.style.display = "flex";
     img.classList.add("_img_mix_");
-    img_2.src = `/dinamicas/promocion-tesla/resources/mix_numero_${num}.jpeg`;
+    img_2.src = `/dinamicas/promocion-tesla/resources/mix_numero_${num}.png`;
     img_2.style.display = "flex";
     img_2.classList.add("_img_mix_all_");
     _content_table_result_result_.classList.add("display_none");
