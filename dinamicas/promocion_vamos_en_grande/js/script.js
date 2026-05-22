@@ -463,10 +463,16 @@ function renderTabla(container, data) {
   `;
 }
 
+alertGetDataSemis();
+
+function alertGetDataSemis() {
+  const container = document.getElementById("content-all-result");
+  mostrarLoader(container, "Cargando lista de Semi-finalistas...");
+}
+
 getSemis();
 function getSemis() {
   const container = document.getElementById("content-all-result");
-  mostrarLoader(container, "Cargando lista de Semi-finalistas...");
 
   const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
@@ -583,10 +589,15 @@ function getSemis() {
     });
 }
 
+alertGetDataFinal();
+function alertGetDataFinal() {
+  const container = document.getElementById("content-all-result-finalista");
+  mostrarLoader(container, "Cargando lista de finalistas...");
+}
+
 getDataFinalista();
 function getDataFinalista() {
   const container = document.getElementById("content-all-result-finalista");
-  mostrarLoader(container, "Cargando lista de finalistas...");
 
   const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",

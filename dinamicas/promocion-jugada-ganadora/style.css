@@ -72,7 +72,7 @@
 
 .board_temp {
     background-image: linear-gradient(180deg, #ffffff00, #ffffff00, #ffffff00),
-        url(/dinamicas/promocion-jugada-ganadora/resources/CAMPO_CON_NUMEROS.png) !important;
+        url(/dinamicas/promocion-jugada-ganadora/resources/CAMPO_CON_NUMEROS_GW_2.png) !important;
 }
 
 ._content_opciotns_ {
@@ -114,6 +114,12 @@
 ._content_control_jugada select {
     font-size: 12px;
 }
+
+._content_control_jugada select,
+::picker(select) {
+  appearance: auto;
+}
+
 
 ._content_alerta_ {
     width: 100%;
