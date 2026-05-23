@@ -52,6 +52,7 @@
             messagingSenderId: "984894736026",
             appId: "1:984894736026:web:a04d1ab923391236698123"
         };
+        
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         const NS = "apps/admin_tesla";
@@ -68,7 +69,7 @@
         onValue(videoref, (snapshot) => {
             const data = snapshot.val();
             showVideo();
-        })
+        });
 
         onValue(numeroref, (snapshot) => {
             const data = snapshot.val();

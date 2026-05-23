@@ -338,7 +338,6 @@ function showMix(num) {
 }
 
 function changeBackVideo() {
-  console.log("entro");
   _content_video_show_result_
     ? _content_video_show_result_.classList.toggle("_mascara_back_")
     : "";
