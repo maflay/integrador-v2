@@ -99,7 +99,7 @@ img_jugando.forEach((img) => {
         tablas[grupoPertenece][categoria.value]
       ) {
         const premios = tablas[grupoPertenece][categoria.value];
-        let valPremio = premios[`ACIERTO_${goles}`] || 0; // Evita errores si da undefined
+        let valPremio = premios[`ACIERTO_${goles}`] || 0;
         alertaPremio(valPremio, categoria.value, goles);
       } else {
         Swal.fire({
@@ -154,149 +154,6 @@ function alertaPremio(premio, cate, golesActuales) {
           </div>`,
   });
 }
-
-const gruposCasinos = {
-  grupo1: [
-    "A19",
-    "A50",
-    "A38",
-    "A35",
-    "A39",
-    "A88",
-    "A48",
-    "A48-MESAS",
-    "A49",
-    "A100",
-    "A12-MESAS",
-  ],
-  grupo2: ["A36", "A781", "A108-MESAS", "A127-MESAS", "A15-MESAS", "A36-MESAS"],
-  grupo3: ["A05", "A07", "A08", "A09", "A12", "A15", "A70", "A16"],
-  grupo4: ["A43", "A53", "A108", "A127"],
-};
-
-const tablas = {
-  grupo1: {
-    ESTANDAR: {
-      ACIERTO_5: 300000,
-      ACIERTO_4: 100000,
-      ACIERTO_3: 70000,
-      ACIERTO_2: 60000,
-      ACIERTO_1: 50000,
-    },
-    SUPERIOR: {
-      ACIERTO_5: 500000,
-      ACIERTO_4: 150000,
-      ACIERTO_3: 90000,
-      ACIERTO_2: 80000,
-      ACIERTO_1: 70000,
-    },
-  },
-  grupo2: {
-    ESTANDAR: {
-      ACIERTO_5: 300000,
-      ACIERTO_4: 120000,
-      ACIERTO_3: 100000,
-      ACIERTO_2: 90000,
-      ACIERTO_1: 80000,
-    },
-    SUPERIOR: {
-      ACIERTO_5: 500000,
-      ACIERTO_4: 150000,
-      ACIERTO_3: 120000,
-      ACIERTO_2: 110000,
-      ACIERTO_1: 100000,
-    },
-  },
-  grupo3: {
-    BRONCE: {
-      ACIERTO_5: 300000,
-      ACIERTO_4: 100000,
-      ACIERTO_3: 70000,
-      ACIERTO_2: 60000,
-      ACIERTO_1: 50000,
-    },
-    SILVER: {
-      ACIERTO_5: 400000,
-      ACIERTO_4: 120000,
-      ACIERTO_3: 80000,
-      ACIERTO_2: 70000,
-      ACIERTO_1: 60000,
-    },
-    GOLD: {
-      ACIERTO_5: 500000,
-      ACIERTO_4: 150000,
-      ACIERTO_3: 90000,
-      ACIERTO_2: 80000,
-      ACIERTO_1: 70000,
-    },
-    LEGENDARIO: {
-      ACIERTO_5: 600000,
-      ACIERTO_4: 160000,
-      ACIERTO_3: 100000,
-      ACIERTO_2: 90000,
-      ACIERTO_1: 80000,
-    },
-    TITANIO: {
-      ACIERTO_5: 800000,
-      ACIERTO_4: 180000,
-      ACIERTO_3: 110000,
-      ACIERTO_2: 100000,
-      ACIERTO_1: 90000,
-    },
-    GENIUS: {
-      ACIERTO_5: 1000000,
-      ACIERTO_4: 200000,
-      ACIERTO_3: 120000,
-      ACIERTO_2: 110000,
-      ACIERTO_1: 100000,
-    },
-  },
-
-  grupo4: {
-    BRONCE: {
-      ACIERTO_5: 300000,
-      ACIERTO_4: 120000,
-      ACIERTO_3: 100000,
-      ACIERTO_2: 90000,
-      ACIERTO_1: 80000,
-    },
-    SILVER: {
-      ACIERTO_5: 400000,
-      ACIERTO_4: 150000,
-      ACIERTO_3: 110000,
-      ACIERTO_2: 100000,
-      ACIERTO_1: 90000,
-    },
-    GOLD: {
-      ACIERTO_5: 500000,
-      ACIERTO_4: 160000,
-      ACIERTO_3: 120000,
-      ACIERTO_2: 110000,
-      ACIERTO_1: 100000,
-    },
-    LEGENDARIO: {
-      ACIERTO_5: 600000,
-      ACIERTO_4: 180000,
-      ACIERTO_3: 130000,
-      ACIERTO_2: 120000,
-      ACIERTO_1: 110000,
-    },
-    TITANIO: {
-      ACIERTO_5: 800000,
-      ACIERTO_4: 200000,
-      ACIERTO_3: 140000,
-      ACIERTO_2: 130000,
-      ACIERTO_1: 120000,
-    },
-    GENIUS: {
-      ACIERTO_5: 1000000,
-      ACIERTO_4: 220000,
-      ACIERTO_3: 150000,
-      ACIERTO_2: 140000,
-      ACIERTO_1: 130000,
-    },
-  },
-};
 
 btn_enviar.addEventListener("click", () => {
   handleSendFiebre();
@@ -888,3 +745,146 @@ function getDataObs() {
     });
 }
 getDataObs();
+
+const gruposCasinos = {
+  grupo1: [
+    "A19",
+    "A50",
+    "A38",
+    "A35",
+    "A39",
+    "A88",
+    "A48",
+    "A48-MESAS",
+    "A49",
+    "A100",
+    "A12-MESAS",
+  ],
+  grupo2: ["A36", "A781", "A108-MESAS", "A127-MESAS", "A15-MESAS", "A36-MESAS"],
+  grupo3: ["A05", "A07", "A08", "A09", "A12", "A15", "A70", "A16"],
+  grupo4: ["A43", "A53", "A108", "A127"],
+};
+
+const tablas = {
+  grupo1: {
+    ESTANDAR: {
+      ACIERTO_5: 300000,
+      ACIERTO_4: 100000,
+      ACIERTO_3: 70000,
+      ACIERTO_2: 60000,
+      ACIERTO_1: 50000,
+    },
+    SUPERIOR: {
+      ACIERTO_5: 500000,
+      ACIERTO_4: 150000,
+      ACIERTO_3: 90000,
+      ACIERTO_2: 80000,
+      ACIERTO_1: 70000,
+    },
+  },
+  grupo2: {
+    ESTANDAR: {
+      ACIERTO_5: 300000,
+      ACIERTO_4: 120000,
+      ACIERTO_3: 100000,
+      ACIERTO_2: 90000,
+      ACIERTO_1: 80000,
+    },
+    SUPERIOR: {
+      ACIERTO_5: 500000,
+      ACIERTO_4: 150000,
+      ACIERTO_3: 120000,
+      ACIERTO_2: 110000,
+      ACIERTO_1: 100000,
+    },
+  },
+  grupo3: {
+    BRONCE: {
+      ACIERTO_5: 300000,
+      ACIERTO_4: 100000,
+      ACIERTO_3: 70000,
+      ACIERTO_2: 60000,
+      ACIERTO_1: 50000,
+    },
+    SILVER: {
+      ACIERTO_5: 400000,
+      ACIERTO_4: 120000,
+      ACIERTO_3: 80000,
+      ACIERTO_2: 70000,
+      ACIERTO_1: 60000,
+    },
+    GOLD: {
+      ACIERTO_5: 500000,
+      ACIERTO_4: 150000,
+      ACIERTO_3: 90000,
+      ACIERTO_2: 80000,
+      ACIERTO_1: 70000,
+    },
+    LEGENDARIO: {
+      ACIERTO_5: 600000,
+      ACIERTO_4: 160000,
+      ACIERTO_3: 100000,
+      ACIERTO_2: 90000,
+      ACIERTO_1: 80000,
+    },
+    TITANIO: {
+      ACIERTO_5: 800000,
+      ACIERTO_4: 180000,
+      ACIERTO_3: 110000,
+      ACIERTO_2: 100000,
+      ACIERTO_1: 90000,
+    },
+    GENIUS: {
+      ACIERTO_5: 1000000,
+      ACIERTO_4: 200000,
+      ACIERTO_3: 120000,
+      ACIERTO_2: 110000,
+      ACIERTO_1: 100000,
+    },
+  },
+
+  grupo4: {
+    BRONCE: {
+      ACIERTO_5: 300000,
+      ACIERTO_4: 120000,
+      ACIERTO_3: 100000,
+      ACIERTO_2: 90000,
+      ACIERTO_1: 80000,
+    },
+    SILVER: {
+      ACIERTO_5: 400000,
+      ACIERTO_4: 150000,
+      ACIERTO_3: 110000,
+      ACIERTO_2: 100000,
+      ACIERTO_1: 90000,
+    },
+    GOLD: {
+      ACIERTO_5: 500000,
+      ACIERTO_4: 160000,
+      ACIERTO_3: 120000,
+      ACIERTO_2: 110000,
+      ACIERTO_1: 100000,
+    },
+    LEGENDARIO: {
+      ACIERTO_5: 600000,
+      ACIERTO_4: 180000,
+      ACIERTO_3: 130000,
+      ACIERTO_2: 120000,
+      ACIERTO_1: 110000,
+    },
+    TITANIO: {
+      ACIERTO_5: 800000,
+      ACIERTO_4: 200000,
+      ACIERTO_3: 140000,
+      ACIERTO_2: 130000,
+      ACIERTO_1: 120000,
+    },
+    GENIUS: {
+      ACIERTO_5: 1000000,
+      ACIERTO_4: 220000,
+      ACIERTO_3: 150000,
+      ACIERTO_2: 140000,
+      ACIERTO_1: 130000,
+    },
+  },
+};

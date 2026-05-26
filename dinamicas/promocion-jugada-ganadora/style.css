@@ -117,7 +117,7 @@
 
 ._content_control_jugada select,
 ::picker(select) {
-  appearance: auto;
+    appearance: auto;
 }
 
 
@@ -148,6 +148,21 @@
     bottom: 10px;
     right: 10px;
     width: 140px;
+}
+
+._ficha_pierna_ {
+    position: absolute;
+    bottom: 92px;
+    right: 83px;
+    width: 70px;
+}
+
+.pateada {
+    position: absolute;
+    bottom: 65px;
+    transform: rotate(-75deg);
+    right: 46px;
+    width: 70px;
 }
 
 ._id_balon_ {

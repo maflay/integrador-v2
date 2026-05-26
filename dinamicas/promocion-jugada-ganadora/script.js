@@ -32,6 +32,7 @@ const btn_send_secundario = document.getElementById("btn_send_secundario");
 const btn_envia_observacion = document.getElementById("btn_envia_observacion");
 const _board_jugada_ = document.getElementById("_board_jugada_");
 const btn_back_show_number = document.getElementById("btn_back_show_number");
+const _ficha_pierna_ = document.getElementById("_ficha_pierna_");
 
 const numeroAfuera = ["9", "10", "11", "12"];
 const numeroPalo = ["4", "17", "5", "6", "15", "16", "7", "8", "13", "14"];
@@ -67,6 +68,7 @@ function moveBallDina(posi, num) {
   } else {
     realNum = posi;
   }
+  _ficha_pierna_.classList.remove("pateada");
   setTimeout(() => {
     validateAlert(realNum);
   }, 800);
