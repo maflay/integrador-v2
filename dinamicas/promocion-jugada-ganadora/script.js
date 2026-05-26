@@ -38,6 +38,10 @@ const numeroPalo = ["4", "17", "5", "6", "15", "16", "7", "8", "13", "14"];
 const numeroArquero = ["111", "222", "333", "444", "555"];
 const numeroGol = ["666", "18"];
 
+ const notificacion_registro_dia = document.getElementById(
+    "notificacion_registro_dia",
+  );
+
 let numeroCombi;
 
 let accion1 = "Marcaste un gran gol";

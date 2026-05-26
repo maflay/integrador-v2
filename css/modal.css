@@ -267,4 +267,17 @@
     pointer-events: none;
 }
 
+.notificacion_registro_dia {
+    width: 5px;
+    height: 5px;
+    background-color: red;
+    border-radius: 50%;
+    z-index: 10;
+    font-size: 4rem;
+    color: #000;
+    position: absolute;
+    top: 0;
+    right: -5px;
+}
+
 /* ---------------------------------------------------- */

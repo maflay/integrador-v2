@@ -21,16 +21,18 @@ function validateSession() {
   let objUser = getCookie(CS_KEY);
   let username = objUser ? objUser.Nombre : "Sin usuario";
   if (!objUser) {
-    Swal.fire({
-      icon: "warning",
-      title: "Advertencia",
-      html: "Para poder ver la dinámica, debes iniciar sesión primero",
-      allowOutsideClick: false,
-    }).then((result) => {
-      if (result.isConfirmed) {
-        window.location.href = "/#login";
-      }
-    });
+    window.location.href = "/#login";
+
+    // Swal.fire({
+    //   icon: "warning",
+    //   title: "Advertencia",
+    //   html: "Para poder ver la dinámica, debes iniciar sesión primero",
+    //   allowOutsideClick: false,
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     window.location.href = "/#login";
+    //   }
+    // });
     return;
   }
 

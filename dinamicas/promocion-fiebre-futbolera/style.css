@@ -1,0 +1,277 @@
+@font-face {
+    font-family: 'super wonder';
+    src: url('/fonts/Super\ Wonder.ttf') format('truetype');
+}
+
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #356adc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+._main_content_fiebre_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(180deg, #000000d8, #000000e3, #000000d8),
+        url(/dinamicas/promocion-fiebre-futbolera/resources/back_fiebrefutbolera.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+
+}
+
+
+._content_opciones_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    font-family: 'super wonder', sans-serif !important;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+._content_opciones_ select {
+    width: 50% !important;
+}
+
+._content_opciones_ img {
+    width: 30px;
+    transition: all 0.4s ease;
+}
+
+._content_opciones_ img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+._btn_devolver_ {
+    padding: 7px 3px;
+    width: 220px;
+}
+
+
+._content_result_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 2.8rem;
+    color: white;
+}
+
+._content_result_ p:nth-child(1) {
+    border-right: #be0000 solid 5px;
+    padding-right: 10px;
+}
+
+._content_result_ p:nth-child(2) {
+    padding-left: 10px;
+}
+
+._content_result_ p:nth-child(3) {
+    position: absolute;
+    bottom: -80px;
+}
+
+._content_alerta_ {
+    width: 100%;
+    max-width: 700px;
+    background-color: transparent;
+    color: white;
+}
+
+._content_alerta_ p {
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: black 0px 0px 10px;
+}
+
+._content_alerta_ span {
+    text-shadow: black 0px 0px 10px;
+    font-size: 26px;
+}
+
+._content_alerta_ img {
+    width: 250px;
+}
+
+._board__fiebre_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    position: relative;
+    width: 1200px;
+    height: 720px;
+    font-family: 'super wonder', sans-serif !important;
+
+}
+
+._board__fiebre_ img {
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    transition:
+        bottom 0.4s ease,
+        left 0.4s ease,
+        transform 0.4s ease,
+        opacity 0.3s ease;
+}
+
+._board__fiebre_ img:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+
+.posicion_fija_1 {
+    position: absolute;
+    left: 240px;
+    bottom: 140px;
+}
+
+.posicion_fija_2 {
+    position: absolute;
+    left: 380px;
+    bottom: 140px;
+}
+
+.posicion_fija_3 {
+    position: absolute;
+    left: 520px;
+    bottom: 140px;
+}
+
+.posicion_fija_4 {
+    position: absolute;
+    left: 660px;
+    bottom: 140px;
+}
+
+.posicion_fija_5 {
+    position: absolute;
+    left: 800px;
+    bottom: 140px;
+}
+
+.posicion_fija_6 {
+    position: absolute;
+    bottom: 0;
+    left: 100px;
+}
+
+.posicion_fija_7 {
+    position: absolute;
+    left: 240px;
+    bottom: 0;
+}
+
+.posicion_fija_8 {
+    position: absolute;
+    left: 380px;
+    bottom: 0;
+}
+
+.posicion_fija_9 {
+    position: absolute;
+    left: 520px;
+    bottom: 0;
+}
+
+.posicion_fija_10 {
+    position: absolute;
+    left: 660px;
+    bottom: 0;
+}
+
+.posicion_fija_11 {
+    position: absolute;
+    left: 800px;
+    bottom: 0;
+}
+
+.posicion_fija_12 {
+    position: absolute;
+    left: 940px;
+    bottom: 0;
+}
+
+.posicion_1 {
+    position: absolute !important;
+    bottom: 450px !important;
+    left: 100px !important;
+}
+
+.posicion_2 {
+    position: absolute !important;
+    bottom: 450px !important;
+    left: 240px !important;
+}
+
+.posicion_3 {
+    position: absolute !important;
+    bottom: 450px !important;
+    left: 380px !important;
+}
+
+.posicion_4 {
+    position: absolute !important;
+    bottom: 450px !important;
+    left: 520px !important;
+}
+
+.posicion_5 {
+    position: absolute !important;
+    bottom: 450px !important;
+    left: 660px !important;
+}
+
+.posicion_6 {
+    position: absolute !important;
+    bottom: 450px !important;
+    left: 800px !important;
+}
+
+.posicion_7 {
+    position: absolute !important;
+    bottom: 450px !important;
+    left: 940px !important;
+}
