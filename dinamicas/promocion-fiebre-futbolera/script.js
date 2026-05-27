@@ -49,6 +49,8 @@ categoria.addEventListener("change", () => {
   }
 });
 
+lanzamientos.innerHTML = `0 / 5`;
+
 img_jugando.forEach((img) => {
   img.title = "Fichas en Juego";
   img.addEventListener("click", () => {
@@ -125,6 +127,7 @@ btn_devolver_jugada.addEventListener("click", () => {
   if (ultimaJugada.gol === "Si") {
     goles -= 1;
   }
+
   _resultado_goles_.textContent = goles === 1 ? "1 Gol" : `${goles} Goles`;
 
   ultimaJugada.elemento.classList.remove(`posicion_${ultimaJugada.turno}`);
