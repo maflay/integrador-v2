@@ -30,22 +30,95 @@
     }
 }
 
-._main_content_quiz_{
+._main_content_quiz_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(180deg, #0000008c) ,url(/dinamicas/quiz_express/resources/fondo_aladdin_quiz.png);
+    height: 100%;
+    min-height: 100vh;
+    background-image: linear-gradient(180deg, #0000008c), url(/dinamicas/quiz_express/resources/fondo_aladdin_quiz.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-._content_form_ask_{
+._content_form_ask_ {
+    display: none;
+    width: 100%;
+    height: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+    color: black;
+    background-color: white;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+._card_form_ask_ {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    position: relative;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: rgb(192, 192, 192) solid 1px;
+    width: 100%;
+    height: 100%;
+    gap: 40px;
+}
+
+
+
+._control_card_ask {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
     align-items: center;
     gap: 30px;
     width: 100%;
     height: 100%;
-    color: white;
+}
+._control_card_ask input {
+    width: 100%;
+}
+
+._control_card_ask select {
+    width: 100%;
+}
+
+._content_form_questions_ {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    gap: 30px;
+
+}
+
+._content_controls_form_ select {
+    width: auto;
+}
+
+._content_controls_form_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    width: auto;
+    background-color: white;
+    padding: 30px;
+    gap: 20px;
+    border-radius: 20px;
+}
+
+._content_answer_ {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
 }
