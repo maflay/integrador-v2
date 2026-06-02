@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
 });
 
 const url =
-  "https://script.google.com/macros/s/AKfycbxrAuFsnPvm_IjiAdVAfcWDJ2fW-YPWkvCz3p7hnvC4_QUjinNfBVfCKlGJ0YuNOjB9/exec";
+  "https://script.google.com/macros/s/AKfycbxWm36ZgDsGKkshjBGDNPbhL5QKLtgNPm75LGGPONkDIC5CR46RQukOuV560O6ndhd-/exec";
 
 function mostrarLoader(container, mensaje) {
   container.innerHTML = `
@@ -58,6 +58,15 @@ function handleSendInfo() {
 
   const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
 
+  const DIA_MES = Number(
+    new Date().toLocaleString("es-CO", {
+      timeZone: "America/Bogota",
+      day: "2-digit",
+    }),
+  );
+
+  console.log(DIA_MES);
+
   if (!dia_ppVal) {
     Swal.fire({
       icon: "warning",
@@ -78,7 +87,7 @@ function handleSendInfo() {
 
   loader.style.display = "flex";
   fetch(
-    `${urlBase}?cedula=${cedulaVal}&dia=${dia_ppVal}&mesbus=${fechaMes}&anobus=${anio_res}`,
+    `${urlBase}?cedula=${cedulaVal}&dia=${dia_ppVal}&mesbus=${fechaMes}&anobus=${anio_res}&diabus=${DIA_MES}`,
   )
     .then((res) => res.json())
     .then((data) => {
@@ -102,6 +111,7 @@ function handleSendInfo() {
           Dia_registro: dia_ppVal,
           Ano_registro: anio_res,
           Mes_registro: fechaMes,
+          Dia: DIA_MES,
         };
         fetch(urlBase, {
           method: "POST",

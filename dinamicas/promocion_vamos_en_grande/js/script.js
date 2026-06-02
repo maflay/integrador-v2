@@ -665,40 +665,40 @@ function getDataFinalista() {
         return acc;
       }, {});
 
-   const tablaConteoCasino = Object.entries(conteoCasino)
-  .sort((a, b) => a[0].localeCompare(b[0]))
-  .map(
-    ([casino, cantidad], i) => `
-      <tr>
-        <td>${i + 1}</td>
-        <td>${casino}</td>
-        <td>${cantidad}</td>
-      </tr>
-    `,
-  )
-  .join("");
+      const tablaConteoCasino = Object.entries(conteoCasino)
+        .sort((a, b) => a[0].localeCompare(b[0]))
+        .map(
+          ([casino, cantidad], i) => `
+                                        <tr>
+                                          <td>${i + 1}</td>
+                                          <td>${casino}</td>
+                                          <td>${cantidad}</td>
+                                        </tr>
+                                      `,
+        )
+        .join("");
       content_all_result_finalista_cont.innerHTML = `
-<h3>Total por Casino</h3>
-  <div class="table-result table-scrolld">
+                                        <h3>Total por Casino</h3>
+                                          <div class="table-result table-scrolld">
 
 
-    <table class="styled-table">
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Casino</th>
-          <th>Total Registros</th>
-        </tr>
-      </thead>
+                                            <table class="styled-table">
+                                              <thead>
+                                                <tr>
+                                                  <th>#</th>
+                                                  <th>Casino</th>
+                                                  <th>Total Registros</th>
+                                                </tr>
+                                              </thead>
 
-      <tbody>
-        ${tablaConteoCasino}
-      </tbody>
-    </table>
+                                              <tbody>
+                                                ${tablaConteoCasino}
+                                              </tbody>
+                                            </table>
 
 
-  </div>
-`;
+                                          </div>
+                                        `;
 
       document.getElementById("filtro_finas").style.display = "flex";
 

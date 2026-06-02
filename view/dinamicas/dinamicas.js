@@ -10,6 +10,5 @@ function actionsAcc() {
   const all_title = document.querySelectorAll(
     ".content_text_card_integrador h3",
   );
-  console.log(all_title);
   all_card.forEach((card, index) => {});
 }
