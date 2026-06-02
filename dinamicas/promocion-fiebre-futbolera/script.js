@@ -763,8 +763,8 @@ const gruposCasinos = {
     "A12-MESAS",
   ],
   grupo2: ["A36", "A781", "A108-MESAS", "A127-MESAS", "A15-MESAS", "A36-MESAS"],
-  grupo3: ["A05", "A07", "A08", "A09", "A12", "A15", "A70", "A16", "A19"],
-  grupo4: ["A43", "A53", "A108", "A127"],
+  grupo3: ["A05", "A07", "A08", "A09", "A12", "A15", "A70", "A16"],
+  grupo4: ["A43", "A53", "A108", "A127", "A19"],
 };
 
 const tablas = {
