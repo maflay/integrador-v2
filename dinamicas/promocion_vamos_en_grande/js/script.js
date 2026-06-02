@@ -598,6 +598,9 @@ function alertGetDataFinal() {
 getDataFinalista();
 function getDataFinalista() {
   const container = document.getElementById("content-all-result-finalista");
+  const content_all_result_finalista_cont = document.getElementById(
+    "content-all-result-finalista_cont",
+  );
 
   const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
@@ -617,6 +620,7 @@ function getDataFinalista() {
     .then((data) => {
       if (!Array.isArray(data) || data.length === 0) {
         container.innerHTML = `<p>No hay datos disponibles.</p>`;
+        content_all_result_finalista_cont.innerHTML = `<p>No hay datos disponibles.</p>`;
         return;
       }
 
@@ -652,6 +656,49 @@ function getDataFinalista() {
           </table>
         </div>
       `;
+
+      const conteoCasino = data.reduce((acc, item) => {
+        const casino = item.Casino || "Sin Casino";
+
+        acc[casino] = (acc[casino] || 0) + 1;
+
+        return acc;
+      }, {});
+
+   const tablaConteoCasino = Object.entries(conteoCasino)
+  .sort((a, b) => a[0].localeCompare(b[0]))
+  .map(
+    ([casino, cantidad], i) => `
+      <tr>
+        <td>${i + 1}</td>
+        <td>${casino}</td>
+        <td>${cantidad}</td>
+      </tr>
+    `,
+  )
+  .join("");
+      content_all_result_finalista_cont.innerHTML = `
+<h3>Total por Casino</h3>
+  <div class="table-result table-scrolld">
+
+
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Casino</th>
+          <th>Total Registros</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        ${tablaConteoCasino}
+      </tbody>
+    </table>
+
+
+  </div>
+`;
 
       document.getElementById("filtro_finas").style.display = "flex";
 
