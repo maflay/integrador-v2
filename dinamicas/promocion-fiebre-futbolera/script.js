@@ -189,7 +189,6 @@ function handleSendFiebre() {
     });
   }
 
-  console.log(goles);
   if (categoria.value != "ADICIONAL") {
     if (goles === 0) {
       Swal.fire({
@@ -200,7 +199,6 @@ function handleSendFiebre() {
     }
   }
 
-  return;
 
   const fechaCompleta = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",

@@ -17,14 +17,15 @@ if (currentHash.includes("admin_quiz")) {
 let contadorPreguntas = 0;
 const preguntas = [];
 
-btn_add_pregunta.addEventListener("click", () => {
-  _content_form_ask_.style.display = "inline";
+btn_add_pregunta
+  ? btn_add_pregunta.addEventListener("click", () => {
+      _content_form_ask_.style.display = "inline";
 
-  contadorPreguntas++;
+      contadorPreguntas++;
 
-  _content_form_ask_.insertAdjacentHTML(
-    "beforeend",
-    `
+      _content_form_ask_.insertAdjacentHTML(
+        "beforeend",
+        `
     <div class="_card_form_ask_" data-id="${contadorPreguntas}">
 
       <div>
@@ -56,8 +57,9 @@ btn_add_pregunta.addEventListener("click", () => {
 
     </div>
     `,
-  );
-});
+      );
+    })
+  : "";
 
 function obtenerPreguntas() {
   const cards = document.querySelectorAll("._card_form_ask_");
@@ -83,17 +85,19 @@ function obtenerPreguntas() {
   console.log(preguntas);
 }
 
-btn_send_quiz.addEventListener("click", () => {
-  // let _build_preguntas_ = obtenerPreguntas();
-  // console.log(_build_preguntas_);
+btn_send_quiz
+  ? btn_send_quiz.addEventListener("click", () => {
+      // let _build_preguntas_ = obtenerPreguntas();
+      // console.log(_build_preguntas_);
 
-  document.querySelectorAll("._card_form_ask_").forEach((card) => {
-    preguntas.push({
-      pregunta: card.querySelector(".pregunta").value,
-      respuesta: card.querySelector(".respuesta").value,
-      opciones: [...card.querySelectorAll(".opcion")].map((op) => op.value),
-    });
-  });
+      document.querySelectorAll("._card_form_ask_").forEach((card) => {
+        preguntas.push({
+          pregunta: card.querySelector(".pregunta").value,
+          respuesta: card.querySelector(".respuesta").value,
+          opciones: [...card.querySelectorAll(".opcion")].map((op) => op.value),
+        });
+      });
 
-  console.log(preguntas);
-});
+      console.log(preguntas);
+    })
+  : "";
