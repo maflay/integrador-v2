@@ -82,6 +82,9 @@
     width: 220px;
 }
 
+._otro_intento_ img {
+    border-radius: 40px;
+}
 
 ._content_result_ {
     display: flex;

@@ -102,7 +102,25 @@ img_jugando.forEach((img) => {
       ) {
         const premios = tablas[grupoPertenece][categoria.value];
         let valPremio = premios[`ACIERTO_${goles}`] || 0;
-        alertaPremio(valPremio, categoria.value, goles);
+        if (valPremio === 0) {
+          Swal.fire({
+            allowOutsideClick: false,
+            customClass: {
+              popup: "_content_alerta_",
+            },
+            html: `<div class="_content_msj_alerta_ _otro_intento_">
+            <img src="/dinamicas/promocion-fiebre-futbolera/resources/otro_intento.png" alt="Aladdin">
+            <br/>
+            <span><b>Sin goles tienes otro intento.</b></span>
+          </div>`,
+          }).then((res) => {
+            if (res.isConfirmed) {
+              resetAllFiebre();
+            }
+          });
+        } else {
+          alertaPremio(valPremio, categoria.value, goles);
+        }
       } else {
         Swal.fire({
           icon: "error",
@@ -170,6 +188,19 @@ function handleSendFiebre() {
       title: "Campos en Blanco",
     });
   }
+
+  console.log(goles);
+  if (categoria.value != "ADICIONAL") {
+    if (goles === 0) {
+      Swal.fire({
+        icon: "warning",
+        title: "Resultado Invalido",
+      });
+      return;
+    }
+  }
+
+  return;
 
   const fechaCompleta = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
@@ -397,8 +428,10 @@ function handleObsSend() {
 
 function resetAllFiebre() {
   nombre.value = "";
-  casino.value = "";
-  categoria.value = "";
+  if (goles != 0) {
+    casino.value = "";
+    categoria.value = "";
+  }
   turnoLength = 0;
   goles = 0;
   turnoImg = 1;
