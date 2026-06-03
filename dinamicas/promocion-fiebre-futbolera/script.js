@@ -111,7 +111,7 @@ img_jugando.forEach((img) => {
             html: `<div class="_content_msj_alerta_ _otro_intento_">
             <img src="/dinamicas/promocion-fiebre-futbolera/resources/otro_intento.png" alt="Aladdin">
             <br/>
-            <span><b>Sin goles tienes otro intento.</b></span>
+            <span><b>Sin goles, tienes otro intento.</b></span>
           </div>`,
           }).then((res) => {
             if (res.isConfirmed) {
