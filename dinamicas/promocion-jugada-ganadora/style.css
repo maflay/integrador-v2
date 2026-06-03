@@ -151,6 +151,7 @@
 }
 
 ._ficha_pierna_ {
+    display: none;
     position: absolute;
     bottom: 92px;
     right: 83px;

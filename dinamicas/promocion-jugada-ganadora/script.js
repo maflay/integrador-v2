@@ -23,6 +23,7 @@ const url =
   "https://script.google.com/macros/s/AKfycbwpuhSLdzmFYNuk545JeUi5iGE4B3bf3Lmj8_gYqIoIX-p7cLEPx649up_-VvP4SFNm/exec";
 
 const _id_balon_ = document.getElementById("_id_balon_");
+const _ficha_player_ = document.getElementById("_ficha_player_");
 const dado_1 = document.getElementById("dado_1");
 const dado_2 = document.getElementById("dado_2");
 const dado_3 = document.getElementById("dado_3");
@@ -61,7 +62,13 @@ categoria.addEventListener("change", () => {
 });
 
 function moveBallDina(posi, num) {
-  _id_balon_.classList.add(`posicion_${posi}`);
+  _ficha_player_.src = "/dinamicas/promocion-jugada-ganadora/resources/PLAYER_ACCION.png";
+  setTimeout(() => {
+  _ficha_player_.src = "/dinamicas/promocion-jugada-ganadora/resources/PLAYER_SHOT.png";
+  }, 150);
+  setTimeout(() => {
+    _id_balon_.classList.add(`posicion_${posi}`);
+  }, 151);
   let realNum;
   if (posi.includes("suma_")) {
     realNum = posi.split("suma_")[1];
