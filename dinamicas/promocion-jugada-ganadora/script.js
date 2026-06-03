@@ -40,9 +40,9 @@ const numeroPalo = ["4", "17", "5", "6", "15", "16", "7", "8", "13", "14"];
 const numeroArquero = ["111", "222", "333", "444", "555"];
 const numeroGol = ["666", "18"];
 
- const notificacion_registro_dia = document.getElementById(
-    "notificacion_registro_dia",
-  );
+const notificacion_registro_dia = document.getElementById(
+  "notificacion_registro_dia",
+);
 
 let numeroCombi;
 
@@ -62,10 +62,16 @@ categoria.addEventListener("change", () => {
 });
 
 function moveBallDina(posi, num) {
-  _ficha_player_.src = "/dinamicas/promocion-jugada-ganadora/resources/PLAYER_ACCION.png";
+  _ficha_player_.src =
+    "/dinamicas/promocion-jugada-ganadora/resources/PLAYER_ACCION.png";
   setTimeout(() => {
-  _ficha_player_.src = "/dinamicas/promocion-jugada-ganadora/resources/PLAYER_SHOT.png";
+    _ficha_player_.src =
+      "/dinamicas/promocion-jugada-ganadora/resources/PLAYER_SHOT.png";
   }, 150);
+  setTimeout(() => {
+    _ficha_player_.src =
+      "/dinamicas/promocion-jugada-ganadora/resources/PLAYER.png";
+  }, 850);
   setTimeout(() => {
     _id_balon_.classList.add(`posicion_${posi}`);
   }, 151);
