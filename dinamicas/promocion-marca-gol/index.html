@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Aladdin: Marca Gol</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+</head>
+
+<body data-main-style="/dinamicas/promocion-marca-gol/style.css"
+    data-main-script="/dinamicas/promocion-marca-gol/script.js">
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="_main_content_marca_">
+        <div class="_content_logo_marca_">
+            <img src="/dinamicas/promocion-marca-gol/resources/logo_marca_gol.png" alt="Aladdin">
+        </div>
+        <div class="_content_opciones">
+            <img title="Opciones" id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
+        </div>
+        <div class="container _board_marca_">
+            <div class="_content_cosas_pasan_">
+                <h1>Cosas que Pasan</h1>
+                <div id="_content_table_cp_" class="table-result-rally table-scrolld-rally"></div>
+            </div>
+            <div class="_content_marcador_val_">
+                <input type="number" id="_equipo_local_" class="form-control">
+                <span></span>
+                <input type="number" id="_equipo_visitante_" class="form-control">
+            </div>
+            <button class="btn btn-danger">Validar</button>
+        </div>
+    </div>
+
+    <section id="modal_opciones_dinamica" class="modal_opciones_dinamica">
+        <div id="content_modal_dinamica" class="content_modal_dinamica">
+            <div class="content_expand">
+                <img id="expandir" title="Expandir" src="/resource/expandir.png" alt="Aladdin">
+            </div>
+            <div class="content_head_modal">
+                <div class="content_opcion_head">
+                    <p id="btn_guardar_registro">Guardar Registro</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_envio_secundario">Envio Secundario</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_observacion">Observación</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_tabla_premios">Tabla de Premios</p>
+                </div>
+                <div style="display: none;" class="content_opcion_head">
+                    <p id="btn_modal_opcion_6">Observaciones</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_registro_dia">Registro del Dia</p>
+                    <span id="notificacion_registro_dia" class="notificacion_registro_dia"></span>
+                </div>
+                <div id="close_modal_icon" class="close_modal_icon">&times;</div>
+            </div>
+            <div style="width: 100%;height: 1px;background-color: #cecece;"></div>
+            <div style="display: none;" id="view_guardar_registro" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Guardar Registro</h2>
+                    <div class="datos_column_modal">
+                        <div style="display: flex;gap: 10px;">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre" />
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <select class="form-control" id="casino">
+                                <option value="">Casino...</option>
+                                <option value="A05">A05</option>
+                                <option value="A07">A07</option>
+                                <option value="A08">A08</option>
+                                <option value="A09">A09</option>
+                                <option value="A12">A12</option>
+                                <option value="A12-MESAS">A12-MESAS</option>
+                                <option value="A15">A15</option>
+                                <option value="A15-MESAS">A15-MESAS</option>
+                                <option value="A16">A16</option>
+                                <option value="A19">A19</option>
+                                <option value="A35">A35</option>
+                                <option value="A36">A36</option>
+                                <option value="A36-MESAS">A36-MESAS</option>
+                                <option value="A38">A38</option>
+                                <option value="A39">A39</option>
+                                <option value="A43">A43</option>
+                                <option value="A48">A48</option>
+                                <option value="A48-MESAS">A48-MESAS</option>
+                                <option value="A49">A49</option>
+                                <option value="A50">A50</option>
+                                <option value="A53">A53</option>
+                                <option value="A58">A58</option>
+                                <option value="A70">A70</option>
+                                <option value="A781">A781</option>
+                                <option value="A88">A88</option>
+                                <option value="A100">A100</option>
+                                <option value="A108">A108</option>
+                                <option value="A108-MESAS">A108-MESAS</option>
+                                <option value="A127">A127</option>
+                                <option value="A127-MESAS">A127-MESAS</option>
+                            </select>
+                        </div>
+                        <div class="content_btn_modal">
+                            <button title="Enviar" id="btn_enviar" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" id="view_envio_secundario" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Envió Secundario</h2>
+                    <div class="datos_column_modal">
+                        <div style="display: flex;gap: 10px;">
+                            <select class="form-control" id="casino_modal">
+                                <option value="">Casino...</option>
+                                <option value="A05">A05</option>
+                                <option value="A07">A07</option>
+                                <option value="A08">A08</option>
+                                <option value="A09">A09</option>
+                                <option value="A12">A12</option>
+                                <option value="A12-MESAS">A12-MESAS</option>
+                                <option value="A15">A15</option>
+                                <option value="A15-MESAS">A15-MESAS</option>
+                                <option value="A16">A16</option>
+                                <option value="A19">A19</option>
+                                <option value="A35">A35</option>
+                                <option value="A36">A36</option>
+                                <option value="A36-MESAS">A36-MESAS</option>
+                                <option value="A38">A38</option>
+                                <option value="A39">A39</option>
+                                <option value="A43">A43</option>
+                                <option value="A48">A48</option>
+                                <option value="A48-MESAS">A48-MESAS</option>
+                                <option value="A49">A49</option>
+                                <option value="A50">A50</option>
+                                <option value="A53">A53</option>
+                                <option value="A58">A58</option>
+                                <option value="A70">A70</option>
+                                <option value="A781">A781</option>
+                                <option value="A88">A88</option>
+                                <option value="A100">A100</option>
+                                <option value="A108">A108</option>
+                                <option value="A108-MESAS">A108-MESAS</option>
+                                <option value="A127">A127</option>
+                                <option value="A127-MESAS">A127-MESAS</option>
+                            </select>
+                            <select class="item_hide form-control" id="categoria_modal">
+                                <option value="">Categoría...</option>
+                                <option value="GENIUS">Genius</option>
+                                <option value="TITANIO">Titanio</option>
+                                <option value="LEGENDARIO">Legendario</option>
+                                <option value="GOLD">Gold</option>
+                                <option value="SILVER">Silver</option>
+                                <option value="BRONCE">Bronce</option>
+                                <option value="SUPERIOR">Superior</option>
+                                <option value="ESTANDAR">Estándar</option>
+                                <option value="ADICIONAL">Adicional</option>
+                            </select>
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <input class="form-control" style=" cursor: pointer;" type="text" id="hora_modal"
+                                placeholder="Hora" />
+                            <input class="form-control" style=" cursor: pointer;" type="date" id="fecha_modal"
+                                placeholder="Fecha" />
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                style=" cursor: pointer;" type="text" id="nombre_modal" placeholder="Nombre" />
+                            <input class="form-control" style=" cursor: pointer;" type="text" id="bono_modal"
+                                placeholder="# Bono" />
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <select class="form-control" name="ficha1" id="resultado_modal">
+                                <option value="">Combinación...</option>
+                                <option value="111">111</option>
+                                <option value="222">222</option>
+                                <option value="333">333</option>
+                                <option value="444">444</option>
+                                <option value="555">555</option>
+                                <option value="666">666</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                            </select>
+                        </div>
+                        <div class="content_btn_modal">
+                            <button id="btn_send_secundario" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" id="view_envia_observacion" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Observación</h2>
+                    <div class="datos_column_modal">
+                        <select class="form-control" style="cursor: pointer;" id="casino_observacion">
+                            <option value="">Casino...</option>
+                            <option value="A05">A05</option>
+                            <option value="A07">A07</option>
+                            <option value="A08">A08</option>
+                            <option value="A09">A09</option>
+                            <option value="A12">A12</option>
+                            <option value="A12-MESAS">A12-MESAS</option>
+                            <option value="A15">A15</option>
+                            <option value="A15-MESAS">A15-MESAS</option>
+                            <option value="A16">A16</option>
+                            <option value="A19">A19</option>
+                            <option value="A35">A35</option>
+                            <option value="A36">A36</option>
+                            <option value="A36-MESAS">A36-MESAS</option>
+                            <option value="A38">A38</option>
+                            <option value="A39">A39</option>
+                            <option value="A43">A43</option>
+                            <option value="A48">A48</option>
+                            <option value="A48-MESAS">A48-MESAS</option>
+                            <option value="A49">A49</option>
+                            <option value="A50">A50</option>
+                            <option value="A53">A53</option>
+                            <option value="A58">A58</option>
+                            <option value="A70">A70</option>
+                            <option value="A781">A781</option>
+                            <option value="A88">A88</option>
+                            <option value="A100">A100</option>
+                            <option value="A108">A108</option>
+                            <option value="A108-MESAS">A108-MESAS</option>
+                            <option value="A127">A127</option>
+                            <option value="A127-MESAS">A127-MESAS</option>
+                        </select>
+                    </div>
+                    <div class="datos_column_modal">
+                        <textarea placeholder="Descripcion" name="descripcion" id="descripcion_observacion"></textarea>
+                    </div>
+                    <div class="content_btn_modal">
+                        <button style="display: none;" id="btn_clean_observacion"
+                            class="btn btn-primary btn_acumula">Limpiar</button>
+                        <button id="btn_envia_observacion" class="btn btn-primary btn_acumula">Enviar</button>
+                    </div>
+
+                    <div class="_content_observacion_dinamica_">
+                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                        <h2>Observaciones</h2>
+                        <br />
+                        <div id="result_observaciones_dinamica"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" id="view_tabla_premios" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Tabla de Premios</h2>
+                    <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                    <table class="table-wrapper styled-table">
+                        <thead>
+                            <tr>
+                                <th>Combinación</th>
+                                <th>Bronce</th>
+                                <th>Silver</th>
+                                <th>Gold</th>
+                                <th>Legendario</th>
+                                <th>Titanio</th>
+                                <th>Genius</th>
+                                <th>Estandar</th>
+                                <th>Superior</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>TRIPLE 6</td>
+                                <td>$ 500.000</td>
+                                <td>$ 700.000</td>
+                                <td>$ 1.000.000</td>
+                                <td>$ 1.300.000</td>
+                                <td>$ 1.500.000</td>
+                                <td>$ 2.000.000</td>
+                                <td>$ 500.000</td>
+                                <td>$ 1.000.000</td>
+                            </tr>
+
+                            <tr>
+                                <td>TRIPLE 1,2,3,4,5</td>
+                                <td>$ 200.000</td>
+                                <td>$ 250.000</td>
+                                <td>$ 300.000</td>
+                                <td>$ 350.000</td>
+                                <td>$ 400.000</td>
+                                <td>$ 500.000</td>
+                                <td>$ 200.000</td>
+                                <td>$ 300.000</td>
+                            </tr>
+
+                            <tr>
+                                <td>SUMA 4 ó 17</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 140.000</td>
+                                <td>$ 150.000</td>
+                                <td>$ 160.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 150.000</td>
+                            </tr>
+
+                            <tr>
+                                <td>SUMA 5,6, 15 ó 16</td>
+                                <td>$ 100.000</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 140.000</td>
+                                <td>$ 150.000</td>
+                                <td>$ 100.000</td>
+                                <td>$ 120.000</td>
+                            </tr>
+
+                            <tr>
+                                <td>SUMA 7,8, 13 ó 14</td>
+                                <td>$ 90.000</td>
+                                <td>$ 100.000</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 140.000</td>
+                                <td>$ 90.000</td>
+                                <td>$ 110.000</td>
+                            </tr>
+
+                            <tr>
+                                <td>SUMA 9,10, 11 ó 12</td>
+                                <td>$ 80.000</td>
+                                <td>$ 90.000</td>
+                                <td>$ 100.000</td>
+                                <td>$ 110.000</td>
+                                <td>$ 120.000</td>
+                                <td>$ 130.000</td>
+                                <td>$ 80.000</td>
+                                <td>$ 100.000</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="display: none;" id="view_registro_dia" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Registro del Dia</h2>
+                    <div id="Info_result_dia"></div>
+                    <div class="result_dia_acumula" id="result_dia_acumula"></div>
+                </div>
+            </div>
+            <div style="display: none;" id="view_modal_opcion_6" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Observaciones</h2>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/dinamicas/actions_js/menu_modal.js"></script>
+    <script src="/dinamicas/user.js"></script>
+    <script src="/dinamicas/extension.js"></script>
+</body>
+
+</html>

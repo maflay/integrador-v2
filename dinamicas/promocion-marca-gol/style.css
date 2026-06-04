@@ -1,0 +1,225 @@
+@font-face {
+    font-family: 'super wonder';
+    src: url('/fonts/Super\ Wonder.ttf') format('truetype');
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #356adc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+._main_content_marca_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+    background-image: linear-gradient(180deg, #000000b4), url(/dinamicas/promocion-marca-gol/resources/back_marca_gol.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+._content_logo_marca_ {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+._content_logo_marca_ img {
+    width: 120px;
+}
+
+._content_opciones {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+._content_opciones img {
+    width: 30px;
+    transition: all 0.4s ease;
+}
+
+._content_opciones img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+._board_marca_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+    gap: 30px;
+    width: 100%;
+    height: 100%;
+    font-family: 'super wonder', sans-serif !important;
+}
+
+._content_marcador_val_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+    gap: 20px;
+}
+
+._content_marcador_val_ input {
+    width: 250px;
+    height: 250px;
+    font-size: 230px;
+    background-color: transparent;
+    color: white !important;
+    border: #cfcfcf4d solid 1px;
+    outline: none;
+    text-align: center;
+    caret-color: transparent;
+    /* oculta el cursor */
+}
+
+._content_marcador_val_ input::-webkit-outer-spin-button,
+._content_marcador_val_ input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Color al seleccionar */
+._content_marcador_val_ input:focus {
+    background: transparent;
+    border: transparent solid 1px;
+}
+
+._content_marcador_val_ span {
+    width: 100px;
+    height: 10px;
+    background-color: white;
+}
+
+._content_resultado_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+}
+
+._content_resultado_ img {
+    width: 300px;
+}
+
+._fomr_result_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    gap: 20px;
+}
+
+._fomr_result_ span {
+    width: 40px;
+    height: 5px;
+    background-color: white;
+}
+
+._content_cosas_pasan_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 20px 0;
+    color: white;
+    background-color: #00000093;
+}
+
+._content_cosas_pasan_>div {
+    width: 100%;
+    padding: 40px;
+}
+
+
+.table-result-rally {
+    width: 100%;
+}
+
+.table-result-rally::-webkit-scrollbar {
+    width: 8px;
+    /* Adjust width as needed */
+    background-color: transparent;
+    /* Make the entire scrollbar area transparent */
+}
+
+.styled-table-rally {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'super wonder', sans-serif !important;
+    font-size: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 800px;
+}
+
+.styled-table-rally thead {
+    background: transparent;
+    color: #fff;
+}
+
+.styled-table-rally th {
+    font-size: 30px;
+}
+
+.styled-table-rally th,
+.styled-table-rally td {
+    padding: 12px 12px;
+    text-align: center;
+    color: white;
+    border-bottom: 1px solid #ddd;
+}
+
+.styled-table-rally tbody tr {
+    /* background-color: transparent; */
+    color: #000;
+}
+
+.styled-table-rally tbody tr:nth-child(even) {
+    /* background-color: transparent; */
+}
+
+.styled-table-rally tbody tr:hover {
+    background-color: #00000007;
+}

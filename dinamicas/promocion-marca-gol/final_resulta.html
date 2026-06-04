@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Resultado Final</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+</head>
+
+<body data-main-style="/dinamicas/promocion-marca-gol/style.css"
+    data-main-script="/dinamicas/promocion-marca-gol/script.js">
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="_main_content_marca_">
+        <div class="container _content_resultado_">
+            <img src="/dinamicas/promocion-marca-gol/resources/logo_marca_gol.png" alt="Aladdin">
+            <div class="_fomr_result_">
+                <input type="text" class="form-control" name="equipo_local" id="equipo_local" placeholder="Equipo Local">
+                <span></span>
+                <input type="text" class="form-control" name="equipo_visitante" id="equipo_visitante" placeholder="Equipo Visitante">
+            </div>
+            <button id="_btn_send_result_" class="btn btn-danger">Enviar</button>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/dinamicas/actions_js/menu_modal.js"></script>
+    <script src="/dinamicas/user.js"></script>
+    <script src="/dinamicas/extension.js"></script>
+</body>
+
+</html>
