@@ -66,14 +66,14 @@ function moveBallDina(posi, num) {
   setTimeout(() => {
     _ficha_player_.src =
       "/dinamicas/promocion-jugada-ganadora/resources/PLAYER_SHOT.png";
-  }, 150);
+  }, 800);
   setTimeout(() => {
     _ficha_player_.src =
       "/dinamicas/promocion-jugada-ganadora/resources/PLAYER.png";
-  }, 850);
+  }, 1200);
   setTimeout(() => {
     _id_balon_.classList.add(`posicion_${posi}`);
-  }, 151);
+  }, 801);
   let realNum;
   if (posi.includes("suma_")) {
     realNum = posi.split("suma_")[1];
