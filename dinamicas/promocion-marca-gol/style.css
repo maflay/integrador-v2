@@ -128,6 +128,10 @@
     background-color: white;
 }
 
+._content_marcador_val_ img {
+    width: 250px;
+}
+
 ._content_resultado_ {
     display: flex;
     flex-direction: column;
@@ -173,6 +177,19 @@
     padding: 40px;
 }
 
+._cotentt_equipos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: white solid 1px;
+    padding-bottom: 5px;
+    width: 100%;
+    gap: 20px;
+}
+
+._cotentt_equipos select {
+    width: 250px;
+}
 
 .table-result-rally {
     width: 100%;

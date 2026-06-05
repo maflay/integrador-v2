@@ -24,15 +24,151 @@
         </div>
         <div class="container _board_marca_">
             <div class="_content_cosas_pasan_">
+                <h1>Partido</h1>
+                <div class="_cotentt_equipos">
+                    <select class="form-control" id="equipo_local">
+                        <option value="">Equipo Local</option>
+
+                        <!-- Anfitriones -->
+                        <option value="canada">Canadá</option>
+                        <option value="mexico">México</option>
+                        <option value="usa">Estados Unidos</option>
+
+                        <!-- CONMEBOL -->
+                        <option value="argentina">Argentina</option>
+                        <option value="brazil">Brasil</option>
+                        <option value="colombia">Colombia</option>
+                        <option value="ecuador">Ecuador</option>
+                        <option value="paraguay">Paraguay</option>
+                        <option value="uruguay">Uruguay</option>
+
+                        <!-- UEFA -->
+                        <option value="alemania">Alemania</option>
+                        <option value="austria">Austria</option>
+                        <option value="belgica">Bélgica</option>
+                        <option value="bosnia">Bosnia y Herzegovina</option>
+                        <option value="croacia">Croacia</option>
+                        <option value="checa">Chequia</option>
+                        <option value="inglaterra">Inglaterra</option>
+                        <option value="francia">Francia</option>
+                        <option value="paises_Bajos">Países Bajos</option>
+                        <option value="noruega">Noruega</option>
+                        <option value="portugal">Portugal</option>
+                        <option value="escosia">Escocia</option>
+                        <option value="espania">España</option>
+                        <option value="suecia">Suecia</option>
+                        <option value="suiza">Suiza</option>
+                        <option value="turkia">Turquía</option>
+
+                        <!-- AFC -->
+                        <option value="australia">Australia</option>
+                        <option value="irak">Irak</option>
+                        <option value="iran">Irán</option>
+                        <option value="japon">Japón</option>
+                        <option value="jordania">Jordania</option>
+                        <option value="corea_del_sur">Corea del Sur</option>
+                        <option value="qatar">Qatar</option>
+                        <option value="arabia_saudi">Arabia Saudita</option>
+                        <option value="uzbekistan">Uzbekistán</option>
+
+                        <!-- CAF -->
+                        <option value="argelia">Argelia</option>
+                        <option value="cabo_verde">Cabo Verde</option>
+                        <option value="congo">RD Congo</option>
+                        <option value="costa_de_marfil">Costa de Marfil</option>
+                        <option value="egipto">Egipto</option>
+                        <option value="ghana">Ghana</option>
+                        <option value="marruecos">Marruecos</option>
+                        <option value="senegal">Senegal</option>
+                        <option value="sudafrica">Sudáfrica</option>
+                        <option value="tunez">Túnez</option>
+
+                        <!-- CONCACAF -->
+                        <option value="curazao">Curazao</option>
+                        <option value="haiti">Haití</option>
+                        <option value="panama">Panamá</option>
+
+                        <!-- OFC -->
+                        <option value="nueva_zelanda">Nueva Zelanda</option>
+                    </select>
+                    <select class="form-control" id="equipo_visitante">
+                        <option value="">Equipo Visitante</option>
+
+                        <!-- Anfitriones -->
+                        <option value="canada">Canadá</option>
+                        <option value="mexico">México</option>
+                        <option value="usa">Estados Unidos</option>
+
+                        <!-- CONMEBOL -->
+                        <option value="argentina">Argentina</option>
+                        <option value="brazil">Brasil</option>
+                        <option value="colombia">Colombia</option>
+                        <option value="ecuador">Ecuador</option>
+                        <option value="paraguay">Paraguay</option>
+                        <option value="uruguay">Uruguay</option>
+
+                        <!-- UEFA -->
+                        <option value="alemania">Alemania</option>
+                        <option value="austria">Austria</option>
+                        <option value="belgica">Bélgica</option>
+                        <option value="bosnia">Bosnia y Herzegovina</option>
+                        <option value="croacia">Croacia</option>
+                        <option value="checa">Chequia</option>
+                        <option value="inglaterra">Inglaterra</option>
+                        <option value="francia">Francia</option>
+                        <option value="paises_Bajos">Países Bajos</option>
+                        <option value="noruega">Noruega</option>
+                        <option value="portugal">Portugal</option>
+                        <option value="escosia">Escocia</option>
+                        <option value="espania">España</option>
+                        <option value="suecia">Suecia</option>
+                        <option value="suiza">Suiza</option>
+                        <option value="turkia">Turquía</option>
+
+                        <!-- AFC -->
+                        <option value="australia">Australia</option>
+                        <option value="irak">Irak</option>
+                        <option value="iran">Irán</option>
+                        <option value="japon">Japón</option>
+                        <option value="jordania">Jordania</option>
+                        <option value="corea_del_sur">Corea del Sur</option>
+                        <option value="qatar">Qatar</option>
+                        <option value="arabia_saudi">Arabia Saudita</option>
+                        <option value="uzbekistan">Uzbekistán</option>
+
+                        <!-- CAF -->
+                        <option value="argelia">Argelia</option>
+                        <option value="cabo_verde">Cabo Verde</option>
+                        <option value="congo">RD Congo</option>
+                        <option value="costa_de_marfil">Costa de Marfil</option>
+                        <option value="egipto">Egipto</option>
+                        <option value="ghana">Ghana</option>
+                        <option value="marruecos">Marruecos</option>
+                        <option value="senegal">Senegal</option>
+                        <option value="sudafrica">Sudáfrica</option>
+                        <option value="tunez">Túnez</option>
+
+                        <!-- CONCACAF -->
+                        <option value="curazao">Curazao</option>
+                        <option value="haiti">Haití</option>
+                        <option value="panama">Panamá</option>
+
+                        <!-- OFC -->
+                        <option value="nueva_zelanda">Nueva Zelanda</option>
+                    </select>
+                </div>
+                <br />
                 <h1>Cosas que Pasan</h1>
                 <div id="_content_table_cp_" class="table-result-rally table-scrolld-rally"></div>
             </div>
             <div class="_content_marcador_val_">
+                <img id="_img_equipo_local_" src="/eventos/resources/bandera_adivina.png" alt="Aladdin">
                 <input type="number" id="_equipo_local_" class="form-control">
                 <span></span>
                 <input type="number" id="_equipo_visitante_" class="form-control">
+                <img id="_img_equipo_visitante_" src="/eventos/resources/bandera_adivina.png" alt="Aladdin">
             </div>
-            <button class="btn btn-danger">Validar</button>
+            <button id="btn_validar_marcador" class="btn btn-danger">Validar</button>
         </div>
     </div>
 

@@ -199,7 +199,6 @@ function handleSendFiebre() {
     }
   }
 
-
   const fechaCompleta = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
     year: "numeric",
@@ -436,7 +435,7 @@ function resetAllFiebre() {
   turnoNuevo = 0;
   limTurnos = 5;
   historialJugadas.length = 0;
-  _resultado_goles_.textContent = "";
+  _resultado_goles_.textContent = "Sin Goles...";
   casino.classList.remove("item_disable");
   categoria.classList.remove("item_disable");
   lanzamientos.innerHTML = `${turnoLength} / ${limTurnos}`;
@@ -794,8 +793,8 @@ const gruposCasinos = {
     "A12-MESAS",
   ],
   grupo2: ["A36", "A781", "A108-MESAS", "A127-MESAS", "A15-MESAS", "A36-MESAS"],
-  grupo3: ["A05", "A07", "A08", "A09", "A12", "A15", "A70", "A16", "A19"],
-  grupo4: ["A43", "A53", "A108", "A127"],
+  grupo3: ["A05", "A07", "A08", "A09", "A12", "A70", "A16", "A19"],
+  grupo4: ["A43", "A53", "A108", "A127", "A15"],
 };
 
 const tablas = {
