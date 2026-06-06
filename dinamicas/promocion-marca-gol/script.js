@@ -84,8 +84,13 @@ function chargeInfo() {
         casino: celdas[3].innerText,
       };
 
-      console.log("celdas:", celdas);
-      console.log("Datos desde atributos data-:", datosData);
+      let modalInfo = document.createElement("p");
+
+      modalInfo.innerHTML = ``;
+      _content_table_cp_.appendChild(modalInfo);
+
+      // console.log("celdas:", celdas);
+      // console.log("Datos desde atributos data-:", datosData);
       console.log("Datos desde el texto de la fila:", datosTexto);
     }
   });
