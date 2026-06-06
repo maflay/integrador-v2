@@ -143,7 +143,7 @@ function metodoprueba() {
     const valor = objUser.Nivel;
 
     // Ejemplo: ocultar los que no cumplan condición
-    if (valor == "1" || valor == "2" || valor == "4") {
+    if (valor == "1" || valor == "2" || valor == "4" || valor == "6") {
       item.style.display = "flex"; // muestra
     } else {
       item.style.display = "none"; // oculta

@@ -41,7 +41,7 @@ let userRoute = getCookie("__Secure_1nf0_US3R") || [];
 let routes = {};
 
 // menu ALL
-if (userRoute.Nivel == 2 || userRoute.Nivel == 4) {
+if (userRoute.Nivel == 2 || userRoute.Nivel == 4 || userRoute.Nivel == 6) {
   // promotor view admin 2 y promo view 4
   routes = {
     "#inicio": {

@@ -1,6 +1,6 @@
 <section class="item_admin_promotor content_main_create">
     <div id="content_form" class="content_form">
-        <a title="Promotores" class="ver_usuarios" href="#usuarios">Ver promotores</a>
+        <a title="Promotores" class="item_admin_promotor ver_usuarios" href="#usuarios">Ver promotores</a>
         <h2>Crear Promotor</h2>
         <small><strong style="color: red;">*</strong>Este formulario solo sirve para crear promotores o promotores
             Admin.<strong style="color: red;">*</strong>
@@ -25,10 +25,11 @@
         <select class="form-control" name="permisos" id="permisos">
             <option value="">Permisos...</option>
             <option value="4">Permiso Promotor</option>
-            <option value="2">Permiso Promotor Admin</option>
+            <option value="6">Permiso Coordinador</option>
+            <option class="item_admin_promotor" value="2">Permiso Promotor Admin</option>
         </select>
-        <p>Elige tu imagen:</p>
-        <input id="img_perfil" class="form-control" type="file" accept="image/png, image/jpeg">
+        <p style="display: none;">Elige tu imagen:</p>
+        <input style="display: none;" id="img_perfil" class="form-control" type="file" accept="image/png, image/jpeg">
         <button id="btn_create_user" title="Crear Usuario" class="btn btn-primary">Enviar</button>
     </div>
 </section>

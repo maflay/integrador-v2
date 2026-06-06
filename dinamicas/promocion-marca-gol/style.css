@@ -92,6 +92,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
     margin-bottom: 20px;
     width: 100%;
     gap: 20px;
@@ -129,7 +130,9 @@
 }
 
 ._content_marcador_val_ img {
-    width: 250px;
+    width: 300px;
+    height: 160px;
+    object-fit: contain;
 }
 
 ._content_resultado_ {
@@ -189,6 +192,10 @@
 
 ._cotentt_equipos select {
     width: 250px;
+}
+
+._btn_envio_cp_ {
+    padding: 1px 4px;
 }
 
 .table-result-rally {

@@ -49,6 +49,7 @@ function getAllUser() {
                         <option value="3">Social Media</option>
                         <option value="2">Permiso Promotor Admin</option>
                         <option value="4">Permiso Promotor</option>
+                        <option value="6">Permiso Coordinador</option>
                     </select>
                     <br />
                     <button class="btn btn-primary btn_update_rol"
