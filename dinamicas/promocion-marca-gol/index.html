@@ -163,19 +163,25 @@
             </div>
             <div class="_content_marcador_val_">
                 <img id="_img_equipo_local_" src="/eventos/resources/bandera_adivina.png" alt="Aladdin">
-                <input type="number" id="_equipo_local_" class="form-control">
+                <input type="number" min="0" max="2" id="_equipo_local_" class="form-control">
                 <span></span>
-                <input type="number" id="_equipo_visitante_" class="form-control">
+                <input type="number" max="2" id="_equipo_visitante_" class="form-control">
                 <img id="_img_equipo_visitante_" src="/eventos/resources/bandera_adivina.png" alt="Aladdin">
             </div>
-            <button id="btn_validar_marcador" class="btn btn-danger">Validar</button>
+            <button id="btn_validar_marcador" class="btn btn-danger btn_validar_marcador">Validar</button>
         </div>
     </div>
-    <div class="_modal_cosas_pasan_">
-        <div class="_content_cosas_pasan_">
-            <input type="text" class="form-control" id="accion_modal">
+    <div id="_modal_cosas_pasan_" class="modal_opciones_dinamica">
+        <div class="_form_cosas_pasan_">
+            <p id="_close_cp_" class="_close_cp_">&times;</p>
+            <h2>¿Que Pasó?</h2>
             <br />
-            <select class="form-control" id="casino">
+            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control" style=" cursor: pointer;"
+                type="text" id="nombre_cp" placeholder="Nombre" />
+            <br />
+            <input type="text" class="form-control" id="accion_cp">
+            <br />
+            <select class="form-control" id="casino_cp">
                 <option value="">Casino...</option>
                 <option value="A05">A05</option>
                 <option value="A07">A07</option>
@@ -209,7 +215,7 @@
                 <option value="A127-MESAS">A127-MESAS</option>
             </select>
             <br />
-            <select class="item_hide form-control" id="categoria_modal">
+            <select class="item_hide form-control" id="categoria_cp">
                 <option value="">Categoría...</option>
                 <option value="GENIUS">Genius</option>
                 <option value="TITANIO">Titanio</option>
@@ -221,6 +227,8 @@
                 <option value="ESTANDAR">Estándar</option>
                 <option value="ADICIONAL">Adicional</option>
             </select>
+            <br />
+            <button id="btn_envio_que_paso" class="btn btn-primary">Enviar</button>
         </div>
     </div>
 
@@ -258,10 +266,10 @@
                     <div class="datos_column_modal">
                         <div style="display: flex;gap: 10px;">
                             <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                                style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre" />
+                                style=" cursor: pointer;" type="text" id="nombre_golazo" placeholder="Nombre" />
                         </div>
                         <div style="display: flex;gap: 10px;">
-                            <select class="form-control" id="casino">
+                            <select class="form-control" id="casino_golazo">
                                 <option value="">Casino...</option>
                                 <option value="A05">A05</option>
                                 <option value="A07">A07</option>
@@ -295,8 +303,23 @@
                                 <option value="A127-MESAS">A127-MESAS</option>
                             </select>
                         </div>
+                        <div style="display: flex;gap: 10px;">
+
+                            <select class="item_hide form-control" id="categoria_golazo">
+                                <option value="">Categoría...</option>
+                                <option value="GENIUS">Genius</option>
+                                <option value="TITANIO">Titanio</option>
+                                <option value="LEGENDARIO">Legendario</option>
+                                <option value="GOLD">Gold</option>
+                                <option value="SILVER">Silver</option>
+                                <option value="BRONCE">Bronce</option>
+                                <option value="SUPERIOR">Superior</option>
+                                <option value="ESTANDAR">Estándar</option>
+                                <option value="ADICIONAL">Adicional</option>
+                            </select>
+                        </div>
                         <div class="content_btn_modal">
-                            <button title="Enviar" id="btn_enviar" class="btn btn-primary">Enviar</button>
+                            <button title="Enviar" id="btn_enviar_golazo" class="btn btn-primary">Enviar</button>
                         </div>
                     </div>
                 </div>

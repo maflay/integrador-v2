@@ -2,70 +2,295 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
+const user = inforUser();
+const url_cp =
+  "https://script.google.com/macros/s/AKfycbxuXEfiymeqQa--YiEZh9w51xjnGt6SAudqSb4gRv5XJfv8rFsfjumqwMs1ox2bk5br/exec";
+const url_golazo =
+  "https://script.google.com/macros/s/AKfycbyXg7q_m12113ihIfVn6VOx_nVXQK5YwkvMU_rvQ5AiyM-MVchfRbfGW2WaZkPKethcWg/exec";
 const equipo_local = document.getElementById("equipo_local");
 const equipo_visitante = document.getElementById("equipo_visitante");
 const _img_equipo_local_ = document.getElementById("_img_equipo_local_");
 const _img_equipo_visitante_ = document.getElementById(
   "_img_equipo_visitante_",
 );
+const _equipo_local_ = document.getElementById("_equipo_local_");
+const _equipo_visitante_ = document.getElementById("_equipo_visitante_");
+const _modal_cosas_pasan_ = document.getElementById("_modal_cosas_pasan_");
 const btn_validar_marcador = document.getElementById("btn_validar_marcador");
 const _content_table_cp_ = document.getElementById("_content_table_cp_");
-let usuario = "";
+const btn_envio_que_paso = document.getElementById("btn_envio_que_paso");
+const _close_cp_ = document.getElementById("_close_cp_");
+const nombre_cp = document.getElementById("nombre_cp");
+const accion_cp = document.getElementById("accion_cp");
+const casino_cp = document.getElementById("casino_cp");
+const categoria_cp = document.getElementById("categoria_cp");
+const loader = document.getElementById("loader");
+const nombre_golazo = document.getElementById("nombre_golazo");
+const casino_golazo = document.getElementById("casino_golazo");
+const categoria_golazo = document.getElementById("categoria_golazo");
+const btn_enviar_golazo = document.getElementById("btn_enviar_golazo");
 
-equipo_local.addEventListener("change", () => {
-  if (equipo_local.value) {
+let scoreLocalFinal;
+let scoreVisiFinal;
+
+const paises = {
+  ca: "Canadá",
+  mx: "México",
+  us: "Estados Unidos",
+
+  ar: "Argentina",
+  br: "Brasil",
+  co: "Colombia",
+  ec: "Ecuador",
+  py: "Paraguay",
+  uy: "Uruguay",
+
+  de: "Alemania",
+  at: "Austria",
+  be: "Bélgica",
+  ba: "Bosnia y Herzegovina",
+  hr: "Croacia",
+  cz: "Chequia",
+  "gb-eng": "Inglaterra",
+  fr: "Francia",
+  nl: "Países Bajos",
+  no: "Noruega",
+  pt: "Portugal",
+  "gb-sct": "Escocia",
+  es: "España",
+  se: "Suecia",
+  ch: "Suiza",
+  tr: "Turquía",
+
+  au: "Australia",
+  iq: "Irak",
+  ir: "Irán",
+  jp: "Japón",
+  jo: "Jordania",
+  kr: "Corea del Sur",
+  qa: "Qatar",
+  sa: "Arabia Saudita",
+  uz: "Uzbekistán",
+
+  dz: "Argelia",
+  cv: "Cabo Verde",
+  cd: "RD Congo",
+  ci: "Costa de Marfil",
+  eg: "Egipto",
+  gh: "Ghana",
+  ma: "Marruecos",
+  sn: "Senegal",
+  za: "Sudáfrica",
+  tn: "Túnez",
+
+  cw: "Curazao",
+  ht: "Haití",
+  pa: "Panamá",
+
+  nz: "Nueva Zelanda",
+};
+
+_equipo_local_.addEventListener("input", () => {
+  if (_equipo_local_.value.length > 2) {
+    _equipo_local_.value = _equipo_local_.value.slice(0, 2);
+  }
+});
+
+_equipo_local_.addEventListener("input", (e) => {
+  const LIMITE = 2;
+
+  if (e.target.value.length > LIMITE) {
+    e.target.value = e.target.value.slice(0, LIMITE);
+  }
+
+  if (e.target.value !== "") {
+    let scoreLocal = Number(e.target.value);
+    localStorage.setItem("scoreLocal", scoreLocal);
+  } else {
+    localStorage.removeItem("scoreLocal");
+  }
+});
+
+_equipo_visitante_.addEventListener("input", () => {
+  if (_equipo_visitante_.value.length > 2) {
+    _equipo_visitante_.value = _equipo_visitante_.value.slice(0, 2);
+  }
+});
+
+_equipo_visitante_.addEventListener("input", (e) => {
+  const LIMITE = 2;
+
+  if (e.target.value.length > LIMITE) {
+    e.target.value = e.target.value.slice(0, LIMITE);
+  }
+
+  if (e.target.value !== "") {
+    let scoreVisi = Number(e.target.value);
+    localStorage.setItem("scoreVisi", scoreVisi);
+  } else {
+    localStorage.removeItem("scoreVisi");
+  }
+});
+
+let cp_data = "cp_data";
+
+scorePresistencia();
+function scorePresistencia() {
+  let teamL = localStorage.getItem("equipo_local");
+  let teamV = localStorage.getItem("equipo_visitante");
+
+  if (teamL) {
+    equipo_local.value = teamL;
     _img_equipo_local_.src = `/eventos/resources/${equipo_local.value}.png`;
-  } else {
-    _img_equipo_local_.src = "/eventos/resources/bandera_adivina.png";
   }
-});
 
-equipo_visitante.addEventListener("change", () => {
-  if (equipo_local.value) {
+  if (teamV) {
+    equipo_visitante.value = teamV;
     _img_equipo_visitante_.src = `/eventos/resources/${equipo_visitante.value}.png`;
-  } else {
-    _img_equipo_visitante_.src = "/eventos/resources/bandera_adivina.png";
   }
-});
+
+  equipo_local.addEventListener("change", () => {
+    if (equipo_local.value) {
+      _img_equipo_local_.src = `/eventos/resources/${equipo_local.value}.png`;
+      localStorage.setItem(
+        "equipo_local",
+        document.getElementById("equipo_local").value,
+      );
+    } else {
+      _img_equipo_local_.src = "/eventos/resources/bandera_adivina.png";
+      localStorage.removeItem("equipo_local");
+    }
+  });
+
+  equipo_visitante.addEventListener("change", () => {
+    if (equipo_local.value) {
+      _img_equipo_visitante_.src = `/eventos/resources/${equipo_visitante.value}.png`;
+      localStorage.setItem(
+        "equipo_visitante",
+        document.getElementById("equipo_visitante").value,
+      );
+    } else {
+      _img_equipo_visitante_.src = "/eventos/resources/bandera_adivina.png";
+      localStorage.removeItem("equipo_visitante");
+    }
+  });
+}
+
+const premiosCP = [
+  {
+    accion: "Primer Penalti",
+    premio: "$ 100.000",
+    ganador: "",
+    casino: "",
+  },
+  {
+    accion: "Primer Gol",
+    premio: "$ 50.000",
+    ganador: "",
+    casino: "",
+  },
+  {
+    accion: "Primera Amarilla",
+    premio: "$ 40.000",
+    ganador: "",
+    casino: "",
+  },
+  {
+    accion: "Primera Falta",
+    premio: "$ 30.000",
+    ganador: "",
+    casino: "",
+  },
+];
 
 chargeInfo();
 function chargeInfo() {
-  _content_table_cp_.innerHTML = `<table class="styled-table-rally">
-    <thead>
-        <tr>
+  const dataStorage = JSON.parse(localStorage.getItem(cp_data)) || premiosCP;
+  let scoreLocal = localStorage.getItem("scoreLocal");
+  let scoreVisi = localStorage.getItem("scoreVisi");
+
+  if (scoreLocal) {
+    _equipo_local_.value = scoreLocal;
+  }
+
+  if (scoreVisi) {
+    _equipo_visitante_.value = scoreVisi;
+  }
+
+  let html = `
+            <table class="styled-table-rally">
+            <thead>
+            <tr>
             <th>Acción</th>
             <th>Premio</th>
             <th>Ganador</th>
             <th>Casino</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr data-accion="Primer Penalti" data-premio="$ 100.000">
-            <td>Primer Penalti</td>
-            <td>$ 100.000</td>
-            <td>${usuario === "" ? `<button class="_btn_envio_cp_ btn btn-primary">Enviar</button>` : usuario}</td>
-            <td>${usuario === "" ? `<p>Sin registro</p>` : "A09"}</td>
-        </tr>
-        <tr data-accion="Primer Gol" data-premio="$ 50.000">
-            <td>Primer Gol</td>
-            <td>$ 50.000</td>
-            <td>${usuario === "" ? `<button class="btn btn-primary _btn_envio_cp_">Enviar</button>` : usuario}</td>
-            <td>${usuario === "" ? `<p>Sin registro</p>` : "A05"}</td>
-        </tr>
-        <tr data-accion="Primera Amarilla" data-premio="$ 40.000">
-            <td>Primera Amarilla</td>
-            <td>$ 40.000</td>
-            <td>${usuario === "" ? `<button class="btn btn-primary _btn_envio_cp_">Enviar</button>` : usuario}</td>
-            <td>${usuario === "" ? `<p>Sin registro</p>` : "A07"}</td>
-        </tr>
-        <tr data-accion="Primera Falta" data-premio="$ 30.000">
-            <td>Primera Falta</td>
-            <td>$ 30.000</td>
-            <td>${usuario === "" ? `<button class="btn btn-primary _btn_envio_cp_">Enviar</button>` : usuario}</td>
-            <td>${usuario === "" ? `<p>Sin registro</p>` : "A08"}</td>
-        </tr>
-    </tbody>
-</table>`;
+            <button id="_btn_limpiar_tabla_" class="btn btn-danger _btn_limpiar_tabla_">Limpiar</button>
+            </tr>
+            </thead>
+            <tbody>
+            `;
+  dataStorage.forEach((item) => {
+    html += `
+    <tr data-accion="${item.accion}" data-premio="${item.premio}">
+      <td>${item.accion}</td>
+      <td>${item.premio}</td>
+      <td>
+        ${
+          item.ganador
+            ? item.ganador
+            : `<button class="_btn_envio_cp_ btn btn-primary">Enviar</button>`
+        }
+      </td>
+      <td>
+        ${item.casino || "<p>Sin registro</p>"}
+      </td>
+    </tr>
+  `;
+  });
+
+  html += `</tbody></table>`;
+
+  _content_table_cp_.innerHTML = html;
+  const _btn_limpiar_tabla_ = document.getElementById("_btn_limpiar_tabla_");
+
+  _btn_limpiar_tabla_.addEventListener("click", () => {
+    Swal.fire({
+      title: "Seguro de reiniciar?",
+      text: "Se borrará todo en  pantalla",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si Quiero!",
+      allowOutsideClick: false,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Exito!",
+          text: "Reinicio Exitoso.",
+          icon: "success",
+          allowOutsideClick: false,
+        }).then((res) => {
+          if (res.isConfirmed) {
+            localStorage.removeItem("cp_data");
+            localStorage.removeItem("equipo_local");
+            localStorage.removeItem("equipo_visitante");
+            localStorage.removeItem("scoreLocal");
+            localStorage.removeItem("scoreVisi");
+            location.reload();
+            // chargeInfo();
+            // equipo_local.value = "";
+            // equipo_visitante.value = "";
+            // _img_equipo_local_.src = "/eventos/resources/bandera_adivina.png";
+            // _img_equipo_visitante_.src = "/eventos/resources/bandera_adivina.png";
+            // _equipo_local_.value = "";
+            // _equipo_visitante_.value = "";
+          }
+        });
+      }
+    });
+  });
 
   _content_table_cp_.addEventListener("click", (event) => {
     if (event.target.classList.contains("_btn_envio_cp_")) {
@@ -89,9 +314,191 @@ function chargeInfo() {
       modalInfo.innerHTML = ``;
       _content_table_cp_.appendChild(modalInfo);
 
-      // console.log("celdas:", celdas);
-      // console.log("Datos desde atributos data-:", datosData);
-      console.log("Datos desde el texto de la fila:", datosTexto);
+      // console.log("Datos desde el texto de la fila:", datosTexto);
+      _modal_cosas_pasan_.style.display = "flex";
+      accion_cp.value = datosTexto.accion;
+      accion_cp.disabled = true;
+      btn_envio_que_paso.onclick = () => {
+        const accion = celdas[0];
+        const premio = celdas[1];
+        const ganador = celdas[2];
+        const casino = celdas[3];
+
+        // console.log(accion);
+        // console.log(premio);
+        // console.log(ganador);
+        // console.log(casino);
+
+        if (!nombre_cp.value || !casino_cp.value || !categoria_cp.value) {
+          Swal.fire({
+            icon: "warning",
+            title: "Campos en Blanco",
+          });
+          return;
+        }
+
+        const fechaCompleta = new Date().toLocaleString("es-CO", {
+          timeZone: "America/Bogota",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        });
+
+        const [fecha, hora] = fechaCompleta.split(", ");
+
+        let data_cp = {
+          tipo: "dinamica",
+          Hora: hora,
+          Fecha: fecha,
+          Nombre: nombre_cp.value,
+          Casino: casino_cp.value,
+          Categoria: categoria_cp.value,
+          Accion: accion_cp.value,
+          Premio: datosTexto.premio,
+          Promocion: "Cosas que Pasan",
+          Usuario: user.Nombre,
+          Partido:
+            paises[equipo_local.value] +
+            " vs " +
+            paises[equipo_visitante.value],
+        };
+
+        loader.style.display = "flex";
+
+        fetch(url_cp, {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(data_cp),
+        })
+          .then((res) => res.text())
+          .then(() => {
+            // ganador.innerHTML = nombre_cp.value;
+            // casino.innerHTML = casino_cp.value;
+            const saved =
+              JSON.parse(localStorage.getItem(cp_data)) || premiosCP;
+            const item = saved.find((x) => x.accion === accion_cp.value);
+            item.ganador = nombre_cp.value;
+            item.casino = casino_cp.value;
+            localStorage.setItem(cp_data, JSON.stringify(saved));
+            chargeInfo();
+            _modal_cosas_pasan_.style.display = "none";
+            setTimeout(() => {
+              loader.style.display = "none";
+              nombre_cp.value = "";
+              casino_cp.value = "";
+              categoria_cp.value = "";
+              Swal.fire({
+                icon: "success",
+                title: "Envió Exitoso",
+              });
+            }, 1000);
+          })
+          .catch((error) => {
+            loader.style.display = "none";
+            Swal.fire({
+              icon: "error",
+              title: "Error en el Envió",
+            });
+          });
+      };
     }
   });
+
+  _close_cp_.addEventListener("click", () => {
+    _modal_cosas_pasan_.style.display = "none";
+  });
+}
+
+getScorepartido();
+function getScorepartido() {
+  fetch(`${url_golazo}?hoja=resultado`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (!Array.isArray(data) || data.length === 0) {
+        console.error("no tiene resultado");
+        return;
+      }
+
+      let dataResul = data[0];
+
+      if (dataResul.Local == "" || dataResul.Visitante == "") {
+        btn_validar_marcador.style.display = "none";
+      } else {
+        btn_validar_marcador.style.display = "inline";
+        scoreLocalFinal = dataResul.Local;
+        scoreVisiFinal = dataResul.Visitante;
+      }
+    });
+}
+
+btn_validar_marcador.addEventListener("click", () => {
+  if (
+    scoreLocalFinal == _equipo_local_.value &&
+    scoreVisiFinal == _equipo_visitante_.value
+  ) {
+    Swal.fire({
+      customClass: "_content_alerta_",
+      allowOutsideClick: false,
+      html: `<div class="_content_card_golazo_">
+              <h2>Marcador Acertado</h2>
+              <p>Encuentro Final</p>
+              <p><img src="/eventos/resources/${equipo_local.value}.png" > - <img src="/eventos/resources/${equipo_visitante.value}.png" ></p>
+              <p>${paises[equipo_local.value]} - ${paises[equipo_visitante.value]}</p>
+              <p>${scoreLocalFinal} - ${scoreVisiFinal}</p>
+              <h2>Obtuviste un premio de $ 100.000</h2>
+            </div>`,
+    });
+  } else {
+    Swal.fire({
+      customClass: "_content_alerta_",
+      allowOutsideClick: false,
+      html: `<div class="_content_card_golazo_">
+              <h2>Marcador <span>No</span> acertado</h2>
+              <p>Encuentro Final</p>
+              <p><img src="/eventos/resources/${equipo_local.value}.png" > - <img src="/eventos/resources/${equipo_visitante.value}.png" ></p>
+              <p>${paises[equipo_local.value]} - ${paises[equipo_visitante.value]}</p>
+              <p>${scoreLocalFinal} - ${scoreVisiFinal}</p>
+              <h2>Obtuviste un premio de $ 50.000</h2>
+            </div>`,
+    });
+  }
+  confettiAl();
+});
+
+btn_enviar_golazo.addEventListener("click", () => {
+  handleInfoGolazo();
+});
+
+function handleInfoGolazo() {
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  const [fecha, hora] = fechaCompleta.split(", ");
+
+  let data_golazo = {
+    tipo: "dinamica",
+    Hora: hora,
+    Fecha: fecha,
+    Nombre: nombre_golazo.value,
+    Casino: casino_golazo.value,
+    Categoria: categoria_golazo.value,
+    Promocion: "Golazo Millonario",
+    Usuario: user.Nombre,
+    Partido:
+      paises[equipo_local.value] + " vs " + paises[equipo_visitante.value],
+  };
+
+  console.log(data_golazo);
 }

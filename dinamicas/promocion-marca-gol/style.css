@@ -52,6 +52,7 @@
 
 ._content_logo_marca_ {
     position: absolute;
+    z-index: 10;
     left: 10px;
     top: 10px;
 }
@@ -168,6 +169,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
     width: 100%;
     height: auto;
     padding: 20px 0;
@@ -178,6 +180,71 @@
 ._content_cosas_pasan_>div {
     width: 100%;
     padding: 40px;
+}
+
+.btn_validar_marcador {
+    display: none;
+}
+
+._btn_limpiar_tabla_ {
+    position: absolute;
+    top: 0;
+    right: 30px;
+}
+
+._form_cosas_pasan_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+}
+
+._close_cp_ {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 30px;
+}
+
+._close_cp_:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+._content_alerta_ {
+    background-color: transparent;
+}
+
+._content_alerta_ button {
+    background-color: red;
+}
+
+._content_card_golazo_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'super wonder', sans-serif !important;
+    color: white;
+    background-color: #356adc;
+    border: yellow solid 1px;
+    padding: 60px;
+    border-radius: 8px;
+}
+
+._content_card_golazo_ img {
+    width: 50px;
+}
+
+._content_card_golazo_ span {
+    color: red;
+    font-size: 40px;
 }
 
 ._cotentt_equipos {
@@ -220,6 +287,7 @@
 
 .styled-table-rally thead {
     background: transparent;
+    position: relative;
     color: #fff;
 }
 
