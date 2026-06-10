@@ -89,6 +89,10 @@
     font-family: 'super wonder', sans-serif !important;
 }
 
+.admin_promo_item {
+    display: none;
+}
+
 ._content_marcador_val_ {
     display: flex;
     justify-content: center;
@@ -314,4 +318,18 @@
 
 .styled-table-rally tbody tr:hover {
     background-color: #00000007;
+}
+
+._content_input_update_{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+._content_input_update_ span {
+    width: 60px;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.61);
 }

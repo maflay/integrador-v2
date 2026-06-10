@@ -241,19 +241,19 @@
                 <div class="content_opcion_head">
                     <p id="btn_guardar_registro">Guardar Registro</p>
                 </div>
-                <div class="content_opcion_head">
+                <div style="display: none;" class="content_opcion_head">
                     <p id="btn_envio_secundario">Envio Secundario</p>
                 </div>
                 <div class="content_opcion_head">
                     <p id="btn_observacion">Observación</p>
                 </div>
-                <div class="content_opcion_head">
+                <div style="display: none;" class="content_opcion_head">
                     <p id="btn_tabla_premios">Tabla de Premios</p>
                 </div>
-                <div style="display: none;" class="content_opcion_head">
-                    <p id="btn_modal_opcion_6">Observaciones</p>
+                <div class="content_opcion_head admin_promo_item">
+                    <p id="btn_modal_opcion_6">Act. Marcador</p>
                 </div>
-                <div class="content_opcion_head">
+                <div style="display: none;" class="content_opcion_head">
                     <p id="btn_registro_dia">Registro del Dia</p>
                     <span id="notificacion_registro_dia" class="notificacion_registro_dia"></span>
                 </div>
@@ -422,6 +422,13 @@
                 <div class="info_body_modal">
                     <h2>Observación</h2>
                     <div class="datos_column_modal">
+                        <select name="chose_promocion" id="chose_promocion" class="form-control">
+                            <option value="">Promoción</option>
+                            <option value="">Cosas que pasan</option>
+                            <option value="">Golazo Millonario</option>
+                        </select>
+                    </div>
+                    <div class="datos_column_modal">
                         <select class="form-control" style="cursor: pointer;" id="casino_observacion">
                             <option value="">Casino...</option>
                             <option value="A05">A05</option>
@@ -577,7 +584,16 @@
             </div>
             <div style="display: none;" id="view_modal_opcion_6" class="content_body_modal">
                 <div class="info_body_modal">
-                    <h2>Observaciones</h2>
+                    <h2>Actualizar Marcador</h2>
+                    <br />
+                    <div class="_content_input_update_">
+                        <input name="equipo_local" id="score_local_f" class="form-control" type="number"
+                            placeholder="Equipo Local">
+                        <span></span>
+                        <input type="number" class="form-control" name="equipo_visitante" id="score_visi_f"
+                            placeholder="Equipo Visitante">
+                    </div>
+                    <button id="btn_update_score_golazo" class="btn btn-primary">Enviar</button>
                 </div>
             </div>
         </div>

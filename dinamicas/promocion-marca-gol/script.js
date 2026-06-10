@@ -29,9 +29,24 @@ const nombre_golazo = document.getElementById("nombre_golazo");
 const casino_golazo = document.getElementById("casino_golazo");
 const categoria_golazo = document.getElementById("categoria_golazo");
 const btn_enviar_golazo = document.getElementById("btn_enviar_golazo");
+const btn_update_score_golazo = document.getElementById(
+  "btn_update_score_golazo",
+);
 
 let scoreLocalFinal;
 let scoreVisiFinal;
+
+itemsAdmin();
+function itemsAdmin() {
+  let items_admin = document.querySelectorAll(".admin_promo_item");
+
+  console.log(user.Nivel);
+  if (user.Nivel == 1 || user.Nivel == 2) {
+    items_admin.forEach((item) => {
+      item.style.display = "flex";
+    });
+  }
+}
 
 const paises = {
   ca: "Canadá",
@@ -436,6 +451,22 @@ function getScorepartido() {
 }
 
 btn_validar_marcador.addEventListener("click", () => {
+  if (!_equipo_local_.value || !_equipo_visitante_.value) {
+    Swal.fire({
+      icon: "warning",
+      title: "Marcador en Blanco",
+    });
+    return;
+  }
+
+  if (!equipo_local.value || !equipo_visitante.value) {
+    Swal.fire({
+      icon: "warning",
+      title: "Selecciona equipos validos",
+    });
+    return;
+  }
+
   if (
     scoreLocalFinal == _equipo_local_.value &&
     scoreVisiFinal == _equipo_visitante_.value
@@ -474,6 +505,14 @@ btn_enviar_golazo.addEventListener("click", () => {
 });
 
 function handleInfoGolazo() {
+  if (!nombre_golazo.value || !casino_golazo.value || !categoria_golazo.value) {
+    Swal.fire({
+      icon: "warning",
+      title: "Campos en Blanco",
+    });
+    return;
+  }
+
   const fechaCompleta = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
     year: "numeric",
@@ -500,5 +539,84 @@ function handleInfoGolazo() {
       paises[equipo_local.value] + " vs " + paises[equipo_visitante.value],
   };
 
-  console.log(data_golazo);
+  loader.style.display = "flex";
+  fetch(`${url_golazo}?hoja=resultado`, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data_golazo),
+  })
+    .then((res) => res.text())
+    .then(() => {
+      nombre_golazo.value = "";
+      casino_golazo.value = "";
+      categoria_golazo.value = "";
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "success",
+        title: "Envio Exitoso",
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "error",
+        title: "Error en el Envió",
+      });
+    });
+}
+
+btn_update_score_golazo.addEventListener("click", () => {
+  UpdateScoreGolazo();
+});
+
+function UpdateScoreGolazo() {
+  let score_local_f = document.getElementById("score_local_f");
+  let score_visi_f = document.getElementById("score_visi_f");
+
+  if (!score_local_f.value || !score_visi_f.value) {
+    Swal.fire({
+      icon: "warning",
+      title: "Campos en Blanco",
+    });
+    return;
+  }
+
+  let data = {
+    tipo: "update_result",
+    sheetName: "resultado",
+    match: {
+      Numero: "23321312",
+    },
+    updates: {
+      Local: score_local_f.value,
+      Visitante: score_visi_f.value,
+    },
+  };
+
+  loader.style.display = "flex";
+
+  fetch(`${url_golazo}`, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.text())
+    .then(() => {
+      loader.style.display = "none";
+      score_local_f.value = "";
+      score_visi_f.value = "";
+      Swal.fire({
+        icon: "success",
+        title: "Envió Exitoso",
+      });
+    })
+    .catch((err) => {
+      console.error(err);
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "error",
+        title: "Error en el envio",
+      });
+    });
 }
