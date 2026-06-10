@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
 
 const user = inforUser();
 const url_cp =
-  "https://script.google.com/macros/s/AKfycbxuXEfiymeqQa--YiEZh9w51xjnGt6SAudqSb4gRv5XJfv8rFsfjumqwMs1ox2bk5br/exec";
+  "https://script.google.com/macros/s/AKfycbxMFBLiegyd-MJtkpkgDlL4gzaLUCEfbO9sHzu4oAXz4yF9B3WcPjlpren64dZX07HO/exec";
 const url_golazo =
   "https://script.google.com/macros/s/AKfycbyXg7q_m12113ihIfVn6VOx_nVXQK5YwkvMU_rvQ5AiyM-MVchfRbfGW2WaZkPKethcWg/exec";
 const equipo_local = document.getElementById("equipo_local");
@@ -32,6 +32,7 @@ const btn_enviar_golazo = document.getElementById("btn_enviar_golazo");
 const btn_update_score_golazo = document.getElementById(
   "btn_update_score_golazo",
 );
+const btn_envia_observacion = document.getElementById("btn_envia_observacion");
 
 let scoreLocalFinal;
 let scoreVisiFinal;
@@ -619,4 +620,44 @@ function UpdateScoreGolazo() {
         title: "Error en el envio",
       });
     });
+}
+
+btn_envia_observacion.addEventListener("click", () => {
+  handleSendObs();
+});
+
+function handleSendObs() {
+  let chose_promocion = document.getElementById("chose_promocion");
+  let casino_observacion = document.getElementById("casino_observacion");
+  let descripcion_observacion = document.getElementById(
+    "descripcion_observacion",
+  );
+
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  const [fecha, hora] = fechaCompleta.split(", ");
+
+  if(!chose_promocion.value ||
+    !casino_observacion.value ||
+    !descripcion_observacion.value
+  ){
+    Swal.fire({
+      icon: "warning",
+      title: "Campos en Blanco"
+    });
+    return;
+  }
+
+  let data = {
+
+  }
 }
