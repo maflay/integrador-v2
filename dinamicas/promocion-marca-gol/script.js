@@ -32,10 +32,19 @@ const btn_enviar_golazo = document.getElementById("btn_enviar_golazo");
 const btn_update_score_golazo = document.getElementById(
   "btn_update_score_golazo",
 );
+const _main_view_ = document.getElementById("_main_view_");
 const btn_envia_observacion = document.getElementById("btn_envia_observacion");
+const _btn_send_result_ = document.getElementById("_btn_send_result_");
 
 let scoreLocalFinal;
 let scoreVisiFinal;
+
+const FECHA_KEY = "fecha_millonario_cosas";
+
+const hoy = new Date().toDateString();
+if (localStorage.getItem(FECHA_KEY) !== hoy) {
+  localStorage.setItem(FECHA_KEY, hoy);
+}
 
 itemsAdmin();
 function itemsAdmin() {
@@ -106,47 +115,55 @@ const paises = {
   nz: "Nueva Zelanda",
 };
 
-_equipo_local_.addEventListener("input", () => {
-  if (_equipo_local_.value.length > 2) {
-    _equipo_local_.value = _equipo_local_.value.slice(0, 2);
-  }
-});
+_equipo_local_
+  ? _equipo_local_.addEventListener("input", () => {
+      if (_equipo_local_.value.length > 2) {
+        _equipo_local_.value = _equipo_local_.value.slice(0, 2);
+      }
+    })
+  : "";
 
-_equipo_local_.addEventListener("input", (e) => {
-  const LIMITE = 2;
+_equipo_local_
+  ? _equipo_local_.addEventListener("input", (e) => {
+      const LIMITE = 2;
 
-  if (e.target.value.length > LIMITE) {
-    e.target.value = e.target.value.slice(0, LIMITE);
-  }
+      if (e.target.value.length > LIMITE) {
+        e.target.value = e.target.value.slice(0, LIMITE);
+      }
 
-  if (e.target.value !== "") {
-    let scoreLocal = Number(e.target.value);
-    localStorage.setItem("scoreLocal", scoreLocal);
-  } else {
-    localStorage.removeItem("scoreLocal");
-  }
-});
+      if (e.target.value !== "") {
+        let scoreLocal = Number(e.target.value);
+        localStorage.setItem("scoreLocal", scoreLocal);
+      } else {
+        localStorage.removeItem("scoreLocal");
+      }
+    })
+  : "";
 
-_equipo_visitante_.addEventListener("input", () => {
-  if (_equipo_visitante_.value.length > 2) {
-    _equipo_visitante_.value = _equipo_visitante_.value.slice(0, 2);
-  }
-});
+_equipo_visitante_
+  ? _equipo_visitante_.addEventListener("input", () => {
+      if (_equipo_visitante_.value.length > 2) {
+        _equipo_visitante_.value = _equipo_visitante_.value.slice(0, 2);
+      }
+    })
+  : "";
 
-_equipo_visitante_.addEventListener("input", (e) => {
-  const LIMITE = 2;
+_equipo_visitante_
+  ? _equipo_visitante_.addEventListener("input", (e) => {
+      const LIMITE = 2;
 
-  if (e.target.value.length > LIMITE) {
-    e.target.value = e.target.value.slice(0, LIMITE);
-  }
+      if (e.target.value.length > LIMITE) {
+        e.target.value = e.target.value.slice(0, LIMITE);
+      }
 
-  if (e.target.value !== "") {
-    let scoreVisi = Number(e.target.value);
-    localStorage.setItem("scoreVisi", scoreVisi);
-  } else {
-    localStorage.removeItem("scoreVisi");
-  }
-});
+      if (e.target.value !== "") {
+        let scoreVisi = Number(e.target.value);
+        localStorage.setItem("scoreVisi", scoreVisi);
+      } else {
+        localStorage.removeItem("scoreVisi");
+      }
+    })
+  : "";
 
 let cp_data = "cp_data";
 
@@ -179,7 +196,7 @@ function scorePresistencia() {
   });
 
   equipo_visitante.addEventListener("change", () => {
-    if (equipo_local.value) {
+    if (equipo_visitante.value) {
       _img_equipo_visitante_.src = `/eventos/resources/${equipo_visitante.value}.png`;
       localStorage.setItem(
         "equipo_visitante",
@@ -219,7 +236,7 @@ const premiosCP = [
   },
 ];
 
-chargeInfo();
+_main_view_ ? chargeInfo() : "";
 function chargeInfo() {
   const dataStorage = JSON.parse(localStorage.getItem(cp_data)) || premiosCP;
   let scoreLocal = localStorage.getItem("scoreLocal");
@@ -429,7 +446,7 @@ function chargeInfo() {
   });
 }
 
-getScorepartido();
+_main_view_ ? getScorepartido() : "";
 function getScorepartido() {
   fetch(`${url_golazo}?hoja=resultado`)
     .then((res) => res.json())
@@ -451,31 +468,32 @@ function getScorepartido() {
     });
 }
 
-btn_validar_marcador.addEventListener("click", () => {
-  if (!_equipo_local_.value || !_equipo_visitante_.value) {
-    Swal.fire({
-      icon: "warning",
-      title: "Marcador en Blanco",
-    });
-    return;
-  }
+btn_validar_marcador
+  ? btn_validar_marcador.addEventListener("click", () => {
+      if (!_equipo_local_.value || !_equipo_visitante_.value) {
+        Swal.fire({
+          icon: "warning",
+          title: "Marcador en Blanco",
+        });
+        return;
+      }
 
-  if (!equipo_local.value || !equipo_visitante.value) {
-    Swal.fire({
-      icon: "warning",
-      title: "Selecciona equipos validos",
-    });
-    return;
-  }
+      if (!equipo_local.value || !equipo_visitante.value) {
+        Swal.fire({
+          icon: "warning",
+          title: "Selecciona equipos validos",
+        });
+        return;
+      }
 
-  if (
-    scoreLocalFinal == _equipo_local_.value &&
-    scoreVisiFinal == _equipo_visitante_.value
-  ) {
-    Swal.fire({
-      customClass: "_content_alerta_",
-      allowOutsideClick: false,
-      html: `<div class="_content_card_golazo_">
+      if (
+        scoreLocalFinal == _equipo_local_.value &&
+        scoreVisiFinal == _equipo_visitante_.value
+      ) {
+        Swal.fire({
+          customClass: "_content_alerta_",
+          allowOutsideClick: false,
+          html: `<div class="_content_card_golazo_">
               <h2>Marcador Acertado</h2>
               <p>Encuentro Final</p>
               <p><img src="/eventos/resources/${equipo_local.value}.png" > - <img src="/eventos/resources/${equipo_visitante.value}.png" ></p>
@@ -483,12 +501,12 @@ btn_validar_marcador.addEventListener("click", () => {
               <p>${scoreLocalFinal} - ${scoreVisiFinal}</p>
               <h2>Obtuviste un premio de $ 100.000</h2>
             </div>`,
-    });
-  } else {
-    Swal.fire({
-      customClass: "_content_alerta_",
-      allowOutsideClick: false,
-      html: `<div class="_content_card_golazo_">
+        });
+      } else {
+        Swal.fire({
+          customClass: "_content_alerta_",
+          allowOutsideClick: false,
+          html: `<div class="_content_card_golazo_">
               <h2>Marcador <span>No</span> acertado</h2>
               <p>Encuentro Final</p>
               <p><img src="/eventos/resources/${equipo_local.value}.png" > - <img src="/eventos/resources/${equipo_visitante.value}.png" ></p>
@@ -496,14 +514,17 @@ btn_validar_marcador.addEventListener("click", () => {
               <p>${scoreLocalFinal} - ${scoreVisiFinal}</p>
               <h2>Obtuviste un premio de $ 50.000</h2>
             </div>`,
-    });
-  }
-  confettiAl();
-});
+        });
+      }
+      confettiAl();
+    })
+  : "";
 
-btn_enviar_golazo.addEventListener("click", () => {
-  handleInfoGolazo();
-});
+btn_enviar_golazo
+  ? btn_enviar_golazo.addEventListener("click", () => {
+      handleInfoGolazo();
+    })
+  : "";
 
 function handleInfoGolazo() {
   if (!nombre_golazo.value || !casino_golazo.value || !categoria_golazo.value) {
@@ -567,21 +588,21 @@ function handleInfoGolazo() {
     });
 }
 
-btn_update_score_golazo.addEventListener("click", () => {
-  UpdateScoreGolazo();
-});
+btn_update_score_golazo
+  ? btn_update_score_golazo.addEventListener("click", () => {
+      UpdateScoreGolazo();
+    })
+  : "";
+
+_btn_send_result_
+  ? _btn_send_result_.addEventListener("click", () => {
+      UpdateScoreGolazo();
+    })
+  : "";
 
 function UpdateScoreGolazo() {
   let score_local_f = document.getElementById("score_local_f");
   let score_visi_f = document.getElementById("score_visi_f");
-
-  if (!score_local_f.value || !score_visi_f.value) {
-    Swal.fire({
-      icon: "warning",
-      title: "Campos en Blanco",
-    });
-    return;
-  }
 
   let data = {
     tipo: "update_result",
@@ -622,9 +643,11 @@ function UpdateScoreGolazo() {
     });
 }
 
-btn_envia_observacion.addEventListener("click", () => {
-  handleSendObs();
-});
+btn_envia_observacion
+  ? btn_envia_observacion.addEventListener("click", () => {
+      handleSendObs();
+    })
+  : "";
 
 function handleSendObs() {
   let chose_promocion = document.getElementById("chose_promocion");
@@ -632,6 +655,7 @@ function handleSendObs() {
   let descripcion_observacion = document.getElementById(
     "descripcion_observacion",
   );
+  let sendPackage;
 
   const fechaCompleta = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
@@ -646,18 +670,56 @@ function handleSendObs() {
 
   const [fecha, hora] = fechaCompleta.split(", ");
 
-  if(!chose_promocion.value ||
+  if (
+    !chose_promocion.value ||
     !casino_observacion.value ||
     !descripcion_observacion.value
-  ){
+  ) {
     Swal.fire({
       icon: "warning",
-      title: "Campos en Blanco"
+      title: "Campos en Blanco",
     });
     return;
   }
 
   let data = {
+    tipo: "observaciones",
+    Hora: hora,
+    Fecha: fecha,
+    Casino: casino_observacion.value,
+    Observacion: descripcion_observacion.value,
+    Usuario: user.Nombre,
+  };
 
+  if (chose_promocion.value == "cosas") {
+    sendPackage = url_cp;
+  } else if (chose_promocion.value == "golazo") {
+    sendPackage = url_golazo;
   }
+
+  loader.style.display = "flex";
+
+  fetch(`${sendPackage}`, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.text())
+    .then(() => {
+      chose_promocion.value = "";
+      casino_observacion.value = "";
+      descripcion_observacion.value = "";
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "success",
+        title: "Envió Exitoso",
+      });
+    })
+    .catch((error) => {
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "error",
+        title: "Erroe en el Envió",
+      });
+    });
 }
