@@ -470,7 +470,7 @@ function getScorepartido() {
 
       let dataResul = data[0];
 
-      if (dataResul.Local == "" || dataResul.Visitante == "") {
+      if (dataResul.Local == "" && dataResul.Visitante == "") {
         btn_validar_marcador.style.display = "none";
       } else {
         btn_validar_marcador.style.display = "inline";
