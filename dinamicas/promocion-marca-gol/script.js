@@ -215,25 +215,25 @@ function scorePresistencia() {
 
 const premiosCP = [
   {
-    accion: "Primer tiro de esquina",
+    accion: "Primer tiro de esquina.",
     premio: "$ 100.000",
     ganador: "",
     casino: "",
   },
   {
-    accion: "Primer penal",
+    accion: "Primer penal.",
     premio: "$ 100.000",
     ganador: "",
     casino: "",
   },
   {
-    accion: "Primer Gol",
+    accion: "Primer Gol.",
     premio: "$ 50.000",
     ganador: "",
     casino: "",
   },
   {
-    accion: "Primera tarjeta roja ",
+    accion: "Primera tarjeta roja.",
     premio: "$ 40.000",
     ganador: "",
     casino: "",
