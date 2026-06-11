@@ -374,6 +374,14 @@ function chargeInfo() {
           return;
         }
 
+        if (!equipo_local.value || !equipo_visitante.value) {
+          Swal.fire({
+            icon: "warning",
+            title: "Selecciona los equipos",
+          });
+          return;
+        }
+
         const fechaCompleta = new Date().toLocaleString("es-CO", {
           timeZone: "America/Bogota",
           year: "numeric",
