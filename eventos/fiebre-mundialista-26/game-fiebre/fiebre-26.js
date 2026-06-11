@@ -574,6 +574,7 @@ async function cargaData() {
     });
 
     const [fecha, hora] = fechaCompleta.split(", ");
+
     for (const user of ranking) {
       await fetch(`${url}?hoja=puntajes`, {
         method: "POST",
@@ -597,6 +598,7 @@ async function cargaData() {
         }),
       });
     }
+    
     consultarScoreMund();
   } catch (error) {
     console.error("Error en las peticiones", error);

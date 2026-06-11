@@ -15,7 +15,7 @@ if (currentHash.includes("admin_quiz")) {
   }
 }
 let contadorPreguntas = 0;
-const preguntas = [];
+let preguntas = [];
 
 btn_add_pregunta
   ? btn_add_pregunta.addEventListener("click", () => {
@@ -86,11 +86,13 @@ function obtenerPreguntas() {
 }
 
 btn_send_quiz
-  ? btn_send_quiz.addEventListener("click", () => {
+  ? btn_send_quiz.addEventListener("click", async () => {
       // let _build_preguntas_ = obtenerPreguntas();
       // console.log(_build_preguntas_);
 
-      document.querySelectorAll("._card_form_ask_").forEach((card) => {
+      let _card_form_ask_ = document.querySelectorAll("._card_form_ask_");
+      preguntas = [];
+      _card_form_ask_.forEach((card) => {
         preguntas.push({
           pregunta: card.querySelector(".pregunta").value,
           respuesta: card.querySelector(".respuesta").value,
@@ -98,6 +100,60 @@ btn_send_quiz
         });
       });
 
-      console.log(preguntas);
+      let longArray = _card_form_ask_.length;
+
+      const longitud_card = preguntas.map((card) => {
+        return {
+          Pregunta: card.pregunta,
+          Respuesta: card.pregunta,
+          Opcion_1: card.opciones[0],
+          Opcion_2: card.opciones[1],
+          Opcion_3: card.opciones[2],
+          Opcion_4: card.opciones[3],
+          Creado: user.Nombre,
+        };
+      });
+
+      console.log(longitud_card);
+
+      for (const question of longitud_card) {
+        await console.log(question);
+
+        if (question.Nombre == "") {
+          Swal.fire({
+            icon: "warning",
+            title: "Campos en Blanco",
+          });
+          return;
+        }
+
+        await fetch("sadad", {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify({
+            tipo: "update_result",
+            sheetName: "resultados",
+            match: {
+              Numero: "8656214",
+            },
+            updates: {
+              Nombre: question.Nombre,
+              Tiempo: "",
+              Respuesta: question.Respuesta,
+              Creado: question.Creado,
+              Opcion_1: question.Opcion_1,
+              Opcion_2: question.Opcion_2,
+              Opcion_3: question.Opcion_3,
+              Opcion_4: question.Opcion_4,
+            },
+          }),
+        })
+          .then((res) => res.text())
+          .then(() => {});
+      }
+
+      let data = {
+        tipo: "quiz",
+      };
     })
   : "";

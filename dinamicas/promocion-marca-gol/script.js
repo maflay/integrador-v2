@@ -182,36 +182,46 @@ function scorePresistencia() {
     _img_equipo_visitante_.src = `/eventos/resources/${equipo_visitante.value}.png`;
   }
 
-  equipo_local.addEventListener("change", () => {
-    if (equipo_local.value) {
-      _img_equipo_local_.src = `/eventos/resources/${equipo_local.value}.png`;
-      localStorage.setItem(
-        "equipo_local",
-        document.getElementById("equipo_local").value,
-      );
-    } else {
-      _img_equipo_local_.src = "/eventos/resources/bandera_adivina.png";
-      localStorage.removeItem("equipo_local");
-    }
-  });
+  equipo_local
+    ? equipo_local.addEventListener("change", () => {
+        if (equipo_local.value) {
+          _img_equipo_local_.src = `/eventos/resources/${equipo_local.value}.png`;
+          localStorage.setItem(
+            "equipo_local",
+            document.getElementById("equipo_local").value,
+          );
+        } else {
+          _img_equipo_local_.src = "/eventos/resources/bandera_adivina.png";
+          localStorage.removeItem("equipo_local");
+        }
+      })
+    : "";
 
-  equipo_visitante.addEventListener("change", () => {
-    if (equipo_visitante.value) {
-      _img_equipo_visitante_.src = `/eventos/resources/${equipo_visitante.value}.png`;
-      localStorage.setItem(
-        "equipo_visitante",
-        document.getElementById("equipo_visitante").value,
-      );
-    } else {
-      _img_equipo_visitante_.src = "/eventos/resources/bandera_adivina.png";
-      localStorage.removeItem("equipo_visitante");
-    }
-  });
+  equipo_visitante
+    ? equipo_visitante.addEventListener("change", () => {
+        if (equipo_visitante.value) {
+          _img_equipo_visitante_.src = `/eventos/resources/${equipo_visitante.value}.png`;
+          localStorage.setItem(
+            "equipo_visitante",
+            document.getElementById("equipo_visitante").value,
+          );
+        } else {
+          _img_equipo_visitante_.src = "/eventos/resources/bandera_adivina.png";
+          localStorage.removeItem("equipo_visitante");
+        }
+      })
+    : "";
 }
 
 const premiosCP = [
   {
-    accion: "Primer Penalti",
+    accion: "Acierto el marcador (Final final de cada partido)",
+    premio: "$ 100.000 / $ 50.000",
+    ganador: "",
+    casino: "",
+  },
+  {
+    accion: "Primer tiro de esquina",
     premio: "$ 100.000",
     ganador: "",
     casino: "",
@@ -223,14 +233,14 @@ const premiosCP = [
     casino: "",
   },
   {
-    accion: "Primera Amarilla",
-    premio: "$ 40.000",
+    accion: "Primer penal",
+    premio: "$ 100.000",
     ganador: "",
     casino: "",
   },
   {
-    accion: "Primera Falta",
-    premio: "$ 30.000",
+    accion: "Primera tarjeta roja ",
+    premio: "$ 40.000",
     ganador: "",
     casino: "",
   },

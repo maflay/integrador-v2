@@ -275,9 +275,7 @@
 
 .table-result-rally::-webkit-scrollbar {
     width: 8px;
-    /* Adjust width as needed */
     background-color: transparent;
-    /* Make the entire scrollbar area transparent */
 }
 
 .styled-table-rally {
@@ -312,15 +310,15 @@
     color: #000;
 }
 
-.styled-table-rally tbody tr:nth-child(even) {
-    /* background-color: transparent; */
-}
+/* .styled-table-rally tbody tr:nth-child(even) {
+    background-color: transparent;
+} */
 
 .styled-table-rally tbody tr:hover {
     background-color: #00000007;
 }
 
-._content_input_update_{
+._content_input_update_ {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -331,5 +329,5 @@
 ._content_input_update_ span {
     width: 60px;
     height: 2px;
-    background-color: rgba(0, 0, 0, 0.61);
+    background-color: #0000009c;
 }
