@@ -331,3 +331,14 @@
     height: 2px;
     background-color: #0000009c;
 }
+
+@media(max-width: 768px) {
+    ._fomr_result_ {
+        flex-direction: column;
+    }
+
+    ._fomr_result_ input {
+        width: 120px;
+    }
+
+}

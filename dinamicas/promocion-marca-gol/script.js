@@ -167,7 +167,7 @@ _equipo_visitante_
 
 let cp_data = "cp_data";
 
-scorePresistencia();
+_main_view_ ? scorePresistencia() : "";
 function scorePresistencia() {
   let teamL = localStorage.getItem("equipo_local");
   let teamV = localStorage.getItem("equipo_visitante");

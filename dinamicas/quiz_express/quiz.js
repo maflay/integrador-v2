@@ -6,6 +6,7 @@ const _content_form_ask_ = document.getElementById("_content_form_ask_");
 const preguntas_cant = document.getElementById("preguntas_cant");
 const btn_send_quiz = document.getElementById("btn_send_quiz");
 const btn_add_pregunta = document.getElementById("btn_add_pregunta");
+const tiempo_quiz = document.getElementById("tiempo_quiz");
 
 const user = inforUser();
 const currentHash = window.location.href;
@@ -36,10 +37,10 @@ btn_add_pregunta
         <input 
           type="text"
           placeholder="Pregunta"
-          class="form-control pregunta"
+          class="form-control pregunta cant_empty"
         >
 
-        <select class="form-control respuesta">
+        <select class="form-control respuesta cant_empty">
           <option value="">Respuesta</option>
           <option value="A">A</option>
           <option value="B">B</option>
@@ -102,6 +103,19 @@ btn_send_quiz
 
       let longArray = _card_form_ask_.length;
 
+      let campos = document.querySelectorAll(".cant_empty");
+      let hayVacios = Array.from(campos).some(
+        (campo) => campo.value.trim() === "",
+      );
+
+      if (hayVacios) {
+        Swal.fire({
+          icon: "warning",
+          title: "Campos en Blanco",
+        });
+        return;
+      }
+
       const longitud_card = preguntas.map((card) => {
         return {
           Pregunta: card.pregunta,
@@ -111,6 +125,7 @@ btn_send_quiz
           Opcion_3: card.opciones[2],
           Opcion_4: card.opciones[3],
           Creado: user.Nombre,
+          Tiempo: tiempo_quiz.value,
         };
       });
 
@@ -118,14 +133,6 @@ btn_send_quiz
 
       for (const question of longitud_card) {
         await console.log(question);
-
-        if (question.Nombre == "") {
-          Swal.fire({
-            icon: "warning",
-            title: "Campos en Blanco",
-          });
-          return;
-        }
 
         await fetch("sadad", {
           method: "POST",
@@ -145,6 +152,7 @@ btn_send_quiz
               Opcion_2: question.Opcion_2,
               Opcion_3: question.Opcion_3,
               Opcion_4: question.Opcion_4,
+              Tiempo: question.Tiempo,
             },
           }),
         })
