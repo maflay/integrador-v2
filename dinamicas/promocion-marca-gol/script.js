@@ -28,6 +28,7 @@ const loader = document.getElementById("loader");
 const nombre_golazo = document.getElementById("nombre_golazo");
 const casino_golazo = document.getElementById("casino_golazo");
 const categoria_golazo = document.getElementById("categoria_golazo");
+const bono_golazo = document.getElementById("bono_golazo");
 const btn_enviar_golazo = document.getElementById("btn_enviar_golazo");
 const btn_update_score_golazo = document.getElementById(
   "btn_update_score_golazo",
@@ -215,25 +216,25 @@ function scorePresistencia() {
 
 const premiosCP = [
   {
-    accion: "Primer tiro de esquina.",
-    premio: "$ 50.000",
-    ganador: "",
-    casino: "",
-  },
-  {
-    accion: "Primer gol.",
-    premio: "$ 50.000",
-    ganador: "",
-    casino: "",
-  },
-  {
-    accion: "Primer Penal.",
+    accion: "Primer fuera de lugar.",
     premio: "$ 100.000",
     ganador: "",
     casino: "",
   },
   {
-    accion: "Primera tarjeta roja.",
+    accion: "Primer saque de banda.",
+    premio: "$ 80.000",
+    ganador: "",
+    casino: "",
+  },
+  {
+    accion: "Primera Amarilla.",
+    premio: "$ 80.000",
+    ganador: "",
+    casino: "",
+  },
+  {
+    accion: "Primer Gol .",
     premio: "$ 100.000",
     ganador: "",
     casino: "",
@@ -539,7 +540,12 @@ btn_enviar_golazo
   : "";
 
 function handleInfoGolazo() {
-  if (!nombre_golazo.value || !casino_golazo.value || !categoria_golazo.value) {
+  if (
+    !nombre_golazo.value ||
+    !casino_golazo.value ||
+    !categoria_golazo.value ||
+    !bono_golazo.value
+  ) {
     Swal.fire({
       icon: "warning",
       title: "Campos en Blanco",
@@ -571,6 +577,8 @@ function handleInfoGolazo() {
     Usuario: user.Nombre,
     Partido:
       paises[equipo_local.value] + " vs " + paises[equipo_visitante.value],
+    Marcador: _equipo_local_.value + " vs " + _equipo_visitante_.value,
+    Bono: bono_golazo.value,
   };
 
   loader.style.display = "flex";
@@ -584,6 +592,7 @@ function handleInfoGolazo() {
       nombre_golazo.value = "";
       casino_golazo.value = "";
       categoria_golazo.value = "";
+      bono_golazo.value = "";
       loader.style.display = "none";
       Swal.fire({
         icon: "success",
