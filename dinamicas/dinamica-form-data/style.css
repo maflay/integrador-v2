@@ -38,3 +38,14 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+._form_formdata_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    gap: 15px;
+}
