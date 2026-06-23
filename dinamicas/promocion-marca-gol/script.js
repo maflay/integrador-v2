@@ -387,9 +387,9 @@ function chargeInfo() {
         const casino = celdas[3];
 
         if (acerto_cp.value == 1) {
-          premioApuntado = "100000";
+          premioApuntado = "150000";
         } else if (acerto_cp.value == 2) {
-          premioApuntado = "50000";
+          premioApuntado = "100000";
         }
 
         // console.log(accion);
