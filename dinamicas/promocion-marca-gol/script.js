@@ -33,6 +33,8 @@ const btn_enviar_golazo = document.getElementById("btn_enviar_golazo");
 const btn_update_score_golazo = document.getElementById(
   "btn_update_score_golazo",
 );
+const content_acerto_cp = document.getElementById("content_acerto_cp");
+const acerto_cp = document.getElementById("acerto_cp");
 const _main_view_ = document.getElementById("_main_view_");
 const btn_envia_observacion = document.getElementById("btn_envia_observacion");
 const _btn_send_result_ = document.getElementById("_btn_send_result_");
@@ -215,7 +217,7 @@ function scorePresistencia() {
 }
 
 const premiosCP = [
-    {
+  {
     accion: "Acerto el marcador.",
     premio: "$ 150.000 Si no acierta $100.000",
     ganador: "",
@@ -339,6 +341,8 @@ function chargeInfo() {
   _content_table_cp_.addEventListener("click", (event) => {
     if (event.target.classList.contains("_btn_envio_cp_")) {
       const fila = event.target.closest("tr");
+      let validatScoreVal = "Acerto el marcador.";
+      let premioApuntado = "";
 
       const datosData = {
         accion: fila.dataset.accion,
@@ -362,11 +366,24 @@ function chargeInfo() {
       _modal_cosas_pasan_.style.display = "flex";
       accion_cp.value = datosTexto.accion;
       accion_cp.disabled = true;
+
+      if (datosTexto.accion == validatScoreVal) {
+        content_acerto_cp.style.display = "inline";
+      } else {
+        content_acerto_cp.style.display = "none";
+      }
+
       btn_envio_que_paso.onclick = () => {
         const accion = celdas[0];
         const premio = celdas[1];
         const ganador = celdas[2];
         const casino = celdas[3];
+
+        if (acerto_cp.value == 1) {
+          premioApuntado = "100000";
+        } else if (acerto_cp.value == 2) {
+          premioApuntado = "50000";
+        }
 
         // console.log(accion);
         // console.log(premio);
@@ -402,6 +419,9 @@ function chargeInfo() {
 
         const [fecha, hora] = fechaCompleta.split(", ");
 
+        let soloNumeros = datosTexto.premio.replace(/\D/g, '');
+        let numeroPremio = parseInt(soloNumeros, 10);
+
         let data_cp = {
           tipo: "dinamica",
           Hora: hora,
@@ -410,8 +430,14 @@ function chargeInfo() {
           Casino: casino_cp.value,
           Categoria: categoria_cp.value,
           Accion: accion_cp.value,
-          Premio: datosTexto.premio,
-          Promocion: "Cosas que Pasan",
+          Premio:
+            datosTexto.accion == validatScoreVal
+              ? premioApuntado
+              : numeroPremio,
+          Promocion:
+            datosTexto.accion == validatScoreVal
+              ? "Marca Gol"
+              : "Cosas que Pasan",
           Usuario: user.Nombre,
           Partido:
             paises[equipo_local.value] +
@@ -563,7 +589,7 @@ function handleInfoGolazo() {
     timeZone: "America/Bogota",
     year: "numeric",
     month: "2-digit",
-    day: "2-digit", 
+    day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit",
