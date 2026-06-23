@@ -215,6 +215,12 @@ function scorePresistencia() {
 }
 
 const premiosCP = [
+    {
+    accion: "Acierto el marcador.",
+    premio: "$ 150.000 Si no acierta $100.000",
+    ganador: "",
+    casino: "",
+  },
   {
     accion: "Primer fuera de lugar.",
     premio: "$ 100.000",
