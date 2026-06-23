@@ -218,6 +218,12 @@ function scorePresistencia() {
 
 const premiosCP = [
   {
+    accion: "Bono Remate.",
+    premio: "$ 200.000",
+    ganador: "",
+    casino: "",
+  },
+  {
     accion: "Acerto el marcador.",
     premio: "$ 150.000 Si no acierta $100.000",
     ganador: "",
@@ -342,6 +348,7 @@ function chargeInfo() {
     if (event.target.classList.contains("_btn_envio_cp_")) {
       const fila = event.target.closest("tr");
       let validatScoreVal = "Acerto el marcador.";
+      let validaRemate = "Bono Remate.";
       let premioApuntado = "";
 
       const datosData = {
@@ -419,7 +426,7 @@ function chargeInfo() {
 
         const [fecha, hora] = fechaCompleta.split(", ");
 
-        let soloNumeros = datosTexto.premio.replace(/\D/g, '');
+        let soloNumeros = datosTexto.premio.replace(/\D/g, "");
         let numeroPremio = parseInt(soloNumeros, 10);
 
         let data_cp = {
@@ -437,7 +444,9 @@ function chargeInfo() {
           Promocion:
             datosTexto.accion == validatScoreVal
               ? "Marca Gol"
-              : "Cosas que Pasan",
+              : datosTexto.accion == validaRemate
+                ? "Bono Remate"
+                : "Cosas que Pasan",
           Usuario: user.Nombre,
           Partido:
             paises[equipo_local.value] +

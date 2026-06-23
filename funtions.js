@@ -3,6 +3,8 @@ const btnOpen = document.getElementById("btnOpen");
 const btnClose = document.getElementById("btnClose");
 const backdrop = document.getElementById("backdrop");
 const main = document.getElementById("main");
+
+
 const view = document.getElementById("view");
 const links = Array.from(
   document.querySelectorAll('[data-route], .sidebar-nav .nav-link[href^="#"]')
@@ -587,3 +589,4 @@ function OlvidarUsuario() {
     }
   });
 }
+
