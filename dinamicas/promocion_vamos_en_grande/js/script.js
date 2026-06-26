@@ -914,6 +914,10 @@ function getDataLogTiquetes() {
 
 const actualizar_list_log = document.getElementById("actualizar_list_log");
 
+actualizar_list_log.onclick = () => {
+  getDataLogTiquetes();
+};
+
 // document.getElementById("btn_resultados").addEventListener("click", () => {
 //   document.getElementById("modal_resultados").style.display = "flex";
 //   lockBodyScroll();
