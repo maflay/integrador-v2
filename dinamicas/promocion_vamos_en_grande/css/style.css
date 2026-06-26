@@ -47,6 +47,22 @@ body {
     gap: 10px;
 }
 
+._content_opciones {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+._content_opciones img {
+    width: 30px;
+    transition: all 0.4s ease;
+}
+
+._content_opciones img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
 .search_promo {
     position: absolute !important;
     top: 15px !important;
@@ -311,11 +327,6 @@ body {
 .table-result {
     width: 100%;
     overflow-x: auto;
-}
-
-.styled-table {
-    min-width: 1000px;
-    width: 100%;
 }
 
 .content-actions {

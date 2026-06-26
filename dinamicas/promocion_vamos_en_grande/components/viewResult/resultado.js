@@ -42,7 +42,7 @@ const Num_Negros = [
 
 const Num_Verdes = ["0", "00"];
 const url =
-  "https://script.google.com/macros/s/AKfycbwqtTZ2OkK-lnAvI0lsu_3An8koosJhTDZzhLgPVcBPxRD7FTiFn2Wd4zAD8jEFMezCCw/exec";
+  "https://script.google.com/macros/s/AKfycbyZV3Y8YB91ZQGdSY2O1yECcmSLKfbsggU7sTr-B70TCqN2mriwRPWZ4VYGABcTOpxO/exec";
 validateInfo();
 
 // setInterval(() => {

@@ -19,7 +19,7 @@ function closemodalfinalista() {
 }
 
 const url =
-  "https://script.google.com/macros/s/AKfycbwqtTZ2OkK-lnAvI0lsu_3An8koosJhTDZzhLgPVcBPxRD7FTiFn2Wd4zAD8jEFMezCCw/exec";
+  "https://script.google.com/macros/s/AKfycbyZV3Y8YB91ZQGdSY2O1yECcmSLKfbsggU7sTr-B70TCqN2mriwRPWZ4VYGABcTOpxO/exec";
 const loader = document.getElementById("loader");
 
 function mostrarLoader(container, mensaje) {
@@ -746,6 +746,173 @@ function getDataFinalista() {
       container.innerHTML = `<p>Error al cargar los datos.</p>`;
     });
 }
+
+const btn_enviar_log_tiq = document.getElementById("btn_enviar_log_tiq");
+btn_enviar_log_tiq.onclick = () => {
+  handleSendLogTiq();
+};
+function handleSendLogTiq() {
+  let cedula_log_tiq = document.getElementById("cedula_log_tiq");
+  let nombre_log_tiq = document.getElementById("nombre_log_tiq");
+  let casino_log_tiq = document.getElementById("casino_log_tiq");
+  let telefono_log_tiq = document.getElementById("telefono_log_tiq");
+
+  const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "long",
+  });
+
+  const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
+
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+
+  const [fecha, hora] = fechaCompleta.split(", ");
+
+  if (
+    !cedula_log_tiq.value ||
+    !nombre_log_tiq.value ||
+    !casino_log_tiq.value ||
+    !telefono_log_tiq.value
+  ) {
+    Swal.fire({
+      icon: "warning",
+      title: "Campos en Blanco",
+    });
+    return;
+  }
+  let ciudadCasino = obtenerCiudad(casino_log_tiq.value);
+
+  let data = {
+    tipo: "tiqueteall",
+    Hora: hora,
+    Fecha: fecha,
+    Nombre: nombre_log_tiq.value,
+    Cedula: cedula_log_tiq.value,
+    Casino: casino_log_tiq.value,
+    Usuario: user.Nombre,
+    Mes_registro: fecha_reg,
+    Ano_registro: anio_res,
+    Ciudad: ciudadCasino,
+  };
+
+  loader.style.display = "flex";
+
+  fetch(`${url}?hoja=tiqueteall&mesbus=${fecha_reg}&anobus=${anio_res}`, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.text())
+    .then(() => {
+      loader.style.display = "none";
+      cedula_log_tiq.value = "";
+      nombre_log_tiq.value = "";
+      casino_log_tiq.value = "";
+      telefono_log_tiq.value = "";
+      getDataLogTiquetes();
+      if (typeof window.notificarEnvioFirebaseLogs === "function") {
+        window.notificarEnvioFirebaseLogs();
+      }
+      Swal.fire({
+        icon: "success",
+        title: "Envio Exitoso",
+      });
+    })
+    .catch((error) => {
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "error",
+        title: "Error en el envio",
+      });
+    });
+}
+
+getDataLogTiquetes();
+function getDataLogTiquetes() {
+  const container = document.getElementById("resultado_tiquetes_log");
+  container.textContent = "Cargando...";
+
+  const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "long",
+  });
+
+  const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
+
+  fetch(`${url}?hoja=tiqueteall&mesbus=${fecha_reg}&anobus=${anio_res}`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (!Array.isArray(data) || data.length === 0) {
+        container.innerHTML = `<p>No hay datos disponibles.</p>`;
+        return;
+      }
+
+      container.innerHTML = `
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th># Registro</th>
+                  <th>Jugador</th>
+                  <th>Hora</th>
+                  <th>Fecha</th>
+                  <th>Casino</th>
+                </tr>
+              </thead>
+              <tbody>
+               ${data
+                 .reverse()
+                 .map((registro, i) => {
+                   return `
+            <tr>
+              <td>${i + 1}</td>
+              <td>${registro.Nombre}</td>
+              <td>${registro.Hora}</td> 
+              <td>${registro.Fecha.substring(0, 10)}</td>
+              <td>${registro.Casino}</td>
+              
+            </tr>
+          `;
+                 })
+                 .join("")}
+              </tbody>
+            </table>
+        `;
+
+      const inputBuscar = document.getElementById("buscar_usuario_log");
+
+      inputBuscar.addEventListener("keyup", () => {
+        const texto = inputBuscar.value.toLowerCase().trim();
+        const filas = container.querySelectorAll("tbody tr");
+
+        const columnas = [1, 2, 3, 4, 5];
+
+        filas.forEach((fila) => {
+          const textoFila = columnas
+            .map(
+              (i) =>
+                fila.querySelector(`td:nth-child(${i})`)?.textContent || "",
+            )
+            .join(" ")
+            .toLowerCase();
+
+          fila.style.display = textoFila.includes(texto) ? "" : "none";
+        });
+      });
+    });
+}
+
+const actualizar_list_log = document.getElementById("actualizar_list_log");
 
 // document.getElementById("btn_resultados").addEventListener("click", () => {
 //   document.getElementById("modal_resultados").style.display = "flex";
