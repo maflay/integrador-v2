@@ -231,24 +231,24 @@ const premiosCP = [
   },
   {
     accion: "Primer Cambio.",
-    premio: "$ 100.000",
-    ganador: "",
-    casino: "",
-  },
-  {
-    accion: "Primera atajada del portero.",
     premio: "$ 80.000",
     ganador: "",
     casino: "",
   },
   {
-    accion: "Inicio del segundo tiempo.",
+    accion: "Primera Amarilla.",
     premio: "$ 80.000",
     ganador: "",
     casino: "",
   },
   {
     accion: "Primer Gol .",
+    premio: "$ 80.000",
+    ganador: "",
+    casino: "",
+  },
+  {
+    accion: "Primer Penal.",
     premio: "$ 100.000",
     ganador: "",
     casino: "",
