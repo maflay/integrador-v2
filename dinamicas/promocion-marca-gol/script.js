@@ -225,13 +225,13 @@ const premiosCP = [
   },
   {
     accion: "Acerto el marcador.",
-    premio: "$ 150.000 Si no acierta $100.000",
+    premio: "$ 200.000 Si no acierta $100.000",
     ganador: "",
     casino: "",
   },
   {
     accion: "Primer Cambio.",
-    premio: "$ 80.000",
+    premio: "$ 100.000",
     ganador: "",
     casino: "",
   },
@@ -243,13 +243,13 @@ const premiosCP = [
   },
   {
     accion: "Primer Gol .",
-    premio: "$ 80.000",
+    premio: "$ 100.000",
     ganador: "",
     casino: "",
   },
   {
-    accion: "Primer Penal.",
-    premio: "$ 100.000",
+    accion: "Primer tiro de esquina.",
+    premio: "$ 80.000",
     ganador: "",
     casino: "",
   },
@@ -387,7 +387,7 @@ function chargeInfo() {
         const casino = celdas[3];
 
         if (acerto_cp.value == 1) {
-          premioApuntado = "150000";
+          premioApuntado = "200000";
         } else if (acerto_cp.value == 2) {
           premioApuntado = "100000";
         }
