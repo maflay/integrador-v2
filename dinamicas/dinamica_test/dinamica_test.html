@@ -11,9 +11,23 @@
 </head>
 
 <body>
-
+    <div id="contenedor-modal-oferta" style="display:flex; position:fixed; top:0; left:0; width:100%;height:100%; background:rgba(0,0,0,0.5); z-index:99999; justify-content:center; align-items:center;">
+        <div style="background:#fff; padding:20px; border-radius:5px; width:600px; position:relative;">
+            <span id="cerrar-modal-oferta" style="position:absolute; top:5px; right:10px; cursor:pointer; font-weight:bold;">&times;</span>
+            <h3>Enviar una Oferta</h3>
+            <form id="form-crear-oferta" class="form_oferta">
+				<input type="hidden" name="id_producto" value="' . esc_attr($product->get_id()) . '">
+				<label>' . esc_attr($product->get_name()) . '</label><br/>
+				<br/>
+				<input type="email" id="correo_oferta" name="correo_oferta" required style="width:100%; margin-bottom:10px;margin-top:10px;" class="input-text qty text" placeholder="Correo">
+				<label for="monto_oferta">Tu oferta ($):</label>
+				<input type="number" id="monto_oferta" name="monto_oferta" required style="width:100%; margin-bottom:10px;margin-top:10px;" class="input-text qty text" placeholder="Oferta">
+				<textarea name="descrip_oferta" id="descrip_oferta" placeholder="Dejanos tu Opinión de la Oferta"></textarea>
+				<button type="button" class="button alt wp-element-button" id="btn_send_oferta" style="width:100%;" type="submit">Enviar Oferta</button>
+			</form>
+        </div>
+    </div>
     <div class="main_back">
-
         <div style="position: relative;top: -20px;" class="tpl-mund">
             <div></div>
             <div></div>

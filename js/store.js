@@ -252,3 +252,7 @@ function getDate(fecha) {
   });
   return local;
 }
+
+
+		document.getElementById("btn-oferta").style.display = "flex";
+		document.getElementById("btn-oferta").style.hidden = "";
