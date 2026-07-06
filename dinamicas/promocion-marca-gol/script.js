@@ -230,7 +230,7 @@ const premiosCP = [
     casino: "",
   },
   {
-    accion: "Primer Cambio.",
+    accion: "Primer fuera de lugar.",
     premio: "$ 100.000",
     ganador: "",
     casino: "",
@@ -248,7 +248,7 @@ const premiosCP = [
     casino: "",
   },
   {
-    accion: "Primer tiro de esquina.",
+    accion: "Primer saque de banda.",
     premio: "$ 80.000",
     ganador: "",
     casino: "",
