@@ -592,9 +592,10 @@
                     <h2>Tiene Tiquetes</h2>
                     <br />
                     <div style="display: flex;gap: 10px;">
-                        <button id="actualizar_list_log" class="btn btn-primary">Actualizar</button>
+                        <button style="display: none;" id="actualizar_list_log" class="btn btn-primary">Actualizar</button>
                         <input onkeyup="this.value = this.value.toUpperCase()" placeholder="Buscar..."
-                            class="form-control" type="text" id="buscar_usuario_log">
+                        class="form-control" type="text" id="buscar_usuario_log">
+                        <button id="search_list_log" class="btn btn-primary">Buscar</button>
                     </div>
                     <br />
                     <div id="resultado_tiquetes_log" class="table-wrapper styled-table"></div>
@@ -674,9 +675,9 @@
             });
         }
 
-        onValue(roomLogs, (snapshot) => {
-            getDataLogTiquetes();
-        })
+        // onValue(roomLogs, (snapshot) => {
+        //     getDataLogTiquetes();
+        // })
 
 
     </script>

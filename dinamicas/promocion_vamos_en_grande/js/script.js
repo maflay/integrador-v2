@@ -820,7 +820,6 @@ function handleSendLogTiq() {
       nombre_log_tiq.value = "";
       casino_log_tiq.value = "";
       telefono_log_tiq.value = "";
-      getDataLogTiquetes();
       if (typeof window.notificarEnvioFirebaseLogs === "function") {
         window.notificarEnvioFirebaseLogs();
       }
@@ -838,9 +837,25 @@ function handleSendLogTiq() {
     });
 }
 
-getDataLogTiquetes();
+const search_list_log = document.getElementById("search_list_log");
+
+search_list_log.addEventListener("click", ()=> {
+  getDataLogTiquetes();
+});
+
 function getDataLogTiquetes() {
   const container = document.getElementById("resultado_tiquetes_log");
+  const search_list_log = document.getElementById("search_list_log");
+  const inputBuscar = document.getElementById("buscar_usuario_log");
+
+  if(!inputBuscar.value){
+    Swal.fire({
+      icon: "warning",
+      title: "Debe ingresar un valor"
+    });
+    return;
+  }
+
   container.textContent = "Cargando...";
 
   const fechaCompleta_validate_register = new Date().toLocaleString("es-CO", {
@@ -851,7 +866,7 @@ function getDataLogTiquetes() {
 
   const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
 
-  fetch(`${url}?hoja=tiqueteall&mesbus=${fecha_reg}&anobus=${anio_res}`)
+  fetch(`${url}?cedula=${inputBuscar.value}&hoja=tiqueteall&mesbus=${fecha_reg}&anobus=${anio_res}`)
     .then((res) => res.json())
     .then((data) => {
       if (!Array.isArray(data) || data.length === 0) {
@@ -890,34 +905,30 @@ function getDataLogTiquetes() {
             </table>
         `;
 
-      const inputBuscar = document.getElementById("buscar_usuario_log");
 
-      inputBuscar.addEventListener("keyup", () => {
-        const texto = inputBuscar.value.toLowerCase().trim();
-        const filas = container.querySelectorAll("tbody tr");
+      // inputBuscar.addEventListener("keyup", () => {
+      //   const texto = inputBuscar.value.toLowerCase().trim();
+      //   const filas = container.querySelectorAll("tbody tr");
 
-        const columnas = [1, 2, 3, 4, 5];
+      //   const columnas = [1, 2, 3, 4, 5];
 
-        filas.forEach((fila) => {
-          const textoFila = columnas
-            .map(
-              (i) =>
-                fila.querySelector(`td:nth-child(${i})`)?.textContent || "",
-            )
-            .join(" ")
-            .toLowerCase();
+      //   filas.forEach((fila) => {
+      //     const textoFila = columnas
+      //       .map(
+      //         (i) =>
+      //           fila.querySelector(`td:nth-child(${i})`)?.textContent || "",
+      //       )
+      //       .join(" ")
+      //       .toLowerCase();
 
-          fila.style.display = textoFila.includes(texto) ? "" : "none";
-        });
-      });
+      //     fila.style.display = textoFila.includes(texto) ? "" : "none";
+      //   });
+      // });
     });
 }
 
-const actualizar_list_log = document.getElementById("actualizar_list_log");
 
-actualizar_list_log.onclick = () => {
-  getDataLogTiquetes();
-};
+
 
 // document.getElementById("btn_resultados").addEventListener("click", () => {
 //   document.getElementById("modal_resultados").style.display = "flex";
