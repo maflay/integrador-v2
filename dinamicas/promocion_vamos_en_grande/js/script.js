@@ -894,7 +894,7 @@ function getDataLogTiquetes() {
               <td>${i + 1}</td>
               <td>${registro.Nombre}</td>
               <td>${registro.Telefono}</td> 
-              <td>${registro.Fecha.substring(0, 10)}</td>
+              <td>${registro.Fecha.substring(0, 10)} - ${registro.Hora}</td>
               <td>${registro.Casino}</td>
               
             </tr>
