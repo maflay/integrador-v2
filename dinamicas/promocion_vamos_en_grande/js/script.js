@@ -803,6 +803,7 @@ function handleSendLogTiq() {
     Mes_registro: fecha_reg,
     Ano_registro: anio_res,
     Ciudad: ciudadCasino,
+    Telefono: telefono_log_tiq.value,
   };
 
   loader.style.display = "flex";
@@ -864,7 +865,7 @@ function getDataLogTiquetes() {
                 <tr>
                   <th># Registro</th>
                   <th>Jugador</th>
-                  <th>Hora</th>
+                  <th>Teléfono</th>
                   <th>Fecha</th>
                   <th>Casino</th>
                 </tr>
@@ -877,7 +878,7 @@ function getDataLogTiquetes() {
             <tr>
               <td>${i + 1}</td>
               <td>${registro.Nombre}</td>
-              <td>${registro.Hora}</td> 
+              <td>${registro.Telefono}</td> 
               <td>${registro.Fecha.substring(0, 10)}</td>
               <td>${registro.Casino}</td>
               

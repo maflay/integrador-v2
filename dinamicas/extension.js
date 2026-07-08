@@ -15,7 +15,7 @@ if (!url_seccion.includes("http://127.0.0")) {
 document.addEventListener("DOMContentLoaded", () => {
   const mainStyle = document.body.dataset.mainStyle;
   if (mainStyle) {
-    const link = document.createElement("link");
+    const link = document.createElement("link"); 
     link.rel = "stylesheet";
     link.href = `${mainStyle}?v=${Date.now()}`;
     document.head.appendChild(link);
