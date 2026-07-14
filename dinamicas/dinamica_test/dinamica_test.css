@@ -742,3 +742,16 @@
         display: none;
     }
 }
+
+.mi-boton-2 a {
+    background-color: transparent !important;
+    border: white 1px solid !important;
+    color: white !important;
+}
+
+.mi-boton-2:hover a {
+    background-color: rgba(255, 255, 255, 0.397) !important;
+    border: white 1px solid !important;
+    color: white !important;
+
+}

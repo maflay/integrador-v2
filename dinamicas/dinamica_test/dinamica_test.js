@@ -108,4 +108,7 @@ function consultaW(){
   const prueba = document.createElement("button");
   prueba.textContent = "Enviar...";
   document.body.appendChild(prueba);
+
+  
+
 }
