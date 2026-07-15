@@ -181,6 +181,7 @@ body {
 
 .content_btn_a {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
 }
 
@@ -592,5 +593,10 @@ select.form-control {
 
   .content_observacion_integrador {
     width: 85%;
+  }
+
+  .content_btn_a {
+    display: flex;
+    gap: 10px;
   }
 }

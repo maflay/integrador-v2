@@ -444,12 +444,6 @@ nav.sidebar-nav {
         width: 100%;
     }
 
-    .content_btn_a {
-        display: flex;
-        flex-wrap: nowrap;
-        gap: 10px;
-    }
-
     .icon-btn {
         display: flex;
     }

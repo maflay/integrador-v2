@@ -102,6 +102,9 @@ function metodoprueba() {
   // promotor-admin
   const item_admin_promotor = document.querySelectorAll(".item_admin_promotor");
 
+  // coordinador
+  const item_coordinador = document.querySelectorAll(".item_coordinador");
+
   // promotor
   const item_promotor = document.querySelectorAll(".item_promotor");
 
@@ -135,6 +138,17 @@ function metodoprueba() {
       btn.style.display = "inline-block"; // muestra
     } else {
       btn.style.display = "none"; // oculta
+    }
+  });
+
+  // mostrar coordinador
+  item_coordinador.forEach((item) => {
+    const valor = objUser.Nivel;
+
+    if (valor == "1" || valor == "2" || valor == "6") {
+      item.style.display = "flex"; // muestra
+    } else {
+      item.style.display = "none"; // oculta
     }
   });
 
@@ -253,6 +267,3 @@ function getDate(fecha) {
   return local;
 }
 
-
-		document.getElementById("btn-oferta").style.display = "flex";
-		document.getElementById("btn-oferta").style.hidden = "";
