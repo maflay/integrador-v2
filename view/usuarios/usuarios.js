@@ -103,7 +103,10 @@ function getAllUser() {
         } else if (lvl === "4") {
           fila.dataset.lvlValido = "true";
           celdaLvl.textContent = "Promotor";
-        } else {
+        } else if (lvl === "6") {
+          fila.dataset.lvlValido = "true";
+          celdaLvl.textContent = "Coordinador";
+        }  else {
           fila.dataset.lvlValido = "false";
           fila.style.display = "none";
         }
