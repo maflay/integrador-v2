@@ -843,18 +843,20 @@ search_list_log.addEventListener("click", ()=> {
   getDataLogTiquetes();
 });
 
+getDataLogTiquetes();
+
 function getDataLogTiquetes() {
   const container = document.getElementById("resultado_tiquetes_log");
   const search_list_log = document.getElementById("search_list_log");
   const inputBuscar = document.getElementById("buscar_usuario_log");
 
-  if(!inputBuscar.value){
-    Swal.fire({
-      icon: "warning",
-      title: "Debe ingresar un valor"
-    });
-    return;
-  }
+  // if(!inputBuscar.value){
+  //   Swal.fire({
+  //     icon: "warning",
+  //     title: "Debe ingresar un valor"
+  //   });
+  //   return;
+  // }
 
   container.textContent = "Cargando...";
 
@@ -866,7 +868,7 @@ function getDataLogTiquetes() {
 
   const [fecha_reg, anio_res] = fechaCompleta_validate_register.split(" de ");
 
-  fetch(`${url}?cedula=${inputBuscar.value}&hoja=tiqueteall&mesbus=${fecha_reg}&anobus=${anio_res}`)
+  fetch(`${url}?hoja=tiqueteall&mesbus=${fecha_reg}&anobus=${anio_res}`)
     .then((res) => res.json())
     .then((data) => {
       if (!Array.isArray(data) || data.length === 0) {
