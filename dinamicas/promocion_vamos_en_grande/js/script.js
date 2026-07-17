@@ -376,8 +376,8 @@ function getCliente() {
               </thead>
               <tbody>
                 ${data
-                  .map(
-                    (registro, i) => `
+            .map(
+              (registro, i) => `
                       <tr>
                         <td>${i + 1}</td>
                         <td>${registro.Nombre}</td>
@@ -386,8 +386,8 @@ function getCliente() {
                         <td>${registro.Casino}</td>
                       </tr>
                     `,
-                  )
-                  .join("")}
+            )
+            .join("")}
               </tbody>
             </table>
           </div>
@@ -446,17 +446,17 @@ function renderTabla(container, data) {
         </thead>
         <tbody>
         ${[...dataMostrar]
-          .reverse()
-          .map(
-            (registro, i) =>
-              `<tr>
+      .reverse()
+      .map(
+        (registro, i) =>
+          `<tr>
                 <td>${registro.Nombre || registro.Fecha || registro.Casino ? i + 1 : ""}</td>
                 <td>${registro.Nombre || ""}</td>
                 <td>${registro.Fecha || ""}</td>
                 <td>${registro.Casino || ""}</td>
               </tr>`,
-          )
-          .join("")}
+      )
+      .join("")}
         </tbody>
       </table>
     </div>
@@ -508,10 +508,10 @@ function getSemis() {
             </thead>
             <tbody>
             ${[...data]
-              .reverse()
-              .map(
-                (registro, i) =>
-                  `<tr>
+          .reverse()
+          .map(
+            (registro, i) =>
+              `<tr>
                     <td>${i + 1}</td>
                     <td>${registro.Nombre}</td>
                     <td>${registro.Fecha}</td>
@@ -519,8 +519,8 @@ function getSemis() {
                     <td>${registro.Ciudad || ""}</td>
                   </tr>
                 `,
-              )
-              .join("")}
+          )
+          .join("")}
             </tbody>
           </table>
         </div>
@@ -639,10 +639,10 @@ function getDataFinalista() {
             </thead>
             <tbody>
             ${[...data]
-              .reverse()
-              .map(
-                (registro, i) =>
-                  `<tr>
+          .reverse()
+          .map(
+            (registro, i) =>
+              `<tr>
                     <td>${i + 1}</td>
                     <td>${registro.Nombre}</td>
                     <td>${registro.Fecha}</td>
@@ -650,8 +650,8 @@ function getDataFinalista() {
                     <td>${registro.Ciudad || ""}</td>
                   </tr>
                 `,
-              )
-              .join("")}
+          )
+          .join("")}
             </tbody>
           </table>
         </div>
@@ -839,7 +839,7 @@ function handleSendLogTiq() {
 
 const search_list_log = document.getElementById("search_list_log");
 
-search_list_log.addEventListener("click", ()=> {
+search_list_log.addEventListener("click", () => {
   getDataLogTiquetes();
 });
 
@@ -849,6 +849,7 @@ function getDataLogTiquetes() {
   const container = document.getElementById("resultado_tiquetes_log");
   const search_list_log = document.getElementById("search_list_log");
   const inputBuscar = document.getElementById("buscar_usuario_log");
+  inputBuscar.style.display = "none";
 
   // if(!inputBuscar.value){
   //   Swal.fire({
@@ -889,9 +890,9 @@ function getDataLogTiquetes() {
               </thead>
               <tbody>
                ${data
-                 .reverse()
-                 .map((registro, i) => {
-                   return `
+          .reverse()
+          .map((registro, i) => {
+            return `
             <tr>
               <td>${i + 1}</td>
               <td>${registro.Nombre}</td>
@@ -901,8 +902,8 @@ function getDataLogTiquetes() {
               
             </tr>
           `;
-                 })
-                 .join("")}
+          })
+          .join("")}
               </tbody>
             </table>
         `;
