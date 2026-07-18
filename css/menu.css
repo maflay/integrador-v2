@@ -1,22 +1,14 @@
 :root {
     --bg: #0f162d;
-    /* fondo app */
     --panel: #1F253A;
-    /* panel/side */
     --panel-2: #27314F;
-    /* hover */
     --accent: #6622F8;
-    /* acento */
     --text: #E8ECF8;
-    /* texto */
     --muted: #9AA4C6;
-    /* texto suave */
     --shadow: 0 10px 30px rgba(0, 0, 0, .25);
     --radius: 18px;
     --sidebar-w: 280px;
-    /* ancho desktop */
     --header-h: 56px;
-    /* alto header móvil */
 }
 
 * {
