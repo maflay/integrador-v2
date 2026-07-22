@@ -10,6 +10,8 @@ let _ronda_current_ = 1;
 let _maletin_current_ = 0;
 let _promedio_current_ = 25;
 
+let total_premios;
+
 const _ultima_posicion_ = document.getElementById("_ultima_posicion_");
 const _premio_entregado_ = document.getElementById("_premio_entregado_");
 
@@ -82,9 +84,37 @@ function handleLoadPremios() {
         data[0].premio_24,
       ];
 
+
+
+      total_premios =
+        Number(data[0].premio_1) +
+        Number(data[0].premio_2) +
+        Number(data[0].premio_3) +
+        Number(data[0].premio_4) +
+        Number(data[0].premio_5) +
+        Number(data[0].premio_6) +
+        Number(data[0].premio_7) +
+        Number(data[0].premio_8) +
+        Number(data[0].premio_9) +
+        Number(data[0].premio_10) +
+        Number(data[0].premio_11) +
+        Number(data[0].premio_12) +
+        Number(data[0].premio_13) +
+        Number(data[0].premio_14) +
+        Number(data[0].premio_15) +
+        Number(data[0].premio_16) +
+        Number(data[0].premio_17) +
+        Number(data[0].premio_18) +
+        Number(data[0].premio_19) +
+        Number(data[0].premio_20) +
+        Number(data[0].premio_21) +
+        Number(data[0].premio_22) +
+        Number(data[0].premio_23) +
+        Number(data[0].premio_24);
+
       for (let i = listaPremios.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        [listaPremios[i], listaPremios[j]] = [listaPremios[j], listaPremios[i]]; // Intercambia valores
+        [listaPremios[i], listaPremios[j]] = [listaPremios[j], listaPremios[i]];
       }
 
       listaPremios.forEach((premio, index) => {
@@ -166,17 +196,22 @@ document.getElementById("_btn_load_premios_").addEventListener("click", () => {
 
 _casillas_descu_.forEach((posicion) => {
   posicion.addEventListener("click", () => {
+    console.log(total_premios);
+    let numero_1 = 1;
+    let numero_2 = 2;
+    console.log(numero_1 + numero_2);
     _ultima_posicion_.textContent = posicion.textContent;
     posicion.textContent = posicion.dataset.pre;
     posicion.classList.add("premio_show");
 
     if (_ronda_current_ == 1) {
-        _premio_entregado_.textContent = posicion.textContent;
+      _premio_entregado_.textContent = posicion.textContent;
       if (_maletin_current_ < 5) {
         _maletin_current_++;
         if (_maletin_current_ === 5) {
           _ronda_current_++;
           _ronda_.textContent = _ronda_current_;
+
           Swal.fire({
             icon: "info",
             title: "Termina la ronda 1," + "<br/>" + " Inicia la ronda 2",
