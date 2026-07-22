@@ -93,6 +93,11 @@ function resetTurn() {
 function onCellClick(e) {
   const cell = e.currentTarget;
   const card = cell.querySelector(".card-c");
+  console.log("entro ala ficha seleccionada");
+  if(moves == 3){
+    alert("limite de movimientos");
+    return;
+  }
 
   if (
     lockBoard ||
