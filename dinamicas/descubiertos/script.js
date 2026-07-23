@@ -2,6 +2,8 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
+const _board_ = document.getElementById("_board_");
+
 const _ronda_ = document.getElementById("_ronda_");
 const _maletin_ = document.getElementById("_maletin_");
 const _promedio_ = document.getElementById("_promedio_");
@@ -34,6 +36,7 @@ const _content_oferta_ronda_ = document.getElementById(
   "_content_oferta_ronda_",
 );
 const _oferta_ronda_ = document.getElementById("_oferta_ronda_");
+const _btn_aprobar_contra_ = document.getElementById("_btn_aprobar_contra_");
 
 const loader = document.getElementById("loader");
 
@@ -68,7 +71,10 @@ const posicion_premio_22 = document.getElementById("posicion_premio_22");
 const posicion_premio_23 = document.getElementById("posicion_premio_23");
 const posicion_premio_24 = document.getElementById("posicion_premio_24");
 
+const user = inforUser();
+
 let _PREMIOS_ = {};
+const promocion = "Nombre Promocion";
 const url =
   "https://script.google.com/macros/s/AKfycbz6usjIqjLUHn1ZD97khmacACHMod3gJSqL7yhUeAds9Ko3hUHkVavADznGq9OOEctF/exec";
 
@@ -189,11 +195,10 @@ document.getElementById("_btn_load_premios_").addEventListener("click", () => {
 
 _casillas_descu_.forEach((posicion) => {
   posicion.addEventListener("click", () => {
-    
-    if(posicion.dataset.pre == "" || posicion.dataset.pre == 0){
+    if (posicion.dataset.pre == "" || posicion.dataset.pre == 0) {
       Swal.fire({
         icon: "warning",
-        title: "Sin premios"
+        title: "Sin premios",
       });
       return;
     }
@@ -230,8 +235,6 @@ _casillas_descu_.forEach((posicion) => {
               total_premio_length += valor;
             }
           });
-          console.log(Number(total_premio_length));
-          console.log(Number(elementos.length));
           _content_oferta_ronda_.style.display = "flex";
           _content_accion_contraoferta_.style.display = "flex";
           _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
@@ -486,3 +489,84 @@ _open_contra_oferta_.addEventListener("click", () => {
 _close_contra_oferta_.addEventListener("click", () => {
   _img_contra_oferta.style.display = "none";
 });
+
+_btn_aprobar_contra_.addEventListener("click", () => {
+  Swal.fire({
+    title: "Seguro de aprobar?",
+    text: "El valor que Digitó sera la nueva oferta",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Si!",
+    allowOutsideClick: false,
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let textoOferta = _oferta_ronda_.textContent
+        .trim()
+        .replace(/\./g, "")
+        .replace(/[^0-9-]+/g, "");
+      let ofertaRonda = parseFloat(textoOferta) || 0;
+
+      let veintePorciento = ofertaRonda * 0.2;
+
+      let limiteMaximoPermitido = ofertaRonda + veintePorciento;
+
+      let textoContraoferta = _val_contraoferta_.value
+        .trim()
+        .replace(/\./g, "")
+        .replace(/[^0-9-]+/g, "");
+      let valorContraoferta = parseFloat(textoContraoferta) || 0;
+
+      if (valorContraoferta > limiteMaximoPermitido) {
+        Swal.fire({
+          icon: "warning",
+          title: "El valor supera lo permitido",
+        });
+      } else {
+        _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
+          _val_contraoferta_.value,
+        );
+        _img_contra_oferta.style.display = "none";
+        _board_.classList.add("item_disable");
+      }
+    }
+  });
+});
+
+_val_contraoferta_.addEventListener("input", function () {
+  this.value = this.value.replace(/[^0-9]/g, "");
+});
+
+const btn_enviar = document.getElementById("btn_enviar");
+
+btn_enviar.addEventListener("click", () => {
+  handleSubmitDes();
+});
+
+function handleSubmitDes() {
+  const nombre = document.getElementById("nombre");
+  const casino = document.getElementById("casino");
+  const categoria = document.getElementById("categoria");
+
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  const [fecha, hora] = fechaCompleta.split(", ");
+
+  if (!nombre.value || !casino.value || !categoria.value) {
+    Swal.fire({
+      icon: "warning",
+      title: "Campos en Blanco",
+    });
+    return;
+  }
+}
