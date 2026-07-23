@@ -13,6 +13,7 @@ let _promedio_current_ = 25;
 let total_premios;
 // let elementos;
 let total_premio_length = 0;
+let _premio_seleccionado_;
 
 const _ultima_posicion_ = document.getElementById("_ultima_posicion_");
 const _premio_entregado_ = document.getElementById("_premio_entregado_");
@@ -179,32 +180,6 @@ function handleLoadPremios() {
       posicion_premio_22.dataset.pre = _PREMIOS_[22];
       posicion_premio_23.dataset.pre = _PREMIOS_[23];
       posicion_premio_24.dataset.pre = _PREMIOS_[24];
-
-      // total_premios =
-      // Number(posicion_premio_1.dataset.pre) +
-      // Number(posicion_premio_2.dataset.pre) +
-      // Number(posicion_premio_3.dataset.pre) +
-      // Number(posicion_premio_4.dataset.pre) +
-      // Number(posicion_premio_5.dataset.pre) +
-      // Number(posicion_premio_6.dataset.pre) +
-      // Number(posicion_premio_7.dataset.pre) +
-      // Number(posicion_premio_8.dataset.pre) +
-      // Number(posicion_premio_9.dataset.pre) +
-      // Number(posicion_premio_10.dataset.pre) +
-      // Number(posicion_premio_11.dataset.pre) +
-      // Number(posicion_premio_12.dataset.pre) +
-      // Number(posicion_premio_13.dataset.pre) +
-      // Number(posicion_premio_14.dataset.pre) +
-      // Number(posicion_premio_15.dataset.pre) +
-      // Number(posicion_premio_16.dataset.pre) +
-      // Number(posicion_premio_17.dataset.pre) +
-      // Number(posicion_premio_18.dataset.pre) +
-      // Number(posicion_premio_19.dataset.pre) +
-      // Number(posicion_premio_20.dataset.pre) +
-      // Number(posicion_premio_21.dataset.pre) +
-      // Number(posicion_premio_22.dataset.pre) +
-      // Number(posicion_premio_23.dataset.pre) +
-      // Number(posicion_premio_24.dataset.pre) ;
     });
 }
 
@@ -214,9 +189,19 @@ document.getElementById("_btn_load_premios_").addEventListener("click", () => {
 
 _casillas_descu_.forEach((posicion) => {
   posicion.addEventListener("click", () => {
+    
+    if(posicion.dataset.pre == "" || posicion.dataset.pre == 0){
+      Swal.fire({
+        icon: "warning",
+        title: "Sin premios"
+      });
+      return;
+    }
+
     const ficha_chose = document.querySelectorAll(".ficha_chose");
     if (ficha_chose.length === 0) {
       posicion.classList.add("ficha_chose");
+      _premio_seleccionado_ = posicion.dataset.pre;
       _ultima_posicion_.textContent = posicion.textContent;
       return;
     }
