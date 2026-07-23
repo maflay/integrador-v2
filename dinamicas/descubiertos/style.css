@@ -100,7 +100,7 @@
     cursor: pointer;
 }
 
-._casillas_descu_::before{
+._casillas_descu_::before {
     content: "";
     position: absolute;
     top: 0;
@@ -115,12 +115,12 @@
 }
 
 ._content_accion_contraoferta_ {
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     position: absolute;
     top: 10px;
-    right: 10px;
+    left: 10px;
 }
 
 ._content_accion_contraoferta_ img {
@@ -136,6 +136,7 @@
 
 ._img_contra_oferta {
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -144,6 +145,27 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.527);
+    z-index: 100;
+}
+
+._img_contra_oferta p {
+    background-color: blue;
+    padding: 8px;
+    border-radius: 8px;
+    margin: 0;
+}
+
+._img_contra_oferta>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 40px;
+}
+
+._img_contra_oferta input {
+    width: 350px;
+    font-size: 40px;
 }
 
 ._img_megafono_ {
@@ -165,6 +187,7 @@
 
 ._content_controls_msg_ {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
@@ -177,6 +200,20 @@
 
 ._content_controls_msg_ p {
     margin: 0;
+}
+
+._content_controls_msg_1_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+._content_controls_msg_2_ {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
 }
 
 ._content_control_result_ {
@@ -197,6 +234,7 @@
 
 .ficha_chose {
     pointer-events: none !important;
+    opacity: 0.7;
 }
 
 ._content_controls_ {

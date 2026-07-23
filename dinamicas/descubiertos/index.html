@@ -22,22 +22,26 @@
             </video>
         </div>
         <div class="_content_controls_msg_">
-            <p>Ronda</p>
-            <p id="_ronda_">1</p>,
-            Maletin:
-            <p id="_maletin_">0</p>,
-            Promedio:
-            <p id="_promedio_">25%</p>
+            <div class="_content_controls_msg_1_">
+                <p>Ronda</p>
+                <p id="_ronda_">1</p>,
+                Maletin:
+                <p id="_maletin_">0</p>,
+                Promedio:
+                <p id="_promedio_">25%</p>
+            </div>
             <br />
-            <p id="_oferta_ronda_"></p>
+            <div id="_content_oferta_ronda_" class="_content_controls_msg_2_">
+                <p>Oferta</p>
+                <p id="_oferta_ronda_"></p>
+            </div>
         </div>
         <div class="_content_control_result_">
-            Ultimo Maletin
-            <p id="_ultima_posicion_"></p>,
-            Premio
-            <p id="_premio_entregado_"></p>
+            Maletin Seleccionado
+            <p id="_ultima_posicion_"></p>
+            <p style="display: none;" id="_premio_entregado_"></p>
         </div>
-        <div class="_content_accion_contraoferta_">
+        <div id="_content_accion_contraoferta_" class="_content_accion_contraoferta_">
             <img id="_open_contra_oferta_" title="Contra Oferta"
                 src="/dinamicas/descubiertos/resources/Captura_de_pantalla_2026-07-22_082904-removebg-preview.png"
                 alt="Aladdin">
@@ -46,34 +50,44 @@
             <img class="_img_megafono_" title="Contra Oferta"
                 src="/dinamicas/descubiertos/resources/Captura_de_pantalla_2026-07-22_082904-removebg-preview.png"
                 alt="Aladdin">
+                <br/>
+                <div>
+                    <p id="_valor_antes_contra_oferta_"></p>
+                    <input type="text" placeholder="Contra Oferta..." class="form-control" id="_val_contraoferta_">
+                    <button class="btn btn-success">Aprobar</button>
+                </div>
+
             <img id="_close_contra_oferta_" class="_img_close_boton"
                 src="/dinamicas/descubiertos/resources/close_boton.png" alt="Aladdin">
         </div>
+        <div class="content_opciones">
+            <img title="Opciones" id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
+        </div>
         <div class="_board_">
-            <div id="posicion_premio_1" class="_casillas_descu_" data-pre="">1</div>
-            <div id="posicion_premio_2" class="_casillas_descu_" data-pre="">2</div>
-            <div id="posicion_premio_3" class="_casillas_descu_" data-pre="">3</div>
-            <div id="posicion_premio_4" class="_casillas_descu_" data-pre="">4</div>
-            <div id="posicion_premio_5" class="_casillas_descu_" data-pre="">5</div>
-            <div id="posicion_premio_6" class="_casillas_descu_" data-pre="">6</div>
-            <div id="posicion_premio_7" class="_casillas_descu_" data-pre="">7</div>
-            <div id="posicion_premio_8" class="_casillas_descu_" data-pre="">8</div>
-            <div id="posicion_premio_9" class="_casillas_descu_" data-pre="">9</div>
-            <div id="posicion_premio_10" class="_casillas_descu_" data-pre="">10</div>
-            <div id="posicion_premio_11" class="_casillas_descu_" data-pre="">11</div>
-            <div id="posicion_premio_12" class="_casillas_descu_" data-pre="">12</div>
-            <div id="posicion_premio_13" class="_casillas_descu_" data-pre="">13</div>
-            <div id="posicion_premio_14" class="_casillas_descu_" data-pre="">14</div>
-            <div id="posicion_premio_15" class="_casillas_descu_" data-pre="">15</div>
-            <div id="posicion_premio_16" class="_casillas_descu_" data-pre="">16</div>
-            <div id="posicion_premio_17" class="_casillas_descu_" data-pre="">17</div>
-            <div id="posicion_premio_18" class="_casillas_descu_" data-pre="">18</div>
-            <div id="posicion_premio_19" class="_casillas_descu_" data-pre="">19</div>
-            <div id="posicion_premio_20" class="_casillas_descu_" data-pre="">20</div>
-            <div id="posicion_premio_21" class="_casillas_descu_" data-pre="">21</div>
-            <div id="posicion_premio_22" class="_casillas_descu_" data-pre="">22</div>
-            <div id="posicion_premio_23" class="_casillas_descu_" data-pre="">23</div>
-            <div id="posicion_premio_24" class="_casillas_descu_" data-pre="">24</div>
+            <div id="posicion_premio_1" class="_casillas_descu_ _ficha_en_juego_" data-pre="">1</div>
+            <div id="posicion_premio_2" class="_casillas_descu_ _ficha_en_juego_" data-pre="">2</div>
+            <div id="posicion_premio_3" class="_casillas_descu_ _ficha_en_juego_" data-pre="">3</div>
+            <div id="posicion_premio_4" class="_casillas_descu_ _ficha_en_juego_" data-pre="">4</div>
+            <div id="posicion_premio_5" class="_casillas_descu_ _ficha_en_juego_" data-pre="">5</div>
+            <div id="posicion_premio_6" class="_casillas_descu_ _ficha_en_juego_" data-pre="">6</div>
+            <div id="posicion_premio_7" class="_casillas_descu_ _ficha_en_juego_" data-pre="">7</div>
+            <div id="posicion_premio_8" class="_casillas_descu_ _ficha_en_juego_" data-pre="">8</div>
+            <div id="posicion_premio_9" class="_casillas_descu_ _ficha_en_juego_" data-pre="">9</div>
+            <div id="posicion_premio_10" class="_casillas_descu_ _ficha_en_juego_" data-pre="">10</div>
+            <div id="posicion_premio_11" class="_casillas_descu_ _ficha_en_juego_" data-pre="">11</div>
+            <div id="posicion_premio_12" class="_casillas_descu_ _ficha_en_juego_" data-pre="">12</div>
+            <div id="posicion_premio_13" class="_casillas_descu_ _ficha_en_juego_" data-pre="">13</div>
+            <div id="posicion_premio_14" class="_casillas_descu_ _ficha_en_juego_" data-pre="">14</div>
+            <div id="posicion_premio_15" class="_casillas_descu_ _ficha_en_juego_" data-pre="">15</div>
+            <div id="posicion_premio_16" class="_casillas_descu_ _ficha_en_juego_" data-pre="">16</div>
+            <div id="posicion_premio_17" class="_casillas_descu_ _ficha_en_juego_" data-pre="">17</div>
+            <div id="posicion_premio_18" class="_casillas_descu_ _ficha_en_juego_" data-pre="">18</div>
+            <div id="posicion_premio_19" class="_casillas_descu_ _ficha_en_juego_" data-pre="">19</div>
+            <div id="posicion_premio_20" class="_casillas_descu_ _ficha_en_juego_" data-pre="">20</div>
+            <div id="posicion_premio_21" class="_casillas_descu_ _ficha_en_juego_" data-pre="">21</div>
+            <div id="posicion_premio_22" class="_casillas_descu_ _ficha_en_juego_" data-pre="">22</div>
+            <div id="posicion_premio_23" class="_casillas_descu_ _ficha_en_juego_" data-pre="">23</div>
+            <div id="posicion_premio_24" class="_casillas_descu_ _ficha_en_juego_" data-pre="">24</div>
         </div>
         <div class="_content_controls_">
             <a class="btn btn-danger" href="javascript:void(0);" onclick="location.reload();">Reiniciar</a>

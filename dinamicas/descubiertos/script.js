@@ -11,16 +11,36 @@ let _maletin_current_ = 0;
 let _promedio_current_ = 25;
 
 let total_premios;
+// let elementos;
+let total_premio_length = 0;
 
 const _ultima_posicion_ = document.getElementById("_ultima_posicion_");
 const _premio_entregado_ = document.getElementById("_premio_entregado_");
 
 const _casillas_descu_ = document.querySelectorAll("._casillas_descu_");
+const _ficha_en_juego_ = document.querySelectorAll("._ficha_en_juego_");
 const _open_contra_oferta_ = document.getElementById("_open_contra_oferta_");
 const _close_contra_oferta_ = document.getElementById("_close_contra_oferta_");
 const _img_contra_oferta = document.getElementById("_img_contra_oferta");
+const _content_accion_contraoferta_ = document.getElementById(
+  "_content_accion_contraoferta_",
+);
+const _valor_antes_contra_oferta_ = document.getElementById(
+  "_valor_antes_contra_oferta_",
+);
+const _val_contraoferta_ = document.getElementById("_val_contraoferta_");
+const _content_oferta_ronda_ = document.getElementById(
+  "_content_oferta_ronda_",
+);
+const _oferta_ronda_ = document.getElementById("_oferta_ronda_");
 
 const loader = document.getElementById("loader");
+
+const formatoPesos_monto_efectivo = new Intl.NumberFormat("es-CO", {
+  style: "currency",
+  currency: "COP",
+  minimumFractionDigits: 0,
+});
 
 const posicion_premio_1 = document.getElementById("posicion_premio_1");
 const posicion_premio_2 = document.getElementById("posicion_premio_2");
@@ -83,34 +103,6 @@ function handleLoadPremios() {
         data[0].premio_23,
         data[0].premio_24,
       ];
-
-
-
-      total_premios =
-        Number(data[0].premio_1) +
-        Number(data[0].premio_2) +
-        Number(data[0].premio_3) +
-        Number(data[0].premio_4) +
-        Number(data[0].premio_5) +
-        Number(data[0].premio_6) +
-        Number(data[0].premio_7) +
-        Number(data[0].premio_8) +
-        Number(data[0].premio_9) +
-        Number(data[0].premio_10) +
-        Number(data[0].premio_11) +
-        Number(data[0].premio_12) +
-        Number(data[0].premio_13) +
-        Number(data[0].premio_14) +
-        Number(data[0].premio_15) +
-        Number(data[0].premio_16) +
-        Number(data[0].premio_17) +
-        Number(data[0].premio_18) +
-        Number(data[0].premio_19) +
-        Number(data[0].premio_20) +
-        Number(data[0].premio_21) +
-        Number(data[0].premio_22) +
-        Number(data[0].premio_23) +
-        Number(data[0].premio_24);
 
       for (let i = listaPremios.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -187,6 +179,32 @@ function handleLoadPremios() {
       posicion_premio_22.dataset.pre = _PREMIOS_[22];
       posicion_premio_23.dataset.pre = _PREMIOS_[23];
       posicion_premio_24.dataset.pre = _PREMIOS_[24];
+
+      // total_premios =
+      // Number(posicion_premio_1.dataset.pre) +
+      // Number(posicion_premio_2.dataset.pre) +
+      // Number(posicion_premio_3.dataset.pre) +
+      // Number(posicion_premio_4.dataset.pre) +
+      // Number(posicion_premio_5.dataset.pre) +
+      // Number(posicion_premio_6.dataset.pre) +
+      // Number(posicion_premio_7.dataset.pre) +
+      // Number(posicion_premio_8.dataset.pre) +
+      // Number(posicion_premio_9.dataset.pre) +
+      // Number(posicion_premio_10.dataset.pre) +
+      // Number(posicion_premio_11.dataset.pre) +
+      // Number(posicion_premio_12.dataset.pre) +
+      // Number(posicion_premio_13.dataset.pre) +
+      // Number(posicion_premio_14.dataset.pre) +
+      // Number(posicion_premio_15.dataset.pre) +
+      // Number(posicion_premio_16.dataset.pre) +
+      // Number(posicion_premio_17.dataset.pre) +
+      // Number(posicion_premio_18.dataset.pre) +
+      // Number(posicion_premio_19.dataset.pre) +
+      // Number(posicion_premio_20.dataset.pre) +
+      // Number(posicion_premio_21.dataset.pre) +
+      // Number(posicion_premio_22.dataset.pre) +
+      // Number(posicion_premio_23.dataset.pre) +
+      // Number(posicion_premio_24.dataset.pre) ;
     });
 }
 
@@ -196,14 +214,22 @@ document.getElementById("_btn_load_premios_").addEventListener("click", () => {
 
 _casillas_descu_.forEach((posicion) => {
   posicion.addEventListener("click", () => {
-    console.log(total_premios);
-    let numero_1 = 1;
-    let numero_2 = 2;
-    console.log(numero_1 + numero_2);
-    _ultima_posicion_.textContent = posicion.textContent;
-    posicion.textContent = posicion.dataset.pre;
-    posicion.classList.add("premio_show");
+    const ficha_chose = document.querySelectorAll(".ficha_chose");
+    if (ficha_chose.length === 0) {
+      posicion.classList.add("ficha_chose");
+      _ultima_posicion_.textContent = posicion.textContent;
+      return;
+    }
 
+    posicion.textContent = formatoPesos_monto_efectivo.format(
+      posicion.dataset.pre,
+    );
+    posicion.classList.add("premio_show");
+    posicion.classList.remove("_ficha_en_juego_");
+    _content_oferta_ronda_.style.display = "none";
+    _content_accion_contraoferta_.style.display = "none";
+
+    const elementos = document.querySelectorAll("._ficha_en_juego_");
     if (_ronda_current_ == 1) {
       _premio_entregado_.textContent = posicion.textContent;
       if (_maletin_current_ < 5) {
@@ -211,7 +237,21 @@ _casillas_descu_.forEach((posicion) => {
         if (_maletin_current_ === 5) {
           _ronda_current_++;
           _ronda_.textContent = _ronda_current_;
-
+          total_premio_length = 0;
+          elementos.forEach((elemento) => {
+            let texto = elemento.dataset.pre;
+            let valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+              total_premio_length += valor;
+            }
+          });
+          console.log(Number(total_premio_length));
+          console.log(Number(elementos.length));
+          _content_oferta_ronda_.style.display = "flex";
+          _content_accion_contraoferta_.style.display = "flex";
+          _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
+            (Number(total_premio_length) / Number(elementos.length)) * 0.25,
+          );
           Swal.fire({
             icon: "info",
             title: "Termina la ronda 1," + "<br/>" + " Inicia la ronda 2",
@@ -226,6 +266,20 @@ _casillas_descu_.forEach((posicion) => {
         if (_maletin_current_ === 9) {
           _ronda_current_++;
           _ronda_.textContent = _ronda_current_;
+          total_premio_length = 0;
+          elementos.forEach((elemento) => {
+            let texto = elemento.dataset.pre;
+            let valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+              total_premio_length += valor;
+            }
+          });
+          _content_oferta_ronda_.style.display = "flex";
+          _content_accion_contraoferta_.style.display = "flex";
+
+          _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
+            (Number(total_premio_length) / Number(elementos.length)) * 0.35,
+          );
           Swal.fire({
             icon: "info",
             title: "Termina la ronda 2," + "<br/>" + " Inicia la ronda 3",
@@ -240,6 +294,20 @@ _casillas_descu_.forEach((posicion) => {
         if (_maletin_current_ === 13) {
           _ronda_current_++;
           _ronda_.textContent = _ronda_current_;
+          total_premio_length = 0;
+          elementos.forEach((elemento) => {
+            let texto = elemento.dataset.pre;
+            let valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+              total_premio_length += valor;
+            }
+          });
+          _content_oferta_ronda_.style.display = "flex";
+          _content_accion_contraoferta_.style.display = "flex";
+
+          _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
+            (Number(total_premio_length) / Number(elementos.length)) * 0.5,
+          );
           Swal.fire({
             icon: "info",
             title: "Termina la ronda 3, " + "<br/>" + "Inicia la ronda 4",
@@ -254,6 +322,20 @@ _casillas_descu_.forEach((posicion) => {
         if (_maletin_current_ === 16) {
           _ronda_current_++;
           _ronda_.textContent = _ronda_current_;
+          total_premio_length = 0;
+          elementos.forEach((elemento) => {
+            let texto = elemento.dataset.pre;
+            let valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+              total_premio_length += valor;
+            }
+          });
+          _content_oferta_ronda_.style.display = "flex";
+          _content_accion_contraoferta_.style.display = "flex";
+
+          _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
+            (Number(total_premio_length) / Number(elementos.length)) * 0.65,
+          );
           Swal.fire({
             icon: "info",
             title: "Termina la ronda 4," + "<br/>" + "Inicia la ronda 5",
@@ -268,6 +350,20 @@ _casillas_descu_.forEach((posicion) => {
         if (_maletin_current_ === 19) {
           _ronda_current_++;
           _ronda_.textContent = _ronda_current_;
+          total_premio_length = 0;
+          elementos.forEach((elemento) => {
+            let texto = elemento.dataset.pre;
+            let valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+              total_premio_length += valor;
+            }
+          });
+          _content_oferta_ronda_.style.display = "flex";
+          _content_accion_contraoferta_.style.display = "flex";
+
+          _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
+            (Number(total_premio_length) / Number(elementos.length)) * 0.8,
+          );
           Swal.fire({
             icon: "info",
             title: "Termina la ronda 5," + "<br/>" + "Inicia la ronda 6",
@@ -282,6 +378,20 @@ _casillas_descu_.forEach((posicion) => {
         if (_maletin_current_ === 21) {
           _ronda_current_++;
           _ronda_.textContent = _ronda_current_;
+          total_premio_length = 0;
+          elementos.forEach((elemento) => {
+            let texto = elemento.dataset.pre;
+            let valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+              total_premio_length += valor;
+            }
+          });
+          _content_oferta_ronda_.style.display = "flex";
+          _content_accion_contraoferta_.style.display = "flex";
+
+          _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
+            (Number(total_premio_length) / Number(elementos.length)) * 0.9,
+          );
           Swal.fire({
             icon: "info",
             title: "Termina la ronda 6, " + "<br/>" + "Inicia la ronda 7",
@@ -296,6 +406,24 @@ _casillas_descu_.forEach((posicion) => {
         if (_maletin_current_ === 22) {
           _ronda_current_++;
           _ronda_.textContent = _ronda_current_;
+          total_premio_length = 0;
+          const posicion = document.getElementById(
+            `posicion_premio_${_ultima_posicion_.textContent}`,
+          );
+          posicion.classList.remove("ficha_chose");
+          elementos.forEach((elemento) => {
+            let texto = elemento.dataset.pre;
+            let valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+              total_premio_length += valor;
+            }
+          });
+          _content_oferta_ronda_.style.display = "flex";
+          _content_accion_contraoferta_.style.display = "flex";
+
+          _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
+            (Number(total_premio_length) / Number(elementos.length)) * 0.9,
+          );
           Swal.fire({
             icon: "info",
             title: "Termina la ronda 7, " + "<br/>" + "Inicia la ronda 8",
@@ -310,6 +438,20 @@ _casillas_descu_.forEach((posicion) => {
         if (_maletin_current_ === 23) {
           _ronda_current_++;
           _ronda_.textContent = _ronda_current_;
+          total_premio_length = 0;
+          elementos.forEach((elemento) => {
+            let texto = elemento.dataset.pre;
+            let valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+              total_premio_length += valor;
+            }
+          });
+          _content_oferta_ronda_.style.display = "flex";
+          _content_accion_contraoferta_.style.display = "flex";
+
+          _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
+            (Number(total_premio_length) / Number(elementos.length)) * 0.9,
+          );
           Swal.fire({
             icon: "info",
             title: "Termina la ronda 8, " + "<br/>" + "Inicia la ronda 9",
@@ -324,6 +466,20 @@ _casillas_descu_.forEach((posicion) => {
         if (_maletin_current_ === 24) {
           _ronda_current_++;
           _ronda_.textContent = _ronda_current_;
+          total_premio_length = 0;
+          elementos.forEach((elemento) => {
+            let texto = elemento.dataset.pre;
+            let valor = parseFloat(texto);
+            if (!isNaN(valor)) {
+              total_premio_length += valor;
+            }
+          });
+          _content_oferta_ronda_.style.display = "flex";
+          _content_accion_contraoferta_.style.display = "flex";
+
+          _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
+            (Number(total_premio_length) / Number(elementos.length)) * 0.9,
+          );
           Swal.fire({
             icon: "info",
             title: "La ronda 9 ha terminado",
@@ -337,6 +493,8 @@ _casillas_descu_.forEach((posicion) => {
 });
 
 _open_contra_oferta_.addEventListener("click", () => {
+  _valor_antes_contra_oferta_.textContent =
+    "Oferta Actual :" + _oferta_ronda_.textContent;
   _img_contra_oferta.style.display = "flex";
 });
 
