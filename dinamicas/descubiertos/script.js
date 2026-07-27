@@ -238,8 +238,13 @@ _casillas_descu_.forEach((posicion) => {
           _content_oferta_ronda_.style.display = "flex";
           _content_accion_contraoferta_.style.display = "flex";
           _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
-            (Number(total_premio_length) / Number(elementos.length)) * 0.25,
+            Math.floor(
+              ((Number(total_premio_length) / Number(elementos.length)) *
+                0.25) /
+                1000,
+            ) * 1000,
           );
+
           Swal.fire({
             icon: "info",
             title: "Termina la ronda 1," + "<br/>" + " Inicia la ronda 2",
@@ -266,7 +271,11 @@ _casillas_descu_.forEach((posicion) => {
           _content_accion_contraoferta_.style.display = "flex";
 
           _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
-            (Number(total_premio_length) / Number(elementos.length)) * 0.35,
+            Math.floor(
+              ((Number(total_premio_length) / Number(elementos.length)) *
+                0.35) /
+                1000,
+            ) * 1000,
           );
           Swal.fire({
             icon: "info",
@@ -294,7 +303,10 @@ _casillas_descu_.forEach((posicion) => {
           _content_accion_contraoferta_.style.display = "flex";
 
           _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
-            (Number(total_premio_length) / Number(elementos.length)) * 0.5,
+            Math.floor(
+              ((Number(total_premio_length) / Number(elementos.length)) * 0.5) /
+                1000,
+            ) * 1000,
           );
           Swal.fire({
             icon: "info",
@@ -322,7 +334,11 @@ _casillas_descu_.forEach((posicion) => {
           _content_accion_contraoferta_.style.display = "flex";
 
           _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
-            (Number(total_premio_length) / Number(elementos.length)) * 0.65,
+            Math.floor(
+              ((Number(total_premio_length) / Number(elementos.length)) *
+                0.65) /
+                1000,
+            ) * 1000,
           );
           Swal.fire({
             icon: "info",
@@ -350,7 +366,10 @@ _casillas_descu_.forEach((posicion) => {
           _content_accion_contraoferta_.style.display = "flex";
 
           _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
-            (Number(total_premio_length) / Number(elementos.length)) * 0.8,
+            Math.floor(
+              ((Number(total_premio_length) / Number(elementos.length)) * 0.8) /
+                1000,
+            ) * 1000,
           );
           Swal.fire({
             icon: "info",
@@ -378,7 +397,10 @@ _casillas_descu_.forEach((posicion) => {
           _content_accion_contraoferta_.style.display = "flex";
 
           _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
-            (Number(total_premio_length) / Number(elementos.length)) * 0.9,
+            Math.floor(
+              ((Number(total_premio_length) / Number(elementos.length)) * 0.9) /
+                1000,
+            ) * 1000,
           );
           Swal.fire({
             icon: "info",
@@ -410,7 +432,10 @@ _casillas_descu_.forEach((posicion) => {
           _content_accion_contraoferta_.style.display = "flex";
 
           _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
-            (Number(total_premio_length) / Number(elementos.length)) * 0.9,
+            Math.floor(
+              ((Number(total_premio_length) / Number(elementos.length)) * 0.9) /
+                1000,
+            ) * 1000,
           );
           Swal.fire({
             icon: "info",
@@ -438,7 +463,10 @@ _casillas_descu_.forEach((posicion) => {
           _content_accion_contraoferta_.style.display = "flex";
 
           _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
-            (Number(total_premio_length) / Number(elementos.length)) * 0.9,
+            Math.floor(
+              ((Number(total_premio_length) / Number(elementos.length)) * 0.9) /
+                1000,
+            ) * 1000,
           );
           Swal.fire({
             icon: "info",
@@ -466,7 +494,10 @@ _casillas_descu_.forEach((posicion) => {
           _content_accion_contraoferta_.style.display = "flex";
 
           _oferta_ronda_.textContent = formatoPesos_monto_efectivo.format(
-            (Number(total_premio_length) / Number(elementos.length)) * 0.9,
+            Math.floor(
+              ((Number(total_premio_length) / Number(elementos.length)) * 0.9) /
+                1000,
+            ) * 1000,
           );
           Swal.fire({
             icon: "info",
@@ -508,7 +539,7 @@ _btn_aprobar_contra_.addEventListener("click", () => {
         .replace(/[^0-9-]+/g, "");
       let ofertaRonda = parseFloat(textoOferta) || 0;
 
-      let veintePorciento = ofertaRonda * 0.2;
+      let veintePorciento = ofertaRonda * 0.35;
 
       let limiteMaximoPermitido = ofertaRonda + veintePorciento;
 

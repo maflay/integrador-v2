@@ -17,10 +17,70 @@
     </div>
     <div class="_main_content_formdata_">
         <div class="container _form_formdata_">
-            <input onkeyup="this.value = this.value.toUpperCase()" placeholder="Nombre..." type="text" class="form-control" id="nombre_form">
+            <img style="width: 250px;" src="/dinamicas/dinamica-form-data/resources/logo_dinamica_rapida.png"
+                alt="Aladdin">
+            <div id="_contentn_new_formadata_" class="_contentn_new_formadata_">
+                <input type="text" name="_new_promo_" id="_new_promo_" class="form-control"
+                    placeholder="Nueva Promoción">
+                <button class="btn btn-primary" id="_btn_crear_new_promo_">Crear</button>
+            </div>
+            <input onkeyup="this.value = this.value.toUpperCase()" placeholder="Nombre..." type="text"
+                class="form-control" id="nombre_form">
+            <select class="form-control" name="_promo_crea_" id="_promo_crea_">
+            </select>
+            <select class="item_hide form-control" id="casino_form">
+                <option value="">Casino...</option>
+                <option value="A05">A05</option>
+                <option value="A07">A07</option>
+                <option value="A08">A08</option>
+                <option value="A09">A09</option>
+                <option value="A12">A12</option>
+                <option value="A12-MESAS">A12-MESAS</option>
+                <option value="A15">A15</option>
+                <option value="A15-MESAS">A15-MESAS</option>
+                <option value="A16">A16</option>
+                <option value="A19">A19</option>
+                <option value="A35">A35</option>
+                <option value="A36">A36</option>
+                <option value="A36-MESAS">A36-MESAS</option>
+                <option value="A38">A38</option>
+                <option value="A39">A39</option>
+                <option value="A43">A43</option>
+                <option value="A48">A48</option>
+                <option value="A48-MESAS">A48-MESAS</option>
+                <option value="A49">A49</option>
+                <option value="A50">A50</option>
+                <option value="A53">A53</option>
+                <option value="A58">A58</option>
+                <option value="A70">A70</option>
+                <option value="A781">A781</option>
+                <option value="A88">A88</option>
+                <option value="A100">A100</option>
+                <option value="A108">A108</option>
+                <option value="A108-MESAS">A108-MESAS</option>
+                <option value="A127">A127</option>
+                <option value="A127-MESAS">A127-MESAS</option>
+            </select>
+            <select class="item_hide form-control" id="categoria_form">
+                <option value="">Categoría...</option>
+                <option value="GENIUS">Genius</option>
+                <option value="TITANIO">Titanio</option>
+                <option value="LEGENDARIO">Legendario</option>
+                <option value="GOLD">Gold</option>
+                <option value="SILVER">Silver</option>
+                <option value="BRONCE">Bronce</option>
+                <option value="ESTANDAR">Estándar</option>
+                <option value="SUPERIOR">Superior</option>
+                <option value="ADICIONAL">Adicional</option>
+            </select>
+            <input type="text" name="_new_num_bono_form_" placeholder="# Bono (Opcional)" id="_new_num_bono_form_"
+                class="form-control">
+            <input type="text" name="_new_resultado_form_" id="_new_resultado_form_" class="form-control"
+                placeholder="Resultado (Opcional)">
+            <button class="btn btn-danger" id="_btn_send_new_promo_">Enviar</button>
         </div>
     </div>
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>

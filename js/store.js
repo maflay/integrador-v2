@@ -217,6 +217,15 @@ function dateIntegrador() {
     year: "numeric",
   });
 
+  const fechaC = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "numeric"
+  });
+
+  console.log();
+
   document.getElementById("año_integrador").textContent = fechaCompleta;
   document.getElementById("año_footer").textContent = fechaCompleta;
 }
