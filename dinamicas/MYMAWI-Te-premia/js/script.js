@@ -10,19 +10,6 @@ const btnEnviar = document.getElementById("enviarForm");
 
 const user = inforUser();
 
-// toggleBtn.addEventListener("click", () => {
-//   formBox.classList.toggle("hidden");
-
-//   const oculto = formBox.classList.contains("hidden");
-//   toggleBtn.textContent = oculto ? "Mostrar" : "Ocultar";
-
-//   if (oculto) {
-//     logo.classList.add("logo-centrado");
-//   } else {
-//     logo.classList.remove("logo-centrado");
-//   }
-// });
-
 // btn de la modal
 const btn_envio_secundario = document.getElementById("btn_envio_secundario");
 const btn_observacion = document.getElementById("btn_observacion");
@@ -33,7 +20,7 @@ const btn_registro_dia = document.getElementById("btn_registro_dia");
 
 const view_envio_secundario = document.getElementById("view_envio_secundario");
 const view_envia_observacion = document.getElementById(
-  "view_envia_observacion"
+  "view_envia_observacion",
 );
 const view_tabla_premios = document.getElementById("view_tabla_premios");
 const view_registro_dia = document.getElementById("view_registro_dia");
@@ -131,61 +118,79 @@ function mostrarPremio(categoria) {
   const categoriaEl = document.getElementById("categoria");
   const cate = categoriaEl.value.trim().toUpperCase();
   const casino = document.getElementById("casino");
+  const valBono = document.getElementById("bono");
 
   let premios = {};
+
   if (
-    casino.value == "A43" ||
-    casino.value == "MP53" ||
-    casino.value == "A53"
+    casino.value == "A12-MESAS" ||
+    casino.value == "A19" ||
+    casino.value == "A50" ||
+    casino.value == "A38" ||
+    casino.value == "A35" ||
+    casino.value == "A39" ||
+    casino.value == "A88" ||
+    casino.value == "A48" ||
+    casino.value == "A49" ||
+    casino.value == "A100"
   ) {
     premios = {
-      GENIUS: 150000,
-      TITANIO: 130000,
-      LEGENDARIO: 120000,
+      ESTANDAR: 60000,
+      SUPERIOR: 100000,
+    };
+  } else if (
+    casino.value == "A36" ||
+    casino.value == "A36-MESAS" ||
+    casino.value == "A781" ||
+    casino.value == "A127-MESAS" ||
+    casino.value == "A15-MESAS" ||
+    casino.value == "A108-MESAS"
+  ) {
+    premios = {
+      ESTANDAR: 80000,
+      SUPERIOR: 100000,
+    };
+  } else if (
+    casino.value == "A05" ||
+    casino.value == "A07" ||
+    casino.value == "A08" ||
+    casino.value == "A09" ||
+    casino.value == "A12" ||
+    casino.value == "A16" ||
+    casino.value == "A19" ||
+    casino.value == "A70"
+  ) {
+    premios = {
+      GENIUS: 110000,
+      TITANIO: 100000,
+      LEGENDARIO: 90000,
+      GOLD: 80000,
+      SILVER: 70000,
+      BRONCE: 60000,
+    };
+  } else if (
+    casino.value == "A43" ||
+    casino.value == "A53" ||
+    casino.value == "A108" ||
+    casino.value == "A127" ||
+    casino.value == "A15"
+  ) {
+    premios = {
+      GENIUS: 130000,
+      TITANIO: 120000,
+      LEGENDARIO: 110000,
       GOLD: 100000,
       SILVER: 90000,
       BRONCE: 80000,
-      SUPERIORALADDIN: 100000,
-      SUPERIORMARCOPOLO: 100000,
-      ESTANDARALADDIN: 50000,
-      ESTANDARMARCOPOLO: 80000,
-    };
-  } else if (
-    casino.value == "A12-MESAS" ||
-    casino.value == "MP15-MESAS" ||
-    casino.value == "MP108-MESAS" ||
-    casino.value == "A36-MESAS" ||
-    casino.value == "A36" ||
-    casino.value == "A781"
-  ) {
-    premios = {
-      GENIUS: 150000,
-      TITANIO: 130000,
-      LEGENDARIO: 110000,
-      GOLD: 90000,
-      SILVER: 70000,
-      BRONCE: 50000,
-      SUPERIORALADDIN: 100000,
-      SUPERIORMARCOPOLO: 100000,
-      ESTANDARALADDIN: 80000,
-      ESTANDARMARCOPOLO: 80000,
-    };
-  } else {
-    premios = {
-      GENIUS: 150000,
-      TITANIO: 130000,
-      LEGENDARIO: 110000,
-      GOLD: 90000,
-      SILVER: 70000,
-      BRONCE: 50000,
-      SUPERIORALADDIN: 100000,
-      SUPERIORMARCOPOLO: 100000,
-      ESTANDARALADDIN: 50000,
-      ESTANDARMARCOPOLO: 50000,
     };
   }
 
-  if (premios[categoria]) {
+  if (!premios[categoria]) {
+    Swal.fire({
+      icon: "info",
+      title: "Combinación sin Premio",
+    });
+  } else if (premios[categoria]) {
     Swal.fire({
       icon: "success",
       title: "Felicidades eres un ganador.",
@@ -201,6 +206,8 @@ function mostrarPremio(categoria) {
       categoria
     ].toLocaleString()} en Dinero Promocional, con categoria ${cate}</div>`;
 
+    valBono.innerHTML =
+      '<div style="display: flex;gap: 30px;"><div class="content-btn-enviar"><button onclick="reiniciar()" class="btn-dados">Reiniciar</button></div><div class="content-btn-enviar"><input class="form-control" id="valBono" type="text" placeholder="# bono." /></div><div class="content-btn-enviar"><button onclick="HandleSend()" id="enviarForm" class="btn-dados">Enviar</button></div></div>';
     confetti({
       particleCount: 200,
       spread: 70,
@@ -251,8 +258,6 @@ function validatePremio() {
   setTimeout(() => {
     loader.style.display = "none";
     mostrarPremio(categoria);
-    valBono.innerHTML =
-      '<div style="display: flex;gap: 30px;"><div class="content-btn-enviar"><button onclick="reiniciar()" class="btn-dados">Reiniciar</button></div><div class="content-btn-enviar"><input class="form-control" id="valBono" type="text" placeholder="# bono." /></div><div class="content-btn-enviar"><button onclick="HandleSend()" id="enviarForm" class="btn-dados">Enviar</button></div></div>';
   }, 2000);
 }
 
@@ -291,12 +296,12 @@ function HandleSend() {
     categoriaEl.value.trim().toUpperCase() == "SUPERIORMARCOPOLO"
       ? "SUPERIOR"
       : categoriaEl.value.trim().toUpperCase() == "ESTANDARMARCOPOLO"
-      ? "ESTANDAR"
-      : categoriaEl.value.trim().toUpperCase() == "SUPERIORALADDIN"
-      ? "SUPERIOR"
-      : categoriaEl.value.trim().toUpperCase() == "ESTANDARALADDIN"
-      ? "ESTANDAR"
-      : categoriaEl.value.trim().toUpperCase();
+        ? "ESTANDAR"
+        : categoriaEl.value.trim().toUpperCase() == "SUPERIORALADDIN"
+          ? "SUPERIOR"
+          : categoriaEl.value.trim().toUpperCase() == "ESTANDARALADDIN"
+            ? "ESTANDAR"
+            : categoriaEl.value.trim().toUpperCase();
   const nombre = nombreEl.value.trim();
   const cedula = cedulaEl.value.trim();
   const valBono = valBonoEl == "0" ? "0" : valBonoEl.value.trim();
@@ -486,12 +491,12 @@ function HandleSecondSubmit() {
       categoriaEl == "SUPERIORMARCOPOLO"
         ? "SUPERIOR"
         : categoriaEl == "ESTANDARMARCOPOLO"
-        ? "ESTANDAR"
-        : categoriaEl == "SUPERIORALADDIN"
-        ? "SUPERIOR"
-        : categoriaEl == "ESTANDARALADDIN"
-        ? "ESTANDAR"
-        : categoriaEl,
+          ? "ESTANDAR"
+          : categoriaEl == "SUPERIORALADDIN"
+            ? "SUPERIOR"
+            : categoriaEl == "ESTANDARALADDIN"
+              ? "ESTANDAR"
+              : categoriaEl,
     valor_7: promocionEl,
     valor_8: bonoEl,
     valor_9: user.Nombre,
@@ -702,7 +707,7 @@ function mostrarRegistros() {
                 <td>${registro.valor_8}</td>
                 <td>${registro.valor_2} ${registro.valor_1}</td>
               </tr>
-            `
+            `,
           )
           .join("")}
       </tbody>

@@ -59,7 +59,7 @@
                             <option value="A48-MESAS">A48-MESAS</option>
                             <option value="A49">A49</option>
                             <option value="A50">A50</option>
-                            <option value="MP53">MP53</option>
+                            <option value="A53">A53</option>
                             <option value="A70">A70</option>
                             <option value="A781">A781</option>
                             <option value="A88">A88</option>
@@ -79,10 +79,8 @@
                             <option value="GOLD">Gold</option>
                             <option value="SILVER">Silver</option>
                             <option value="BRONCE">Bronce</option>
-                            <option value="SUPERIORMARCOPOLO">Superior</option>
-                            <option value="ESTANDARMARCOPOLO">Estándar</option>
-                            <option value="SUPERIORALADDIN">Superior Aladdin</option>
-                            <option value="ESTANDARALADDIN">Estándar Aladdin</option>
+                            <option value="SUPERIOR">Superior</option>
+                            <option value="ESTANDAR">Estándar</option>
                             <option value="ADICIONAL">Adicional</option>
                         </select>
                     </div>
@@ -95,8 +93,8 @@
                     </div>
                     <div class="nombre">
                         <div style="display: flex; align-items: center; gap: 5px">
-                            <input onkeyup="this.value = this.value.toUpperCase()" class="form-control" style=" cursor: pointer;" type="text" id="nombre"
-                                placeholder="Nombre" />
+                            <input onkeyup="this.value = this.value.toUpperCase()" class="form-control"
+                                style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre" />
                         </div>
                     </div>
                 </div>
@@ -169,7 +167,7 @@
                                 <option value="A48-MESAS">A48-MESAS</option>
                                 <option value="A49">A49</option>
                                 <option value="A50">A50</option>
-                                <option value="MP53">MP53</option>
+                                <option value="A53">A53</option>
                                 <option value="A70">A70</option>
                                 <option value="A781">A781</option>
                                 <option value="A88">A88</option>
@@ -177,20 +175,19 @@
                                 <option value="A108">A108</option>
                                 <option value="A108-MESAS">A108-MESAS</option>
                                 <option value="A127">A127</option>
-                            <option value="A127-MESAS">A127-MESAS</option>
+                                <option value="A127-MESAS">A127-MESAS</option>
                             </select>
                             <select class="form-control" id="categoria-modal">
-                                <option value="">Categoria...</option>
+                                <option value="">Categoría...</option>
                                 <option value="GENIUS">Genius</option>
                                 <option value="TITANIO">Titanio</option>
                                 <option value="LEGENDARIO">Legendario</option>
                                 <option value="GOLD">Gold</option>
                                 <option value="SILVER">Silver</option>
                                 <option value="BRONCE">Bronce</option>
-                                <option value="SUPERIORMARCOPOLO">Superior Marcopolo</option>
-                                <option value="ESTANDARMARCOPOLO">Estándar Marcopolo</option>
-                                <option value="SUPERIORALADDIN">Superior Aladdin</option>
-                                <option value="ESTANDARALADDIN">Estándar Aladdin</option>
+                                <option value="SUPERIOR">Superior</option>
+                                <option value="ESTANDAR">Estándar</option>
+                                <option value="ADICIONAL">Adicional</option>
                             </select>
                         </div>
                         <div style="display: flex;gap: 10px;">
@@ -241,7 +238,7 @@
                             <option value="A48-MESAS">A48-MESAS</option>
                             <option value="A49">A49</option>
                             <option value="A50">A50</option>
-                            <option value="MP53">MP53</option>
+                            <option value="A53">A53</option>
                             <option value="A70">A70</option>
                             <option value="A781">A781</option>
                             <option value="A88">A88</option>
@@ -266,9 +263,43 @@
                 <div class="info_body_modal">
                     <h2>Tabla de Premios</h2>
                     <div class="table-result container">
-                        <p class="casinos_mymawi">A05, A07, A08, A09, A12, MP15, A16, MP108, A50, A70, A38, A35, A39,
-                            A88, A48, A49, MP100,
-                            A48m, MP100m</p>
+                        <p class="casinos_mymawi"> A12m, A19, A50, A38, A35, A39, A88, A48, A49, MP100, </p>
+                        <table class="styled-table">
+                            <thead style="position: relative;">
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Estándar</th>
+                                    <th>Superior</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Todas</td>
+                                    <td>$ 60.000</td>
+                                    <td>$ 100.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                        <p class="casinos_mymawi">A36, A36m, A781, A127m MP15m, MP108M, A127m</p>
+                        <table class="styled-table">
+                            <thead style="position: relative;">
+                                <tr>
+                                    <th>Categoria</th>
+                                    <th>Estándar</th>
+                                    <th>Superior</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Todas</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                        <p class="casinos_mymawi"> A05, A07, A08, A09, A12, A16, A19, A70</p>
                         <table class="styled-table">
                             <thead style="position: relative;">
                                 <tr>
@@ -279,52 +310,23 @@
                                     <th>Legendario</th>
                                     <th>Titanio</th>
                                     <th>Geniuns</th>
-                                    <th>Estándar</th>
-                                    <th>Superior</th>
-                                    <!-- <th>Estándar MarcoPolo</th>
-                                    <th>Superior MarcoPolo</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Todas</td>
-                                    <td>$ 50.000</td>
+                                    <td>$ 60.000</td>
                                     <td>$ 70.000</td>
-                                    <td>$ 90.000</td>
-                                    <td>$ 110.000</td>
-                                    <td>$ 130.000</td>
-                                    <td>$ 150.000</td>
-                                    <td>$ 50.000</td>
-                                    <td>$ 100.000</td>
-
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
-                        <p class="casinos_mymawi">A-12m, MP-15m, A-36, A-36m, A-781, MP108m</p>
-                        <table class="styled-table">
-                            <thead style="position: relative;">
-                                <tr>
-                                    <th>Categoria</th>
-
-                                    <th>Estándar</th>
-                                    <th>Superior</th>
-                                    <!-- <th>Estándar MarcoPolo</th>
-                                    <th>Superior MarcoPolo</th> -->
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Todas</td>
-
                                     <td>$ 80.000</td>
+                                    <td>$ 90.000</td>
                                     <td>$ 100.000</td>
+                                    <td>$ 110.000</td>
                                 </tr>
                             </tbody>
                         </table>
 
                         <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
-                        <p class="casinos_mymawi">A-43, A-53</p>
+                        <p class="casinos_mymawi">A43, A53, MP108, A127, MP15</p>
                         <table class="styled-table">
                             <thead>
                                 <tr>
@@ -335,7 +337,6 @@
                                     <th>Legendario</th>
                                     <th>Titanio</th>
                                     <th>Geniuns</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -344,10 +345,9 @@
                                     <td>$ 80.000</td>
                                     <td>$ 90.000</td>
                                     <td>$ 100.000</td>
+                                    <td>$ 110.000</td>
                                     <td>$ 120.000</td>
                                     <td>$ 130.000</td>
-                                    <td>$ 150.000</td>
-
                                 </tr>
                             </tbody>
                         </table>
@@ -417,7 +417,7 @@
                                 <option value="A48-MESAS">A48-MESAS</option>
                                 <option value="A49">A49</option>
                                 <option value="A50">A50</option>
-                                <option value="A50">MP53</option>
+                                <option value="A53">A53</option>
                                 <option value="A70">A70</option>
                                 <option value="A781">A781</option>
                                 <option value="A88">A88</option>
@@ -436,10 +436,9 @@
                                 <option value="GOLD">Gold</option>
                                 <option value="SILVER">Silver</option>
                                 <option value="BRONCE">Bronce</option>
-                                <option value="SUPERIORMARCOPOLO">Superior Marcopolo</option>
-                                <option value="ESTANDARMARCOPOLO">Estandar Marcopolo</option>
-                                <option value="SUPERIORALADDIN">Superior Aladdin</option>
-                                <option value="ESTANDARALADDIN">Estandar Aladdin</option>
+                                <option value="SUPERIOR">Superior</option>
+                                <option value="ESTANDAR">Estándar</option>
+                                <option value="ADICIONAL">Adicional</option>
                             </select>
                         </div>
 
