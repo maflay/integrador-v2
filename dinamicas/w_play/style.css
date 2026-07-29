@@ -29,3 +29,29 @@
         transform: rotate(360deg);
     }
 }
+
+._content_main_w_play_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    gap: 30px;
+    background-image: linear-gradient(90deg, #032540, #144670, #032540);
+}
+
+._content_main_w_play_ img {
+    width: 300px;
+}
+
+._content_form_w_play_ {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    max-width: 500px;
+    padding: 30px;
+    gap: 20px;
+}
