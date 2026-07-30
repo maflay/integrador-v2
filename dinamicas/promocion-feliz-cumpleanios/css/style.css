@@ -146,6 +146,7 @@ body {
     font-weight: bold;
     color: white;
     transition: background-color 0.15s ease, transform 0.15s ease;
+    cursor: pointer;
 }
 
 .posicion_cum_seleccionado {
@@ -334,9 +335,9 @@ body {
 }
 
 .posicion_cum_opacada {
+    cursor: pointer;
     opacity: 0.4;
     filter: grayscale(100%);
-    pointer-events: none;
     transition: opacity 0.5s ease, filter 0.5s ease;
 }
 

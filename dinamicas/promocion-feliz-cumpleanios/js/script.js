@@ -173,9 +173,9 @@ btn_pintar_tablero.addEventListener("click", () => {
     casilla.className = "posicion_cum";
     casilla.textContent = `${i + 1}`;
 
-    // 👇 En lugar de eliminarla, la marcamos como "usada"
+    //En lugar de eliminarla, la marcamos como "usada"
     casilla.addEventListener("click", () => {
-      casilla.classList.add("posicion_cum_opacada");
+      casilla.classList.toggle("posicion_cum_opacada");
     });
 
     board.appendChild(casilla);
@@ -217,8 +217,6 @@ async function randomizar() {
   const total = casillasDisponibles.length;
   const numerAleatorio = Math.floor(Math.random() * total); // índice del array
   const casillaGanadora = casillasDisponibles[numerAleatorio];
-
-  console.log("🎯 Casilla ganadora:", casillaGanadora.id);
 
   btn_inicar_random.classList.add("disable_item");
   btn_pintar_tablero.classList.add("disable_item");
@@ -362,7 +360,6 @@ function handleSubmit() {
     .then((res) => res.text())
     .then(() => {
       loader.style.display = "none";
-      casillas.value = "";
       casino.value = "";
       nombre.value = "";
       cedula.value = "";
