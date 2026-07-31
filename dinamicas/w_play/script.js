@@ -8,6 +8,7 @@ const casino = document.getElementById("casino");
 const _valor_apostado_ = document.getElementById("_valor_apostado_");
 const _num_wplay_ = document.getElementById("_num_wplay_");
 const _valor_apostado_int_ = document.getElementById("_valor_apostado_int_");
+const _antiguedad_wplay_ = document.getElementById("_antiguedad_wplay_");
 const _btn_send_wplay_ = document.getElementById("_btn_send_wplay_");
 const Promocion = "W Play";
 const user = inforUser();
@@ -40,7 +41,12 @@ _valor_apostado_.addEventListener("input", function (e) {
 });
 
 function handleSendWplay() {
-  if (!nombre.value || !casino.value || !_valor_apostado_.value || !_num_wplay_.value) {
+  if (
+    !nombre.value ||
+    !casino.value ||
+    !_num_wplay_.value ||
+    !_antiguedad_wplay_.value
+  ) {
     Swal.fire({
       icon: "warning",
       title: "Campos en Blanco",
@@ -69,7 +75,8 @@ function handleSendWplay() {
     Promocion: Promocion,
     Usuario: user.Nombre,
     Valor: _valor_apostado_int_.value,
-    Numero_tel: _num_wplay_.value
+    Numero_tel: _num_wplay_.value,
+    Antiguedad: _antiguedad_wplay_.value,
   };
 
   loader.style.display = "flex";
@@ -84,6 +91,7 @@ function handleSendWplay() {
       loader.style.display = "none";
       nombre.value = "";
       casino.value = "";
+      _num_wplay_.value = "";
       _valor_apostado_.value = "";
       _valor_apostado_int_.value = "";
       Swal.fire({
