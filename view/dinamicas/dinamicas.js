@@ -13,7 +13,6 @@ function actionsAcc() {
   );
   all_card.forEach((card, index) => {});
   if (user.Nivel === 1 || user.Nivel === 2) {
-    console.log("entro");
     document.getElementById("all_info").innerHTML =
       ` <a title="Opciones Admin Promotor" class="crear_usuario" href="#crear_usuario"><img
                 src="/resource/engranaje.png" alt="Opciones"></a>
@@ -21,8 +20,6 @@ function actionsAcc() {
             href="https://docs.google.com/spreadsheets/d/1cDIZJkvZT2afwLahkwNIRQ-TQL3hQPaRC0OHcrrXUvY/edit?gid=976928819#gid=976928819">Información</a>
    `;
   } else if (user.Nivel === 6) {
-    console.log("entro");
-    console.log(user.Nivel);
     document.getElementById("all_info").innerHTML =
       ` <a title="Opciones Admin Promotor" class="crear_usuario" href="#crear_usuario"><img
                 src="/resource/engranaje.png" alt="Opciones"></a>
