@@ -43,9 +43,7 @@
     align-items: center;
     position: relative;
     width: 100%;
-    height: 100%;
-    min-width: 1820px;
-    min-height: 1080px;
+    height: 100vh;
     background-image: linear-gradient(180deg, #110a0abd, #00000091), url(/dinamicas/promocion_vamos_en_grande/resources/background.jpg);
     background-position: center;
     background-repeat: no-repeat;
@@ -80,11 +78,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    width: 100%;
+    position: absolute;
+    left: 40px;
     height: 400px;
+     animation: girarInfinito 30s linear infinite;
 }
 
+@keyframes girarInfinito {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
 
 
 /* --- RULETAS DOBLES --- */
@@ -210,7 +218,7 @@
 }
 
 .lista_parti {
-    position: absolute;
+    position: relative;
     top: 25%;
     right: 0px;
     margin-top: 8px;
@@ -239,4 +247,167 @@
 .cargando {
     font-size: 2rem;
     color: white;
+}
+
+#resultado {
+    position: absolute;
+    right: 0;
+    width: 70%;
+}
+
+/* SLIDER */
+
+
+.slider-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+}
+
+.posi_btn_slider_resutl_1 {
+    position: absolute;
+    bottom: 0px;
+    left: 45%;
+    transform: translateX(-50%);
+}
+
+.posi_btn_slider_resutl_2 {
+    position: absolute;
+    bottom: 0px;
+    right: 45%;
+    transform: translateX(50%);
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(0, 0, 0, .25);
+    color: #fff;
+    font-size: 25px;
+    line-height: 1;
+    padding: 0 0 6px 0px;
+}
+
+.nav:disabled {
+    opacity: .35;
+}
+
+.slider-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.slider-track {
+    display: flex;
+    transition: transform .35s ease;
+    will-change: transform;
+}
+
+.slide {
+    min-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.col {
+    background: rgba(0, 0, 0, .25);
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.row-item {
+    display: grid;
+    grid-template-columns: 70px 1fr;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    background: rgba(3, 52, 143, 0.712);
+    margin-bottom: 10px;
+    height: 140px;
+    border: rgba(255, 255, 0, 0.699) 5px solid;
+}
+
+.row-item:last-child {
+    margin-bottom: 0;
+}
+
+.num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 58px;
+    text-align: center;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.555);
+    border: rgba(0, 144, 163, 0.384) 8px solid;
+    padding: 6px 8px;
+    width: 100px;
+}
+
+.color_red {
+    color: red !important;
+}
+
+.color_green {
+    color: green !important;
+}
+
+.color_black {
+    color: black !important;
+}
+
+.name {
+    font-size: 28px;
+    line-height: 1.2;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    color: rgb(255, 255, 255);
+    padding-left: 50px;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 0 20px;
+    color: black;
+}
+
+.dot {
+    display: none;
+    position: relative;
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 0;
+    top: 40px;
+    background: rgb(250, 250, 250);
+}
+
+.dot.active {
+    background: rgb(255, 44, 44);
+}
+
+@keyframes parpadeo {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2; 
+}
+}
+
+.item-parpadeante {
+  animation: parpadeo 1.5s infinite ease-in-out;
+  animation-delay: var(--delay, 0s);
 }

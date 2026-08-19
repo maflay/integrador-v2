@@ -2,6 +2,7 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
+
 const url =
   "https://script.google.com/macros/s/AKfycbyZV3Y8YB91ZQGdSY2O1yECcmSLKfbsggU7sTr-B70TCqN2mriwRPWZ4VYGABcTOpxO/exec";
 
@@ -177,11 +178,17 @@ const resultado = document.getElementById("resultado");
 function renderRuletas(nums, nombres) {
   const nombs = participantes38.map((r) => r.Nombre);
   const content_btn = document.getElementById("content_btn");
+
+const itemDiv = document.createElement('div');
+itemDiv.className = 'row-item item-parpadeante';
+
+const randomDelay = (Math.random() * 2).toFixed(2);
+itemDiv.style.setProperty('--delay', `${randomDelay}s`);
   board.innerHTML = `
     <div class="ruletas-wrap">
       <div class="puntero"></div>
       <div id="ruletaNums" class="ruleta ruleta-numeros"></div>
-      <div id="ruletaNames" class="ruleta ruleta-nombres"></div>
+      <div id="ruletaNames" style="--delay: ${randomDelay}s;" class="ruleta ruleta-nombres item-parpadeante"></div>
     </div>
     <div id="resultado" class="resultado-map"></div>
   `;
@@ -298,28 +305,117 @@ function renderRuletas(nums, nombres) {
       })
         .then((res) => res.text())
         .then(() => {
-          const mitad = Math.ceil(listadoOrdenado.length / 2);
+          console.log(listadoOrdenado);
 
-          const bloque1 = listadoOrdenado.slice(0, mitad);
-          const bloque2 = listadoOrdenado.slice(mitad);
+          const itemsPerSlide = 16;
+          const slidesData = [];
 
-          resultado.innerHTML = `<div class="lista_parti doble">
-                                  <div class="bloque_participantes">
-                                    <b>Listado 1</b><br><br>
-                                    ${bloque1.map((p) => `${p.numero} - ${p.Nombre}`).join("<br>")}
-                                  </div>
-                                  <div class="bloque_participantes">
-                                    <b>Listado 2</b><br><br>
-                                    ${bloque2.map((p) => `${p.numero} - ${p.Nombre}`).join("<br>")}
-                                  </div>
-                                </div>`;
+          for (let i = 0; i < listadoOrdenado.length; i += itemsPerSlide) {
+            slidesData.push(listadoOrdenado.slice(i, i + itemsPerSlide));
+          }
+
+function renderCol(items) {
+            let html = "";
+            for (let i = 0; i < 4; i++) {
+              const p = items[i];
+              if (p) {
+                const claseColor = colorRuletaAmericana(p.numero, 0); 
+                
+                html += `
+                <div class="row-item">
+                    <div class="num ${claseColor}">${p.numero}</div>
+                    <div class="name">${p.Nombre}</div>
+                </div>`;
+              } 
+              // else {
+              //   html += `
+              //   <div class="row-item">
+              //       <div class="num">?</div>
+              //       <div class="name">Disponible</div>
+              //   </div>`;
+              // }
+            }
+            return html;
+          }
+
+          resultado.innerHTML = `
+    <div class="slider-wrap">
+        <button class="nav prev posi_btn_slider_resutl_1" type="button" aria-label="Anterior">‹</button>
+        <div class="slider-viewport">
+            <div class="slider-track">
+                ${slidesData
+                  .map(
+                    (group, idx) => `
+                <div class="slide" data-index="${idx}">
+                    <div class="col">
+                        ${renderCol(group.slice(0, 4))}
+                    </div>
+                    <div class="col">
+                        ${renderCol(group.slice(4, 8))}
+                    </div>
+                </div>`,
+                  )
+                  .join("")}
+            </div>
+        </div>
+        <button class="nav next posi_btn_slider_resutl_2" type="button" aria-label="Siguiente">›</button>
+    </div>
+    <div class="dots">
+        ${slidesData.map((_, i) => `<button class="dot" data-dot="${i}"></button>`).join("")}
+    </div>`;
+
+          const track = resultado.querySelector(".slider-track");
+          const slides = Array.from(track.children);
+          const nextButton = resultado.querySelector(
+            ".posi_btn_slider_resutl_2",
+          );
+          const prevButton = resultado.querySelector(
+            ".posi_btn_slider_resutl_1",
+          );
+          const dotsContainer = resultado.querySelector(".dots");
+          const dots = Array.from(dotsContainer.children);
+
+          let currentIndex = 0;
+
+          function updateSlide(index) {
+            if (index < 0) {
+              currentIndex = slides.length - 1;
+            } else if (index >= slides.length) {
+              currentIndex = 0;
+            } else {
+              currentIndex = index;
+            }
+
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+            dots.forEach((dot, i) => {
+              dot.classList.toggle("active", i === currentIndex);
+            });
+          }
+
+          nextButton.addEventListener("click", () => {
+            updateSlide(currentIndex + 1);
+          });
+
+          prevButton.addEventListener("click", () => {
+            updateSlide(currentIndex - 1);
+          });
+
+          dotsContainer.addEventListener("click", (e) => {
+            const targetDot = e.target.closest(".dot");
+            if (!targetDot) return;
+
+            const targetIndex = parseInt(targetDot.getAttribute("data-dot"));
+            updateSlide(targetIndex);
+          });
+
+          updateSlide(0);
         })
         .catch((erro) => {
           resultado.innerHTML = `<div class="lista_parti">
-                                  <b>Error al asignar numeros...</b>
-                                </div>`;
+        <b>Error al asignar numeros...</b>
+    </div>`;
         });
-
       // for (let i = 0; i <= listado.length - 1; i++) {
       //   // console.log(listadoOrdenado[i], "listadoOrdenado");
       //   console.log(

@@ -21,6 +21,8 @@ const avance_3 = document.getElementById("avance_3");
 
 const acumula_avion = document.getElementById("acumula_avion");
 
+const btn_devolver = document.getElementById("btn_devolver");
+
 document.getElementById("btn_refrescar").addEventListener("click", () => {
   Swal.fire({
     title: "Seguro de refrescar?",
