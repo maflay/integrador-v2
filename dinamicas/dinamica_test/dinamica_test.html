@@ -12,154 +12,18 @@
 </head>
 
 <body>
-    <div style="display: flex;justify-content: center;align-items: center;width: 100%; height: 100vh; ">
-        <h2 style="font-family: 'emirates', sans-serif !important; font-size: 100px;">MÁQUINAS ELECTRONICAS</h2>
-    </div>
-    <!-- <div id="contenedor-modal-oferta" style="display:none; position:fixed; top:0; left:0; width:100%;height:100%; background:rgba(0,0,0,0.5); z-index:99999; justify-content:center; align-items:center;">
-        <div style="background:#fff; padding:20px; border-radius:5px; width:600px; position:relative;">
-            <span id="cerrar-modal-oferta" style="position:absolute; top:5px; right:10px; cursor:pointer; font-weight:bold;">&times;</span>
-            <h3>Enviar una Oferta</h3>
-            <form id="form-crear-oferta" class="form_oferta">
-				<input type="hidden" name="id_producto" value="' . esc_attr($product->get_id()) . '">
-				<label>' . esc_attr($product->get_name()) . '</label><br/>
-				<br/>
-				<input type="email" id="correo_oferta" name="correo_oferta" required style="width:100%; margin-bottom:10px;margin-top:10px;" class="input-text qty text" placeholder="Correo">
-				<label for="monto_oferta">Tu oferta ($):</label>
-				<input type="number" id="monto_oferta" name="monto_oferta" required style="width:100%; margin-bottom:10px;margin-top:10px;" class="input-text qty text" placeholder="Oferta">
-				<textarea name="descrip_oferta" id="descrip_oferta" placeholder="Dejanos tu Opinión de la Oferta"></textarea>
-				<button type="button" class="button alt wp-element-button" id="btn_send_oferta" style="width:100%;" type="submit">Enviar Oferta</button>
-			</form>
+    <div class="content_main_content">
+        <div id="_content_video_show_" class="_content_video_show_ ">
+            <video autoplay muted loop playsinline style="object-fit: cover;width: 100%; height: 100vh;">
+                <source src="/resource/A.mov" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+        </div>
+        <div class="fondo_juego">            
+            <button id="btn_mostrar_video" class="btn btn-primary">mostrar Video</button>
         </div>
     </div>
-    <div class="main_back">
-        <div style="position: relative;top: -20px;" class="tpl-mund">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
-    <div id="galeria-tiktok"
-        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(325px, 1fr)); gap: 20px;">
-    </div> -->
-
-
-    <!-- <script>
-        async function cargarGaleriaTikTok(urls) {
-            const galeria = document.getElementById('galeria-tiktok');
-            console.log(urls);
-            for (const url of urls) {
-                try {
-                    const response = await fetch(`https://www.tiktok.com{url}`);
-                    const data = await response.json();
-
-                    const videoDiv = document.createElement('div');
-                    videoDiv.innerHTML = data.html;
-                    galeria.appendChild(videoDiv);
-
-                } catch (error) {
-                    console.error("Error cargando:", url, error);
-                }
-            }
-
-            const script = document.createElement('script');
-            script.src = "https://www.tiktok.com";
-            script.async = true;
-            document.body.appendChild(script);
-        }
-
-        const misVideos = [
-            'https://www.tiktok.com/@championsleague/video/7619265498890423574',
-            'https://www.tiktok.com/@championsleague/video/7621940453507648790',
-            'https://www.tiktok.com/@championsleague/video/7622056679902809367', 
-            'https://www.tiktok.com/@championsleague/video/7621989587799297302'
-        ];
-
-    </script>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-        import {
-            getDatabase, ref, set, onValue, update, push
-        } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyAXCMyH4zx--kZvJ_W1F1KAi5HKjPNxPHo",
-            authDomain: "prueba-f0c25.firebaseapp.com",
-            databaseURL: "https://prueba-f0c25-default-rtdb.firebaseio.com",
-            projectId: "prueba-f0c25",
-            storageBucket: "prueba-f0c25.firebasestorage.app",
-            messagingSenderId: "984894736026",
-            appId: "1:984894736026:web:a04d1ab923391236698123"
-        };
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-
-        const NS = "apps/ejemplo_actualizar";
-        const ROOM = "sala_ejemplo";
-
-        const roomRef = ref(db, `${NS}/rooms/${ROOM}`);
-        const numeroRef = ref(db, `${NS}/rooms/${ROOM}/numero`);
-
-        let btn_ejemplo = document.createElement("button");
-        btn_ejemplo.id = "btn_ejemplo";
-        btn_ejemplo.classList.add("btn");
-        btn_ejemplo.classList.add("btn-primary");
-        btn_ejemplo.textContent = "Enviar";
-        document.body.appendChild(btn_ejemplo);
-        document.getElementById("btn_ejemplo").addEventListener("click", () => {
-            update(roomRef, {
-                numero: Math.floor(Math.random() * (10 - 1 + 1)) + 1
-            })
-        });
-
-
-    </script> -->
-
+    
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>

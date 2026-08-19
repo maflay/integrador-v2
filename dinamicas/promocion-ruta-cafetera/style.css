@@ -1,0 +1,425 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@font-face {
+    font-family: 'super wonder';
+    src: url('/fonts/Super\ Wonder.ttf') format('truetype');
+}
+
+.content_main_vuelta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: #88BD23;
+    /* background-image: url(/dinamicas/promocion-ruta-cafetera/resources/Fondo_con_parqueadero-La_Ruta_Cafetera.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; */
+    background-attachment: fixed;
+}
+
+.aeropuerto {
+    position: absolute;
+    width: 140px;
+    height: 380px;
+    top: 195px;
+    left: 250px;
+}
+
+.board {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1170px;
+    max-height: 800px;
+    /* background-color: #0000008f; */
+    border-radius: 40px;
+    background-image: linear-gradient(180deg, #0000008f), url(/dinamicas/promocion-ruta-cafetera/resources/Fondo-La_Ruta_Cafetera.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.board_img {
+    width: 180px;
+    transition: all 0.4s ease;
+}
+
+.board_img:hover {
+    transform: scale(1.1);
+    opacity: 0.7;
+    cursor: pointer;
+    z-index: 120;
+}
+
+.ubicacion_inicio {
+    position: absolute;
+    left: 340px;
+    top: -15px;
+}
+
+.posicion_6_8 {
+    transform: rotate(90deg) !important;
+}
+
+.posicion_9_14 {
+    transform: rotateY(180deg) !important;
+}
+
+.posicion_15_17 {
+    transform: rotate(270deg) !important;
+}
+
+.posicion_18_ {
+    transform: rotate(300deg) !important;
+}
+
+.calle_del_cafe {
+    position: absolute;
+    width: 168px !important;
+    top: 49px;
+    left: 295px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.desfile_arrieros {
+    position: absolute;
+    width: 153px !important;
+    top: 60px;
+    left: 441px;
+    transition: all 0.4s ease;
+}
+
+.parque_rebeca {
+    position: absolute;
+    width: 151px !important;
+    top: 42px;
+    left: 596px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.feria_del_gallo {
+    position: absolute;
+    width: 159px !important;
+    top: 62px;
+    left: 732px;
+    transition: all 0.4s ease;
+    z-index: 2;
+}
+
+.obelisco {
+    position: absolute;
+    width: 183px !important;
+    top: 66px;
+    left: 894px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.estadio_futbol {
+    position: absolute;
+    width: 197px !important;
+    top: 162px;
+    left: 935px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.festival_cerveza {
+    position: absolute;
+    width: 172px !important;
+    top: 332px;
+    left: 959px;
+    transition: all 0.4s ease;
+}
+
+.teatro {
+    position: absolute;
+    width: 187px !important;
+    top: 473px;
+    left: 968px;
+    transition: all 0.4s ease;
+}
+
+.parque_olaya {
+    position: absolute;
+    width: 196px !important;
+    top: 573px;
+    left: 896px;
+    transition: all 0.4s ease;
+}
+
+.plaza_bolivar {
+    position: absolute;
+    width: 153px !important;
+    top: 580px;
+    left: 744px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.estacion_ferrocarril {
+    position: absolute;
+    width: 134px !important;
+    top: 578px;
+    left: 595px;
+    transition: all 0.4s ease;
+}
+
+.parque_lago {
+    position: absolute;
+    width: 136px !important;
+    top: 571px;
+    left: 446px;
+    transition: all 0.4s ease;
+}
+
+.feria_orquidia {
+    position: absolute;
+    width: 139px !important;
+    top: 577px;
+    left: 296px;
+    transition: all 0.4s ease;
+}
+
+.calle_del_tango {
+    position: absolute;
+    width: 182px !important;
+    top: 565px;
+    left: 113px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.bioparque {
+    position: absolute;
+    width: 173px !important;
+    top: 470px;
+    left: 57px;
+    transition: all 0.4s ease;
+}
+
+.super_concierto {
+position: absolute;
+    width: 142px !important;
+    top: 324px;
+    left: 56px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.finca_cafetera {
+    position: absolute;
+    width: 162px !important;
+    top: 162px;
+    left: 56px;
+    transition: all 0.4s ease;
+}
+
+.aeropuerto_cafetera {
+    position: absolute;
+    width: 197px !important;
+    top: 64px;
+    left: 92px;
+    transition: all 0.4s ease;
+}
+
+.avion_back {
+    width: 101px !important;
+    background: #000000a3;
+    border: white 1px solid;
+    border-radius: 20px;
+    animation: sombra-animada-img 2s infinite;
+}
+
+.avance_1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 270px;
+    /* transform: translateX(-50%) rotate(-89deg); */
+    top: 350px;
+    width: 102px !important;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.avance_1:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.avance_2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 271px;
+    /* transform: translateX(-50%) rotate(-89deg); */
+    top: 420px;
+    width: 102px !important;
+    z-index: 1;
+}
+
+.avance_2:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+
+.avance_3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 272px;
+    /* transform: translateX(-50%) rotate(-180deg); */
+    top: 489px;
+    width: 102px !important;
+    z-index: 1;
+}
+
+.avance_3:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.dinero_promo {
+    font-size: 16px;
+}
+
+
+@keyframes sombra-animada-img {
+    0% {
+        filter: drop-shadow(0 0 20px #fff);
+    }
+
+    5% {
+        filter: drop-shadow(0 0 18px #fff);
+    }
+
+    10% {
+        filter: drop-shadow(0 0 16px #fff);
+    }
+
+    15% {
+        filter: drop-shadow(0 0 14px #fff);
+    }
+
+    20% {
+        filter: drop-shadow(0 0 12px #fff);
+    }
+
+    25% {
+        filter: drop-shadow(0 0 10px #fff);
+    }
+
+    30% {
+        filter: drop-shadow(0 0 12px #fff);
+    }
+
+    35% {
+        filter: drop-shadow(0 0 14px #fff);
+    }
+
+    40% {
+        filter: drop-shadow(0 0 16px #fff);
+    }
+
+    45% {
+        filter: drop-shadow(0 0 18px #fff);
+    }
+
+    50% {
+        filter: drop-shadow(0 0 20px #fff);
+    }
+
+    55% {
+        filter: drop-shadow(0 0 18px #fff);
+    }
+
+    60% {
+        filter: drop-shadow(0 0 16px #fff);
+    }
+
+    65% {
+        filter: drop-shadow(0 0 14px #fff);
+    }
+
+    70% {
+        filter: drop-shadow(0 0 12px #fff);
+    }
+
+    75% {
+        filter: drop-shadow(0 0 10px #fff);
+    }
+
+    80% {
+        filter: drop-shadow(0 0 12px #fff);
+    }
+
+    85% {
+        filter: drop-shadow(0 0 14px #fff);
+    }
+
+    90% {
+        filter: drop-shadow(0 0 16px #fff);
+    }
+
+    95% {
+        filter: drop-shadow(0 0 18px #fff);
+    }
+
+    100% {
+        filter: drop-shadow(0 0 20px #fff);
+    }
+}
+
+.acumula_avion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 350px;
+    right: 350px;
+    font-size: 38px;
+    color: white;
+    font-weight: bold;
+    font-family: 'super wonder', sans-serif !important;
+    z-index: 3;
+}

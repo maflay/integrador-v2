@@ -115,26 +115,39 @@ function validateSession() {
   if (!user && !user_admin) {
     content_form_bingo_login.style.display = "flex";
     content_form_bingo.style.display = "none";
-  } else {
-    content_form_bingo_login.style.display = "none";
-    content_form_bingo.style.display = "flex";
-    content_actions_head.style.display = "flex";
-    let typeUser = user.Usuario == "" ? user_admin.Usuario : user.Usuario;
-    let identifyUser = typeUser.split("agente")[1];
-    console.log(identifyUser);
-    if (identifyUser >= 1 && identifyUser <= 10) {
-      btn_consultar_jugadores.style.display = "flex";
-    } else {
-      btn_consultar_jugadores.style.display = "none";
-    }
+    return; 
+  }
 
-    getDataBingos();
+  content_form_bingo_login.style.display = "none";
+  content_form_bingo.style.display = "flex";
+  content_actions_head.style.display = "flex";
+
+  let typeUser = "";
+  if (user && typeof user === "object" && user.Usuario) {
+    typeUser = user.Usuario;
+  } else if (typeof user === "string" && user !== "") {
+    typeUser = user;
+  } else if (user_admin) {
+    typeUser = typeof user_admin === "object" ? user_admin.Usuario : user_admin;
+  }
+
+  let identifyUser = 0;
+  if (typeUser && typeUser.includes("agente")) {
+    identifyUser = parseInt(typeUser.split("agente")[1], 10);
+  }
+
+  if (identifyUser >= 1 && identifyUser <= 10) {
+    btn_consultar_jugadores.style.display = "flex";
+  } else {
+    btn_consultar_jugadores.style.display = "none";
   }
 
   if (user_admin) {
     btn_consultar_jugadores.style.display = "none";
     document.getElementById("volver_to_admin").style.display = "flex";
   }
+
+  getDataBingos();
 }
 
 btn_cerrar_session.addEventListener("click", () => {

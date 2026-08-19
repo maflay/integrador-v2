@@ -124,7 +124,6 @@ function mostrarPremio(categoria) {
 
   if (
     casino.value == "A12-MESAS" ||
-    casino.value == "A19" ||
     casino.value == "A50" ||
     casino.value == "A38" ||
     casino.value == "A35" ||

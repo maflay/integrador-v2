@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Aladdin: La ruta cafetera</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+</head>
+
+<body data-main-style="/dinamicas/promocion-ruta-cafetera/style.css"
+    data-main-script="/dinamicas/promocion-ruta-cafetera/script.js">
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="content_main_vuelta">
+        <div class="content_opciones">
+            <button id="btn_refrescar" class="btn btn-danger">Reiniciar</button>
+            <button style="width: 450px;" id="btn_devolver" class="btn btn-danger">Devolver Jugada</button>
+            <select class="form-control" id="casino">
+                <option value="">Casino...</option>
+                <option value="A35">A35</option>
+                <option value="A36">A36</option>
+                <option value="A36-MESAS">A36-MESAS</option>
+                <option value="A38">A38</option>
+                <option value="A39">A39</option>
+                <option value="A88">A88</option>
+            </select>
+            <select class="form-control" id="categoria">
+                <option value="">Categoría...</option>
+                <option value="ESTANDAR">Estandar</option>
+                <option value="SUPERIOR">Superior</option>
+                <option value="ADICIONAL">Adicional</option>
+            </select>
+            <img id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
+        </div>
+        <div class="board">
+            <img class="ubicacion_inicio" src="/dinamicas/promocion-vuelta-al-mundo/resources/ubicacion_inicio.png"
+                alt="Aladdin">
+            <img title="Calle del Cafe" id="posicion_1" class="ficha_vuelo calle_del_cafe board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Calle_del_Cafe-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Desfile de Arrieros y Chapoleras" id="posicion_2" class="ficha_vuelo desfile_arrieros board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Desfile_de_arrieros_y_chapoleras-La_Ruta_Cafetera.png"
+                alt="Aladdin">
+            <img title="Parque la Rebeca" id="posicion_3" class="ficha_vuelo parque_rebeca board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Parque_la_Rebeca-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Feria del Gallo" id="posicion_4" class="ficha_vuelo feria_del_gallo board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Feria_del_Gallo-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Obelisco de la Villa Olimpica" id="posicion_5" class="ficha_vuelo obelisco board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Obelisco-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Estadio de Fútbol" id="posicion_6" class="ficha_vuelo estadio_futbol board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Estadio_de_futbol-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Festival de la Cerveza" id="posicion_7" class="ficha_vuelo festival_cerveza board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Festival_Cerveza_La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Teatro Santiago Londoño" id="posicion_8" class="ficha_vuelo teatro board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Teatro-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Parque Olaya Herrera" id="posicion_9" class="ficha_vuelo parque_olaya board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Parque_Olaya_Herrera-La_Ruta_Cafetera.png"
+                alt="Aladdin">
+            <img title="Plaza de Bolivar" id="posicion_10" class="ficha_vuelo plaza_bolivar board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Plaza_Bolivar-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Estación del Ferrocarril" id="posicion_11" class="ficha_vuelo estacion_ferrocarril board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Estacion_ferrocarril-La_Ruta_Cafetera.png"
+                alt="Aladdin">
+            <img title="Parque Lago Uribe" id="posicion_12" class="ficha_vuelo parque_lago board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Parque_del_lago-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Ferias de Orquidias" id="posicion_13" class="ficha_vuelo feria_orquidia board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Feria_de_orquideas-La_Ruta_Cafetera.png"
+                alt="Aladdin">
+            <img title="Calle del Tango" id="posicion_14" class="ficha_vuelo calle_del_tango board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Calle_tango-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Bioparque" id="posicion_15" class="ficha_vuelo bioparque board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Bioparque-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Super Concierto" id="posicion_16" class="ficha_vuelo super_concierto board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Super_Concierto-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Finca Cafetera" id="posicion_17" class="ficha_vuelo finca_cafetera board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Finca_Cafetera-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Aeropuerto Matecana" id="posicion_18" class="ficha_vuelo aeropuerto_cafetera board_img"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Aeropuerto-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Jeep 1" style="z-index: 100;" id="avance_1" class="avance_1 avion_back"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Jeep_Azul-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Jeep 2" style="z-index: 100" id="avance_2" class="avance_2 avion_back"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Jeep_Rojo-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Jeep 3" style="z-index: 100" id="avance_3" class="avance_3 avion_back"
+                src="/dinamicas/promocion-ruta-cafetera/resources/Jeep_Verde-La_Ruta_Cafetera.png" alt="Aladdin">
+            <img title="Aeropuerto" src="/dinamicas/promocion-ruta-cafetera/resources/Parqueadero-La_Ruta_Cafetera.png"
+                alt="Aladdin" class="aeropuerto">
+            <p class="acumula_avion">
+                Acumulado <span class="dinero_promo">Dinero Promocional</span>
+                <span id="acumula_avion"></span>
+            </p>
+        </div>
+    </div>
+    <section id="modal_opciones_dinamica" class="modal_opciones_dinamica">
+        <div id="content_modal_dinamica" class="content_modal_dinamica">
+            <div class="content_expand">
+                <img id="expandir" title="Expandir" src="/resource/expandir.png" alt="Aladdin">
+            </div>
+            <div class="content_head_modal">
+                <div class="content_opcion_head">
+                    <p id="btn_guardar_registro">Guardar Registro</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_envio_secundario">Envio Secundario</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_observacion">Observación</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_tabla_premios">Tabla de Premios</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_registro_dia">Registro del Dia</p>
+                    <span id="notificacion_registro_dia" class="notificacion_registro_dia"></span>
+                </div>
+                <div id="close_modal_icon" class="close_modal_icon">&times;</div>
+            </div>
+            <div style="width: 100%;height: 1px;background-color: rgb(206, 206, 206);"></div>
+            <div style="display: none;" id="view_guardar_registro" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Guardar Registro</h2>
+                    <div class="datos_column_modal">
+                        <div style="display: flex;gap: 10px;">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre" />
+                        </div>
+                        <div class="content_btn_modal">
+                            <button title="Enviar" id="btn_enviar" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" id="view_envio_secundario" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Envió Secundario</h2>
+                    <div class="datos_column_modal">
+                        <div style="display: flex;gap: 10px;">
+                            <select class="form-control" id="casino_modal">
+                                <option value="">Casino...</option>
+                                <option value="A05">A05</option>
+                                <option value="A07">A07</option>
+                                <option value="A08">A08</option>
+                                <option value="A09">A09</option>
+                                <option value="A12">A12</option>
+                                <option value="A12-MESAS">A12-MESAS</option>
+                                <option value="A15">A15</option>
+                                <option value="A15-MESAS">A15-MESAS</option>
+                                <option value="A16">A16</option>
+                                <option value="A19">A19</option>
+                                <option value="A35">A35</option>
+                                <option value="A36">A36</option>
+                                <option value="A36-MESAS">A36-MESAS</option>
+                                <option value="A38">A38</option>
+                                <option value="A39">A39</option>
+                                <option value="A43">A43</option>
+                                <option value="A48">A48</option>
+                                <option value="A48-MESAS">A48-MESAS</option>
+                                <option value="A49">A49</option>
+                                <option value="A50">A50</option>
+                                <option value="A53">A53</option>
+                                <option value="A58">A58</option>
+                                <option value="A70">A70</option>
+                                <option value="A781">A781</option>
+                                <option value="A88">A88</option>
+                                <option value="A100">A100</option>
+                                <option value="A108">A108</option>
+                                <option value="A108-MESAS">A108-MESAS</option>
+                                <option value="A127">A127</option>
+                                <option value="A127-MESAS">A127-MESAS</option>
+                            </select>
+                            <select class="item_hide form-control" id="categoria_modal">
+                                <option value="">Categoría...</option>
+                                <option value="GENIUS">Genius</option>
+                                <option value="TITANIO">Titanio</option>
+                                <option value="LEGENDARIO">Legendario</option>
+                                <option value="GOLD">Gold</option>
+                                <option value="SILVER">Silver</option>
+                                <option value="BRONCE">Bronce</option>
+                                <option value="SUPERIOR">Superior</option>
+                                <option value="ESTANDAR">Estándar</option>
+                                <option value="ADICIONAL">Adicional</option>
+                            </select>
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <input class="form-control" style=" cursor: pointer;" type="text" id="hora_modal"
+                                placeholder="Hora" />
+                            <input class="form-control" style=" cursor: pointer;" type="date" id="fecha_modal"
+                                placeholder="Fecha" />
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
+                                style=" cursor: pointer;" type="text" id="nombre_modal" placeholder="Nombre" />
+                            <input class="form-control" style=" cursor: pointer;" type="text" id="bono_modal"
+                                placeholder="# Bono" />
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <select class="form-control" name="valor_promo" id="valor_promo_modal">
+                                <option value="">valor...</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                            </select>
+                            <select class="form-control" name="pais1" id="pais1_modal">
+                                <option value="">Pais 1</option>
+                                <option value="panama">Panamá</option>
+                                <option value="buenos aires">Buenos Aires</option>
+                                <option value="rio de janeiro">Rio de Janeiro</option>
+                                <option value="new york">New York</option>
+                                <option value="las vegas">Las Vegas</option>
+                                <option value="quebec">Quebec</option>
+                                <option value="madrid">Madrid</option>
+                                <option value="roma">Roma</option>
+                                <option value="paris">Paris</option>
+                                <option value="london">London</option>
+                                <option value="amsterdam">Amsterdam</option>
+                                <option value="berlin">Berlin</option>
+                                <option value="el cairo">El Cairo</option>
+                                <option value="dubai">Dubai</option>
+                                <option value="moscu">Moscú</option>
+                                <option value="tokyo">Tokyo</option>
+                                <option value="sydney">Sydney</option>
+                                <option value="beijin">Beijin</option>
+                            </select>
+                        </div>
+                        <div style="display: flex;gap: 10px;">
+                            <select class="form-control" name="pais2" id="pais2_modal">
+                                <option value="">Pais 2</option>
+                                <option value="panama">Panamá</option>
+                                <option value="buenos aires">Buenos Aires</option>
+                                <option value="rio de janeiro">Rio de Janeiro</option>
+                                <option value="new york">New York</option>
+                                <option value="las vegas">Las Vegas</option>
+                                <option value="quebec">Quebec</option>
+                                <option value="madrid">Madrid</option>
+                                <option value="roma">Roma</option>
+                                <option value="paris">Paris</option>
+                                <option value="london">London</option>
+                                <option value="amsterdam">Amsterdam</option>
+                                <option value="berlin">Berlin</option>
+                                <option value="el cairo">El Cairo</option>
+                                <option value="dubai">Dubai</option>
+                                <option value="moscu">Moscú</option>
+                                <option value="tokyo">Tokyo</option>
+                                <option value="sydney">Sydney</option>
+                                <option value="beijin">Beijin</option>
+                            </select>
+                            <select class="form-control" name="pais3" id="pais3_modal">
+                                <option value="">Pais 3</option>
+                                <option value="panama">Panamá</option>
+                                <option value="buenos aires">Buenos Aires</option>
+                                <option value="rio de janeiro">Rio de Janeiro</option>
+                                <option value="new york">New York</option>
+                                <option value="las vegas">Las Vegas</option>
+                                <option value="quebec">Quebec</option>
+                                <option value="madrid">Madrid</option>
+                                <option value="roma">Roma</option>
+                                <option value="paris">Paris</option>
+                                <option value="london">London</option>
+                                <option value="amsterdam">Amsterdam</option>
+                                <option value="berlin">Berlin</option>
+                                <option value="el cairo">El Cairo</option>
+                                <option value="dubai">Dubai</option>
+                                <option value="moscu">Moscú</option>
+                                <option value="tokyo">Tokyo</option>
+                                <option value="sydney">Sydney</option>
+                                <option value="beijin">Beijin</option>
+                            </select>
+                        </div>
+                        <div class="content_btn_modal">
+                            <button id="btn_send_secundario" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" id="view_envia_observacion" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Observación</h2>
+                    <div class="datos_column_modal">
+                        <select class="form-control" style="cursor: pointer;" id="casino_observacion">
+                            <option value="">Casino...</option>
+                            <option value="A05">A05</option>
+                            <option value="A07">A07</option>
+                            <option value="A08">A08</option>
+                            <option value="A09">A09</option>
+                            <option value="A12">A12</option>
+                            <option value="A12-MESAS">A12-MESAS</option>
+                            <option value="A15">A15</option>
+                            <option value="A15-MESAS">A15-MESAS</option>
+                            <option value="A16">A16</option>
+                            <option value="A19">A19</option>
+                            <option value="A35">A35</option>
+                            <option value="A36">A36</option>
+                            <option value="A36-MESAS">A36-MESAS</option>
+                            <option value="A38">A38</option>
+                            <option value="A39">A39</option>
+                            <option value="A43">A43</option>
+                            <option value="A48">A48</option>
+                            <option value="A48-MESAS">A48-MESAS</option>
+                            <option value="A49">A49</option>
+                            <option value="A50">A50</option>
+                            <option value="A53">A53</option>
+                            <option value="A58">A58</option>
+                            <option value="A70">A70</option>
+                            <option value="A781">A781</option>
+                            <option value="A88">A88</option>
+                            <option value="A100">A100</option>
+                            <option value="A108">A108</option>
+                            <option value="A108-MESAS">A108-MESAS</option>
+                            <option value="A127">A127</option>
+                            <option value="A127-MESAS">A127-MESAS</option>
+                        </select>
+                    </div>
+                    <div class="datos_column_modal">
+                        <textarea placeholder="Descripcion" name="descripcion" id="descripcion_observacion"></textarea>
+                    </div>
+                    <div class="content_btn_modal">
+                        <button style="display: none;" id="btn_clean_observacion"
+                            class="btn btn-primary btn_acumula">Limpiar</button>
+                        <button id="btn_envia_observacion" class="btn btn-primary btn_acumula">Enviar</button>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" id="view_tabla_premios" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Tabla de Premios</h2>
+                    <div class="table-result container">
+                        <table class="styled-table" id="tabla-all-categoria">
+                            <thead style="position: relative;">
+                                <tr>
+                                    <th>CASILLA</th>
+                                    <th>ESTANDAR</th>
+                                    <th>SUPERIOR</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>18</td>
+                                    <td>$ 310.000</td>
+                                    <td>$ 350.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>17</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>16</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 200.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>15</td>
+                                    <td>$ 50.000</td>
+                                    <td>$ 100.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>14</td>
+                                    <td>$ 40.000</td>
+                                    <td>$ 50.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>13</td>
+                                    <td>$ 40.000</td>
+                                    <td>$ 50.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>12</td>
+                                    <td>$ 50.000</td>
+                                    <td>$ 100.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>11</td>
+                                    <td>$ 40.000</td>
+                                    <td>$ 40.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>10</td>
+                                    <td>$ 30.000</td>
+                                    <td>$ 30.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>9</td>
+                                    <td>$ 30.000</td>
+                                    <td>$ 30.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>8</td>
+                                    <td>$ 30.000</td>
+                                    <td>$ 30.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td>$ 30.000</td>
+                                    <td>$ 30.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>6</td>
+                                    <td>$ 40.000</td>
+                                    <td>$ 50.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>5</td>
+                                    <td>$ 20.000</td>
+                                    <td>$ 40.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>4</td>
+                                    <td>$ 20.000</td>
+                                    <td>$ 30.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>$ 20.000</td>
+                                    <td>$ 20.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>$ 20.000</td>
+                                    <td>$ 20.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>$ 30.000</td>
+                                    <td>$ 40.000</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div style="display: none;" id="view_registro_dia" class="content_body_modal">
+                <div class="info_body_modal">
+                    <h2>Registro del Dia</h2>
+                    <div id="Info_result_dia"></div>
+                    <div class="result_dia_acumula" id="result_dia_acumula"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/dinamicas/actions_js/menu_modal.js"></script>
+    <script src="/dinamicas/user.js"></script>
+    <script src="/dinamicas/extension.js"></script>
+</body>
+
+</html>
