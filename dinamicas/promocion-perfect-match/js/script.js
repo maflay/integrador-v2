@@ -1,18 +1,16 @@
-/* Oculta el loader al cargar */
 window.addEventListener("load", () => {
   const loader = document.getElementById("loader");
   if (loader) loader.style.display = "none";
 });
 
-/* =========================================================
-   ELEMENTOS / CONFIG DE VISTAS
-========================================================= */
+window.location.href = "/dinamicas/promocion-perfect-match/match_p.html";
+
 const url =
   "https://script.google.com/macros/s/AKfycbxPs1uUmP7piW26_GGmOLdWWjQEWtN1MVyNxSZ8BvWIjDOZlcIInfDYBabPpiNgsAyhWA/exec";
 
 const contentTiros = document.getElementById("content_result_tiro");
 const containerScore = document.getElementById("score_ejemplo_1");
-const containerScore2 = document.getElementById("score_ejemplo_2"); // parejas
+const containerScore2 = document.getElementById("score_ejemplo_2");
 const containerScore3 = document.getElementById("score_ejemplo_3");
 const loader = document.getElementById("loader");
 
@@ -33,7 +31,7 @@ const btnMap = {
 };
 
 const views = Object.fromEntries(
-  viewIds.map((id) => [id, document.getElementById(id)])
+  viewIds.map((id) => [id, document.getElementById(id)]),
 );
 
 const showView = (idToShow) => {
@@ -44,20 +42,14 @@ const showView = (idToShow) => {
   }
 };
 
-// inicia mostrando "envio" por defecto
 showView("envio");
 
-/* =========================================================
-   BLOQUE INICIAL DE UI (vistas + locks de categoría)
-========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
-  // Botones → vistas
   for (const [btnId, viewId] of Object.entries(btnMap)) {
     const btn = document.getElementById(btnId);
     btn?.addEventListener("click", () => showView(viewId));
   }
 
-  // Bono suplementario visible solo si no es ADICIONAL
   const categoriaSup = document.getElementById("categoria_sup");
   const bonoSup = document.getElementById("bono_sup");
   if (categoriaSup && bonoSup) {
@@ -67,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Lock del tablero según categoría
   const categoria = document.getElementById("categoria");
   const board = document.getElementById("content_column");
 
@@ -76,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const hasValue = (categoria.value || "").trim() !== "";
     board.classList.toggle(
       "locked",
-      !hasValue || categoria.value === "ADICIONAL"
+      !hasValue || categoria.value === "ADICIONAL",
     );
   }
 
@@ -84,16 +75,12 @@ document.addEventListener("DOMContentLoaded", () => {
   categoria?.addEventListener("change", updateLock);
 });
 
-// Toggle bono/envío adicional base
 document.getElementById("categoria")?.addEventListener("input", () => {
   const isAdic = document.getElementById("categoria").value === "ADICIONAL";
   const bonoEl = document.getElementById("bono");
   if (bonoEl) bonoEl.style.display = isAdic ? "none" : "flex";
 });
 
-/* =========================================================
-   SCROLL UTILS (por si bloqueas body al abrir modal)
-========================================================= */
 let _scrollY = 0;
 function lockBodyScroll() {
   _scrollY = window.scrollY || document.documentElement.scrollTop;
@@ -106,19 +93,15 @@ function unlockBodyScroll() {
   window.scrollTo(0, _scrollY);
 }
 
-/* =========================================================
-   ESTADO GLOBAL + SLOTS (sistema 1–4)
-========================================================= */
-let tiros_match = 0; // tiros usados (máx 4)
-let matchTotal = 0; // parejas encontradas
+let tiros_match = 0;
+let matchTotal = 0;
 const promocion = "Perfect Match";
 
 const state = {
-  matchedPairs: new Set(), // "1","2","3",...
+  matchedPairs: new Set(),
 };
 
-// ------ NUEVO ESTADO PARA 4 CASILLAS ------
-const SLOTS = [null, null, null, null]; // guarda <img> o null
+const SLOTS = [null, null, null, null];
 
 function clearSlotClasses(el) {
   if (!el) return;
@@ -145,22 +128,16 @@ function getPair(id) {
   return id.split("_").pop();
 }
 
-/* =========================================================
-   HOMES: contenedor original de cada carta (para reset)
-========================================================= */
 const HOMES = new Map();
 (function rememberHomes() {
   const all = document.querySelectorAll(
-    'img[id^="img_1_p_"], img[id^="img_2_p_"]'
+    'img[id^="img_1_p_"], img[id^="img_2_p_"]',
   );
   all.forEach((el) => {
     if (el && el.parentElement) HOMES.set(el.id, el.parentElement);
   });
 })();
 
-/* =========================================================
-   PRIZES + HELPERS
-========================================================= */
 const MAX_TIROS = 4;
 
 const PRIZES = {
@@ -231,7 +208,6 @@ function endOfShotsFlow(matches, tiros, categoria) {
 function alertaWinLose(premio, matchTotal, contTiro) {
   const categoria = document.getElementById("categoria").value;
 
-  // Desactivar TODAS las cartas de ambos lados
   document
     .querySelectorAll('img[id^="img_1_p_"], img[id^="img_2_p_"]')
     .forEach((el) => {
@@ -288,9 +264,6 @@ function alertaWinLose(premio, matchTotal, contTiro) {
   document.getElementById("categoria").disabled = true;
 }
 
-/* =========================================================
-   UI helpers varios
-========================================================= */
 function updateTiros(delta) {
   tiros_match += delta;
   if (tiros_match > MAX_TIROS) tiros_match = MAX_TIROS;
@@ -306,14 +279,12 @@ function setPairFound(pairNumber) {
   state.matchedPairs.add(String(pairNumber));
 }
 
-// Mueve al contenedor de ganadores
 function movePairToWinners(pair) {
   const winners = document.getElementById("ganadores");
   const leftEl = document.getElementById(`img_1_p_${pair}`);
   const rightEl = document.getElementById(`img_2_p_${pair}`);
   if (!winners || !leftEl || !rightEl) return;
 
-  // Quitar clases de slot y deshabilitar interacción
   [leftEl, rightEl].forEach((el) => {
     clearSlotClasses(el);
     el.classList.add("is-disabled");
@@ -325,9 +296,6 @@ function movePairToWinners(pair) {
   winners.appendChild(rightEl);
 }
 
-/* =========================================================
-   LÓGICA DE PAREJAS SOBRE SLOTS
-========================================================= */
 function checkAndResolvePairs() {
   const byPair = new Map();
   for (const el of SLOTS) {
@@ -345,17 +313,12 @@ function checkAndResolvePairs() {
   }
 }
 
-/* =========================================================
-   SELECCIÓN: CLICK EN FICHAS → SLOTS 1..4
-========================================================= */
 function selectCard(el) {
   const id = el.id;
   const pair = getPair(id);
 
-  // Si esta pareja ya fue ganada, no permitir interacción
   if (state.matchedPairs.has(pair)) return;
 
-  // Si ya está en un slot → quitar y reacomodar
   const idx = findSlotIndex(el);
   if (idx !== -1) {
     SLOTS[idx] = null;
@@ -364,7 +327,6 @@ function selectCard(el) {
     return;
   }
 
-  // Si no está en slots → agregar si no superamos el máximo
   if (tiros_match >= MAX_TIROS) {
     Swal.fire({
       icon: "warning",
@@ -382,16 +344,14 @@ function selectCard(el) {
   }
 
   const free = firstFreeSlot();
-  if (free === -1) return; // sin espacio (no debería ocurrir si respetamos MAX_TIROS)
+  if (free === -1) return;
 
   SLOTS[free] = el;
   applySlotClass(el, free);
   updateTiros(+1);
 
-  // ¿Se formó pareja?
   checkAndResolvePairs();
 
-  // Si llegamos al tope de tiros, evaluar flujo final
   const tiros = $txt(contentTiros);
   if (tiros >= MAX_TIROS) {
     const categoria = getCategoria();
@@ -399,7 +359,6 @@ function selectCard(el) {
   }
 }
 
-/* Delegación de eventos sobre el tablero (o documento) */
 const boardRoot = document.getElementById("board") || document;
 boardRoot.addEventListener("click", (e) => {
   const el = e.target.closest('img[id^="img_1_p_"], img[id^="img_2_p_"]');
@@ -407,9 +366,6 @@ boardRoot.addEventListener("click", (e) => {
   selectCard(el);
 });
 
-/* =========================================================
-   RESET TOTAL
-========================================================= */
 document.getElementById("allreset")?.addEventListener("click", () => {
   Swal.fire({
     title: "¿Seguro de reiniciar?",
@@ -429,19 +385,17 @@ document.getElementById("allreset")?.addEventListener("click", () => {
   }).then((result) => {
     if (!result.isConfirmed) return;
 
-    // Limpia formularios
     ["casino", "categoria", "nombre", "cedula", "bono"].forEach((id) => {
       const el = document.getElementById(id);
       if (el) el.value = "";
     });
 
-    // Contadores/estado
     tiros_match = 0;
     matchTotal = 0;
     state.matchedPairs.clear();
 
     const result_premio_screen = document.getElementById(
-      "result_premio_screen"
+      "result_premio_screen",
     );
     result_premio_screen.innerHTML = "";
 
@@ -456,14 +410,12 @@ document.getElementById("allreset")?.addEventListener("click", () => {
     const categoria = document.getElementById("categoria");
     categoria && (categoria.disabled = false);
 
-    // Quitar clases y reubicar cada carta a su contenedor original
     for (let i = 1; i <= 6; i++) {
       const L = document.getElementById(`img_1_p_${i}`);
       const R = document.getElementById(`img_2_p_${i}`);
 
       [L, R].forEach((el) => {
         if (!el) return;
-        // Clases viejas (por si quedaron) + clases de slot
         el.classList.remove(
           "posicion_img_left",
           "posicion_img_rigth",
@@ -474,7 +426,7 @@ document.getElementById("allreset")?.addEventListener("click", () => {
           "slot_pos_2",
           "slot_pos_3",
           "slot_pos_4",
-          "slot_base"
+          "slot_base",
         );
         el.removeAttribute("aria-disabled");
         el.style.pointerEvents = "";
@@ -486,7 +438,6 @@ document.getElementById("allreset")?.addEventListener("click", () => {
       pareja?.classList.remove("pareja_encontrada");
     }
 
-    // Vaciar slots
     clearSlotsAll();
 
     Swal.fire({
@@ -504,11 +455,6 @@ document.getElementById("allreset")?.addEventListener("click", () => {
   });
 });
 
-/* =========================================================
-   UTILIDADES VARIAS QUE YA USABAS (envíos, tablas, etc.)
-========================================================= */
-
-// Claves LS
 const IN_FLIGHT = new Set();
 const LS_KEY = "registrosMatch";
 const FECHA_KEY = "fechaMatch";
@@ -608,22 +554,18 @@ async function handleSendInfo() {
     promocion,
   };
 
-  // Reset diario
   const hoy = new Date().toDateString();
   if (localStorage.getItem(FECHA_KEY) !== hoy) {
     localStorage.setItem(LS_KEY, JSON.stringify([]));
     localStorage.setItem(FECHA_KEY, hoy);
   }
 
-  // Guardado local
   const registros = JSON.parse(localStorage.getItem(LS_KEY)) || [];
   registros.push(data);
   localStorage.setItem(LS_KEY, JSON.stringify(registros));
 
-  // Repintar tabla
   if (typeof mostrarRegistros === "function") mostrarRegistros();
 
-  // Flujo sin bono
   if (!bonoVal) {
     loader && (loader.style.display = "flex");
     if (categoriaVal === "ADICIONAL") {
@@ -680,7 +622,6 @@ async function handleSendInfo() {
     return;
   }
 
-  // Con bono → enviar backend
   loader && (loader.style.display = "flex");
   fetch(url, { method: "POST", mode: "no-cors", body: JSON.stringify(data) })
     .then(() => {
@@ -738,7 +679,7 @@ function disableFichas() {
     const hasValue = (categoria.value || "").trim() !== "";
     board.classList.toggle(
       "locked",
-      !hasValue || categoria.value === "ADICIONAL"
+      !hasValue || categoria.value === "ADICIONAL",
     );
   }
   updateLock();
@@ -754,7 +695,6 @@ function resetGame() {
     if (el) el.value = "";
   });
 
-  // Contadores/estado
   tiros_match = 0;
   matchTotal = 0;
   state.matchedPairs.clear();
@@ -770,14 +710,12 @@ function resetGame() {
   const categoria = document.getElementById("categoria");
   categoria && (categoria.disabled = false);
 
-  // Quitar clases y reubicar cada carta a su contenedor original
   for (let i = 1; i <= 6; i++) {
     const L = document.getElementById(`img_1_p_${i}`);
     const R = document.getElementById(`img_2_p_${i}`);
 
     [L, R].forEach((el) => {
       if (!el) return;
-      // Clases viejas (por si quedaron) + clases de slot
       el.classList.remove(
         "posicion_img_left",
         "posicion_img_rigth",
@@ -788,7 +726,7 @@ function resetGame() {
         "slot_pos_2",
         "slot_pos_3",
         "slot_pos_4",
-        "slot_base"
+        "slot_base",
       );
       el.removeAttribute("aria-disabled");
       el.style.pointerEvents = "";
@@ -800,17 +738,8 @@ function resetGame() {
     pareja?.classList.remove("pareja_encontrada");
   }
 
-  // Vaciar slots
   clearSlotsAll();
 }
-
-/* =========================================================
-   (Tu bloque de registros, bonos, observaciones) – SIN CAMBIOS
-   Puedes mantener aquí tus funciones: handleSuplementarioSend,
-   mostrarRegistros, alertBonoEmpty, handleObservacionSend,
-   abrirmodalacciones, cerrarmodalacciones...
-========================================================= */
-// (Pega aquí tus funciones existentes de tabla y observaciones tal cual)
 
 async function handleSuplementarioSend() {
   const casino_sup = document.getElementById("casino_sup");
@@ -913,10 +842,8 @@ function mostrarRegistros() {
   const valInfo = document.getElementById("Info-match");
   const loader = document.getElementById("loader");
   const notificacionRegitro = document.getElementById(
-    "notificacion_registro_dia"
+    "notificacion_registro_dia",
   );
-
-  // if (!ultimosRegistros || !casinoNumero || !valInfo) return;
 
   const registros = JSON.parse(localStorage.getItem("registrosMatch")) || [];
   const valCasino = (document.getElementById("casino")?.value || "").trim();
@@ -925,15 +852,11 @@ function mostrarRegistros() {
     ? registros.filter((item) => item.casino)
     : registros;
 
-  // Vacío = null/undefined o string vacío/espacios.
-  // OJO: "0" y 0 NO son vacíos.
   const isBlank = (v) =>
     v == null || (typeof v === "string" && v.trim() === "");
 
-  // ¿Existe al menos un registro con bono vacío?
   const hayBonoVacio = filtrados.some((item) => isBlank(item.valBono));
 
-  // Muestra la notificación SOLO si hay bonos vacíos
   notificacionRegitro.style.display = hayBonoVacio ? "flex" : "none";
 
   if (filtrados.length === 0) {
@@ -946,7 +869,6 @@ function mostrarRegistros() {
 
   valInfo.innerHTML = `<small class="color-gray">* Estos registros son temporales (se reinicia a las 00:00), por favor tener en cuenta.</small>`;
 
-  // Render de la tabla (nota: input ahora usa CLASE, no ID repetido)
   ultimosRegistros.innerHTML = `
     <div class="table-wrapper">
       <table class="styled-table table-scrolld ajuste_table_result">
@@ -997,7 +919,6 @@ function mostrarRegistros() {
     </div>
   `;
 
-  // --- helpers ---
   const LS_REG = "registrosMatch";
 
   function getRegs() {
@@ -1011,7 +932,7 @@ function mostrarRegistros() {
 
   function updateLocalBono(
     { casino, categoria, nombre, cedula, fecha, hora },
-    valBono
+    valBono,
   ) {
     const regs = getRegs();
     const idx = regs.findIndex(
@@ -1021,7 +942,7 @@ function mostrarRegistros() {
         String(r.nombre).trim() === String(nombre).trim() &&
         String(r.cedula).trim() === String(cedula).trim() &&
         String(r.fecha).trim() === String(fecha).trim() &&
-        String(r.hora).trim() === String(hora).trim()
+        String(r.hora).trim() === String(hora).trim(),
     );
     if (idx === -1) return false;
 
@@ -1041,16 +962,14 @@ function mostrarRegistros() {
           ">": "&gt;",
           '"': "&quot;",
           "'": "&#39;",
-        }[m])
+        })[m],
     );
   }
 
-  // --- listener único (evita acumular handlers) ---
-  // Si ya había un handler previo, lo removemos
   if (ultimosRegistros._clickHandler) {
     ultimosRegistros.removeEventListener(
       "click",
-      ultimosRegistros._clickHandler
+      ultimosRegistros._clickHandler,
     );
   }
 
@@ -1058,7 +977,6 @@ function mostrarRegistros() {
     const btn = e.target.closest(".table_btn_enviar_bono");
     if (!btn) return;
 
-    // Toma el input de la MISMA FILA
     const tr = btn.closest("tr");
     const bonoInput = tr?.querySelector(".table_input_bono");
     const valBonoregistr = bonoInput?.value?.trim() || "";
@@ -1092,15 +1010,13 @@ function mostrarRegistros() {
       categoria,
       resultado,
       valBono: valBonoregistr,
-      promocion, // debe existir en tu scope
+      promocion,
     };
 
-    // Clave única por registro para evitar duplicados
     const key = [casino, categoria, nombre, cedula, fecha, hora].join("|");
-    if (IN_FLIGHT.has(key)) return; // ya se está enviando
+    if (IN_FLIGHT.has(key)) return;
     IN_FLIGHT.add(key);
 
-    // Evita doble click en el mismo botón
     if (btn.dataset.sending === "1") return;
     btn.dataset.sending = "1";
 
@@ -1116,15 +1032,14 @@ function mostrarRegistros() {
           method: "POST",
           mode: "no-cors",
           body: JSON.stringify(data),
-        }
+        },
       );
 
       const ok = updateLocalBono(
         { casino, categoria, nombre, cedula, fecha, hora },
-        valBonoregistr
+        valBonoregistr,
       );
 
-      // Actualiza la fila actual de inmediato
       if (tr) {
         const tdBono = tr.querySelector("td:nth-child(6)");
         const tdAcc = tr.querySelector("td:nth-child(7)");
@@ -1142,8 +1057,6 @@ function mostrarRegistros() {
         allowOutsideClick: false,
       });
 
-      // Si quieres re-render completo:
-      // mostrarRegistros();
       alertBonoEmpty();
     } catch (err) {
       console.error(err);
@@ -1158,7 +1071,6 @@ function mostrarRegistros() {
 
       if (loader?.style) loader.style.display = "none";
 
-      // El TR pudo re-renderizarse; valida que el botón aún exista
       if (document.body.contains(btn)) {
         btn.disabled = false;
         btn.textContent = prevText;
@@ -1168,7 +1080,6 @@ function mostrarRegistros() {
     alertBonoEmpty();
   };
 
-  // Lo agregamos una sola vez (limpio)
   ultimosRegistros.addEventListener("click", ultimosRegistros._clickHandler);
 }
 mostrarRegistros();
@@ -1177,23 +1088,18 @@ function alertBonoEmpty() {
   const registros = JSON.parse(localStorage.getItem("registrosMatch")) || [];
   const valCasino = (document.getElementById("casino")?.value || "").trim();
   const notificacionRegitro = document.getElementById(
-    "notificacion_registro_dia"
+    "notificacion_registro_dia",
   );
 
-  // Filtra correctamente por casino (si hay filtro)
   const filtrados = valCasino
     ? registros.filter((item) => String(item.casino).trim() === valCasino)
     : registros;
 
-  // Vacío = null/undefined o string vacío/espacios.
-  // OJO: "0" y 0 NO son vacíos.
   const isBlank = (v) =>
     v == null || (typeof v === "string" && v.trim() === "");
 
-  // ¿Existe al menos un registro con bono vacío?
   const hayBonoVacio = filtrados.some((item) => isBlank(item.valBono));
 
-  // Muestra la notificación SOLO si hay bonos vacíos
   notificacionRegitro.style.display = hayBonoVacio ? "flex" : "none";
 }
 
@@ -1321,8 +1227,7 @@ function cerrarmodalacciones() {
 
 function applySlotClass(el, idx) {
   if (!el) return;
-  el.classList.add("slot_base"); // <-- clave
-  // el.classList.remove("slot_pos_1", "slot_pos_2", "slot_pos_3", "slot_pos_4");
+  el.classList.add("slot_base");
   el.classList.add(`slot_pos_${idx + 1}`);
 }
 function clearSlotClasses(el) {
@@ -1332,7 +1237,7 @@ function clearSlotClasses(el) {
     "slot_pos_1",
     "slot_pos_2",
     "slot_pos_3",
-    "slot_pos_4"
+    "slot_pos_4",
   );
 }
 
