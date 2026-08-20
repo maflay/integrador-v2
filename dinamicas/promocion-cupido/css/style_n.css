@@ -93,6 +93,12 @@
     position: absolute;
 }
 
+#restart_tablero {
+      display: none;
+    position: absolute;
+    bottom: 100px;
+}
+
 #start_game {
     position: absolute;
     bottom: 100px;

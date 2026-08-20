@@ -6,10 +6,12 @@ const cells = Array.from(document.querySelectorAll(".cell-c"));
 const hud = document.getElementById("total_result");
 const btnReset = document.getElementById("reset-game");
 const categoria = document.getElementById("categoria");
+const casino = document.getElementById("casino");
 const loader = document.getElementById("loader");
 
 const promocion = "El Flechazo de Cupido";
-const url = "https://script.google.com/macros/s/AKfycbxjswGydhyTqgMuFf9OuWfgPDyuvWWU-nWQlkHuYaRx0FzYSq6Dz7lHWcohLJVRcrcm/exec";
+const url =
+  "https://script.google.com/macros/s/AKfycbxjswGydhyTqgMuFf9OuWfgPDyuvWWU-nWQlkHuYaRx0FzYSq6Dz7lHWcohLJVRcrcm/exec";
 const IN_FLIGHT = new Set();
 const LS_KEY = "registrosFlechazoCupido";
 const FECHA_KEY = "fechaFlechazoCupido";
@@ -35,7 +37,23 @@ const PAIRS = [
 document.getElementById("start_game").style.display = "none";
 document.querySelector(".board").classList.add("item_select");
 categoria.addEventListener("change", () => {
-  if (categoria.value == "" || categoria.value == "ADICIONAL") {
+  if (
+    categoria.value == "" ||
+    categoria.value == "ADICIONAL" ||
+    casino.value == ""
+  ) {
+    document.getElementById("start_game").style.display = "none";
+  } else {
+    document.getElementById("start_game").style.display = "flex";
+  }
+});
+
+casino.addEventListener("change", () => {
+  if (
+    categoria.value == "" ||
+    categoria.value == "ADICIONAL" ||
+    casino.value == ""
+  ) {
     document.getElementById("start_game").style.display = "none";
   } else {
     document.getElementById("start_game").style.display = "flex";
@@ -45,40 +63,124 @@ categoria.addEventListener("change", () => {
 const ASSET_BASE = "/dinamicas/promocion-cupido/resources/";
 
 const PRIZES = {
-  0: {
-    GENIUS: "$130.000",
-    TITANIO: "$120.000",
-    LEGENDARIO: "$110.000",
-    GOLD: "$100.000",
-    SILVER: "$90.000",
-    BRONCE: "$80.000",
-    SUPERIOR: "$100.000",
-    ESTANDAR: "$80.000",
-  },
   1: {
-    GENIUS: "$150.000",
-    TITANIO: "$140.000",
-    LEGENDARIO: "$130.000",
-    GOLD: "$120.000",
-    SILVER: "$110.000",
-    BRONCE: "$100.000",
-    SUPERIOR: "$120.000",
-    ESTANDAR: "$100.000",
+    BRONCE: "$ 50.000",
+    SILVER: "$ 70.000",
+    GOLD: "$ 90.000",
+    LEGENDARIO: "$ 110.000",
+    TITANIO: "$ 130.000",
+    GENIUS: "$ 150.000",
   },
   2: {
-    GENIUS: "$600.000",
-    TITANIO: "$500.000",
-    LEGENDARIO: "$400.000",
-    GOLD: "$300.000",
-    SILVER: "$250.000",
-    BRONCE: "$200.000",
-    SUPERIOR: "$300.000",
-    ESTANDAR: "$200.000",
+    BRONCE: "$ 60.000",
+    SILVER: "$ 70.000",
+    GOLD: "$ 80.000",
+    LEGENDARIO: "$ 90.000",
+    TITANIO: "$ 100.000",
+    GENIUS: "$ 110.000",
+  },
+  3: {
+    BRONCE: "$ 70.000",
+    SILVER: "$ 80.000",
+    GOLD: "$ 90.000",
+    LEGENDARIO: "$ 100.000",
+    TITANIO: "$ 110.000",
+    GENIUS: "$ 120.000",
+  },
+  4: {
+    BRONCE: "$ 200.000",
+    SILVER: "$ 250.000",
+    GOLD: "$ 300.000",
+    LEGENDARIO: "$ 400.000",
+    TITANIO: "$ 500.000",
+    GENIUS: "$ 600.000",
+  },
+};
+
+const PRIZES_2 = {
+  1: {
+    BRONCE: "$ 80.000",
+    SILVER: "$ 90.000",
+    GOLD: "$ 100.000",
+    LEGENDARIO: "$ 110.000",
+    TITANIO: "$ 120.000",
+    GENIUS: "$ 130.000",
+  },
+  2: {
+    BRONCE: "$ 90.000",
+    SILVER: "$ 100.000",
+    GOLD: "$ 110.000",
+    LEGENDARIO: "$ 120.000",
+    TITANIO: "$ 130.000",
+    GENIUS: "$ 140.000",
+  },
+  3: {
+    BRONCE: "$ 100.000",
+    SILVER: "$ 110.000",
+    GOLD: "$ 120.000",
+    LEGENDARIO: "$ 130.000",
+    TITANIO: "$ 140.000",
+    GENIUS: "$ 150.000",
+  },
+  4: {
+    BRONCE: "$ 200.000",
+    SILVER: "$ 250.000",
+    GOLD: "$ 300.000",
+    LEGENDARIO: "$ 400.000",
+    TITANIO: "$ 500.000",
+    GENIUS: "$ 600.000",
+  },
+};
+
+const PRIZES_3 = {
+  1: {
+    ESTANDAR: " $ 80.000",
+    SUPERIOR: " $ 100.000",
+  },
+  2: {
+    ESTANDAR: " $ 90.000",
+    SUPERIOR: " $ 110.000",
+  },
+  3: {
+    ESTANDAR: " $ 100.000",
+    SUPERIOR: " $ 120.000",
+  },
+  4: {
+    ESTANDAR: " $ 200.000",
+    SUPERIOR: " $ 300.000",
   },
 };
 
 function getPrize(categoria, matches) {
-  return PRIZES[matches]?.[categoria] || null;
+  if (
+    casino.value == "A05" ||
+    casino.value == "A07" ||
+    casino.value == "A08" ||
+    casino.value == "A09" ||
+    casino.value == "A12" ||
+    casino.value == "A16" ||
+    casino.value == "A19" ||
+    casino.value == "A70"
+  ) {
+    return PRIZES[matches]?.[categoria] || null;
+  } else if (
+    casino.value == "A43" ||
+    casino.value == "A53" ||
+    casino.value == "A15" ||
+    casino.value == "A108" ||
+    casino.value == "A127"
+  ) {
+    return PRIZES_2[matches]?.[categoria] || null;
+  } else if (
+    casino.value == "A36" ||
+    casino.value == "A36-MESAS" ||
+    casino.value == "A127-MESAS" ||
+    casino.value == "A781" ||
+    casino.value == "A15-MESAS" ||
+    casino.value == "A108-MESAS"
+  ) {
+    return PRIZES_3[matches]?.[categoria] || null;
+  }
 }
 
 function setBackImage(cell, file) {
@@ -176,7 +278,7 @@ function evaluateRevealedPairs(ultimoKey) {
     img_gif.classList.add("img_gif");
     img_gif.src = `/dinamicas/promocion-cupido/resources/Fichas/${ultimoKey}.gif`;
     board_act.appendChild(img_gif);
-    
+
     setTimeout(() => {
       img_gif.remove();
     }, 6000);
@@ -232,6 +334,38 @@ function onCellClick(e) {
 
   if (moves >= 4) {
     const amount = getPrize(categoria.value, matches);
+    if (amount == null || amount == "" || amount == 0 || amount == "0") {
+      Swal.fire({
+        position: "top-start",
+        title: `Con categoria ${categoria.value}`,
+        html: `<div class="swal-premio">
+                <img id="swal-logo" src="/dinamicas/promocion-cupido/resources/logo.png" alt="Logo premio">
+                <p>
+                  Lo sentimos, no ganaste premio.
+                </p>
+              </div>
+            `,
+        allowOutsideClick: false,
+        customClass: {
+          popup: "mi-popup",
+          title: "mi-titulo",
+        },
+        didOpen: () => {
+          const logo = document.getElementById("swal-logo");
+          if (logo) {
+            logo.classList.add("logo-animate");
+          }
+        },
+      }).then((res) => {
+        if (res.isConfirmed) {
+          // deal();
+          card_end.forEach((item) => {
+            item.classList.add("is-flipped");
+          });
+        }
+      });
+      return;
+    }
     setTimeout(() => {
       if (matches == 4) {
         confettiAl();
@@ -342,10 +476,8 @@ btn_enviar.addEventListener("click", () => {
   handleSubmit();
 });
 
-
 function handleSubmit() {
   let nombre = document.getElementById("nombre");
-  let casino = document.getElementById("casino");
 
   const fechaCompleta = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
@@ -374,7 +506,8 @@ function handleSubmit() {
     valor_3: nombre.value,
     valor_5: casino.value,
     valor_6: categoria.value,
-    valor_7: categoria.value == "ADICIONAL" ? "0 FLECHAZO" : matches + " FLECHAZO",
+    valor_7:
+      categoria.value == "ADICIONAL" ? "0 FLECHAZO" : matches + " FLECHAZO",
     valBono: categoria.value == "ADICIONAL" ? "0" : "",
     ...(categoria.value == "ADICIONAL" ? { valor_8: "0" } : ""),
     valor_9: promocion,
@@ -574,7 +707,6 @@ function handleSubmitObs() {
       });
     });
 }
-
 
 function GetResgistroDia() {
   const content_registro_dia = document.getElementById("result_dia_acumula");

@@ -37,8 +37,43 @@
                 <option value="ESTANDAR">Estandar</option>
                 <option value="ADICIONAL">Adicional</option>
             </select>
+            <select class="form-control" style="cursor: pointer;" id="casino">
+                <option value="">Casino...</option>
+                <option value="A05">A05</option>
+                <option value="A07">A07</option>
+                <option value="A08">A08</option>
+                <option value="A09">A09</option>
+                <option value="A12">A12</option>
+                <option value="A12-MESAS">A12-MESAS</option>
+                <option value="A15">A15</option>
+                <option value="A15-MESAS">A15-MESAS</option>
+                <option value="A16">A16</option>
+                <option value="A19">A19</option>
+                <option value="A35">A35</option>
+                <option value="A36">A36</option>
+                <option value="A36-MESAS">A36-MESAS</option>
+                <option value="A38">A38</option>
+                <option value="A39">A39</option>
+                <option value="A43">A43</option>
+                <option value="A48">A48</option>
+                <option value="A48-MESAS">A48-MESAS</option>
+                <option value="A49">A49</option>
+                <option value="A50">A50</option>
+                <option value="A53">A53</option>
+                <option value="A58">A58</option>
+                <option value="A70">A70</option>
+                <option value="A781">A781</option>
+                <option value="A88">A88</option>
+                <option value="A100">A100</option>
+                <option value="A108">A108</option>
+                <option value="A108-MESAS">A108-MESAS</option>
+                <option value="A127">A127</option>
+                <option value="A127-MESAS">A127-MESAS</option>
+            </select>
             <img id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
         </div>
+        <img id="btn_tablas_premio" class="btn_tablas_premio" src="/resource/btn_premio.png" alt="Aladdin">
+
         <div class="total_result" id="total_result"></div>
         <div class="board">
             <div class="cell-c"></div>
@@ -68,6 +103,14 @@
         <button id="start_game" class="btn btn-danger">Empezar</button>
         <button id="restart_game" class="btn btn-danger" onclick="location.reload();">Reiniciar</button>
     </div>
+    <section id="modal_premios" class="modal_premios">
+        <img class="close_modal_premios" id="close_modal_premios" src="/dinamicas/descubiertos/resources/close_boton.png" alt="Aladdin">
+        <img class="modal_cambiar_premio" id="modal_cambiar_premio" src="/resource/img_cambiar.png" alt="Aladdin">
+        <div class="_content_modal_premios_">
+            <img id="img_premios_1" class="img_premios_1" src="/dinamicas/promocion-cupido/resources/tabla_premios_all_cate.png" alt="Aladdin">
+            <img id="img_premios_2" class="img_premios_2" src="/dinamicas/promocion-cupido/resources/tabla_premios_2_cate.png" alt="Aladdin">
+        </div>
+    </section>
     <section id="modal_opciones_dinamica" class="modal_opciones_dinamica">
         <div id="content_modal_dinamica" class="content_modal_dinamica">
             <div class="content_expand">
@@ -100,41 +143,6 @@
                         <div style="display: flex;gap: 10px;">
                             <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
                                 style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre" />
-                        </div>
-                        <div style="display: flex;gap: 10px;">
-                            <select class="form-control" style="cursor: pointer;" id="casino">
-                                <option value="">Casino...</option>
-                                <option value="A05">A05</option>
-                                <option value="A07">A07</option>
-                                <option value="A08">A08</option>
-                                <option value="A09">A09</option>
-                                <option value="A12">A12</option>
-                                <option value="A12-MESAS">A12-MESAS</option>
-                                <option value="A15">A15</option>
-                                <option value="A15-MESAS">A15-MESAS</option>
-                                <option value="A16">A16</option>
-                                <option value="A19">A19</option>
-                                <option value="A35">A35</option>
-                                <option value="A36">A36</option>
-                                <option value="A36-MESAS">A36-MESAS</option>
-                                <option value="A38">A38</option>
-                                <option value="A39">A39</option>
-                                <option value="A43">A43</option>
-                                <option value="A48">A48</option>
-                                <option value="A48-MESAS">A48-MESAS</option>
-                                <option value="A49">A49</option>
-                                <option value="A50">A50</option>
-                                <option value="A53">A53</option>
-                                <option value="A58">A58</option>
-                                <option value="A70">A70</option>
-                                <option value="A781">A781</option>
-                                <option value="A88">A88</option>
-                                <option value="A100">A100</option>
-                                <option value="A108">A108</option>
-                                <option value="A108-MESAS">A108-MESAS</option>
-                                <option value="A127">A127</option>
-                                <option value="A127-MESAS">A127-MESAS</option>
-                            </select>
                         </div>
                         <div class="content_btn_modal">
                             <button title="Enviar" id="btn_enviar" class="btn btn-primary">Enviar</button>
@@ -214,9 +222,9 @@
                                 <option value="3">3</option>
                                 <option value="4">4</option>
                             </select>
-                            
+
                         </div>
-                        
+
                         <div class="content_btn_modal">
                             <button id="btn_send_secundario" class="btn btn-primary">Enviar</button>
                         </div>

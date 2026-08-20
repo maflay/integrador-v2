@@ -40,7 +40,7 @@
             <img id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
         </div>
         <div class="total_result" id="total_result"></div>
-
+        <img id="btn_tablas_premio" class="btn_tablas_premio" src="/resource/btn_premio.png" alt="Aladdin">
         <div class="board">
             <div class="cell-c"></div>
             <div class="cell-c"></div>
@@ -74,6 +74,14 @@
         <button id="start_game" class="btn btn-danger">Empezar</button>
         <button id="restart_game" class="btn btn-danger" onclick="location.reload();">Reiniciar</button>
     </div>
+    <section id="modal_premios" class="modal_premios">
+        <img class="close_modal_premios" id="close_modal_premios" src="/dinamicas/descubiertos/resources/close_boton.png" alt="Aladdin">
+        <img class="modal_cambiar_premio" id="modal_cambiar_premio" src="/resource/img_cambiar.png" alt="Aladdin">
+        <div class="_content_modal_premios_">
+            <img id="img_premios_1" class="img_premios_1" src="/dinamicas/promocion-perfect-match/resources/tabla_premios_all_cate.png" alt="Aladdin">
+            <img id="img_premios_2" class="img_premios_2" src="/dinamicas/promocion-perfect-match/resources/tabla_premios_2_cate.png" alt="Aladdin">
+        </div>
+    </section>
     <section id="modal_opciones_dinamica" class="modal_opciones_dinamica">
         <div id="content_modal_dinamica" class="content_modal_dinamica">
             <div class="content_expand">
@@ -89,7 +97,7 @@
                 <div class="content_opcion_head">
                     <p id="btn_observacion">Observación</p>
                 </div>
-                <div class="content_opcion_head">
+                <div style="display: none;" class="content_opcion_head">
                     <p id="btn_tabla_premios">Tabla de Premios</p>
                 </div>
                 <div class="content_opcion_head">

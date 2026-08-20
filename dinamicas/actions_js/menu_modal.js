@@ -156,3 +156,35 @@ if (document.getElementById("modal_opciones_dinamica")) {
       .classList.toggle("item_full_screen");
   });
 }
+
+if (document.getElementById("btn_tablas_premio")) {
+  let btn_tablas_premio = document.getElementById("btn_tablas_premio");
+  let modal_premios = document.getElementById("modal_premios");
+  let close_modal_premios = document.getElementById("close_modal_premios");
+  let modal_cambiar_premio = document.getElementById("modal_cambiar_premio");
+  let img_premios_1 = document.getElementById("img_premios_1");
+  let img_premios_2 = document.getElementById("img_premios_2");
+
+  btn_tablas_premio.addEventListener("click", ()=> {
+    modal_premios.style.display = "flex";
+  });
+
+
+  close_modal_premios.addEventListener("click", ()=> {
+    modal_premios.style.display = "none";
+  });
+
+  img_premios_1.style.display = "flex";
+  img_premios_2.style.display = "none";
+
+  modal_cambiar_premio.addEventListener("click", ()=> {
+    if(img_premios_1.style.display =="flex"){
+      img_premios_1.style.display = "none";
+      img_premios_2.style.display = "flex";
+    } else if(img_premios_2.style.display =="flex"){
+      img_premios_2.style.display = "none";
+      img_premios_1.style.display = "flex";
+    }
+  });
+
+}

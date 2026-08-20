@@ -301,3 +301,75 @@
 }
 
 /* ---------------------------------------------------- */
+
+
+/* MODAL PREMIOS */
+
+.modal_premios {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.555);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.close_modal_premios {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 100px;
+    transition: all 0.4s ease;
+}
+
+.close_modal_premios:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.modal_cambiar_premio {
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    width: 150px;
+    transition: all 0.4s ease;
+}
+
+.modal_cambiar_premio:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+._content_modal_premios_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img_premios_1{
+    display: flex;
+    width: 100%;
+}
+
+.img_premios_2 {
+    display: none;
+    width: 100%;
+}
+
+
+.btn_tablas_premio {
+    position: absolute;
+    width: 100px;
+    right: 10px;
+    bottom: 10px;
+    transition: all 0.4s ease;
+}
+
+.btn_tablas_premio:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}

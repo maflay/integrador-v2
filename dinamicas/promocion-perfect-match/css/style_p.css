@@ -144,7 +144,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    font-family: 'emirates' ,sans-serif !important;
+    font-family: 'emirates', sans-serif !important;
 }
 
 .back-c {
@@ -308,16 +308,16 @@
 }
 
 #swal-logo {
-  position: absolute;
-  width: 250px;
-  /* tamaño final */
-  max-width: 80vw;
-  transform: scale(4);
-  /* empieza grande */
-  opacity: 0.5;
-  transition: transform 3s ease, opacity 3s ease;
-  top: 40vh;
-  left: 42.5vw;
+    position: absolute;
+    width: 250px;
+    /* tamaño final */
+    max-width: 80vw;
+    transform: scale(4);
+    /* empieza grande */
+    opacity: 0.5;
+    transition: transform 3s ease, opacity 3s ease;
+    top: 40vh;
+    left: 42.5vw;
 }
 
 #swal-logo.logo-animate {
