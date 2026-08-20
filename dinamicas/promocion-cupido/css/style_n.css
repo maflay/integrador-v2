@@ -1,0 +1,303 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #dc3545;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@font-face {
+    font-family: 'emirates';
+    src: url('/fonts/Emirates\ Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'super wonder';
+    src: url('/fonts/Super\ Wonder.ttf') format('truetype');
+}
+
+
+._main_match_perfect_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    gap: 30px;
+    color: white;
+    font-family: 'super wonder', sans-serif !important;
+}
+
+._content_video_show_ {
+    display: flex;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+._content_video_show_::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.562);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.total_result {
+    font-family: 'emirates', sans-serif !important;
+    font-size: 28px;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    gap: 15px;
+    position: relative;
+    top: 3px;
+}
+
+.board_2 {
+    display: grid;
+    grid-template-columns: repeat(3, 120px);
+    gap: 15px;
+    position: absolute;
+}
+
+#start_game {
+    position: absolute;
+    bottom: 100px;
+}
+
+#restart_game {
+    display: none;
+    position: absolute;
+    bottom: 100px;
+}
+
+.item_select {
+    pointer-events: none;
+}
+
+.cell-c {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-c {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: .5s;
+}
+
+.card-c.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.face-c {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+}
+
+.front-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    background: #9e1a1a;
+    border-radius: 100%;
+    background-image: url(/eventos/generator_points/resource/back_2.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'emirates' ,sans-serif !important;
+}
+
+.back-c {
+    transform: rotateY(180deg);
+    background: #fff;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.back-c img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.first_attem_1 {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+    background-image: url(/dinamicas/promocion-cupido/resources/cupido-clasico.png) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.first_attem_2 {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+    background-image: url(/dinamicas/promocion-cupido/resources/cupido-suerte.png) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.first_attem_3 {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+    background-image: url(/dinamicas/promocion-cupido/resources/cupido-urbano.png) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.first_attem_4 {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+    background-image: url(/dinamicas/promocion-cupido/resources/cupido-vintage.png) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.first_attem_5 {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+    background-image: url(/dinamicas/promocion-cupido/resources/cinturon_castidad.png) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.first_attem_6 {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+    background-image: url(/dinamicas/promocion-cupido/resources/El_cura.png) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.first_attem_7 {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+    background-image: url(/dinamicas/promocion-cupido/resources/escudo_anti_amor.png) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.first_attem_8 {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+    background-image: url(/dinamicas/promocion-cupido/resources/La_monja.png) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+.first_attem_9 {
+    width: 120px;
+    height: 120px;
+    perspective: 1000px;
+    cursor: pointer;
+    background-image: url(/dinamicas/promocion-cupido/resources/olafo_amargado.png) !important;
+    background-position: center !important;
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+}
+
+
+
+.mi-popup {
+    background-color: rgb(131, 31, 31);
+    padding: 20px;
+    border-radius: 40% !important;
+
+    color: white;
+}
+
+._logo_visual_ {
+    width: 300px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#swal-logo {
+  position: absolute;
+  width: 250px;
+  /* tamaño final */
+  max-width: 80vw;
+  transform: scale(4);
+  /* empieza grande */
+  opacity: 0.5;
+  transition: transform 3s ease, opacity 3s ease;
+  top: 40vh;
+  left: 42.5vw;
+}
+
+#swal-logo.logo-animate {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.img_gif {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+}

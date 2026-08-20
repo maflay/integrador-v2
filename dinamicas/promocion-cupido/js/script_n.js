@@ -8,12 +8,11 @@ const btnReset = document.getElementById("reset-game");
 const categoria = document.getElementById("categoria");
 const loader = document.getElementById("loader");
 
-const promocion = "Perfect Match";
-const url =
-  "https://script.google.com/macros/s/AKfycbw5LY_NPCX6a5CGDJKgiH-1S0ZPWkoJH6QjgbwjVc-7TMKP_FV67nEgYGwSuLXQ5zb49Q/exec";
+const promocion = "El Flechazo de Cupido";
+const url = "https://script.google.com/macros/s/AKfycbxjswGydhyTqgMuFf9OuWfgPDyuvWWU-nWQlkHuYaRx0FzYSq6Dz7lHWcohLJVRcrcm/exec";
 const IN_FLIGHT = new Set();
-const LS_KEY = "registrosPerfectMatch";
-const FECHA_KEY = "fechaPerfectMatch";
+const LS_KEY = "registrosFlechazoCupido";
+const FECHA_KEY = "fechaFlechazoCupido";
 const hoy = new Date().toDateString();
 if (localStorage.getItem(FECHA_KEY) !== hoy) {
   localStorage.setItem(LS_KEY, JSON.stringify([]));
@@ -22,15 +21,15 @@ if (localStorage.getItem(FECHA_KEY) !== hoy) {
 const user = inforUser();
 
 const PAIRS = [
-  {
-    key: "corazon-diamante",
-    arts: ["ficha_corazon.png", "ficha_diamante.png"],
-  },
-  { key: "pica-trebol", arts: ["ficha_pica.png", "ficha_trebol.png"] },
-  { key: "jinete-caballo", arts: ["ficha_jinete.png", "ficha_caballo.png"] },
-  { key: "rey-reina", arts: ["ficha_rey.png", "ficha_reina.png"] },
-  { key: "ruleta-pelita", arts: ["ficha_ruleta.png", "ficha_pelita.png"] },
-  { key: "mymawi-slots", arts: ["ficha_mymawi.png", "ficha_slots.png"] },
+  { key: "cupido-clasico", arts: ["cupido-clasico.png"] },
+  { key: "cupido-suerte", arts: ["cupido-suerte.png"] },
+  { key: "cupido-urbano", arts: ["cupido-urbano.png"] },
+  { key: "cupido-vintage", arts: ["cupido-vintage.png"] },
+  { key: "cinturon_castidad", arts: ["cinturon_castidad.png"] },
+  { key: "El_cura", arts: ["El_cura.png"] },
+  { key: "escudo_anti_amor", arts: ["escudo_anti_amor.png"] },
+  { key: "La_monja", arts: ["La_monja.png"] },
+  { key: "olafo_amargado", arts: ["olafo_amargado.png"] },
 ];
 
 document.getElementById("start_game").style.display = "none";
@@ -43,7 +42,7 @@ categoria.addEventListener("change", () => {
   }
 });
 
-const ASSET_BASE = "/eventos/generator_points/resource/";
+const ASSET_BASE = "/dinamicas/promocion-cupido/resources/";
 
 const PRIZES = {
   0: {
@@ -108,7 +107,8 @@ function setBackImage(cell, file) {
   return src;
 }
 
-const totalPairs = cells.length / 6;
+// const totalPairs = cells.length;
+const totalPairs = 4;
 
 let lockBoard = false;
 let firstCell = null;
@@ -145,7 +145,7 @@ function buildDeck() {
 
 function updateHud() {
   if (hud)
-    hud.textContent = `Lanzamientos: ${moves} • Match: ${matches}/${totalPairs}`;
+    hud.textContent = `Lanzamientos: ${moves} • Cupidos: ${matches}/${totalPairs}`;
 }
 
 function resetTurn() {
@@ -153,31 +153,42 @@ function resetTurn() {
   lockBoard = false;
 }
 
-function evaluateRevealedPairs() {
+function evaluateRevealedPairs(ultimoKey) {
   const flippedCells = document.querySelectorAll(".card-c.is-flipped");
-  const keysCount = {};
+  let board_act = document.querySelector(".board");
+  let cupidoCount = 0;
 
   flippedCells.forEach((card) => {
     const cell = card.closest(".cell-c");
     const key = cell.dataset.key;
-    if (key) {
-      keysCount[key] = (keysCount[key] || 0) + 1;
+    if (key && key.toLowerCase().includes("cupido")) {
+      cupidoCount++;
     }
   });
 
-  let countedPairs = 0;
-  for (const key in keysCount) {
-    countedPairs += Math.floor(keysCount[key] / 2);
+  if (ultimoKey && ultimoKey.toLowerCase().includes("cupido")) {
+    const gifAnterior = board_act.querySelector(".img_gif");
+    if (gifAnterior) {
+      gifAnterior.remove();
+    }
+
+    let img_gif = document.createElement("img");
+    img_gif.classList.add("img_gif");
+    img_gif.src = `/dinamicas/promocion-cupido/resources/Fichas/${ultimoKey}.gif`;
+    board_act.appendChild(img_gif);
+    
+    setTimeout(() => {
+      img_gif.remove();
+    }, 6000);
   }
 
-  matches = countedPairs;
+  matches = cupidoCount.toString();
   updateHud();
 }
 
 function onCellClick(e) {
   const cell = e.currentTarget;
   const card = cell.querySelector(".card-c");
-
   const card_end = document.querySelectorAll(".card-c");
 
   if (
@@ -199,7 +210,8 @@ function onCellClick(e) {
   card.classList.add("is-flipped");
   updateHud();
 
-  evaluateRevealedPairs();
+  const currentKey = cell.dataset.key;
+  evaluateRevealedPairs(currentKey);
 
   if (!firstCell) {
     firstCell = cell;
@@ -213,7 +225,7 @@ function onCellClick(e) {
     firstCell.classList.add("is-matched");
     secondCell.classList.add("is-matched");
     resetTurn();
-    evaluateRevealedPairs();
+    evaluateRevealedPairs(secondCell.dataset.key);
   } else {
     resetTurn();
   }
@@ -221,21 +233,21 @@ function onCellClick(e) {
   if (moves >= 4) {
     const amount = getPrize(categoria.value, matches);
     setTimeout(() => {
-      if (matches == 2) {
+      if (matches == 4) {
         confettiAl();
       }
       Swal.fire({
         position: "top-start",
         title: `Con categoria ${categoria.value}`,
         html: `<div class="swal-premio">
-                  <img id="swal-logo" src="/dinamicas/promocion-perfect-match/resources/logo-singular.png" alt="Logo premio">
-                  <p>
-                    Obtuviste un premio de <b style="font-size: 2rem">${amount} en Dinero Promocional</b>, 
-                    con <b style="font-size: 2rem">${matches}</b> Match 
-                    y <b style="font-size: 2rem">${moves}</b> Lanz...
-                  </p>
-                </div>
-              `,
+                <img id="swal-logo" src="/dinamicas/promocion-cupido/resources/logo.png" alt="Logo premio">
+                <p>
+                  Obtuviste un premio de <b style="font-size: 2rem">${amount} en Dinero Promocional</b>, 
+                  con <b style="font-size: 2rem">${matches}</b> Cupidos... 
+                  y <b style="font-size: 2rem">${moves}</b> Lanz...
+                </p>
+              </div>
+            `,
         allowOutsideClick: false,
         customClass: {
           popup: "mi-popup",
@@ -330,6 +342,7 @@ btn_enviar.addEventListener("click", () => {
   handleSubmit();
 });
 
+
 function handleSubmit() {
   let nombre = document.getElementById("nombre");
   let casino = document.getElementById("casino");
@@ -361,7 +374,7 @@ function handleSubmit() {
     valor_3: nombre.value,
     valor_5: casino.value,
     valor_6: categoria.value,
-    valor_7: categoria.value == "ADICIONAL" ? "0" : matches,
+    valor_7: categoria.value == "ADICIONAL" ? "0 FLECHAZO" : matches + " FLECHAZO",
     valBono: categoria.value == "ADICIONAL" ? "0" : "",
     ...(categoria.value == "ADICIONAL" ? { valor_8: "0" } : ""),
     valor_9: promocion,
@@ -469,7 +482,7 @@ function handleSeSubmit() {
     valor_4: "",
     valor_5: casino_modal.value,
     valor_6: categoria_modal.value,
-    valor_7: valor_promo_modal.value,
+    valor_7: valor_promo_modal.value + " FLECHAZO",
     valor_8: bono_modal.value,
     valor_9: promocion,
     valor_10: user.Nombre,
@@ -561,6 +574,7 @@ function handleSubmitObs() {
       });
     });
 }
+
 
 function GetResgistroDia() {
   const content_registro_dia = document.getElementById("result_dia_acumula");
