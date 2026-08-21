@@ -47,7 +47,7 @@ document.getElementById("close_modal_icon").addEventListener("click", () => {
 });
 
 const notificacion_registro_dia = document.getElementById(
-  "notificacion_registro_dia"
+  "notificacion_registro_dia",
 );
 notificacion_registro_dia.style.display = "none";
 
@@ -65,7 +65,7 @@ const btn_registro_dia = document.getElementById("btn_registro_dia");
 const view_guardar_registro = document.getElementById("view_guardar_registro");
 const view_envio_secundario = document.getElementById("view_envio_secundario");
 const view_envia_observacion = document.getElementById(
-  "view_envia_observacion"
+  "view_envia_observacion",
 );
 const view_tabla_premios = document.getElementById("view_tabla_premios");
 const view_registro_dia = document.getElementById("view_registro_dia");
@@ -213,23 +213,20 @@ function handleAutoInput(e) {
     movePlayer(valor, () => {
       if (tiradaActual === 1) {
         posicionTirada1 = playerPosition;
-        document.getElementById(
-          "pos1"
-        ).innerText = `Lanz 1: ${posicionTirada1}`;
+        document.getElementById("pos1").innerText =
+          `Lanz 1: ${posicionTirada1}`;
         let htmlTiro = `${playerName} Lanzó y obtuvo ${valor}, estas en la estación ${posicionTirada1}`;
         message.innerText = htmlTiro;
       } else if (tiradaActual === 2) {
         posicionTirada2 = playerPosition;
-        document.getElementById(
-          "pos2"
-        ).innerText = `Tirada 2: ${posicionTirada2}`;
+        document.getElementById("pos2").innerText =
+          `Tirada 2: ${posicionTirada2}`;
         let htmlTiro = `${playerName} Lanzó y obtuvo ${valor}, estas en la estación ${posicionTirada2}`;
         message.innerText = htmlTiro;
       } else if (tiradaActual === 3) {
         posicionTirada3 = playerPosition;
-        document.getElementById(
-          "pos3"
-        ).innerText = `Tirada 3: ${posicionTirada3}`;
+        document.getElementById("pos3").innerText =
+          `Tirada 3: ${posicionTirada3}`;
 
         let htmlTiro = `${playerName} Lanzó y obtuvo ${valor}, estas en la estación ${posicionTirada3}`;
         message.innerText = htmlTiro;
@@ -1411,7 +1408,7 @@ function GetResgistroDia() {
 
   function updateLocalBono(
     { casino, categoria, nombre, cedula, fecha, hora, resultado },
-    valBono
+    valBono,
   ) {
     const regs = getRegs();
     const idx = regs.findIndex(
@@ -1421,7 +1418,7 @@ function GetResgistroDia() {
         String(r.valor_5).trim() === String(casino).trim() &&
         String(r.valor_3).trim() === String(nombre).trim() &&
         String(r.valor_2).trim() === String(fecha).trim() &&
-        String(r.valor_1).trim() === String(hora).trim()
+        String(r.valor_1).trim() === String(hora).trim(),
     );
     if (idx === -1) return false;
 
@@ -1441,14 +1438,14 @@ function GetResgistroDia() {
           ">": "&gt;",
           '"': "&quot;",
           "'": "&#39;",
-        }[m])
+        })[m],
     );
   }
 
   if (content_registro_dia._clickHandler) {
     content_registro_dia.removeEventListener(
       "click",
-      content_registro_dia._clickHandler
+      content_registro_dia._clickHandler,
     );
   }
 
@@ -1524,7 +1521,7 @@ function GetResgistroDia() {
           hora,
           resultado,
         },
-        valBonoregistr
+        valBonoregistr,
       );
 
       if (tr) {
@@ -1595,7 +1592,7 @@ function GetResgistroDia() {
   };
   content_registro_dia.addEventListener(
     "click",
-    content_registro_dia._clickHandler
+    content_registro_dia._clickHandler,
   );
 }
 GetResgistroDia();
@@ -1826,7 +1823,7 @@ function handleEnvioSecundario() {
   });
 
   if (categoria == "ADICIONAL") {
-    (bono = "0"), (resultado = "0");
+    ((bono = "0"), (resultado = "0"));
   }
 
   if (
@@ -1989,4 +1986,68 @@ function confettiVictoria() {
     spread: 70,
     origin: { y: 0.4, x: 0.8 },
   });
+}
+
+document
+  .getElementById("btn_envia_observacion")
+  .addEventListener("click", () => {
+    handleSendInfo();
+  });
+
+function handleSendInfo() {
+  let casino_observacion = document.getElementById("casino_observacion");
+  let descripcion_observacion = document.getElementById(
+    "descripcion_observacion",
+  );
+
+  if (!casino_observacion.value || !descripcion_observacion.value) {
+    Swal.fire({
+      icon: "warning",
+      title: "Campos en Blanco",
+    });
+    return;
+  }
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+  const [fecha, hora] = fechaCompleta.split(", ");
+
+  let data = {
+    tipo: "envio_2",
+    valor_1: hora,
+    valor_2: fecha,
+    valor_3: casino_observacion.value,
+    valor_4: descripcion_observacion.value,
+    valor_5: user.Nombre,
+  };
+  loader.style.display = "flex";
+  fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.text())
+    .then(() => {
+      casino_observacion.value = "";
+      descripcion_observacion.value = "";
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "success",
+        title: "Envio exitoso",
+      });
+    })
+    .catch((error) => {
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "error",
+        title: "Error en el Envio",
+      });
+    });
 }
