@@ -1991,10 +1991,10 @@ function confettiVictoria() {
 document
   .getElementById("btn_envia_observacion")
   .addEventListener("click", () => {
-    handleSendInfo();
+    handleSendObs();
   });
 
-function handleSendInfo() {
+function handleSendObs() {
   let casino_observacion = document.getElementById("casino_observacion");
   let descripcion_observacion = document.getElementById(
     "descripcion_observacion",
