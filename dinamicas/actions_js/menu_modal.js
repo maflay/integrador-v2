@@ -164,6 +164,7 @@ if (document.getElementById("btn_tablas_premio")) {
   let modal_cambiar_premio = document.getElementById("modal_cambiar_premio");
   let img_premios_1 = document.getElementById("img_premios_1");
   let img_premios_2 = document.getElementById("img_premios_2");
+  let img_premios_3 = document.getElementById("img_premios_3");
 
   btn_tablas_premio.addEventListener("click", ()=> {
     modal_premios.style.display = "flex";
@@ -175,15 +176,22 @@ if (document.getElementById("btn_tablas_premio")) {
   });
 
   img_premios_1.style.display = "flex";
-  img_premios_2.style.display = "none";
+  img_premios_2 ? img_premios_2.style.display = "none" : "";
+  img_premios_3 ? img_premios_3.style.display = "none" : "";
 
   modal_cambiar_premio.addEventListener("click", ()=> {
     if(img_premios_1.style.display =="flex"){
       img_premios_1.style.display = "none";
       img_premios_2.style.display = "flex";
-    } else if(img_premios_2.style.display =="flex"){
+      img_premios_3.style.display = "none";
+    } else if(img_premios_2 ? img_premios_2.style.display =="flex" : ""){
+      img_premios_1.style.display = "none";
       img_premios_2.style.display = "none";
+      img_premios_3.style.display = "flex";
+    } else if(img_premios_3 ? img_premios_3.style.display == "flex" : ""){
       img_premios_1.style.display = "flex";
+      img_premios_2.style.display = "none";
+      img_premios_3.style.display = "none";
     }
   });
 
