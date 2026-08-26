@@ -93,7 +93,9 @@ function handleSendDinamico() {
     !nombre_form.value ||
     !_promo_crea_.value ||
     !casino_form.value ||
-    !categoria_form.value
+    !categoria_form.value ||
+    !_new_num_bono_form_.value ||
+    !_new_resultado_form_.value
   ) {
     Swal.fire({
       icon: "warning",
