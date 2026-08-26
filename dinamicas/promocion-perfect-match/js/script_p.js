@@ -226,11 +226,11 @@ function onCellClick(e) {
       }
       Swal.fire({
         position: "top-start",
-        title: `Con categoria ${categoria.value}`,
         html: `<div class="swal-premio">
-                  <img id="swal-logo" src="/dinamicas/promocion-perfect-match/resources/logo-singular.png" alt="Logo premio">
+        <img id="swal-logo" src="/dinamicas/promocion-perfect-match/resources/logo-singular.png" alt="Logo premio">
+        CON CATEGORIA <b style="font-size: 1.5rem">${categoria.value}</b>,
                   <p>
-                    Obtuviste un premio de <b style="font-size: 2rem">${amount} en Dinero Promocional</b>, 
+                    Obtuviste un premio de <b style="font-size: 1.5rem">${amount} en Dinero Promocional</b>, 
                     con <b style="font-size: 2rem">${matches}</b> Match 
                     y <b style="font-size: 2rem">${moves}</b> Lanz...
                   </p>

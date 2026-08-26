@@ -293,11 +293,19 @@
 }
 
 .mi-popup {
-    background-color: rosybrown;
+    background-color: #810000;
     padding: 20px;
-    border-radius: 40% !important;
-
+    border: 10px solid rgb(133, 108, 0);
     color: white;
+    border-radius: 20px;
+}
+
+.swal-premio p {
+    margin: 0 !important;
+}
+
+.swal2-actions {
+    margin: 0 !important;
 }
 
 ._logo_visual_ {
@@ -309,7 +317,7 @@
 
 #swal-logo {
     position: absolute;
-    width: 250px;
+    width: 290px;
     /* tamaño final */
     max-width: 80vw;
     transform: scale(4);
@@ -317,7 +325,7 @@
     opacity: 0.5;
     transition: transform 3s ease, opacity 3s ease;
     top: 40vh;
-    left: 42.5vw;
+    left: 72.5vw;
 }
 
 #swal-logo.logo-animate {

@@ -266,15 +266,6 @@
 }
 
 
-
-.mi-popup {
-    background-color: rgb(131, 31, 31);
-    padding: 20px;
-    border-radius: 40% !important;
-
-    color: white;
-}
-
 ._logo_visual_ {
     width: 300px;
     position: absolute;
@@ -283,16 +274,16 @@
 }
 
 #swal-logo {
-  position: absolute;
-  width: 250px;
-  /* tamaño final */
-  max-width: 80vw;
-  transform: scale(4);
-  /* empieza grande */
-  opacity: 0.5;
-  transition: transform 3s ease, opacity 3s ease;
-  top: 40vh;
-  left: 42.5vw;
+    position: absolute;
+    width: 290px;
+    /* tamaño final */
+    max-width: 80vw;
+    transform: scale(4);
+    /* empieza grande */
+    opacity: 0.5;
+    transition: transform 3s ease, opacity 3s ease;
+    top: 40vh;
+    left: 72.5vw;
 }
 
 #swal-logo.logo-animate {
@@ -306,4 +297,20 @@
     left: 50%;
     transform: translateX(-50%);
     width: 80%;
+}
+
+.mi-popup {
+    background-color: #810000;
+    padding: 20px;
+    border: 10px solid rgb(133, 108, 0);
+    color: white;
+    border-radius: 20px;
+}
+
+.swal-premio p {
+    margin: 0 !important;
+}
+
+.swal2-actions {
+    margin: 0 !important;
 }
