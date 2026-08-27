@@ -353,11 +353,13 @@
 .img_premios_1{
     display: flex;
     width: 100%;
+    border-radius: 20px;
 }
 
 .img_premios_2 {
     display: none;
     width: 100%;
+    border-radius: 20px;
 }
 
 

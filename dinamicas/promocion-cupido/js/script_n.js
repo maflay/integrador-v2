@@ -98,6 +98,44 @@ const PRIZES = {
 };
 
 const PRIZES_2 = {
+   1: {
+    ESTANDAR: " $ 50.000",
+    SUPERIOR: " $ 70.000",
+  },
+  2: {
+    ESTANDAR: " $ 60.000",
+    SUPERIOR: " $ 80.000",
+  },
+  3: {
+    ESTANDAR: " $ 70.000",
+    SUPERIOR: " $ 90.000",
+  },
+  4: {
+    ESTANDAR: " $ 200.000",
+    SUPERIOR: " $ 300.000",
+  },
+};
+
+const PRIZES_3 = {
+  1: {
+    ESTANDAR: " $ 80.000",
+    SUPERIOR: " $ 100.000",
+  },
+  2: {
+    ESTANDAR: " $ 90.000",
+    SUPERIOR: " $ 110.000",
+  },
+  3: {
+    ESTANDAR: " $ 100.000",
+    SUPERIOR: " $ 120.000",
+  },
+  4: {
+    ESTANDAR: " $ 200.000",
+    SUPERIOR: " $ 300.000",
+  },
+};
+
+const PRIZES_4 = {
   1: {
     BRONCE: "$ 80.000",
     SILVER: "$ 90.000",
@@ -132,25 +170,6 @@ const PRIZES_2 = {
   },
 };
 
-const PRIZES_3 = {
-  1: {
-    ESTANDAR: " $ 80.000",
-    SUPERIOR: " $ 100.000",
-  },
-  2: {
-    ESTANDAR: " $ 90.000",
-    SUPERIOR: " $ 110.000",
-  },
-  3: {
-    ESTANDAR: " $ 100.000",
-    SUPERIOR: " $ 120.000",
-  },
-  4: {
-    ESTANDAR: " $ 200.000",
-    SUPERIOR: " $ 300.000",
-  },
-};
-
 function getPrize(categoria, matches) {
   if (
     casino.value == "A05" ||
@@ -164,22 +183,33 @@ function getPrize(categoria, matches) {
   ) {
     return PRIZES[matches]?.[categoria] || null;
   } else if (
-    casino.value == "A43" ||
-    casino.value == "A53" ||
-    casino.value == "A15" ||
-    casino.value == "A108" ||
-    casino.value == "A127"
+    casino.value == "A50" ||
+    casino.value == "A38" ||
+    casino.value == "A35" ||
+    casino.value == "A39" ||
+    casino.value == "A88" ||
+    casino.value == "A48" ||
+    casino.value == "A49" ||
+    casino.value == "A12-MESAS"
   ) {
     return PRIZES_2[matches]?.[categoria] || null;
   } else if (
     casino.value == "A36" ||
     casino.value == "A36-MESAS" ||
-    casino.value == "A127-MESAS" ||
     casino.value == "A781" ||
-    casino.value == "A15-MESAS" ||
-    casino.value == "A108-MESAS"
+    casino.value == "A127-MESAS" ||
+    casino.value == "A108-MESAS" ||
+    casino.value == "A15-MESAS" 
   ) {
     return PRIZES_3[matches]?.[categoria] || null;
+  } else if(
+    casino.value == "A15" ||
+    casino.value == "A108" ||
+    casino.value == "A43" ||
+    casino.value == "A53" ||
+    casino.value == "A127"
+  ){
+    return PRIZES_4[matches]?.[categoria] || null;
   }
 }
 
@@ -341,7 +371,7 @@ function onCellClick(e) {
         html: `<div class="swal-premio">
                 <img id="swal-logo" src="/dinamicas/promocion-cupido/resources/logo.png" alt="Logo premio">
                 <p>
-                  Lo sentimos, no ganaste premio.
+                  Lo sentimos, categoría no válida para el casino seleccionado.
                 </p>
               </div>
             `,
@@ -377,7 +407,7 @@ function onCellClick(e) {
         CON CATEGORIA <b style="font-size: 1.5rem">${categoria.value}</b>,
                   <p>
                     Obtuviste un premio de <b style="font-size: 1.5rem">${amount} en Dinero Promocional</b>, 
-                    con <b style="font-size: 2rem">${matches}</b> Match 
+                    con <b style="font-size: 2rem">${matches}</b> Flecha... 
                     y <b style="font-size: 2rem">${moves}</b> Lanz...
                   </p>
                 </div>

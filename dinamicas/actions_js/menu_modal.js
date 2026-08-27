@@ -157,42 +157,46 @@ if (document.getElementById("modal_opciones_dinamica")) {
   });
 }
 
-if (document.getElementById("btn_tablas_premio")) {
-  let btn_tablas_premio = document.getElementById("btn_tablas_premio");
-  let modal_premios = document.getElementById("modal_premios");
-  let close_modal_premios = document.getElementById("close_modal_premios");
-  let modal_cambiar_premio = document.getElementById("modal_cambiar_premio");
-  let img_premios_1 = document.getElementById("img_premios_1");
-  let img_premios_2 = document.getElementById("img_premios_2");
-  let img_premios_3 = document.getElementById("img_premios_3");
+document.addEventListener("DOMContentLoaded", () => {
+  const btnTablasPremio = document.getElementById("btn_tablas_premio");
+  if (!btnTablasPremio) return;
 
-  btn_tablas_premio.addEventListener("click", ()=> {
-    modal_premios.style.display = "flex";
-  });
+  const modalPremios = document.getElementById("modal_premios");
+  const closeModalPremios = document.getElementById("close_modal_premios");
+  const modalCambiarPremio = document.getElementById("modal_cambiar_premio");
 
+  const imagenes = [
+    document.getElementById("img_premios_1"),
+    document.getElementById("img_premios_2"),
+    document.getElementById("img_premios_3"),
+    document.getElementById("img_premios_4"),
+  ].filter((img) => img !== null);
 
-  close_modal_premios.addEventListener("click", ()=> {
-    modal_premios.style.display = "none";
-  });
+  if (modalPremios && closeModalPremios) {
+    btnTablasPremio.addEventListener("click", () => {
+      modalPremios.style.display = "flex";
+    });
 
-  img_premios_1.style.display = "flex";
-  img_premios_2 ? img_premios_2.style.display = "none" : "";
-  img_premios_3 ? img_premios_3.style.display = "none" : "";
+    closeModalPremios.addEventListener("click", () => {
+      modalPremios.style.display = "none";
+    });
+  }
 
-  modal_cambiar_premio.addEventListener("click", ()=> {
-    if(img_premios_1.style.display =="flex"){
-      img_premios_1.style.display = "none";
-      img_premios_2.style.display = "flex";
-      img_premios_3.style.display = "none";
-    } else if(img_premios_2 ? img_premios_2.style.display =="flex" : ""){
-      img_premios_1.style.display = "none";
-      img_premios_2.style.display = "none";
-      img_premios_3.style.display = "flex";
-    } else if(img_premios_3 ? img_premios_3.style.display == "flex" : ""){
-      img_premios_1.style.display = "flex";
-      img_premios_2.style.display = "none";
-      img_premios_3.style.display = "none";
-    }
-  });
+  let indiceActual = 0;
+  function actualizarVisibilidad() {
+    imagenes.forEach((img, index) => {
+      img.style.display = index === indiceActual ? "flex" : "none";
+    });
+  }
 
-}
+  if (imagenes.length > 0) {
+    actualizarVisibilidad();
+  }
+
+  if (modalCambiarPremio && imagenes.length > 1) {
+    modalCambiarPremio.addEventListener("click", () => {
+      indiceActual = (indiceActual + 1) % imagenes.length;
+      actualizarVisibilidad();
+    });
+  }
+});
