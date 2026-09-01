@@ -65,11 +65,11 @@ const ASSET_BASE = "/dinamicas/promocion-cupido/resources/";
 const PRIZES = {
   1: {
     BRONCE: "$ 50.000",
-    SILVER: "$ 70.000",
-    GOLD: "$ 90.000",
-    LEGENDARIO: "$ 110.000",
-    TITANIO: "$ 130.000",
-    GENIUS: "$ 150.000",
+    SILVER: "$ 60.000",
+    GOLD: "$ 70.000",
+    LEGENDARIO: "$ 80.000",
+    TITANIO: "$ 90.000",
+    GENIUS: "$ 100.000",
   },
   2: {
     BRONCE: "$ 60.000",
