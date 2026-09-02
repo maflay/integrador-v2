@@ -400,13 +400,13 @@ function onCellClick(e) {
       if (matches == 4) {
         confettiAl();
       }
+      //Obtuviste un premio de <b style="font-size: 1.5rem">${amount} en Dinero Promocional</b>, 
       Swal.fire({
         position: "top-start",
         html: `<div class="swal-premio">
         <img id="swal-logo" src="/dinamicas/promocion-cupido/resources/logo.png" alt="Logo premio">
         CON CATEGORIA <b style="font-size: 1.5rem">${categoria.value}</b>,
-                  <p>
-                    Obtuviste un premio de <b style="font-size: 1.5rem">${amount} en Dinero Promocional</b>, 
+                  <p>Obtuviste una combinación</b>, 
                     con <b style="font-size: 2rem">${matches}</b> Flecha... 
                     y <b style="font-size: 2rem">${moves}</b> Lanz...
                   </p>
