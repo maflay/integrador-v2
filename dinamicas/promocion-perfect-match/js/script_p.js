@@ -230,7 +230,7 @@ function onCellClick(e) {
         <img id="swal-logo" src="/dinamicas/promocion-perfect-match/resources/logo-singular.png" alt="Logo premio">
         CON CATEGORIA <b style="font-size: 1.5rem">${categoria.value}</b>,
                   <p>Obtuviste una combinación</b>, 
-                  con <b style="font-size: 2rem">${matches}</b> Match 
+                  con <b style="font-size: 2rem">${matches}</b> Aciertos 
                     y <b style="font-size: 2rem">${moves}</b> Lanz...
                   </p>
                 </div>

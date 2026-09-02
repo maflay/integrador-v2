@@ -48,9 +48,9 @@ if (userRoute.Nivel == 2 || userRoute.Nivel == 4 || userRoute.Nivel == 6) {
   routes = {
     "#inicio": {
       title: "Inicio",
-      file: "/view/inicio/inicio.html",
-      css: ["/view/inicio/inicio.css"],
-      js: "/view/inicio/inicio.js",
+      file: "view/inicio/inicio.html",
+      css: ["view/inicio/inicio.css"],
+      js: "view/inicio/inicio.js",
     },
     "#gran_aladdin": {
       title: "Grand Aladdin",
@@ -429,8 +429,8 @@ function setCookie(name, value, opts = {}) {
   const {
     hours = 4,
     path = "/",
-    sameSite = "Lax", // recomendado
-    secure = location.protocol === "https:", // true si estás en https
+    sameSite = "Lax",
+    secure = location.protocol === "https:",
   } = opts;
 
   const expires = new Date(Date.now() + hours * 60 * 60 * 1000).toUTCString();
@@ -496,7 +496,6 @@ function getUsersLogin() {
 
   const d = new Date(testHora);
 
-  // Hora en formato Colombia
   const hora = d.toLocaleTimeString("es-CO", {
     timeZone: "America/Bogota",
     hour: "2-digit",
@@ -522,10 +521,9 @@ function resetearTemporizador() {
 }
 
 function accionInactividad() {
-  window.location.href = "/#login";
+  window.location.href = "#login";
 }
 
-// Escuchamos los eventos para reiniciar el conteo
 window.onload = resetearTemporizador;
 document.onmousemove = resetearTemporizador;
 document.onkeypress = resetearTemporizador;
