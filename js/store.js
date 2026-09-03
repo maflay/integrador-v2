@@ -120,7 +120,6 @@ function metodoprueba() {
   btn_info.forEach((btn) => {
     const valor = objUser.Nivel;
 
-    // Ejemplo: ocultar los que no cumplan condición
     if (valor == "1") {
       btn.style.display = "flex"; // muestra
     } else {
@@ -133,7 +132,6 @@ function metodoprueba() {
   item_admin_promotor.forEach((btn) => {
     const valor = objUser.Nivel;
 
-    // Ejemplo: ocultar los que no cumplan condición
     if (valor == "1" || valor == "2") {
       btn.style.display = "inline-block"; // muestra
     } else {
