@@ -326,6 +326,13 @@ document.getElementById("start_game").addEventListener("click", () => {
 
 const btn_enviar = document.getElementById("btn_enviar");
 btn_enviar.addEventListener("click", () => {
+  if(moves < 4){
+    Swal.fire({
+      icon: "warning",
+      title: "Juego sin Resultado"
+    });
+    return;
+  }
   handleSubmit();
 });
 
