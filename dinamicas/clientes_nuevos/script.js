@@ -47,6 +47,7 @@ function handleSendClinew() {
     Telefono: telefono.value,
     Cedula: cedula.value,
     Usuario: user.Nombre,
+    Promocion: "Clientes Nuevos"
   };
 
   loader.style.display = "flex";
