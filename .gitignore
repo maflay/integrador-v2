@@ -1,2 +1,7 @@
 *.zip
 **/uploads/
+
+.git
+.vscode
+.wrangler
+wrangler.jsonc
