@@ -48,9 +48,9 @@ if (userRoute.Nivel == 2 || userRoute.Nivel == 4 || userRoute.Nivel == 6) {
   routes = {
     "#inicio": {
       title: "Inicio",
-      file: "view/inicio/inicio.html",
-      css: ["view/inicio/inicio.css"],
-      js: "view/inicio/inicio.js",
+      file: "/view/inicio/inicio.html",
+      css: ["/view/inicio/inicio.css"],
+      js: "/view/inicio/inicio.js",
     },
     "#gran_aladdin": {
       title: "Grand Aladdin",
