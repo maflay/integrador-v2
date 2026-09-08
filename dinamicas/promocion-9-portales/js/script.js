@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
 });
 // Crea el objeto de audio global
 const sonidoFondo = new Audio(
-  "/dinamicas/promocion-9-portales/resources/Sonido_background.mp3"
+  "https://vivealaddin.com/uploads/videos_test/Sonido_background.mp3"
 );
 sonidoFondo.loop = true; // Que se repita
 sonidoFondo.volume = 0.4; // Volumen inicial
