@@ -1,0 +1,245 @@
+:root {
+    --posicion_up_uno: 40px;
+    --posicion_up_dos: 175px;
+    --posicion_up_tres: 310px;
+
+    --posicion_left_uno: 40px;
+    --posicion_left_dos: 170px;
+    --posicion_left_tres: 300px;
+    --posicion_left_cuatro: 430px;
+}
+
+@font-face {
+    font-family: 'super wonder';
+    src: url('/fonts/Super\ Wonder.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'emirates';
+    src: url('/fonts/Emirates\ Bold.ttf') format('truetype');
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #dc3545;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+._main_halloween_miste_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    gap: 30px;
+    color: white;
+    font-family: 'super wonder', sans-serif !important;
+}
+
+._content_video_show_ {
+    display: flex;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+._content_video_show_::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.808);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.total_result {
+    font-family: 'emirates', sans-serif !important;
+    font-size: 28px;
+}
+
+._board_h_n_ {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    background-color: rgba(127, 146, 255, 0.473);
+    border-radius: 40px;
+    border: #dc3545 solid 10px;
+    padding: 40px;
+
+}
+
+._board_h_n_ img {
+    width: 100px;
+    transition: all 0.4s ease;
+}
+
+._board_h_n_ img:hover {
+    cursor: pointer;
+    opacity: 0.9;
+    transform: scale(1.1);
+}
+
+._board_h_n_>span {
+    width: 1px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.568);
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    gap: 10px;
+    position: relative;
+    top: 3px;
+}
+
+.board_port {
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    gap: 10px;
+    position: absolute;
+    top: 41px;
+    left: 141px;
+}
+
+.board_port>img {
+    width: 105px;
+    height: 101px;
+}
+
+.cell-c {
+    width: 100px;
+    height: 100px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-c {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: .5s;
+}
+
+.card-c.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.face-c {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+}
+
+.front-c {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    background: #9e1a1a;
+    border-radius: 100%;
+    background-image: url(/eventos/generator_points/resource/back_2.png);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'emirates', sans-serif !important;
+}
+
+.back-c {
+    transform: rotateY(180deg);
+    background: #F9BC43;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+.back-c img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.content_fichas_chose {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+
+}
+
+.chose_ficha_1 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.mi-popup {
+    background-color: #FF9A00;
+    color: white;
+    border-radius: 40%;
+    text-shadow: rgba(0, 0, 0, 0.726) 1px 1px 10px;
+}
+
+.img_corona_rama {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-35%);
+    top: -100px;
+}
+@media(max-width: 1050px) {
+    ._main_halloween_miste_ {
+        height: 100%;
+    }
+
+    ._board_h_n_ {
+        flex-direction: column;
+    }
+
+    ._board_h_n_>span {
+        height: 1px;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.568);
+        margin: 40px 0;
+    }
+
+    ._content_video_show_ {
+        height: 1000px;
+    }
+}
