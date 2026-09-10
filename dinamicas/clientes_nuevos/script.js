@@ -18,7 +18,12 @@ function handleSendClinew() {
   let telefono = document.getElementById("telefono");
   let casino = document.getElementById("casino");
 
-  if (!nombre.value || !cedula.value || !telefono.value || !casino.value) {
+  if (
+    nombre.value.trim() === "" ||
+    cedula.value.trim() === "" ||
+    telefono.value.trim() === "" ||
+    casino.value.trim() === ""
+  ) {
     Swal.fire({
       icon: "warning",
       title: "Campos en Blanco",
@@ -47,7 +52,7 @@ function handleSendClinew() {
     Telefono: telefono.value,
     Cedula: cedula.value,
     Usuario: user.Nombre,
-    Promocion: "Clientes Nuevos"
+    Promocion: "Clientes Nuevos",
   };
 
   loader.style.display = "flex";
