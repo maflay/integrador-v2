@@ -497,7 +497,7 @@ PAIRS.flatMap((p) => p.arts).forEach((file) => {
 document.getElementById("start_game").addEventListener("click", () => {
   document.getElementById("board_2").style.display = "none";
   document.getElementById("start_game").style.display = "none";
-  document.getElementById("restart_game").style.display = "flex";
+  document.getElementById("restart_game").style.display = "none";
   deal();
 });
 

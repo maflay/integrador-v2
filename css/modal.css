@@ -348,17 +348,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
-.img_premios_1{
+.img_premios_1 {
     display: flex;
-    width: 100%;
+    width: 50%;
     border-radius: 20px;
 }
 
 .img_premios_2 {
     display: none;
-    width: 100%;
+    width: 50%;
     border-radius: 20px;
 }
 
@@ -374,4 +375,18 @@
 .btn_tablas_premio:hover {
     cursor: pointer;
     transform: scale(1.1);
+}
+
+@media(max-width: 1280px) {
+    .img_premios_1 {
+        display: flex;
+        width: 50%;
+        border-radius: 20px;
+    }
+
+    .img_premios_2 {
+        display: none;
+        width: 50%;
+        border-radius: 20px;
+    }
 }

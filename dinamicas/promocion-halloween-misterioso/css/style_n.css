@@ -223,6 +223,7 @@
     transform: translateX(-35%);
     top: -100px;
 }
+
 @media(max-width: 1050px) {
     ._main_halloween_miste_ {
         height: 100%;

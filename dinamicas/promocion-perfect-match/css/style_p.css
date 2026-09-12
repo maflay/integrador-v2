@@ -309,7 +309,7 @@
 }
 
 ._logo_visual_ {
-    width: 300px;
+    width: 30vh;
     position: absolute;
     top: 10px;
     left: 10px;
@@ -331,4 +331,11 @@
 #swal-logo.logo-animate {
     transform: scale(1);
     opacity: 1;
+}
+
+
+#start_game {
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
 }
