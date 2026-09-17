@@ -289,6 +289,15 @@ input[type=number] {
     color: rgba(255, 255, 255, 0.349);
 }
 
+input.invalid {
+    border: 2px solid #e53935;
+    outline: none;
+}
+
+input.valid {
+    border: 2px solid #43a047;
+}
+
 @media(max-width: 1033px) {
         ._content_text_foot_ {
         gap: 20px;

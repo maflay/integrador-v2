@@ -4,10 +4,9 @@ const btnClose = document.getElementById("btnClose");
 const backdrop = document.getElementById("backdrop");
 const main = document.getElementById("main");
 
-
 const view = document.getElementById("view");
 const links = Array.from(
-  document.querySelectorAll('[data-route], .sidebar-nav .nav-link[href^="#"]')
+  document.querySelectorAll('[data-route], .sidebar-nav .nav-link[href^="#"]'),
 );
 
 document.getElementById("app").style.display = "none";
@@ -178,7 +177,7 @@ if (userRoute.Nivel == 2 || userRoute.Nivel == 4 || userRoute.Nivel == 6) {
       css: ["/view/create_user/create_user.css"],
       js: "/view/create_user/create_user.js",
     },
-     "#directorio": {
+    "#directorio": {
       title: "Directorio",
       file: "/view/registrodirectorio/directorio.html",
       css: ["/view/registrodirectorio/directorio.css"],
@@ -288,7 +287,7 @@ function setActive(hash, { force = false } = {}) {
   lastHash = hash;
 
   links.forEach((a) =>
-    a.classList.toggle("active", a.getAttribute("href") === hash)
+    a.classList.toggle("active", a.getAttribute("href") === hash),
   );
 
   const route = routes[hash] || routes["#inicio"];
@@ -587,4 +586,3 @@ function OlvidarUsuario() {
     }
   });
 }
-
