@@ -20,8 +20,8 @@ const _btn_get_bono_ = document.getElementById("_btn_get_bono_");
 
 const BONO_KEY = "4RT&%#B0N0%GR4N414DD1N";
 
-if(!localStorage.getItem("4RT&%#B0N0%GR4N414DD1N")){
-    localStorage.setItem("4RT&%#B0N0%GR4N414DD1N", "OBTENIDO")
+if (!localStorage.getItem("4RT&%#B0N0%GR4N414DD1N")) {
+  localStorage.setItem("4RT&%#B0N0%GR4N414DD1N", "OBTENIDO");
 }
 
 GenerateCaptcha();
@@ -44,6 +44,11 @@ email.addEventListener("input", () => {
   //   ? ""
   //   : "Escribe un correo válido (ej. usuario@aladdin.com)";
 });
+
+function accionRedire() {
+  localStorage.removeItem(BONO_KEY);
+  window.location.replace("https://grandaladdin.com/");
+}
 
 let diasVigencia = 30;
 
