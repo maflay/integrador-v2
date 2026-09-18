@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'super wonder';
+    src: url('/fonts/Super\ Wonder.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'emirates';
+    src: url('/fonts/Emirates\ Bold.ttf') format('truetype');
+}
+
 /* MODAL */
 .modal_opciones_dinamica {
     display: none;

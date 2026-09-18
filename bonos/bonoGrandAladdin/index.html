@@ -7,82 +7,570 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         crossorigin="anonymous">
+
+    <style>
+        .loader-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .spinner {
+            border: 6px solid #ccc;
+            border-top: 6px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        ._main_content_bono_grandal_ {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-image: url(/bonos/resources/FondoSlide.jpg);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+
+        /* ._main_content_bono_grandal_::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.445);
+            z-index: 10;
+        } */
+
+        ._main_content_bono_grandal_>a {
+            background-color: black;
+            text-decoration: none;
+            color: white !important;
+            border: #FFD700 solid 1px;
+            transition: all 0.4s ease;
+            border-radius: 20px;
+            padding: 5px 20px;
+            font-size: 12px;
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 30;
+        }
+
+        ._main_content_bono_grandal_>a:hover {
+            background-color: #ffd9003a;
+            top: 28px;
+            cursor: pointer;
+        }
+
+        ._content_img_lamp_ {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 120px;
+            width: 90%;
+            max-width: 950px;
+        }
+
+        .lampara_img {
+            width: auto;
+        }
+
+        .ficha_one {
+            position: absolute;
+            width: 120px;
+            top: 10px;
+            left: 80px;
+            transform: rotate(20deg);
+            animation: levitar 4.9s infinite ease-in-out;
+
+        }
+
+        .ficha_two {
+            position: absolute;
+            width: 120px;
+            top: 130px;
+            left: 40px;
+            animation: levitar 4.5s infinite ease-in-out;
+
+        }
+
+        .ficha_three {
+            position: absolute;
+            width: 120px;
+            top: 150px;
+            right: 10px;
+            transform: rotate(20deg);
+            animation: levitar 4s infinite ease-in-out;
+        }
+
+        @keyframes levitar {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translateY(8px);
+                opacity: 1;
+            }
+        }
+
+
+        @keyframes levitar_2 {
+
+            0%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.6;
+            }
+
+            50% {
+                transform: translateY(8px) rotate(45deg);
+                opacity: 1;
+            }
+        }
+
+        ._content_form_bono_ {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            text-align: center;
+            z-index: 20;
+            width: 90%;
+            max-width: 800px;
+            color: white;
+        }
+
+        ._content_form_bono_ button {
+            background-color: #FFD700;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 10px;
+        }
+
+        ._content_form_bono_ button:hover {
+            transform: scale(1.1);
+        }
+
+        ._content_input_bono_ {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            width: 50%;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        ._content_check_bono_ {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            width: 50%;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        ._content_check_bono_>p {
+            margin: 0;
+        }
+
+        input[type="checkbox"] {
+            accent-color: #FFD700;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        input[type="checkbox" i]:checked {
+            border-color: #2563eb;
+        }
+
+        input[type="checkbox" i]:focus-visible {
+            outline: 2px solid #60a5fa;
+            outline-offset: 2px;
+        }
+
+
+        input {
+            background-color: rgba(29, 29, 29, 0.63);
+            border: transparent;
+            padding: 12px 10px;
+            color: white;
+        }
+
+        input:focus {
+            background-color: #ffd9003a;
+            border: transparent;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+
+
+
+        ._content_input_bono_>span {
+            color: rgb(143, 142, 142);
+        }
+
+        ._content_captcha_ {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 0 20px 0;
+            gap: 5px;
+        }
+
+        ._content_captcha_ input {
+            width: 40px;
+        }
+
+        ._content_footer_ga_ {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 0;
+            gap: 100px;
+            width: 100%;
+            background-color: #11100e !important;
+        }
+
+        ._content_text_foot_ {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 220px;
+            width: 100%;
+        }
+
+        ._card_text_foot_ {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 400px;
+        }
+
+        ._card_text_foot_ h6 {
+            color: rgba(255, 255, 255, 0.349);
+            margin: 0;
+        }
+
+        ._card_text_foot_ h5 {
+            color: rgba(255, 255, 255, 0.349);
+        }
+
+        input.invalid {
+            border: 2px solid #e53935;
+            outline: none;
+        }
+
+        input.valid {
+            border: 2px solid #43a047;
+        }
+
+        @media(max-width: 1033px) {
+            ._content_text_foot_ {
+                gap: 20px;
+            }
+        }
+
+        @media(max-width: 910px) {
+            .lampara_img {
+                width: 400px;
+            }
+
+            ._content_footer_ga_ {
+                gap: 20px;
+            }
+
+            ._content_input_bono_ {
+                flex-direction: column;
+                justify-content: center;
+                width: 100%;
+            }
+
+            ._content_check_bono_ {
+                width: 100%;
+            }
+
+            ._content_input_bono_ input {
+                width: 100%;
+            }
+
+            ._content_text_foot_ {
+                gap: 20px;
+            }
+
+            .ficha_one {
+                left: 5px;
+            }
+
+            .ficha_two {
+                left: 0px;
+            }
+
+            .ficha_three {
+                right: 0px;
+            }
+        }
+    </style>
 </head>
 
-<body data-main-style="/bonos/bonoGrandAladdin/bono.css" data-main-script="/bonos/bonoGrandAladdin/bono.js">
+<body>
     <div id="loader" class="loader-overlay">
         <div class="spinner"></div>
     </div>
     <div class="_main_content_bono_grandal_">
-        <a onclick="accionRedire()">IR AL INICIO</a>
-        <div class="_content_img_lamp_">
-            <img class="lampara_img" src="/bonos/resources/lampara.png" alt="GrandAladdin">
-            <img class="ficha_one" src="/bonos/resources/FichaGA.png" alt="GrandAladdin">
-            <img class="ficha_two" src="/bonos/resources/FichaGA.png" alt="GrandAladdin">
-            <img class="ficha_three" src="/bonos/resources/FichaGA.png" alt="GrandAladdin">
-        </div>
         <div class="_content_form_bono_">
-            <h2>TU PRIMERA VISITA</h2>
-            <h4>MERECE UN REGALO</h4>
-            <h3>$ 30.000</h3>
-            <h2>DE BONO</h2>
-            <h2>Canjeable en juegos de casino Grand Aladdin.</h4>
-                <br />
-                <div class="_content_input_bono_">
-                    <input type="text" name="nombre" id="nombre" placeholder="Nombre">
-                    <input type="number" name="nombre" id="cedula" placeholder="Cédula">
-                </div>
-                <div class="_content_input_bono_">
-                    <input type="text" name="email" id="email" placeholder="Email">
-                    <input type="text" name="celular" id="celular" placeholder="Celular">
-                </div>
-                <div class="_content_input_bono_">
-                    <span>Lee atentamente:</span>
-                </div>
-                <div class="_content_check_bono_">
-                    <input type="checkbox" id="_check_mayor_">
-                    <p>Confirmo que soy mayor de 18 años.</p>
-                </div>
-                <div class="_content_captcha_">
-                    <span id="num_one">0</span> + <span id="num_dos">0</span>=<input type="number" name="result"
-                        id="result_cap">
-                </div>
-                <button id="_btn_get_bono_">QUIERO MI BONO</button>
+            <div class="_content_input_bono_">
+                <input type="text" name="nombre" id="nombre" placeholder="Nombre">
+                <input type="number" name="nombre" id="cedula" placeholder="Cédula">
+            </div>
+            <div class="_content_input_bono_">
+                <input type="text" name="email" id="email" placeholder="Email">
+                <input type="text" name="celular" id="celular" placeholder="Celular">
+            </div>
+            <div class="_content_input_bono_">
+                <span>Lee atentamente:</span>
+            </div>
+            <div class="_content_check_bono_">
+                <input type="checkbox" id="_check_mayor_">
+                <p>Confirmo que soy mayor de 18 años.</p>
+            </div>
+            <div class="_content_captcha_">
+                <span id="num_one">0</span> + <span id="num_dos">0</span>=<input type="number" name="result"
+                    id="result_cap">
+            </div>
+            <button id="_btn_get_bono_">QUIERO MI BONO</button>
         </div>
     </div>
-    <div class="_content_footer_ga_">
-        <div class="_content_text_foot_">
-            <div class="_card_text_foot_">
-                <h6>BIENVENIDO A GRAND ALADDIN</h6>
-                <h3>LA SUERTE TE ESTABA
-                    ESPERANDO</h3>
-                <h5>Tu bono de $30.000 está listo para que vivas
-                    la experiencia Grand Aladdin.</h5>
-            </div>
-        </div>
-        <div class="_content_text_foot_">
-            <div class="_card_text_foot_">
-                <h6>♛</h6>
-                <h3>SLOTS ELECTRÓNICAS</h3>
-                <h5>Lleva tu bono a nuestras máquinas
-                    y disfruta la experiencia Grand Aladdin.</h5>
-            </div>
-            <div class="_card_text_foot_">
-                <h6>♠</h6>
-                <h3>MESAS</h3>
-                <h5>Vive la emoción de nuestros juegos
-                    de mesa en el universo Grand Aladdin.</h5>
-            </div>
-        </div>
-    </div>
-
-
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="/dinamicas/extension.js"></script>
+    <script>
+        window.addEventListener("load", () => {
+            document.getElementById("loader").style.display = "none";
+        });
+
+        const nombre = document.getElementById("nombre");
+        const cedula = document.getElementById("cedula");
+        const email = document.getElementById("email");
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        let emailValido = false;
+        const celular = document.getElementById("celular");
+
+        const _check_mayor_ = document.getElementById("_check_mayor_");
+
+        const num_one = document.getElementById("num_one");
+        const num_dos = document.getElementById("num_dos");
+        let total_cap;
+        const result_cap = document.getElementById("result_cap");
+
+        const _btn_get_bono_ = document.getElementById("_btn_get_bono_");
+
+        const BONO_KEY = "4RT&%#B0N0%GR4N414DD1N";
+
+        if (!localStorage.getItem("4RT&%#B0N0%GR4N414DD1N")) {
+            localStorage.setItem("4RT&%#B0N0%GR4N414DD1N", "OBTENIDO");
+        }
+
+        GenerateCaptcha();
+        function GenerateCaptcha() {
+            num_one.textContent = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+            num_dos.textContent = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+            total_cap = Number(num_one.textContent) + Number(num_dos.textContent);
+        }
+
+        email.addEventListener("input", () => {
+            const val = email.value.trim();
+
+            const ok = emailRegex.test(val);
+
+            email.classList.toggle("invalid", !ok);
+            email.classList.toggle("valid", ok);
+
+            email.setCustomValidity(ok ? "" : "Correo inválido");
+            // help.textContent = ok
+            //   ? ""
+            //   : "Escribe un correo válido (ej. usuario@aladdin.com)";
+        });
+
+        function accionRedire() {
+            localStorage.removeItem(BONO_KEY);
+            window.location.replace("https://grandaladdin.com/");
+        }
+
+        let diasVigencia = 30;
+
+        function crearItemConVigencia(dias) {
+            const fechaCreacion = new Date();
+
+            const fechaExpiracion = new Date(fechaCreacion);
+            fechaExpiracion.setDate(fechaCreacion.getDate() + dias);
+
+            //   return {
+            //     item: nombreItem,
+            //     creado: fechaCreacion.toLocaleDateString('es-ES'),
+            //     expira: fechaExpiracion.toLocaleDateString('es-ES'),
+            //     expiraTimestamp: fechaExpiracion.getTime()
+            //   };
+
+            return (expira = fechaExpiracion.toLocaleDateString("es-ES"));
+        }
+
+        _btn_get_bono_.addEventListener("click", () => {
+            handleSubmit();
+        });
+
+        function handleSubmit() {
+            if (_check_mayor_.checked == false) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "No eres Mayor de Edad",
+                });
+                return;
+            }
+
+            if (nombre.value == "" || email.value == "" || celular.value == "") {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Campos en Blanco",
+                });
+                return;
+            }
+
+            if (result_cap.value != total_cap) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Captcha no Válido",
+                });
+                return;
+            }
+            let vigenciaBono = crearItemConVigencia(diasVigencia);
+
+            const fechaCompleta = new Date().toLocaleString("es-CO", {
+                timeZone: "America/Bogota",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hour12: true,
+            });
+            const [fecha, hora] = fechaCompleta.split(", ");
+
+            let data = {
+                tipo: "bonos",
+                Hora: hora,
+                Fecha: fecha,
+                Nombre: nombre.value,
+                Cedula: cedula.value,
+                Email: email.value,
+                Numero: celular.value,
+                Fecha_vigencia: vigenciaBono,
+                Mayor: _check_mayor_.checked,
+                Captcha: result_cap.value,
+            };
+
+            document.getElementById("loader").style.display = "flex";
+
+            fetch(
+                `https://script.google.com/macros/s/AKfycbz-VLY3H239stpOnjb0WkDEQ6EoB6nWiPTjmmt-sHp9GAmhNpbo4EHo5JUs1AtFLSh4kw/exec?hoja=bonos&cedula=${cedula.value}`,
+            )
+                .then((res) => res.json())
+                .then((info) => {
+                    if (info.length > 0) {
+                        Swal.fire({
+                            icon: "info",
+                            title: "Bono ya solicitado",
+                            html: "El número de cédula ya tiene una solicitud, puede acercarse a GrandAladdin para reclamar tu bono.",
+                        });
+                        document.getElementById("loader").style.display = "none";
+                        return;
+                    }
+                    fetch(
+                        "https://script.google.com/macros/s/AKfycbz-VLY3H239stpOnjb0WkDEQ6EoB6nWiPTjmmt-sHp9GAmhNpbo4EHo5JUs1AtFLSh4kw/exec",
+                        {
+                            method: "POST",
+                            mode: "no-cors",
+                            body: JSON.stringify(data),
+                        },
+                    )
+                        .then((res) => res.text())
+                        .then(() => {
+                            document.getElementById("loader").style.display = "none";
+                            nombre.value = "";
+                            cedula.value = "";
+                            email.value = "";
+                            celular.value = "";
+                            _check_mayor_.checked = false;
+                            result_cap.value = "";
+                            num_one.textContent = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+                            num_dos.textContent = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
+                            total_cap = Number(num_one.textContent) + Number(num_dos.textContent);
+                            email.classList.remove("invalid");
+                            email.classList.remove("valid");
+                            Swal.fire({
+                                icon: "success",
+                                title: "Solicitud Enviada",
+                                html: "La información se envió para la creación del bono, puede acercarse a GrandAladdin para reclamar tu bono.",
+                            });
+                        })
+                        .catch((error) => {
+                            document.getElementById("loader").style.display = "none";
+                            Swal.fire({
+                                icon: "error",
+                                title: "Error en el Envió",
+                                html: "Puede acercarse a GrandAladdin para solicitar tu bono.",
+                            });
+                        });
+                });
+        }
+
+    </script>
 </body>
 
 </html>

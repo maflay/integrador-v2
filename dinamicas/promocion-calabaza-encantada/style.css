@@ -13,7 +13,7 @@
 
 .spinner {
     border: 6px solid #ccc;
-    border-top: 6px solid #3498db;
+    border-top: 6px solid rgba(12, 12, 61);
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -30,23 +30,36 @@
     }
 }
 
-@font-face {
-    font-family: 'super wonder';
-    src: url('/fonts/Super\ Wonder.ttf') format('truetype');
-}
-
-.content_main_vuelta {
-    display: flex;
+._main_calabaza_enca {
+      display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     height: 100vh;
-    background-color: #88BD23;
-    /* background-image: url(/dinamicas/promocion-ruta-cafetera/resources/Fondo_con_parqueadero-La_Ruta_Cafetera.png);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover; */
-    background-attachment: fixed;
+    gap: 30px;
+    color: white;
+    font-family: 'super wonder', sans-serif !important;
+}
+
+._content_video_show_ {
+    display: flex;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+._content_video_show_::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.603);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 .aeropuerto {
@@ -65,10 +78,10 @@
     max-height: 800px;
     /* background-color: #0000008f; */
     border-radius: 40px;
-    background-image: linear-gradient(180deg, #0000008f), url(/dinamicas/promocion-ruta-cafetera/resources/Fondo-La_Ruta_Cafetera.png);
+    background-image:  url(/dinamicas/promocion-ruta-cafetera/resources/Fondo-La_Ruta_Cafetera.png);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: contain;
 }
 
 .board_img {
