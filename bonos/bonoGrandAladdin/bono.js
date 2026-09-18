@@ -20,9 +20,9 @@ const _btn_get_bono_ = document.getElementById("_btn_get_bono_");
 
 const BONO_KEY = "4RT&%#B0N0%GR4N414DD1N";
 
-if (!localStorage.getItem("4RT&%#B0N0%GR4N414DD1N")) {
-  localStorage.setItem("4RT&%#B0N0%GR4N414DD1N", "OBTENIDO");
-}
+// if (!localStorage.getItem("4RT&%#B0N0%GR4N414DD1N")) {
+//   localStorage.setItem("4RT&%#B0N0%GR4N414DD1N", "OBTENIDO");
+// }
 
 GenerateCaptcha();
 function GenerateCaptcha() {

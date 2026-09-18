@@ -78,10 +78,11 @@
     max-height: 800px;
     /* background-color: #0000008f; */
     border-radius: 40px;
-    background-image:  url(/dinamicas/promocion-ruta-cafetera/resources/Fondo-La_Ruta_Cafetera.png);
+    background-image:  url(/dinamicas/promocion-calabaza-encantada/resources/fondo_6.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
+    border-radius: 100px;
 }
 
 .board_img {
