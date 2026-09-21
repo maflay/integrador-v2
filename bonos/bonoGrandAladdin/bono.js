@@ -54,13 +54,6 @@ function crearItemConVigencia(dias) {
   const fechaExpiracion = new Date(fechaCreacion);
   fechaExpiracion.setDate(fechaCreacion.getDate() + dias);
 
-  //   return {
-  //     item: nombreItem,
-  //     creado: fechaCreacion.toLocaleDateString('es-ES'),
-  //     expira: fechaExpiracion.toLocaleDateString('es-ES'),
-  //     expiraTimestamp: fechaExpiracion.getTime()
-  //   };
-
   return (expira = fechaExpiracion.toLocaleDateString("es-ES"));
 }
 

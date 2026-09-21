@@ -31,7 +31,7 @@
 }
 
 ._main_calabaza_enca {
-      display: flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -78,11 +78,11 @@
     max-height: 800px;
     /* background-color: #0000008f; */
     border-radius: 40px;
-    background-image:  url(/dinamicas/promocion-calabaza-encantada/resources/fondo_6.jpg);
+    background-image: linear-gradient(180deg, #00000083) ,url(/dinamicas/promocion-calabaza-encantada/resources/Fondo-Calabaza_Encantada.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 100px;
+    border-radius: 300px;
 }
 
 .board_img {
@@ -98,9 +98,11 @@
 }
 
 .ubicacion_inicio {
+    width: 120px;
     position: absolute;
-    left: 340px;
-    top: -15px;
+    left: 320px;
+    top: 10px;
+    animation: levitar 4s infinite ease-in-out;
 }
 
 .posicion_6_8 {
@@ -119,42 +121,42 @@
     transform: rotate(300deg) !important;
 }
 
-.calle_del_cafe {
+.way_posicion_1 {
     position: absolute;
-    width: 168px !important;
+    width: 140px !important;
     top: 49px;
     left: 295px;
     transition: all 0.4s ease;
     z-index: 1;
 }
 
-.desfile_arrieros {
+.way_posicion_2 {
     position: absolute;
-    width: 153px !important;
+    width: 137px !important;
     top: 60px;
     left: 441px;
     transition: all 0.4s ease;
 }
 
-.parque_rebeca {
+.way_posicion_3 {
     position: absolute;
-    width: 151px !important;
-    top: 42px;
-    left: 596px;
+    width: 147px !important;
+    top: 62px;
+    left: 588px;
     transition: all 0.4s ease;
     z-index: 1;
 }
 
-.feria_del_gallo {
+.way_posicion_4 {
     position: absolute;
-    width: 159px !important;
-    top: 62px;
-    left: 732px;
+    width: 147px !important;
+    top: 46px;
+    left: 740px;
     transition: all 0.4s ease;
     z-index: 2;
 }
 
-.obelisco {
+.way_posicion_5 {
     position: absolute;
     width: 183px !important;
     top: 66px;
@@ -163,111 +165,111 @@
     z-index: 1;
 }
 
-.estadio_futbol {
-    position: absolute;
-    width: 197px !important;
-    top: 162px;
-    left: 935px;
-    transition: all 0.4s ease;
-    z-index: 1;
-}
-
-.festival_cerveza {
-    position: absolute;
-    width: 172px !important;
-    top: 332px;
-    left: 959px;
-    transition: all 0.4s ease;
-}
-
-.teatro {
-    position: absolute;
-    width: 187px !important;
-    top: 473px;
-    left: 968px;
-    transition: all 0.4s ease;
-}
-
-.parque_olaya {
-    position: absolute;
-    width: 196px !important;
-    top: 573px;
-    left: 896px;
-    transition: all 0.4s ease;
-}
-
-.plaza_bolivar {
-    position: absolute;
-    width: 153px !important;
-    top: 580px;
-    left: 744px;
-    transition: all 0.4s ease;
-    z-index: 1;
-}
-
-.estacion_ferrocarril {
-    position: absolute;
-    width: 134px !important;
-    top: 578px;
-    left: 595px;
-    transition: all 0.4s ease;
-}
-
-.parque_lago {
-    position: absolute;
-    width: 136px !important;
-    top: 571px;
-    left: 446px;
-    transition: all 0.4s ease;
-}
-
-.feria_orquidia {
-    position: absolute;
-    width: 139px !important;
-    top: 577px;
-    left: 296px;
-    transition: all 0.4s ease;
-}
-
-.calle_del_tango {
-    position: absolute;
-    width: 182px !important;
-    top: 565px;
-    left: 113px;
-    transition: all 0.4s ease;
-    z-index: 1;
-}
-
-.bioparque {
-    position: absolute;
-    width: 173px !important;
-    top: 470px;
-    left: 57px;
-    transition: all 0.4s ease;
-}
-
-.super_concierto {
-    position: absolute;
-    width: 142px !important;
-    top: 324px;
-    left: 56px;
-    transition: all 0.4s ease;
-    z-index: 1;
-}
-
-.finca_cafetera {
+.way_posicion_6 {
     position: absolute;
     width: 162px !important;
     top: 162px;
-    left: 56px;
+    left: 969px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.way_posicion_7 {
+    position: absolute;
+    width: 163px !important;
+    top: 329px;
+    left: 969px;
     transition: all 0.4s ease;
 }
 
-.aeropuerto_cafetera {
+.way_posicion_8 {
     position: absolute;
-    width: 197px !important;
-    top: 64px;
-    left: 92px;
+    width: 168px !important;
+    top: 477px;
+    left: 970px;
+    transition: all 0.4s ease;
+}
+
+.way_posicion_9 {
+    position: absolute;
+    width: 181px !important;
+    top: 567px;
+    left: 895px;
+    transition: all 0.4s ease;
+}
+
+.way_posicion_10 {
+    position: absolute;
+    width: 142px !important;
+    top: 588px;
+    left: 751px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.way_posicion_11 {
+    position: absolute;
+    width: 142px !important;
+    top: 573px;
+    left: 602px;
+    transition: all 0.4s ease;
+}
+
+.way_posicion_12 {
+    position: absolute;
+    width: 143px !important;
+    top: 573px;
+    left: 453px;
+    transition: all 0.4s ease;
+}
+
+.way_posicion_13 {
+    position: absolute;
+    width: 151px !important;
+    top: 582px;
+    left: 302px;
+    transition: all 0.4s ease;
+}
+
+.way_posicion_14 {
+    position: absolute;
+    width: 186px !important;
+    top: 566px;
+    left: 116px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.way_posicion_15 {
+    position: absolute;
+    width: 173px !important;
+    top: 462px;
+    left: 50px;
+    transition: all 0.4s ease;
+}
+
+.way_posicion_16 {
+    position: absolute;
+    width: 146px !important;
+    top: 318px;
+    left: 55px;
+    transition: all 0.4s ease;
+    z-index: 1;
+}
+
+.way_posicion_17 {
+    position: absolute;
+    width: 170px !important;
+    top: 155px;
+    left: 55px;
+    transition: all 0.4s ease;
+}
+
+.way_posicion_18 {
+    position: absolute;
+    width: 190px !important;
+    top: 50px;
+    left: 106px;
     transition: all 0.4s ease;
 }
 
@@ -284,10 +286,10 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    left: 270px;
+    left: 288px;
     /* transform: translateX(-50%) rotate(-89deg); */
     top: 350px;
-    width: 102px !important;
+    width: 65px !important;
     transition: all 0.4s ease;
     z-index: 1;
 }
@@ -302,10 +304,10 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    left: 271px;
+    left: 288px;
     /* transform: translateX(-50%) rotate(-89deg); */
     top: 420px;
-    width: 102px !important;
+    width: 65px !important;
     z-index: 1;
 }
 
@@ -320,10 +322,10 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    left: 272px;
+    left: 288px;
     /* transform: translateX(-50%) rotate(-180deg); */
     top: 489px;
-    width: 102px !important;
+    width: 65px !important;
     z-index: 1;
 }
 
@@ -420,6 +422,20 @@
 
     100% {
         filter: drop-shadow(0 0 20px #fff);
+    }
+}
+
+@keyframes levitar {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    50% {
+        transform: translateY(8px);
+        opacity: 1;
     }
 }
 
