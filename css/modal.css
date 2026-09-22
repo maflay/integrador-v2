@@ -363,16 +363,25 @@
 
 .img_premios_1 {
     display: flex;
-    width: 50%;
+    width: 40vw;
     border-radius: 20px;
 }
 
 .img_premios_2 {
     display: none;
-    width: 50%;
+    width: 40vw;
     border-radius: 20px;
 }
 
+.img_premios_3 {
+    border-radius: 20px;
+    width: 40vw;
+}
+
+.img_premios_4 {
+    border-radius: 20px;
+    width: 40vw;
+}
 
 .btn_tablas_premio {
     position: absolute;

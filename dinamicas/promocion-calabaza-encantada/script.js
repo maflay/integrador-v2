@@ -294,17 +294,6 @@ posiciones.forEach((item) => {
           MOVIENDO = false;
         }
 
-        // avance_1.classList.remove("avance_1");
-        // avance_2.classList.add("avance_1");
-        // avance_2.classList.remove("avance_2");
-        // avance_3.classList.add("avance_2");
-        // avance_3.classList.remove("avance_3");
-        // avance_1.classList.add(item.classList[1]);
-        // avance_1.style.pointerEvents = "none";
-        // turnoAcumulado = Number(fichaPulsada);
-        // turnoAvion = 2;
-        // totalPremio += Number(item.dataset.valor);
-
         return;
       } else {
         Swal.fire({
@@ -343,12 +332,6 @@ posiciones.forEach((item) => {
         avance_3.classList.remove("avance_2");
         avance_3.classList.add("avance_1");
 
-        // if (fichaPulsada >= 6 && fichaPulsada <= 8) {
-        //   avance_2.classList.add("posicion_6_8");
-        // } else {
-        //   avance_2.classList.add("posicion_9_14");
-        // }
-
         setPosClassDeAvion(avance_3, getPosClassDeAvion(avance_2));
       } finally {
         MOVIENDO = false;
@@ -379,14 +362,6 @@ posiciones.forEach((item) => {
         resultadoAvion_3 = fichaPulsada;
         acumula_avion.innerHTML =
           formatoPesos_monto_efectivo.format(totalPremio) + ".000";
-
-        // if (fichaPulsada >= 9 && fichaPulsada <= 14) {
-        //   avance_3.classList.add("posicion_9_14");
-        // } else if (fichaPulsada >= 15 && fichaPulsada <= 17) {
-        //   avance_3.classList.add("posicion_15_17");
-        // } else if (fichaPulsada == 18) {
-        //   avance_3.classList.add("posicion_18_");
-        // }
 
         alertPremio(categoria.value, totalPremio);
       } finally {
