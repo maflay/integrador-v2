@@ -44,7 +44,7 @@ const btn_submit_obs = document.getElementById("btn_submit_obs");
 // datos modal observacion
 const casino_observacion = document.getElementById("casino_observacion");
 const descripcion_observacion = document.getElementById(
-  "descripcion_observacion"
+  "descripcion_observacion",
 );
 
 const user = inforUser("user");
@@ -61,7 +61,7 @@ const btn_registro_dia = document.getElementById("btn_registro_dia");
 const view_guardar_registro = document.getElementById("view_guardar_registro");
 const view_envio_secundario = document.getElementById("view_envio_secundario");
 const view_envia_observacion = document.getElementById(
-  "view_envia_observacion"
+  "view_envia_observacion",
 );
 const view_tabla_premios = document.getElementById("view_tabla_premios");
 const view_registro_dia = document.getElementById("view_registro_dia");
@@ -207,7 +207,7 @@ async function randomizar() {
 
   // Tomar SOLO las casillas activas (no opacadas)
   const casillasDisponibles = Array.from(
-    document.querySelectorAll(".posicion_cum:not(.posicion_cum_opacada)")
+    document.querySelectorAll(".posicion_cum:not(.posicion_cum_opacada)"),
   );
 
   if (casillasDisponibles.length === 0) {
@@ -235,14 +235,14 @@ async function randomizar() {
     total <= 5
       ? 10
       : total <= 10
-      ? 7
-      : total <= 20
-      ? 5
-      : total <= 30
-      ? 3
-      : total <= 40
-      ? 2
-      : 1;
+        ? 7
+        : total <= 20
+          ? 5
+          : total <= 30
+            ? 3
+            : total <= 40
+              ? 2
+              : 1;
 
   const pasosTotales = vueltas * total + numerAleatorio + 1;
 
@@ -256,8 +256,8 @@ async function randomizar() {
     if (prev) prev.classList.remove("posicion_cum_seleccionado");
 
     audioFicha.currentTime = 0;
-  audioFicha.play();
-    await delay(total <= 40 ? 60 : 120);
+    audioFicha.play();
+    await delay(total <= 40 ? 30 : 40);
   }
 
   // Marcar ganadora y opacarla para no volver a usarla
@@ -488,7 +488,7 @@ function getDataLocal() {
                 <td>${registro.valor_7}</td>
                 <td>${registro.valor_2} ${registro.valor_1}</td>
               </tr>
-            `
+            `,
           )
           .join("")}
       </tbody>
