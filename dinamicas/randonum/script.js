@@ -201,84 +201,46 @@ function validaCasillaSele() {
 const selectRango = document.getElementById("selectRango");
 
 selectRango.addEventListener("change", () => {
-  if (selectRango.value == "las-vegas") {
-    board.innerHTML = "";
-    board.style.display = "flex";
-    for (let i = 0; i < 94; i++) {
-      let casilla = document.createElement("div");
-      casilla.id = `posicion_${i + 1}`;
-      casilla.className = "posicion_cum";
-      casilla.textContent = `${i + 1}`;
+  const rangos = {
+    "las-vegas": [{ min: 0, max: 93 }],
+    "gold-club": [{ min: 128, max: 136 }],
+    "sala-multiple": [{ min: 130, max: 209 }],
+    interlock: [{ min: 112, max: 118 }],
+    todos: [
+      { min: 0, max: 93 },
+      { min: 112, max: 118 },
+      { min: 128, max: 136 },
+      { min: 130, max: 209 },
+    ],
+  };
 
+  const seleccion = selectRango.value;
 
-      //En lugar de eliminarla, la marcamos como "usada"
-      casilla.addEventListener("click", () => {
-        casilla.classList.toggle("posicion_cum_opacada");
-      });
-
-      board.appendChild(casilla);
-      validaCasillaSele();
-    }
-  }  else  if (selectRango.value == "gold-club") {
-    board.innerHTML = "";
-    board.style.display = "flex";
-    for (let i = 128; i < 137; i++) {
-      let casilla = document.createElement("div");
-      casilla.id = `posicion_${i + 1}`;
-      casilla.className = "posicion_cum";
-      casilla.textContent = `${i + 1}`;
-
-
-      //En lugar de eliminarla, la marcamos como "usada"
-      casilla.addEventListener("click", () => {
-        casilla.classList.toggle("posicion_cum_opacada");
-      });
-
-      board.appendChild(casilla);
-      validaCasillaSele();
-    }
-  }  else  if (selectRango.value == "sala-multiple") {
-    board.innerHTML = "";
-    board.style.display = "flex";
-    for (let i = 130; i < 210; i++) {
-      let casilla = document.createElement("div");
-      casilla.id = `posicion_${i + 1}`;
-      casilla.className = "posicion_cum";
-      casilla.textContent = `${i + 1}`;
-
-
-      //En lugar de eliminarla, la marcamos como "usada"
-      casilla.addEventListener("click", () => {
-        casilla.classList.toggle("posicion_cum_opacada");
-      });
-
-      board.appendChild(casilla);
-      validaCasillaSele();
-    }
-  } 
-  else  if (selectRango.value == "interlock") {
-    board.innerHTML = "";
-    board.style.display = "flex";
-    for (let i = 112; i < 119; i++) {
-      let casilla = document.createElement("div");
-      casilla.id = `posicion_${i + 1}`;
-      casilla.className = "posicion_cum";
-      casilla.textContent = `${i + 1}`;
-
-
-      //En lugar de eliminarla, la marcamos como "usada"
-      casilla.addEventListener("click", () => {
-        casilla.classList.toggle("posicion_cum_opacada");
-      });
-
-      board.appendChild(casilla);
-      validaCasillaSele();
-    }
-  } 
-  else {
+  if (!seleccion || !rangos[seleccion]) {
     board.innerHTML = "";
     board.style.display = "none";
+    return;
   }
+
+  board.innerHTML = "";
+  board.style.display = "flex";
+
+  rangos[seleccion].forEach((rango) => {
+    for (let i = rango.min; i <= rango.max; i++) {
+      let casilla = document.createElement("div");
+      casilla.id = `posicion_${i + 1}`;
+      casilla.className = "posicion_cum";
+      casilla.textContent = `${i + 1}`;
+
+      casilla.addEventListener("click", () => {
+        casilla.classList.toggle("posicion_cum_opacada");
+      });
+
+      board.appendChild(casilla);
+    }
+  });
+
+  validaCasillaSele();
 });
 
 btn_submit.addEventListener("click", () => {
