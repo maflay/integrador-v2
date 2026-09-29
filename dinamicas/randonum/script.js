@@ -49,114 +49,6 @@ const descripcion_observacion = document.getElementById(
 
 const user = inforUser("user");
 
-//   menu modal
-const btn_guardar_registro = document.getElementById("btn_guardar_registro");
-const btn_envio_secundario = document.getElementById("btn_envio_secundario");
-const btn_observacion = document.getElementById("btn_observacion");
-const btn_tabla_premios = document.getElementById("btn_tabla_premios");
-const btn_registro_dia = document.getElementById("btn_registro_dia");
-
-// vistas modal
-
-const view_guardar_registro = document.getElementById("view_guardar_registro");
-const view_envio_secundario = document.getElementById("view_envio_secundario");
-const view_envia_observacion = document.getElementById(
-  "view_envia_observacion",
-);
-const view_tabla_premios = document.getElementById("view_tabla_premios");
-const view_registro_dia = document.getElementById("view_registro_dia");
-
-let ultimaCasilla = "";
-
-btn_opciones.addEventListener("click", () => {
-  document.getElementById("modal_opciones_cum").style.display = "flex";
-  view_guardar_registro.style.display = "flex";
-  btn_guardar_registro.classList.add("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-});
-
-close_modal_icon.addEventListener("click", () => {
-  document.getElementById("modal_opciones_cum").style.display = "none";
-  btn_guardar_registro.classList.remove("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-});
-
-btn_guardar_registro.addEventListener("click", () => {
-  view_guardar_registro.style.display = "flex";
-  view_envio_secundario.style.display = "none";
-  view_envia_observacion.style.display = "none";
-  view_tabla_premios.style.display = "none";
-  view_registro_dia.style.display = "none";
-
-  btn_guardar_registro.classList.add("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-});
-
-btn_envio_secundario.addEventListener("click", () => {
-  view_guardar_registro.style.display = "none";
-  view_envio_secundario.style.display = "flex";
-  view_envia_observacion.style.display = "none";
-  view_tabla_premios.style.display = "none";
-  view_tabla_premios.style.display = "none";
-
-  btn_guardar_registro.classList.remove("select_menu");
-  btn_envio_secundario.classList.add("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-});
-
-btn_observacion.addEventListener("click", () => {
-  view_guardar_registro.style.display = "none";
-  view_envio_secundario.style.display = "none";
-  view_envia_observacion.style.display = "flex";
-  view_tabla_premios.style.display = "none";
-  view_registro_dia.style.display = "none";
-
-  btn_guardar_registro.classList.remove("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.add("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-});
-
-btn_tabla_premios.addEventListener("click", () => {
-  view_guardar_registro.style.display = "none";
-  view_envio_secundario.style.display = "none";
-  view_envia_observacion.style.display = "none";
-  view_tabla_premios.style.display = "flex";
-  view_registro_dia.style.display = "none";
-
-  btn_guardar_registro.classList.remove("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.add("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-});
-
-btn_registro_dia.addEventListener("click", () => {
-  view_guardar_registro.style.display = "none";
-  view_envio_secundario.style.display = "none";
-  view_envia_observacion.style.display = "none";
-  view_tabla_premios.style.display = "none";
-  view_registro_dia.style.display = "flex";
-
-  btn_guardar_registro.classList.remove("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.add("select_menu");
-});
-
 btn_pintar_tablero.addEventListener("click", () => {
   if (casillas.value == "" || casillas.value > 500) {
     Swal.fire({
@@ -196,7 +88,7 @@ function delay(ms) {
 }
 
 async function randomizar() {
-  if (casillas.value == "") {
+  if (casillas.value == "" && selectRango.value == "") {
     Swal.fire({
       icon: "warning",
       title: "Antes de Continuar",
@@ -257,7 +149,7 @@ async function randomizar() {
 
     audioFicha.currentTime = 0;
     audioFicha.play();
-    await delay(total <= 40 ? 30 : 40);
+    await delay(total <= 60 ? 30 : 60);
   }
 
   // Marcar ganadora y opacarla para no volver a usarla
@@ -305,6 +197,89 @@ function validaCasillaSele() {
     }
   }
 }
+
+const selectRango = document.getElementById("selectRango");
+
+selectRango.addEventListener("change", () => {
+  if (selectRango.value == "las-vegas") {
+    board.innerHTML = "";
+    board.style.display = "flex";
+    for (let i = 0; i < 94; i++) {
+      let casilla = document.createElement("div");
+      casilla.id = `posicion_${i + 1}`;
+      casilla.className = "posicion_cum";
+      casilla.textContent = `${i + 1}`;
+
+
+      //En lugar de eliminarla, la marcamos como "usada"
+      casilla.addEventListener("click", () => {
+        casilla.classList.toggle("posicion_cum_opacada");
+      });
+
+      board.appendChild(casilla);
+      validaCasillaSele();
+    }
+  }  else  if (selectRango.value == "gold-club") {
+    board.innerHTML = "";
+    board.style.display = "flex";
+    for (let i = 128; i < 137; i++) {
+      let casilla = document.createElement("div");
+      casilla.id = `posicion_${i + 1}`;
+      casilla.className = "posicion_cum";
+      casilla.textContent = `${i + 1}`;
+
+
+      //En lugar de eliminarla, la marcamos como "usada"
+      casilla.addEventListener("click", () => {
+        casilla.classList.toggle("posicion_cum_opacada");
+      });
+
+      board.appendChild(casilla);
+      validaCasillaSele();
+    }
+  }  else  if (selectRango.value == "sala-multiple") {
+    board.innerHTML = "";
+    board.style.display = "flex";
+    for (let i = 130; i < 210; i++) {
+      let casilla = document.createElement("div");
+      casilla.id = `posicion_${i + 1}`;
+      casilla.className = "posicion_cum";
+      casilla.textContent = `${i + 1}`;
+
+
+      //En lugar de eliminarla, la marcamos como "usada"
+      casilla.addEventListener("click", () => {
+        casilla.classList.toggle("posicion_cum_opacada");
+      });
+
+      board.appendChild(casilla);
+      validaCasillaSele();
+    }
+  } 
+  else  if (selectRango.value == "interlock") {
+    board.innerHTML = "";
+    board.style.display = "flex";
+    for (let i = 112; i < 119; i++) {
+      let casilla = document.createElement("div");
+      casilla.id = `posicion_${i + 1}`;
+      casilla.className = "posicion_cum";
+      casilla.textContent = `${i + 1}`;
+
+
+      //En lugar de eliminarla, la marcamos como "usada"
+      casilla.addEventListener("click", () => {
+        casilla.classList.toggle("posicion_cum_opacada");
+      });
+
+      board.appendChild(casilla);
+      validaCasillaSele();
+    }
+  } 
+  else {
+    board.innerHTML = "";
+    board.style.display = "none";
+  }
+});
 
 btn_submit.addEventListener("click", () => {
   handleSubmit();
