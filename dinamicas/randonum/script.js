@@ -166,7 +166,7 @@ async function randomizar() {
       ultimaCasilla = casillaGanadora.id.split("_")[1];
       Swal.fire({
         icon: "success",
-        title: `<p class="casillaGanadora">${
+        title: `Tu Posición :<p class="casillaGanadora">${
           casillaGanadora.id.split("_")[1]
         }</p>`,
       });
@@ -203,13 +203,13 @@ const selectRango = document.getElementById("selectRango");
 selectRango.addEventListener("change", () => {
   const rangos = {
     "las-vegas": [{ min: 0, max: 93 }],
-    "gold-club": [{ min: 128, max: 136 }],
+    "gold-club": [{ min: 127, max: 136 }],
     "sala-multiple": [{ min: 130, max: 209 }],
-    interlock: [{ min: 112, max: 118 }],
+    interlock: [{ min: 111, max: 118 }],
     todos: [
       { min: 0, max: 93 },
-      { min: 112, max: 118 },
-      { min: 128, max: 136 },
+      { min: 111, max: 118 },
+      { min: 127, max: 136 },
       { min: 130, max: 209 },
     ],
   };

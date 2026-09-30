@@ -2,9 +2,18 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
+document.getElementById("casino").addEventListener("change", ()=> {
+  if(document.getElementById("casino").value == "otro"){
+    document.getElementById("otro_casino").style.display = "flex";
+  } else {
+    document.getElementById("otro_casino").style.display = "none";
+  }
+});
+
 document.getElementById("btn_send_form_ga").addEventListener("click", () => {
   let nombre = document.getElementById("nombre");
   let casino = document.getElementById("casino");
+  let otro_casino = document.getElementById("otro_casino");
   let maquinas = document.getElementById("maquinas");
   let telefono = document.getElementById("telefono");
   let cedula = document.getElementById("cedula");
@@ -37,7 +46,7 @@ document.getElementById("btn_send_form_ga").addEventListener("click", () => {
     Hora: hora,
     Fecha: fecha,
     Nombre: nombre.value,
-    Casino: casino.value,
+    Casino: casino.value == "otro" ? otro_casino.value : casino.value ,
     Telefono: telefono.value,
     Cedula: cedula.value,
     Maquina: maquinas.value,
@@ -58,6 +67,7 @@ document.getElementById("btn_send_form_ga").addEventListener("click", () => {
       casino.value = "";
       telefono.value = "";
       cedula.value = "";
+      otro_casino.value = "";
       maquinas.value = "";
       Swal.fire({
         icon: "success",
