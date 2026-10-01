@@ -246,6 +246,34 @@ posiciones.forEach((item) => {
 
     let fichaPulsada = item.id.split("_")[1];
 
+    if (fichaPulsada == 5) {
+      const contenedor = document.getElementById("_num_cueva_");
+      const video = document.getElementById("video_cueva");
+
+      video.currentTime = 0;
+      video.play();
+
+      contenedor.style.display = "flex";
+
+      video.onended = () => {
+        contenedor.style.display = "none";
+      };
+    }
+
+      if (fichaPulsada == 12) {
+      const contenedor = document.getElementById("_num_espejo_");
+      const video = document.getElementById("video_espejo");
+
+      video.currentTime = 0;
+      video.play();
+
+      contenedor.style.display = "flex";
+
+      video.onended = () => {
+        contenedor.style.display = "none";
+      };
+    }
+
     if (resultadoAvion_1 == destinoIndex) {
       Swal.fire({
         icon: "warning",
