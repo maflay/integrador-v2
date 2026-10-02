@@ -63,11 +63,14 @@ btn_pintar_tablero.addEventListener("click", () => {
   btn_inicar_random.classList.remove("disable_item");
   btn_pintar_tablero.classList.add("disable_item");
 
+
+
   for (let i = 0; i < casillas.value; i++) {
     let casilla = document.createElement("div");
     casilla.id = `posicion_${i + 1}`;
     casilla.className = "posicion_cum";
     casilla.textContent = `${i + 1}`;
+    casilla.classList.add("posicion_cum_opacada");
 
     //En lugar de eliminarla, la marcamos como "usada"
     casilla.addEventListener("click", () => {
@@ -231,6 +234,7 @@ selectRango.addEventListener("change", () => {
       casilla.id = `posicion_${i + 1}`;
       casilla.className = "posicion_cum";
       casilla.textContent = `${i + 1}`;
+      casilla.classList.add("posicion_cum_opacada");
 
       casilla.addEventListener("click", () => {
         casilla.classList.toggle("posicion_cum_opacada");

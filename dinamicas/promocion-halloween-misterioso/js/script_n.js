@@ -414,6 +414,8 @@ function handleSendInfo() {
   localStorage.setItem(LS_KEY, JSON.stringify(registro));
   setTimeout(() => {
     loader.style.display = "none";
+    nombre.value = "";
+    casino.value= "";
     if (typeof GetResgistroDia === "function") GetResgistroDia();
 
     Swal.fire({
