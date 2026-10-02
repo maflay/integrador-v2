@@ -260,7 +260,7 @@ posiciones.forEach((item) => {
       };
     }
 
-      if (fichaPulsada == 12) {
+    if (fichaPulsada == 12) {
       const contenedor = document.getElementById("_num_espejo_");
       const video = document.getElementById("video_espejo");
 
@@ -327,7 +327,7 @@ posiciones.forEach((item) => {
         Swal.fire({
           icon: "warning",
           title: "No se puede mover",
-          text: "Posición no valida para el avion 1",
+          text: "Posición no valida para el Caballero 1",
         });
       }
     } else if (turnoAvion == 2) {
@@ -337,7 +337,7 @@ posiciones.forEach((item) => {
         Swal.fire({
           icon: "warning",
           title: "No se puede mover",
-          text: `Avión 2: solo de ${min} a 12.`,
+          text: `Caballero 2: solo de ${min} a 12.`,
         });
         return;
       }
@@ -371,7 +371,7 @@ posiciones.forEach((item) => {
         Swal.fire({
           icon: "warning",
           title: "No se puede mover",
-          text: `Avión 3: solo de ${min} a 18.`,
+          text: `Caballero 3: solo de ${min} a 18.`,
         });
         return;
       }
