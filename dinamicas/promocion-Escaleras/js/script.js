@@ -1712,8 +1712,6 @@ function handleSendInfo() {
     };
   }
 
-  console.log(data, "data");
-
   loader.style.display = "flex";
   const registro = JSON.parse(localStorage.getItem(LS_KEY)) || [];
   registro.push(data);

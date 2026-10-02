@@ -53,7 +53,6 @@ itemsAdmin();
 function itemsAdmin() {
   let items_admin = document.querySelectorAll(".admin_promo_item");
 
-  console.log(user.Nivel);
   if (user.Nivel == 1 || user.Nivel == 2) {
     items_admin.forEach((item) => {
       item.style.display = "flex";
@@ -391,11 +390,6 @@ function chargeInfo() {
         } else if (acerto_cp.value == 2) {
           premioApuntado = "100000";
         }
-
-        // console.log(accion);
-        // console.log(premio);
-        // console.log(ganador);
-        // console.log(casino);
 
         if (!nombre_cp.value || !casino_cp.value || !categoria_cp.value) {
           Swal.fire({

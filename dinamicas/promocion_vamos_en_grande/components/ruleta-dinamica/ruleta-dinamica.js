@@ -417,20 +417,7 @@ function renderCol(items) {
     </div>`;
         });
       // for (let i = 0; i <= listado.length - 1; i++) {
-      //   // console.log(listadoOrdenado[i], "listadoOrdenado");
-      //   console.log(
-      //     listadoOrdenado[i].Nombre,
-      //     listadoOrdenado[i].posicion,
-      //     listadoOrdenado[i].numero,
-      //   );
       // }
-
-      // console.log(listado);
-
-      // console.log(listadoOrdenado[0].Nombre, "primer numero listadoOrdenado");
-      // console.log(listadoOrdenado[0].numero, "primer numero listadoOrdenado");
-      // console.log(listadoOrdenado[0].posicion, "primer numero listadoOrdenado");
-
       //   resultado.innerHTML = `
       //   <div class="lista_parti">
       //     <b>Listado (Nombre → Número):</b><br><br>

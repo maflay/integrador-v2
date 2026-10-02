@@ -427,7 +427,6 @@ function callCard(card) {
     const tabla = obtenerTablaDesdeCasino(_casino);
     const premiosTabla = PREMIOS[tabla];
 
-    console.log(tabla);
     if (!tabla) {
       Swal.fire({
         icon: "warning",
@@ -754,7 +753,6 @@ function handleSendInfo() {
         });
       })
       .catch((err) => {
-        console.log(err);
         loader.style.display = "none";
         Swal.fire({
           icon: "error",
@@ -984,7 +982,6 @@ function HandleSecondSubmit() {
       }, 2000);
     })
     .catch((error) => {
-      console.log(error.error);
       loader.style.display = "none";
     });
 }

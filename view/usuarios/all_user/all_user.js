@@ -148,17 +148,6 @@ function getAllUser() {
         const cedula = btnUser.dataset.cedula || "";
         const us = btnUser.dataset.u || "";
 
-        // console.log("ABRIENDO MODAL:", {
-        //   nombre,
-        //   correo,
-        //   cedula,
-        //   rol,
-        //   area,
-        //   cel,
-        //   permisos,
-        //   us,
-        // });
-
         modal.innerHTML = `<div class="modal_content_user">
                               <h3>Informacion del usuario Aladdin</h3>
                               <p id="close_modal_user">&times;</p>

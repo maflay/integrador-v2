@@ -94,7 +94,6 @@ window.addEventListener("load", () => {
     setTimeout(() => {
       producto_add.style.display = "none";
     }, 1500);
-    // console.log(pedidos);
     container.innerHTML = pedidos
   .map((p, index, arr) => {
     const i = arr.length - 1 - index; // índice invertido

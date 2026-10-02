@@ -87,9 +87,6 @@ img_jugando.forEach((img) => {
     lanzamientos.innerHTML = `${turnoLength} / ${limTurnos}`;
     turnoImg += 1;
 
-    // console.log("turnoLength :",turnoLength);
-    // console.log("goles :", goles);
-
     if (turnoLength === limTurnos) {
       let grupoPertenece = Object.keys(gruposCasinos).find((key) =>
         gruposCasinos[key].includes(casino.value),
@@ -327,7 +324,6 @@ function handleSSubmit() {
     return;
   }
 
-  console.log(data);
   loader.style.display = "flex";
   fetch(url, {
     method: "POST",

@@ -334,12 +334,10 @@ document.getElementById("btn_iniciar_sesion").addEventListener("click", () => {
           title: "Usuario no encontrado",
           html: "El usuario no se encuentra. Contacta el área de Comunicaciones.",
         });
-        // console.log("Usuario no encontrado");
         loader.style.display = "none";
         return;
       }
       location.hash = "#inicio";
-      // console.log(data, "data resulta de API;");
       // loader.style.display = "none";
       // localStorage.setItem(LS_KEY, cedula);
       user_name.innerHTML =

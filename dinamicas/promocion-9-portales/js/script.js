@@ -623,7 +623,6 @@ function validateCurrentScore(LANZ_ACTUAL) {
   // Tomar categoría desde el select
   const categoria = document.getElementById("categoria").value;
   if (!portal) {
-    console.log("No se pudo determinar portal.");
     return;
   }
 
@@ -1347,7 +1346,6 @@ btn_submit_observacion.addEventListener("click", () => {
       handleResetTablero();
     })
     .catch((error) => {
-      console.log(error.status);
       loader.style.display = "none";
       Swal.fire({
         icon: "error",
@@ -1558,7 +1556,6 @@ function handleSecondSubmit() {
       }, 3000);
     })
     .catch((error) => {
-      console.log(error.mensaje);
       loader.style.display = "none";
       Swal.fire({
         icon: "error",

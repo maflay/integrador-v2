@@ -538,7 +538,6 @@ function handleSendFortune() {
         });
       })
       .catch((err) => {
-        console.log(err);
         loader.style.display = "none";
         Swal.fire({
           icon: "error",
@@ -639,7 +638,6 @@ function handleSSubmitFortune() {
     })
     .catch((err) => {
       loader.style.display = "none";
-      console.log(err);
       Swal.fire({
         icon: "error",
         title: "Error en el Envió",

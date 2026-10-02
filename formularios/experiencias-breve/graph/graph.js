@@ -20,13 +20,6 @@ window.addEventListener("DOMContentLoaded", () => {
     const exp_cas_atencion_del_personal = contarPorCampo(data, "exp_cas_atencion_del_personal");
     const valor_adp = contarPorCampo(data, "valor_adp");
 
-    console.log("valor_adp:", conteoValorAdp);
-    console.log("valor_adp_cas1:", conteoValorAdpCas1);
-    console.log("edad:", conteoEdad);
-    console.log("casinos:", conteoCasino);
-    console.log("frecuencia:", frecuencia);
-    console.log("exp_cas_atencion_del_personal:", exp_cas_atencion_del_personal);
-    console.log("valor_adp:", valor_adp);
 
     // Para pintar en gráfico: labels + valores
     const labelsAdp = Object.keys(conteoValorAdp); // ["1","2","3","4","5"]

@@ -9,13 +9,13 @@ window.addEventListener("DOMContentLoaded", () => {
   const btn_guardar_registro = document.getElementById("btn_guardar_registro");
   const btn_envio_secundario = document.getElementById("btn_envio_secundario");
   const btn_envio_observacion = document.getElementById(
-    "btn_envio_observacion"
+    "btn_envio_observacion",
   );
   const btn_tabla_premios = document.getElementById("btn_tabla_premios");
   const btn_registros_dia = document.getElementById("btn_registros_dia");
   const btn_ganadores = document.getElementById("btn_ganadores");
   const btn_reiniciar_tablero = document.getElementById(
-    "btn_reiniciar_tablero"
+    "btn_reiniciar_tablero",
   );
 
   btn_reiniciar_tablero.addEventListener("click", () => {
@@ -28,48 +28,48 @@ window.addEventListener("DOMContentLoaded", () => {
 
   // notificacion
   const notificacion_registro_dia = document.getElementById(
-    "notificacion_registro_dia"
+    "notificacion_registro_dia",
   );
 
   notificacion_registro_dia.style.display = "none";
   // view modal
   const view_guardar_registro = document.getElementById(
-    "view_guardar_registro"
+    "view_guardar_registro",
   );
   const view_envio_observacion = document.getElementById(
-    "view_envio_observacion"
+    "view_envio_observacion",
   );
   const view_envio_secundario = document.getElementById(
-    "view_envio_secundario"
+    "view_envio_secundario",
   );
   const view_tabla_premios = document.getElementById("view_tabla_premios");
   const view_registros_dia = document.getElementById("view_registros_dia");
   const result_dia_suerte = document.getElementById("result_dia_suerte");
   const view_registros_ganadores = document.getElementById(
-    "view_registros_ganadores"
+    "view_registros_ganadores",
   );
 
   const casino_modal = document.getElementById("casino_modal");
   const lista_id_modal = document.getElementById("lista_id_modal");
   const select_ronda_modal = document.getElementById("select_ronda_modal");
   const btn_registro_por_casinos = document.getElementById(
-    "btn_registro_por_casinos"
+    "btn_registro_por_casinos",
   );
   lista_id_modal.style.display = "none";
   select_ronda_modal.style.display = "none";
   btn_registro_por_casinos.style.display = "none";
 
   const casino_modal_ganadores = document.getElementById(
-    "casino_modal_ganadores"
+    "casino_modal_ganadores",
   );
   const lista_id_modal_ganadores = document.getElementById(
-    "lista_id_modal_ganadores"
+    "lista_id_modal_ganadores",
   );
   const select_ronda_modal_ganadores = document.getElementById(
-    "select_ronda_modal_ganadores"
+    "select_ronda_modal_ganadores",
   );
   const btn_registro_ganadores = document.getElementById(
-    "btn_registro_ganadores"
+    "btn_registro_ganadores",
   );
 
   casino_modal_ganadores.style.display = "flex";
@@ -90,13 +90,13 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const casino_observacion = document.getElementById("casino_observacion");
   const descripcion_observacion = document.getElementById(
-    "descripcion_observacion"
+    "descripcion_observacion",
   );
   const btn_clean_observacion = document.getElementById(
-    "btn_clean_observacion"
+    "btn_clean_observacion",
   );
   const btn_envia_observacion = document.getElementById(
-    "btn_envia_observacion"
+    "btn_envia_observacion",
   );
 
   const btn_validate_lista = document.getElementById("btn_validate_lista");
@@ -109,13 +109,13 @@ window.addEventListener("DOMContentLoaded", () => {
   const nombre_secundario = document.getElementById("nombre_secundario");
   const bono_secundario = document.getElementById("bono_secundario");
   const resultado_ruleta_secundario = document.getElementById(
-    "resultado_ruleta_secundario"
+    "resultado_ruleta_secundario",
   );
   const fecha_secundario = document.getElementById("fecha_secundario");
   const hora_secundario = document.getElementById("hora_secundario");
   const btn_clean_secundario = document.getElementById("btn_clean_secundario");
   const btn_submit_secundario = document.getElementById(
-    "btn_submit_secundario"
+    "btn_submit_secundario",
   );
 
   const fechaCompleta = new Date().toLocaleString("es-CO", {
@@ -312,12 +312,10 @@ window.addEventListener("DOMContentLoaded", () => {
     return REDS.has(n) ? "red" : "black";
   }
 
-  // Helpers de animación
   let currentIndex = 0;
   let animating = false;
 
   function getCell(idx) {
-    // console.log(idx);
     return board.querySelector(`.pocket[data-idx="${idx}"]`);
   }
   function setActive(idx, on) {
@@ -337,7 +335,6 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Normaliza entrada: "00" se mantiene; lo demás a número sin ceros a la izquierda
     let targetVal;
     if (raw === "00") {
       targetVal = "00";
@@ -357,7 +354,7 @@ window.addEventListener("DOMContentLoaded", () => {
       warn("Número inválido. Usa 0-36 o 00.");
       return;
     }
-    if (animating) return; // evita doble click durante animación
+    if (animating) return;
 
     const idBloqueo = `pocket_${targetVal === "00" ? "dblzero" : targetVal}`;
     const celda = document.getElementById(idBloqueo);
@@ -365,16 +362,15 @@ window.addEventListener("DOMContentLoaded", () => {
       Swal.fire({
         icon: "warning",
         title: "Número inválido",
-        text: `❌ El número ${targetVal} está ocupado. Elige otro.`,
+        text: `El número ${targetVal} está ocupado. Elige otro.`,
       });
-      warn(`❌ El número ${targetVal} está ocupado. Elige otro.`);
+      warn(`El número ${targetVal} está ocupado. Elige otro.`);
       return;
     }
 
     const targetIndex = WHEEL.indexOf(targetVal);
 
-    // Pasos = unas vueltas + la distancia hasta el destino (sentido horario)
-    const laps = 2; // vueltas completas antes de caer
+    const laps = 2;
     const dist = (targetIndex - currentIndex + WHEEL.length) % WHEEL.length;
     let steps = laps * WHEEL.length + dist;
 
@@ -382,7 +378,6 @@ window.addEventListener("DOMContentLoaded", () => {
     let prev = currentIndex;
     let i = 0;
 
-    // Quita marcas anteriores
     board.querySelectorAll(".pocket").forEach((c) => c.classList.remove("hit"));
 
     const tick = () => {
@@ -393,24 +388,19 @@ window.addEventListener("DOMContentLoaded", () => {
       i++;
 
       if (i < steps) {
-        // acelera al inicio y desacelera al final
         const remaining = steps - i;
         const delay =
           remaining > WHEEL.length ? 45 : 90 + (WHEEL.length - remaining);
         setTimeout(tick, delay);
       } else {
-        // 🎯 LLEGÓ AL NÚMERO FINAL
         currentIndex = next;
         animating = false;
         setActive(currentIndex, false);
         const celdaGanadora = getCell(currentIndex);
         celdaGanadora.classList.add("hit");
 
-        // ⚡️ Aquí imprimes o ejecutas lo que necesites
         const numeroGanador = celdaGanadora.dataset.value;
-        // console.log(`El número ganador es: ${numeroGanador}`);
 
-        // 🔔 Ejemplo: Mostrar alerta con SweetAlert
         Swal.fire({
           icon: "success",
           title: "¡Número Elegido!",
@@ -420,7 +410,6 @@ window.addEventListener("DOMContentLoaded", () => {
           color: "#fff",
         });
 
-        // 🔒 Si quieres bloquear ese número después de ganar:
         celdaGanadora.classList.add("bloqueado");
       }
     };
@@ -429,12 +418,9 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   const numerosBloqueados = ["7", "19", "00", "30"];
-  // bloquearNumeros(numerosBloqueados);
 
   function warn(msg) {
-    // reemplaza por tu Swal si quieres
     console.warn(msg);
-    // alert(msg);
   }
 
   function desbloquearNumeros() {
@@ -446,7 +432,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   function bloquearNumeros(numbers) {
     numbers.forEach((num) => {
-      // ✅ Corrección para índices enviados desde backend
       if (num == "38") num = "00";
       if (num == "37") num = "0";
       const id = `pocket_${num === "00" ? "dblzero" : num}`;
@@ -458,7 +443,6 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ✅ CORRECTO
   function desbloquearNumeros() {
     const casillas = document.querySelectorAll(".pocket");
     casillas.forEach((c) => {
@@ -511,7 +495,6 @@ window.addEventListener("DOMContentLoaded", () => {
       Usuario: user.Nombre,
     };
 
-    // console.log(data, "data");
     loader.style.display = "flex";
 
     fetch(url, {
@@ -563,7 +546,7 @@ window.addEventListener("DOMContentLoaded", () => {
     fetch(
       `${url}?hoja=${casinoValue.toLowerCase()}&codigo=${lista_idValue.toUpperCase()}&ronda=${
         select_ronda.value
-      }`
+      }`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -580,10 +563,10 @@ window.addEventListener("DOMContentLoaded", () => {
         rondas.length == ""
           ? (validate_done_lista.textContent = `No hay Rondas`)
           : (validate_done_lista.textContent = `Rondas encontradas: ${rondas.join(
-              ", "
+              ", ",
             )}`);
         const numbers = rows.map(
-          (e) => e.Numero_rul ?? e.Numero_Rul ?? e.Numero ?? ""
+          (e) => e.Numero_rul ?? e.Numero_Rul ?? e.Numero ?? "",
         );
         bloquearNumeros(numbers);
 
@@ -608,11 +591,10 @@ window.addEventListener("DOMContentLoaded", () => {
     casino.style.pointerEvents = "none";
     casino.style.opacity = "0.7";
     fetch(
-      `${url}?hoja=${casinoValue.toLowerCase()}&codigo=${lista_idValue.toUpperCase()}`
+      `${url}?hoja=${casinoValue.toLowerCase()}&codigo=${lista_idValue.toUpperCase()}`,
     )
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data.reverse());
         const rows = Array.isArray(data) ? data : [];
 
         const rondas = [...new Set(rows.map((r) => r.Ronda))]; // únicas
@@ -633,17 +615,14 @@ window.addEventListener("DOMContentLoaded", () => {
           option.textContent = lista;
           select_ronda.appendChild(option);
         });
-        // console.log("Ronda mostrada:", ultimaRonda);
 
         rondas.length == ""
           ? (validate_done_lista.textContent = `No hay Rondas`)
           : (validate_done_lista.textContent = `Rondas encontradas: ${rondas.join(
-              ", "
+              ", ",
             )}`);
 
         const numbers = data.map((e) => e.Numero_rul);
-        // console.log(valRonda,"valRonda"); // Lista de números
-        // console.log(numbers); // Lista de números
         indicador_validate.textContent = "";
       })
       .catch(() => {
@@ -678,7 +657,6 @@ window.addEventListener("DOMContentLoaded", () => {
         btn_registro_por_casinos.style.display = "flex";
 
         const rondas = [...new Set(rows.map((r) => r.Ronda))]; // únicas
-        console.log(rondas);
         result_dia_suerte.innerHTML = "";
 
         select_ronda_modal.innerHTML = `<option value="">Seleccione Ronda</option>`;
@@ -689,11 +667,8 @@ window.addEventListener("DOMContentLoaded", () => {
           option.textContent = lista;
           select_ronda_modal.appendChild(option);
         });
-        // console.log("Ronda mostrada:", ultimaRonda);
 
         const numbers = data.map((e) => e.Numero_rul);
-        // console.log(valRonda,"valRonda"); // Lista de números
-        // console.log(numbers); // Lista de números
         indicador_validate.textContent = "";
       });
   }
@@ -709,7 +684,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     result_dia_suerte.innerHTML = "Cargando...";
 
-    // Armar query con seguridad
     const qs = new URLSearchParams();
     if (casinoValue) qs.set("hoja", casinoValue.toLowerCase());
     if (listaValue) qs.set("codigo", listaValue.toUpperCase());
@@ -724,23 +698,19 @@ window.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        // --- ordenar por fecha/hora: recientes primero ---
         const ts = (r) => {
-          // intenta combinar Fecha + Hora; si falla, ordena al final
-          const f = String(r.Fecha ?? "").replace(/-/g, "/"); // mejor compatibilidad
+          const f = String(r.Fecha ?? "").replace(/-/g, "/");
           const h = r.Hora ? String(r.Hora) : "00:00:00";
           const d = new Date(`${f} ${h}`);
           return isNaN(d) ? 0 : d.getTime();
         };
         rows.sort((a, b) => ts(b) - ts(a));
 
-        // --- formateador de fecha/hora ---
         const formatFechaHora = (fecha, hora) => {
           const f = String(fecha ?? "").replace(/-/g, "/");
           const h = hora ? String(hora) : "00:00:00";
           const d = new Date(`${f} ${h}`);
           if (isNaN(d)) {
-            // fallback: si no parsea, devuelve tal cual la fecha
             return `${fecha ?? ""} ${hora ?? ""}`.trim();
           }
           return d.toLocaleString("es-CO", {
@@ -754,10 +724,9 @@ window.addEventListener("DOMContentLoaded", () => {
           });
         };
 
-        const LIMIT = 6; // cambia el límite si quieres
+        const LIMIT = 6;
         const bodyHTML = rows
           .map((registro, i) => {
-            console.log(registro);
             const fecha_dia = new Date(registro.Fecha);
             const fecha_larga = fecha_dia.toLocaleDateString("es-CO", {
               timeZone: "America/Bogota",
@@ -767,7 +736,7 @@ window.addEventListener("DOMContentLoaded", () => {
             });
             const fechaFormateada = formatFechaHora(
               registro.Fecha,
-              registro.Hora
+              registro.Hora,
             );
             return `
             <tr>
@@ -845,7 +814,6 @@ window.addEventListener("DOMContentLoaded", () => {
               Ronda: registro.Ronda,
             };
 
-            console.log(data);
             fetch(url, {
               method: "POST",
               mode: "no-cors",
@@ -858,7 +826,6 @@ window.addEventListener("DOMContentLoaded", () => {
                   title: "¡Registro enviado!",
                   text: `Se envió correctamente la Información`,
                 });
-                console.log("Respuesta API:", res);
                 loader.style.display = "none";
               })
               .catch((err) => {
@@ -880,7 +847,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   const result_ganadores_suerte = document.getElementById(
-    "result_ganadores_suerte"
+    "result_ganadores_suerte",
   );
 
   casino_modal_ganadores.addEventListener("change", () => {
@@ -920,11 +887,8 @@ window.addEventListener("DOMContentLoaded", () => {
           option.textContent = lista;
           select_ronda_modal_ganadores.appendChild(option);
         });
-        // console.log("Ronda mostrada:", ultimaRonda);
 
         const numbers = data.map((e) => e.Numero_rul);
-        // console.log(valRonda,"valRonda"); // Lista de números
-        // console.log(numbers); // Lista de números
         indicador_validate.textContent = "";
       });
   }
@@ -959,12 +923,8 @@ window.addEventListener("DOMContentLoaded", () => {
     let valorrondaApi = listaValue == "" ? "" : `&ronda=` + rondaValue;
     let valorcasinoApi = casinoValue == "" ? "" : `&casino=` + casinoValue;
 
-    // console.log(
-    //   `${url}?hoja=dinamica${valorcodigoApi}${valorrondaApi}${valorcasinoApi}`
-    // );
-
     fetch(
-      `${url}?hoja=dinamica${valorcodigoApi}${valorrondaApi}${valorcasinoApi}`
+      `${url}?hoja=dinamica${valorcodigoApi}${valorrondaApi}${valorcasinoApi}`,
     )
       .then((res) => res.json())
       .then((data) => {
@@ -974,23 +934,19 @@ window.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        // --- ordenar por fecha/hora: recientes primero ---
         const ts = (r) => {
-          // intenta combinar Fecha + Hora; si falla, ordena al final
-          const f = String(r.Fecha ?? "").replace(/-/g, "/"); // mejor compatibilidad
+          const f = String(r.Fecha ?? "").replace(/-/g, "/");
           const h = r.Hora ? String(r.Hora) : "00:00:00";
           const d = new Date(`${f} ${h}`);
           return isNaN(d) ? 0 : d.getTime();
         };
         rows.sort((a, b) => ts(b) - ts(a));
 
-        // --- formateador de fecha/hora ---
         const formatFechaHora = (fecha, hora) => {
           const f = String(fecha ?? "").replace(/-/g, "/");
           const h = hora ? String(hora) : "00:00:00";
           const d = new Date(`${f} ${h}`);
           if (isNaN(d)) {
-            // fallback: si no parsea, devuelve tal cual la fecha
             return `${fecha ?? ""} ${hora ?? ""}`.trim();
           }
           return d.toLocaleString("es-CO", {
@@ -1004,7 +960,7 @@ window.addEventListener("DOMContentLoaded", () => {
           });
         };
 
-        const LIMIT = 6; // cambia el límite si quieres
+        const LIMIT = 6;
         const bodyHTML = rows
           .reverse()
           .map((registro, i) => {
@@ -1017,7 +973,7 @@ window.addEventListener("DOMContentLoaded", () => {
             });
             const fechaFormateada = formatFechaHora(
               registro.Fecha,
-              registro.Hora
+              registro.Hora,
             );
             return `
             <tr>
@@ -1077,7 +1033,6 @@ window.addEventListener("DOMContentLoaded", () => {
             btn.textContent = "Enviando...";
             const registro = JSON.parse(btn.dataset.info);
             loader.style.display = "flex";
-            // toma el input de la MISMA fila:
             const fila = btn.closest("tr");
             const bonoInput = fila.querySelector(".table_input_bono_suerte");
             const bono = (bonoInput?.value || "").trim();
@@ -1101,13 +1056,13 @@ window.addEventListener("DOMContentLoaded", () => {
                 day: "2-digit",
                 month: "2-digit",
                 year: "numeric",
-              }
+              },
             );
 
             const match = {
               Cedula: registro.Cedula,
-              Codigo: registro.Codigo, // LISTA_X
-              Ronda: registro.Ronda, // RONDA_Y
+              Codigo: registro.Codigo,
+              Ronda: registro.Ronda,
             };
             const data = {
               tipo: "update_bono",
@@ -1116,20 +1071,14 @@ window.addEventListener("DOMContentLoaded", () => {
               N_Bono: bono,
             };
 
-            // console.log(data);
-            // Quitar input y botón
             bonoInput.remove();
-            // btn.remove();
-
-            // Agregar texto de confirmado en la celda del bono
-            const cellBono = fila.children[6]; // columna #6 (# Bono)
+            const cellBono = fila.children[6];
             cellBono.innerHTML = `<span class="bono-confirmado">${bono} ✅</span>`;
 
             fetch(url, {
               method: "POST",
               mode: "no-cors",
               body: JSON.stringify(data),
-              // evita no-cors si esperas leer la respuesta
             })
               .then((res) => res.text())
               .then(() => {

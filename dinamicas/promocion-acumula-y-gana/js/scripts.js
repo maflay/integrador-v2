@@ -237,8 +237,6 @@ btn_validar.addEventListener("click", () => {
     minimumFractionDigits: 0,
   });
 
-  console.log(premio);
-
   if (premio === "Categoría no válida" || premio === "Casino no encontrado") {
     Swal.fire({
       icon: "error",
@@ -442,7 +440,6 @@ function GetResgistroDia() {
   const isBlank = (v) =>
     v == null || (typeof v === "string" && v.trim() === "");
   const hayBonoVacio = filtrados.some((item) => isBlank(item.valBono));
-  console.log(hayBonoVacio);
   notificacion_registro_dia.style.display = hayBonoVacio ? "flex" : "none";
 
   info_result_dia.innerHTML = `<small class="color-gray"><spam style="color: red">*</spam> Estos registros son temporales (se reinicia a las 00:00), por favor tener en cuenta.</small>`;

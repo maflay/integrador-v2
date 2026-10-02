@@ -113,7 +113,6 @@ window.addEventListener("DOMContentLoaded", () => {
   //     fetch(`${url_Pedido}`)
   //       .then(async (r) => {
   //         const text = await r.json();
-  //         console.log(text);
   //   })
   //   }
 
@@ -176,8 +175,6 @@ window.addEventListener("DOMContentLoaded", () => {
               "Foto",
             ]);
             const imgUrl = resolveImage(fotoVal);
-            // console.log(celular, "celular");
-            // console.log(totalPedido, "totalPedido");
             // todos los registros relacionados en URL_EXTRA para esta cédula
             const matches = groupB.get(cedNorm) || [];
 

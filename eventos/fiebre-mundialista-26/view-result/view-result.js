@@ -751,7 +751,7 @@ function createUser() {
       // View_inputs_quiniela.style.display = "flex";
     })
     .catch((erro) => {
-      console.log(erro);
+      // console.log(erro);
       loader.style.display = "none";
       Swal.fire({
         icon: "error",
