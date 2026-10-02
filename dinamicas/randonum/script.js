@@ -25,6 +25,8 @@ const audioFicha = new Audio(
   "/dinamicas/randonum/resources/ruleta-win-faw.mp3",
 );
 
+const audioCoin = new Audio("/dinamicas/randonum/resources/Sonido_ficha.mp3");
+
 const Promocion = "Numero Random";
 const url =
   "https://script.google.com/macros/s/AKfycbxKxEfhRRAY1Fgg60e0U2ZzTyMIcSfQod0gQPnv-zaFsKGyeYoFLrAcApJJhDN2fyjx/exec";
@@ -63,8 +65,6 @@ btn_pintar_tablero.addEventListener("click", () => {
   btn_inicar_random.classList.remove("disable_item");
   btn_pintar_tablero.classList.add("disable_item");
 
-
-
   for (let i = 0; i < casillas.value; i++) {
     let casilla = document.createElement("div");
     casilla.id = `posicion_${i + 1}`;
@@ -75,6 +75,9 @@ btn_pintar_tablero.addEventListener("click", () => {
     //En lugar de eliminarla, la marcamos como "usada"
     casilla.addEventListener("click", () => {
       casilla.classList.toggle("posicion_cum_opacada");
+      audioCoin;
+      audioCoin.currentTime = 0;
+      audioCoin.play();
     });
 
     board.appendChild(casilla);
