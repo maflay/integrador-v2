@@ -75,7 +75,6 @@ btn_pintar_tablero.addEventListener("click", () => {
     //En lugar de eliminarla, la marcamos como "usada"
     casilla.addEventListener("click", () => {
       casilla.classList.toggle("posicion_cum_opacada");
-      audioCoin;
       audioCoin.currentTime = 0;
       audioCoin.play();
     });
