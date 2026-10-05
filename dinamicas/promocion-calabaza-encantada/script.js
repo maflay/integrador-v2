@@ -297,6 +297,22 @@ posiciones.forEach((item) => {
         };
       }
 
+      if (fichaPulsada == 15) {
+        const contenedor = document.getElementById("_num_araña_");
+        const video = document.getElementById("video_araña");
+
+        video.currentTime = 0;
+        video.play();
+
+        contenedor.style.display = "flex";
+        videocurrent = video;
+        contaiCurren = contenedor;
+
+        video.onended = () => {
+          contenedor.style.display = "none";
+        };
+      }
+
       if (fichaPulsada == 18) {
         const contenedor = document.getElementById("_num_final_");
         const video = document.getElementById("video_final");
@@ -312,6 +328,8 @@ posiciones.forEach((item) => {
           contenedor.style.display = "none";
         };
       }
+
+
     }
 
     if (resultadoAvion_1 == destinoIndex) {
