@@ -245,49 +245,71 @@ posiciones.forEach((item) => {
     const destinoIndex = Number(item.id.split("_")[1]);
 
     let fichaPulsada = item.id.split("_")[1];
+    let videocurrent;
+    let contaiCurren;
 
-    if (turnoAvion == 1 || turnoAvion == 2) {
-      if (fichaPulsada == 5) {
-        const contenedor = document.getElementById("_num_cueva_");
-        const video = document.getElementById("video_cueva");
+    if (fichaPulsada == 5) {
+      const contenedor = document.getElementById("_num_cueva_");
+      const video = document.getElementById("video_cueva");
 
-        video.currentTime = 0;
-        video.play();
+      video.currentTime = 0;
+      video.play();
 
-        contenedor.style.display = "flex";
+      contenedor.style.display = "flex";
+      videocurrent = video;
+      contaiCurren = contenedor;
 
-        video.onended = () => {
-          contenedor.style.display = "none";
-        };
-      }
+      video.onended = () => {
+        contenedor.style.display = "none";
+      };
+    }
 
-      if (fichaPulsada == 12) {
-        const contenedor = document.getElementById("_num_espejo_");
-        const video = document.getElementById("video_espejo");
+    if (fichaPulsada == 12) {
+      const contenedor = document.getElementById("_num_espejo_");
+      const video = document.getElementById("video_espejo");
 
-        video.currentTime = 0;
-        video.play();
+      video.currentTime = 0;
+      video.play();
 
-        contenedor.style.display = "flex";
+      contenedor.style.display = "flex";
+      videocurrent = video;
+      contaiCurren = contenedor;
 
-        video.onended = () => {
-          contenedor.style.display = "none";
-        };
-      }
+      video.onended = () => {
+        contenedor.style.display = "none";
+      };
+    }
 
-      if (fichaPulsada == 8) {
-        const contenedor = document.getElementById("_num_pantano_");
-        const video = document.getElementById("video_pantano");
+    if (fichaPulsada == 8) {
+      const contenedor = document.getElementById("_num_pantano_");
+      const video = document.getElementById("video_pantano");
 
-        video.currentTime = 0;
-        video.play();
+      video.currentTime = 0;
+      video.play();
 
-        contenedor.style.display = "flex";
+      contenedor.style.display = "flex";
+      videocurrent = video;
+      contaiCurren = contenedor;
 
-        video.onended = () => {
-          contenedor.style.display = "none";
-        };
-      }
+      video.onended = () => {
+        contenedor.style.display = "none";
+      };
+    }
+
+    if (fichaPulsada == 18) {
+      const contenedor = document.getElementById("_num_final_");
+      const video = document.getElementById("video_final");
+
+      video.currentTime = 0;
+      video.play();
+
+      contenedor.style.display = "flex";
+      videocurrent = video;
+      contaiCurren = contenedor;
+
+      video.onended = () => {
+        contenedor.style.display = "none";
+      };
     }
 
     if (resultadoAvion_1 == destinoIndex) {
@@ -392,21 +414,11 @@ posiciones.forEach((item) => {
         return;
       }
 
-      const contenedor = document.getElementById("_num_final_");
-      const video = document.getElementById("video_final");
-
-      video.currentTime = 0;
-      video.play();
-
-      contenedor.style.display = "flex";
-
-      video.onended = () => {
-        contenedor.style.display = "none";
-        alertPremio(categoria.value, totalPremio);
-      };
-
       if (MOVIENDO) return;
-
+      videocurrent.onended = () => {
+        alertPremio(categoria.value, totalPremio);
+        contaiCurren.style.display = "none";
+      };
       try {
         MOVIENDO = true;
         setPosClassDeAvion(avance_3, getPosClassDeAvion(avance_2));
