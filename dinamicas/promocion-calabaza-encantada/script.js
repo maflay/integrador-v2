@@ -436,12 +436,7 @@ posiciones.forEach((item) => {
 
       if (MOVIENDO) return;
 
-      videocurrent
-        ? (videocurrent.onended = () => {
-            alertPremio(categoria.value, totalPremio);
-            contaiCurren.style.display = "none";
-          })
-        : alertPremio(categoria.value, totalPremio);
+      
       try {
         MOVIENDO = true;
         setPosClassDeAvion(avance_3, getPosClassDeAvion(avance_2));
@@ -454,6 +449,12 @@ posiciones.forEach((item) => {
         resultadoAvion_3 = fichaPulsada;
         acumula_avion.innerHTML =
           formatoPesos_monto_efectivo.format(totalPremio) + ".000";
+          videocurrent
+        ? (videocurrent.onended = () => {
+            alertPremio(categoria.value, totalPremio);
+            contaiCurren.style.display = "none";
+          })
+        : alertPremio(categoria.value, totalPremio);
       } finally {
         MOVIENDO = false;
       }
