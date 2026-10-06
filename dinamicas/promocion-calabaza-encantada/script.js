@@ -248,94 +248,14 @@ posiciones.forEach((item) => {
     let videocurrent;
     let contaiCurren;
 
-    if (turnoAvion < 4) {
-      if (fichaPulsada == 5) {
-        const contenedor = document.getElementById("_num_cueva_");
-        const video = document.getElementById("video_cueva");
-
-        video.currentTime = 0;
-        video.play();
-
-        contenedor.style.display = "flex";
-        videocurrent = video;
-        contaiCurren = contenedor;
-
-        video.onended = () => {
-          contenedor.style.display = "none";
-        };
-      }
-
-      if (fichaPulsada == 12) {
-        const contenedor = document.getElementById("_num_espejo_");
-        const video = document.getElementById("video_espejo");
-
-        video.currentTime = 0;
-        video.play();
-
-        contenedor.style.display = "flex";
-        videocurrent = video;
-        contaiCurren = contenedor;
-
-        video.onended = () => {
-          contenedor.style.display = "none";
-        };
-      }
-
-      if (fichaPulsada == 8) {
-        const contenedor = document.getElementById("_num_pantano_");
-        const video = document.getElementById("video_pantano");
-
-        video.currentTime = 0;
-        video.play();
-
-        contenedor.style.display = "flex";
-        videocurrent = video;
-        contaiCurren = contenedor;
-
-        video.onended = () => {
-          contenedor.style.display = "none";
-        };
-      }
-
-      if (fichaPulsada == 15) {
-        const contenedor = document.getElementById("_num_araña_");
-        const video = document.getElementById("video_araña");
-
-        video.currentTime = 0;
-        video.play();
-
-        contenedor.style.display = "flex";
-        videocurrent = video;
-        contaiCurren = contenedor;
-
-        video.onended = () => {
-          contenedor.style.display = "none";
-        };
-      }
-
-      if (fichaPulsada == 18) {
-        const contenedor = document.getElementById("_num_final_");
-        const video = document.getElementById("video_final");
-
-        video.currentTime = 0;
-        video.play();
-
-        contenedor.style.display = "flex";
-        videocurrent = video;
-        contaiCurren = contenedor;
-
-        video.onended = () => {
-          contenedor.style.display = "none";
-        };
-      }
-
-
-    }
-
     if (resultadoAvion_1 == destinoIndex) {
       Swal.fire({
         icon: "warning",
         title: "Movimiento invalido",
+        customClass: {
+          popup: "mi-popup",
+          title: "mi-titulo",
+        },
       });
       return;
     } else if (resultadoAvion_2 == destinoIndex) {
@@ -354,10 +274,41 @@ posiciones.forEach((item) => {
 
     casino.classList.add("item_disable");
     categoria.classList.add("item_disable");
+    const comprobarYReproducirVideo = () => {
+      const mapeoVideos = {
+        5: { idContenedor: "_num_cueva_", idVideo: "video_cueva" },
+        8: { idContenedor: "_num_pantano_", idVideo: "video_pantano" },
+        12: { idContenedor: "_num_espejo_", idVideo: "video_espejo" },
+        15: { idContenedor: "_num_araña_", idVideo: "video_araña" },
+        18: { idContenedor: "_num_final_", idVideo: "video_final" },
+      };
+
+      if (mapeoVideos[fichaPulsada]) {
+        const datos = mapeoVideos[fichaPulsada];
+        const contenedor = document.getElementById(datos.idContenedor);
+        const video = document.getElementById(datos.idVideo);
+
+        if (video && contenedor) {
+          video.currentTime = 0;
+          video.play();
+          contenedor.style.display = "flex";
+          videocurrent = video;
+          contaiCurren = contenedor;
+
+          video.onended = () => {
+            contenedor.style.display = "none";
+          };
+        }
+      }
+    };
 
     if (turnoAvion == 1) {
       if (fichaPulsada <= 6) {
         if (MOVIENDO) return;
+
+        // video del 1 a 6
+        comprobarYReproducirVideo();
+
         try {
           MOVIENDO = true;
           await moverAvionPasoAPaso(avance_1, 1, destinoIndex);
@@ -383,9 +334,16 @@ posiciones.forEach((item) => {
         return;
       } else {
         Swal.fire({
+          position: "bottom-start",
           icon: "warning",
           title: "No se puede mover",
-          text: "Posición no valida para el Caballero 1",
+          html: `
+           <img class="img_corona_rama" src="/dinamicas/promocion-9-portales/resources/corona_rama.png" alt="promoAladdin">
+          Posición no valida para el Caballero 1`,
+          customClass: {
+            popup: "mi-popup",
+            title: "mi-titulo",
+          },
         });
       }
     } else if (turnoAvion == 2) {
@@ -402,6 +360,8 @@ posiciones.forEach((item) => {
 
       if (MOVIENDO) return;
 
+      // video del 6 a 12
+      comprobarYReproducirVideo();
       try {
         MOVIENDO = true;
         setPosClassDeAvion(avance_2, getPosClassDeAvion(avance_1));
@@ -436,7 +396,8 @@ posiciones.forEach((item) => {
 
       if (MOVIENDO) return;
 
-      
+      // video de 12 a 18
+      comprobarYReproducirVideo();
       try {
         MOVIENDO = true;
         setPosClassDeAvion(avance_3, getPosClassDeAvion(avance_2));
@@ -449,12 +410,12 @@ posiciones.forEach((item) => {
         resultadoAvion_3 = fichaPulsada;
         acumula_avion.innerHTML =
           formatoPesos_monto_efectivo.format(totalPremio) + ".000";
-          videocurrent
-        ? (videocurrent.onended = () => {
-            alertPremio(categoria.value, totalPremio);
-            contaiCurren.style.display = "none";
-          })
-        : alertPremio(categoria.value, totalPremio);
+        videocurrent
+          ? (videocurrent.onended = () => {
+              alertPremio(categoria.value, totalPremio);
+              contaiCurren.style.display = "none";
+            })
+          : alertPremio(categoria.value, totalPremio);
       } finally {
         MOVIENDO = false;
       }

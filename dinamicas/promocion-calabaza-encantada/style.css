@@ -111,6 +111,20 @@
     z-index: 120;
 }
 
+.mi-popup {
+    background-color: #FF9A00;
+    color: white;
+    border-radius: 40%;
+    text-shadow: rgba(0, 0, 0, 0.726) 1px 1px 10px;
+}
+
+.img_corona_rama {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-35%);
+    top: -100px;
+}
+
 .ubicacion_inicio {
     width: 120px;
     position: absolute;
