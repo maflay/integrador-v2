@@ -431,9 +431,14 @@ posiciones.forEach((item) => {
 
 function alertPremio(categ, valorPremio) {
   Swal.fire({
-    icon: "success",
+    position: "bottom-start",
     title: `Con ${categ}`,
-    html: `Ganaste un premios de ${formatoPesos_monto_efectivo.format(valorPremio)}.000 en Dinero Promocional`,
+    customClass: {
+          popup: "mi-popup",
+          title: "mi-titulo",
+          confirmButton: "btn btn-danger",
+        },
+    html: `<img class="img_corona_rama" src="/dinamicas/promocion-9-portales/resources/corona_rama.png" alt="promoAladdin">Ganaste un premio de ${formatoPesos_monto_efectivo.format(valorPremio)}.000 en Dinero Promocional`,
   });
 
   confettiAl();
