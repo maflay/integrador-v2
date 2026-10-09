@@ -33,12 +33,12 @@ const PAIRS = [
   { key: "esqueleto_cuatro", arts: ["esqueleto.png"] },
   { key: "esqueleto_cinco", arts: ["esqueleto.png"] },
   { key: "esqueleto_seis", arts: ["esqueleto.png"] },
-  { key: "esqueleto_siete", arts: ["esqueleto.png"] },
-  { key: "esqueleto_ocho", arts: ["esqueleto.png"] },
   { key: "momia_uno", arts: ["momia.png"] },
   { key: "momia_dos", arts: ["momia.png"] },
   { key: "momia_tres", arts: ["momia.png"] },
-  { key: "calabaza", arts: ["calabaza.png"] },
+  { key: "calabaza_uno", arts: ["calabaza.png"] },
+  { key: "calabaza_dos", arts: ["calabaza.png"] },
+  { key: "calabaza_tres", arts: ["calabaza.png"] },
 ];
 
 const ASSET_BASE = "/dinamicas/promocion-halloween-misterioso/resources/";
