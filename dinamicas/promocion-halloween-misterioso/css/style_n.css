@@ -140,6 +140,20 @@
     height: 101px;
 }
 
+.board_port_two {
+    display: none;
+    grid-template-columns: repeat(4, 120px);
+    gap: 10px;
+    position: absolute;
+    top: 41px;
+    left: 141px;
+}
+
+.board_port_two>img {
+    width: 105px;
+    height: 101px;
+}
+
 .cell-c {
     width: 100px;
     height: 100px;

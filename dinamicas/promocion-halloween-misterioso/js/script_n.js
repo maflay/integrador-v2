@@ -14,6 +14,8 @@ if (localStorage.getItem(FECHA_KEY) !== hoy) {
   localStorage.setItem(FECHA_KEY, hoy);
 }
 const promocion = "Halloween Misterioso";
+let casino = document.getElementById("casino");
+
 const audioFicha = new Audio(
   "/dinamicas/promocion-halloween-misterioso/resources/Sonido_ficha.mp3",
 );
@@ -26,20 +28,7 @@ const cells = Array.from(document.querySelectorAll(".cell-c"));
 const chose_ficha_1 = document.querySelector(".chose_ficha_1");
 
 const hud = document.getElementById("total_result");
-const PAIRS = [
-  { key: "esqueleto_uno", arts: ["esqueleto.png"] },
-  { key: "esqueleto_dos", arts: ["esqueleto.png"] },
-  { key: "esqueleto_tres", arts: ["esqueleto.png"] },
-  { key: "esqueleto_cuatro", arts: ["esqueleto.png"] },
-  { key: "esqueleto_cinco", arts: ["esqueleto.png"] },
-  { key: "esqueleto_seis", arts: ["esqueleto.png"] },
-  { key: "momia_uno", arts: ["momia.png"] },
-  { key: "momia_dos", arts: ["momia.png"] },
-  { key: "momia_tres", arts: ["momia.png"] },
-  { key: "calabaza_uno", arts: ["calabaza.png"] },
-  { key: "calabaza_dos", arts: ["calabaza.png"] },
-  { key: "calabaza_tres", arts: ["calabaza.png"] },
-];
+let PAIRS = [];
 
 const ASSET_BASE = "/dinamicas/promocion-halloween-misterioso/resources/";
 function setBackImage(cell, file) {
@@ -293,6 +282,37 @@ function ensureMarkup() {
 }
 
 function deal() {
+  if (casino.value == "A43" || casino.value == "A53") {
+    PAIRS = [
+      { key: "esqueleto_uno", arts: ["esqueleto.png"] },
+      { key: "esqueleto_dos", arts: ["esqueleto.png"] },
+      { key: "esqueleto_tres", arts: ["esqueleto.png"] },
+      { key: "esqueleto_cuatro", arts: ["esqueleto.png"] },
+      { key: "esqueleto_cinco", arts: ["esqueleto.png"] },
+      { key: "esqueleto_seis", arts: ["esqueleto.png"] },
+      { key: "esqueleto_siete", arts: ["esqueleto.png"] },
+      { key: "esqueleto_ocho", arts: ["esqueleto.png"] },
+      { key: "momia_uno", arts: ["momia.png"] },
+      { key: "momia_dos", arts: ["momia.png"] },
+      { key: "momia_tres", arts: ["momia.png"] },
+      { key: "calabaza_tres", arts: ["calabaza.png"] },
+    ];
+  } else {
+    PAIRS = [
+      { key: "esqueleto_uno", arts: ["esqueleto.png"] },
+      { key: "esqueleto_dos", arts: ["esqueleto.png"] },
+      { key: "esqueleto_tres", arts: ["esqueleto.png"] },
+      { key: "esqueleto_cuatro", arts: ["esqueleto.png"] },
+      { key: "esqueleto_cinco", arts: ["esqueleto.png"] },
+      { key: "esqueleto_seis", arts: ["esqueleto.png"] },
+      { key: "momia_uno", arts: ["momia.png"] },
+      { key: "momia_dos", arts: ["momia.png"] },
+      { key: "momia_tres", arts: ["momia.png"] },
+      { key: "calabaza_uno", arts: ["calabaza.png"] },
+      { key: "calabaza_dos", arts: ["calabaza.png"] },
+      { key: "calabaza_tres", arts: ["calabaza.png"] },
+    ];
+  }
   ensureMarkup();
   const deck = buildDeck();
 
@@ -340,10 +360,20 @@ updateHud();
 
 let categoria = document.getElementById("categoria");
 
+casino.addEventListener("change", () => {
+  if (casino.value == "A43" || casino.value == "A53") {
+    document.querySelector(".board_port").style.display = "none";
+    document.querySelector(".board_port_two").style.display = "grid";
+  } else {
+    document.querySelector(".board_port").style.display = "grid";
+    document.querySelector(".board_port_two").style.display = "none";
+  }
+});
+
 const user = inforUser();
 
 document.getElementById("_btn_start_h_n_").addEventListener("click", () => {
-  if (categoria.value.trim() === "") {
+  if (categoria.value.trim() === "" || casino.value.trim() === "") {
     Swal.fire({
       icon: "warning",
       title: "Selecciona la Categoria",
@@ -353,6 +383,7 @@ document.getElementById("_btn_start_h_n_").addEventListener("click", () => {
   document.getElementById("_btn_start_h_n_").style.display = "none";
   document.getElementById("_btn_reiniciar_h_n_").style.display = "flex";
   document.querySelector(".board_port").style.display = "none";
+  document.querySelector(".board_port_two").style.display = "none";
   deal();
 });
 
@@ -362,7 +393,6 @@ document.getElementById("btn_enviar").addEventListener("click", () => {
 
 function handleSendInfo() {
   let nombre = document.getElementById("nombre");
-  let casino = document.getElementById("casino");
 
   if (categoria.value == "" || nombre.value == "" || casino.value == "") {
     Swal.fire({
@@ -415,7 +445,7 @@ function handleSendInfo() {
   setTimeout(() => {
     loader.style.display = "none";
     nombre.value = "";
-    casino.value= "";
+    casino.value = "";
     if (typeof GetResgistroDia === "function") GetResgistroDia();
 
     Swal.fire({
