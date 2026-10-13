@@ -130,11 +130,23 @@ btn_create_user.addEventListener("click", () => {
             "." +
             apellido.value.toLowerCase().split(" ")[0];
 
+          const formatearNombre = (texto) => {
+            if (!texto) return "";
+
+            const limpio = texto.trim();
+            return (
+              limpio.charAt(0).toUpperCase() + limpio.slice(1).toLowerCase()
+            );
+          };
+
           let data = {
             tipo: "envio_1",
             valor_1: hora,
             valor_2: fecha,
-            valor_3: nombre.value + " " + apellido.value,
+            valor_3:
+              formatearNombre(nombre.value) +
+              " " +
+              formatearNombre(apellido.value),
             valor_4: cedula.value,
             valor_5: rol.value,
             valor_6: area.value,
