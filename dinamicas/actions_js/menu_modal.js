@@ -170,6 +170,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("img_premios_2"),
     document.getElementById("img_premios_3"),
     document.getElementById("img_premios_4"),
+    document.getElementById("img_premios_5"),
+    document.getElementById("img_premios_6"),
   ].filter((img) => img !== null);
 
   if (modalPremios && closeModalPremios) {
