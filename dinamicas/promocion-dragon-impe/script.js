@@ -2,6 +2,10 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
+const audioFicha = new Audio(
+  "/dinamicas/promocion-halloween-misterioso/resources/Sonido_ficha.mp3",
+);
+
 const cells = Array.from(document.querySelectorAll(".cell-c"));
 const hud = document.getElementById("total_result");
 const btnReset = document.getElementById("reset-game");
@@ -317,6 +321,8 @@ function onCellClick(e) {
     return;
   }
 
+  audioFicha.currentTime = 0;
+  audioFicha.play();
   moves++;
 
   card.classList.add("is-flipped");
@@ -324,7 +330,6 @@ function onCellClick(e) {
 
   const currentKey = cell.dataset.key;
   evaluateRevealedPairs(currentKey);
-  console.log(moves);
 
   //   if (!firstCell) {
   //     firstCell = cell;
@@ -342,6 +347,7 @@ function onCellClick(e) {
   //   } else {
   //     resetTurn();
   //   }
+  
   if (moves >= 5) {
     const amount = getPrize(categoria.value, matches);
     if (amount == null || amount == "" || amount == 0 || amount == "0") {
@@ -428,22 +434,12 @@ function ensureMarkup() {
 }
 
 function deal() {
-  ensureMarkup();
-  const deck = buildDeck();
-
-  document.querySelectorAll(".cell-c").forEach((cell, i) => {
-    const { key, file } = deck[i];
-    cell.dataset.key = key;
-
-    setBackImage(cell, file);
-
-    const frontNum = cell.querySelector(".front-c");
-    if (frontNum) {
-      frontNum.innerHTML = `<span class="card-number">${i + 1}</span>`;
-    }
-
+  document.querySelectorAll(".cell-c").forEach((cell) => {
     cell.classList.remove("is-matched");
-    cell.querySelector(".card-c").classList.remove("is-flipped");
+    const card = cell.querySelector(".card-c");
+    if (card) {
+      card.classList.remove("is-flipped");
+    }
   });
 
   moves = 0;
@@ -452,6 +448,23 @@ function deal() {
   firstCell = null;
   secondCell = null;
   updateHud();
+
+  setTimeout(() => {
+    ensureMarkup();
+    const deck = buildDeck();
+
+    document.querySelectorAll(".cell-c").forEach((cell, i) => {
+      const { key, file } = deck[i];
+      cell.dataset.key = key;
+
+      setBackImage(cell, file);
+
+      const frontNum = cell.querySelector(".front-c");
+      if (frontNum) {
+        frontNum.innerHTML = `<span class="card-number">${i + 1}</span>`;
+      }
+    });
+  }, 300);
 }
 
 cells.forEach((cell) => {
@@ -481,7 +494,6 @@ document.getElementById("start_game").addEventListener("click", () => {
   deal();
 });
 
-
 const promocion = "Dragon Imperial";
 const IN_FLIGHT = new Set();
 const LS_KEY = "registrosDragonImperial";
@@ -491,7 +503,8 @@ if (localStorage.getItem(FECHA_KEY) !== hoy) {
   localStorage.setItem(LS_KEY, JSON.stringify([]));
   localStorage.setItem(FECHA_KEY, hoy);
 }
-const url = "https://script.google.com/macros/s/AKfycbxIQg8VqscAsX86shWh4ZzzdNa19JanhlvPI0_rbMnlW5honPoQw-i0GtruU8ZDY15gGg/exec";
+const url =
+  "https://script.google.com/macros/s/AKfycbxIQg8VqscAsX86shWh4ZzzdNa19JanhlvPI0_rbMnlW5honPoQw-i0GtruU8ZDY15gGg/exec";
 
 document.getElementById("btn_enviar").addEventListener("click", () => {
   handleSendDr();
@@ -543,28 +556,27 @@ function handleSendDr() {
     valor_10: user.Nombre,
   };
 
-    const registro = JSON.parse(localStorage.getItem(LS_KEY)) || [];
+  const registro = JSON.parse(localStorage.getItem(LS_KEY)) || [];
   registro.push(data);
   localStorage.setItem(LS_KEY, JSON.stringify(registro));
   loader.style.display = "flex";
   if (typeof GetResgistroDia === "function") GetResgistroDia();
-     setTimeout(() => {
-      loader.style.display = "none";
-      nombre.value = "";
-      casino.value = "";
-      categoria.value = "";
-      Swal.fire({
-        icon: "info",
-        title: "Guardado local",
-        html: `<div>
+  setTimeout(() => {
+    loader.style.display = "none";
+    nombre.value = "";
+    casino.value = "";
+    categoria.value = "";
+    Swal.fire({
+      icon: "info",
+      title: "Guardado local",
+      html: `<div>
       <p>Se guardó el registro sin # de bono. Puedes asignarlo y enviarlo después.</p>
       </div>`,
-        allowOutsideClick: false,
-        confirmButtonColor: "#dc3545",
-      });
-    }, 3000);
+      allowOutsideClick: false,
+      confirmButtonColor: "#dc3545",
+    });
+  }, 3000);
 }
-
 
 function GetResgistroDia() {
   const content_registro_dia = document.getElementById("result_dia_acumula");

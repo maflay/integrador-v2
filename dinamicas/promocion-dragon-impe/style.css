@@ -48,6 +48,11 @@
     font-family: 'super wonder', sans-serif !important;
 }
 
+.total_result {
+    font-family: 'emirates', sans-serif !important;
+    font-size: 28px;
+}
+
 ._content_video_show_ {
     display: flex;
     position: absolute;

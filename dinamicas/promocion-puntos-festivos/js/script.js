@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
 });
 
 const url =
-  "https://script.google.com/macros/s/AKfycbxqoPLhCHREKieC_AiDhwv8c2auUmJaC67kipz5dojrBLQD9wGd5v7h6rmKkd-qapvD/exec";
+  "https://script.google.com/macros/s/AKfycbyL_h7TCu-H1wGuhC_5Okq-dPH7CjMFewMny5yla1wdO8ZBaba6GREw7hl-hVJmMKHi/exec";
 
 function mostrarLoader(container, mensaje) {
   container.innerHTML = `
@@ -277,12 +277,13 @@ function getCliente() {
 
             const registro = JSON.parse(btn.dataset.info);
 
-            // Reemplazamos la hora por la propiedad Dia de la tabla
             const data = {
               tipo: "update_bono",
               cedula: String(registro.Cedula),
               bono: Number(bono),
-              diaRegistroTabla: String(registro.Dia), // <--- Usamos la columna Dia como identificador único
+              diaRegistroTabla: String(registro.Dia),
+              mesRegistroTabla: String(registro.Mes_registro || ""), // Enviamos el mes
+              anioRegistroTabla: String(registro.Ano_registro || ""), // Enviamos el año
             };
 
             fetch(url, {
@@ -438,12 +439,13 @@ function getData() {
 
           const registro = JSON.parse(btn.dataset.info);
 
-          // Reemplazamos la hora por la propiedad Dia de la tabla
           const data = {
             tipo: "update_bono",
             cedula: String(registro.Cedula),
             bono: Number(bono),
-            diaRegistroTabla: String(registro.Dia), // <--- Usamos la columna Dia como identificador único
+            diaRegistroTabla: String(registro.Dia),
+            mesRegistroTabla: String(registro.Mes_registro || ""), // Enviamos el mes
+            anioRegistroTabla: String(registro.Ano_registro || ""), // Enviamos el año
           };
 
           console.log(data);
