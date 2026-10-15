@@ -4,7 +4,7 @@ window.addEventListener("load", () => {
 });
 
 const url =
-  "https://script.google.com/macros/s/AKfycbxWm36ZgDsGKkshjBGDNPbhL5QKLtgNPm75LGGPONkDIC5CR46RQukOuV560O6ndhd-/exec";
+  "https://script.google.com/macros/s/AKfycbxqoPLhCHREKieC_AiDhwv8c2auUmJaC67kipz5dojrBLQD9wGd5v7h6rmKkd-qapvD/exec";
 
 function mostrarLoader(container, mensaje) {
   container.innerHTML = `
@@ -64,8 +64,6 @@ function handleSendInfo() {
       day: "2-digit",
     }),
   );
-
-  console.log(DIA_MES);
 
   if (!dia_ppVal) {
     Swal.fire({
@@ -278,13 +276,13 @@ function getCliente() {
             loader.style.display = "flex";
 
             const registro = JSON.parse(btn.dataset.info);
+
+            // Reemplazamos la hora por la propiedad Dia de la tabla
             const data = {
               tipo: "update_bono",
-              cedula: String(registro.Cedula), // fuerza a string para comparación
-              bono: Number(bono), // vuelve número si corresponde
-              dia: String(registro.Dia_registro),
-              mes: String(registro.Mes_registro),
-              anio: String(registro.Ano_registro),
+              cedula: String(registro.Cedula),
+              bono: Number(bono),
+              diaRegistroTabla: String(registro.Dia), // <--- Usamos la columna Dia como identificador único
             };
 
             fetch(url, {
@@ -292,20 +290,20 @@ function getCliente() {
               mode: "no-cors",
               body: JSON.stringify(data),
             })
-              .then((res) => res.text())
               .then(() => {
                 btn.textContent = prevText;
                 loader.style.display = "none";
-                getCliente();
                 Swal.fire({
                   icon: "success",
                   allowOutsideClick: false,
-                  title: `Envio Exitoso.`,
+                  title: `Envío Exitoso.`,
                   text: `Información enviada de manera correcta.`,
                 });
                 getData();
+                getAllData();
               })
               .catch((error) => {
+                loader.style.display = "none";
                 Swal.fire({
                   icon: "error",
                   allowOutsideClick: false,
@@ -392,6 +390,9 @@ function getData() {
                         </td>
                     <td>${"..." + String(registro.Cedula).slice(-4) || ""}</td>
                     <td>${registro.Casino || ""}</td>
+                    <td style="display: none">
+  ${registro.Hora ? new Date(registro.Hora).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" }) : ""}
+</td>
                   </tr>
                 `,
               )
@@ -436,34 +437,36 @@ function getData() {
           loader.style.display = "flex";
 
           const registro = JSON.parse(btn.dataset.info);
+
+          // Reemplazamos la hora por la propiedad Dia de la tabla
           const data = {
             tipo: "update_bono",
-            cedula: String(registro.Cedula), // fuerza a string para comparación
-            bono: Number(bono), // vuelve número si corresponde
-            dia: String(registro.Dia_registro),
-            mes: String(registro.Mes_registro),
-            anio: String(registro.Ano_registro),
+            cedula: String(registro.Cedula),
+            bono: Number(bono),
+            diaRegistroTabla: String(registro.Dia), // <--- Usamos la columna Dia como identificador único
           };
+
+          console.log(data);
 
           fetch(url, {
             method: "POST",
             mode: "no-cors",
             body: JSON.stringify(data),
           })
-            .then((res) => res.text())
             .then(() => {
               btn.textContent = prevText;
               loader.style.display = "none";
               Swal.fire({
                 icon: "success",
                 allowOutsideClick: false,
-                title: `Envio Exitoso.`,
+                title: `Envío Exitoso.`,
                 text: `Información enviada de manera correcta.`,
               });
               getData();
               getAllData();
             })
             .catch((error) => {
+              loader.style.display = "none";
               Swal.fire({
                 icon: "error",
                 allowOutsideClick: false,

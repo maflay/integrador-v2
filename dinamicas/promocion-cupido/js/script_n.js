@@ -20,6 +20,8 @@ if (localStorage.getItem(FECHA_KEY) !== hoy) {
   localStorage.setItem(LS_KEY, JSON.stringify([]));
   localStorage.setItem(FECHA_KEY, hoy);
 }
+
+
 const user = inforUser();
 
 const PAIRS = [
