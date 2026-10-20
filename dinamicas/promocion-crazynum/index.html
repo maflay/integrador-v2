@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>Aladdin: Dragon Imperial</title>
+    <title>Aladdin: Números Locos</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/modal.css">
@@ -23,57 +23,13 @@
             </video>
         </div>
         <div class="content_opciones">
-            <select class="form-control" style="cursor: pointer;" id="casino">
-                <option value="">Casino...</option>
-                <option value="A05">A05</option>
-                <option value="A07">A07</option>
-                <option value="A08">A08</option>
-                <option value="A09">A09</option>
-                <option value="A10">A10</option>
-                <option value="A12">A12</option>
-                <option value="A12-MESAS">A12-MESAS</option>
-                <option value="A15">A15</option>
-                <option value="A15-MESAS">A15-MESAS</option>
-                <option value="A16">A16</option>
-                <option value="A19">A19</option>
-                <option value="A35">A35</option>
-                <option value="A36">A36</option>
-                <option value="A36-MESAS">A36-MESAS</option>
-                <option value="A38">A38</option>
-                <option value="A39">A39</option>
-                <option value="A43">A43</option>
-                <option value="A48">A48</option>
-                <option value="A48-MESAS">A48-MESAS</option>
-                <option value="A49">A49</option>
-                <option value="A50">A50</option>
-                <option value="A53">A53</option>
-                <option value="A58">A58</option>
-                <option value="A70">A70</option>
-                <option value="A781">A781</option>
-                <option value="A88">A88</option>
-                <option value="A100">A100</option>
-                <option value="A108">A108</option>
-                <option value="A108-MESAS">A108-MESAS</option>
-                <option value="A127">A127</option>
-                <option value="A127-MESAS">A127-MESAS</option>
-            </select>
-            <select class="form-control" id="categoria">
-                <option value="">Categoria...</option>
-                <option value="GENIUS">Genius</option>
-                <option value="TITANIO">Titanio</option>
-                <option value="LEGENDARIO">Legendario</option>
-                <option value="GOLD">Gold</option>
-                <option value="SILVER">Silver</option>
-                <option value="BRONCE">Bronce</option>
-                <option value="SUPERIOR">Superior</option>
-                <option value="ESTANDAR">Estandar</option>
-            </select>
+
             <img id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
         </div>
-        <div class="container">
+        <div class="_container_">
             <h2>Generador</h2>
             <div class="input-group">
-                <input type="number" id="numeroInput" min="1" max="9999" placeholder="Ingresa un número (ej. 45)">
+                <input type="number" id="numeroInput" min="1" max="9999" placeholder="Ingresa un número (ej. 15)">
             </div>
             <button id="btnBuscar" onclick="iniciarBusqueda()">Generar Número</button>
         </div>
@@ -81,7 +37,6 @@
             <div class="content_numeros_gene"></div>
         </div>
     </div>
-    <img id="btn_tablas_premio" class="btn_tablas_premio" src="/resource/btn_premio.png" alt="Aladdin">
 
     <section id="modal_premios" class="modal_premios">
         <img class="close_modal_premios" id="close_modal_premios"
@@ -112,7 +67,7 @@
                 <div class="content_opcion_head">
                     <p id="btn_guardar_registro">Guardar Registro</p>
                 </div>
-                <div class="content_opcion_head">
+                <div style="display: none;" class="content_opcion_head">
                     <p id="btn_envio_secundario">Envio Secundario</p>
                 </div>
                 <div class="content_opcion_head">
@@ -132,9 +87,56 @@
                 <div class="info_body_modal">
                     <h2>Guardar Registro</h2>
                     <div class="datos_column_modal">
-                        <div style="display: flex;gap: 10px;">
+                        <div class="_content_datos_colum_modal">
                             <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
                                 style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre" />
+                                <input type="number" name="cedula" id="cedula" placeholder="Cédula" class="form-control">
+                            <select class="form-control" style="cursor: pointer;" id="casino">
+                                <option value="">Casino...</option>
+                                <option value="A05">A05</option>
+                                <option value="A07">A07</option>
+                                <option value="A08">A08</option>
+                                <option value="A09">A09</option>
+                                <option value="A10">A10</option>
+                                <option value="A10-MESAS">A10-MESAS</option>
+                                <option value="A12">A12</option>
+                                <option value="A12-MESAS">A12-MESAS</option>
+                                <option value="A15">A15</option>
+                                <option value="A15-MESAS">A15-MESAS</option>
+                                <option value="A16">A16</option>
+                                <option value="A19">A19</option>
+                                <option value="A35">A35</option>
+                                <option value="A36">A36</option>
+                                <option value="A36-MESAS">A36-MESAS</option>
+                                <option value="A38">A38</option>
+                                <option value="A39">A39</option>
+                                <option value="A43">A43</option>
+                                <option value="A48">A48</option>
+                                <option value="A48-MESAS">A48-MESAS</option>
+                                <option value="A49">A49</option>
+                                <option value="A50">A50</option>
+                                <option value="A53">A53</option>
+                                <option value="A58">A58</option>
+                                <option value="A70">A70</option>
+                                <option value="A781">A781</option>
+                                <option value="A88">A88</option>
+                                <option value="A100">A100</option>
+                                <option value="A108">A108</option>
+                                <option value="A108-MESAS">A108-MESAS</option>
+                                <option value="A127">A127</option>
+                                <option value="A127-MESAS">A127-MESAS</option>
+                            </select>
+                            <select class="form-control" id="categoria">
+                                <option value="">Categoria...</option>
+                                <option value="GENIUS">Genius</option>
+                                <option value="TITANIO">Titanio</option>
+                                <option value="LEGENDARIO">Legendario</option>
+                                <option value="GOLD">Gold</option>
+                                <option value="SILVER">Silver</option>
+                                <option value="BRONCE">Bronce</option>
+                                <option value="SUPERIOR">Superior</option>
+                                <option value="ESTANDAR">Estandar</option>
+                            </select>
                         </div>
                         <div class="content_btn_modal">
                             <button title="Enviar" id="btn_enviar" class="btn btn-primary">Enviar</button>
@@ -154,6 +156,7 @@
                                 <option value="A08">A08</option>
                                 <option value="A09">A09</option>
                                 <option value="A10">A10</option>
+                                <option value="A10-MESAS">A10-MESAS</option>
                                 <option value="A12">A12</option>
                                 <option value="A12-MESAS">A12-MESAS</option>
                                 <option value="A15">A15</option>
@@ -232,6 +235,7 @@
                             <option value="A08">A08</option>
                             <option value="A09">A09</option>
                             <option value="A10">A10</option>
+                            <option value="A10-MESAS">A10-MESAS</option>
                             <option value="A12">A12</option>
                             <option value="A12-MESAS">A12-MESAS</option>
                             <option value="A15">A15</option>
@@ -280,6 +284,10 @@
                 <div class="info_body_modal">
                     <h2>Registro del Dia</h2>
                     <div id="Info_result_dia"></div>
+                    <div class="_control_cedu_search_">
+                        <input type="text" name="cedu_search" class="form-control" placeholder="Cédula" id="val_cedu_search">
+                        <button class="btn btn-primary" id="btn_cedu_search">Buscar</button>
+                    </div>
                     <div class="result_dia_acumula" id="result_dia_acumula"></div>
                 </div>
             </div>

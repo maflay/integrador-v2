@@ -172,6 +172,14 @@
     border: #aaaaaa solid 1px;
 }
 
+._content_datos_colum_modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 .content_btn_modal {
     margin-bottom: 20px;
 }

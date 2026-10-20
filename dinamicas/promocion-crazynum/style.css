@@ -70,18 +70,10 @@
 }
 
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #0f172a;
-    color: #f8fafc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-}
-
-.container {
+._container_ {
+    position: relative;
+    top: 10px;
+    left: 10px;
     background-color: #1e293b;
     padding: 2.5rem;
     border-radius: 1rem;
@@ -90,17 +82,17 @@ body {
     width: 350px;
 }
 
-h2 {
+._container_ h2 {
     margin-bottom: 1.5rem;
     font-size: 1.25rem;
     color: #38bdf8;
 }
 
-.input-group {
+._container_ .input-group {
     margin-bottom: 1.5rem;
 }
 
-input[type="number"] {
+._container_ input[type="number"] {
     width: 100%;
     padding: 0.75rem;
     border-radius: 0.5rem;
@@ -112,9 +104,9 @@ input[type="number"] {
     text-align: center;
 }
 
-button {
+._container_ button {
     background-color: #38bdf8;
-    color: #0f172a;
+    color: #fff;
     border: none;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -125,16 +117,17 @@ button {
     transition: background-color 0.2s;
 }
 
-button:hover {
+._container_ button:hover {
     background-color: #0ea5e9;
 }
 
-button:disabled {
+._container_ button:disabled {
     background-color: #64748b;
     cursor: not-allowed;
 }
 
 .display-box {
+    width: 100px;
     margin-top: 2rem;
     font-size: 1.4rem;
     font-family: monospace;
@@ -147,19 +140,22 @@ button:disabled {
 }
 
 ._order_numero_gene_ {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    overflow-y: auto;
     width: 100%;
+    max-width: 1100px;
+    height: 100%;
+    max-height: 400px;
+    position: relative;
+    right: 60px;
 }
 
 .content_numeros_gene {
     display: grid;
-    grid-template-columns: repeat(15, 5%);
+    grid-template-columns: repeat(10, 5%);
     gap: 15px;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    gap: 10px;
+    gap: 0px;
     width: 100%;
 }
 
@@ -175,4 +171,12 @@ button:disabled {
 .itemt_show.add_flex {
     opacity: 1;
     visibility: visible;
+}
+
+._control_cedu_search_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
