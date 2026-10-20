@@ -180,3 +180,12 @@
     gap: 10px;
     margin-bottom: 20px;
 }
+
+._control_cedu_search_>img {
+    width: 30px;
+}
+
+._control_cedu_search_>img:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}

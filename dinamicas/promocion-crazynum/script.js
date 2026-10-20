@@ -153,7 +153,6 @@ function getData() {
           .flatMap((registro) => {
             let resultadoTexto = String(registro.Resultado || "");
             let numerosArray = resultadoTexto.split(/[.,]/);
-            console.log(registro);
             let horaFormateada = "";
             if (registro.Hora) {
               try {
