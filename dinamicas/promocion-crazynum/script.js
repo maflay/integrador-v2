@@ -147,8 +147,51 @@ function getData() {
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
-        console.log(data);
-      if (data.length > 0) {
+      if (data && data.length > 0) {
+        let filasHTML = data
+          .reverse()
+          .flatMap((registro) => {
+            let resultadoTexto = String(registro.Resultado || "");
+            let numerosArray = resultadoTexto.split(/[.,]/);
+            console.log(registro);
+            let horaFormateada = "";
+            if (registro.Hora) {
+              try {
+                horaFormateada = new Date(registro.Hora).toLocaleTimeString(
+                  "es-CO",
+                  {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                  },
+                );
+              } catch (e) {
+                horaFormateada = "";
+              }
+            }
+
+            let fechaStr = registro.Fecha
+              ? registro.Fecha.substring(0, 10)
+              : "";
+
+            return numerosArray.map((numIndividual) => {
+              let numeroLimpio = numIndividual.trim();
+              let numeroFormateado = numeroLimpio
+                ? String(numeroLimpio).padStart(4, "0")
+                : "";
+
+              return `
+                <tr>
+                  <td>-</td> <!-- Se puede actualizar el índice luego si lo deseas -->
+                  <td>${registro.Nombre || ""}</td>
+                  <td>${fechaStr} ${horaFormateada}</td>
+                  <td><strong>${numeroFormateado}</strong></td>
+                  <td>${registro.Casino || ""}</td>
+                </tr>
+              `;
+            });
+          })
+          .join("");
+
         result_dia_acumula.innerHTML = `
           <div class="table-result table-scrolld">
             <table class="styled-table">
@@ -162,32 +205,16 @@ function getData() {
                 </tr>
               </thead>
               <tbody>
-               ${data
-                 .reverse()
-                 .map((registro, i) => {
-                   // Formateamos la hora aquí mismo
-                   const horaFormateada = new Date(
-                     registro.Hora,
-                   ).toLocaleTimeString("es-CO", {
-                     hour: "2-digit",
-                     minute: "2-digit",
-                   });
-
-                   return `
-            <tr>
-              <td>${i + 1}</td>
-              <td>${registro.Nombre}</td>
-              <td>${registro.Fecha.substring(0, 10)} - ${horaFormateada}</td>
-              <td>${registro.Resultado}</td>
-              <td>${registro.Casino}</td>
-            </tr>
-          `;
-                 })
-                 .join("")}
+                ${filasHTML}
               </tbody>
             </table>
           </div>
         `;
+
+        const filasTabla = result_dia_acumula.querySelectorAll("tbody tr");
+        filasTabla.forEach((tr, index) => {
+          tr.querySelector("td").textContent = index + 1;
+        });
       } else {
         console.log("No se encontró ninguna coincidencia.");
         result_dia_acumula.innerHTML = `No se encontró ninguna coincidencia.`;
