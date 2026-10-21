@@ -33,65 +33,80 @@ function handleSendInfo() {
     });
     return;
   }
-
-  const fechaCompleta = new Date().toLocaleString("es-CO", {
-    timeZone: "America/Bogota",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-  });
-  const [fecha, hora] = fechaCompleta.split(", ");
-
-  let data = {
-    tipo: "dinamica",
-    Hora: hora,
-    Fecha: fecha,
-    Nombre: nombre.value,
-    Cedula: cedula.value,
-    Casino: casino.value,
-    Categoria: categoria.value,
-    Puntaje: puntaje.value,
-    Bono: bono.value,
-    Promo: Promocion,
-    Usuario: user.Nombre,
-  };
-
   loader.style.display = "flex";
 
-  fetch(url, {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(data),
-  })
-    .then((res) => res.text())
-    .then(() => {
-      loader.style.display = "none";
-      nombre.value = "";
-      cedula.value = "";
-      casino.value = "";
-      categoria.value = "";
-      puntaje.value = "";
-      bono.value = "";
-      getData();
-      Swal.fire({
-        icon: "success",
-        title: "Envió Exitoso",
-      });
-    })
-    .catch((error) => {
-      loader.style.display = "none";
-      Swal.fire({
-        icon: error,
-        title: "Error en el envio",
-      });
+  fetch(`${url}?hoja=dinamica&cedula=${cedula.value}`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.length != 0) {
+        loader.style.display = "none";
+        Swal.fire({
+          icon: "info",
+          title: "El jugador ya existe",
+        });
+        return;
+      } else {
+        const fechaCompleta = new Date().toLocaleString("es-CO", {
+          timeZone: "America/Bogota",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+          hour12: false,
+        });
+        const [fecha, hora] = fechaCompleta.split(", ");
+
+        let data = {
+          tipo: "dinamica",
+          Hora: hora,
+          Fecha: fecha,
+          Nombre: nombre.value,
+          Cedula: cedula.value,
+          Casino: casino.value,
+          Categoria: categoria.value,
+          Puntaje: puntaje.value,
+          Bono: bono.value,
+          Promo: Promocion,
+          Usuario: user.Nombre,
+        };
+
+        fetch(url, {
+          method: "POST",
+          mode: "no-cors",
+          body: JSON.stringify(data),
+        })
+          .then((res) => res.text())
+          .then(() => {
+            loader.style.display = "none";
+            nombre.value = "";
+            cedula.value = "";
+            casino.value = "";
+            categoria.value = "";
+            puntaje.value = "";
+            bono.value = "";
+            getData();
+            Swal.fire({
+              icon: "success",
+              title: "Envió Exitoso",
+            });
+          })
+          .catch((error) => {
+            loader.style.display = "none";
+            Swal.fire({
+              icon: error,
+              title: "Error en el envio",
+            });
+          });
+      }
     });
 }
 
-getData();
+document.getElementById("btn_opciones").addEventListener("click", () => {
+  getData();
+});
+
 function getData() {
   let container = document.getElementById("result_dia_acumula");
   container.innerHTML = `Cargando...`;
@@ -181,7 +196,7 @@ function getData() {
                 Number(puntaje) + Number(tdpunt.textContent),
               );
 
-              valorSum = Number(tdpunt.textContent);
+            valorSum = Number(tdpunt.textContent);
           }
 
           const registro = JSON.parse(btn.dataset.info);

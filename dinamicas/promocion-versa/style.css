@@ -46,7 +46,7 @@
     gap: 30px;
     color: white;
     font-family: 'super wonder', sans-serif !important;
-    background-image: linear-gradient(180deg, #000000d3) ,url(/dinamicas/promocion-versa/resources/nissan-versa-2020-777461.png);
+    /* background-image: linear-gradient(180deg, #000000d3) ,url(/dinamicas/promocion-versa/resources/nissan-versa-2020-777461.png); */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -61,4 +61,25 @@
     gap: 20px;
     background-image: linear-gradient(120deg, #5a0000, #5c5c5c,#5a0000);
     border: white 1px solid;
+}
+
+._content_video_show_ {
+    display: flex;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+._content_video_show_::before {
+    content: "";
+    position: absolute;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.671));
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
 }
