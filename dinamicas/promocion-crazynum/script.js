@@ -2,7 +2,96 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
-function iniciarBusqueda() {
+// function iniciarBusqueda() {
+//   const numeroInput = document.getElementById("numeroInput");
+//   const contenedor = document.querySelector(".content_numeros_gene");
+//   contenedor.innerHTML = "";
+
+//   const cantidad = parseInt(numeroInput.value);
+//   if (isNaN(cantidad) || cantidad <= 0) {
+//     alert("Ingresa una cantidad válida");
+//     return;
+//   }
+
+//   let cargando = document.createElement("p");
+//   cargando.textContent = "Cargando...";
+//   contenedor.appendChild(cargando);
+
+//   const hoyStr = new Date().toISOString().slice(0, 10);
+//   let historialKey = `numeros_usados_${hoyStr}`;
+
+//   let numerosYaUsados = JSON.parse(localStorage.getItem(historialKey)) || [];
+
+//   let numerosDisponibles = [];
+//   for (let i = 1; i <= 9999; i++) {
+//     let numStr = String(i).padStart(4, "0");
+//     if (!numerosYaUsados.includes(numStr)) {
+//       numerosDisponibles.push(numStr);
+//     }
+//   }
+
+//   if (numerosDisponibles.length < cantidad) {
+//     cargando.remove();
+//     Swal.fire({
+//       icon: "error",
+//       title: "¡Límite alcanzado!",
+//       text: "Ya se han agotado los números disponibles para el día de hoy.",
+//     });
+//     return;
+//   }
+
+//   for (let i = numerosDisponibles.length - 1; i > 0; i--) {
+//     let j = Math.floor(Math.random() * (i + 1));
+//     let temp = numerosDisponibles[i];
+//     numerosDisponibles[i] = numerosDisponibles[j];
+//     numerosDisponibles[j] = temp;
+//   }
+
+//   let numerosSeleccionados = numerosDisponibles.slice(0, cantidad);
+
+//   numerosYaUsados.push(...numerosSeleccionados);
+//   localStorage.setItem(historialKey, JSON.stringify(numerosYaUsados));
+
+//   let tiempoTranscurido = 0;
+//   const duracionTotal = 1000;
+//   const intervaloVelocidad = 50;
+//   let elementosCreados = [];
+
+//   for (let i = 0; i < cantidad; i++) {
+//     let valorEntrada = document.createElement("p");
+//     valorEntrada.classList.add("itemt_show", "display-box");
+//     valorEntrada.textContent = "0000";
+//     contenedor.appendChild(valorEntrada);
+//     elementosCreados.push(valorEntrada);
+//   }
+
+//   const intervalId = setInterval(() => {
+//     tiempoTranscurido += intervaloVelocidad;
+
+//     elementosCreados.forEach((el) => {
+//       let randomTemp = Math.floor(Math.random() * 9999) + 1;
+//       el.textContent = String(randomTemp).padStart(4, "0");
+//     });
+
+//     if (tiempoTranscurido >= duracionTotal) {
+//       clearInterval(intervalId);
+//       cargando.remove();
+
+//       elementosCreados.forEach((el, index) => {
+//         let numeroFormateado = numerosSeleccionados[index];
+
+//         el.id = numeroFormateado;
+//         el.textContent = numeroFormateado;
+
+//         setTimeout(() => {
+//           el.classList.add("add_flex");
+//         }, index * 1000);
+//       });
+//     }
+//   }, intervaloVelocidad);
+// }
+
+async function iniciarBusqueda() {
   const numeroInput = document.getElementById("numeroInput");
   const contenedor = document.querySelector(".content_numeros_gene");
   contenedor.innerHTML = "";
@@ -12,47 +101,112 @@ function iniciarBusqueda() {
     alert("Ingresa una cantidad válida");
     return;
   }
+
   let cargando = document.createElement("p");
-  cargando.textContent = "Cargando...";
+  cargando.textContent = "Verificando números disponibles...";
   contenedor.appendChild(cargando);
-  let tiempoTranscurido = 0;
-  const duracionTotal = 5000;
-  const intervaloVelocidad = 50;
 
-  let elementosCreados = [];
+  try {
+    // 1. Consultamos a tu Google Script todos los registros del día
+    // (Asegúrate de que tu Apps Script devuelva todos los registros si no le mandas cédula, o crea un parámetro ?hoja=dinamica&todos=true)
+    let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica`;
 
-  for (let i = 0; i < cantidad; i++) {
-    let valorEntrada = document.createElement("p");
-    valorEntrada.classList.add("itemt_show", "display-box");
-    valorEntrada.textContent = "0000";
-    contenedor.appendChild(valorEntrada);
-    elementosCreados.push(valorEntrada);
-  }
+    let response = await fetch(url);
+    let data = await response.json();
 
-  const intervalId = setInterval(() => {
-    tiempoTranscurido += intervaloVelocidad;
-
-    elementosCreados.forEach((el) => {
-      let randomTemp = Math.floor(Math.random() * 9999) + 1;
-      el.textContent = String(randomTemp).padStart(4, "0");
-    });
-
-    if (tiempoTranscurido >= duracionTotal) {
-      clearInterval(intervalId);
-      cargando.remove();
-      elementosCreados.forEach((el, index) => {
-        let randomFinal = Math.floor(Math.random() * 9999) + 1;
-        let numeroFormateado = String(randomFinal).padStart(4, "0");
-
-        el.id = numeroFormateado;
-        el.textContent = numeroFormateado;
-
-        setTimeout(() => {
-          el.classList.add("add_flex");
-        }, index * 1000);
+    // 2. Extraemos todos los números que ya han salido hoy en la base de datos
+    let numerosOcupados = [];
+    if (data && Array.isArray(data)) {
+      data.forEach((registro) => {
+        let resultadoTexto = String(registro.Resultado || "");
+        let numerosArray = resultadoTexto.split(/[.,]/);
+        numerosArray.forEach((num) => {
+          let limpio = num.trim();
+          if (limpio) {
+            numerosOcupados.push(String(limpio).padStart(4, "0"));
+          }
+        });
       });
     }
-  }, intervaloVelocidad);
+
+    // 3. Construimos la lista de números disponibles (del 0001 al 9999 excluyendo los ocupados)
+    let numerosDisponibles = [];
+    for (let i = 1; i <= 9999; i++) {
+      let numStr = String(i).padStart(4, "0");
+      if (!numerosOcupados.includes(numStr)) {
+        numerosDisponibles.push(numStr);
+      }
+    }
+
+    // Validar si quedan suficientes números
+    if (numerosDisponibles.length < cantidad) {
+      cargando.remove();
+      Swal.fire({
+        icon: "error",
+        title: "¡Límite alcanzado!",
+        text: "No hay suficientes números libres en la base de datos para completar esta cantidad."
+      });
+      return;
+    }
+
+    // 4. Barajamos los disponibles (Fisher-Yates) de forma aleatoria
+    for (let i = numerosDisponibles.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      let temp = numerosDisponibles[i];
+      numerosDisponibles[i] = numerosDisponibles[j];
+      numerosDisponibles[j] = temp;
+    }
+
+    // 5. Tomamos exactamente la cantidad solicitada
+    let numerosSeleccionados = numerosDisponibles.slice(0, cantidad);
+    cargando.remove();
+
+    // 6. Mostramos la animación en pantalla con los números ya filtrados
+    let tiempoTranscurido = 0;
+    const duracionTotal = 1000;
+    const intervaloVelocidad = 50;
+    let elementosCreados = [];
+
+    for (let i = 0; i < cantidad; i++) {
+      let valorEntrada = document.createElement("p");
+      valorEntrada.classList.add("itemt_show", "display-box");
+      valorEntrada.textContent = "0000";
+      contenedor.appendChild(valorEntrada);
+      elementosCreados.push(valorEntrada);
+    }
+
+    const intervalId = setInterval(() => {
+      tiempoTranscurido += intervaloVelocidad;
+
+      elementosCreados.forEach((el) => {
+        let randomTemp = Math.floor(Math.random() * 9999) + 1;
+        el.textContent = String(randomTemp).padStart(4, "0");
+      });
+
+      if (tiempoTranscurido >= duracionTotal) {
+        clearInterval(intervalId);
+
+        elementosCreados.forEach((el, index) => {
+          let numeroFormateado = numerosSeleccionados[index];
+          el.id = numeroFormateado;
+          el.textContent = numeroFormateado;
+
+          setTimeout(() => {
+            el.classList.add("add_flex");
+          }, index * 1000);
+        });
+      }
+    }, intervaloVelocidad);
+
+  } catch (error) {
+    console.error("Error al obtener los números de la base de datos:", error);
+    cargando.remove();
+    Swal.fire({
+      icon: "error",
+      title: "Error de conexión",
+      text: "No se pudo verificar la disponibilidad de los números en el servidor."
+    });
+  }
 }
 
 document.getElementById("btn_enviar").addEventListener("click", () => {
