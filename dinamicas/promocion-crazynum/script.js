@@ -142,61 +142,101 @@ document.getElementById("btn_cedu_search").addEventListener("click", () => {
 
 function getData() {
   let result_dia_acumula = document.getElementById("result_dia_acumula");
-  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica&cedula=${document.getElementById("val_cedu_search").value}`;
+  let cedula = document.getElementById("val_cedu_search").value;
+  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica&cedula=${cedula}`;
+
   result_dia_acumula.innerHTML = `Cargando...`;
+
   fetch(url)
     .then((res) => res.json())
     .then((data) => {
       if (data && data.length > 0) {
-        let filasHTML = data
-          .reverse()
-          .flatMap((registro) => {
-            let resultadoTexto = String(registro.Resultado || "");
-            let numerosArray = resultadoTexto.split(/[.,]/);
-            let horaFormateada = "";
-            if (registro.Hora) {
-              try {
-                horaFormateada = new Date(registro.Hora).toLocaleTimeString(
-                  "es-CO",
-                  {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  },
-                );
-              } catch (e) {
-                horaFormateada = "";
-              }
+        let clienteNombre = data[0].Nombre || "CLIENTE";
+        let casinoNombre = data[0].Casino || "";
+
+        // Extraer todos los números asociados
+        let listaNumeros = [];
+        let fechasRegistros = [];
+
+        data.forEach((registro) => {
+          let resultadoTexto = String(registro.Resultado || "");
+          let numerosArray = resultadoTexto.split(/[.,]/);
+
+          let horaFormateada = "";
+          if (registro.Hora) {
+            try {
+              horaFormateada = new Date(registro.Hora).toLocaleTimeString(
+                "es-CO",
+                {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                },
+              );
+            } catch (e) {
+              horaFormateada = "";
             }
+          }
+          let fechaStr = registro.Fecha ? registro.Fecha.substring(0, 10) : "";
+          if (fechaStr) fechasRegistros.push(`${fechaStr} ${horaFormateada}`);
 
-            let fechaStr = registro.Fecha
-              ? registro.Fecha.substring(0, 10)
-              : "";
+          numerosArray.forEach((numIndividual) => {
+            let numeroLimpio = numIndividual.trim();
+            if (numeroLimpio) {
+              listaNumeros.push(String(numeroLimpio).padStart(4, "0"));
+            }
+          });
+        });
 
-            return numerosArray.map((numIndividual) => {
-              let numeroLimpio = numIndividual.trim();
-              let numeroFormateado = numeroLimpio
-                ? String(numeroLimpio).padStart(4, "0")
-                : "";
+        let fechaImpresion =
+          fechasRegistros[0] || new Date().toLocaleString("es-CO");
 
-              return `
-                <tr>
-                  <td>-</td> <!-- Se puede actualizar el índice luego si lo deseas -->
-                  <td>${registro.Nombre || ""}</td>
-                  <td>${fechaStr} ${horaFormateada}</td>
-                  <td><strong>${numeroFormateado}</strong></td>
-                  <td>${registro.Casino || ""}</td>
-                </tr>
-              `;
-            });
-          })
+        // Construcción de la lista de números para la tirilla
+        let numerosHTML = listaNumeros
+          .map(
+            (num, idx) => `
+            <div class="tirilla-item">
+              <span>#${idx + 1}</span>
+              <strong class="tirilla-num">${num}</strong>
+            </div>
+          `,
+          )
           .join("");
 
+        // Filas para la vista normal en pantalla (Tabla)
+        let filasTablaHTML = listaNumeros
+          .map(
+            (num, idx) => `
+            <tr>
+              <td>${idx + 1}</td>
+              <td>${clienteNombre}</td>
+              <td>${fechaImpresion}</td>
+              <td><strong>${num}</strong></td>
+              <td>${casinoNombre}</td>
+            </tr>
+          `,
+          )
+          .join("");
+
+        // Guardamos los datos estructurados para la impresión en una propiedad global
+        window.datosTirillaActual = {
+          nombre: clienteNombre,
+          cedula: cedula,
+          casino: casinoNombre,
+          fecha: fechaImpresion,
+          numeros: listaNumeros,
+        };
+
         result_dia_acumula.innerHTML = `
-          <div class="table-result table-scrolld">
+          <div style="margin-bottom: 10px; text-align: right;">
+            <button onclick="imprimirResultadosPOS()" class="btn-imprimir" title="Imprimir Tirilla">
+              <img id="_excel_search_" src="/resource/impresion.png" alt="Imprimir">
+            </button>
+          </div>
+          <div class="table-result table-scrolld table_all_data">
             <table class="styled-table">
               <thead>
                 <tr>
-                  <th># Registro</th>
+                  <th>#</th>
                   <th>Usuario</th>
                   <th>Fecha</th>
                   <th>Número</th>
@@ -204,16 +244,11 @@ function getData() {
                 </tr>
               </thead>
               <tbody>
-                ${filasHTML}
+                ${filasTablaHTML}
               </tbody>
             </table>
           </div>
         `;
-
-        const filasTabla = result_dia_acumula.querySelectorAll("tbody tr");
-        filasTabla.forEach((tr, index) => {
-          tr.querySelector("td").textContent = index + 1;
-        });
       } else {
         console.log("No se encontró ninguna coincidencia.");
         result_dia_acumula.innerHTML = `No se encontró ninguna coincidencia.`;
@@ -224,7 +259,70 @@ function getData() {
           text: `No se encontró ninguna coincidencia.`,
         });
       }
+    })
+    .catch((error) => {
+      console.error("Error en la petición:", error);
+      result_dia_acumula.innerHTML = `Error al cargar los datos.`;
     });
+}
+
+function imprimirResultadosPOS() {
+  let datos = window.datosTirillaActual;
+  if (!datos) {
+    Swal.fire({ icon: "warning", title: "No hay datos para imprimir" });
+    return;
+  }
+
+  let contenedor = document.getElementById("print-container");
+  if (!contenedor) {
+    contenedor = document.createElement("div");
+    contenedor.id = "print-container";
+    document.body.appendChild(contenedor);
+  }
+
+  let numerosTirilla = datos.numeros
+    .map(
+      (num, idx) => `
+        <div class="pos-row">
+          <span>NÚMERO ${idx + 1}:</span>
+          <span class="pos-num">${num}</span>
+        </div>
+      `,
+    )
+    .join("");
+
+  contenedor.innerHTML = `
+        <div class="ticket-pos">
+            <div class="pos-header">
+                <h2>CASINOS ALADDIN</h2>
+                <p><strong>PROMO: NÚMEROS LOCOS</strong></p>
+                <p>CASINO: ${datos.casino || "GENERAL"}</p>
+            </div>
+            <div class="pos-divider">--------------------------------</div>
+            <div class="pos-info">
+                <p><strong>CLIENTE:</strong> ${datos.nombre}</p>
+                <p><strong>CÉDULA:</strong> ${datos.cedula}</p>
+                <p><strong>FECHA:</strong> ${datos.fecha}</p>
+            </div>
+            <div class="pos-divider">--------------------------------</div>
+            <div class="pos-title">NÚMEROS REGISTRADOS</div>
+            <div class="pos-numeros">
+                ${numerosTirilla}
+            </div>
+            <div class="pos-divider">--------------------------------</div>
+            <div class="pos-footer">
+                <p>TOTAL JUGADAS: ${datos.numeros.length}</p>
+                <p>¡Gracias por participar!</p>
+                <p>Conserve este tiquete</p>
+            </div>
+        </div>
+    `;
+
+  window.print();
+
+  setTimeout(() => {
+    contenedor.innerHTML = "";
+  }, 1000);
 }
 
 document

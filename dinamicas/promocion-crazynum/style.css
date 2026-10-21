@@ -163,7 +163,7 @@
     opacity: 0;
     visibility: hidden;
     transition: all 0.4s ease;
-    display: flex; 
+    display: flex;
     align-items: center;
     justify-content: center;
 }
@@ -181,11 +181,105 @@
     margin-bottom: 20px;
 }
 
-._control_cedu_search_>img {
+.btn-imprimir>img {
     width: 30px;
 }
 
-._control_cedu_search_>img:hover {
+.btn-imprimir>img:hover {
     cursor: pointer;
     opacity: 0.7;
+}
+
+/* Reglas de impresión para impresoras térmicas (POS) */
+@media print {
+    body * {
+        visibility: hidden !important;
+    }
+
+    #print-container,
+    #print-container * {
+        visibility: visible !important;
+    }
+
+    #print-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    @page {
+        size: 80mm auto;
+        /* Formato estándar de tirilla térmica */
+        margin: 0;
+    }
+}
+
+/* Diseño de la tirilla de apuesta/recarga */
+.ticket-pos {
+    width: 72mm;
+    margin: 0 auto;
+    padding: 10px 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: #000;
+    background: #fff;
+}
+
+.ticket-pos .pos-header {
+    text-align: center;
+}
+
+.ticket-pos .pos-header h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 4px 0;
+}
+
+.ticket-pos .pos-header p {
+    margin: 2px 0;
+    font-size: 11px;
+}
+
+.ticket-pos .pos-divider {
+    text-align: center;
+    font-weight: bold;
+    margin: 4px 0;
+    letter-spacing: -1px;
+}
+
+.ticket-pos .pos-info p {
+    margin: 3px 0;
+    font-size: 11px;
+}
+
+.ticket-pos .pos-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    margin: 6px 0;
+}
+
+.ticket-pos .pos-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 5px;
+    font-size: 12px;
+}
+
+.ticket-pos .pos-num {
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.ticket-pos .pos-footer {
+    text-align: center;
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+.ticket-pos .pos-footer p {
+    margin: 2px 0;
 }

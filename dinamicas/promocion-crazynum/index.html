@@ -90,7 +90,7 @@
                         <div class="_content_datos_colum_modal">
                             <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
                                 style=" cursor: pointer;" type="text" id="nombre" placeholder="Nombre" />
-                                <input type="number" name="cedula" id="cedula" placeholder="Cédula" class="form-control">
+                            <input type="number" name="cedula" id="cedula" placeholder="Cédula" class="form-control">
                             <select class="form-control" style="cursor: pointer;" id="casino">
                                 <option value="">Casino...</option>
                                 <option value="A05">A05</option>
@@ -285,9 +285,10 @@
                     <h2>Registro del Dia</h2>
                     <div id="Info_result_dia"></div>
                     <div class="_control_cedu_search_">
-                        <input type="text" name="cedu_search" class="form-control" placeholder="Cédula" id="val_cedu_search">
+                        <input type="text" name="cedu_search" class="form-control" placeholder="Cédula"
+                            id="val_cedu_search">
                         <button class="btn btn-primary" id="btn_cedu_search">Buscar</button>
-                        <img id="_excel_search_" src="/resource/impresion.png" alt="Aladdin">
+
                     </div>
                     <div class="result_dia_acumula" id="result_dia_acumula"></div>
                 </div>
@@ -297,6 +298,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/dinamicas/actions_js/menu_modal.js"></script>
