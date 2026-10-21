@@ -417,3 +417,43 @@
         border-radius: 20px;
     }
 }
+
+
+
+
+.table_input_puntaje_pp {
+    width: 80px;
+    font-size: 0.5rem;
+    border: rgb(219, 219, 219) solid 1px;
+    border-radius: 10px;
+    padding: 3px 4px;
+}
+
+.table_input_puntaje_pp:focus {
+    outline: none;
+    border: #aaaaaa solid 1px;
+}
+
+
+.table_ya_tiene_bono {
+    color: rgb(8, 209, 8);
+    font-size: 0.5rem;
+}
+
+.btn-enviar-pp {
+    font-size: 10px !important;
+    padding: 2px 5px !important;
+    border-radius: 10px !important;
+}
+
+.btn-enviar-puntaje {
+    font-size: 10px !important;
+    padding: 2px 5px !important;
+    border-radius: 10px !important;
+}
+
+.btn-enviar-bono {
+    font-size: 10px !important;
+    padding: 2px 5px !important;
+    border-radius: 10px !important;
+}

@@ -7,6 +7,7 @@ document.getElementById("send_prim").addEventListener("click", () => {
 });
 
 let loader = document.getElementById("loader");
+let url = "https://script.google.com/macros/s/AKfycbyRHfl8Zt4lHsDWtfREcJcTdmFSrStzKL23LCK0juF-GJ-EP6wQACCK0DAyUMJ2SIzxWQ/exec";
 
 function handleSendInfo() {
   let nombre = document.getElementById("nombre");
@@ -45,17 +46,17 @@ function handleSendInfo() {
   const [fecha, hora] = fechaCompleta.split(", ");
 
   let data = {
-    tipo: "envio_1",
-    valor_1: hora,
-    valor_2: fecha,
-    valor_3: nombre.value,
-    valor_4: cedula.value,
-    valor_5: casino.value,
-    valor_6: categoria.value,
-    valor_7: puntaje.value,
-    valor_8: bono.value,
-    valor_9: Promocion,
-    valor_10: user.Nombre,
+    tipo: "dinamica",
+    Hora: hora,
+    Fecha: fecha,
+    Nombre: nombre.value,
+    Cedula: cedula.value,
+    Casino: casino.value,
+    Categoria: categoria.value,
+    Puntaje: puntaje.value,
+    Bono: bono.value,
+    Promo: Promocion,
+    Usuario: user.Nombre,
   };
 
   loader.style.display = "flex";
@@ -86,4 +87,157 @@ function handleSendInfo() {
         title: "Error en el envio",
       });
     });
+}
+
+getData();
+function getData(){
+    let container = document.getElementById("result_dia_acumula");
+        container.innerHTML = `Cargando...`;
+
+    fetch(`${url}?hoja=dinamica`)
+    .then((res) => res.json())
+    .then((data) => {
+        console.log(data);
+
+        container.innerHTML = `
+        <div class="table-result table-scrolld">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Cedula</th>
+                <th>Fecha</th>
+                <th>Puntaje <br /> Actual</th>
+                <th>Actualizar <br /> Puntaje</th>
+                <th>Opciones</th>
+                <th>Casino</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${data
+                .map(
+                  (registro, i) => `
+                  <tr>
+                  <td>${i + 1}</td>
+                    <td>${
+                      registro.Nombre ? registro.Nombre.substring(0, 10) : ""
+                    }</td>
+                    <td>${registro.Cedula}</td>
+                    <td>${
+                      registro.Fecha ? registro.Fecha.substring(0, 10) : ""
+                    }</td>
+                    <td>${registro.Puntaje || 0}</td>
+                    <td><input placeholder="Puntaje" type="number" class="table_input_puntaje_pp"></td>
+                    <td><button  data-info='${JSON.stringify(
+                      registro
+                    )}' class="btn btn-primary btn-enviar-puntaje">Enviar</button></td>
+                    <td>${
+                      registro.Casino 
+                    }</td>
+                  </tr>`
+                )
+                .join("")}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+
+        document.querySelectorAll(".btn-enviar-puntaje").forEach((btn) => {
+          btn.addEventListener("click", async () => {
+            const fila = btn.closest("tr");
+            const puntajeInput = fila.querySelector(".table_input_puntaje_pp");
+            const puntaje = (puntajeInput?.value || "").trim();
+
+            if (!puntaje) {
+              Swal.fire({ icon: "warning", title: "Falta el Nuevo Puntaje" });
+              return; // evita dejar el loader activo
+            }
+
+            // UI
+            const prevText = btn.textContent;
+            btn.textContent = "Enviando...";
+            btn.disabled = true;
+            loader.style.display = "flex";
+
+            function escapeHtml(s) {
+              return String(s).replace(
+                /[&<>"']/g,
+                (m) =>
+                  ({
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;",
+                  }[m])
+              );
+            }
+
+            let valAnterior;
+            if (fila) {
+              const tdpunt = fila.querySelector("td:nth-child(5)");
+              const tdBono = fila.querySelector("td:nth-child(6)");
+              const tdAcc = fila.querySelector("td:nth-child(7)");
+              if (tdBono) tdpunt.innerHTML = escapeHtml(Number(puntaje) + Number(tdpunt.textContent));
+            }
+
+
+            const registro = JSON.parse(btn.dataset.info);
+            const data = {
+              tipo: "update_puntaje",
+              match: { Cedula: registro.Cedula },
+              Puntaje: puntaje,
+            };
+
+            // let horaFormateada = new Date(registro.Hora).toLocaleTimeString(
+            //     "es-CO",
+            //     {
+            //       hour: "2-digit",
+            //       minute: "2-digit",
+            //     },
+            //   );
+
+            // let bodyPut = {
+            //   Hora: horaFormateada,
+            //   Fecha: registro.Fecha.substring(0, 10),
+            //   Nombre: registro.Nombre,
+            //   Cedula: registro.Cedula,
+            //   Casino: registro.Casino,
+            //   Categoria: registro.Categoria,
+            //   Puntaje: puntaje,
+            //   Promo: registro.Promo,
+            //   Usuario: registro.Usuario,
+            // };
+
+
+            fetch(url, {
+              method: "POST",
+              mode: "no-cors",
+              body: JSON.stringify(data),
+            })
+              .then((res) => res.text())
+              .then(() => {
+                btn.textContent = prevText;
+                loader.style.display = "none";
+                puntajeInput.value = "";
+                Swal.fire({
+                  icon: "success",
+                  allowOutsideClick: false,
+                  title: `Envio Exitoso.`,
+                  text: `Información enviada de manera correcta.`,
+                });
+              })
+              .catch((error) => {
+                Swal.fire({
+                  icon: "error",
+                  allowOutsideClick: false,
+                  title: `Error.`,
+                  text: `Ha ocurrido un error.`,
+                });
+              });
+          });
+        });
+    })
 }

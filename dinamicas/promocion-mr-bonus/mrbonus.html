@@ -98,6 +98,8 @@
                             <option value="Sorteo 5">Sorteo 5</option>
                             <option value="Sorteo 6">Sorteo 6</option>
                             <option value="Sorteo 7">Sorteo 7</option>
+                            <option value="Sorteo 8">Sorteo 8</option>
+                            <option value="Sorteo 9">Sorteo 9</option>
                         </select>
                     </div>
                     <div class="content_input">
@@ -117,8 +119,8 @@
             src="/dinamicas/descubiertos/resources/close_boton.png" alt="Aladdin">
         <img class="modal_cambiar_premio" id="modal_cambiar_premio" src="/resource/img_cambiar.png" alt="Aladdin">
         <div class="_content_modal_premios_">
-            <img id="img_premios_1" class="img_premios_1"
-                src="/dinamicas/promocion-mr-bonus/resource/tabla_premios.png" alt="Aladdin">
+            <img id="img_premios_1" class="img_premios_1" src="/dinamicas/promocion-mr-bonus/resource/tabla_premios.png"
+                alt="Aladdin">
 
         </div>
     </section>
@@ -138,7 +140,7 @@
                 <div class="content_opcion_head">
                     <p id="btn_observacion">Observación</p>
                 </div>
-                <div style="display: none;" class="content_opcion_head">
+                <div class="content_opcion_head">
                     <p id="btn_tabla_premios">Tabla de Premios</p>
                 </div>
                 <div class="content_opcion_head">
@@ -281,7 +283,836 @@
             <div id="view_tabla_premios" class="content_body_modal">
                 <div class="info_body_modal">
                     <h2>Tabla de Premios</h2>
+                    <div class="table-result container">
+                        <h2>Mr Bonus ESTANDAR</h2>
+                        <table class="styled-table" id="tabla-mrbonus-estandar">
+                            <thead style="position: relative;">
+                                <tr>
+                                    <th>LOCAL</th>
+                                    <th>SORTEOS</th>
+                                    <th>1 SORTEOS</th>
+                                    <th>2 SORTEOS</th>
+                                    <th>3 SORTEOS</th>
+                                    <th>4 SORTEOS</th>
+                                    <th>5 SORTEOS</th>
+                                    <th>6 SORTEOS</th>
+                                    <th>7 SORTEOS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>A12-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>MP15-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td>A15-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A19</td>
+                                    <td>5</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A50</td>
+                                    <td>7</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td>A58</td>
+                                    <td>7</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A70</td>
+                                    <td>7</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A38</td>
+                                    <td>5</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A35</td>
+                                    <td>6</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A36</td>
+                                    <td>5</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A36-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A39</td>
+                                    <td>6</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A88</td>
+                                    <td>4</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A48</td>
+                                    <td>5</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A48-MESAS</td>
+                                    <td>3</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A49</td>
+                                    <td>4</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>MP100</td>
+                                    <td>3</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>MP100-MESAS</td>
+                                    <td>3</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A127-MESAS</td>
+                                    <td>5</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>MP108-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A781</td>
+                                    <td>6</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>N/A</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                        <h2>Mr Bonus SUPERIOR</h2>
+                        <table class="styled-table" id="tabla-mrbonus-superior">
+                            <thead style="position: relative;">
+                                <tr>
+                                    <th>LOCAL</th>
+                                    <th>SORTEOS</th>
+                                    <th>1 SORTEOS</th>
+                                    <th>2 SORTEOS</th>
+                                    <th>3 SORTEOS</th>
+                                    <th>4 SORTEOS</th>
+                                    <th>5 SORTEOS</th>
+                                    <th>6 SORTEOS</th>
+                                    <th>7 SORTEOS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>A12-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>MP15-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td>A15-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A19</td>
+                                    <td>5</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A50</td>
+                                    <td>7</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td>A58</td>
+                                    <td>7</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A70</td>
+                                    <td>7</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A38</td>
+                                    <td>5</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A35</td>
+                                    <td>6</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A36</td>
+                                    <td>5</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A36-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A39</td>
+                                    <td>6</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A88</td>
+                                    <td>4</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A48</td>
+                                    <td>5</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A48-MESAS</td>
+                                    <td>3</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A49</td>
+                                    <td>4</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>MP100</td>
+                                    <td>3</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>MP100-MESAS</td>
+                                    <td>3</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A127-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>MP108-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A781</td>
+                                    <td>6</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                        <h2>Mr Bonus A-05, A-07, A-08, A-09, A-12, MP-15, A-16, MP-108, A-43, A-53</h2>
+                        <table class="styled-table" id="tabla-mrbonus-otros">
+                            <thead style="position: relative;">
+                                <tr>
+                                    <th>LOCAL</th>
+                                    <th>SORTEOS</th>
+                                    <th>1 SORTEOS</th>
+                                    <th>2 SORTEOS</th>
+                                    <th>3 SORTEOS</th>
+                                    <th>4 SORTEOS</th>
+                                    <th>5 SORTEOS</th>
+                                    <th>6 SORTEOS</th>
+                                    <th>7 SORTEOS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>A05</td>
+                                    <td>5</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A07</td>
+                                    <td>6</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A08</td>
+                                    <td>7</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A12</td>
+                                    <td>7</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+                                </tr>
+                                <tr>
+                                    <td>MP15</td>
+                                    <td>6</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td>A15</td>
+                                    <td>6</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A16</td>
+                                    <td>4</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A108</td>
+                                    <td>6</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A09</td>
+                                    <td>4</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <td>A43</td>
+                                    <td>7</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A53</td>
+                                    <td>7</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 250.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A127</td>
+                                    <td>6</td>
+                                    <td>$ 80.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>N/A</td>
+                                </tr>
 
+                            </tbody>
+                        </table>
+
+                        <div style="width: 100%;height: 1px;background-color: #dbdbdb;margin: 20px 0;"></div>
+                        <h2>Mr Bonus A10 </h2>
+                        <table class="styled-table" id="tabla-mrbonus-sorteo-maquinas">
+                            <thead style="position: relative;">
+                                <tr>
+                                    <th>LOCAL</th>
+                                    <th>SORTEOS</th>
+                                    <th>1 SORTEOS</th>
+                                    <th>2 SORTEOS</th>
+                                    <th>3 SORTEOS</th>
+                                    <th>4 SORTEOS</th>
+                                    <th>5 SORTEOS</th>
+                                    <th>6 SORTEOS</th>
+                                    <th>7 SORTEOS</th>
+                                    <th>8 SORTEOS</th>
+                                    <th>9 SORTEOS</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>A10</td>
+                                    <td>9</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A10</td>
+                                    <td>8</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A10</td>
+                                    <td>7</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A10</td>
+                                    <td>6</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A10</td>
+                                    <td>5</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A10</td>
+                                    <td>4</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A10</td>
+                                    <td>3</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A10</td>
+                                    <td>2</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+                                <tr>
+                                    <td>A10</td>
+                                    <td>1</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 140.000</td>
+                                    <td>$ 160.000</td>
+                                    <td>$ 180.000</td>
+                                    <td>$ 200.000</td>
+                                    <td>$ 200.000</td>
+                                </tr>
+
+                                <tr>
+                                    <td>A10-MESAS</td>
+                                    <td>4</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>A10-MESAS</td>
+                                    <td>3</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>A10-MESAS</td>
+                                    <td>2</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+
+                                </tr>
+                                <tr>
+                                    <td>A10-MESAS</td>
+                                    <td>1</td>
+                                    <td>$ 100.000</td>
+                                    <td>$ 120.000</td>
+                                    <td>$ 150.000</td>
+                                    <td>$ 200.000</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
             <div id="view_registro_dia" class="content_body_modal">
