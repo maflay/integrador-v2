@@ -96,7 +96,7 @@ async function iniciarBusqueda() {
   const contenedor = document.querySelector(".content_numeros_gene");
   contenedor.innerHTML = "";
 
-  const cantidad = parseInt(numeroInput.value);
+  const cantidad = parseInt(numeroInput.value * 2);
   if (isNaN(cantidad) || cantidad <= 0) {
     alert("Ingresa una cantidad válida");
     return;

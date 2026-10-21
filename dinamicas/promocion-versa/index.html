@@ -10,13 +10,71 @@
         crossorigin="anonymous">
 </head>
 
-<body data-main-style="/dinamicas/promocion-crazynum/style.cs"
-    data-main-script="/dinamicas/promocion-crazynum/script.js">
+<body data-main-style="/dinamicas/promocion-versa/style.css" data-main-script="/dinamicas/promocion-versa/script.js">
     <div id="loader" class="loader-overlay">
         <div class="spinner"></div>
     </div>
-    <div class="_main_up_shift_">
+    <div class="content_opciones">
 
+        <img id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
+    </div>
+    <div class="_main_up_shift_">
+        <div class="board_">
+            <h2>Registrar Jugador</h2>
+            <input onkeyup="this.value = this.value.toUpperCase()" type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre...">
+            <input type="number" name="cedula" id="cedula" class="form-control" placeholder="Cédula...">
+            <select class="form-control" style="cursor: pointer;" id="casino">
+                <option value="">Casino...</option>
+                <option value="A05">A05</option>
+                <option value="A07">A07</option>
+                <option value="A08">A08</option>
+                <option value="A09">A09</option>
+                <option value="A10">A10</option>
+                <option value="A10-MESAS">A10-MESAS</option>
+                <option value="A12">A12</option>
+                <option value="A12-MESAS">A12-MESAS</option>
+                <option value="A15">A15</option>
+                <option value="A15-MESAS">A15-MESAS</option>
+                <option value="A16">A16</option>
+                <option value="A19">A19</option>
+                <option value="A35">A35</option>
+                <option value="A36">A36</option>
+                <option value="A36-MESAS">A36-MESAS</option>
+                <option value="A38">A38</option>
+                <option value="A39">A39</option>
+                <option value="A43">A43</option>
+                <option value="A48">A48</option>
+                <option value="A48-MESAS">A48-MESAS</option>
+                <option value="A49">A49</option>
+                <option value="A50">A50</option>
+                <option value="A53">A53</option>
+                <option value="A58">A58</option>
+                <option value="A70">A70</option>
+                <option value="A781">A781</option>
+                <option value="A88">A88</option>
+                <option value="A100">A100</option>
+                <option value="A108">A108</option>
+                <option value="A108-MESAS">A108-MESAS</option>
+                <option value="A127">A127</option>
+                <option value="A127-MESAS">A127-MESAS</option>
+            </select>
+            <select class="form-control" id="categoria">
+                <option value="">Categoria...</option>
+                <option value="GENIUS">Genius</option>
+                <option value="TITANIO">Titanio</option>
+                <option value="LEGENDARIO">Legendario</option>
+                <option value="GOLD">Gold</option>
+                <option value="SILVER">Silver</option>
+                <option value="BRONCE">Bronce</option>
+                <option value="SUPERIOR">Superior</option>
+                <option value="ESTANDAR">Estandar</option>
+            </select>
+            <input type="numb" name="puntaje" id="puntaje" class="form-control" placeholder="Puntaje...">
+            <input type="numb" name="bono" id="bono" class="form-control" placeholder="# Bono...">
+            <div>
+                <button id="send_prim" class="btn btn-primary">Enviar</button>
+            </div>
+        </div>
     </div>
 
     <section id="modal_opciones_dinamica" class="modal_opciones_dinamica">
@@ -25,19 +83,19 @@
                 <img id="expandir" title="Expandir" src="/resource/expandir.png" alt="Aladdin">
             </div>
             <div class="content_head_modal">
-                <div class="content_opcion_head">
-                    <p id="btn_guardar_registro">Guardar Registro</p>
+                <div  class="content_opcion_head">
+                    <p id="btn_guardar_registro">Actualizar Puntaje</p>
                 </div>
                 <div style="display: none;" class="content_opcion_head">
                     <p id="btn_envio_secundario">Envio Secundario</p>
                 </div>
-                <div class="content_opcion_head">
+                <div style="display: none;" class="content_opcion_head">
                     <p id="btn_observacion">Observación</p>
                 </div>
                 <div style="display: none;" class="content_opcion_head">
                     <p id="btn_tabla_premios">Tabla de Premios</p>
                 </div>
-                <div class="content_opcion_head">
+                <div style="display: none;" class="content_opcion_head">
                     <p id="btn_registro_dia">Registro del Dia</p>
                     <span id="notificacion_registro_dia" class="notificacion_registro_dia"></span>
                 </div>
@@ -46,7 +104,7 @@
             <div style="width: 100%;height: 1px;background-color: rgb(206, 206, 206);"></div>
             <div style="display: none;" id="view_guardar_registro" class="content_body_modal">
                 <div class="info_body_modal">
-                    <h2>Guardar Registro</h2>
+                    <h2>Actualizar Puntaje</h2>
                     <div class="datos_column_modal">
                         <div class="_content_datos_colum_modal">
                             <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
