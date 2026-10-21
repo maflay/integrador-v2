@@ -7,7 +7,7 @@ document.getElementById("send_prim").addEventListener("click", () => {
 });
 
 let loader = document.getElementById("loader");
-let url = "https://script.google.com/macros/s/AKfycbyRHfl8Zt4lHsDWtfREcJcTdmFSrStzKL23LCK0juF-GJ-EP6wQACCK0DAyUMJ2SIzxWQ/exec";
+let url = "https://script.google.com/macros/s/AKfycbx_Rp1dLKoR4nZ7HhtGK93_ges2_o8gB98Y6PGN2pIIO_QcTIVvETW1_cSG7sW6EgJ4EA/exec";
 
 function handleSendInfo() {
   let nombre = document.getElementById("nombre");
@@ -75,6 +75,7 @@ function handleSendInfo() {
       categoria.value = "";
       puntaje.value = "";
       bono.value = "";
+      getData();
       Swal.fire({
         icon: "success",
         title: "Envió Exitoso",
@@ -97,8 +98,6 @@ function getData(){
     fetch(`${url}?hoja=dinamica`)
     .then((res) => res.json())
     .then((data) => {
-        console.log(data);
-
         container.innerHTML = `
         <div class="table-result table-scrolld">
           <table class="styled-table">
@@ -121,7 +120,7 @@ function getData(){
                   <tr>
                   <td>${i + 1}</td>
                     <td>${
-                      registro.Nombre ? registro.Nombre.substring(0, 10) : ""
+                      registro.Nombre ? registro.Nombre : ""
                     }</td>
                     <td>${registro.Cedula}</td>
                     <td>${
@@ -175,7 +174,6 @@ function getData(){
               );
             }
 
-            let valAnterior;
             if (fila) {
               const tdpunt = fila.querySelector("td:nth-child(5)");
               const tdBono = fila.querySelector("td:nth-child(6)");
@@ -187,8 +185,8 @@ function getData(){
             const registro = JSON.parse(btn.dataset.info);
             const data = {
               tipo: "update_puntaje",
-              match: { Cedula: registro.Cedula },
-              Puntaje: puntaje,
+              match: { Cedula: registro.Cedula, Casino: registro.Casino },
+              puntaje: Number(puntaje) + Number(tdpunt.textContent),
             };
 
             // let horaFormateada = new Date(registro.Hora).toLocaleTimeString(
@@ -211,6 +209,7 @@ function getData(){
             //   Usuario: registro.Usuario,
             // };
 
+        console.log(data);
 
             fetch(url, {
               method: "POST",

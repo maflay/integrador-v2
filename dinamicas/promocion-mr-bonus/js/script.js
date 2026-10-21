@@ -135,11 +135,11 @@ document.getElementById("show_form").addEventListener("click", () => {
 
 function getPremio(categoriaKey, local, numSorteos) {
   const tablaPorCategoria = {
-    // ESTANDAR: "tabla-mrbonus-estandar",
-    // SUPERIOR: "tabla-mrbonus-superior",
+    ESTANDAR: "tabla-mrbonus-estandar",
+    SUPERIOR: "tabla-mrbonus-superior",
     "VERSION 7": "tabla-mrbonus-otros",
-    ESTANDAR: "tabla-mrbonus-sorteo-maquinas",
-    SUPERIOR: "tabla-mrbonus-sorteo-maquinas"
+    // ESTANDAR: "tabla-mrbonus-sorteo-maquinas",
+    // SUPERIOR: "tabla-mrbonus-sorteo-maquinas"
   };
 
   const tablaId = tablaPorCategoria[categoriaKey];
