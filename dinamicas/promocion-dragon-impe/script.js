@@ -840,17 +840,34 @@ function GetResgistroDia() {
 }
 GetResgistroDia();
 
-
-document.getElementById("btn_send_secundario").addEventListener("click", ()=> {
+document.getElementById("btn_send_secundario").addEventListener("click", () => {
   handleSSecondDr();
 });
 
-function handleSSecondDr(){
+function handleSSecondDr() {
   let casino_modal = document.getElementById("casino_modal");
   let categoria_modal = document.getElementById("categoria_modal");
   let hora_modal = document.getElementById("hora_modal");
   let fecha_modal = document.getElementById("fecha_modal");
   let nombre_modal = document.getElementById("nombre_modal");
   let bono_modal = document.getElementById("bono_modal");
-  let resultValor_secundario = document.getElementById("resultValor_secundario");
+  let resultValor_secundario = document.getElementById(
+    "resultValor_secundario",
+  );
+
+  if (
+    casino_modal.value == "" ||
+    categoria_modal.value == "" ||
+    hora_modal.value == "" ||
+    fecha_modal.value == "" ||
+    nombre_modal.value == "" ||
+    bono_modal.value == "" ||
+    resultValor_secundario.value == ""
+  ) {
+    Swal.fire({
+      icon: "warning",
+      title: "Campos en Blanco"
+    });
+    return;
+  }
 }
