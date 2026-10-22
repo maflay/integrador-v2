@@ -217,6 +217,27 @@ function handleSendInfo() {
     "https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec";
   const elementosNumeros = document.querySelectorAll(".add_flex");
 
+  if (
+    nombre.value == "" ||
+    cedula.value == "" ||
+    casino.value == "" ||
+    categoria.value == ""
+  ) {
+    Swal.fire({
+      icon: "warning",
+      title: "Campos en Blanco",
+    });
+    return;
+  }
+
+  if (elementosNumeros.length === 0) {
+    Swal.fire({
+      icon: "warning",
+      title: "Completa los números",
+    });
+    return;
+  }
+
   const fechaCompleta = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
     year: "numeric",
@@ -242,7 +263,6 @@ function handleSendInfo() {
     valor_9: Promocion,
     valor_10: user.Nombre,
   };
-
   loader.style.display = "flex";
   fetch(url, {
     method: "POST",
