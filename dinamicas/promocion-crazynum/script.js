@@ -107,14 +107,11 @@ async function iniciarBusqueda() {
   contenedor.appendChild(cargando);
 
   try {
-    // 1. Consultamos a tu Google Script todos los registros del día
-    // (Asegúrate de que tu Apps Script devuelva todos los registros si no le mandas cédula, o crea un parámetro ?hoja=dinamica&todos=true)
     let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica`;
 
     let response = await fetch(url);
     let data = await response.json();
 
-    // 2. Extraemos todos los números que ya han salido hoy en la base de datos
     let numerosOcupados = [];
     if (data && Array.isArray(data)) {
       data.forEach((registro) => {
@@ -129,7 +126,6 @@ async function iniciarBusqueda() {
       });
     }
 
-    // 3. Construimos la lista de números disponibles (del 0001 al 9999 excluyendo los ocupados)
     let numerosDisponibles = [];
     for (let i = 1; i <= 9999; i++) {
       let numStr = String(i).padStart(4, "0");
@@ -138,18 +134,16 @@ async function iniciarBusqueda() {
       }
     }
 
-    // Validar si quedan suficientes números
     if (numerosDisponibles.length < cantidad) {
       cargando.remove();
       Swal.fire({
         icon: "error",
         title: "¡Límite alcanzado!",
-        text: "No hay suficientes números libres en la base de datos para completar esta cantidad."
+        text: "No hay suficientes números libres en la base de datos para completar esta cantidad.",
       });
       return;
     }
 
-    // 4. Barajamos los disponibles (Fisher-Yates) de forma aleatoria
     for (let i = numerosDisponibles.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       let temp = numerosDisponibles[i];
@@ -157,11 +151,9 @@ async function iniciarBusqueda() {
       numerosDisponibles[j] = temp;
     }
 
-    // 5. Tomamos exactamente la cantidad solicitada
     let numerosSeleccionados = numerosDisponibles.slice(0, cantidad);
     cargando.remove();
 
-    // 6. Mostramos la animación en pantalla con los números ya filtrados
     let tiempoTranscurido = 0;
     const duracionTotal = 1000;
     const intervaloVelocidad = 50;
@@ -197,14 +189,13 @@ async function iniciarBusqueda() {
         });
       }
     }, intervaloVelocidad);
-
   } catch (error) {
     console.error("Error al obtener los números de la base de datos:", error);
     cargando.remove();
     Swal.fire({
       icon: "error",
       title: "Error de conexión",
-      text: "No se pudo verificar la disponibilidad de los números en el servidor."
+      text: "No se pudo verificar la disponibilidad de los números en el servidor.",
     });
   }
 }
@@ -413,6 +404,153 @@ function getData() {
           text: `No se encontró ninguna coincidencia.`,
         });
       }
+    })
+    .catch((error) => {
+      console.error("Error en la petición:", error);
+      result_dia_acumula.innerHTML = `Error al cargar los datos.`;
+    });
+}
+
+getAllData();
+function getAllData() {
+  let result_dia_acumula = document.getElementById("result_dia_all_tes");
+  let cedula = document.getElementById("val_cedu_search").value;
+  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica`;
+
+  result_dia_acumula.innerHTML = `Cargando...`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.length == 0) {
+        loader.style.display = "none";
+        result_dia_acumula.innerHTML = `Sin Registros`;
+        result_dia_acumula.style.display = "flex";
+        return;
+      }
+      let clienteNombre = data[0].Nombre || "CLIENTE";
+      let casinoNombre = data[0].Casino || "";
+
+      // Extraer todos los números asociados
+      let listaNumeros = [];
+      let fechasRegistros = [];
+
+      data.forEach((registro) => {
+        let resultadoTexto = String(registro.Resultado || "");
+        let numerosArray = resultadoTexto.split(/[.,]/);
+
+        let horaFormateada = "";
+        if (registro.Hora) {
+          try {
+            horaFormateada = new Date(registro.Hora).toLocaleTimeString(
+              "es-CO",
+              {
+                hour: "2-digit",
+                minute: "2-digit",
+              },
+            );
+          } catch (e) {
+            horaFormateada = "";
+          }
+        }
+        let fechaStr = registro.Fecha ? registro.Fecha.substring(0, 10) : "";
+        if (fechaStr) fechasRegistros.push(`${fechaStr} ${horaFormateada}`);
+
+        numerosArray.forEach((numIndividual) => {
+          let numeroLimpio = numIndividual.trim();
+          if (numeroLimpio) {
+            listaNumeros.push(String(numeroLimpio).padStart(4, "0"));
+          }
+        });
+      });
+
+      let fechaImpresion =
+        fechasRegistros[0] || new Date().toLocaleString("es-CO");
+
+      // Construcción de la lista de números para la tirilla
+      let numerosHTML = listaNumeros
+        .map(
+          (num, idx) => `
+            <div class="tirilla-item">
+              <span>#${idx + 1}</span>
+              <strong class="tirilla-num">${num}</strong>
+            </div>
+          `,
+        )
+        .join("");
+
+      // Filas para la vista normal en pantalla (Tabla)
+      let filasTablaHTML = listaNumeros
+        .map(
+          (num, idx) => `
+            <tr>
+              <td>${idx + 1}</td>
+              <td>${clienteNombre}</td>
+              <td>${fechaImpresion}</td>
+              <td><strong>${num}</strong></td>
+              <td>${casinoNombre}</td>
+              <td>${data[0].Cedula}</td>
+            </tr>
+          `,
+        )
+        .join("");
+
+      // Guardamos los datos estructurados para la impresión en una propiedad global
+      window.datosTirillaActual = {
+        nombre: clienteNombre,
+        cedula: cedula,
+        casino: casinoNombre,
+        fecha: fechaImpresion,
+        numeros: listaNumeros,
+      };
+
+      result_dia_acumula.innerHTML = `
+          <div style="margin-bottom: 10px; text-align: right;">
+          </div>
+          <div class="table-result table-scrolld table_all_data">
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Usuario</th>
+                  <th>Fecha</th>
+                  <th>Número</th>
+                  <th>Casino</th>
+                  <th>Cedula</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${filasTablaHTML}
+              </tbody>
+            </table>
+          </div>
+        `;
+
+      let inputBuscar = document.getElementById("numero_bus");
+      inputBuscar.style.display = "flex";
+      inputBuscar.addEventListener("keyup", () => {
+        const texto = inputBuscar.value.toLowerCase().trim();
+        const filas = result_dia_acumula.querySelectorAll("tbody tr");
+
+        if (texto == "" && !texto) {
+          console.log(texto);
+          result_dia_acumula.style.display = "none";
+        } else {
+          result_dia_acumula.style.display = "flex";
+        }
+        const columnas = [1, 2, 3, 4, 5, 6, 7];
+
+        filas.forEach((fila) => {
+          const textoFila = columnas
+            .map(
+              (i) =>
+                fila.querySelector(`td:nth-child(${i})`)?.textContent || "",
+            )
+            .join(" ")
+            .toLowerCase();
+          fila.style.display = textoFila.includes(texto) ? "" : "none";
+        });
+      });
     })
     .catch((error) => {
       console.error("Error en la petición:", error);

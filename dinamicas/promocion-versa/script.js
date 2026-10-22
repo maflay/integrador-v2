@@ -114,6 +114,12 @@ function getData() {
   fetch(`${url}?hoja=dinamica`)
     .then((res) => res.json())
     .then((data) => {
+      if (data.length == 0) {
+        loader.style.display = "none";
+        container.innerHTML = `Sin Registros`;
+        container.style.display = "flex";
+        return;
+      }
       container.innerHTML = `
         <div class="table-result table-scrolld">
           <table class="styled-table">

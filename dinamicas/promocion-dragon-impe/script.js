@@ -866,8 +866,118 @@ function handleSSecondDr() {
   ) {
     Swal.fire({
       icon: "warning",
-      title: "Campos en Blanco"
+      title: "Campos en Blanco",
     });
     return;
   }
+
+  let data = {
+    tipo: "envio_1",
+    valor_1: hora_modal.value,
+    valor_2: fecha_modal.value,
+    valor_3: nombre_modal.value,
+    valor_4: "",
+    valor_5: casino_modal.value,
+    valor_6: categoria_modal.value,
+    valor_7: resultValor_secundario.value,
+    valor_8: bono_modal.value,
+    valor_9: promocion,
+    valor_10: user.Nombre,
+  };
+
+  loader.style.display = "flex";
+  fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.text())
+    .then(() => {
+      loader.style.display = "none";
+      hora_modal.value = "";
+      fecha_modal.value = "";
+      nombre_modal.value = "";
+      casino_modal.value = "";
+      categoria_modal.value = "";
+      resultValor_secundario.value = "";
+      bono_modal.value = "";
+      Swal.fire({
+        icon: "success",
+        title: "Envio Exitoso",
+      });
+    })
+    .catch((err) => {
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "error",
+        title: "Error en el Envio",
+      });
+    });
+}
+
+document
+  .getElementById("btn_envia_observacion")
+  .addEventListener("click", () => {
+    handleSendObs();
+  });
+
+function handleSendObs() {
+  let casino_observacion = document.getElementById("casino_observacion");
+  let descripcion_observacion = document.getElementById(
+    "descripcion_observacion",
+  );
+
+  if (casino_observacion.value == "" || descripcion_observacion.value == "") {
+    Swal.fire({
+      icon: "warning",
+      title: "Campos en Blanco",
+    });
+    return;
+  }
+
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+  const [fecha, hora] = fechaCompleta.split(", ");
+
+  let data = {
+    tipo: "envio_2",
+    valor_1: hora,
+    valor_2: fecha,
+    valor_3: casino_observacion.value,
+    valor_4: descripcion_observacion.value,
+    valor_5: user.Nombre,
+  };
+
+  loader.style.display = "flex";
+
+  fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.text())
+    .then(() => {
+      casino_observacion.value = "";
+      descripcion_observacion.value = "";
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "success",
+        title: "Envio Exitoso",
+      });
+    })
+    .catch((err) => {
+      loader.style.display = "none";
+      Swal.fire({
+        icon: "error",
+        title: "Error en el Envio",
+      });
+    });
 }

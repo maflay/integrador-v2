@@ -67,14 +67,14 @@
                 <div class="content_opcion_head">
                     <p id="btn_guardar_registro">Guardar Registro</p>
                 </div>
-                <div style="display: none;" class="content_opcion_head">
-                    <p id="btn_envio_secundario">Envio Secundario</p>
-                </div>
                 <div class="content_opcion_head">
                     <p id="btn_observacion">Observación</p>
                 </div>
                 <div style="display: none;" class="content_opcion_head">
                     <p id="btn_tabla_premios">Tabla de Premios</p>
+                </div>
+                <div class="content_opcion_head">
+                    <p id="btn_envio_secundario">Consultar #</p>
                 </div>
                 <div class="content_opcion_head">
                     <p id="btn_registro_dia">Registro del Dia</p>
@@ -146,82 +146,11 @@
             </div>
             <div style="display: none;" id="view_envio_secundario" class="content_body_modal">
                 <div class="info_body_modal">
-                    <h2>Envió Secundario</h2>
-                    <div class="datos_column_modal">
-                        <div style="display: flex;gap: 10px;">
-                            <select class="form-control" id="casino_modal">
-                                <option value="">Casino...</option>
-                                <option value="A05">A05</option>
-                                <option value="A07">A07</option>
-                                <option value="A08">A08</option>
-                                <option value="A09">A09</option>
-                                <option value="A10">A10</option>
-                                <option value="A10-MESAS">A10-MESAS</option>
-                                <option value="A12">A12</option>
-                                <option value="A12-MESAS">A12-MESAS</option>
-                                <option value="A15">A15</option>
-                                <option value="A15-MESAS">A15-MESAS</option>
-                                <option value="A16">A16</option>
-                                <option value="A19">A19</option>
-                                <option value="A35">A35</option>
-                                <option value="A36">A36</option>
-                                <option value="A36-MESAS">A36-MESAS</option>
-                                <option value="A38">A38</option>
-                                <option value="A39">A39</option>
-                                <option value="A43">A43</option>
-                                <option value="A48">A48</option>
-                                <option value="A48-MESAS">A48-MESAS</option>
-                                <option value="A49">A49</option>
-                                <option value="A50">A50</option>
-                                <option value="A53">A53</option>
-                                <option value="A58">A58</option>
-                                <option value="A70">A70</option>
-                                <option value="A781">A781</option>
-                                <option value="A88">A88</option>
-                                <option value="A100">A100</option>
-                                <option value="A108">A108</option>
-                                <option value="A108-MESAS">A108-MESAS</option>
-                                <option value="A127">A127</option>
-                                <option value="A127-MESAS">A127-MESAS</option>
-                            </select>
-                            <select class="item_hide form-control" id="categoria_modal">
-                                <option value="">Categoría...</option>
-                                <option value="GENIUS">Genius</option>
-                                <option value="TITANIO">Titanio</option>
-                                <option value="LEGENDARIO">Legendario</option>
-                                <option value="GOLD">Gold</option>
-                                <option value="SILVER">Silver</option>
-                                <option value="BRONCE">Bronce</option>
-                                <option value="SUPERIOR">Superior</option>
-                                <option value="ESTANDAR">Estándar</option>
-                            </select>
-                        </div>
-                        <div style="display: flex;gap: 10px;">
-                            <input class="form-control" style=" cursor: pointer;" type="text" id="hora_modal"
-                                placeholder="Hora" />
-                            <input class="form-control" style=" cursor: pointer;" type="date" id="fecha_modal"
-                                placeholder="Fecha" />
-                        </div>
-                        <div style="display: flex;gap: 10px;">
-                            <input onkeyup="this.value = this.value.toUpperCase();" class="form-control"
-                                style=" cursor: pointer;" type="text" id="nombre_modal" placeholder="Nombre" />
-                            <input class="form-control" style=" cursor: pointer;" type="text" id="bono_modal"
-                                placeholder="# Bono" />
-                        </div>
-                        <div class="display: flex;gap: 10px;">
-                            <select class="form-control casilla_ficha" id="resultValor_secundario">
-                                <option value="">Dragones...</option>
-                                <option value="1 DRAGON">1 Dragón</option>
-                                <option value="2 DRAGON">2 Dragón</option>
-                                <option value="3 DRAGON">3 Dragón</option>
-                                <option value="4 DRAGON">4 Dragón</option>
-                                <option value="5 DRAGON">5 Dragón</option>
-                            </select>
-                        </div>
-                        <div class="content_btn_modal">
-                            <button id="btn_send_secundario" class="btn btn-primary">Enviar</button>
-                        </div>
-                    </div>
+                    <h2>Consultar</h2>
+                    <div><input style="display: none;" type="text" name="numero_bus" id="numero_bus" class="form-control" placeholder="Digitos del #"></div>
+                    <br/>
+                    <div style="display: none;" class="result_dia_acumula" id="result_dia_all_tes"></div>
+                    
                 </div>
             </div>
             <div style="display: none;" id="view_envia_observacion" class="content_body_modal">
