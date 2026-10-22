@@ -212,7 +212,7 @@ function handleSendInfo() {
   let casino = document.getElementById("casino");
   let categoria = document.getElementById("categoria");
   let user = inforUser();
-  let Promocion = "Núnmeros Locos";
+  let Promocion = "Sorteo Tesla";
   let url =
     "https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec";
   const elementosNumeros = document.querySelectorAll(".add_flex");
