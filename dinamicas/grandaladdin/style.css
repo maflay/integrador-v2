@@ -70,12 +70,30 @@
     background-color: rgba(0, 0, 0, 0.877);
     border-radius: 20px;
     border: yellow solid 1px;
-    padding: 100px;
+    padding: 30px;
     gap: 10px;
+    width: 100%;
+    max-width: 700px;
+}
+
+._content_form_ga_ input,
+._content_form_ga_ select {
+    width: 200px;
 }
 
 ._content_form_ga_ img {
-    width: 220px;
+    display: flex;
+    justify-content: center;
+    width: 160px;
+}
+
+._content_form_ga_>div:nth-child(2) {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
 }
 
 #otro_casino {

@@ -2,8 +2,8 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
-document.getElementById("casino").addEventListener("change", ()=> {
-  if(document.getElementById("casino").value == "otro"){
+document.getElementById("casino").addEventListener("change", () => {
+  if (document.getElementById("casino").value == "otro") {
     document.getElementById("otro_casino").style.display = "flex";
   } else {
     document.getElementById("otro_casino").style.display = "none";
@@ -17,6 +17,8 @@ document.getElementById("btn_send_form_ga").addEventListener("click", () => {
   let maquinas = document.getElementById("maquinas");
   let telefono = document.getElementById("telefono");
   let cedula = document.getElementById("cedula");
+  let compra = document.getElementById("compra");
+  let evento = document.getElementById("evento");
   let loader = document.getElementById("loader");
   let user = inforUser();
   let url =
@@ -46,12 +48,14 @@ document.getElementById("btn_send_form_ga").addEventListener("click", () => {
     Hora: hora,
     Fecha: fecha,
     Nombre: nombre.value,
-    Casino: casino.value == "otro" ? otro_casino.value : casino.value ,
+    Casino: casino.value == "otro" ? otro_casino.value : casino.value,
     Telefono: telefono.value,
     Cedula: cedula.value,
     Maquina: maquinas.value,
     Promocion: "Registro GrandAladdin",
     Usuario: user.Nombre,
+    Evento: evento.value,
+    Compra: compra.value,
   };
 
   loader.style.display = "flex";
@@ -69,6 +73,8 @@ document.getElementById("btn_send_form_ga").addEventListener("click", () => {
       cedula.value = "";
       otro_casino.value = "";
       maquinas.value = "";
+      evento.value = "";
+      compra.value = "";
       Swal.fire({
         icon: "success",
         title: "Envio Exitoso",
