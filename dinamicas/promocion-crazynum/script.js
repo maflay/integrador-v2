@@ -204,6 +204,13 @@ document.getElementById("btn_enviar").addEventListener("click", () => {
   handleSendInfo();
 });
 
+let user = inforUser();
+if (user.Nivel == 1 || user.Nivel == 2 || user.Nivel == 6) {
+  document.getElementById("_content_conteo_").style.display = "flex";
+} else {
+  document.getElementById("_content_conteo_").style.display = "none";
+}
+
 function handleSendInfo() {
   let numeroInput = document.getElementById("numeroInput");
   let loader = document.getElementById("loader");
@@ -211,7 +218,6 @@ function handleSendInfo() {
   let cedula = document.getElementById("cedula");
   let casino = document.getElementById("casino");
   let categoria = document.getElementById("categoria");
-  let user = inforUser();
   let Promocion = "Sorteo Tesla";
   let url =
     "https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec";
@@ -467,20 +473,22 @@ function getAllData() {
               {
                 hour: "2-digit",
                 minute: "2-digit",
-              }
+              },
             );
           } catch (e) {
             horaFormateada = "";
           }
         }
         let fechaStr = registro.Fecha ? registro.Fecha.substring(0, 10) : "";
-        let fechaImpresion = fechaStr ? `${fechaStr} ${horaFormateada}` : (new Date().toLocaleString("es-CO"));
+        let fechaImpresion = fechaStr
+          ? `${fechaStr} ${horaFormateada}`
+          : new Date().toLocaleString("es-CO");
 
         numerosArray.forEach((numIndividual) => {
           let numeroLimpio = numIndividual.trim();
           if (numeroLimpio) {
             let numFormateado = String(numeroLimpio).padStart(4, "0");
-            
+
             filasTablaHTML += `
               <tr>
                 <td>${contadorFila++}</td>
@@ -540,7 +548,7 @@ function getAllData() {
             const textoFila = columnas
               .map(
                 (i) =>
-                  fila.querySelector(`td:nth-child(${i})`)?.textContent || ""
+                  fila.querySelector(`td:nth-child(${i})`)?.textContent || "",
               )
               .join(" ")
               .toLowerCase();
@@ -680,5 +688,95 @@ function handleSenObs() {
         icon: "error",
         title: "Error en el Envió",
       });
+    });
+}
+
+document.getElementById("btn_tabla_premios").addEventListener("click", () => {
+  getAllConteo();
+});
+
+function getAllConteo() {
+  let result_dia_acumula = document.getElementById("result_conteo");
+  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica`;
+
+  result_dia_acumula.innerHTML = `Cargando...`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      if (!data || data.length === 0) {
+        let loader = document.getElementById("loader");
+        if (loader) loader.style.display = "none";
+        result_dia_acumula.innerHTML = `Sin Registros (0 / 10000)`;
+        result_dia_acumula.style.display = "flex";
+        return;
+      }
+
+      let filasTablaHTML = "";
+      let contadorFila = 1;
+
+      let numerosRegistradosSet = new Set();
+
+      data.forEach((registro) => {
+        let clienteNombre = registro.Nombre || "CLIENTE";
+        let casinoNombre = registro.Casino || "";
+        let cedulaRegistro = registro.Cedula || "";
+        let resultadoTexto = String(registro.Resultado || "");
+        let numerosArray = resultadoTexto.split(/[.,]/);
+
+        let horaFormateada = "";
+        if (registro.Hora) {
+          try {
+            horaFormateada = new Date(registro.Hora).toLocaleTimeString(
+              "es-CO",
+              {
+                hour: "2-digit",
+                minute: "2-digit",
+              },
+            );
+          } catch (e) {
+            horaFormateada = "";
+          }
+        }
+        let fechaStr = registro.Fecha ? registro.Fecha.substring(0, 10) : "";
+        let fechaImpresion = fechaStr
+          ? `${fechaStr} ${horaFormateada}`
+          : new Date().toLocaleString("es-CO");
+
+        numerosArray.forEach((numIndividual) => {
+          let numeroLimpio = numIndividual.trim();
+          if (numeroLimpio) {
+            let numFormateado = String(numeroLimpio).padStart(4, "0");
+
+            numerosRegistradosSet.add(numFormateado);
+
+            filasTablaHTML += `
+              <tr>
+                <td>${contadorFila++}</td>
+                <td>${clienteNombre}</td>
+                <td>${fechaImpresion}</td>
+                <td><strong>${numFormateado}</strong></td>
+                <td>${casinoNombre}</td>
+                <td>${cedulaRegistro}</td>
+              </tr>
+            `;
+          }
+        });
+      });
+
+      const TOTAL_MAXIMO = 10000;
+      let totalOcupados = numerosRegistradosSet.size;
+      let totalFaltantes = TOTAL_MAXIMO - totalOcupados;
+
+      result_dia_acumula.innerHTML = `
+          <div style="margin-bottom: 15px; padding: border-radius: 5px; text-align: center; font-weight: bold;">
+            Conteo de Números: <span style="color: #28a745;">${totalOcupados}</span> / ${TOTAL_MAXIMO} 
+            | Faltantes: <span style="color: #dc3545;">${totalFaltantes}</span>
+          </div>
+        `;
+    })
+    .catch((error) => {
+      console.error("Error en la petición:", error);
+      result_dia_acumula.innerHTML = `Error al cargar los datos.`;
     });
 }
