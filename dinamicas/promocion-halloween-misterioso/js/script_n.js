@@ -282,23 +282,39 @@ function ensureMarkup() {
 }
 
 function deal() {
-  if (casino.value == "A43" || casino.value == "A53") {
-    PAIRS = [
-      { key: "esqueleto_uno", arts: ["esqueleto.png"] },
-      { key: "esqueleto_dos", arts: ["esqueleto.png"] },
-      { key: "esqueleto_tres", arts: ["esqueleto.png"] },
-      { key: "esqueleto_cuatro", arts: ["esqueleto.png"] },
-      { key: "esqueleto_cinco", arts: ["esqueleto.png"] },
-      { key: "esqueleto_seis", arts: ["esqueleto.png"] },
-      { key: "esqueleto_siete", arts: ["esqueleto.png"] },
-      { key: "esqueleto_ocho", arts: ["esqueleto.png"] },
-      { key: "momia_uno", arts: ["momia.png"] },
-      { key: "momia_dos", arts: ["momia.png"] },
-      { key: "momia_tres", arts: ["momia.png"] },
-      { key: "calabaza_tres", arts: ["calabaza.png"] },
-    ];
-  } else {
-    PAIRS = [
+  // if (casino.value == "A43" || casino.value == "A53") {
+  //   PAIRS = [
+  //     { key: "esqueleto_uno", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_dos", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_tres", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_cuatro", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_cinco", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_seis", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_siete", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_ocho", arts: ["esqueleto.png"] },
+  //     { key: "momia_uno", arts: ["momia.png"] },
+  //     { key: "momia_dos", arts: ["momia.png"] },
+  //     { key: "momia_tres", arts: ["momia.png"] },
+  //     { key: "calabaza_tres", arts: ["calabaza.png"] },
+  //   ];
+  // } else {
+  //   PAIRS = [
+  //     { key: "esqueleto_uno", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_dos", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_tres", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_cuatro", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_cinco", arts: ["esqueleto.png"] },
+  //     { key: "esqueleto_seis", arts: ["esqueleto.png"] },
+  //     { key: "momia_uno", arts: ["momia.png"] },
+  //     { key: "momia_dos", arts: ["momia.png"] },
+  //     { key: "momia_tres", arts: ["momia.png"] },
+  //     { key: "calabaza_uno", arts: ["calabaza.png"] },
+  //     { key: "calabaza_dos", arts: ["calabaza.png"] },
+  //     { key: "calabaza_tres", arts: ["calabaza.png"] },
+  //   ];
+  // }
+
+  PAIRS = [
       { key: "esqueleto_uno", arts: ["esqueleto.png"] },
       { key: "esqueleto_dos", arts: ["esqueleto.png"] },
       { key: "esqueleto_tres", arts: ["esqueleto.png"] },
@@ -312,7 +328,6 @@ function deal() {
       { key: "calabaza_dos", arts: ["calabaza.png"] },
       { key: "calabaza_tres", arts: ["calabaza.png"] },
     ];
-  }
   ensureMarkup();
   const deck = buildDeck();
 
@@ -360,15 +375,15 @@ updateHud();
 
 let categoria = document.getElementById("categoria");
 
-casino.addEventListener("change", () => {
-  if (casino.value == "A43" || casino.value == "A53") {
-    document.querySelector(".board_port").style.display = "none";
-    document.querySelector(".board_port_two").style.display = "grid";
-  } else {
-    document.querySelector(".board_port").style.display = "grid";
-    document.querySelector(".board_port_two").style.display = "none";
-  }
-});
+// casino.addEventListener("change", () => {
+//   if (casino.value == "A43" || casino.value == "A53") {
+//     document.querySelector(".board_port").style.display = "none";
+//     document.querySelector(".board_port_two").style.display = "grid";
+//   } else {
+//     document.querySelector(".board_port").style.display = "grid";
+//     document.querySelector(".board_port_two").style.display = "none";
+//   }
+// });
 
 const user = inforUser();
 

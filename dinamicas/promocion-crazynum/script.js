@@ -285,6 +285,7 @@ function handleSendInfo() {
       numeroInput.value = "";
       const contenedor = document.querySelector(".content_numeros_gene");
       contenedor.innerHTML = "";
+      getAllData();
       Swal.fire({
         icon: "success",
         title: "Envió Exitoso",

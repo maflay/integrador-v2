@@ -2,7 +2,6 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
-
 const loader = document.getElementById("loader");
 
 const notificacion_registro_dia = document.getElementById(
@@ -29,118 +28,6 @@ if (localStorage.getItem(FECHA_KEY) !== hoy) {
 const user = inforUser();
 
 const items_hide = document.querySelectorAll(".item_hide");
-const btn_opcion = document.getElementById("btn_opcion");
-
-
-
-// view modal
-const view_guardar_registro = document.getElementById("view_guardar_registro");
-const view_envio_secundario = document.getElementById("view_envio_secundario");
-const view_envia_observacion = document.getElementById(
-  "view_envia_observacion",
-);
-const view_tabla_premios = document.getElementById("view_tabla_premios");
-const view_registro_dia = document.getElementById("view_registro_dia");
-
-const close_modal_icon = document.getElementById("close_modal_icon");
-const expandir = document.getElementById("expandir");
-
-btn_opcion.addEventListener("click", () => {
-  document.getElementById("modal_opciones_dinamica").style.display = "flex";
-  btn_guardar_registro.classList.add("select_menu");
-  view_guardar_registro.style.display = "flex";
-});
-
-close_modal_icon.addEventListener("click", () => {
-  document.getElementById("modal_opciones_dinamica").style.display = "none";
-  btn_guardar_registro.classList.remove("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-
-  view_guardar_registro.style.display = "none";
-  view_envio_secundario.style.display = "none";
-  view_envia_observacion.style.display = "none";
-  view_tabla_premios.style.display = "none";
-  view_registro_dia.style.display = "none";
-});
-
-btn_guardar_registro.addEventListener("click", () => {
-  btn_guardar_registro.classList.add("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-
-  view_guardar_registro.style.display = "flex";
-  view_envio_secundario.style.display = "none";
-  view_envia_observacion.style.display = "none";
-  view_tabla_premios.style.display = "none";
-  view_registro_dia.style.display = "none";
-});
-
-btn_envio_secundario.addEventListener("click", () => {
-  btn_guardar_registro.classList.remove("select_menu");
-  btn_envio_secundario.classList.add("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-
-  view_guardar_registro.style.display = "none";
-  view_envio_secundario.style.display = "flex";
-  view_envia_observacion.style.display = "none";
-  view_tabla_premios.style.display = "none";
-  view_registro_dia.style.display = "none";
-});
-
-btn_observacion.addEventListener("click", () => {
-  btn_guardar_registro.classList.remove("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.add("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-
-  view_guardar_registro.style.display = "none";
-  view_envio_secundario.style.display = "none";
-  view_envia_observacion.style.display = "flex";
-  view_tabla_premios.style.display = "none";
-  view_registro_dia.style.display = "none";
-});
-
-btn_tabla_premios.addEventListener("click", () => {
-  btn_guardar_registro.classList.remove("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.add("select_menu");
-  btn_registro_dia.classList.remove("select_menu");
-
-  view_guardar_registro.style.display = "none";
-  view_envio_secundario.style.display = "none";
-  view_envia_observacion.style.display = "none";
-  view_tabla_premios.style.display = "flex";
-  view_registro_dia.style.display = "none";
-});
-
-btn_registro_dia.addEventListener("click", () => {
-  btn_guardar_registro.classList.remove("select_menu");
-  btn_envio_secundario.classList.remove("select_menu");
-  btn_observacion.classList.remove("select_menu");
-  btn_tabla_premios.classList.remove("select_menu");
-  btn_registro_dia.classList.add("select_menu");
-
-  view_guardar_registro.style.display = "none";
-  view_envio_secundario.style.display = "none";
-  view_envia_observacion.style.display = "none";
-  view_tabla_premios.style.display = "none";
-  view_registro_dia.style.display = "flex";
-});
-
-expandir.addEventListener("click", () => {
-  document
-    .getElementById("content_modal_dinamica")
-    .classList.toggle("item_full_screen");
-});
 
 cateGlobal.addEventListener("change", () => {
   if (cateGlobal.value == "ADICIONAL") {
@@ -286,7 +173,7 @@ const CASINOS_VALIDOS = [
   "A15-MESAS",
   "A108-MESAS",
   "A127-MESAS",
-  "A36-MESAS"
+  "A36-MESAS",
 ];
 
 const CASINOS_ALL = [
@@ -321,7 +208,7 @@ const PREMIOS = {
       BRONCE: "$ 200.000",
       SILVER: "$ 250.000",
       GOLD: "$ 300.000",
-      LEGENDARIO: "$ 350.000",
+      LEGENDARIO: "$ 300.000",
       TITANIO: "$ 400.000",
       GENIUS: "$ 500.000",
     },
@@ -329,7 +216,7 @@ const PREMIOS = {
       BRONCE: "$ 500.000",
       SILVER: "$ 700.000",
       GOLD: "$ 1.000.000",
-      LEGENDARIO: "$ 1.300.000",
+      LEGENDARIO: "$ 1.000.000",
       TITANIO: "$ 1.500.000",
       GENIUS: "$ 2.000.000",
     },
@@ -338,7 +225,7 @@ const PREMIOS = {
         BRONCE: "$ 80.000",
         SILVER: "$ 90.000",
         GOLD: "$ 100.000",
-        LEGENDARIO: "$ 110.000",
+        LEGENDARIO: "$ 100.000",
         TITANIO: "$ 120.000",
         GENIUS: "$ 150.000",
       },
@@ -346,7 +233,7 @@ const PREMIOS = {
         BRONCE: "$ 90.000",
         SILVER: "$ 100.000",
         GOLD: "$ 110.000",
-        LEGENDARIO: "$ 120.000",
+        LEGENDARIO: "$ 110.000",
         TITANIO: "$ 130.000",
         GENIUS: "$ 160.000",
       },
@@ -354,7 +241,7 @@ const PREMIOS = {
         BRONCE: "$ 100.000",
         SILVER: "$ 110.000",
         GOLD: "$ 120.000",
-        LEGENDARIO: "$ 130.000",
+        LEGENDARIO: "$ 120.000",
         TITANIO: "$ 140.000",
         GENIUS: "$ 170.000",
       },
@@ -362,7 +249,7 @@ const PREMIOS = {
         BRONCE: "$ 120.000",
         SILVER: "$ 130.000",
         GOLD: "$ 150.000",
-        LEGENDARIO: "$ 160.000",
+        LEGENDARIO: "$ 150.000",
         TITANIO: "$ 170.000",
         GENIUS: "$ 200.000",
       },

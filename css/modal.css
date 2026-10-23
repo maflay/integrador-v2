@@ -391,6 +391,11 @@
     width: 40vw;
 }
 
+.img_premios_5 {
+    border-radius: 20px;
+    width: 20vw;
+}
+
 .btn_tablas_premio {
     position: absolute;
     width: 100px;
