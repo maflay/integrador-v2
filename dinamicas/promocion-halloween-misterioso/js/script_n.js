@@ -375,15 +375,15 @@ updateHud();
 
 let categoria = document.getElementById("categoria");
 
-// casino.addEventListener("change", () => {
-//   if (casino.value == "A43" || casino.value == "A53") {
-//     document.querySelector(".board_port").style.display = "none";
-//     document.querySelector(".board_port_two").style.display = "grid";
-//   } else {
-//     document.querySelector(".board_port").style.display = "grid";
-//     document.querySelector(".board_port_two").style.display = "none";
-//   }
-// });
+casino.addEventListener("change", () => {
+  if (casino.value == "A43" || casino.value == "A53") {
+    document.querySelector(".board_port").style.display = "none";
+    document.querySelector(".board_port_two").style.display = "grid";
+  } else {
+    document.querySelector(".board_port").style.display = "grid";
+    document.querySelector(".board_port_two").style.display = "none";
+  }
+});
 
 const user = inforUser();
 
