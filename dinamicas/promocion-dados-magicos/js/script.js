@@ -10,7 +10,7 @@ const notificacion_registro_dia = document.getElementById(
 notificacion_registro_dia.style.display = "none";
 
 const url =
-  "https://script.google.com/macros/s/AKfycbwPxA5SyEwuM4hUBR5xthHk124AsmgXHmWbF655xQVbaUQAg-6c08De9gMGkw-F_usHjA/exec";
+  "https://script.google.com/macros/s/AKfycbzphqh27fraME02NFmDv0jTNMRFwyliS58rHfWmE7j_YSB_oVdPyhb0WTK4UTW2GPX82g/exec";
 const promocion = "Dados Mágicos";
 const IN_FLIGHT = new Set();
 const LS_KEY = "registrosDadosMagicos";
@@ -156,24 +156,20 @@ btn_validar.addEventListener("click", () => {
 });
 
 const CASINOS_VALIDOS = [
-  "A19",
   "A50",
-  "A70",
   "A38",
   "A35",
   "A36",
+  "A36m",
   "A39",
   "A88",
   "A48",
   "A49",
-  "MP100",
-  "A100",
   "A781",
-  "A12-MESAS",
-  "A15-MESAS",
-  "A108-MESAS",
-  "A127-MESAS",
-  "A36-MESAS",
+  "A12M",
+  "MP15M",
+  "MP108M",
+  "A127M",
 ];
 
 const CASINOS_ALL = [
@@ -182,10 +178,11 @@ const CASINOS_ALL = [
   "A08",
   "A09",
   "A12",
-  "A15",
-  "A16",
-  "A108",
-  "A127",
+  "MP15",
+  "A19",
+  "A70",
+  "MP108",
+  "MP127",
   "A43",
   "A53",
 ];
@@ -227,7 +224,7 @@ const PREMIOS = {
         GOLD: "$ 100.000",
         LEGENDARIO: "$ 100.000",
         TITANIO: "$ 120.000",
-        GENIUS: "$ 150.000",
+        GENIUS: "$ 130.000",
       },
       "7,8,13,14": {
         BRONCE: "$ 90.000",
@@ -235,7 +232,7 @@ const PREMIOS = {
         GOLD: "$ 110.000",
         LEGENDARIO: "$ 110.000",
         TITANIO: "$ 130.000",
-        GENIUS: "$ 160.000",
+        GENIUS: "$ 140.000",
       },
       "5,6,15,16": {
         BRONCE: "$ 100.000",
@@ -243,15 +240,15 @@ const PREMIOS = {
         GOLD: "$ 120.000",
         LEGENDARIO: "$ 120.000",
         TITANIO: "$ 140.000",
-        GENIUS: "$ 170.000",
+        GENIUS: "$ 150.000",
       },
       "4,17": {
         BRONCE: "$ 120.000",
         SILVER: "$ 130.000",
         GOLD: "$ 150.000",
         LEGENDARIO: "$ 150.000",
-        TITANIO: "$ 170.000",
-        GENIUS: "$ 200.000",
+        TITANIO: "$ 160.000",
+        GENIUS: "$ 170.000",
       },
     },
   },
