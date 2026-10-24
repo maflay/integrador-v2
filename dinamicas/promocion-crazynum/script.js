@@ -183,9 +183,9 @@ async function iniciarBusqueda() {
           el.id = numeroFormateado;
           el.textContent = numeroFormateado;
 
-          setTimeout(() => {
-            el.classList.add("add_flex");
-          }, index * 1000);
+          // setTimeout(() => {
+          //   el.classList.add("add_flex");
+          // }, index * 1000);
         });
       }
     }, intervaloVelocidad);
