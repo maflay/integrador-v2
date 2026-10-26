@@ -184,7 +184,7 @@ async function iniciarBusqueda() {
           el.textContent = numeroFormateado;
 
           // setTimeout(() => {
-            el.classList.add("add_flex");
+          el.classList.add("add_flex");
           // }, index * 1000);
         });
       }
@@ -264,7 +264,9 @@ function handleSendInfo() {
     valor_4: cedula.value,
     valor_5: casino.value,
     valor_6: categoria.value,
-    valor_7: String(Array.from(elementosNumeros).map((item) => item.textContent)),
+    valor_7: String(
+      Array.from(elementosNumeros).map((item) => item.textContent),
+    ),
     valor_8: "",
     valor_9: Promocion,
     valor_10: user.Nombre,
@@ -764,8 +766,6 @@ function getAllConteo() {
           }
         });
       });
-
-      console.log(numerosRegistradosSet);
 
       const TOTAL_MAXIMO = 10000;
       let totalOcupados = numerosRegistradosSet.size;
