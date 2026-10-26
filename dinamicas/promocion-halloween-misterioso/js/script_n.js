@@ -9,6 +9,24 @@ const IN_FLIGHT = new Set();
 const LS_KEY = "registrosMisterioso";
 const FECHA_KEY = "fechaMisterioso";
 const hoy = new Date().toDateString();
+
+let DeleLog = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+
+  let [fechaLog,horaLog] = DeleLog.split(", ");
+  console.log(fechaLog);
+  console.log(horaLog);
+
+
+console.log();
 if (localStorage.getItem(FECHA_KEY) !== hoy) {
   localStorage.setItem(LS_KEY, JSON.stringify([]));
   localStorage.setItem(FECHA_KEY, hoy);

@@ -83,6 +83,11 @@ function handleSendPGr() {
               icon: "success",
               title: "Envio Exitoso",
             });
+            // .then((result) => {
+            //   if (result.isConfirmed) {
+            //     imprimirTicketPOS(nombre_ticke, nombre_promo);
+            //   }
+            // });
           })
           .catch((error) => {
             Swal.fire({
@@ -92,4 +97,50 @@ function handleSendPGr() {
           });
       }
     });
+}
+
+async function imprimirTicketPOS(nombreCliente, nombrePromo) {
+  try {
+    // Solicitar puerto serial (el usuario debe seleccionarlo la primera vez)
+    const port = await navigator.serial.requestPort();
+    await port.open({ baudRate: 9600 });
+
+    const writer = port.writable.getWriter();
+
+    // Comandos ESC/POS básicos
+    const ESC = "\x1B";
+    const LF = "\x0A";
+    const ALIGN_CENTER = ESC + "\x61\x01";
+    const ALIGN_LEFT = ESC + "\x61\x00";
+    const BOLD_ON = ESC + "\x45\x01";
+    const BOLD_OFF = ESC + "\x45\x00";
+    const CUT_PAPER = "\x1D\x56\x00"; // Comando para cortar papel (depende del modelo)
+
+    let textoTicket =
+      ALIGN_CENTER +
+      BOLD_ON +
+      "REGISTRO EXITOSO" +
+      LF +
+      BOLD_OFF +
+      "--------------------------------" +
+      LF +
+      ALIGN_LEFT +
+      `Cliente: ${nombreCliente}` +
+      LF +
+      `Promocion: ${nombrePromo}` +
+      LF +
+      "--------------------------------" +
+      LF +
+      LF +
+      LF +
+      CUT_PAPER;
+
+    const encoder = new TextEncoder();
+    await writer.write(encoder.encode(textoTicket));
+
+    writer.releaseLock();
+    await port.close();
+  } catch (error) {
+    console.error("Error al imprimir en POS:", error);
+  }
 }
