@@ -325,18 +325,28 @@ function getData() {
     .then((res) => res.json())
     .then((data) => {
       if (data && data.length > 0) {
-        let clienteNombre = data[0].Nombre || "CLIENTE";
-        let casinoNombre = data[0].Casino || "";
+        let filasTablaHTML = "";
+        let contadorFila = 1;
 
-        // Extraer todos los números asociados
-        let listaNumeros = [];
-        let fechasRegistros = [];
+        let clienteNombre;
+        let casinoNombre;
+        let cedulaRegistro;
+        let resultadoTexto;
+        let numerosArray;
+        let horaFormateada;
+        let fechaStr;
+        let fechaImpresion;
+        let listaNumeros =[];
+        let fechasRegistros  =[];
 
         data.forEach((registro) => {
-          let resultadoTexto = String(registro.Resultado || "");
-          let numerosArray = resultadoTexto.split(/[.,]/);
+          clienteNombre = registro.Nombre || "CLIENTE";
+          casinoNombre = registro.Casino || "";
+          cedulaRegistro = registro.Cedula || "";
+          resultadoTexto = String(registro.Resultado || "");
+          numerosArray = resultadoTexto.split(/[.,]/);
 
-          let horaFormateada = "";
+          horaFormateada = "";
           if (registro.Hora) {
             try {
               horaFormateada = new Date(registro.Hora).toLocaleTimeString(
@@ -350,46 +360,31 @@ function getData() {
               horaFormateada = "";
             }
           }
-          let fechaStr = registro.Fecha ? registro.Fecha.substring(0, 10) : "";
+          fechaStr = registro.Fecha ? registro.Fecha.substring(0, 10) : "";
           if (fechaStr) fechasRegistros.push(`${fechaStr} ${horaFormateada}`);
+          fechaImpresion = fechaStr
+            ? `${fechaStr} ${horaFormateada}`
+            : new Date().toLocaleString("es-CO");
 
           numerosArray.forEach((numIndividual) => {
             let numeroLimpio = numIndividual.trim();
             if (numeroLimpio) {
+              let numFormateado = String(numeroLimpio).padStart(4, "0");
               listaNumeros.push(String(numeroLimpio).padStart(4, "0"));
+
+              filasTablaHTML += `
+              <tr>
+                <td>${contadorFila++}</td>
+                <td>${clienteNombre}</td>
+                <td>${fechaImpresion}</td>
+                <td><strong>${numFormateado}</strong></td>
+                <td>${casinoNombre}</td>
+                <td>${cedulaRegistro}</td>
+              </tr>
+            `;
             }
           });
         });
-
-        let fechaImpresion =
-          fechasRegistros[0] || new Date().toLocaleString("es-CO");
-
-        // Construcción de la lista de números para la tirilla
-        let numerosHTML = listaNumeros
-          .map(
-            (num, idx) => `
-            <div class="tirilla-item">
-              <span>#${idx + 1}</span>
-              <strong class="tirilla-num">${num}</strong>
-            </div>
-          `,
-          )
-          .join("");
-
-        // Filas para la vista normal en pantalla (Tabla)
-        let filasTablaHTML = listaNumeros
-          .map(
-            (num, idx) => `
-            <tr>
-              <td>${idx + 1}</td>
-              <td>${clienteNombre}</td>
-              <td>${fechaImpresion}</td>
-              <td><strong>${num}</strong></td>
-              <td>${casinoNombre}</td>
-            </tr>
-          `,
-          )
-          .join("");
 
         // Guardamos los datos estructurados para la impresión en una propiedad global
         window.datosTirillaActual = {
@@ -415,6 +410,7 @@ function getData() {
                   <th>Fecha</th>
                   <th>Número</th>
                   <th>Casino</th>
+                  <th>Cédula</th>
                 </tr>
               </thead>
               <tbody>
@@ -440,12 +436,21 @@ function getData() {
     });
 }
 
-getAllData();
+document
+  .getElementById("btn_envio_secundario")
+  .addEventListener("click", () => {
+    getAllData();
+  });
+
 function getAllData() {
   let result_dia_acumula = document.getElementById("result_dia_all_tes");
-  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica`;
+  let load_data_search = document.getElementById("load-data-search");
+  let inputBuscar = document.getElementById("numero_bus");
 
+  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica`;
   result_dia_acumula.innerHTML = `Cargando...`;
+  load_data_search.style.display = "flex";
+  inputBuscar.style.display = "none";
 
   fetch(url)
     .then((res) => res.json())
@@ -455,6 +460,7 @@ function getAllData() {
         if (loader) loader.style.display = "none";
         result_dia_acumula.innerHTML = `Sin Registros`;
         result_dia_acumula.style.display = "flex";
+        load_data_search.style.display = "none";
         return;
       }
 
@@ -527,8 +533,8 @@ function getAllData() {
             </table>
           </div>
         `;
+      load_data_search.style.display = "none";
 
-      let inputBuscar = document.getElementById("numero_bus");
       if (inputBuscar) {
         inputBuscar.style.display = "flex";
         let nuevoInput = inputBuscar.cloneNode(true);
@@ -777,6 +783,134 @@ function getAllConteo() {
             | Faltantes: <span style="color: #dc3545;">${totalFaltantes}</span>
           </div>
         `;
+    })
+    .catch((error) => {
+      console.error("Error en la petición:", error);
+      result_dia_acumula.innerHTML = `Error al cargar los datos.`;
+    });
+}
+
+
+
+function getDatawerw() {
+  let result_dia_acumula = document.getElementById("result_dia_acumula");
+  let cedula = document.getElementById("val_cedu_search").value;
+  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica&cedula=${cedula}`;
+
+  result_dia_acumula.innerHTML = `Cargando...`;
+
+  fetch(url)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data && data.length > 0) {
+        let clienteNombre = data[0].Nombre || "CLIENTE";
+        let casinoNombre = data[0].Casino || "";
+
+        // Extraer todos los números asociados
+        let listaNumeros = [];
+        let fechasRegistros = [];
+
+        data.forEach((registro) => {
+          let resultadoTexto = String(registro.Resultado || "");
+          let numerosArray = resultadoTexto.split(/[.,]/);
+
+          let horaFormateada = "";
+          if (registro.Hora) {
+            try {
+              horaFormateada = new Date(registro.Hora).toLocaleTimeString(
+                "es-CO",
+                {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                },
+              );
+            } catch (e) {
+              horaFormateada = "";
+            }
+          }
+          let fechaStr = registro.Fecha ? registro.Fecha.substring(0, 10) : "";
+          if (fechaStr) fechasRegistros.push(`${fechaStr} ${horaFormateada}`);
+
+          numerosArray.forEach((numIndividual) => {
+            let numeroLimpio = numIndividual.trim();
+            if (numeroLimpio) {
+              listaNumeros.push(String(numeroLimpio).padStart(4, "0"));
+            }
+          });
+        });
+
+        let fechaImpresion =
+          fechasRegistros[0] || new Date().toLocaleString("es-CO");
+
+        // Construcción de la lista de números para la tirilla
+        let numerosHTML = listaNumeros
+          .map(
+            (num, idx) => `
+            <div class="tirilla-item">
+              <span>#${idx + 1}</span>
+              <strong class="tirilla-num">${num}</strong>
+            </div>
+          `,
+          )
+          .join("");
+
+        // Filas para la vista normal en pantalla (Tabla)
+        let filasTablaHTML = listaNumeros
+          .map(
+            (num, idx) => `
+            <tr>
+              <td>${idx + 1}</td>
+              <td>${clienteNombre}</td>
+              <td>${fechaImpresion}</td>
+              <td><strong>${num}</strong></td>
+              <td>${casinoNombre}</td>
+            </tr>
+          `,
+          )
+          .join("");
+
+        // Guardamos los datos estructurados para la impresión en una propiedad global
+        window.datosTirillaActual = {
+          nombre: clienteNombre,
+          cedula: cedula,
+          casino: casinoNombre,
+          fecha: fechaImpresion,
+          numeros: listaNumeros,
+        };
+
+        result_dia_acumula.innerHTML = `
+          <div style="margin-bottom: 10px; text-align: right;">
+            <button onclick="imprimirResultadosPOS()" class="btn-imprimir" title="Imprimir Tirilla">
+              <img id="_excel_search_" src="/resource/impresion.png" alt="Imprimir">
+            </button>
+          </div>
+          <div class="table-result table-scrolld table_all_data">
+            <table class="styled-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Usuario</th>
+                  <th>Fecha</th>
+                  <th>Número</th>
+                  <th>Casino</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${filasTablaHTML}
+              </tbody>
+            </table>
+          </div>
+        `;
+      } else {
+        console.log("No se encontró ninguna coincidencia.");
+        result_dia_acumula.innerHTML = `No se encontró ninguna coincidencia.`;
+
+        Swal.fire({
+          icon: "error",
+          title: `Error en la verificación.`,
+          text: `No se encontró ninguna coincidencia.`,
+        });
+      }
     })
     .catch((error) => {
       console.error("Error en la petición:", error);
