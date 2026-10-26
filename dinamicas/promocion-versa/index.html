@@ -27,7 +27,8 @@
         </div>
         <div class="board_">
             <h2>Registrar Jugador</h2>
-            <input onkeyup="this.value = this.value.toUpperCase()" type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre...">
+            <input onkeyup="this.value = this.value.toUpperCase()" type="text" name="nombre" id="nombre"
+                class="form-control" placeholder="Nombre...">
             <input type="number" name="cedula" id="cedula" class="form-control" placeholder="Cédula...">
             <select class="form-control" style="cursor: pointer;" id="casino">
                 <option value="">Casino...</option>
@@ -89,7 +90,7 @@
                 <img id="expandir" title="Expandir" src="/resource/expandir.png" alt="Aladdin">
             </div>
             <div class="content_head_modal">
-                <div  class="content_opcion_head">
+                <div class="content_opcion_head">
                     <p id="btn_guardar_registro">Actualizar Puntaje</p>
                 </div>
                 <div style="display: none;" class="content_opcion_head">
@@ -111,6 +112,9 @@
             <div style="display: none;" id="view_guardar_registro" class="content_body_modal">
                 <div class="info_body_modal">
                     <h2>Actualizar Puntaje</h2>
+                    <div><input style="display: none;" type="text" name="numero_bus" id="numero_bus"
+                            class="form-control" placeholder="Buscar..."></div>
+                            <br/>
                     <div class="result_dia_acumula" id="result_dia_acumula"></div>
                 </div>
             </div>

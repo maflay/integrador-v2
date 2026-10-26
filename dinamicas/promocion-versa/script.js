@@ -110,7 +110,8 @@ document.getElementById("btn_opciones").addEventListener("click", () => {
 function getData() {
   let container = document.getElementById("result_dia_acumula");
   container.innerHTML = `Cargando...`;
-
+  let inputBuscar = document.getElementById("numero_bus");
+  inputBuscar.style.display = "none";
   fetch(`${url}?hoja=dinamica`)
     .then((res) => res.json())
     .then((data) => {
@@ -160,6 +161,37 @@ function getData() {
           </table>
         </div>
       `;
+      if (inputBuscar) {
+        inputBuscar.style.display = "flex";
+        let nuevoInput = inputBuscar.cloneNode(true);
+        inputBuscar.parentNode.replaceChild(nuevoInput, inputBuscar);
+
+        nuevoInput.addEventListener("keyup", () => {
+          const texto = nuevoInput.value.toLowerCase().trim();
+          const filas = container.querySelectorAll("tbody tr");
+
+          // if (texto === "") {
+          //   container.style.display = "none";
+          //   return;
+          // } else {
+          //   container.style.display = "flex";
+          // }
+
+          const columnas = [1, 2, 3, 4, 5, 6];
+
+          filas.forEach((fila) => {
+            const textoFila = columnas
+              .map(
+                (i) =>
+                  fila.querySelector(`td:nth-child(${i})`)?.textContent || "",
+              )
+              .join(" ")
+              .toLowerCase();
+
+            fila.style.display = textoFila.includes(texto) ? "" : "none";
+          });
+        });
+      }
 
       document.querySelectorAll(".btn-enviar-puntaje").forEach((btn) => {
         btn.addEventListener("click", async () => {
