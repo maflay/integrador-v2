@@ -97,17 +97,21 @@ async function iniciarBusqueda() {
   let categoria = document.getElementById("categoria");
   contenedor.innerHTML = "";
 
-  if(categoria.value == ""){
+  if (categoria.value == "") {
     Swal.fire({
       icon: "warning",
-      title: "Selecciona una Categoría"
+      title: "Selecciona una Categoría",
     });
     return;
   }
 
   let cantidadCurrent = 0;
 
-  if (categoria.value == "GENIUS" || categoria.value == "TITANIO") {
+  if (
+    categoria.value == "GENIUS" ||
+    categoria.value == "TITANIO" ||
+    categoria.value == "RETENCION"
+  ) {
     cantidadCurrent = 2;
   } else {
     cantidadCurrent = 1;
