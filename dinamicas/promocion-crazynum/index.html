@@ -23,7 +23,17 @@
             </video>
         </div>
         <div class="content_opciones">
-
+            <select class="form-control" id="categoria">
+                <option value="">Categoría...</option>
+                <option value="GENIUS">Genius</option>
+                <option value="TITANIO">Titanio</option>
+                <option value="LEGENDARIO">Legendario</option>
+                <option value="GOLD">Gold</option>
+                <option value="SILVER">Silver</option>
+                <option value="BRONCE">Bronce</option>
+                <option value="SUPERIOR">Superior</option>
+                <option value="ESTANDAR">Estandar</option>
+            </select>
             <img id="btn_opciones" src="/resource/engranaje.png" alt="Aladdin">
         </div>
         <div class="_container_">
@@ -126,17 +136,7 @@
                                 <option value="A127">A127</option>
                                 <option value="A127-MESAS">A127-MESAS</option>
                             </select>
-                            <select class="form-control" id="categoria">
-                                <option value="">Categoria...</option>
-                                <option value="GENIUS">Genius</option>
-                                <option value="TITANIO">Titanio</option>
-                                <option value="LEGENDARIO">Legendario</option>
-                                <option value="GOLD">Gold</option>
-                                <option value="SILVER">Silver</option>
-                                <option value="BRONCE">Bronce</option>
-                                <option value="SUPERIOR">Superior</option>
-                                <option value="ESTANDAR">Estandar</option>
-                            </select>
+
                         </div>
                         <div class="content_btn_modal">
                             <button title="Enviar" id="btn_enviar" class="btn btn-primary">Enviar</button>
@@ -147,11 +147,12 @@
             <div style="display: none;" id="view_envio_secundario" class="content_body_modal">
                 <div class="info_body_modal">
                     <h2>Consultar</h2>
-                    <div><input style="display: none;" type="text" name="numero_bus" id="numero_bus" class="form-control" placeholder="Buscar..."></div>
-                    <br/>
+                    <div><input style="display: none;" type="text" name="numero_bus" id="numero_bus"
+                            class="form-control" placeholder="Buscar..."></div>
+                    <br />
                     <p id="load-data-search">Cargando...</p>
                     <div style="display: none;" class="result_dia_acumula" id="result_dia_all_tes"></div>
-                    
+
                 </div>
             </div>
             <div style="display: none;" id="view_envia_observacion" class="content_body_modal">

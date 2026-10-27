@@ -94,9 +94,26 @@ window.addEventListener("load", () => {
 async function iniciarBusqueda() {
   const numeroInput = document.getElementById("numeroInput");
   const contenedor = document.querySelector(".content_numeros_gene");
+  let categoria = document.getElementById("categoria");
   contenedor.innerHTML = "";
 
-  const cantidad = parseInt(numeroInput.value * 2);
+  if(categoria.value == ""){
+    Swal.fire({
+      icon: "warning",
+      title: "Selecciona una Categoría"
+    });
+    return;
+  }
+
+  let cantidadCurrent = 0;
+
+  if (categoria.value == "GENIUS" || categoria.value == "TITANIO") {
+    cantidadCurrent = 2;
+  } else {
+    cantidadCurrent = 1;
+  }
+
+  const cantidad = parseInt(numeroInput.value * cantidadCurrent);
   if (isNaN(cantidad) || cantidad <= 0) {
     alert("Ingresa una cantidad válida");
     return;
@@ -336,8 +353,8 @@ function getData() {
         let horaFormateada;
         let fechaStr;
         let fechaImpresion;
-        let listaNumeros =[];
-        let fechasRegistros  =[];
+        let listaNumeros = [];
+        let fechasRegistros = [];
 
         data.forEach((registro) => {
           clienteNombre = registro.Nombre || "CLIENTE";
@@ -789,4 +806,3 @@ function getAllConteo() {
       result_dia_acumula.innerHTML = `Error al cargar los datos.`;
     });
 }
-
