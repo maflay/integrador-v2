@@ -23,25 +23,25 @@ let DeleLog = new Date().toLocaleString("es-CO", {
 
 let [fechaLog, horaLog] = DeleLog.split(", ");
 
-let dataFechaString = localStorage.getItem(FECHA_KEY)
-  ? localStorage.getItem(FECHA_KEY)
-  : localStorage.setItem(
+validateDate();
+function validateDate() {
+  let dataFechaString = localStorage.getItem(FECHA_KEY);
+
+  if (!dataFechaString) {
+    const initialData = { Fecha: hoy, Hora: horaLog };
+    localStorage.setItem(FECHA_KEY, JSON.stringify(initialData));
+    return;
+  }
+
+  let dataFecha = JSON.parse(dataFechaString);
+
+  if (dataFecha && dataFecha.Fecha !== hoy && dataFecha.Hora >= "03:00:00") {
+    localStorage.setItem(LS_KEY, JSON.stringify([]));
+    localStorage.setItem(
       FECHA_KEY,
       JSON.stringify({ Fecha: hoy, Hora: horaLog }),
     );
-
-let dataFecha = dataFechaString ? JSON.parse(dataFechaString) : null;
-
-// if (dataFecha) {
-//   console.log("localStorage.getItem(FECHA_KEY)", dataFecha.Fecha);
-// }
-
-if (dataFecha.Fecha !== hoy && dataFecha.Hora >= "03:00:00") {
-  localStorage.setItem(LS_KEY, JSON.stringify([]));
-  localStorage.setItem(
-    FECHA_KEY,
-    JSON.stringify({ Fecha: hoy, Hora: horaLog }),
-  );
+  }
 }
 
 const promocion = "Halloween Misterioso";
