@@ -128,7 +128,7 @@ async function iniciarBusqueda() {
   contenedor.appendChild(cargando);
 
   try {
-    let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica`;
+    let url = `https://script.google.com/macros/s/AKfycbwplk_G2VgnwPXupvc2vyA0WpcguP514S-5irHySvN17RbDhOdLbuX5T-rN8j-59EYPqw/exec?hoja=dinamica`;
 
     let response = await fetch(url);
     let data = await response.json();
@@ -241,7 +241,7 @@ function handleSendInfo() {
   let categoria = document.getElementById("categoria");
   let Promocion = "Sorteo Tesla";
   let url =
-    "https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec";
+    "https://script.google.com/macros/s/AKfycbwplk_G2VgnwPXupvc2vyA0WpcguP514S-5irHySvN17RbDhOdLbuX5T-rN8j-59EYPqw/exec";
   const elementosNumeros = document.querySelectorAll(".add_flex");
 
   if (
@@ -338,7 +338,7 @@ document.getElementById("btn_cedu_search").addEventListener("click", () => {
 function getData() {
   let result_dia_acumula = document.getElementById("result_dia_acumula");
   let cedula = document.getElementById("val_cedu_search").value;
-  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica&cedula=${cedula}`;
+  let url = `https://script.google.com/macros/s/AKfycbwplk_G2VgnwPXupvc2vyA0WpcguP514S-5irHySvN17RbDhOdLbuX5T-rN8j-59EYPqw/exec?hoja=dinamica&cedula=${cedula}`;
 
   result_dia_acumula.innerHTML = `Cargando...`;
 
@@ -468,7 +468,7 @@ function getAllData() {
   let load_data_search = document.getElementById("load-data-search");
   let inputBuscar = document.getElementById("numero_bus");
 
-  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica`;
+  let url = `https://script.google.com/macros/s/AKfycbwplk_G2VgnwPXupvc2vyA0WpcguP514S-5irHySvN17RbDhOdLbuX5T-rN8j-59EYPqw/exec?hoja=dinamica`;
   result_dia_acumula.innerHTML = `Cargando...`;
   load_data_search.style.display = "flex";
   inputBuscar.style.display = "none";
@@ -666,7 +666,7 @@ function handleSenObs() {
     "descripcion_observacion",
   );
   let user = inforUser();
-  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec`;
+  let url = `https://script.google.com/macros/s/AKfycbwplk_G2VgnwPXupvc2vyA0WpcguP514S-5irHySvN17RbDhOdLbuX5T-rN8j-59EYPqw/exec`;
   const fechaCompleta = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
     year: "numeric",
@@ -727,7 +727,7 @@ document.getElementById("btn_tabla_premios").addEventListener("click", () => {
 
 function getAllConteo() {
   let result_dia_acumula = document.getElementById("result_conteo");
-  let url = `https://script.google.com/macros/s/AKfycbxnGHMOWMRLHh8L35p3Hhd0f4dWj9lu7bqsXkM5q6qX1xHu_mhUGCJ2h53Au_zYli0IMw/exec?hoja=dinamica`;
+  let url = `https://script.google.com/macros/s/AKfycbwplk_G2VgnwPXupvc2vyA0WpcguP514S-5irHySvN17RbDhOdLbuX5T-rN8j-59EYPqw/exec?hoja=dinamica`;
 
   result_dia_acumula.innerHTML = `Cargando...`;
 
