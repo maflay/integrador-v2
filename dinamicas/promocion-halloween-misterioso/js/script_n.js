@@ -11,26 +11,39 @@ const FECHA_KEY = "fechaMisterioso";
 const hoy = new Date().toDateString();
 
 let DeleLog = new Date().toLocaleString("es-CO", {
-    timeZone: "America/Bogota",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false,
-  });
+  timeZone: "America/Bogota",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
 
-  let [fechaLog,horaLog] = DeleLog.split(", ");
-  console.log(fechaLog);
-  console.log(horaLog);
+let [fechaLog, horaLog] = DeleLog.split(", ");
 
+let dataFechaString = localStorage.getItem(FECHA_KEY)
+  ? localStorage.getItem(FECHA_KEY)
+  : localStorage.setItem(
+      FECHA_KEY,
+      JSON.stringify({ Fecha: hoy, Hora: horaLog }),
+    );
 
-console.log();
-if (localStorage.getItem(FECHA_KEY) !== hoy) {
+let dataFecha = dataFechaString ? JSON.parse(dataFechaString) : null;
+
+// if (dataFecha) {
+//   console.log("localStorage.getItem(FECHA_KEY)", dataFecha.Fecha);
+// }
+
+if (dataFecha.Fecha !== hoy && dataFecha.Hora >= "03:00:00") {
   localStorage.setItem(LS_KEY, JSON.stringify([]));
-  localStorage.setItem(FECHA_KEY, hoy);
+  localStorage.setItem(
+    FECHA_KEY,
+    JSON.stringify({ Fecha: hoy, Hora: horaLog }),
+  );
 }
+
 const promocion = "Halloween Misterioso";
 let casino = document.getElementById("casino");
 
@@ -333,19 +346,19 @@ function deal() {
   // }
 
   PAIRS = [
-      { key: "esqueleto_uno", arts: ["esqueleto.png"] },
-      { key: "esqueleto_dos", arts: ["esqueleto.png"] },
-      { key: "esqueleto_tres", arts: ["esqueleto.png"] },
-      { key: "esqueleto_cuatro", arts: ["esqueleto.png"] },
-      { key: "esqueleto_cinco", arts: ["esqueleto.png"] },
-      { key: "esqueleto_seis", arts: ["esqueleto.png"] },
-      { key: "momia_uno", arts: ["momia.png"] },
-      { key: "momia_dos", arts: ["momia.png"] },
-      { key: "momia_tres", arts: ["momia.png"] },
-      { key: "calabaza_uno", arts: ["calabaza.png"] },
-      { key: "calabaza_dos", arts: ["calabaza.png"] },
-      { key: "calabaza_tres", arts: ["calabaza.png"] },
-    ];
+    { key: "esqueleto_uno", arts: ["esqueleto.png"] },
+    { key: "esqueleto_dos", arts: ["esqueleto.png"] },
+    { key: "esqueleto_tres", arts: ["esqueleto.png"] },
+    { key: "esqueleto_cuatro", arts: ["esqueleto.png"] },
+    { key: "esqueleto_cinco", arts: ["esqueleto.png"] },
+    { key: "esqueleto_seis", arts: ["esqueleto.png"] },
+    { key: "momia_uno", arts: ["momia.png"] },
+    { key: "momia_dos", arts: ["momia.png"] },
+    { key: "momia_tres", arts: ["momia.png"] },
+    { key: "calabaza_uno", arts: ["calabaza.png"] },
+    { key: "calabaza_dos", arts: ["calabaza.png"] },
+    { key: "calabaza_tres", arts: ["calabaza.png"] },
+  ];
   ensureMarkup();
   const deck = buildDeck();
 
