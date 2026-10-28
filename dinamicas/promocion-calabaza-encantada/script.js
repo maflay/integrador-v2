@@ -87,9 +87,15 @@ function minDinamicoPorTurno(turno) {
 
 function maxPorTurno(turno) {
   if (turno === 1) return 6;
-  if (turno === 2) return 12;
-  if (turno === 3) return 18;
-  return 0;
+  if (turno === 2) {
+    const posAnterior = getAvionIndex(avance_1, 1);
+    return Math.min(posAnterior + 6, 18);
+  }
+  if (turno === 3) {
+    const posAnterior = getAvionIndex(avance_2, 2);
+    return Math.min(posAnterior + 6, 18);
+  }
+  return 18;
 }
 
 function validaMovimientoDinamico(turno, destino) {
@@ -348,12 +354,14 @@ posiciones.forEach((item) => {
       }
     } else if (turnoAvion == 2) {
       const destino = destinoIndex;
-      if (!validaMovimientoDinamico(2, destino)) {
-        const min = minDinamicoPorTurno(2);
+      const min = minDinamicoPorTurno(2);
+      const max = maxPorTurno(2);
+
+      if (destino < min || destino > max) {
         Swal.fire({
           icon: "warning",
           title: "No se puede mover",
-          text: `Caballero 2: solo de ${min} a 12.`,
+          text: `Caballero 2: debes moverte entre la casilla ${min + 1} y ${max}.`,
         });
         return;
       }
@@ -384,12 +392,14 @@ posiciones.forEach((item) => {
       }
     } else if (turnoAvion == 3) {
       const destino = destinoIndex;
-      if (!validaMovimientoDinamico(3, destino)) {
-        const min = minDinamicoPorTurno(3);
+      const min = minDinamicoPorTurno(3);
+      const max = maxPorTurno(3);
+
+      if (destino < min || destino > max) {
         Swal.fire({
           icon: "warning",
           title: "No se puede mover",
-          text: `Caballero 3: solo de ${min} a 18.`,
+          text: `Caballero 3: debes moverte entre la casilla ${min + 1} y ${max}.`,
         });
         return;
       }
@@ -434,10 +444,10 @@ function alertPremio(categ, valorPremio) {
     position: "bottom-start",
     title: `Con ${categ}`,
     customClass: {
-          popup: "mi-popup",
-          title: "mi-titulo",
-          confirmButton: "btn btn-danger",
-        },
+      popup: "mi-popup",
+      title: "mi-titulo",
+      confirmButton: "btn btn-danger",
+    },
     html: `<img class="img_corona_rama" src="/dinamicas/promocion-9-portales/resources/corona_rama.png" alt="promoAladdin">Ganaste un premio de ${formatoPesos_monto_efectivo.format(valorPremio)}.000 en Dinero Promocional`,
   });
 
