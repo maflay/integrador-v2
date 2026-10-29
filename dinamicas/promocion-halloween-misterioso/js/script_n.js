@@ -23,24 +23,41 @@ let DeleLog = new Date().toLocaleString("es-CO", {
 
 let [fechaLog, horaLog] = DeleLog.split(", ");
 
-validateDate();
 function validateDate() {
   let dataFechaString = localStorage.getItem(FECHA_KEY);
 
   if (!dataFechaString) {
-    const initialData = { Fecha: hoy, Hora: horaLog };
+    const initialData = [{ Fecha: hoy, Hora: horaLog }];
     localStorage.setItem(FECHA_KEY, JSON.stringify(initialData));
     return;
   }
 
-  let dataFecha = JSON.parse(dataFechaString);
+  let dataFecha;
 
-  if (dataFecha && dataFecha.Fecha !== hoy && dataFecha.Hora >= "03:00:00") {
+  try {
+    dataFecha = JSON.parse(dataFechaString);
+
+    if (!Array.isArray(dataFecha)) {
+      dataFecha = [dataFecha];
+      localStorage.setItem(FECHA_KEY, JSON.stringify(dataFecha));
+    }
+  } catch (error) {
+    dataFecha = [{ Fecha: hoy, Hora: horaLog }];
+    localStorage.setItem(FECHA_KEY, JSON.stringify(dataFecha));
+    return;
+  }
+
+  let ultimoRegistro = dataFecha[dataFecha.length - 1];
+
+  if (
+    ultimoRegistro &&
+    ultimoRegistro.Fecha !== hoy &&
+    ultimoRegistro.Hora >= "03:00:00"
+  ) {
     localStorage.setItem(LS_KEY, JSON.stringify([]));
-    localStorage.setItem(
-      FECHA_KEY,
-      JSON.stringify({ Fecha: hoy, Hora: horaLog }),
-    );
+
+    dataFecha.push({ Fecha: hoy, Hora: horaLog });
+    localStorage.setItem(FECHA_KEY, JSON.stringify(dataFecha));
   }
 }
 
