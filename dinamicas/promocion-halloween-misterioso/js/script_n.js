@@ -689,6 +689,7 @@ function GetResgistroDia() {
   const registros = JSON.parse(localStorage.getItem(LS_KEY)) || [];
   const valCasino = (document.getElementById("casino")?.value || "").trim();
   const loader = document.getElementById("loader");
+  let btn_registro_dia = document.getElementById("btn_registro_dia");
 
   const filtrados = valCasino
     ? registros.filter((item) => item.valor_5)
@@ -772,6 +773,32 @@ function GetResgistroDia() {
       return [];
     }
   }
+
+  // btn_registro_dia.addEventListener("click", () => {
+  //   let dataLocal = getRegs();
+  //   console.log(dataLocal);
+
+  //   for (let i = 0; i < dataLocal.length; i++) {
+  //     console.log(dataLocal[i].valBono);
+
+  //     let filaHTML = document.getElementById(`fila-${dataLocal[i].id}`);
+  //     console.log(filaHTML);
+
+  //     if (filaHTML === "") {
+  //       console.log("notiene");
+  //       filaHTML.style.display = "";
+  //     } else {
+  //       console.log(dataLocal[i].valBono, "aca");
+  //     }
+  //     // if (filaHTML === null) {
+  //     //   if (dataLocal[i].valBono === "") {
+  //     //     filaHTML.style.display = "";
+  //     //   } else {
+  //     //     filaHTML.style.display = "none";
+  //     //   }
+  //     // }
+  //   }
+  // });
 
   function updateLocalBono(
     {
