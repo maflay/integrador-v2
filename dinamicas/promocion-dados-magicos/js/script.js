@@ -295,6 +295,41 @@ function validatePremio() {
     });
     return;
   }
+  const esTriples = d1 === d2 && d2 === d3;
+
+  if (esTriples == true) {
+    Swal.fire({
+      icon: "success",
+      title: `Con ${categoria}`,
+      html: `Sacaste Triple ${d1}`,
+    });
+  } else {
+    let totalRes = Number(d1) + Number(d2) + Number(d3);
+    Swal.fire({
+      icon: "success",
+      title: `Con ${categoria}`,
+      html: `Sacaste un total de ${totalRes}`,
+    });
+  }
+
+  confetti({
+    particleCount: 200,
+    spread: 70,
+    origin: { y: 0.8, x: 0.2 },
+  });
+
+  confetti({
+    particleCount: 200,
+    spread: 120,
+    origin: { y: 0.8 },
+  });
+
+  confetti({
+    particleCount: 200,
+    spread: 70,
+    origin: { y: 0.8, x: 0.8 },
+  });
+  return;
 
   const casinoNorm = normalizarCasino(casino);
   const grupo = obtenerGrupoCasino(casinoNorm);
