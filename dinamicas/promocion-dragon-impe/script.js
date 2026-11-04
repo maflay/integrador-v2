@@ -350,7 +350,7 @@ function onCellClick(e) {
 
   if (moves >= 5) {
     const amount = getPrize(categoria.value, matches);
-    if (amount == null || amount == "" || amount == 0 || amount == "0") {
+    if (matches == 0) {
       Swal.fire({
         position: "top-start",
         title: `Con categoria ${categoria.value}`,
