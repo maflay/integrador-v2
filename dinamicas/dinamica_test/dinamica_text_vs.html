@@ -1,2552 +1,452 @@
-<!-- =========================================================
-     GRAND ALADDIN — PROTECCIÓN DIVI VISUAL BUILDER
-     ========================================================= -->
-
-<style id="ga-divi-protection">
-    /*
- * Divi 5 añade .et-vb-app-ancestor al documento del Visual Builder.
- * Divi 4 usa .et-fb.
- * Estas reglas son deliberadamente anteriores al splash.
- */
-    html.et-vb-app-ancestor #ga-age-splash,
-    html.et-fb #ga-age-splash,
-    body.et-fb #ga-age-splash,
-    body.et-vb #ga-age-splash,
-    html.ga-divi-builder #ga-age-splash {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-
-    html.et-vb-app-ancestor body,
-    html.et-fb body,
-    body.et-fb {
-        overflow: auto !important;
-    }
-</style>
-
-<script>
-    (function () {
-        function gaDiviActive() {
-            try {
-                var d = document.documentElement;
-                var b = document.body;
-                var s = window.location.search || "";
-                var h = window.location.href || "";
-
-                if (
-                    d.classList.contains("et-vb-app-ancestor") ||
-                    d.classList.contains("et-fb") ||
-                    (b && (
-                        b.classList.contains("et-fb") ||
-                        b.classList.contains("et-vb")
-                    ))
-                ) return true;
-
-                if (
-                    s.indexOf("et_fb") !== -1 ||
-                    s.indexOf("et_pb_preview") !== -1 ||
-                    h.indexOf("et_fb") !== -1
-                ) return true;
-
-                if (
-                    document.getElementById("et-vb-app") ||
-                    document.getElementById("et-vb-app-frame")
-                ) return true;
-
-                return false;
-            } catch (e) {
-                return false;
-            }
+<div class="mo-menu-wrap">
+    <style>
+        .mo-menu-wrap {
+            --brown-deep: #4a2e1f;
+            --brown-mid: #8a5a35;
+            --brown-line: #b6905f;
+            --brown-soft: #e6e4de;
+            --parchment: #f5f3ee;
+            --parchment-2: #dbdbd5;
+            --ink: #3a2a1c;
+            font-family: 'Lato', Arial, sans-serif;
+            font-size: 15pt;
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 10px 6px 40px;
+            color: var(--ink);
+            background: transparent;
         }
 
-        window.__GRAND_ALADDIN_DIVI__ = gaDiviActive();
-
-        if (window.__GRAND_ALADDIN_DIVI__) {
-            document.documentElement.classList.add("ga-divi-builder");
-        }
-    })();
-</script>
-
-<!-- =========================================================
-     GRAND ALADDIN
-     SPLASH DE EDAD + BONO DE $30.000
-     ========================================================= -->
-
-<div id="ga-age-splash" aria-modal="true" role="dialog">
-
-    <!-- FONDO -->
-    <div class="ga-splash-bg"></div>
-
-    <div class="ga-light ga-light-1"></div>
-    <div class="ga-light ga-light-2"></div>
-    <div class="ga-light ga-light-3"></div>
-
-    <!-- PARTÍCULAS -->
-    <div class="ga-particles">
-        <span>✦</span>
-        <span>✧</span>
-        <span>✦</span>
-        <span>·</span>
-        <span>✧</span>
-        <span>✦</span>
-        <span>·</span>
-        <span>✧</span>
-        <span>✦</span>
-        <span>·</span>
-        <span>✧</span>
-        <span>✦</span>
-    </div>
-
-    <!-- HUMO -->
-    <div class="ga-smoke-container">
-        <span class="ga-smoke ga-smoke-gold"></span>
-        <span class="ga-smoke ga-smoke-blue"></span>
-        <span class="ga-smoke ga-smoke-red"></span>
-
-        <span class="ga-smoke-cloud ga-cloud-1"></span>
-        <span class="ga-smoke-cloud ga-cloud-2"></span>
-        <span class="ga-smoke-cloud ga-cloud-3"></span>
-    </div>
-
-    <!-- CONTENIDO -->
-    <div class="ga-splash-content">
-
-        <!-- MARCA -->
-        <div class="ga-brand">
-
-            <div class="ga-brand-line"></div>
-
-            <div class="ga-brand-name">
-                GRAND ALADDIN
-            </div>
-
-            <div class="ga-brand-subtitle">
-                LA MAGIA COMIENZA AQUÍ
-            </div>
-
-        </div>
-
-        <!-- PANTALLA EDAD -->
-        <div id="ga-age-screen" class="ga-screen active">
-
-            <div class="ga-lamp-wrapper">
-
-                <div class="ga-lamp-glow"></div>
-
-                <div class="ga-lamp-smoke"></div>
-
-                <span class="ga-lamp-spark spark-a">✦</span>
-                <span class="ga-lamp-spark spark-b">✧</span>
-                <span class="ga-lamp-spark spark-c">✦</span>
-
-                <img src="https://grandaladdin.com/wp-content/uploads/2026/08/Grand-aladdin-Prestige-Logo.png"
-                    alt="Lámpara mágica Grand Aladdin" class="ga-lamp">
-
-            </div>
-
-            <div class="ga-question">
-
-                <div class="ga-small-title">
-                    BIENVENIDOS
-                </div>
-
-                <h1>
-                    ¿Eres mayor de
-                    <span>18 años?</span>
-                </h1>
-
-                <p>
-                    Para ingresar a Grand Aladdin debes confirmar
-                    que eres mayor de edad.
-                </p>
-
-            </div>
-
-            <div class="ga-age-buttons">
-
-                <button type="button" id="ga-yes" class="ga-btn ga-btn-yes">
-                    <span class="ga-btn-icon">✓</span>
-                    SÍ, SOY MAYOR DE 18 AÑOS
-                </button>
-
-                <button type="button" id="ga-no" class="ga-btn ga-btn-no">
-                    NO, SOY MENOR DE EDAD
-                </button>
-
-            </div>
-
-            <div class="ga-legal">
-                Al ingresar declaras ser mayor de edad.
-            </div>
-
-            <div class="ga-privacy-notice">
-                Este sitio es exclusivo para personas mayores de 18 años.
-                Además, usamos cookies para mejorar tu experiencia.
-                Al continuar navegando, aceptas nuestras políticas y el uso de cookies.
-            </div>
-
-        </div>
-
-        <!-- PANTALLA MENOR -->
-        <div id="ga-underage-screen" class="ga-screen">
-
-            <div class="ga-underage-icon">
-                18+
-            </div>
-
-            <h2>
-                Lo sentimos
-            </h2>
-
-            <p>
-                El acceso a Grand Aladdin está permitido
-                únicamente para personas mayores de 18 años.
-            </p>
-
-            <button type="button" id="ga-back" class="ga-btn ga-btn-no">
-                VOLVER
-            </button>
-
-        </div>
-
-        <!-- PANTALLA BONO -->
-        <div id="ga-bonus-screen" class="ga-screen">
-
-            <div class="ga-bonus-pretitle">
-                ¡BIENVENIDO A GRAND ALADDIN!
-            </div>
-
-            <div class="ga-bonus-lamp">
-
-                <div class="ga-bonus-glow"></div>
-
-                <img src="https://grandaladdin.com/wp-content/uploads/2026/07/Lampara.png" alt="Lámpara mágica">
-
-            </div>
-
-            <div class="ga-bonus-card">
-
-                <div class="ga-bonus-sparkle">
-                    ✦
-                </div>
-
-                <div class="ga-bonus-title">
-                    TIENES UN
-                </div>
-
-                <div class="ga-bonus-value">
-                    $30.000
-                </div>
-
-                <div class="ga-bonus-label">
-                    BONO DE BIENVENIDA
-                </div>
-
-                <div class="ga-bonus-divider"></div>
-
-                <p>
-                    Un bono especial para disfrutar
-                    la experiencia Grand Aladdin.
-                </p>
-
-                <a href="#" id="ga-bonus-button" class="ga-bonus-button">
-                    OBTENER MI BONO
-                    <span>→</span>
-                </a>
-
-            </div>
-
-            <button type="button" id="ga-enter" class="ga-enter-button">
-                CONTINUAR AL SITIO
-            </button>
-
-            <div class="ga-bonus-legal">
-                Aplican términos y condiciones de la promoción.
-            </div>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<style>
-    /* =========================================================
-   RESET
-   ========================================================= */
-
-    #ga-age-splash,
-    #ga-age-splash * {
-        box-sizing: border-box;
-    }
-
-
-    /* =========================================================
-   SPLASH PRINCIPAL
-   ========================================================= */
-
-    #ga-age-splash {
-        position: fixed;
-        inset: 0;
-
-        width: 100vw;
-        height: 100vh;
-
-        z-index: 999999;
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        overflow: hidden;
-
-        background: #070707;
-
-        font-family: "Lato", Arial, sans-serif;
-
-        color: #ffffff;
-    }
-
-
-    /* =========================================================
-   FONDO
-   ========================================================= */
-
-    .ga-splash-bg {
-        position: absolute;
-        inset: 0;
-
-        background:
-            radial-gradient(ellipse at center,
-                rgba(60, 45, 20, .55) 0%,
-                rgba(10, 10, 10, .92) 52%,
-                #030303 100%);
-
-        z-index: 0;
-    }
-
-    .ga-splash-bg::after {
-        content: "";
-
-        position: absolute;
-        inset: 0;
-
-        opacity: .12;
-
-        background-image:
-            radial-gradient(circle at 20% 30%,
-                rgba(255, 255, 255, .12) 0,
-                rgba(255, 255, 255, .12) 1px,
-                transparent 2px);
-
-        background-size: 55px 55px;
-    }
-
-
-    /* =========================================================
-   LUCES
-   ========================================================= */
-
-    .ga-light {
-        position: absolute;
-
-        width: 500px;
-        height: 500px;
-
-        border-radius: 50%;
-
-        filter: blur(100px);
-
-        pointer-events: none;
-
-        opacity: .12;
-    }
-
-    .ga-light-1 {
-        background: rgba(220, 156, 11, .8);
-
-        top: -250px;
-        left: -180px;
-    }
-
-    .ga-light-2 {
-        background: rgba(30, 80, 220, .55);
-
-        bottom: -280px;
-        right: -180px;
-    }
-
-    .ga-light-3 {
-        background: rgba(170, 25, 35, .45);
-
-        top: 40%;
-        right: -300px;
-    }
-
-
-    /* =========================================================
-   CONTENIDO
-   ========================================================= */
-
-    .ga-splash-content {
-        position: relative;
-
-        z-index: 50;
-
-        width: min(92vw, 720px);
-
-        max-height: 96vh;
-
-        overflow-y: auto;
-
-        text-align: center;
-
-        scrollbar-width: none;
-    }
-
-    .ga-splash-content::-webkit-scrollbar {
-        display: none;
-    }
-
-
-    /* =========================================================
-   MARCA
-   ========================================================= */
-
-    .ga-brand {
-        margin-bottom: 12px;
-    }
-
-    .ga-brand-line {
-        width: 55px;
-        height: 1px;
-
-        margin: 0 auto 12px;
-
-        background:
-            linear-gradient(90deg,
-                transparent,
-                #dc9c0b,
-                transparent);
-    }
-
-    .ga-brand-name {
-        font-family: Georgia, "Times New Roman", serif;
-
-        font-size: 18px;
-
-        letter-spacing: 5px;
-
-        color: #e2b63c;
-    }
-
-    .ga-brand-subtitle {
-        margin-top: 5px;
-
-        font-size: 8px;
-
-        letter-spacing: 3px;
-
-        color: rgba(255, 255, 255, .55);
-    }
-
-
-    /* =========================================================
-   PANTALLAS
-   ========================================================= */
-
-    .ga-screen {
-        display: none;
-
-        animation:
-            ga-fade-in .8s ease both;
-    }
-
-    .ga-screen.active {
-        display: block;
-    }
-
-    @keyframes ga-fade-in {
-
-        from {
-            opacity: 0;
-            transform:
-                translateY(18px) scale(.98);
+        .mo-menu-wrap * {
+            box-sizing: border-box;
         }
 
-        to {
-            opacity: 1;
-            transform:
-                translateY(0) scale(1);
+        .mo-menu-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 2em;
+            letter-spacing: .08em;
+            color: var(--brown-deep);
+            margin: 0 0 6px;
         }
 
-    }
-
-
-    /* =========================================================
-   LÁMPARA
-   ========================================================= */
-
-    .ga-lamp-wrapper {
-        position: relative;
-
-        width: 190px;
-        height: 125px;
-
-        margin: 0 auto 4px;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-    }
-
-    .ga-lamp {
-        position: relative;
-
-        z-index: 10;
-
-        width: 175px;
-
-        height: auto;
-
-        display: block;
-
-        filter:
-            drop-shadow(0 0 10px rgba(220, 156, 11, .28));
-
-        animation:
-            ga-lamp-float 4s ease-in-out infinite;
-    }
-
-    @keyframes ga-lamp-float {
-
-        0%,
-        100% {
-            transform: translateY(0);
+        .mo-menu-sub {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: var(--brown-mid);
+            font-size: 15pt;
+            letter-spacing: .25em;
+            text-transform: uppercase;
+            margin: 0 0 8px;
         }
 
-        50% {
-            transform: translateY(-5px);
+        .mo-divider-top {
+            text-align: center;
+            color: var(--brown-line);
+            font-size: 15pt;
+            letter-spacing: .3em;
+            margin: 6px 0 26px;
+            user-select: none;
         }
 
-    }
-
-
-    /* =========================================================
-   BRILLO
-   ========================================================= */
-
-    .ga-lamp-glow {
-        position: absolute;
-
-        width: 145px;
-        height: 90px;
-
-        border-radius: 50%;
-
-        background:
-            radial-gradient(ellipse,
-                rgba(255, 210, 70, .25),
-                rgba(220, 156, 11, .08) 45%,
-                transparent 75%);
-
-        filter: blur(20px);
-
-        z-index: 1;
-
-        animation:
-            ga-glow 3s ease-in-out infinite;
-    }
-
-    @keyframes ga-glow {
-
-        0%,
-        100% {
-            opacity: .5;
-            transform: scale(.9);
+        .mo-accordion {
+            border-top: 1px solid var(--brown-line);
         }
 
-        50% {
-            opacity: .85;
-            transform: scale(1.08);
+        .mo-item {
+            border-bottom: 1px solid var(--brown-line);
         }
 
-    }
-
-
-    /* =========================================================
-   HUMO DE LÁMPARA
-   ========================================================= */
-
-    .ga-lamp-smoke {
-        position: absolute;
-
-        width: 120px;
-        height: 70px;
-
-        bottom: 12px;
-
-        border-radius: 50%;
-
-        background:
-            radial-gradient(ellipse,
-                rgba(220, 156, 11, .25),
-                transparent 72%);
-
-        filter: blur(16px);
-
-        opacity: .4;
-
-        z-index: 4;
-
-        animation:
-            ga-lamp-smoke-animation 5s ease-in-out infinite;
-    }
-
-    @keyframes ga-lamp-smoke-animation {
-
-        0% {
-            transform:
-                translateY(10px) scale(.5);
-
-            opacity: 0;
+        .mo-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 8px;
+            cursor: pointer;
+            background: transparent;
+            transition: background .35s ease, padding-left .35s ease;
+            position: relative;
         }
 
-        25% {
-            opacity: .35;
+        .mo-header:hover {
+            background: var(--brown-soft);
+            padding-left: 16px;
         }
 
-        60% {
-            transform:
-                translateY(-25px) translateX(8px) scale(.9);
-
-            opacity: .18;
+        .mo-icon {
+            color: var(--brown-mid);
+            font-size: 1.2em;
+            flex: 0 0 auto;
+            transition: transform .45s cubic-bezier(.4, 0, .2, 1), color .3s ease;
+            display: inline-block;
         }
 
-        100% {
-            transform:
-                translateY(-55px) translateX(-10px) scale(1.25);
-
-            opacity: 0;
+        .mo-item.is-open>.mo-header .mo-icon {
+            transform: rotate(135deg);
+            color: var(--brown-deep);
         }
 
-    }
-
-
-    /* =========================================================
-   CHISPAS
-   ========================================================= */
-
-    .ga-lamp-spark {
-        position: absolute;
-
-        z-index: 15;
-
-        color: #f5d36a;
-
-        font-size: 11px;
-
-        opacity: 0;
-
-        text-shadow:
-            0 0 6px #dc9c0b;
-    }
-
-    .spark-a {
-        left: 10px;
-        top: 48px;
-
-        animation:
-            ga-spark 3s ease-out infinite;
-    }
-
-    .spark-b {
-        right: 15px;
-        top: 40px;
-
-        animation:
-            ga-spark 3.5s ease-out 1s infinite;
-    }
-
-    .spark-c {
-        left: 35px;
-        bottom: 20px;
-
-        animation:
-            ga-spark 4s ease-out 1.8s infinite;
-    }
-
-    @keyframes ga-spark {
-
-        0% {
-            opacity: 0;
-
-            transform:
-                translateY(8px) scale(.3) rotate(0deg);
+        .mo-header-text {
+            flex: 1 1 auto;
         }
 
-        30% {
-            opacity: .8;
+        .mo-header-eyebrow {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-size: 15pt;
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: var(--brown-mid);
+            margin-bottom: 4px;
         }
 
-        70% {
-            opacity: .3;
-
-            transform:
-                translateY(-25px) scale(1) rotate(90deg);
+        .mo-header-title {
+            display: block;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 20pt;
+            letter-spacing: .03em;
+            color: var(--brown-deep);
         }
 
-        100% {
-            opacity: 0;
-
-            transform:
-                translateY(-45px) scale(.2) rotate(180deg);
+        .mo-chevron {
+            flex: 0 0 auto;
+            width: 12px;
+            height: 12px;
+            border-right: 1px solid var(--brown-mid);
+            border-bottom: 1px solid var(--brown-mid);
+            transform: rotate(45deg);
+            transition: transform .4s ease, border-color .3s ease;
+            margin-right: 4px;
         }
 
-    }
-
-
-    /* =========================================================
-   PREGUNTA
-   ========================================================= */
-
-    .ga-small-title {
-        font-size: 10px;
-
-        letter-spacing: 4px;
-
-        color: rgba(255, 255, 255, .65);
-
-        margin-bottom: 8px;
-    }
-
-    .ga-question h1 {
-        margin: 0;
-
-        font-family:
-            Georgia,
-            "Times New Roman",
-            serif;
-
-        font-weight: 400;
-
-        font-size: clamp(28px, 5vw, 42px);
-
-        line-height: 1.15;
-
-        color: #ffffff;
-    }
-
-    .ga-question h1 span {
-        display: block;
-
-        color: #e2b63c;
-    }
-
-    .ga-question p {
-        max-width: 480px;
-
-        margin: 12px auto 18px;
-
-        font-size: 12px;
-
-        line-height: 1.6;
-
-        color: rgba(255, 255, 255, .58);
-    }
-
-
-    /* =========================================================
-   BOTONES
-   ========================================================= */
-
-    .ga-age-buttons {
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: center;
-
-        gap: 9px;
-    }
-
-    .ga-btn {
-        border: 0;
-
-        cursor: pointer;
-
-        font-family:
-            "Lato",
-            Arial,
-            sans-serif;
-    }
-
-    .ga-btn-yes {
-        position: relative;
-
-        min-width: 285px;
-
-        padding: 13px 22px;
-
-        border: 1px solid rgba(220, 156, 11, .75);
-
-        border-radius: 3px;
-
-        background:
-            linear-gradient(135deg,
-                rgba(220, 156, 11, .95),
-                rgba(160, 100, 5, .95));
-
-        color: #ffffff;
-
-        font-size: 11px;
-
-        font-weight: 700;
-
-        letter-spacing: 1.5px;
-
-        box-shadow:
-            0 0 18px rgba(220, 156, 11, .12);
-
-        transition:
-            transform .3s ease,
-            box-shadow .3s ease;
-    }
-
-    .ga-btn-yes:hover {
-        transform: translateY(-2px);
-
-        box-shadow:
-            0 0 25px rgba(220, 156, 11, .3);
-    }
-
-    .ga-btn-icon {
-        margin-right: 8px;
-
-        font-size: 13px;
-    }
-
-    .ga-btn-no {
-        padding: 8px 15px;
-
-        background: transparent;
-
-        color: rgba(255, 255, 255, .42);
-
-        font-size: 9px;
-
-        letter-spacing: 1px;
-    }
-
-    .ga-btn-no:hover {
-        color: rgba(255, 255, 255, .75);
-    }
-
-    .ga-legal {
-        margin-top: 13px;
-
-        font-size: 8px;
-
-        letter-spacing: .5px;
-
-        color: rgba(255, 255, 255, .32);
-    }
-
-
-    /* =========================================================
-   AVISO DE EDAD Y COOKIES
-   ========================================================= */
-
-    .ga-privacy-notice {
-        max-width: 520px;
-        margin: 10px auto 0;
-        padding: 0 12px;
-        font-size: 8px;
-        line-height: 1.5;
-        letter-spacing: .1px;
-        color: rgba(255, 255, 255, .38);
-    }
-
-    /* =========================================================
-   MENOR DE EDAD
-   ========================================================= */
-
-    .ga-underage-icon {
-        width: 70px;
-        height: 70px;
-
-        margin: 45px auto 20px;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        border: 1px solid rgba(220, 156, 11, .5);
-
-        border-radius: 50%;
-
-        color: #dc9c0b;
-
-        font-size: 18px;
-    }
-
-    .ga-underage-screen h2 {
-        font-family: Georgia, serif;
-
-        font-size: 30px;
-
-        font-weight: 400;
-
-        margin: 0 0 10px;
-    }
-
-    .ga-underage-screen p {
-        max-width: 420px;
-
-        margin: 0 auto 25px;
-
-        color: rgba(255, 255, 255, .55);
-
-        line-height: 1.6;
-
-        font-size: 12px;
-    }
-
-
-    /* =========================================================
-   BONO
-   ========================================================= */
-
-    .ga-bonus-pretitle {
-        margin-top: 5px;
-
-        margin-bottom: 4px;
-
-        font-size: 10px;
-
-        letter-spacing: 3px;
-
-        color: #e2b63c;
-    }
-
-    .ga-bonus-lamp {
-        position: relative;
-
-        width: 120px;
-        height: 75px;
-
-        margin: 0 auto -3px;
-    }
-
-    .ga-bonus-lamp img {
-        position: relative;
-
-        z-index: 5;
-
-        width: 110px;
-
-        height: auto;
-
-        filter:
-            drop-shadow(0 0 12px rgba(220, 156, 11, .4));
-
-        animation:
-            ga-bonus-lamp 3s ease-in-out infinite;
-    }
-
-    @keyframes ga-bonus-lamp {
-
-        0%,
-        100% {
-            transform: translateY(0);
+        .mo-item.is-open>.mo-header .mo-chevron {
+            transform: rotate(-135deg);
+            border-color: var(--brown-deep);
         }
 
-        50% {
-            transform: translateY(-4px);
+        .mo-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .55s cubic-bezier(.4, 0, .2, 1);
+            background: var(--parchment);
         }
 
-    }
-
-    .ga-bonus-glow {
-        position: absolute;
-
-        inset: 10px;
-
-        border-radius: 50%;
-
-        background:
-            radial-gradient(ellipse,
-                rgba(255, 210, 70, .3),
-                transparent 70%);
-
-        filter: blur(14px);
-    }
-
-
-    /* =========================================================
-   TARJETA BONO
-   ========================================================= */
-
-    .ga-bonus-card {
-        position: relative;
-
-        width: min(90vw, 400px);
-
-        margin: 0 auto;
-
-        padding: 22px 25px 20px;
-
-        border: 1px solid rgba(220, 156, 11, .65);
-
-        border-radius: 4px;
-
-        background:
-            linear-gradient(145deg,
-                rgba(40, 31, 15, .92),
-                rgba(10, 10, 10, .97));
-
-        box-shadow:
-            0 0 35px rgba(220, 156, 11, .12),
-            inset 0 0 25px rgba(220, 156, 11, .04);
-    }
-
-    .ga-bonus-sparkle {
-        position: absolute;
-
-        top: -11px;
-        left: 50%;
-
-        transform: translateX(-50%);
-
-        width: 22px;
-        height: 22px;
-
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-
-        background: #0b0b0b;
-
-        color: #f5d36a;
-
-        font-size: 16px;
-    }
-
-    .ga-bonus-title {
-        font-size: 10px;
-
-        letter-spacing: 3px;
-
-        color: rgba(255, 255, 255, .65);
-    }
-
-    .ga-bonus-value {
-        margin-top: 3px;
-
-        font-family:
-            Georgia,
-            "Times New Roman",
-            serif;
-
-        font-size: clamp(46px, 8vw, 64px);
-
-        line-height: 1;
-
-        font-weight: 400;
-
-        color: #e7c45a;
-
-        text-shadow:
-            0 0 10px rgba(220, 156, 11, .25);
-    }
-
-    .ga-bonus-label {
-        margin-top: 6px;
-
-        font-size: 11px;
-
-        letter-spacing: 2px;
-
-        font-weight: 700;
-
-        color: #ffffff;
-    }
-
-    .ga-bonus-divider {
-        width: 75px;
-        height: 1px;
-
-        margin: 14px auto;
-
-        background:
-            linear-gradient(90deg,
-                transparent,
-                #dc9c0b,
-                transparent);
-    }
-
-    .ga-bonus-card p {
-        margin: 0 auto 15px;
-
-        max-width: 310px;
-
-        font-size: 11px;
-
-        line-height: 1.5;
-
-        color: rgba(255, 255, 255, .55);
-    }
-
-
-    /* =========================================================
-   BOTÓN BONO
-   ========================================================= */
-
-    .ga-bonus-button {
-        display: inline-flex;
-
-        align-items: center;
-        justify-content: center;
-
-        gap: 12px;
-
-        min-width: 210px;
-
-        padding: 12px 20px;
-
-        border: 1px solid #dc9c0b;
-
-        border-radius: 3px;
-
-        text-decoration: none !important;
-
-        background:
-            linear-gradient(135deg,
-                #dc9c0b,
-                #a66e06);
-
-        color: #ffffff !important;
-
-        font-size: 10px;
-
-        font-weight: 700;
-
-        letter-spacing: 1.5px;
-
-        transition:
-            transform .3s ease,
-            box-shadow .3s ease;
-    }
-
-    .ga-bonus-button span {
-        font-size: 15px;
-    }
-
-    .ga-bonus-button:hover {
-        transform: translateY(-2px);
-
-        box-shadow:
-            0 0 25px rgba(220, 156, 11, .35);
-    }
-
-
-    /* =========================================================
-   CONTINUAR
-   ========================================================= */
-
-    .ga-enter-button {
-        margin-top: 12px;
-
-        border: 0;
-
-        background: transparent;
-
-        color: rgba(255, 255, 255, .48);
-
-        font-size: 9px;
-
-        letter-spacing: 1.5px;
-
-        cursor: pointer;
-    }
-
-    .ga-enter-button:hover {
-        color: #e2b63c;
-    }
-
-    .ga-bonus-legal {
-        margin-top: 8px;
-
-        font-size: 8px;
-
-        color: rgba(255, 255, 255, .3);
-    }
-
-
-    /* =========================================================
-   PARTÍCULAS
-   ========================================================= */
-
-    .ga-particles {
-        position: absolute;
-
-        inset: 0;
-
-        z-index: 10;
-
-        pointer-events: none;
-    }
-
-    .ga-particles span {
-        position: absolute;
-
-        color: rgba(255, 215, 100, .6);
-
-        font-size: 10px;
-
-        animation:
-            ga-particle-float 6s ease-in-out infinite;
-    }
-
-    .ga-particles span:nth-child(1) {
-        left: 12%;
-        top: 22%;
-    }
-
-    .ga-particles span:nth-child(2) {
-        left: 23%;
-        top: 65%;
-
-        animation-delay: 1s;
-    }
-
-    .ga-particles span:nth-child(3) {
-        left: 78%;
-        top: 25%;
-
-        animation-delay: 2s;
-    }
-
-    .ga-particles span:nth-child(4) {
-        left: 85%;
-        top: 60%;
-
-        animation-delay: 3s;
-    }
-
-    .ga-particles span:nth-child(5) {
-        left: 8%;
-        top: 75%;
-
-        animation-delay: 1.5s;
-    }
-
-    .ga-particles span:nth-child(6) {
-        left: 91%;
-        top: 40%;
-
-        animation-delay: 2.5s;
-    }
-
-    .ga-particles span:nth-child(7) {
-        left: 30%;
-        top: 18%;
-
-        animation-delay: 3.5s;
-    }
-
-    .ga-particles span:nth-child(8) {
-        left: 70%;
-        top: 72%;
-
-        animation-delay: 4s;
-    }
-
-    .ga-particles span:nth-child(9) {
-        left: 17%;
-        top: 43%;
-
-        animation-delay: 2s;
-    }
-
-    .ga-particles span:nth-child(10) {
-        left: 82%;
-        top: 78%;
-
-        animation-delay: 1s;
-    }
-
-    .ga-particles span:nth-child(11) {
-        left: 60%;
-        top: 17%;
-
-        animation-delay: 4s;
-    }
-
-    .ga-particles span:nth-child(12) {
-        left: 40%;
-        top: 80%;
-
-        animation-delay: 2.5s;
-    }
-
-    @keyframes ga-particle-float {
-
-        0%,
-        100% {
-            transform:
-                translateY(0) scale(.7);
-
-            opacity: .15;
+        .mo-panel-inner {
+            padding: 6px 20px 30px 40px;
         }
 
-        50% {
-            transform:
-                translateY(-20px) scale(1.15);
-
-            opacity: .7;
+        .mo-section-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            color: var(--brown-mid);
+            font-size: 15pt;
+            letter-spacing: .24em;
+            text-transform: uppercase;
+            margin: 26px 0 14px;
         }
 
-    }
-
-
-    /* =========================================================
-   HUMO GENERAL
-   ========================================================= */
-
-    .ga-smoke-container {
-        position: absolute;
-
-        left: 50%;
-        bottom: -30px;
-
-        width: 650px;
-        height: 280px;
-
-        transform: translateX(-50%);
-
-        z-index: 5;
-
-        pointer-events: none;
-    }
-
-    .ga-smoke {
-        position: absolute;
-
-        border-radius: 50%;
-
-        filter: blur(35px);
-
-        opacity: .14;
-    }
-
-    .ga-smoke-gold {
-        width: 330px;
-        height: 150px;
-
-        left: 50%;
-        bottom: 0;
-
-        transform: translateX(-50%);
-
-        background:
-            radial-gradient(ellipse,
-                rgba(255, 215, 80, .5),
-                rgba(220, 156, 11, .15),
-                transparent 75%);
-
-        animation:
-            ga-gold-smoke 8s ease-in-out infinite;
-    }
-
-    .ga-smoke-blue {
-        width: 220px;
-        height: 120px;
-
-        left: 28%;
-        bottom: 5px;
-
-        background:
-            radial-gradient(ellipse,
-                rgba(30, 100, 255, .3),
-                transparent 75%);
-
-        animation:
-            ga-blue-smoke 9s ease-in-out 1.5s infinite;
-    }
-
-    .ga-smoke-red {
-        width: 200px;
-        height: 110px;
-
-        left: 72%;
-        bottom: 5px;
-
-        background:
-            radial-gradient(ellipse,
-                rgba(220, 30, 45, .25),
-                transparent 75%);
-
-        animation:
-            ga-red-smoke 9.5s ease-in-out 2s infinite;
-    }
-
-
-    /* =========================================================
-   ANIMACIONES HUMO
-   ========================================================= */
-
-    @keyframes ga-gold-smoke {
-
-        0% {
-            transform:
-                translate(-50%, 20px) scale(.5) rotate(-5deg);
-
-            opacity: 0;
-        }
-
-        25% {
-            opacity: .18;
-        }
-
-        50% {
-            transform:
-                translate(-42%, -50px) scale(1) rotate(8deg);
-
-            opacity: .13;
-        }
-
-        75% {
-            transform:
-                translate(-60%, -110px) scale(1.3) rotate(-8deg);
-
-            opacity: .07;
-        }
-
-        100% {
-            transform:
-                translate(-45%, -170px) scale(1.6);
-
-            opacity: 0;
-        }
-
-    }
-
-    @keyframes ga-blue-smoke {
-
-        0% {
-            transform:
-                translateY(15px) scale(.4);
-
-            opacity: 0;
-        }
-
-        25% {
-            opacity: .12;
-        }
-
-        55% {
-            transform:
-                translate(-25px, -65px) scale(1);
-
-            opacity: .08;
-        }
-
-        100% {
-            transform:
-                translate(30px, -155px) scale(1.5);
-
-            opacity: 0;
-        }
-
-    }
-
-    @keyframes ga-red-smoke {
-
-        0% {
-            transform:
-                translateY(15px) scale(.4);
-
-            opacity: 0;
-        }
-
-        25% {
-            opacity: .10;
-        }
-
-        55% {
-            transform:
-                translate(25px, -65px) scale(1);
-
-            opacity: .06;
-        }
-
-        100% {
-            transform:
-                translate(-30px, -155px) scale(1.5);
-
-            opacity: 0;
-        }
-
-    }
-
-
-    /* =========================================================
-   ANIMACIÓN AL CONFIRMAR
-   ========================================================= */
-
-    #ga-age-splash.ga-confirming .ga-lamp {
-        animation:
-            ga-magic-burst 1.2s ease-out forwards;
-    }
-
-    #ga-age-splash.ga-confirming .ga-lamp-glow {
-        animation:
-            ga-magic-glow 1.2s ease-out forwards;
-    }
-
-    @keyframes ga-magic-burst {
-
-        0% {
-            transform: scale(1);
-
-            filter:
-                drop-shadow(0 0 10px rgba(220, 156, 11, .3));
-        }
-
-        45% {
-            transform: scale(1.18);
-
-            filter:
-                drop-shadow(0 0 40px rgba(255, 215, 80, .9));
-        }
-
-        100% {
-            transform: scale(1);
-
-            filter:
-                drop-shadow(0 0 15px rgba(220, 156, 11, .5));
-        }
-
-    }
-
-    @keyframes ga-magic-glow {
-
-        0% {
-            transform: scale(.8);
-            opacity: .3;
-        }
-
-        50% {
-            transform: scale(1.8);
-            opacity: 1;
-        }
-
-        100% {
-            transform: scale(1);
-            opacity: .5;
-        }
-
-    }
-
-
-    /* =========================================================
-   SALIDA
-   ========================================================= */
-
-    #ga-age-splash.ga-hide {
-        animation:
-            ga-splash-out .8s ease forwards;
-    }
-
-    @keyframes ga-splash-out {
-
-        from {
-            opacity: 1;
-        }
-
-        to {
-            opacity: 0;
-
-            visibility: hidden;
-
-            pointer-events: none;
-        }
-
-    }
-
-
-    /* =========================================================
-   RESPONSIVE TABLET
-   ========================================================= */
-
-    @media (max-width: 980px) {
-
-        .ga-splash-content {
-            width: min(92vw, 620px);
-        }
-
-        .ga-smoke-container {
-            width: 500px;
-        }
-
-    }
-
-
-    /* =========================================================
-   RESPONSIVE MÓVIL
-   ========================================================= */
-
-    @media (max-width: 767px) {
-
-        .ga-brand {
-            margin-bottom: 5px;
-        }
-
-        .ga-brand-name {
-            font-size: 15px;
-            letter-spacing: 4px;
-        }
-
-        .ga-brand-subtitle {
-            font-size: 7px;
-            letter-spacing: 2px;
-        }
-
-        .ga-lamp-wrapper {
-            width: 155px;
-            height: 105px;
-        }
-
-        .ga-lamp {
-            width: 145px;
-        }
-
-        .ga-question h1 {
-            font-size: 29px;
-        }
-
-        .ga-question p {
-            width: 90%;
-
-            margin-top: 9px;
-            margin-bottom: 14px;
-
-            font-size: 11px;
-        }
-
-        .ga-btn-yes {
-            min-width: 270px;
-
-            font-size: 9px;
-
-            padding: 12px 15px;
-        }
-
-        .ga-bonus-card {
-            width: 90vw;
-
-            padding: 19px 18px;
-        }
-
-        .ga-bonus-value {
-            font-size: 48px;
-        }
-
-        .ga-smoke-container {
-            width: 360px;
-        }
-
-    }
-
-
-    /* =========================================================
-   TELÉFONOS PEQUEÑOS
-   ========================================================= */
-
-    @media (max-height: 700px) {
-
-        .ga-brand {
-            margin-bottom: 0;
-        }
-
-        .ga-lamp-wrapper {
-            transform: scale(.82);
-
-            margin-top: -8px;
-            margin-bottom: -15px;
-        }
-
-        .ga-question h1 {
-            font-size: 25px;
-        }
-
-        .ga-question p {
+        .mo-section-title:first-child {
             margin-top: 6px;
-            margin-bottom: 10px;
         }
 
-    }
-
-
-    /* =========================================================
-   REDUCIR MOVIMIENTO
-   ========================================================= */
-
-    @media (prefers-reduced-motion: reduce) {
-
-        #ga-age-splash *,
-        #ga-age-splash {
-            animation-duration: .01ms !important;
-
-            animation-iteration-count: 1 !important;
-
-            transition-duration: .01ms !important;
+        .mo-ornament {
+            text-align: center;
+            color: var(--brown-line);
+            letter-spacing: .35em;
+            margin: 22px 0 16px;
+            font-size: 15pt;
+            user-select: none;
         }
 
-    }
-</style>
+        .mo-dish {
+            padding: 10px 0;
+            border-bottom: 1px dotted var(--brown-line);
+            transition: background .3s ease, padding-left .3s ease;
+        }
 
+        .mo-dish:last-child {
+            border-bottom: none;
+        }
 
-<script>
+        .mo-dish:hover {
+            background: var(--parchment-2);
+            padding-left: 8px;
+        }
 
-    (function () {
+        .mo-dish-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 14px;
+        }
 
-        /*
-         * =====================================================
-         * GRAND ALADDIN — LÓGICA
-         * =====================================================
-         */
+        .mo-dish-name {
+            font-family: 'Cinzel', serif;
+            font-weight: 500;
+            font-size: 15pt;
+            color: var(--brown-deep);
+            letter-spacing: .02em;
+        }
 
-        var splash = document.getElementById("ga-age-splash");
+        .mo-dish-price {
+            font-family: 'Lato', sans-serif;
+            font-size: 15pt;
+            color: var(--brown-mid);
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
+        }
 
-        function gaDiviActive() {
-            try {
-                var html = document.documentElement;
-                var body = document.body;
-                var search = window.location.search || "";
-                var href = window.location.href || "";
+        .mo-dish-desc {
+            font-size: 15pt;
+            color: #5c4632;
+            margin-top: 4px;
+            line-height: 1.5;
+            font-style: italic;
+        }
 
-                /* Divi 5 — señal oficial del Visual Builder */
-                if (
-                    html.classList.contains("et-vb-app-ancestor")
-                ) return true;
+        .mo-note {
+            font-size: 15pt;
+            color: var(--brown-mid);
+            text-align: center;
+            margin-top: 18px;
+            font-style: italic;
+        }
 
-                /* Divi 4 */
-                if (
-                    html.classList.contains("et-fb") ||
-                    (body && body.classList.contains("et-fb"))
-                ) return true;
+        .mo-price-list {
+            margin-top: 8px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-                /* Señales de URL/preview */
-                if (
-                    search.indexOf("et_fb") !== -1 ||
-                    search.indexOf("et_fb_") !== -1 ||
-                    search.indexOf("et_pb_preview") !== -1 ||
-                    href.indexOf("et_fb") !== -1
-                ) return true;
+        .mo-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding-left: 4px;
+            border-bottom: 1px dotted var(--parchment-2);
+            padding-bottom: 3px;
+        }
 
-                /* Contenedores propios del VB */
-                if (
-                    document.getElementById("et-vb-app") ||
-                    document.getElementById("et-vb-app-frame")
-                ) return true;
+        .mo-price-row:last-child {
+            border-bottom: none;
+        }
 
-                return false;
+        .mo-price-row span:first-child {
+            color: var(--ink);
+            opacity: .8;
+            font-size: 15pt;
+        }
 
-            } catch (e) {
-                return false;
+        .mo-price-row span:last-child {
+            color: var(--brown-mid);
+            font-size: 15pt;
+            white-space: nowrap;
+        }
+
+        .mo-choice-block {
+            margin: 8px 0 18px;
+        }
+
+        .mo-choice-label {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--brown-deep);
+            font-size: 15pt;
+            letter-spacing: .06em;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mo-choice-label::before {
+            content: "❖";
+            color: var(--brown-mid);
+            font-size: .9em;
+        }
+
+        .mo-choice-list {
+            list-style: none;
+            margin: 0 0 0 22px;
+            padding: 0;
+            columns: 2;
+            column-gap: 24px;
+        }
+
+        .mo-choice-list li {
+            padding: 4px 0;
+            font-size: 15pt;
+            color: var(--ink);
+            break-inside: avoid;
+        }
+
+        .mo-choice-list li span.mo-extra {
+            color: var(--brown-mid);
+            font-size: 15pt;
+        }
+
+        @media (max-width:560px) {
+            .mo-menu-title {
+                font-size: 1.5em;
+            }
+
+            .mo-header-title {
+                font-size: 17pt;
+            }
+
+            .mo-header-eyebrow {
+                font-size: 15pt;
+            }
+
+            .mo-panel-inner {
+                padding: 6px 12px 26px 26px;
+            }
+
+            .mo-choice-list {
+                columns: 1;
+            }
+
+            .mo-dish-row {
+                flex-direction: column;
+                gap: 2px;
             }
         }
-
-        function gaHideForDivi() {
-
-            if (splash) {
-
-                splash.style.setProperty(
-                    "display",
-                    "none",
-                    "important"
-                );
-
-                splash.style.setProperty(
-                    "visibility",
-                    "hidden",
-                    "important"
-                );
-
-                splash.style.setProperty(
-                    "opacity",
-                    "0",
-                    "important"
-                );
-
-                splash.style.setProperty(
-                    "pointer-events",
-                    "none",
-                    "important"
-                );
-            }
-
-            if (document.body) {
-                document.body.style.setProperty(
-                    "overflow",
-                    "auto",
-                    "important"
-                );
-            }
-
-            document.documentElement.style.setProperty(
-                "overflow",
-                "auto",
-                "important"
-            );
-        }
-
-
-        /*
-         * =====================================================
-         * COMPROBACIÓN DIVI INMEDIATA
-         * =====================================================
-         */
-
-        if (gaDiviActive()) {
-            gaHideForDivi();
-            return;
-        }
-
-
-        /*
-         * =====================================================
-         * DIVI 5 PUEDE ACTIVARSE DESPUÉS
-         *
-         * Comprobamos durante 5 segundos y observamos cambios
-         * del documento.
-         * =====================================================
-         */
-
-        var diviChecks = 0;
-
-        var diviTimer = setInterval(
-            function () {
-
-                diviChecks++;
-
-                if (gaDiviActive()) {
-
-                    clearInterval(diviTimer);
-                    gaHideForDivi();
-
-                } else if (diviChecks >= 50) {
-
-                    clearInterval(diviTimer);
-
-                }
-
-            },
-            100
-        );
-
-
-        try {
-
-            var diviObserver =
-                new MutationObserver(
-                    function () {
-
-                        if (gaDiviActive()) {
-
-                            diviObserver.disconnect();
-                            clearInterval(diviTimer);
-                            gaHideForDivi();
-
-                        }
-
-                    }
-                );
-
-            diviObserver.observe(
-                document.documentElement,
-                {
-                    attributes: true,
-                    childList: true,
-                    subtree: true
-                }
-            );
-
-        } catch (e) { }
-
-
-        /*
-         * =====================================================
-         * LÓGICA NORMAL DEL SPLASH
-         * =====================================================
-         */
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
-
-                if (gaDiviActive()) {
-                    gaHideForDivi();
-                    return;
-                }
-
-                if (!splash) {
-                    return;
-                }
-
-
-                /* =====================================================
-                   CONFIGURACIÓN
-                   ===================================================== */
-
-                /*
-                 * URL REAL DEL BONO.
-                 * Se mantiene # hasta que tengas el enlace definitivo.
-                 */
-                var BONUS_URL = "https://grandaladdin.com/bono-30000";
-
-
-                /*
-                 * EDAD:
-                 * Se recuerda solamente durante la sesión actual.
-                 */
-                var AGE_SESSION_KEY =
-                    "grandAladdinAgeSession";
-
-
-                /*
-                 * BONO:
-                 * Se registra independientemente de la edad.
-                 * Así no se puede volver a ofrecer el bono en cada visita
-                 * desde el mismo navegador.
-                 */
-                var BONUS_CLAIMED_KEY =
-                    "grandAladdinBonusClaimed";
-
-
-                /* =====================================================
-                   ELEMENTOS
-                   ===================================================== */
-
-                var ageScreen =
-                    document.getElementById("ga-age-screen");
-
-                var bonusScreen =
-                    document.getElementById("ga-bonus-screen");
-
-                var underageScreen =
-                    document.getElementById("ga-underage-screen");
-
-                var yesButton =
-                    document.getElementById("ga-yes");
-
-                var noButton =
-                    document.getElementById("ga-no");
-
-                var backButton =
-                    document.getElementById("ga-back");
-
-                var enterButton =
-                    document.getElementById("ga-enter");
-
-                var bonusButton =
-                    document.getElementById("ga-bonus-button");
-
-
-                /*
-                 * Última comprobación antes de bloquear el scroll.
-                 */
-                if (gaDiviActive()) {
-                    gaHideForDivi();
-                    return;
-                }
-
-
-                /* =====================================================
-                   EDAD — SESIÓN
-                   ===================================================== */
-
-                var ageAccepted = false;
-
-                try {
-
-                    ageAccepted =
-                        sessionStorage.getItem(
-                            AGE_SESSION_KEY
-                        ) === "1";
-
-                } catch (error) {
-
-                    console.log(
-                        "SessionStorage no disponible."
-                    );
-
-                }
-
-
-                /* =====================================================
-                   SI YA CONFIRMÓ EN ESTA SESIÓN
-                   ===================================================== */
-
-                if (ageAccepted) {
-
-                    splash.style.display = "none";
-                    splash.style.visibility = "hidden";
-                    splash.style.opacity = "0";
-                    splash.style.pointerEvents = "none";
-
-                    document.body.style.overflow = "";
-
-                    return;
-                }
-
-
-                /* =====================================================
-                   BLOQUEAR SCROLL
-                   ===================================================== */
-
-                document.body.style.overflow = "hidden";
-
-
-                /* =====================================================
-                   SÍ, SOY MAYOR
-                   ===================================================== */
-
-                if (yesButton) {
-
-                    yesButton.addEventListener(
-                        "click",
-                        function () {
-
-                            try {
-
-                                sessionStorage.setItem(
-                                    AGE_SESSION_KEY,
-                                    "1"
-                                );
-
-                            } catch (error) {
-
-                                console.log(
-                                    "No fue posible guardar la sesión."
-                                );
-
-                            }
-
-
-                            splash.classList.add(
-                                "ga-confirming"
-                            );
-
-
-                            setTimeout(
-                                function () {
-
-                                    ageScreen.classList.remove(
-                                        "active"
-                                    );
-
-                                },
-                                650
-                            );
-
-
-                            /*
-                             * El bono se muestra solamente si todavía
-                             * no está registrado como reclamado.
-                             */
-                            var bonusAlreadyClaimed =
-                                false;
-
-                            try {
-
-                                bonusAlreadyClaimed =
-                                    localStorage.getItem(
-                                        BONUS_CLAIMED_KEY
-                                    ) === "1";
-
-                            } catch (error) { }
-
-
-                            setTimeout(
-                                function () {
-
-                                    if (bonusAlreadyClaimed) {
-
-                                        splash.classList.add(
-                                            "ga-hide"
-                                        );
-
-                                        setTimeout(
-                                            function () {
-
-                                                document.body.style.overflow = "";
-                                                splash.style.display = "none";
-
-                                            },
-                                            800
-                                        );
-
-                                        return;
-                                    }
-
-
-                                    bonusScreen.classList.add(
-                                        "active"
-                                    );
-
-                                    splash.classList.remove(
-                                        "ga-confirming"
-                                    );
-
-                                },
-                                850
-                            );
-
-                        }
-                    );
-
-                }
-
-
-                /* =====================================================
-                   NO, SOY MENOR
-                   ===================================================== */
-
-                if (noButton) {
-
-                    noButton.addEventListener(
-                        "click",
-                        function () {
-
-                            ageScreen.classList.remove(
-                                "active"
-                            );
-
-                            underageScreen.classList.add(
-                                "active"
-                            );
-
-                        }
-                    );
-
-                }
-
-
-                /* =====================================================
-                   VOLVER
-                   ===================================================== */
-
-                if (backButton) {
-
-                    backButton.addEventListener(
-                        "click",
-                        function () {
-
-                            underageScreen.classList.remove(
-                                "active"
-                            );
-
-                            ageScreen.classList.add(
-                                "active"
-                            );
-
-                        }
-                    );
-
-                }
-
-
-                /* =====================================================
-                   OBTENER BONO
-                   ===================================================== */
-
-                if (bonusButton) {
-
-                    bonusButton.addEventListener(
-                        "click",
-                        function (event) {
-
-                            if (
-                                BONUS_URL === "#" ||
-                                !BONUS_URL
-                            ) {
-
-                                event.preventDefault();
-
-                                try {
-
-                                    localStorage.setItem(
-                                        BONUS_CLAIMED_KEY,
-                                        "1"
-                                    );
-
-                                } catch (error) { }
-
-                                alert(
-                                    "Aquí irá el enlace para reclamar tu bono de $30.000."
-                                );
-
-                                return;
-                            }
-
-
-                            try {
-
-                                localStorage.setItem(
-                                    BONUS_CLAIMED_KEY,
-                                    "1"
-                                );
-
-                            } catch (error) { }
-
-
-                            bonusButton.href =
-                                BONUS_URL;
-
-                        }
-                    );
-
-                }
-
-
-                /* =====================================================
-                   CONTINUAR AL SITIO
-                   ===================================================== */
-
-                if (enterButton) {
-
-                    enterButton.addEventListener(
-                        "click",
-                        function () {
-
-                            splash.classList.add(
-                                "ga-hide"
-                            );
-
-                            setTimeout(
-                                function () {
-
-                                    document.body.style.overflow = "";
-
-                                    splash.style.display = "none";
-
-                                },
-                                800
-                            );
-
-                        }
-                    );
-
-                }
-
-            }
-        );
-
-    })();
-
-</script>
-
-<div style="display: none;" class="lo-wrap">
-
-
-    <nav class="lo-nav">
-        <div class="lo-mark"><span class="lo-dot"></span>LA OBRA <span style="opacity:.5">/ SHOW BAR</span></div>
-        <div class="lo-links">
-            <a href="#lo-galeria">GALERÍA</a>
-            <a href="#lo-reserva">RESERVAS</a>
-        </div>
-    </nav>
-
-    <section class="lo-hero">
-        <div class="lo-hero-inner">
-            <div class="lo-eyebrow lo-mono">Cali — Since 2016</div>
-            <h1>LA<br>OBRA<span> SHOW BAR</span></h1>
-            <p class="lo-sub">Música en vivo, luces que no paran y una buena barra de bebidas para la noche. Esto es lo
-                que pasa cuando se prenden los reflectores.</p>
-            <div class="lo-scroll-cue">
-                <div class="lo-bar"></div>SCROLL PARA VER
-            </div>
-        </div>
-
-        <div class="lo-marquee">
-            <div class="lo-marquee-track">
-                <span>
-                    <em>●</em> EN VIVO TODOS LOS FINES DE SEMANA
-                    <em>●</em> BANDA EN ESCENA
-                    <em>●</em> KARAOKE CON AMIGOS
-                    <em>●</em> RESERVA TU MESA
-                    <em>●</em> EN VIVO TODOS LOS FINES DE SEMANA
-                    <em>●</em> BANDA EN ESCENA
-                    <em>●</em> LA FIESTA NO PARA
-                    <em>●</em> RESERVA TU MESA
+    </style>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <div class="mo-menu-title">Nuestro Menú</div>
+    <div class="mo-menu-sub">Un viaje de sabores</div>
+    <div class="mo-divider-top">────────────── ✦ ──────────────</div>
+
+    <div class="mo-accordion" id="moAccordion">
+
+        <!-- DESAYUNOS -->
+        <div class="mo-item">
+            <div class="mo-header">
+                <span class="mo-icon">❖</span>
+                <span class="mo-header-text">
+                    <span class="mo-header-eyebrow">Carta</span>
+                    <span class="mo-header-title">quiero conocer</span>
                 </span>
+                <span class="mo-chevron"></span>
+            </div>
+            <div class="mo-panel">
+                <div class="mo-panel-inner">
+                    <style>
+                        ._content_imagen_show_ {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            width: 100%;
+                            gap: 10px;
+                        }
+
+                        ._imagen_show_ {
+                            display: flex;
+                            width: 100%;
+                        }
+                    </style>
+                    <div class="_content_imagen_show_">
+                        <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-GRAND-ALADDIN_page-0001.jpg" alt="GrandAladdin">
+                        <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-GRAND-ALADDIN_page-0002.jpg" alt="GrandAladdin">
+                        <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-GRAND-ALADDIN_page-0003.jpg" alt="GrandAladdin">
+                        <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-GRAND-ALADDIN_page-0004.jpg" alt="GrandAladdin">
+                        <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-GRAND-ALADDIN_page-0005.jpg" alt="GrandAladdin">
+                        <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-GRAND-ALADDIN_page-0006.jpg" alt="GrandAladdin">
+                        <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-GRAND-ALADDIN_page-0007.jpg" alt="GrandAladdin">
+                        <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-GRAND-ALADDIN_page-0008.jpg" alt="GrandAladdin">
+                        <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-GRAND-ALADDIN_page-0009.jpg" alt="GrandAladdin">
+                        
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <section class="lo-gallery" id="lo-galeria">
-        <div class="lo-gallery-head">
-            <h2>Tomas de<br>una gran noche</h2>
-            <p class="lo-mono" style="font-size:12px;">12 REGISTROS — LUZ BAJA, ENERGÍA ALTA. DESPLÁZATE PARA ENCENDER
-                CADA FOTO.</p>
+        <!-- LA OBRA -->
+        <div class="mo-item">
+            <div class="mo-header">
+                <span class="mo-icon">❖</span>
+                <span class="mo-header-text">
+                    <span class="mo-header-eyebrow">Menú</span>
+                    <span class="mo-header-title">La Obra Show Bar</span>
+                </span>
+                <span class="mo-chevron"></span>
+            </div>
+            <div class="mo-panel">
+                <div class="mo-panel-inner">
+                    <style>
+                        ._content_imagen_show_ {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            width: 100%;
+                            gap: 10px;
+                        }
+
+                        ._imagen_show_ {
+                            display: flex;
+                            width: 100%;
+                        }
+                    </style>
+                    <div class="_content_imagen_show_">
+                         <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-LA-OBRA_page-0001.jpg" alt="GrandAladdin">
+                         <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-LA-OBRA_page-0002.jpg" alt="GrandAladdin">
+                         <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-LA-OBRA_page-0003.jpg" alt="GrandAladdin">
+                         <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-LA-OBRA_page-0004.jpg" alt="GrandAladdin">
+                         <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-LA-OBRA_page-0005.jpg" alt="GrandAladdin">
+                         <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-LA-OBRA_page-0006.jpg" alt="GrandAladdin">
+                         <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-LA-OBRA_page-0007.jpg" alt="GrandAladdin">
+                         <img class="_imagen_show_" src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-RESTAURANTES-LA-OBRA_page-0008.jpg" alt="GrandAladdin">
+
+                    </div>
+
+                </div>
+            </div>
         </div>
 
-        <div id="lo-frames"></div>
-    </section>
-
-    <section class="lo-cta" id="lo-reserva">
-        <h2>La próxima<br>tanda <span class="lo-accent">empieza pronto</span></h2>
-        <p>Mesas limitadas cada fin de semana. Llega antes de que se apaguen las luces del escenario.</p>
-        <a href="https://menupp.co/laobrashowbar?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAaeZ3eJputwORy1a3HmS7nE8hRBpsJfzRL-qCzAFnt8g-00C53U3Mi1VWKNTKA_aem_Qzsyjy2hT3pRmub-kyk9Kg"
-            class="lo-btn" target="_blank" rel="noopener noreferrer">Reservar mesa →</a>
-    </section>
-
-    <div class="lo-footer">
-        <span>© LA OBRA SHOW BAR — CALI</span>
-        <span>DISEÑO / GALERÍA DIGITAL</span>
     </div>
-
-
 </div>
-
-
-<style>
-
-/* =========================================
-   GRAND ALADDIN - REPRODUCTOR PERSONALIZADO
-========================================= */
-
-.la-obra-player {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 72px;
-    height: 72px;
-
-    background: transparent;
-    border-radius: 50%;
-
-    overflow: visible;
-}
-
-/* HALO DORADO EXTERIOR */
-.la-obra-player::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-
-    background:
-        conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            transparent 55deg,
-            rgba(220,156,11,.25) 90deg,
-            #F6E19B 125deg,
-            #DC9C0B 150deg,
-            #F6E19B 175deg,
-            rgba(220,156,11,.20) 210deg,
-            transparent 250deg,
-            transparent 360deg
-        );
-
-    animation: luzAladdin 3s linear infinite;
-
-    -webkit-mask: radial-gradient(transparent 58%, #000 60%);
-    mask: radial-gradient(transparent 58%, #000 60%);
-
-    filter:
-        drop-shadow(0 0 4px rgba(220,156,11,.8))
-        drop-shadow(0 0 12px rgba(220,156,11,.45))
-        drop-shadow(0 0 24px rgba(220,156,11,.20));
-
-    pointer-events: none;
-}
-
-/* AURA SUAVE */
-.la-obra-player::after {
-    content: "";
-    position: absolute;
-    inset: -10px;
-    border-radius: 50%;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(220,156,11,.12) 0%,
-            rgba(220,156,11,.05) 45%,
-            transparent 70%
-        );
-
-    filter: blur(8px);
-    z-index: -1;
-    animation: auraAladdin 3s ease-in-out infinite;
-    pointer-events: none;
-}
-
-@keyframes luzAladdin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-}
-
-@keyframes auraAladdin {
-    0%   { opacity: .35; transform: scale(.95); }
-    50%  { opacity: .9;  transform: scale(1.12); }
-    100% { opacity: .35; transform: scale(.95); }
-}
-
-/* BOTÓN PLAY / PAUSA */
-.la-obra-control {
-    position: relative;
-    z-index: 5;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    border: 1px solid rgba(220,156,11,.65);
-    background: rgba(15,15,15,.82);
-    color: #DC9C0B;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform .3s ease, background .3s ease, color .3s ease;
-    box-shadow: inset 0 0 12px rgba(220,156,11,.08);
-}
-
-.la-obra-control:hover {
-    transform: scale(1.08);
-    background: rgba(220,156,11,.12);
-    color: #F6E19B;
-}
-
-.la-obra-control:focus {
-    outline: none;
-}
-
-</style>
-
-
-<!-- AUDIO OCULTO -->
-<audio id="laObraAudio" preload="auto">
-    <source
-        src="https://grandaladdin.com/wp-content/uploads/2026/08/laquieroamor.mp3"
-        type="audio/mpeg"
-    >
-</audio>
-
-
-<!-- BOTÓN VISUAL -->
-<div class="la-obra-player">
-    <button
-        class="la-obra-control"
-        id="laObraControl"
-        aria-label="Reproducir música"
-    >
-        ▶
-    </button>
-</div>
-
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
+    (function () {
+        var accordion = document.getElementById('moAccordion');
+        if (!accordion) return;
+        var items = accordion.querySelectorAll('.mo-item');
 
-    var audio = document.getElementById('laObraAudio');
-    var boton = document.getElementById('laObraControl');
+        items.forEach(function (item) {
+            var header = item.querySelector('.mo-header');
+            var panel = item.querySelector('.mo-panel');
 
-    if (!audio || !boton) {
-        return;
-    }
+            header.addEventListener('click', function () {
+                var isOpen = item.classList.contains('is-open');
 
-    /* =========================
-       CONFIGURACIÓN VOLUMEN
-    ========================= */
-    var volumenInicial = 0.10;
-    var volumenMaximo   = 0.50;
-    audio.volume = volumenInicial;
-
-    /* =========================
-       VOLUMEN SEGÚN SCROLL
-    ========================= */
-    function controlarVolumen() {
-        var scrollActual = window.scrollY;
-        var scrollTotal =
-            document.documentElement.scrollHeight - window.innerHeight;
-
-        var progreso = scrollTotal > 0 ? scrollActual / scrollTotal : 0;
-        progreso = Math.max(0, Math.min(1, progreso));
-
-        audio.volume =
-            volumenInicial + (volumenMaximo - volumenInicial) * progreso;
-    }
-
-    window.addEventListener('scroll', controlarVolumen, { passive: true });
-
-    /* =========================
-       ESTADO / ICONO DEL BOTÓN
-    ========================= */
-    audio.addEventListener('play', function () {
-        boton.innerHTML = '❚❚';
-        boton.setAttribute('aria-label', 'Pausar música');
-    });
-
-    audio.addEventListener('pause', function () {
-        boton.innerHTML = '▶';
-        boton.setAttribute('aria-label', 'Reproducir música');
-    });
-
-    /* =========================================================
-       AUTOPLAY EN EL PRIMER CLIC DE LA PÁGINA
-       - Se engancha en fase de CAPTURA sobre "document", así se
-         ejecuta ANTES que el propio listener del botón (que va
-         en fase de burbuja).
-       - Si el audio arranca aquí, se detiene la propagación del
-         evento para que el clic no llegue también al botón y
-         provoque un play -> pause inmediato.
-       - Con { once: true } solo se ejecuta una vez, así que a
-         partir del segundo clic el botón funciona con su propia
-         lógica normal, sin ninguna interferencia.
-    ========================================================= */
-    document.addEventListener(
-        'click',
-        function primerClicAutoplay(evento) {
-            if (audio.paused) {
-                audio.play().catch(function () {
-                    // Si el navegador bloquea el intento,
-                    // el usuario simplemente podrá usar el botón.
+                items.forEach(function (other) {
+                    other.classList.remove('is-open');
+                    other.querySelector('.mo-panel').style.maxHeight = null;
                 });
 
-                // Evita que este mismo clic dispare también
-                // el toggle manual del botón (si el clic cayó
-                // justo sobre él).
-                evento.stopPropagation();
+                if (!isOpen) {
+                    item.classList.add('is-open');
+                    panel.style.maxHeight = panel.scrollHeight + 'px';
+                }
+            });
+        });
+
+        // Recalcula la altura si cambia el viewport (por ejemplo al girar el móvil)
+        window.addEventListener('resize', function () {
+            var openItem = accordion.querySelector('.mo-item.is-open');
+            if (openItem) {
+                var p = openItem.querySelector('.mo-panel');
+                p.style.maxHeight = p.scrollHeight + 'px';
             }
-        },
-        { capture: true, once: true }
-    );
-
-    /* =========================
-       PLAY / PAUSA MANUAL
-    ========================= */
-    boton.addEventListener('click', function () {
-        if (audio.paused) {
-            audio.play().catch(function () {});
-        } else {
-            audio.pause();
-        }
-    });
-
-});
+        });
+    })();
 </script>

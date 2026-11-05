@@ -622,7 +622,7 @@ function imprimirResultadosPOS() {
   contenedor.innerHTML = `
         <div class="ticket-pos">
             <div class="pos-header">
-                <h2>CASINOS ALADDIN</h2>
+                <h2>CASINOS GRANDALADDIN</h2>
                 <p><strong>PROMO: NÚMEROS LOCOS</strong></p>
                 <p>CASINO: ${datos.casino || "GENERAL"}</p>
             </div>
