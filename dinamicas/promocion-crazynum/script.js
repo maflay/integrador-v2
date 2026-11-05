@@ -608,29 +608,45 @@ function imprimirResultadosPOS() {
     document.body.appendChild(contenedor);
   }
 
-  let numerosTirilla = datos.numeros
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+  const [fecha, hora] = fechaCompleta.split(", ");
+
+  let numerosOrdenados = [...datos.numeros].sort(
+    (a, b) => Number(a) - Number(b),
+  );
+
+  let numerosTirilla = numerosOrdenados
     .map(
       (num, idx) => `
-        <div class="pos-row">
-          <span>NÚMERO ${idx + 1}:</span>
-          <span class="pos-num">${num}</span>
-        </div>
-      `,
+               <span>N ${idx + 1}:</span>
+            <span class="pos-num">${num}</span>
+    `,
     )
-    .join("");
+    .join('<span style="color:#000; font-weight:bold;">|</span>');
 
   contenedor.innerHTML = `
         <div class="ticket-pos">
             <div class="pos-header">
-                <h2>CASINOS GRANDALADDIN</h2>
-                <p><strong>PROMO: NÚMEROS LOCOS</strong></p>
+            <img src="/dinamicas/grandaladdin/resources/Grand-aladdin-Prestige-Logo-otro.png" alt="GrandAladdin">
+            <br />    
+            <br />    
+            <p><strong>PROMO: SORTEO TESLA</strong></p>
                 <p>CASINO: ${datos.casino || "GENERAL"}</p>
             </div>
             <div class="pos-divider">--------------------------------</div>
             <div class="pos-info">
                 <p><strong>CLIENTE:</strong> ${datos.nombre}</p>
                 <p><strong>CÉDULA:</strong> ${datos.cedula}</p>
-                <p><strong>FECHA:</strong> ${datos.fecha}</p>
+                <p><strong>FECHA:</strong> ${fecha + " - " + hora}</p>
             </div>
             <div class="pos-divider">--------------------------------</div>
             <div class="pos-title">NÚMEROS REGISTRADOS</div>
@@ -646,11 +662,25 @@ function imprimirResultadosPOS() {
         </div>
     `;
 
-  window.print();
+  const logo = contenedor.querySelector("img");
 
-  setTimeout(() => {
-    contenedor.innerHTML = "";
-  }, 1000);
+  const ejecutarImpresion = () => {
+    setTimeout(() => {
+      window.print();
+      contenedor.innerHTML = "";
+    }, 500);
+  };
+
+  if (logo) {
+    if (logo.complete) {
+      ejecutarImpresion();
+    } else {
+      logo.onload = ejecutarImpresion;
+      logo.onerror = ejecutarImpresion;
+    }
+  } else {
+    ejecutarImpresion();
+  }
 }
 
 document
