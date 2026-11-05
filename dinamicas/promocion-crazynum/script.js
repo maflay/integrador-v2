@@ -646,7 +646,7 @@ function imprimirResultadosPOS() {
             <div class="pos-info">
                 <p><strong>CLIENTE:</strong> ${datos.nombre}</p>
                 <p><strong>CÉDULA:</strong> ${datos.cedula}</p>
-                <p><strong>FECHA:</strong> ${fecha + " - " + hora}</p>
+                <p><strong>FECHA DE IMPRESION:</strong> <br/>${fecha + " - " + hora}</p>
             </div>
             <div class="pos-divider">--------------------------------</div>
             <div class="pos-title">NÚMEROS REGISTRADOS</div>
