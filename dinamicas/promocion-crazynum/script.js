@@ -277,6 +277,14 @@ function handleSendInfo() {
   });
   const [fecha, hora] = fechaCompleta.split(", ");
 
+  let nombreImpr = nombre.value;
+  let cedulaImpr = cedula.value;
+  let casinoImpr = casino.value;
+  let fechaImpr = fecha + " - " + hora;
+  let numeroImpr = String(
+    Array.from(elementosNumeros).map((item) => item.textContent),
+  );
+
   let data = {
     tipo: "envio_1",
     valor_1: hora,
@@ -310,8 +318,25 @@ function handleSendInfo() {
       contenedor.innerHTML = "";
       getAllData();
       Swal.fire({
-        icon: "success",
-        title: "Envió Exitoso",
+        title: "Envio Exitoso",
+        text: "Quieres imprimir los números enviados",
+        icon: "info",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si",
+        cancelButtonText: "No",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.datosTirillaLast = {
+            nombre: nombreImpr,
+            cedula: cedulaImpr,
+            casino: casinoImpr,
+            fecha: fechaImpr,
+            numeros: numeroImpr,
+          };
+          imprimirlast();
+        }
       });
     })
     .catch((error) => {
@@ -407,7 +432,6 @@ function getData() {
           });
         });
 
-        // Guardamos los datos estructurados para la impresión en una propiedad global
         window.datosTirillaActual = {
           nombre: clienteNombre,
           cedula: cedula,
@@ -627,7 +651,7 @@ function imprimirResultadosPOS() {
   let numerosTirilla = numerosOrdenados
     .map(
       (num, idx) => `
-               <span>N ${idx + 1}:</span>
+               <span><strong>N ${idx + 1}:</strong></span>
             <span class="pos-num">${num}</span>
     `,
     )
@@ -644,9 +668,9 @@ function imprimirResultadosPOS() {
             </div>
             <div class="pos-divider">--------------------------------</div>
             <div class="pos-info">
-                <p><strong>CLIENTE:</strong> ${datos.nombre}</p>
-                <p><strong>CÉDULA:</strong> ${datos.cedula}</p>
-                <p><strong>FECHA DE IMPRESION:</strong> <br/>${fecha + " - " + hora}</p>
+                <p><strong>CLIENTE:</strong><strong> ${datos.nombre}</strong></p>
+                <p><strong>CÉDULA:</strong> <strong>${datos.cedula}</strong></p>
+                <p><strong>FECHA DE IMPRESION:</strong><strong> <br/>${fecha + " - " + hora}</strong></p>
             </div>
             <div class="pos-divider">--------------------------------</div>
             <div class="pos-title">NÚMEROS REGISTRADOS</div>
@@ -839,4 +863,95 @@ function getAllConteo() {
       console.error("Error en la petición:", error);
       result_dia_acumula.innerHTML = `Error al cargar los datos.`;
     });
+}
+
+function imprimirlast() {
+  let datos = window.datosTirillaLast;
+  if (!datos) {
+    Swal.fire({ icon: "warning", title: "No hay datos para imprimir" });
+    return;
+  }
+
+  let contenedor = document.getElementById("print-container");
+  if (!contenedor) {
+    contenedor = document.createElement("div");
+    contenedor.id = "print-container";
+    document.body.appendChild(contenedor);
+  }
+
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+  const [fecha, hora] = fechaCompleta.split(", ");
+
+  const arreglo = datos.numeros
+    .split(",")
+    .map((item) => item.replace(/"/g, ""));
+
+  let numerosOrdenados = [...arreglo].sort((a, b) => Number(a) - Number(b));
+
+  let numerosTirilla = numerosOrdenados
+    .map(
+      (num, idx) => `
+               <span><strong>N ${idx + 1}:</strong></span>
+            <span class="pos-num">${num}</span>
+    `,
+    )
+    .join('<span style="color:#000; font-weight:bold;">|</span>');
+
+  contenedor.innerHTML = `
+        <div class="ticket-pos">
+            <div class="pos-header">
+            <img src="/dinamicas/grandaladdin/resources/Grand-aladdin-Prestige-Logo-otro.png" alt="GrandAladdin">
+            <br />    
+            <br />    
+            <p><strong>PROMO: SORTEO TESLA</strong></p>
+                <p>CASINO: ${datos.casino || "GENERAL"}</p>
+            </div>
+            <div class="pos-divider">--------------------------------</div>
+            <div class="pos-info">
+                <p><strong>CLIENTE:</strong><strong> ${datos.nombre}</strong></p>
+                <p><strong>CÉDULA:</strong> <strong>${datos.cedula}</strong></p>
+                <p><strong>FECHA DE IMPRESION:</strong><strong> <br/>${fecha + " - " + hora}</strong></p>
+            </div>
+            <div class="pos-divider">--------------------------------</div>
+            <div class="pos-title">NÚMEROS REGISTRADOS</div>
+            <div class="pos-numeros">
+                ${numerosTirilla}
+            </div>
+            <div class="pos-divider">--------------------------------</div>
+            <div class="pos-footer">
+                <p>TOTAL JUGADAS: ${arreglo.length}</p>
+                <p>¡Gracias por participar!</p>
+                <p>Conserve este tiquete</p>
+            </div>
+        </div>
+    `;
+
+  const logo = contenedor.querySelector("img");
+
+  const ejecutarImpresion = () => {
+    setTimeout(() => {
+      window.print();
+      contenedor.innerHTML = "";
+    }, 500);
+  };
+
+  if (logo) {
+    if (logo.complete) {
+      ejecutarImpresion();
+    } else {
+      logo.onload = ejecutarImpresion;
+      logo.onerror = ejecutarImpresion;
+    }
+  } else {
+    ejecutarImpresion();
+  }
 }
