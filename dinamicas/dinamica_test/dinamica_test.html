@@ -1,76 +1,859 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>Ruleta doble (38) - Número → Nombre (alineación visual)</title>
-    <link rel="stylesheet" href="/dinamicas/dinamica_test/dinamica_test.css">
-    <link rel="stylesheet" href="/dinamicas/dinamica_test/style.scss">
-    <link rel="stylesheet" href="/css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>La Obra Show Bar — Plano Interactivo</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link
+		href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+		rel="stylesheet">
+	<style>
+		:root {
+			--bg: #111110;
+			--elementos: #23272a;
+			--elementos-2: #1a1d1f;
+			--gold: #B98508;
+			--gold-soft: rgba(185, 133, 8, .35);
+			--gold-faint: rgba(185, 133, 8, .14);
+			--accent: #9bbfcb;
+			--accent-soft: rgba(155, 191, 203, .4);
+			--accent-faint: rgba(155, 191, 203, .12);
+			--text: #e6e4df;
+			--text-dim: #8a8f8f;
+			--panel-bg: rgba(17, 17, 16, .94);
+			--panel-border: rgba(185, 133, 8, .16);
+		}
 
+		* {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			background: var(--bg);
+		}
+
+		body {
+			font-family: 'Inter', sans-serif;
+			color: var(--text);
+			-webkit-font-smoothing: antialiased;
+		}
+
+		.wrap {
+			max-width: 1400px;
+			margin: 0 auto;
+			padding: 28px 20px 40px;
+			background:
+				radial-gradient(ellipse at 20% 0%, rgba(185, 133, 8, .035), transparent 60%),
+				radial-gradient(ellipse at 90% 90%, rgba(155, 191, 203, .03), transparent 55%),
+				var(--bg);
+		}
+
+		header {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-between;
+			align-items: flex-end;
+			gap: 14px;
+			border-bottom: 1px solid var(--panel-border);
+			padding-bottom: 16px;
+			margin-bottom: 20px;
+		}
+
+		.brand-eyebrow {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			letter-spacing: .18em;
+			text-transform: uppercase;
+			color: var(--gold);
+			margin: 0 0 6px;
+			opacity: .85;
+		}
+
+		h1 {
+			font-family: 'Rajdhani', sans-serif;
+			font-weight: 700;
+			font-size: clamp(26px, 4vw, 40px);
+			letter-spacing: .02em;
+			margin: 0;
+			color: var(--text);
+			text-transform: uppercase;
+		}
+
+		h1 span {
+			color: var(--accent);
+		}
+
+		.sub {
+			font-size: 13px;
+			color: var(--text-dim);
+			margin-top: 6px;
+			max-width: 520px;
+			line-height: 1.5;
+		}
+
+		.badge {
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11px;
+			color: var(--text-dim);
+			border: 1px solid var(--panel-border);
+			border-radius: 4px;
+			padding: 8px 12px;
+			text-align: right;
+			line-height: 1.6;
+			background: var(--elementos-2);
+		}
+
+		.badge b {
+			color: var(--gold);
+			font-weight: 500;
+		}
+
+		.layout {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) 300px;
+			gap: 22px;
+			align-items: start;
+		}
+
+		@media (max-width:880px) {
+			.layout {
+				grid-template-columns: 1fr;
+			}
+		}
+
+		.stage-frame {
+			position: relative;
+			border: 1px solid var(--panel-border);
+			border-radius: 6px;
+			background:
+				linear-gradient(rgba(185, 133, 8, .025) 1px, transparent 1px),
+				linear-gradient(90deg, rgba(185, 133, 8, .025) 1px, transparent 1px),
+				var(--elementos-2);
+			background-size: 32px 32px, 32px 32px, auto;
+			overflow: hidden;
+		}
+
+		.instructions {
+			display: flex;
+			gap: 10px;
+			align-items: center;
+			font-size: 12px;
+			color: var(--text-dim);
+			padding: 12px 16px;
+			border-bottom: 1px solid var(--panel-border);
+			background: rgba(0, 0, 0, .2);
+		}
+
+		.instructions .dot {
+			width: 7px;
+			height: 7px;
+			border-radius: 50%;
+			background: var(--accent);
+			box-shadow: 0 0 7px var(--accent);
+			flex: none;
+		}
+
+		svg {
+			display: block;
+			width: 100%;
+			height: auto;
+		}
+
+		.zone-hit {
+			fill: transparent;
+			stroke: none;
+			cursor: pointer;
+		}
+
+		.zone-boundary {
+			fill: rgba(185, 133, 8, .02);
+			stroke: var(--gold-faint);
+			stroke-width: 1.2;
+			stroke-dasharray: 5 4;
+			transition: fill .25s ease, stroke .25s ease, stroke-dasharray .25s ease;
+			pointer-events: none;
+		}
+
+		.zone-boundary.active {
+			fill: var(--accent-faint);
+			stroke: var(--accent);
+			stroke-dasharray: none;
+			filter: drop-shadow(0 0 5px rgba(155, 191, 203, .4));
+		}
+
+		.zone-label-dot {
+			fill: var(--gold);
+			opacity: .5;
+			transition: opacity .2s ease, fill .2s ease;
+			pointer-events: none;
+		}
+
+		.zone-label-dot.active {
+			fill: var(--accent);
+			opacity: 1;
+		}
+
+		.plan-line {
+			fill: none;
+			stroke: var(--gold);
+			stroke-width: 1.6;
+			opacity: .55;
+			stroke-linejoin: round;
+			stroke-linecap: round;
+		}
+
+		.plan-line-dim {
+			fill: none;
+			stroke: var(--gold);
+			stroke-width: 1;
+			opacity: .28;
+		}
+
+		.plan-fill {
+			fill: var(--elementos);
+			stroke: var(--gold);
+			stroke-width: 1.3;
+			opacity: .8;
+		}
+
+		.wall-highlight {
+			stroke: var(--gold);
+			stroke-width: 2.2;
+			opacity: .5;
+		}
+
+		.stage-fill {
+			fill: rgba(185, 133, 8, .07);
+			stroke: var(--gold);
+			stroke-width: 1.5;
+			opacity: .75;
+		}
+
+		.static-label {
+			font-family: 'Inter', sans-serif;
+			fill: var(--text-dim);
+			font-size: 13px;
+			pointer-events: none;
+		}
+
+		.static-label.strong {
+			fill: var(--text);
+			font-weight: 600;
+			font-size: 15px;
+		}
+
+		.static-label.tiny {
+			font-size: 10.5px;
+			fill: var(--text-dim);
+			opacity: .8;
+		}
+
+		.aforo-label {
+			font-family: 'Rajdhani', sans-serif;
+			font-size: 22px;
+			font-weight: 600;
+			fill: rgba(230, 228, 223, .16);
+			letter-spacing: .03em;
+			pointer-events: none;
+		}
+
+		/* Tables — individually interactive */
+		.table-icon {
+			stroke: var(--gold);
+			stroke-width: 1;
+			fill: none;
+			opacity: .4;
+			transition: stroke .18s ease, opacity .18s ease;
+		}
+
+		.table-icon.active {
+			stroke: var(--accent);
+			opacity: 1;
+			filter: drop-shadow(0 0 4px rgba(155, 191, 203, .55));
+		}
+
+		.table-hit {
+			fill: transparent;
+			stroke: none;
+			cursor: pointer;
+		}
+
+		.tree-crown {
+			fill: rgba(155, 191, 203, .06);
+			stroke: var(--gold);
+			stroke-width: 1;
+			opacity: .6;
+		}
+
+		.measure-line {
+			stroke: var(--accent);
+			stroke-width: 1.5;
+			stroke-dasharray: 6 5;
+			fill: none;
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.measure-line.on {
+			opacity: .9;
+			animation: dash-run 1.1s linear infinite;
+		}
+
+		@keyframes dash-run {
+			to {
+				stroke-dashoffset: -22;
+			}
+		}
+
+		.measure-endpoint {
+			fill: var(--accent);
+			opacity: 0;
+			pointer-events: none;
+		}
+
+		.measure-endpoint.on {
+			opacity: .9;
+		}
+
+		.chip {
+			position: absolute;
+			transform: translate(-50%, -50%);
+			background: var(--panel-bg);
+			border: 1px solid var(--accent-soft);
+			color: var(--accent);
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11.5px;
+			padding: 3px 8px;
+			border-radius: 3px;
+			white-space: nowrap;
+			opacity: 0;
+			transition: opacity .15s ease;
+			pointer-events: none;
+			z-index: 5;
+		}
+
+		.chip.on {
+			opacity: 1;
+		}
+
+		.tooltip {
+			position: absolute;
+			max-width: 250px;
+			background: var(--panel-bg);
+			border: 1px solid var(--panel-border);
+			border-left: 2px solid var(--gold);
+			border-radius: 4px;
+			padding: 12px 14px;
+			font-size: 12.5px;
+			line-height: 1.5;
+			color: var(--text-dim);
+			opacity: 0;
+			transform: translateY(4px);
+			transition: opacity .15s ease, transform .15s ease;
+			pointer-events: none;
+			z-index: 10;
+			box-shadow: 0 8px 24px rgba(0, 0, 0, .5);
+		}
+
+		.tooltip.on {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.tooltip h4 {
+			margin: 0 0 4px;
+			font-family: 'Rajdhani', sans-serif;
+			font-size: 15px;
+			letter-spacing: .02em;
+			color: var(--text);
+			text-transform: uppercase;
+			font-weight: 700;
+		}
+
+		.tooltip .dist {
+			margin-top: 8px;
+			padding-top: 8px;
+			border-top: 1px dashed var(--panel-border);
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 11.5px;
+			color: var(--accent);
+		}
+
+		/* Legend panel */
+		.legend {
+			border: 1px solid var(--panel-border);
+			border-radius: 6px;
+			background: var(--elementos-2);
+			padding: 16px;
+			position: sticky;
+			top: 20px;
+		}
+
+		.legend h3 {
+			font-family: 'Rajdhani', sans-serif;
+			font-size: 13px;
+			letter-spacing: .14em;
+			text-transform: uppercase;
+			color: var(--text-dim);
+			margin: 0 0 12px;
+			padding-bottom: 10px;
+			border-bottom: 1px solid var(--panel-border);
+		}
+
+		.legend-item {
+			display: flex;
+			align-items: flex-start;
+			gap: 9px;
+			padding: 8px 6px;
+			border-radius: 4px;
+			cursor: pointer;
+			transition: background .15s ease;
+		}
+
+		.legend-item:hover,
+		.legend-item.active {
+			background: rgba(155, 191, 203, .06);
+		}
+
+		.legend-item .swatch {
+			width: 8px;
+			height: 8px;
+			border-radius: 2px;
+			background: var(--gold);
+			margin-top: 5px;
+			flex: none;
+			transition: box-shadow .15s ease, background .15s ease;
+		}
+
+		.legend-item.active .swatch {
+			background: var(--accent);
+			box-shadow: 0 0 6px var(--accent);
+		}
+
+		.legend-item .txt {
+			font-size: 12.5px;
+			line-height: 1.4;
+		}
+
+		.legend-item .txt b {
+			display: block;
+			font-size: 12.5px;
+			color: var(--text);
+			font-weight: 600;
+			margin-bottom: 1px;
+		}
+
+		.legend-item .txt span {
+			color: var(--text-dim);
+			font-size: 11.5px;
+		}
+
+		.scale-note {
+			margin-top: 14px;
+			padding-top: 14px;
+			border-top: 1px solid var(--panel-border);
+			font-family: 'JetBrains Mono', monospace;
+			font-size: 10.5px;
+			color: var(--text-dim);
+			line-height: 1.6;
+		}
+
+		.scale-note b {
+			color: var(--gold);
+		}
+
+		footer {
+			margin-top: 18px;
+			font-size: 11px;
+			color: var(--text-dim);
+			opacity: .7;
+			text-align: center;
+		}
+	</style>
 </head>
 
 <body>
-    <div class="content_main_content">
-        <div id="ui_dado">
-	<p id="result"></p>
-	<div id="platform">
-		<div id="dice" onclick="girarDado3D()">
-		  <div class="side front">
-		    <div class="dot center"></div>
-		  </div>
-		  <div class="side front inner"></div>
-		  <div class="side top">
-		    <div class="dot dtop dleft"></div>
-		    <div class="dot dbottom dright"></div>
-		  </div>
-		  <div class="side top inner"></div>
-		  <div class="side right">
-		    <div class="dot dtop dleft"></div>
-		    <div class="dot center"></div>
-		    <div class="dot dbottom dright"></div>
-		  </div>
-		  <div class="side right inner"></div>
-		  <div class="side left">
-		    <div class="dot dtop dleft"></div>
-		    <div class="dot dtop dright"></div>
-		    <div class="dot dbottom dleft"></div>
-		    <div class="dot dbottom dright"></div>
-		  </div>
-		  <div class="side left inner"></div>
-		  <div class="side bottom">
-		    <div class="dot center"></div>
-		    <div class="dot dtop dleft"></div>
-		    <div class="dot dtop dright"></div>
-		    <div class="dot dbottom dleft"></div>
-		    <div class="dot dbottom dright"></div>
-		  </div>
-		  <div class="side bottom inner"></div>
-		  <div class="side back">
-		    <div class="dot dtop dleft"></div>
-		    <div class="dot dtop dright"></div>
-		    <div class="dot dbottom dleft"></div>
-		    <div class="dot dbottom dright"></div>
-		    <div class="dot center dleft"></div>
-		    <div class="dot center dright"></div>
-		  </div>
-		  <div class="side back inner"></div>
-		  <div class="side cover x"></div>
-		  <div class="side cover y"></div>
-		  <div class="side cover z"></div>
+	<div class="wrap">
+
+		<header>
+			<div>
+				<p class="brand-eyebrow">Grand Aladdin · Chipichape</p>
+				<h1>La Obra <span>Show Bar</span></h1>
+				<p class="sub">Plano interactivo de distribución. Recorre el layout con el cursor (o con el dedo en
+					móvil) para ver cada zona y cada mesa con su distancia aproximada hasta la tarima.</p>
+			</div>
+			<div class="badge">
+				AFORO <b>220</b> PERSONAS APROX.<br>
+				TARIMA WONDER SHOW <b>N +0.90</b>
+			</div>
+		</header>
+
+		<div class="layout">
+
+			<div class="stage-frame">
+				<div class="instructions"><span class="dot"></span> Pasa el cursor sobre una mesa o una zona — la línea
+					marca la distancia esquemática hasta el borde de la tarima.</div>
+				<div style="position:relative;">
+					<svg id="plan" viewBox="0 0 1000 1450" xmlns="http://www.w3.org/2000/svg">
+
+						<!-- ================= BASE LINEWORK ================= -->
+						<g id="base-linework">
+							<path class="plan-line" d="M22,18 L22,1432 L978,1432 L978,300 Q978,60 760,18 Z" />
+							<path class="plan-line-dim" d="M22,18 L780,18" />
+							<path class="plan-line-dim" d="M400,18 L400,1432" />
+
+							<line class="wall-highlight" x1="26" y1="270" x2="26" y2="1155" />
+							<line class="wall-highlight" x1="400" y1="1428" x2="960" y2="1428" />
+							<line class="wall-highlight" x1="974" y1="960" x2="974" y2="1300" />
+
+							<rect class="plan-fill" x="42" y="30" width="330" height="188" rx="4" />
+							<path class="plan-line-dim" d="M75,55 L340,55 L340,190 L75,190 Z" />
+							<line class="plan-line-dim" x1="75" y1="55" x2="200" y2="150" />
+							<line class="plan-line-dim" x1="200" y1="55" x2="340" y2="150" />
+
+							<path class="plan-fill"
+								d="M42,262 L360,262 Q436,262 436,338 L436,430 Q436,466 400,466 L80,466 L42,466 Z" />
+							<circle class="plan-line-dim" cx="90" cy="490" r="14" />
+							<circle class="plan-line-dim" cx="140" cy="490" r="14" />
+							<circle class="plan-line-dim" cx="190" cy="490" r="14" />
+							<circle class="plan-line-dim" cx="240" cy="490" r="14" />
+
+							<circle class="tree-crown" cx="892" cy="192" r="78" />
+							<circle class="plan-line-dim" cx="892" cy="192" r="10" />
+
+							<g id="table-icons"></g>
+
+							<rect class="stage-fill" x="42" y="1258" width="384" height="164" rx="3" />
+							<line class="plan-line-dim" x1="42" y1="1258" x2="426" y2="1258" />
+							<circle cx="234" cy="1330" r="3" fill="var(--gold)" />
+
+							<line class="plan-line-dim" x1="500" y1="1150" x2="380" y2="1420" stroke-dasharray="4 4" />
+
+							<rect class="plan-fill" x="762" y="1332" width="196" height="96" rx="3" />
+
+							<path class="plan-line-dim" d="M22,1330 L200,1432" />
+							<path class="plan-line-dim" d="M22,1370 L140,1432" />
+						</g>
+
+						<!-- ================= STATIC LABELS ================= -->
+						<g id="static-labels">
+							<text class="aforo-label" x="500" y="900" text-anchor="middle">AFORO 220 PERSONAS
+								APROX.</text>
+							<text class="static-label strong" x="60" y="20" dy="14">CABINA DJ</text>
+							<text class="static-label tiny" x="60" y="20" dy="34">SOBRE PLANTA</text>
+							<text class="static-label strong" x="60" y="300">BAR</text>
+							<text class="static-label" x="55" y="1300">WONDER SHOW</text>
+							<text class="static-label" x="70" y="1320">(TARIMA)</text>
+							<text class="static-label tiny" x="180" y="1335">＋N 0.90</text>
+							<text class="static-label" x="800" y="1360">BATERISTA</text>
+							<text class="static-label" x="795" y="1445">LA OBRA</text>
+						</g>
+
+						<!-- ================= INTERACTIVE ZONES ================= -->
+						<g id="interactive-zones"></g>
+
+						<!-- ================= MEASURE LAYER ================= -->
+						<line id="measure-line" class="measure-line" />
+						<circle id="measure-end" class="measure-endpoint" r="4" />
+						<circle id="measure-start" class="measure-endpoint" r="3.5" />
+
+					</svg>
+
+					<div class="tooltip" id="tooltip">
+						<h4 id="tt-title"></h4>
+						<div id="tt-note"></div>
+						<div class="dist" id="tt-dist"></div>
+					</div>
+					<div class="chip" id="chip"></div>
+				</div>
+			</div>
+
+			<aside class="legend">
+				<h3>Zonas del plano</h3>
+				<div id="legend-list"></div>
+				<div class="scale-note">
+					<b>Nota de escala:</b> las distancias mostradas son referenciales, calculadas sobre la geometría
+					esquemática de este plano digital (calibrado a partir del radio de la jardinera, R 3.15 m). No
+					sustituyen la medición en obra.
+				</div>
+			</aside>
+
 		</div>
+
+		<div class="lo-frame lo-size-tall lo-in-view">
+			<div class="lo-frame-figure"><img
+					src="https://grandaladdin.com/wp-content/uploads/2026/11/Vibrante-concierto-con-cantante-y-banda-e1793806065115.png"
+					alt="Silueta de la trompeta" loading="lazy"></div>
+			<div class="lo-frame-caption"><span class="lo-num lo-mono">TOMA 01</span><span
+					class="lo-cap"><strong>Silueta de la trompeta.</strong> El escenario se apaga y solo queda la
+					melodía.</span></div>
+		</div>
+
+		<div class="lo-frame lo-align-right lo-size-tall">
+			<div class="lo-frame-figure"><img
+					src="https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-3.jpg"
+					alt="A dúo, frente a frente" loading="lazy"></div>
+			<div class="lo-frame-caption"><span class="lo-num lo-mono">TOMA 02</span><span class="lo-cap"><strong>A dúo,
+						frente a frente.</strong> Cuando el estribillo se canta entre dos micrófonos.</span></div>
+		</div>
+
+		<footer>La Obra Show Bar — Grand Aladdin Chipichapé · Plano de distribución interactivo</footer>
 	</div>
-</div>
 
-    </div>
+	<script>
+		(function () {
+			// ---- Reference point: borde de tarima (stage edge) ----
+			const STAGE_POINT = { x: 426, y: 1258 };
+			// Scale calibration: total plan width (1000 units) assumed ≈ 32 m (schematic)
+			const METERS_PER_UNIT = 32 / 1000;
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+			// Zones exactly matching the requested legend content
+			const zones = [
+				{ id: 'dj', title: 'Cabina DJ', note: 'Sobre planta.', cx: 207, cy: 124, shapeId: 'z-paneles' },
+				{ id: 'bar', title: 'Bar', note: 'Barra de servicio.', cx: 220, cy: 360, shapeId: 'z-bar' },
+				{ id: 'jardinera', title: 'Jardinera decorativa', note: 'Elemento vegetal central, radio 3.15 m.', cx: 892, cy: 192, shapeId: 'z-jardinera' },
+				{ id: 'mesas', title: 'Zona de mesas', note: 'Distribución principal de mesas — aforo 220 personas aprox. Pasa el cursor sobre cada mesa para ver su distancia individual a la tarima.', cx: 520, cy: 900, shapeId: 'z-mesas', noDistance: true, noHit: true },
+				{ id: 'tarima', title: 'Wonder Show (Tarima)', note: 'Tarima principal del show, nivel +0.90 m sobre piso.', cx: 234, cy: 1340, shapeId: 'z-tarima', isStage: true },
+				{ id: 'bordeTarima', title: 'Borde de tarima', note: 'Límite de acceso frontal al escenario.', cx: 426, cy: 1258, shapeId: 'z-borde', isStage: true },
+				{ id: 'almacenamiento', title: 'Almacenamiento y trasescena', note: 'Zona de almacenamiento y mantenimiento de pantallas, tras la tarima.', cx: 110, cy: 1390, shapeId: 'z-almacen' },
+				{ id: 'muroLed', title: 'Proyección muro LED', note: 'Ubicación proyectada del muro de pantallas LED.', cx: 300, cy: 1400, shapeId: 'z-muroled' },
+				{ id: 'baterista', title: 'Baterista', note: 'Zona reservada para el baterista, junto a la tarima.', cx: 860, cy: 1380, shapeId: 'z-baterista' },
+				{ id: 'laObra', title: 'La Obra', note: 'Acceso de trasescena / señalética.', cx: 860, cy: 1440, shapeId: 'z-laobra' }
+			];
 
-    <script src="/dinamicas/dinamica_test/dinamica_test.js"></script>
+			const shapeDefs = {
+				'z-paneles': { tag: 'rect', attrs: { x: 42, y: 30, width: 330, height: 188, rx: 4 } },
+				'z-bar': { tag: 'path', attrs: { d: 'M42,262 L360,262 Q436,262 436,338 L436,430 Q436,466 400,466 L80,466 L42,466 Z' } },
+				'z-jardinera': { tag: 'circle', attrs: { cx: 892, cy: 192, r: 96 } },
+				'z-mesas': { tag: 'rect', attrs: { x: 60, y: 490, width: 900, height: 750 } },
+				'z-tarima': { tag: 'rect', attrs: { x: 42, y: 1258, width: 384, height: 164, rx: 3 } },
+				'z-borde': { tag: 'path', attrs: { d: 'M500,1150 L380,1420' } },
+				'z-almacen': { tag: 'path', attrs: { d: 'M22,1310 L230,1432 L22,1432 Z' } },
+				'z-muroled': { tag: 'rect', attrs: { x: 230, y: 1380, width: 140, height: 52 } },
+				'z-baterista': { tag: 'rect', attrs: { x: 762, y: 1332, width: 196, height: 96, rx: 3 } },
+				'z-laobra': { tag: 'rect', attrs: { x: 762, y: 1428, width: 196, height: 22 } }
+			};
+
+			const svgNS = 'http://www.w3.org/2000/svg';
+			const zonesLayer = document.getElementById('interactive-zones');
+			const legendList = document.getElementById('legend-list');
+			const tooltip = document.getElementById('tooltip');
+			const ttTitle = document.getElementById('tt-title');
+			const ttNote = document.getElementById('tt-note');
+			const ttDist = document.getElementById('tt-dist');
+			const chip = document.getElementById('chip');
+			const measureLine = document.getElementById('measure-line');
+			const measureEnd = document.getElementById('measure-end');
+			const measureStart = document.getElementById('measure-start');
+			const svgEl = document.getElementById('plan');
+			const frame = document.querySelector('.stage-frame');
+
+			function makeEl(tag, attrs, cls) {
+				const el = document.createElementNS(svgNS, tag);
+				for (const k in attrs) { el.setAttribute(k, attrs[k]); }
+				if (cls) el.setAttribute('class', cls);
+				return el;
+			}
+
+			function distanceMeters(cx, cy) {
+				const dx = cx - STAGE_POINT.x;
+				const dy = cy - STAGE_POINT.y;
+				return Math.sqrt(dx * dx + dy * dy) * METERS_PER_UNIT;
+			}
+
+			function svgToScreen(x, y) {
+				const rect = svgEl.getBoundingClientRect();
+				const frameRect = frame.getBoundingClientRect();
+				const vb = svgEl.viewBox.baseVal;
+				const scaleX = rect.width / vb.width;
+				const scaleY = rect.height / vb.height;
+				return {
+					left: (rect.left - frameRect.left) + x * scaleX,
+					top: (rect.top - frameRect.top) + y * scaleY
+				};
+			}
+
+			function clearActiveStates() {
+				document.querySelectorAll('.zone-boundary').forEach(el => el.classList.remove('active'));
+				document.querySelectorAll('.zone-label-dot').forEach(el => el.classList.remove('active'));
+				document.querySelectorAll('.legend-item').forEach(el => el.classList.remove('active'));
+				document.querySelectorAll('.table-icon').forEach(el => el.classList.remove('active'));
+			}
+
+			function showMeasure(cx, cy, dist) {
+				measureLine.setAttribute('x1', cx);
+				measureLine.setAttribute('y1', cy);
+				measureLine.setAttribute('x2', STAGE_POINT.x);
+				measureLine.setAttribute('y2', STAGE_POINT.y);
+				measureLine.classList.add('on');
+				measureStart.setAttribute('cx', cx);
+				measureStart.setAttribute('cy', cy);
+				measureEnd.setAttribute('cx', STAGE_POINT.x);
+				measureEnd.setAttribute('cy', STAGE_POINT.y);
+				measureStart.classList.add('on');
+				measureEnd.classList.add('on');
+
+				const midX = (cx + STAGE_POINT.x) / 2;
+				const midY = (cy + STAGE_POINT.y) / 2;
+				const midPos = svgToScreen(midX, midY);
+				chip.textContent = dist.toFixed(1) + ' m';
+				chip.style.left = midPos.left + 'px';
+				chip.style.top = midPos.top + 'px';
+				chip.classList.add('on');
+			}
+
+			function hideMeasure() {
+				measureLine.classList.remove('on');
+				measureStart.classList.remove('on');
+				measureEnd.classList.remove('on');
+				chip.classList.remove('on');
+			}
+
+			function showTooltip(cx, cy, title, note, distText) {
+				ttTitle.textContent = title;
+				ttNote.textContent = note;
+				ttDist.textContent = distText;
+				const pos = svgToScreen(cx, cy);
+				tooltip.style.left = Math.min(Math.max(pos.left, 130), frame.clientWidth - 20) + 'px';
+				tooltip.style.top = Math.max(pos.top - 14, 12) + 'px';
+				tooltip.classList.add('on');
+			}
+
+			function hideTooltip() {
+				tooltip.classList.remove('on');
+			}
+
+			// ---- Zones (rooms / static areas) ----
+			zones.forEach(z => {
+				const def = shapeDefs[z.shapeId];
+				const g = makeEl('g', { 'data-zone': z.id });
+
+				const boundary = makeEl(def.tag, def.attrs, 'zone-boundary');
+				boundary.id = z.shapeId + '-boundary';
+				g.appendChild(boundary);
+
+				if (!z.noHit) {
+					const hit = makeEl(def.tag, def.attrs, 'zone-hit');
+					g.appendChild(hit);
+				}
+
+				const dot = makeEl('circle', { cx: z.cx, cy: z.cy, r: 4 }, 'zone-label-dot');
+				dot.id = z.shapeId + '-dot';
+				g.appendChild(dot);
+
+				zonesLayer.appendChild(g);
+
+				function activateZone() {
+					clearActiveStates();
+					boundary.classList.add('active');
+					dot.classList.add('active');
+					const legendItem = document.querySelector('.legend-item[data-zone="' + z.id + '"]');
+					if (legendItem) legendItem.classList.add('active');
+
+					if (z.isStage) {
+						showTooltip(z.cx, z.cy, z.title, z.note, 'Ubicación del escenario');
+						hideMeasure();
+					} else if (z.noDistance) {
+						showTooltip(z.cx, z.cy, z.title, z.note, '');
+						hideMeasure();
+					} else {
+						const dist = distanceMeters(z.cx, z.cy);
+						showTooltip(z.cx, z.cy, z.title, z.note, '≈ ' + dist.toFixed(1) + ' m hasta el borde de la tarima');
+						showMeasure(z.cx, z.cy, dist);
+					}
+				}
+				function deactivateZone() { hideTooltip(); hideMeasure(); }
+
+				g.addEventListener('mouseenter', activateZone);
+				g.addEventListener('mouseleave', deactivateZone);
+				g.addEventListener('click', activateZone);
+				g.addEventListener('touchstart', activateZone, { passive: true });
+			});
+
+			// ---- Legend ----
+			zones.forEach(z => {
+				const item = document.createElement('div');
+				item.className = 'legend-item';
+				item.dataset.zone = z.id;
+				item.innerHTML = '<span class="swatch"></span><span class="txt"><b>' + z.title + '</b><span>' + z.note + '</span></span>';
+				legendList.appendChild(item);
+				item.addEventListener('mouseenter', () => document.querySelector('g[data-zone="' + z.id + '"]').dispatchEvent(new Event('mouseenter')));
+				item.addEventListener('mouseleave', () => document.querySelector('g[data-zone="' + z.id + '"]').dispatchEvent(new Event('mouseleave')));
+				item.addEventListener('click', () => document.querySelector('g[data-zone="' + z.id + '"]').dispatchEvent(new Event('click')));
+			});
+
+			// ---- Individual tables (measured one by one) ----
+			const tableLayer = document.getElementById('table-icons');
+			let tableCount = 0;
+
+			function drawTable(cx, cy, r) {
+				tableCount += 1;
+				const label = 'Mesa ' + tableCount;
+				const g = makeEl('g', {});
+
+				const icon = makeEl('g', {}, 'table-icon');
+				icon.appendChild(makeEl('circle', { cx: cx, cy: cy, r: r }));
+				const off = r * 1.15;
+				[[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([dx, dy]) => {
+					icon.appendChild(makeEl('circle', { cx: cx + dx * off, cy: cy + dy * off, r: r * 0.32 }));
+				});
+				g.appendChild(icon);
+
+				const hit = makeEl('circle', { cx: cx, cy: cy, r: r * 2.1 }, 'table-hit');
+				g.appendChild(hit);
+
+				tableLayer.appendChild(g);
+
+				function activateTable() {
+					clearActiveStates();
+					icon.classList.add('active');
+					const dist = distanceMeters(cx, cy);
+					showTooltip(cx, cy, label, 'Mesa dentro de la zona de mesas.', '≈ ' + dist.toFixed(1) + ' m hasta el borde de la tarima');
+					showMeasure(cx, cy, dist);
+				}
+				function deactivateTable() { hideTooltip(); hideMeasure(); }
+
+				g.addEventListener('mouseenter', activateTable);
+				g.addEventListener('mouseleave', deactivateTable);
+				g.addEventListener('click', activateTable);
+				g.addEventListener('touchstart', activateTable, { passive: true });
+			}
+
+			const topCols = [480, 580, 680];
+			const bolsilloRows = [90, 170];
+			bolsilloRows.forEach(y => topCols.forEach(x => drawTable(x, y, 16)));
+			const djRow = 350;
+			topCols.forEach(x => drawTable(x, djRow, 16));
+
+			const mainCols = [110, 230, 350, 470, 590, 710, 830, 930];
+			const mainRows = [560, 680, 800, 920, 1040, 1160];
+			mainRows.forEach((y) => {
+				mainCols.forEach((x) => {
+					if (x > 970 || x < 60) return;
+					drawTable(x, y, 15);
+				});
+			});
+
+			// Scale bar
+			const scaleG = makeEl('g', {});
+			const scaleUnits = 5 / METERS_PER_UNIT; // units representing 5 meters
+			const sx = 60, sy = 1440;
+			scaleG.appendChild(makeEl('line', { x1: sx, y1: sy, x2: sx + scaleUnits, y2: sy, stroke: 'var(--gold)', 'stroke-width': 1.6, opacity: .6 }));
+			[0, 1].forEach(i => {
+				scaleG.appendChild(makeEl('line', { x1: sx + i * scaleUnits, y1: sy - 6, x2: sx + i * scaleUnits, y2: sy + 6, stroke: 'var(--gold)', 'stroke-width': 1.6, opacity: .6 }));
+			});
+			const scaleText = makeEl('text', { x: sx, y: sy - 12 }, 'static-label tiny');
+			scaleText.textContent = '0 — 5 m (aprox.)';
+			scaleG.appendChild(scaleText);
+			document.getElementById('base-linework').appendChild(scaleG);
+
+		})();
+	</script>
 </body>
 
 </html>

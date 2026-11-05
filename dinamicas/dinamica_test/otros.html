@@ -1,0 +1,265 @@
+<style>
+.magic-particle{
+    position:fixed;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    pointer-events:none;
+    z-index:999999;
+    opacity:.8;
+    animation:magicFloat 1.2s ease-out forwards;
+}
+
+.gold{
+    background:#DC9C0B;
+    box-shadow:0 0 8px #DC9C0B;
+}
+
+.blue{
+    background:#5EC8FF;
+    box-shadow:0 0 8px #5EC8FF;
+}
+
+@keyframes magicFloat{
+
+0%{
+transform:translate(0,0) scale(.5);
+opacity:.8;
+}
+
+100%{
+transform:translate(var(--x),var(--y)) scale(2);
+opacity:0;
+filter:blur(4px);
+}
+
+}
+</style>
+
+<script>
+
+document.addEventListener("click",function(e){
+
+for(let i=0;i<8;i++){
+
+let p=document.createElement("div");
+
+p.className="magic-particle "+(Math.random()>.5?"gold":"blue");
+
+p.style.left=e.clientX+"px";
+p.style.top=e.clientY+"px";
+
+let x=(Math.random()-0.5)*60;
+let y=-20-Math.random()*60;
+
+p.style.setProperty("--x",x+"px");
+p.style.setProperty("--y",y+"px");
+
+document.body.appendChild(p);
+
+setTimeout(function(){
+
+p.remove();
+
+},1200);
+
+}
+
+});
+
+</script>
+	
+	
+	
+
+	<script>
+	document.addEventListener('DOMContentLoaded', function () {
+  // ---- Reemplaza cada "src" por la URL real de tu Media Library de WordPress ----
+  // Sube las 12 fotos retocadas a Medios > Añadir nuevo, copia la URL de cada una
+  // (clic derecho sobre la imagen en la biblioteca > Copiar enlace de la imagen)
+  var LO_PHOTOS = [
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/08/Trompeta-La-Obra-Show-Bar.jpeg", caption:"Silueta de la trompeta", note:"El escenario se apaga y solo queda la melodía."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-3.jpg", caption:"A dúo, frente a frente", note:"Cuando el estribillo se canta entre dos micrófonos."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/08/Andrea-Cantante.jpeg", caption:"Frente a la mesa", note:"Conexión con el público a centímetros."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-1.jpg", caption:"Voz principal", note:"Brazos abiertos, banda completa detrás."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-9.jpg", caption:"Primer plano, luces cálidas", note:"El detalle que se nota cuando el flash captura el tatuaje."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/09/Baterista.jpg", caption:"Esto es pasión", note:"El baterista dándola toda para la gran noche."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-6.jpg", caption:"La mesa larga", note:"Aguardiente, risas y una noche que no tiene apuro."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/09/Banda-La-Obra-Show-Bar.jpg", caption:"Sonido de calidad", note:"Una banda que toca con el corazón."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/08/Primera-Fila-Show-Bar.jpeg", caption:"Un concierto dedicado a esa persona", note:"Esa canción merece estar en Historias."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-10-scaled.jpg", caption:"Bola de espejos encendida", note:"El bloque de luces detrás de la banda completa."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-11.jpg", caption:"Sombreritos de fiesta", note:"Cumpleaños, mesa 42, celebración completa."},
+    {src:"https://grandaladdin.com/wp-content/uploads/2026/09/Anabella-y-su-banda.jpg", caption:"A ritmo de mariachis", note:"Anabella cautivando con su voz y performance."}
+  ];
+
+  var container = document.getElementById('lo-frames');
+  if (!container) return;
+
+  LO_PHOTOS.forEach(function (p, i) {
+    var n = String(i + 1).padStart(2, '0');
+    var alignRight = i % 2 === 1;
+    var sizeClass = (i % 3 === 2) ? 'lo-size-wide' : 'lo-size-tall';
+    var frame = document.createElement('div');
+    frame.className = 'lo-frame ' + (alignRight ? 'lo-align-right' : '') + ' ' + sizeClass;
+    frame.innerHTML =
+      '<div class="lo-frame-figure">' +
+        '<img src="' + p.src + '" alt="' + p.caption + '" loading="lazy">' +
+      '</div>' +
+      '<div class="lo-frame-caption">' +
+        '<span class="lo-num lo-mono">TOMA ' + n + '</span>' +
+        '<span class="lo-cap"><strong>' + p.caption + '.</strong> ' + p.note + '</span>' +
+      '</div>';
+    container.appendChild(frame);
+  });
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('lo-in-view');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.22, rootMargin: "0px 0px -8% 0px" });
+
+  document.querySelectorAll('.lo-frame').forEach(function (f) { io.observe(f); });
+});
+	</script>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.querySelectorAll(
+        '.et_pb_image img[title], .et_pb_gallery_image img[title], .et_pb_fullwidth_image img[title]'
+    ).forEach(function (img) {
+        img.removeAttribute('title');
+    });
+
+});
+</script>
+
+
+
+
+<script>
+(function () {
+
+    function iniciarMagiaLaObra() {
+
+        var scene = document.getElementById("laobra-magia");
+
+        if (!scene) {
+            return;
+        }
+
+        var ticking = false;
+
+
+        function actualizarMagia() {
+
+            var rect = scene.getBoundingClientRect();
+
+            var alturaVentana = window.innerHeight;
+
+            /*
+             * Progreso según la posición
+             * de la imagen dentro de la pantalla.
+             */
+
+            var progreso =
+                (alturaVentana - rect.top) /
+                (alturaVentana + rect.height);
+
+
+            /*
+             * Limitar 0 - 1
+             */
+
+            progreso = Math.max(
+                0,
+                Math.min(1, progreso)
+            );
+
+
+            /*
+             * Suavizado
+             */
+
+            progreso =
+                progreso *
+                progreso *
+                (3 - 2 * progreso);
+
+
+            /*
+             * Enviar al CSS
+             */
+
+            scene.style.setProperty(
+                "--scroll",
+                progreso
+            );
+
+
+            ticking = false;
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            function () {
+
+                if (!ticking) {
+
+                    window.requestAnimationFrame(
+                        actualizarMagia
+                    );
+
+                    ticking = true;
+
+                }
+
+            },
+            {
+                passive: true
+            }
+        );
+
+
+        window.addEventListener(
+            "resize",
+            actualizarMagia
+        );
+
+
+        actualizarMagia();
+
+    }
+
+
+    /*
+     * Esperar a que Divi haya terminado
+     * de cargar la página.
+     */
+
+    if (
+        document.readyState === "loading"
+    ) {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            iniciarMagiaLaObra
+        );
+
+    } else {
+
+        iniciarMagiaLaObra();
+
+    }
+
+
+})();
+
+</script>
