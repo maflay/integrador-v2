@@ -29,20 +29,6 @@ const user = inforUser();
 
 const items_hide = document.querySelectorAll(".item_hide");
 
-cateGlobal.addEventListener("change", () => {
-  if (cateGlobal.value == "ADICIONAL") {
-    items_hide.forEach((item) => {
-      item.classList.add("item_disable");
-    });
-    cateGlobal.classList.remove("item_disable");
-    casinoGlobal.classList.remove("item_disable");
-  } else {
-    items_hide.forEach((item) => {
-      item.classList.remove("item_disable");
-    });
-  }
-});
-
 class SlotMachine {
   constructor(slotElement, prefix, selectElement) {
     this.slotElement = slotElement;
@@ -506,57 +492,37 @@ function handleSubmit() {
 
   let data = {};
 
-  if (categoria.value == "ADICIONAL") {
-    if (!casino.value || !categoria.value || !nombre.value) {
-      Swal.fire({
-        icon: "warning",
-        title: "Campos en Blanco",
-      });
-      return;
-    }
-    data = {
-      tipo: "envio_1",
-      valor_1: hora,
-      valor_2: fecha,
-      valor_3: nombre.value,
-      valor_4: "",
-      valor_5: casino.value,
-      valor_6: categoria.value,
-      valor_7: "0",
-      valBono: "0",
-      valor_8: "0",
-      valor_9: promocion,
-      valor_10: user.Nombre,
-    };
-  } else {
-    if (
-      !categoria.value ||
-      !casino.value ||
-      !nombre.value ||
-      !d1 ||
-      !d2 ||
-      !d3
-    ) {
-      Swal.fire({
-        icon: "warning",
-        title: "Completa toda la información",
-      });
-      return;
-    }
-
-    data = {
-      tipo: "envio_1",
-      valor_1: hora,
-      valor_2: fecha,
-      valor_3: nombre.value,
-      valor_4: "",
-      valor_5: casino.value,
-      valor_6: categoria.value,
-      valor_7: resultado,
-      valor_9: promocion,
-      valBono: "",
-    };
+  if (
+    categoria.value == "" ||
+    casino.value == "" ||
+    nombre.value == "" ||
+    d1 == "" ||
+    d2 == "" ||
+    d3 == "" ||
+    Number(d1) <= 0 ||
+    Number(d2) <= 0 ||
+    Number(d3) <= 0
+  ) {
+    Swal.fire({
+      icon: "warning",
+      title: "Completa toda la información",
+      text: "Asegúrate de que los dados tengan un valor válido.",
+    });
+    return;
   }
+
+  data = {
+    tipo: "envio_1",
+    valor_1: hora,
+    valor_2: fecha,
+    valor_3: nombre.value,
+    valor_4: "",
+    valor_5: casino.value,
+    valor_6: categoria.value,
+    valor_7: resultado,
+    valor_9: promocion,
+    valBono: "",
+  };
 
   loader.style.display = "flex";
   const registro = JSON.parse(localStorage.getItem(LS_KEY)) || [];
@@ -564,38 +530,6 @@ function handleSubmit() {
   localStorage.setItem(LS_KEY, JSON.stringify(registro));
 
   if (typeof GetResgistroDia === "function") GetResgistroDia();
-
-  if (categoria.value == "ADICIONAL") {
-    fetch(url, {
-      method: "POST",
-      mode: "no-cors",
-      body: JSON.stringify(data),
-    })
-      .then((res) => res.text())
-      .then(() => {
-        casino.value = "";
-        categoria.value = "";
-        nombre.value = "";
-        document.getElementById("num_dado_1").value = "";
-        document.getElementById("num_dado_2").value = "";
-        document.getElementById("num_dado_3").value = "";
-        loader.style.display = "none";
-        Swal.fire({
-          icon: "success",
-          title: "Exito",
-          html: "Envió exitoso",
-        });
-      })
-      .catch((err) => {
-        loader.style.display = "none";
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          html: `Comunícate con el área de comunicaciones, ${err}`,
-        });
-      });
-    return;
-  }
 
   setTimeout(() => {
     casino.value = "";
@@ -633,19 +567,14 @@ function handleSecoSubmit() {
   let bono_modal = document.getElementById("bono_modal");
   let valor_promo_modal = document.getElementById("valor_promo_modal");
 
-  if (categoria_modal.value == "ADICIONAL") {
-    bono_modal.value = "0";
-    valor_promo_modal.value = "0";
-  }
-
   if (
-    !casino_modal.value ||
-    !categoria_modal.value ||
-    !hora_modal.value ||
-    !fecha_modal.value ||
-    !nombre_modal.value ||
-    !bono_modal.value ||
-    !valor_promo_modal.value
+    casino_modal.value == "" ||
+    categoria_modal.value == "" ||
+    hora_modal.value == "" ||
+    fecha_modal.value == "" ||
+    nombre_modal.value == "" ||
+    bono_modal.value == "" ||
+    valor_promo_modal.value == ""
   ) {
     Swal.fire({
       icon: "warning",
