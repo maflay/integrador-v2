@@ -91,6 +91,50 @@ window.addEventListener("load", () => {
 //   }, intervaloVelocidad);
 // }
 
+function procesarGeneracionNumeros(numerosDisponibles, cantidad, contenedor) {
+  for (let i = numerosDisponibles.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    let temp = numerosDisponibles[i];
+    numerosDisponibles[i] = numerosDisponibles[j];
+    numerosDisponibles[j] = temp;
+  }
+
+  let numerosSeleccionados = numerosDisponibles.slice(0, cantidad);
+
+  let tiempoTranscurido = 0;
+  const duracionTotal = 1000;
+  const intervaloVelocidad = 50;
+  let elementosCreados = [];
+
+  for (let i = 0; i < cantidad; i++) {
+    let valorEntrada = document.createElement("p");
+    valorEntrada.classList.add("itemt_show", "display-box");
+    valorEntrada.textContent = "0000";
+    contenedor.appendChild(valorEntrada);
+    elementosCreados.push(valorEntrada);
+  }
+
+  const intervalId = setInterval(() => {
+    tiempoTranscurido += intervaloVelocidad;
+
+    elementosCreados.forEach((el) => {
+      let randomTemp = Math.floor(Math.random() * 9999) + 1;
+      el.textContent = String(randomTemp).padStart(4, "0");
+    });
+
+    if (tiempoTranscurido >= duracionTotal) {
+      clearInterval(intervalId);
+
+      elementosCreados.forEach((el, index) => {
+        let numeroFormateado = numerosSeleccionados[index];
+        el.id = numeroFormateado;
+        el.textContent = numeroFormateado;
+        el.classList.add("add_flex");
+      });
+    }
+  }, intervaloVelocidad);
+}
+
 async function iniciarBusqueda() {
   const numeroInput = document.getElementById("numeroInput");
   const contenedor = document.querySelector(".content_numeros_gene");
@@ -157,10 +201,35 @@ async function iniciarBusqueda() {
 
     if (numerosDisponibles.length < cantidad) {
       cargando.remove();
+
       Swal.fire({
-        icon: "error",
-        title: "¡Límite alcanzado!",
-        text: "No hay suficientes números libres en la base de datos para completar esta cantidad.",
+        icon: "warning",
+        title: "¡No hay suficientes números!",
+        text: `Se solicitaron ${cantidad} números, pero en la base de datos solo quedan ${numerosDisponibles.length} disponibles. ¿Deseas generar solo los ${numerosDisponibles.length} disponibles?`,
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sí, generar disponibles",
+        cancelButtonText: "Cancelar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const cantidadAjustada = numerosDisponibles.length;
+
+          if (cantidadAjustada === 0) {
+            Swal.fire(
+              "Error",
+              "No hay ningún número disponible para generar.",
+              "error",
+            );
+            return;
+          }
+
+          procesarGeneracionNumeros(
+            numerosDisponibles,
+            cantidadAjustada,
+            contenedor,
+          );
+        }
       });
       return;
     }
@@ -440,10 +509,11 @@ function getData() {
           numeros: listaNumeros,
         };
 
+        // <img id="_excel_search_" src="/resource/impresion.png" alt="Imprimir">
         result_dia_acumula.innerHTML = `
-          <div style="margin-bottom: 10px; text-align: right;">
-            <button onclick="imprimirResultadosPOS()" class="btn-imprimir" title="Imprimir Tirilla">
-              <img id="_excel_search_" src="/resource/impresion.png" alt="Imprimir">
+        <div style="margin-bottom: 10px; text-align: right;">
+            <button onclick="imprimirResultadosPOS()" class="btn-imprimir btn btn-warning" title="Imprimir Tirilla">
+              🖨️
             </button>
           </div>
           <div class="table-result table-scrolld table_all_data">
