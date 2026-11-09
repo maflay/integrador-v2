@@ -384,6 +384,7 @@ function handleSendInfo() {
       categoria.value = "";
       casino.value = "";
       numeroInput.value = "";
+      categoria.classList.remove("item_disable");
       const contenedor = document.querySelector(".content_numeros_gene");
       contenedor.innerHTML = "";
       getAllData();
