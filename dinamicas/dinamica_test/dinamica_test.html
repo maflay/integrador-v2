@@ -1,471 +1,68 @@
-<div class="mb-menu-wrap">
-	<style>
-		.mb-menu-wrap {
-			--brown-deep: #4a2e1f;
-			--wine-mid: #a97a6d;
-			--wine-line: #cbab97;
-			--wine-soft: #e9e2de;
-			--parchment: #f5f3ee;
-			--parchment-2: #dbdbd5;
-			--ink: #3a2a1c;
-			font-family: 'Lato', Arial, sans-serif;
-			font-size: 15pt;
-			max-width: 820px;
-			margin: 0 auto;
-			padding: 10px 6px 40px;
-			color: var(--ink);
-			background: transparent;
-		}
-
-		.mb-menu-wrap * {
-			box-sizing: border-box;
-		}
-
-		.mb-menu-title {
-			text-align: center;
-			font-family: 'Cinzel', serif;
-			font-weight: 600;
-			font-size: 2em;
-			letter-spacing: .08em;
-			color: var(--brown-deep);
-			margin: 0 0 6px;
-		}
-
-		.mb-menu-sub {
-			text-align: center;
-			font-family: 'Cinzel', serif;
-			color: var(--wine-mid);
-			font-size: 15pt;
-			letter-spacing: .25em;
-			text-transform: uppercase;
-			margin: 0 0 8px;
-		}
-
-		.mb-divider-top {
-			text-align: center;
-			color: var(--wine-line);
-			font-size: 15pt;
-			letter-spacing: .3em;
-			margin: 6px 0 26px;
-			user-select: none;
-		}
-
-		.mb-accordion {
-			border-top: 1px solid var(--wine-line);
-		}
-
-		.mb-item {
-			border-bottom: 1px solid var(--wine-line);
-		}
-
-		.mb-header {
-			display: flex;
-			align-items: center;
-			gap: 14px;
-			padding: 18px 8px;
-			cursor: pointer;
-			background: transparent;
-			transition: background .35s ease, padding-left .35s ease;
-			position: relative;
-		}
-
-		.mb-header:hover {
-			background: var(--wine-soft);
-			padding-left: 16px;
-		}
-
-		.mb-icon {
-			color: var(--wine-mid);
-			font-size: 1.2em;
-			flex: 0 0 auto;
-			transition: transform .45s cubic-bezier(.4, 0, .2, 1), color .3s ease;
-			display: inline-block;
-		}
-
-		.mb-item.is-open>.mb-header .mb-icon {
-			transform: rotate(135deg);
-			color: var(--brown-deep);
-		}
-
-		.mb-drink-icon {
-			flex: 0 0 auto;
-			width: 30px;
-			height: 30px;
-			color: var(--wine-mid);
-			transition: color .3s ease, transform .35s ease;
-		}
-
-		.mb-drink-icon svg {
-			width: 100%;
-			height: 100%;
-			fill: none;
-			stroke: currentColor;
-			stroke-width: 1.4;
-			stroke-linecap: round;
-			stroke-linejoin: round;
-		}
-
-		.mb-item.is-open>.mb-header .mb-drink-icon {
-			color: var(--brown-deep);
-			transform: scale(1.06);
-		}
-
-		.mb-header-text {
-			flex: 1 1 auto;
-		}
-
-		.mb-header-eyebrow {
-			display: block;
-			font-family: 'Cinzel', serif;
-			font-size: 15pt;
-			letter-spacing: .28em;
-			text-transform: uppercase;
-			color: var(--wine-mid);
-			margin-bottom: 4px;
-		}
-
-		.mb-header-title {
-			display: block;
-			font-family: 'Cinzel', serif;
-			font-weight: 600;
-			font-size: 20pt;
-			letter-spacing: .03em;
-			color: var(--brown-deep);
-		}
-
-		.mb-chevron {
-			flex: 0 0 auto;
-			width: 12px;
-			height: 12px;
-			border-right: 1px solid var(--wine-mid);
-			border-bottom: 1px solid var(--wine-mid);
-			transform: rotate(45deg);
-			transition: transform .4s ease, border-color .3s ease;
-			margin-right: 4px;
-		}
-
-		.mb-item.is-open>.mb-header .mb-chevron {
-			transform: rotate(-135deg);
-			border-color: var(--brown-deep);
-		}
-
-		.mb-panel {
-			max-height: 0;
-			overflow: hidden;
-			transition: max-height .55s cubic-bezier(.4, 0, .2, 1);
-			background: var(--parchment);
-		}
-
-		.mb-panel-inner {
-			padding: 6px 20px 30px 40px;
-		}
-
-		.mb-section-title {
-			text-align: center;
-			font-family: 'Cinzel', serif;
-			color: var(--wine-mid);
-			font-size: 15pt;
-			letter-spacing: .24em;
-			text-transform: uppercase;
-			margin: 26px 0 14px;
-		}
-
-		.mb-section-title:first-child {
-			margin-top: 6px;
-		}
-
-		.mb-ornament {
-			text-align: center;
-			color: var(--wine-line);
-			letter-spacing: .35em;
-			margin: 22px 0 16px;
-			font-size: 15pt;
-			user-select: none;
-		}
-
-		.mb-dish {
-			padding: 12px 0;
-			border-bottom: 1px dotted var(--wine-line);
-			transition: background .3s ease, padding-left .3s ease;
-		}
-
-		.mb-dish:last-child {
-			border-bottom: none;
-		}
-
-		.mb-dish:hover {
-			background: var(--parchment-2);
-			padding-left: 8px;
-		}
-
-		.mb-dish-row {
-			display: flex;
-			justify-content: space-between;
-			align-items: baseline;
-			gap: 14px;
-		}
-
-		.mb-dish-name {
-			font-family: 'Cinzel', serif;
-			font-weight: 500;
-			font-size: 15pt;
-			color: var(--brown-deep);
-			letter-spacing: .02em;
-		}
-
-		.mb-dish-price {
-			font-family: 'Lato', sans-serif;
-			font-size: 15pt;
-			color: var(--wine-mid);
-			white-space: nowrap;
-			font-variant-numeric: tabular-nums;
-		}
-
-		.mb-dish-desc {
-			font-size: 15pt;
-			color: #5c4632;
-			margin-top: 4px;
-			line-height: 1.5;
-			font-style: italic;
-		}
-
-		.mb-note {
-			font-size: 15pt;
-			color: var(--wine-mid);
-			text-align: center;
-			margin-top: 18px;
-			font-style: italic;
-		}
-
-		.mb-price-list {
-			margin-top: 8px;
-			display: flex;
-			flex-direction: column;
-			gap: 4px;
-		}
-
-		.mb-price-row {
-			display: flex;
-			justify-content: space-between;
-			align-items: baseline;
-			padding-left: 4px;
-			border-bottom: 1px dotted var(--parchment-2);
-			padding-bottom: 3px;
-		}
-
-		.mb-price-row:last-child {
-			border-bottom: none;
-		}
-
-		.mb-price-row span:first-child {
-			color: var(--ink);
-			opacity: .8;
-			font-size: 15pt;
-		}
-
-		.mb-price-row span:last-child {
-			color: var(--wine-mid);
-			font-size: 15pt;
-			white-space: nowrap;
-		}
-
-		.mb-choice-block {
-			margin: 8px 0 18px;
-		}
-
-		.mb-choice-label {
-			font-family: 'Cinzel', serif;
-			font-weight: 600;
-			color: var(--brown-deep);
-			font-size: 15pt;
-			letter-spacing: .06em;
-			margin-bottom: 8px;
-			display: flex;
-			align-items: center;
-			gap: 8px;
-		}
-
-		.mb-choice-label::before {
-			content: "❖";
-			color: var(--wine-mid);
-			font-size: .9em;
-		}
-
-		.mb-choice-list {
-			list-style: none;
-			margin: 0 0 0 22px;
-			padding: 0;
-			columns: 2;
-			column-gap: 24px;
-		}
-
-		.mb-choice-list li {
-			padding: 4px 0;
-			font-size: 15pt;
-			color: var(--ink);
-			break-inside: avoid;
-			display: flex;
-			justify-content: space-between;
-			gap: 10px;
-			max-width: 260px;
-		}
-
-		.mb-choice-list li span.mb-extra {
-			color: var(--wine-mid);
-			font-size: 15pt;
-			white-space: nowrap;
-		}
-
-		@media (max-width:560px) {
-			.mb-menu-title {
-				font-size: 1.5em;
-			}
-
-			.mb-header-title {
-				font-size: 17pt;
-			}
-
-			.mb-header-eyebrow {
-				font-size: 15pt;
-			}
-
-			.mb-panel-inner {
-				padding: 6px 12px 26px 26px;
-			}
-
-			.mb-choice-list {
-				columns: 1;
-			}
-
-			.mb-dish-row {
-				flex-direction: column;
-				gap: 2px;
-			}
-
-			.mb-drink-icon {
-				width: 26px;
-				height: 26px;
-			}
-		}
-	</style>
-
-	<link
-		href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Lato:ital,wght@0,400;0,700;1,400&display=swap"
-		rel="stylesheet">
-
-	<div class="mb-menu-title">Licores y Cócteles</div>
-	<div class="mb-menu-sub">Una copa, mil historias</div>
-	<div class="mb-divider-top">────────────── ✦ ──────────────</div>
-
-	<div class="mb-accordion" id="mbAccordion">
-
-		<!-- COCTELES -->
-		<div class="mb-item">
-			<div class="mb-header">
-				<span class="mb-icon">❖</span>
-				<span class="mb-drink-icon">
-					<svg viewBox="0 0 24 24">
-						<path d="M4 4h16l-8 9v6M8 19h8" />
-						<circle cx="15.5" cy="6.2" r="1" />
-					</svg>
-				</span>
-				<span class="mb-header-text">
-					<span class="mb-header-eyebrow">Carta</span>
-					<span class="mb-header-title">Cócteles</span>
-				</span>
-				<span class="mb-chevron"></span>
-			</div>
-			<div class="mb-panel">
-				<div class="mb-panel-inner">
-					<style>
-						._content_imagen_show_ {
-							display: flex;
-							flex-direction: column;
-							justify-content: center;
-							align-items: center;
-							width: 100%;
-							gap: 10px;
-						}
-
-						._imagen_show_ {
-							display: flex;
-							width: 100%;
-						}
-					</style>
-					<div class="_content_imagen_show_">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0001.jpg"
-							alt="GrandAladdin">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0002.jpg"
-							alt="GrandAladdin">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0003.jpg"
-							alt="GrandAladdin">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0004.jpg"
-							alt="GrandAladdin">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0005.jpg"
-							alt="GrandAladdin">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0006.jpg"
-							alt="GrandAladdin">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0007.jpg"
-							alt="GrandAladdin">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0008.jpg"
-							alt="GrandAladdin">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0009.jpg"
-							alt="GrandAladdin">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0010.jpg"
-							alt="GrandAladdin">
-						<img class="_imagen_show_"
-							src="https://grandaladdin.com/wp-content/uploads/2026/11/MENU-BEBIDAS-Y-LICORES-GRAND-ALADDIN-2026_page-0011.jpg"
-							alt="GrandAladdin">
-					</div>
-				</div>
-			</div>
-		</div>
-
-
-	</div>
-</div>
-
 <script>
-	(function () {
-		var accordion = document.getElementById('mbAccordion');
-		if (!accordion) return;
-		var items = accordion.querySelectorAll('.mb-item');
+	// Función centralizada para leer la ruta actual desde el navegador
+function obtenerRutaActual() {
+  // Obtiene el path, ej: "/contacto" -> "contacto"
+  const path = window.location.pathname.replace(/^\/+/, "");
+  return path === "" ? "inicio" : path;
+}
 
-		items.forEach(function (item) {
-			var header = item.querySelector('.mb-header');
-			var panel = item.querySelector('.mb-panel');
+// Modificar navegarA para usar pushState en lugar de hash
+function navegarA(valor) {
+  const [clave, query] = valor.split("?");
 
-			header.addEventListener('click', function () {
-				var isOpen = item.classList.contains('is-open');
+  if (!rutasLimpias[clave]) {
+    console.error("Ruta no definida:", clave);
+    return;
+  }
 
-				items.forEach(function (other) {
-					other.classList.remove('is-open');
-					other.querySelector('.mb-panel').style.maxHeight = null;
-				});
+  // Construimos la nueva URL limpia
+  const nuevaUrl = "/" + valor;
 
-				if (!isOpen) {
-					item.classList.add('is-open');
-					panel.style.maxHeight = panel.scrollHeight + 'px';
-				}
-			});
-		});
+  // Actualiza la URL del navegador sin recargar la página
+  history.pushState({ clave, query }, "", nuevaUrl);
 
-		window.addEventListener('resize', function () {
-			var openItem = accordion.querySelector('.mb-item.is-open');
-			if (openItem) {
-				var p = openItem.querySelector('.mb-panel');
-				p.style.maxHeight = p.scrollHeight + 'px';
-			}
-		});
-	})();
+  // Cargamos la vista correspondiente
+  ejecutarCargaVista(clave, query);
+}
+
+// Función que maneja la carga de la vista y los parámetros de búsqueda/scroll
+function ejecutarCargaVista(clave, queryStr = "") {
+  PageLoader.cargarPagina(clave);
+
+  if (queryStr) {
+    const params = new URLSearchParams(queryStr);
+    const seccionId = params.get("id");
+
+    if (seccionId) {
+      setTimeout(() => {
+        const elemento = document.getElementById(seccionId);
+        if (elemento) {
+          elemento.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 300);
+    }
+  }
+}
+
+// Escuchar cuando el usuario usa las flechas de "Atrás" o "Adelante" del navegador
+window.addEventListener("popstate", () => {
+  const clave = obtenerRutaActual();
+  const query = window.location.search.slice(1);
+  ejecutarCargaVista(clave, query);
+});
+
+// Inicialización al cargar la página por primera vez
+document.addEventListener("DOMContentLoaded", () => {
+  cargarHeaderYFooter();
+  
+  const claveInicial = obtenerRutaActual();
+  const queryInicial = window.location.search.slice(1);
+
+  if (rutasLimpias[claveInicial]) {
+    ejecutarCargaVista(claveInicial, queryInicial);
+  } else {
+    // Si la ruta no existe, redirigir a inicio limpiamente
+    navegarA("inicio");
+  }
+});
 </script>

@@ -139,6 +139,7 @@ async function iniciarBusqueda() {
   const numeroInput = document.getElementById("numeroInput");
   const contenedor = document.querySelector(".content_numeros_gene");
   let categoria = document.getElementById("categoria");
+  categoria.classList.add("item_disable");
   contenedor.innerHTML = "";
 
   if (categoria.value == "") {
@@ -861,7 +862,7 @@ function getAllConteo() {
       if (!data || data.length === 0) {
         let loader = document.getElementById("loader");
         if (loader) loader.style.display = "none";
-        result_dia_acumula.innerHTML = `Sin Registros (0 / 10000)`;
+        result_dia_acumula.innerHTML = `Sin Registros (0 / 9999)`;
         result_dia_acumula.style.display = "flex";
         return;
       }
@@ -918,7 +919,7 @@ function getAllConteo() {
         });
       });
 
-      const TOTAL_MAXIMO = 10000;
+      const TOTAL_MAXIMO = 9999;
       let totalOcupados = numerosRegistradosSet.size;
       let totalFaltantes = TOTAL_MAXIMO - totalOcupados;
 
