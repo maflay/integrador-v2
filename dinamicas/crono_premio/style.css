@@ -1,0 +1,274 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #356adc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+._main_crono_pre_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    gap: 30px;
+    color: white;
+    font-family: 'super wonder', sans-serif !important;
+    background-image: url(/dinamicas/crono_premio/resources/Fondo_Sorteo_2.png);
+}
+
+._content_video_show_ {
+    display: flex;
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+._content_video_show_::before {
+    content: "";
+    position: absolute;
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.842));
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+}
+
+.content_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    height: 700px;
+    position: relative;
+    top: 100px;
+    gap: 30px;
+}
+
+._content_crono_premio_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 200px;
+    position: absolute;
+    font-size: 70px;
+    top: 0;
+    background-image: url(/dinamicas/crono_premio/resources/Marco_dorado_de_terciopelo_carmesí_2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain
+}
+
+._content_crono_premio_ p {
+    margin-top: 20px;
+}
+
+._content_curren_premio_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+    height: 120px;
+    font-size: 50px;
+    position: absolute;
+    bottom: 0;
+    background-image: url(/dinamicas/crono_premio/resources/Marco_dorado_de_terciopelo_carmesí_2.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain
+}
+
+._content_curren_premio_>p {
+    margin: 0;
+}
+
+._content_urna_ {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 150px;
+}
+
+._content_urna_ img {
+    width: 250px;
+}
+
+#confetti-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    /* Permite hacer clic a través del contenedor */
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.ticket-confetti {
+    position: absolute;
+    top: -50px;
+    width: 70px;
+    height: 35px;
+    background:
+        linear-gradient(135deg,
+            #fff6b8 0%,
+            #e9bd3f 20%,
+            #b77b00 45%,
+            #f5d66d 63%,
+            #c58b08 82%,
+            #fff0a0 100%);
+    border: 1px solid rgba(255, 244, 180, .95);
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, .95),
+        inset 0 -3px 5px rgba(80, 35, 0, .28),
+        0 0 7px rgba(255, 215, 80, .8),
+        0 0 22px rgba(220, 156, 11, .48),
+        0 0 45px rgba(220, 156, 11, .18);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #333;
+    animation: caidaLibre linear forwards;
+}
+
+@keyframes caidaLibre {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(105vh) rotate(360deg);
+        opacity: 0.8;
+    }
+}
+
+.urna_animada_container {
+    display: none;
+    position: absolute;
+    width: 250px;
+    margin: 40px auto;
+    text-align: center;
+    top: 100px;
+}
+
+.urna-img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 2;
+}
+
+.tiquete {
+    position: absolute;
+    top: -40px;
+    width: 60px;
+    height: 30px;
+    background:
+        linear-gradient(135deg,
+            #fff6b8 0%,
+            #e9bd3f 20%,
+            #b77b00 45%,
+            #f5d66d 63%,
+            #c58b08 82%,
+            #fff0a0 100%);
+    border: 1px solid rgba(255, 244, 180, .95);
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, .95),
+        inset 0 -3px 5px rgba(80, 35, 0, .28),
+        0 0 7px rgba(255, 215, 80, .8),
+        0 0 22px rgba(220, 156, 11, .48),
+        0 0 45px rgba(220, 156, 11, .18);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: bold;
+    color: #333;
+    z-index: 1;
+    opacity: 0;
+    animation: caerEnUrna 3s infinite ease-in;
+}
+
+@keyframes caerEnUrna {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(210px) rotate(360deg) scale(0.2);
+        opacity: 0;
+    }
+}
+
+.t1 {
+    left: 30px;
+    animation-delay: 0s;
+}
+
+.t2 {
+    left: 90px;
+    animation-delay: 0.6s;
+}
+
+.t3 {
+    left: 150px;
+    animation-delay: 1.2s;
+}
+
+.t4 {
+    left: 60px;
+    animation-delay: 1.8s;
+}
+
+.t5 {
+    left: 120px;
+    animation-delay: 2.4s;
+}

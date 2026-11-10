@@ -1,68 +1,96 @@
-<script>
-	// Función centralizada para leer la ruta actual desde el navegador
-function obtenerRutaActual() {
-  // Obtiene el path, ej: "/contacto" -> "contacto"
-  const path = window.location.pathname.replace(/^\/+/, "");
-  return path === "" ? "inicio" : path;
-}
+<!DOCTYPE html>
+<html>
 
-// Modificar navegarA para usar pushState en lugar de hash
-function navegarA(valor) {
-  const [clave, query] = valor.split("?");
-
-  if (!rutasLimpias[clave]) {
-    console.error("Ruta no definida:", clave);
-    return;
-  }
-
-  // Construimos la nueva URL limpia
-  const nuevaUrl = "/" + valor;
-
-  // Actualiza la URL del navegador sin recargar la página
-  history.pushState({ clave, query }, "", nuevaUrl);
-
-  // Cargamos la vista correspondiente
-  ejecutarCargaVista(clave, query);
-}
-
-// Función que maneja la carga de la vista y los parámetros de búsqueda/scroll
-function ejecutarCargaVista(clave, queryStr = "") {
-  PageLoader.cargarPagina(clave);
-
-  if (queryStr) {
-    const params = new URLSearchParams(queryStr);
-    const seccionId = params.get("id");
-
-    if (seccionId) {
-      setTimeout(() => {
-        const elemento = document.getElementById(seccionId);
-        if (elemento) {
-          elemento.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 300);
+<head>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
     }
-  }
-}
 
-// Escuchar cuando el usuario usa las flechas de "Atrás" o "Adelante" del navegador
-window.addEventListener("popstate", () => {
-  const clave = obtenerRutaActual();
-  const query = window.location.search.slice(1);
-  ejecutarCargaVista(clave, query);
-});
+    .scroll-container {
+      height: 500vh;
+    }
 
-// Inicialización al cargar la página por primera vez
-document.addEventListener("DOMContentLoaded", () => {
-  cargarHeaderYFooter();
-  
-  const claveInicial = obtenerRutaActual();
-  const queryInicial = window.location.search.slice(1);
+    canvas {
+      position: sticky;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+    }
+  </style>
+</head>
 
-  if (rutasLimpias[claveInicial]) {
-    ejecutarCargaVista(claveInicial, queryInicial);
-  } else {
-    // Si la ruta no existe, redirigir a inicio limpiamente
-    navegarA("inicio");
-  }
-});
-</script>
+<body>
+  <div class="scroll-container">
+    <canvas id="heroCanvas"></canvas>
+  </div>
+  <script>
+    const canvas = document.getElementById('heroCanvas');
+    const context = canvas.getContext('2d');
+
+    // Configuración de cuadros
+    const frameCount = 11; // Cantidad total de imágenes extraídas del video
+    const currentFrame = index => (
+      `./frames/4870_Poker_Chips_1280x720_${(index + 1).toString().padStart(4, '0')}.jpg`
+    );
+
+    const images = [];
+    const videoState = { frame: 0 };
+
+    // Precargar imágenes
+    for (let i = 0; i < frameCount; i++) {
+      const img = new Image();
+      img.src = currentFrame(i);
+      images.push(img);
+    }
+
+    // Ajustar resolución de Canvas
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      render();
+    }
+
+    function render() {
+      const img = images[videoState.frame];
+      if (img && img.complete) {
+        // Escalar imagen manteniendo aspect-ratio (contain/cover)
+        const hRatio = canvas.width / img.width;
+        const vRatio = canvas.height / img.height;
+        const ratio = Math.max(hRatio, vRatio);
+        const centerShift_x = (canvas.width - img.width * ratio) / 2;
+        const centerShift_y = (canvas.height - img.height * ratio) / 2;
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(
+          img, 0, 0, img.width, img.height,
+          centerShift_x, centerShift_y, img.width * ratio, img.height * ratio
+        );
+      }
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+    images[0].onload = resizeCanvas;
+
+    // Mapear scroll a frame
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const maxScrollTop = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollFraction = scrollTop / maxScrollTop;
+
+      const frameIndex = Math.min(
+        frameCount - 1,
+        Math.ceil(scrollFraction * frameCount)
+      );
+
+      requestAnimationFrame(() => {
+        videoState.frame = frameIndex;
+        render();
+      });
+    }, { passive: true });
+  </script>
+</body>
+
+</html>

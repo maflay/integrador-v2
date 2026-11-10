@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Aladdin: Números Locos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/modal.css">
+    <link rel="stylesheet" href="/dinamicas/promocion-crazynum/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        crossorigin="anonymous">
+</head>
+
+<body data-main-style="/dinamicas/crono_premio/style.css" data-main-script="/dinamicas/crono_premio/script.js">
+    <div id="loader" class="loader-overlay">
+        <div class="spinner"></div>
+    </div>
+    <div class="_main_crono_pre_">
+        <!-- <div class="_content_video_show_ ">
+            <video autoplay muted loop playsinline style="width: 100%; height: auto;object-fit: cover;">
+                <source src="/dinamicas/promocion-crazynum/resources/video_back.mp4" type="video/mp4">
+                Tu navegador no soporta videos HTML5.
+            </video>
+        </div> -->
+        <div class="content_info">
+            <div class="_content_crono_premio_">
+                <p id="dias_pr" class="dias_pr">00</p>:
+                <p id="horas_pr" class="horas_pr">00</p>:
+                <p id="min_pr" class="min_pr">00</p>:
+                <p id="seg_pr" class="seg_pr">00</p>
+            </div>
+            <div class="_content_urna_">
+                <img id="_urna_sorteo_" src="/dinamicas/crono_premio/resources/2b.png" alt="GrandAladdin">
+            </div>
+            <div class="_content_curren_premio_">
+                <p id="_currenty_cont_">Cargando...</p>
+            </div>
+            <div style="display: none;" id="result_conteo"></div>
+            <div style="padding-left: 5px; display: none;" id="cuenta-regresiva"></div>
+            <div id="urna_animada_container" class="urna_animada_container">
+                <div class="tiquete t1">🟨</div>
+                <div class="tiquete t2">🟨</div>
+                <div class="tiquete t3">🟨</div>
+                <div class="tiquete t4">🟨</div>
+                <div class="tiquete t5">🟨</div>
+            </div>
+        </div>
+        <div id="confetti-container"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/dinamicas/actions_js/menu_modal.js"></script>
+    <script src="/dinamicas/extension.js"></script>
+    <!-- componente donde esta el metodo -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import {
+            getDatabase, ref, onValue
+        } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAXCMyH4zx--kZvJ_W1F1KAi5HKjPNxPHo",
+            authDomain: "prueba-f0c25.firebaseapp.com",
+            databaseURL: "https://prueba-f0c25-default-rtdb.firebaseio.com",
+            projectId: "prueba-f0c25",
+            storageBucket: "prueba-f0c25.firebasestorage.app",
+            messagingSenderId: "984894736026",
+            appId: "1:984894736026:web:210df90b981cbef7698123"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const NS = "apps/conteo";
+        const ROOM = "sala_conteo";
+        const roomRef = ref(db, `${NS}/rooms/${ROOM}`);
+
+        onValue(roomRef, (snapshot) => {
+            console.log("¡Cambio detectado en Firebase!");
+
+            if (typeof window.getAllConteoCrono === 'function') {
+                window.getAllConteoCrono();
+            } else {
+                setTimeout(() => {
+                    if (typeof window.getAllConteoCrono === 'function') {
+                        window.getAllConteoCrono();
+                    }
+                }, 300);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -387,6 +387,9 @@ function handleSendInfo() {
       categoria.classList.remove("item_disable");
       const contenedor = document.querySelector(".content_numeros_gene");
       contenedor.innerHTML = "";
+      if (typeof window.notificarEnvioFirebase === "function") {
+        window.notificarEnvioFirebase();
+      }
       getAllData();
       Swal.fire({
         title: "Envio Exitoso",

@@ -1,265 +1,1067 @@
+<a href="https://grandaladdin.com/genius-card/" class="cajun-menu-magic">
+
+    <!-- =========================================
+         HUMO
+         ========================================= -->
+
+    <span class="cm-smoke cm-gold"></span>
+    <span class="cm-smoke cm-blue"></span>
+    <span class="cm-smoke cm-red"></span>
+
+
+    <!-- =========================================
+         NUBES DE HUMO
+         ========================================= -->
+
+    <span class="cm-cloud cm-cloud-1"></span>
+    <span class="cm-cloud cm-cloud-2"></span>
+    <span class="cm-cloud cm-cloud-3"></span>
+    <span class="cm-cloud cm-cloud-4"></span>
+    <span class="cm-cloud cm-cloud-5"></span>
+
+
+    <!-- =========================================
+         CHISPAS
+         ========================================= -->
+
+    <span class="cm-spark cm-spark-1">✦</span>
+    <span class="cm-spark cm-spark-2">✧</span>
+    <span class="cm-spark cm-spark-3">✦</span>
+    <span class="cm-spark cm-spark-4">✧</span>
+    <span class="cm-spark cm-spark-5">✦</span>
+
+
+    <!-- =========================================
+         BOTÓN
+         ========================================= -->
+
+    <span class="cm-inner">
+
+        <span class="cm-menu-star">✦</span>
+
+        <span class="cm-menu-text">
+            GENIUS CARD
+        </span>
+
+        <span class="cm-menu-star">✦</span>
+
+    </span>
+
+</a>
+
+
 <style>
-    .magic-particle {
-        position: fixed;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 999999;
-        opacity: .8;
-        animation: magicFloat 1.2s ease-out forwards;
+
+/* =========================================================
+   CAJÚN GRILL
+   MENÚ MÁGICO
+   ========================================================= */
+
+
+.cajun-menu-magic {
+
+    position: relative;
+
+    display: inline-flex;
+
+    width: 210px;
+    height: 62px;
+
+    align-items: center;
+    justify-content: center;
+
+    text-decoration: none !important;
+
+    cursor: pointer;
+
+    overflow: visible;
+
+    z-index: 10;
+
+    isolation: isolate;
+
+}
+
+
+/* =========================================================
+   CUERPO DORADO
+   ========================================================= */
+
+
+.cm-inner {
+
+    position: relative;
+
+    z-index: 30;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    border-radius: 50px;
+
+    background:
+
+        linear-gradient(
+            135deg,
+            #fff6b8 0%,
+            #e9bd3f 20%,
+            #b77b00 45%,
+            #f5d66d 63%,
+            #c58b08 82%,
+            #fff0a0 100%
+        );
+
+    border: 1px solid rgba(255,244,180,.95);
+
+    box-shadow:
+
+        inset 0 1px 2px rgba(255,255,255,.95),
+
+        inset 0 -3px 5px rgba(80,35,0,.28),
+
+        0 0 7px rgba(255,215,80,.8),
+
+        0 0 22px rgba(220,156,11,.48),
+
+        0 0 45px rgba(220,156,11,.18);
+
+    overflow: hidden;
+
+    transition:
+
+        transform .45s ease,
+        box-shadow .45s ease,
+        filter .45s ease;
+
+}
+
+
+/* =========================================================
+   TEXTO MENÚ
+   NEGRO CARBÓN
+   ========================================================= */
+
+
+.cm-menu-text {
+
+    position: relative;
+
+    z-index: 40;
+
+    font-family: "Lato", sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+
+    /*
+       NEGRO CARBÓN
+       No es negro puro.
+    */
+
+    color: #242424;
+
+    text-shadow:
+
+        0 1px 0 rgba(255,255,255,.35);
+
+    transition:
+
+        letter-spacing .45s ease,
+        transform .45s ease;
+
+}
+
+
+/* =========================================================
+   ESTRELLAS LATERALES
+   ========================================================= */
+
+
+.cm-menu-star {
+
+    position: relative;
+
+    z-index: 40;
+
+    font-size: 11px;
+
+    color: #fff8c9;
+
+    opacity: .9;
+
+    text-shadow:
+
+        0 0 4px #fff,
+
+        0 0 9px #ffe27a,
+
+        0 0 18px #dc9c0b;
+
+    transition:
+
+        transform .45s ease,
+        opacity .45s ease,
+        text-shadow .45s ease;
+
+}
+
+
+.cm-menu-star:first-child {
+
+    margin-right: 2px;
+
+}
+
+
+.cm-menu-star:last-child {
+
+    margin-left: 2px;
+
+}
+
+
+/* =========================================================
+   HOVER DEL BOTÓN
+   ========================================================= */
+
+
+.cajun-menu-magic:hover .cm-inner {
+
+    transform: scale(1.025);
+
+    filter: brightness(1.1);
+
+    box-shadow:
+
+        inset 0 1px 3px rgba(255,255,255,1),
+
+        inset 0 -3px 5px rgba(80,35,0,.2),
+
+        0 0 10px rgba(255,225,110,1),
+
+        0 0 30px rgba(220,156,11,.9),
+
+        0 0 60px rgba(255,195,40,.5),
+
+        0 0 95px rgba(255,190,30,.18);
+
+}
+
+
+/* =========================================================
+   HOVER TEXTO
+   ========================================================= */
+
+
+.cajun-menu-magic:hover .cm-menu-text {
+
+    letter-spacing: 3.8px;
+
+}
+
+
+/* =========================================================
+   HOVER ESTRELLAS
+   ========================================================= */
+
+
+.cajun-menu-magic:hover .cm-menu-star {
+
+    transform: scale(1.35);
+
+    opacity: 1;
+
+    text-shadow:
+
+        0 0 5px #fff,
+
+        0 0 12px #fff0a0,
+
+        0 0 22px #dc9c0b,
+
+        0 0 35px rgba(255,200,50,.75);
+
+}
+
+
+/* =========================================================
+   ANIMACIÓN ESTRELLAS
+   ========================================================= */
+
+
+.cajun-menu-magic:hover .cm-menu-star:first-child {
+
+    animation:
+        menu-star-pulse 1.8s ease-in-out infinite;
+
+}
+
+
+.cajun-menu-magic:hover .cm-menu-star:last-child {
+
+    animation:
+        menu-star-pulse 1.8s ease-in-out .45s infinite;
+
+}
+
+
+@keyframes menu-star-pulse {
+
+    0%, 100% {
+
+        transform:
+            scale(.9)
+            rotate(0deg);
+
     }
 
-    .gold {
-        background: #DC9C0B;
-        box-shadow: 0 0 8px #DC9C0B;
-    }
+    50% {
 
-    .blue {
-        background: #5EC8FF;
-        box-shadow: 0 0 8px #5EC8FF;
-    }
-
-    @keyframes magicFloat {
-
-        0% {
-            transform: translate(0, 0) scale(.5);
-            opacity: .8;
-        }
-
-        100% {
-            transform: translate(var(--x), var(--y)) scale(2);
-            opacity: 0;
-            filter: blur(4px);
-        }
+        transform:
+            scale(1.4)
+            rotate(20deg);
 
     }
+
+}
+
+
+/* =========================================================
+   HUMO BASE
+   ========================================================= */
+
+
+.cm-smoke {
+
+    position: absolute;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    border-radius: 50%;
+
+    opacity: 0;
+
+    filter: blur(21px);
+
+}
+
+
+/* =========================================================
+   HUMO DORADO
+   ========================================================= */
+
+
+.cm-gold {
+
+    width: 160px;
+    height: 115px;
+
+    left: 15px;
+    bottom: -38px;
+
+    background:
+
+        radial-gradient(
+            ellipse at 40% 70%,
+            rgba(255,230,120,.75) 0%,
+            rgba(220,156,11,.46) 30%,
+            rgba(220,156,11,.1) 58%,
+            transparent 78%
+        );
+
+}
+
+
+/* =========================================================
+   HUMO AZUL
+   ========================================================= */
+
+
+.cm-blue {
+
+    width: 150px;
+    height: 115px;
+
+    right: -20px;
+    bottom: -30px;
+
+    background:
+
+        radial-gradient(
+            ellipse at 45% 65%,
+            rgba(30,105,255,.65) 0%,
+            rgba(25,75,220,.32) 35%,
+            transparent 78%
+        );
+
+}
+
+
+/* =========================================================
+   HUMO ROJO
+   ========================================================= */
+
+
+.cm-red {
+
+    width: 135px;
+    height: 110px;
+
+    left: 65px;
+    bottom: -35px;
+
+    background:
+
+        radial-gradient(
+            ellipse at 50% 70%,
+            rgba(245,45,45,.58) 0%,
+            rgba(190,20,30,.28) 38%,
+            transparent 78%
+        );
+
+}
+
+
+/* =========================================================
+   ACTIVACIÓN DEL HUMO
+   ========================================================= */
+
+
+.cajun-menu-magic:hover .cm-smoke {
+
+    opacity: 1;
+
+}
+
+
+.cajun-menu-magic:hover .cm-gold {
+
+    animation:
+        cm-gold-smoke 3.8s ease-out infinite;
+
+}
+
+
+.cajun-menu-magic:hover .cm-blue {
+
+    animation:
+        cm-blue-smoke 4.4s ease-out .4s infinite;
+
+}
+
+
+.cajun-menu-magic:hover .cm-red {
+
+    animation:
+        cm-red-smoke 4s ease-out .8s infinite;
+
+}
+
+
+/* =========================================================
+   NUBES PEQUEÑAS
+   ========================================================= */
+
+
+.cm-cloud {
+
+    position: absolute;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 50%;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    opacity: 0;
+
+    filter: blur(12px);
+
+    background:
+
+        radial-gradient(
+            circle,
+            rgba(255,220,110,.55) 0%,
+            rgba(220,156,11,.18) 40%,
+            transparent 72%
+        );
+
+}
+
+
+/* =========================================================
+   POSICIONES NUBES
+   ========================================================= */
+
+
+.cm-cloud-1 {
+
+    left: 15px;
+    bottom: 5px;
+
+}
+
+
+.cm-cloud-2 {
+
+    left: 55px;
+    bottom: -3px;
+
+}
+
+
+.cm-cloud-3 {
+
+    left: 100px;
+    bottom: 8px;
+
+}
+
+
+.cm-cloud-4 {
+
+    right: 45px;
+    bottom: -3px;
+
+}
+
+
+.cm-cloud-5 {
+
+    right: 10px;
+    bottom: 8px;
+
+}
+
+
+/* =========================================================
+   ACTIVAR NUBES
+   ========================================================= */
+
+
+.cajun-menu-magic:hover .cm-cloud {
+
+    animation:
+        cm-cloud-rise 3.2s ease-out infinite;
+
+}
+
+
+.cajun-menu-magic:hover .cm-cloud-2 {
+
+    animation-delay: .5s;
+
+}
+
+
+.cajun-menu-magic:hover .cm-cloud-3 {
+
+    animation-delay: 1s;
+
+}
+
+
+.cajun-menu-magic:hover .cm-cloud-4 {
+
+    animation-delay: 1.5s;
+
+}
+
+
+.cajun-menu-magic:hover .cm-cloud-5 {
+
+    animation-delay: 2s;
+
+}
+
+
+/* =========================================================
+   HUMO DORADO
+   ========================================================= */
+
+
+@keyframes cm-gold-smoke {
+
+    0% {
+
+        transform:
+            translate(0,15px)
+            scale(.55)
+            rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity: .72;
+
+    }
+
+    40% {
+
+        transform:
+            translate(-20px,-30px)
+            scale(1.15)
+            rotate(30deg);
+
+        opacity: .55;
+
+    }
+
+    70% {
+
+        transform:
+            translate(30px,-70px)
+            scale(1.5)
+            rotate(70deg);
+
+        opacity: .3;
+
+    }
+
+    100% {
+
+        transform:
+            translate(75px,-115px)
+            scale(1.9)
+            rotate(110deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   HUMO AZUL
+   ========================================================= */
+
+
+@keyframes cm-blue-smoke {
+
+    0% {
+
+        transform:
+            translate(15px,20px)
+            scale(.5);
+
+        opacity: 0;
+
+    }
+
+    18% {
+
+        opacity: .65;
+
+    }
+
+    45% {
+
+        transform:
+            translate(-30px,-35px)
+            scale(1.2)
+            rotate(-30deg);
+
+        opacity: .48;
+
+    }
+
+    75% {
+
+        transform:
+            translate(-65px,-80px)
+            scale(1.55)
+            rotate(-70deg);
+
+        opacity: .25;
+
+    }
+
+    100% {
+
+        transform:
+            translate(-100px,-120px)
+            scale(1.9)
+            rotate(-110deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   HUMO ROJO
+   ========================================================= */
+
+
+@keyframes cm-red-smoke {
+
+    0% {
+
+        transform:
+            translate(0,18px)
+            scale(.5);
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity: .65;
+
+    }
+
+    40% {
+
+        transform:
+            translate(18px,-30px)
+            scale(1.2);
+
+        opacity: .48;
+
+    }
+
+    72% {
+
+        transform:
+            translate(-28px,-75px)
+            scale(1.55);
+
+        opacity: .25;
+
+    }
+
+    100% {
+
+        transform:
+            translate(-60px,-115px)
+            scale(1.9);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   NUBES
+   ========================================================= */
+
+
+@keyframes cm-cloud-rise {
+
+    0% {
+
+        transform:
+            translate(0,5px)
+            scale(.35);
+
+        opacity: 0;
+
+    }
+
+    15% {
+
+        opacity: .55;
+
+    }
+
+    45% {
+
+        transform:
+            translate(-15px,-30px)
+            scale(1.1)
+            rotate(35deg);
+
+        opacity: .38;
+
+    }
+
+    75% {
+
+        transform:
+            translate(20px,-65px)
+            scale(1.55)
+            rotate(80deg);
+
+        opacity: .18;
+
+    }
+
+    100% {
+
+        transform:
+            translate(35px,-100px)
+            scale(2);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   CHISPAS
+   ========================================================= */
+
+
+.cm-spark {
+
+    position: absolute;
+
+    z-index: 50;
+
+    pointer-events: none;
+
+    color: #fff5b0;
+
+    font-size: 12px;
+
+    opacity: 0;
+
+    text-shadow:
+
+        0 0 5px #fff,
+
+        0 0 12px #ffe27a,
+
+        0 0 22px #dc9c0b;
+
+}
+
+
+/* Posiciones */
+
+
+.cm-spark-1 {
+
+    left: 8%;
+    top: 25%;
+
+}
+
+
+.cm-spark-2 {
+
+    left: 28%;
+    top: -8%;
+
+}
+
+
+.cm-spark-3 {
+
+    left: 50%;
+    top: 3%;
+
+}
+
+
+.cm-spark-4 {
+
+    right: 20%;
+    top: 18%;
+
+}
+
+
+.cm-spark-5 {
+
+    right: 5%;
+    bottom: 15%;
+
+}
+
+
+/* =========================================================
+   ACTIVAR CHISPAS
+   ========================================================= */
+
+
+.cajun-menu-magic:hover .cm-spark {
+
+    animation:
+        cm-sparkle 2.6s ease-in-out infinite;
+
+}
+
+
+.cajun-menu-magic:hover .cm-spark-2 {
+
+    animation-delay: .4s;
+
+}
+
+
+.cajun-menu-magic:hover .cm-spark-3 {
+
+    animation-delay: .8s;
+
+}
+
+
+.cajun-menu-magic:hover .cm-spark-4 {
+
+    animation-delay: 1.2s;
+
+}
+
+
+.cajun-menu-magic:hover .cm-spark-5 {
+
+    animation-delay: 1.6s;
+
+}
+
+
+/* =========================================================
+   ANIMACIÓN CHISPAS
+   ========================================================= */
+
+
+@keyframes cm-sparkle {
+
+    0% {
+
+        transform:
+            translate(0,8px)
+            scale(.2)
+            rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    20% {
+
+        opacity: 1;
+
+    }
+
+    50% {
+
+        transform:
+            translate(8px,-22px)
+            scale(1.2)
+            rotate(90deg);
+
+        opacity: .9;
+
+    }
+
+    80% {
+
+        transform:
+            translate(-5px,-42px)
+            scale(.7)
+            rotate(180deg);
+
+        opacity: .35;
+
+    }
+
+    100% {
+
+        transform:
+            translate(12px,-60px)
+            scale(.1)
+            rotate(270deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+
+@media (max-width: 980px) {
+
+    .cajun-menu-magic {
+
+        width: 190px;
+        height: 57px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+
+@media (max-width: 767px) {
+
+    .cajun-menu-magic {
+
+        width: 180px;
+        height: 54px;
+
+    }
+
+    .cm-menu-text {
+
+        font-size: 13px;
+
+        letter-spacing: 2.5px;
+
+    }
+
+    .cm-menu-star {
+
+        font-size: 10px;
+
+    }
+
+}
+
+
+/* =========================================================
+   ACCESIBILIDAD
+   ========================================================= */
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cajun-menu-magic *,
+    .cajun-menu-magic {
+
+        animation: none !important;
+
+        transition: none !important;
+
+    }
+
+}
+
 </style>
 
-<script>
-
-    document.addEventListener("click", function (e) {
-
-        for (let i = 0; i < 8; i++) {
-
-            let p = document.createElement("div");
-
-            p.className = "magic-particle " + (Math.random() > .5 ? "gold" : "blue");
-
-            p.style.left = e.clientX + "px";
-            p.style.top = e.clientY + "px";
-
-            let x = (Math.random() - 0.5) * 60;
-            let y = -20 - Math.random() * 60;
-
-            p.style.setProperty("--x", x + "px");
-            p.style.setProperty("--y", y + "px");
-
-            document.body.appendChild(p);
-
-            setTimeout(function () {
-
-                p.remove();
-
-            }, 1200);
-
-        }
-
-    });
-
-</script>
-
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // ---- Reemplaza cada "src" por la URL real de tu Media Library de WordPress ----
-        // Sube las 12 fotos retocadas a Medios > Añadir nuevo, copia la URL de cada una
-        // (clic derecho sobre la imagen en la biblioteca > Copiar enlace de la imagen)
-        var LO_PHOTOS = [
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/08/Trompeta-La-Obra-Show-Bar.jpeg", caption: "Silueta de la trompeta", note: "El escenario se apaga y solo queda la melodía." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-3.jpg", caption: "A dúo, frente a frente", note: "Cuando el estribillo se canta entre dos micrófonos." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/08/Andrea-Cantante.jpeg", caption: "Frente a la mesa", note: "Conexión con el público a centímetros." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-1.jpg", caption: "Voz principal", note: "Brazos abiertos, banda completa detrás." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-9.jpg", caption: "Primer plano, luces cálidas", note: "El detalle que se nota cuando el flash captura el tatuaje." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/09/Baterista.jpg", caption: "Esto es pasión", note: "El baterista dándola toda para la gran noche." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-6.jpg", caption: "La mesa larga", note: "Aguardiente, risas y una noche que no tiene apuro." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/09/Banda-La-Obra-Show-Bar.jpg", caption: "Sonido de calidad", note: "Una banda que toca con el corazón." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/08/Primera-Fila-Show-Bar.jpeg", caption: "Un concierto dedicado a esa persona", note: "Esa canción merece estar en Historias." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-10-scaled.jpg", caption: "Bola de espejos encendida", note: "El bloque de luces detrás de la banda completa." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/08/La-Obra-Show-Bar-Eventos-11.jpg", caption: "Sombreritos de fiesta", note: "Cumpleaños, mesa 42, celebración completa." },
-            { src: "https://grandaladdin.com/wp-content/uploads/2026/09/Anabella-y-su-banda.jpg", caption: "A ritmo de mariachis", note: "Anabella cautivando con su voz y performance." }
-        ];
-
-        var container = document.getElementById('lo-frames');
-        if (!container) return;
-
-        LO_PHOTOS.forEach(function (p, i) {
-            var n = String(i + 1).padStart(2, '0');
-            var alignRight = i % 2 === 1;
-            var sizeClass = (i % 3 === 2) ? 'lo-size-wide' : 'lo-size-tall';
-            var frame = document.createElement('div');
-            frame.className = 'lo-frame ' + (alignRight ? 'lo-align-right' : '') + ' ' + sizeClass;
-            frame.innerHTML =
-                '<div class="lo-frame-figure">' +
-                '<img src="' + p.src + '" alt="' + p.caption + '" loading="lazy">' +
-                '</div>' +
-                '<div class="lo-frame-caption">' +
-                '<span class="lo-num lo-mono">TOMA ' + n + '</span>' +
-                '<span class="lo-cap"><strong>' + p.caption + '.</strong> ' + p.note + '</span>' +
-                '</div>';
-            container.appendChild(frame);
-        });
-
-        var io = new IntersectionObserver(function (entries) {
-            entries.forEach(function (entry) {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('lo-in-view');
-                    io.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.22, rootMargin: "0px 0px -8% 0px" });
-
-        document.querySelectorAll('.lo-frame').forEach(function (f) { io.observe(f); });
-    });
-</script>
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-        document.querySelectorAll(
-            '.et_pb_image img[title], .et_pb_gallery_image img[title], .et_pb_fullwidth_image img[title]'
-        ).forEach(function (img) {
-            img.removeAttribute('title');
-        });
-
-    });
-</script>
-
-
-
-
-<script>
-    (function () {
-
-        function iniciarMagiaLaObra() {
-
-            var scene = document.getElementById("laobra-magia");
-
-            if (!scene) {
-                return;
-            }
-
-            var ticking = false;
-
-
-            function actualizarMagia() {
-
-                var rect = scene.getBoundingClientRect();
-
-                var alturaVentana = window.innerHeight;
-
-                /*
-                 * Progreso según la posición
-                 * de la imagen dentro de la pantalla.
-                 */
-
-                var progreso =
-                    (alturaVentana - rect.top) /
-                    (alturaVentana + rect.height);
-
-
-                /*
-                 * Limitar 0 - 1
-                 */
-
-                progreso = Math.max(
-                    0,
-                    Math.min(1, progreso)
-                );
-
-
-                /*
-                 * Suavizado
-                 */
-
-                progreso =
-                    progreso *
-                    progreso *
-                    (3 - 2 * progreso);
-
-
-                /*
-                 * Enviar al CSS
-                 */
-
-                scene.style.setProperty(
-                    "--scroll",
-                    progreso
-                );
-
-
-                ticking = false;
-
-            }
-
-
-            window.addEventListener(
-                "scroll",
-                function () {
-
-                    if (!ticking) {
-
-                        window.requestAnimationFrame(
-                            actualizarMagia
-                        );
-
-                        ticking = true;
-
-                    }
-
-                },
-                {
-                    passive: true
-                }
-            );
-
-
-            window.addEventListener(
-                "resize",
-                actualizarMagia
-            );
-
-
-            actualizarMagia();
-
-        }
-
-
-        /*
-         * Esperar a que Divi haya terminado
-         * de cargar la página.
-         */
-
-        if (
-            document.readyState === "loading"
-        ) {
-
-            document.addEventListener(
-                "DOMContentLoaded",
-                iniciarMagiaLaObra
-            );
-
-        } else {
-
-            iniciarMagiaLaObra();
-
-        }
-
-
-    })();
-
-</script>
