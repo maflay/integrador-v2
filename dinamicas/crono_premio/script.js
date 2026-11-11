@@ -10,7 +10,7 @@ let _currenty_cont_ = document.getElementById("_currenty_cont_");
 function actualizarCuentaRegresiva() {
   const ahora = new Date();
 
-  const fechaLimite = new Date("2026-12-18T20:59:59");
+  const fechaLimite = new Date("2026-12-18T23:00:00");
 
   let dias_pr = document.getElementById("dias_pr");
   let horas_pr = document.getElementById("horas_pr");
@@ -34,7 +34,7 @@ function actualizarCuentaRegresiva() {
   const minutos = Math.floor((segundosTotales % 3600) / 60);
   const segundos = segundosTotales % 60;
 
-  horaFull.innerText = ` ${dias}d ${horas}h ${minutos}m ${segundos}s.`;
+  horaFull.innerText = ` ${dias}dias ${horas}h ${minutos}m ${segundos}s`;
   dias_pr.innerHTML = String(dias).padStart(2, "0");
   horas_pr.innerHTML = String(horas).padStart(2, "0");
   min_pr.innerHTML = String(minutos).padStart(2, "0");
@@ -83,9 +83,16 @@ window.getAllConteoCrono = function () {
 
       const TOTAL_MAXIMO = 9999;
       let totalOcupados = numerosRegistradosSet.size;
+      let totalFaltantes = TOTAL_MAXIMO - totalOcupados;
+
       let _currenty_cont_ = document.getElementById("_currenty_cont_");
       if (_currenty_cont_) {
-        _currenty_cont_.innerHTML = totalOcupados + " / " + TOTAL_MAXIMO;
+        _currenty_cont_.innerHTML =
+          "N. Entregados - " +
+          totalOcupados +
+          " / " +
+          totalFaltantes +
+          " - N. Disponibles";
         if (totalOcupados >= 2500) {
           _urna_sorteo_.src = "/dinamicas/crono_premio/resources/2b.png";
         }

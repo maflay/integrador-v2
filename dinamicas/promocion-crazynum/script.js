@@ -162,7 +162,7 @@ async function iniciarBusqueda() {
     cantidadCurrent = 1;
   }
 
-  const cantidad = parseInt(numeroInput.value * cantidadCurrent);
+  const cantidad = parseInt(numeroInput.value) * cantidadCurrent;
   if (isNaN(cantidad) || cantidad <= 0) {
     alert("Ingresa una cantidad válida");
     return;
@@ -185,7 +185,7 @@ async function iniciarBusqueda() {
         let numerosArray = resultadoTexto.split(/[.,]/);
         numerosArray.forEach((num) => {
           let limpio = num.trim();
-          if (limpio) {
+          if (limpio !== "") {
             numerosOcupados.push(String(limpio).padStart(4, "0"));
           }
         });
@@ -193,7 +193,7 @@ async function iniciarBusqueda() {
     }
 
     let numerosDisponibles = [];
-    for (let i = 1; i <= 9999; i++) {
+    for (let i = 0; i <= 9999; i++) {
       let numStr = String(i).padStart(4, "0");
       if (!numerosOcupados.includes(numStr)) {
         numerosDisponibles.push(numStr);
@@ -262,7 +262,7 @@ async function iniciarBusqueda() {
       tiempoTranscurido += intervaloVelocidad;
 
       elementosCreados.forEach((el) => {
-        let randomTemp = Math.floor(Math.random() * 9999) + 1;
+        let randomTemp = Math.floor(Math.random() * 10000);
         el.textContent = String(randomTemp).padStart(4, "0");
       });
 
@@ -274,9 +274,7 @@ async function iniciarBusqueda() {
           el.id = numeroFormateado;
           el.textContent = numeroFormateado;
 
-          // setTimeout(() => {
           el.classList.add("add_flex");
-          // }, index * 1000);
         });
       }
     }, intervaloVelocidad);
