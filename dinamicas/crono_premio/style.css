@@ -79,7 +79,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 900px;
+    width: 600px;
     height: 200px;
     position: absolute;
     font-size: 70px;
@@ -113,9 +113,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 900px;
+    width: 700px;
     height: 200px;
-    font-size: 50px;
+    font-size: 40px;
     position: absolute;
     bottom: 0px;
     right: 150px;
