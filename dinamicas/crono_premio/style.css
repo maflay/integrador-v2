@@ -282,7 +282,7 @@
     left: 5px;
 }
 
-@media(max-width: 1300px) {
+@media(max-width: 1500px) {
     ._content_crono_premio_ {
         width: 600px;
         height: 100px;
