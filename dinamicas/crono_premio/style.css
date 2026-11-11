@@ -93,6 +93,7 @@
 
 ._content_crono_premio_ p {
     margin-top: 20px;
+    font-family: 'BebasNeue', sans-serif !important;
 }
 
 ._content_curren_premio_ {
@@ -112,6 +113,8 @@
 
 ._content_curren_premio_>p {
     margin: 0;
+    font-family: 'BebasNeue', sans-serif !important;
+
 }
 
 ._content_urna_ {

@@ -8,6 +8,11 @@
     src: url('/fonts/Emirates\ Bold.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('/dinamicas/crono_premio/resources/BebasNeue-Regular.ttf') format('truetype');
+}
+
 /* MODAL */
 .modal_opciones_dinamica {
     display: none;
