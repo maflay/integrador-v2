@@ -86,16 +86,16 @@ window.getAllConteoCrono = function () {
       let _currenty_cont_ = document.getElementById("_currenty_cont_");
       if (_currenty_cont_) {
         _currenty_cont_.innerHTML = totalOcupados + " / " + TOTAL_MAXIMO;
-        if(totalOcupados >= 2500){
-            _urna_sorteo_.src = "/dinamicas/crono_premio/resources/2b.png";
+        if (totalOcupados >= 2500) {
+          _urna_sorteo_.src = "/dinamicas/crono_premio/resources/2b.png";
         }
 
-        if(totalOcupados >= 5000){
-            _urna_sorteo_.src = "/dinamicas/crono_premio/resources/3b.png";
+        if (totalOcupados >= 5000) {
+          _urna_sorteo_.src = "/dinamicas/crono_premio/resources/3b.png";
         }
 
-        if(totalOcupados >= 9000){
-            _urna_sorteo_.src = "/dinamicas/crono_premio/resources/4b.png";
+        if (totalOcupados >= 9000) {
+          _urna_sorteo_.src = "/dinamicas/crono_premio/resources/4b.png";
         }
         setTimeout(() => {
           urna_animada_container.style.display = "none";
@@ -111,13 +111,12 @@ window.getAllConteoCrono = function () {
 };
 
 window.getAllConteoCrono();
-getAllConteoCrono();
 
 function lanzarTiquetesConfeti() {
   const container = document.getElementById("confetti-container");
   if (!container) return;
 
-  const duracionTotal = 10000; 
+  const duracionTotal = 10000;
   const tiempoInicio = Date.now();
 
   const intervaloCreacion = setInterval(() => {
@@ -141,5 +140,67 @@ function lanzarTiquetesConfeti() {
     setTimeout(() => {
       ticket.remove();
     }, 5000);
-  }, 150); 
+  }, 150);
 }
+
+function actionScreen() {
+  const btn = document.getElementById("fsBtn");
+  const target = document.documentElement;
+  const video = document.querySelector("._content_video_show_ video");
+
+  if (video) {
+    video.play().catch((error) => {
+      console.log(
+        "El autoplay fue bloqueado por el navegador, intentando reproducir de nuevo...",
+        error,
+      );
+    });
+
+    video.addEventListener(
+      "ended",
+      function () {
+        this.currentTime = 0;
+        this.play();
+      },
+      false,
+    );
+  }
+  btn.addEventListener("click", toggleFullscreen);
+
+  const isFullscreen = () =>
+    document.fullscreenElement || document.webkitFullscreenElement;
+
+  async function enterFullscreen() {
+    if (target.requestFullscreen) return target.requestFullscreen();
+    if (target.webkitRequestFullscreen) return target.webkitRequestFullscreen();
+  }
+
+  async function exitFullscreen() {
+    if (document.exitFullscreen) return document.exitFullscreen();
+    if (document.webkitExitFullscreen) return document.webkitExitFullscreen();
+  }
+
+  async function toggleFullscreen() {
+    try {
+      if (isFullscreen()) await exitFullscreen();
+      else await enterFullscreen();
+    } catch (e) {
+      console.error("No se pudo cambiar fullscreen:", e);
+    }
+  }
+
+  function syncButtonText() {
+    btn.textContent = isFullscreen() ? "⛶" : "⛶";
+  }
+  function syncButtonText() {
+    btn.textContent = isFullscreen() ? "⛶" : "⛶";
+  }
+
+  btn.addEventListener("click", toggleFullscreen);
+  document.addEventListener("fullscreenchange", syncButtonText);
+  document.addEventListener("webkitfullscreenchange", syncButtonText);
+
+  syncButtonText();
+}
+
+actionScreen();
