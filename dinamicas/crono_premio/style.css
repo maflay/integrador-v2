@@ -281,3 +281,51 @@
     top: 5px;
     left: 5px;
 }
+
+@media(max-width: 1300px) {
+    ._content_crono_premio_ {
+        width: 600px;
+        height: 100px;
+        position: absolute;
+        font-size: 40px;
+        top: 80px;
+        background-image: url(/dinamicas/crono_premio/resources/Marco_dorado_de_terciopelo_carmesí_2.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain
+    }
+
+    ._content_urna_ {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        bottom: 190px;
+    }
+
+    ._content_urna_ img {
+        width: 250px;
+    }
+
+    ._content_curren_premio_ {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 600px;
+        height: 80px;
+        font-size: 30px;
+        position: absolute;
+        bottom: 100px;
+        background-image: url(/dinamicas/crono_premio/resources/Marco_dorado_de_terciopelo_carmesí_2.png);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain
+    }
+
+    ._content_curren_premio_>p {
+        margin: 0;
+        font-family: 'BebasNeue', sans-serif !important;
+
+    }
+
+}
