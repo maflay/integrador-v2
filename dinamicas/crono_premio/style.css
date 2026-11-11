@@ -79,10 +79,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 600px;
+    width: 700px;
     height: 200px;
     position: absolute;
-    font-size: 70px;
+    font-size: 50px;
     bottom: 0px;
     left: 150px;
     background-image: url(/dinamicas/crono_premio/resources/Marco_dorado_de_terciopelo_carmesí_2.png);

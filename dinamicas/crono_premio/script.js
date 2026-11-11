@@ -34,7 +34,7 @@ function actualizarCuentaRegresiva() {
   const minutos = Math.floor((segundosTotales % 3600) / 60);
   const segundos = segundosTotales % 60;
 
-  horaFull.innerText = ` ${dias}dias ${horas}h ${minutos}m ${segundos}s`;
+  horaFull.innerText = ` ${dias} dias ${horas}h ${minutos}m ${segundos}s`;
   dias_pr.innerHTML = String(dias).padStart(2, "0");
   horas_pr.innerHTML = String(horas).padStart(2, "0");
   min_pr.innerHTML = String(minutos).padStart(2, "0");
