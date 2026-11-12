@@ -79,7 +79,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 38%;
+    width: 40%;
     height: 20vh;
     position: absolute;
     font-size: 5vh;
@@ -88,7 +88,7 @@
     background-image: url(/dinamicas/crono_premio/resources/Marco_dorado_de_terciopelo_carmesí_2.png);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 80%;
+    background-size: 100% 100%;
     font-family: 'BebasNeue', sans-serif !important;
 }
 
@@ -113,7 +113,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 38%;
+    width: 40%;
     height: 20vh;
     font-size: 4vh;
     position: absolute;
@@ -122,7 +122,7 @@
     background-image: url(/dinamicas/crono_premio/resources/Marco_dorado_de_terciopelo_carmesí_2.png);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 80%;
+    background-size: 100% 100%;
 }
 
 ._content_curren_premio_>p {
