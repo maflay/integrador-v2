@@ -722,9 +722,9 @@ function imprimirResultadosPOS() {
   );
 
   let numerosTirilla = numerosOrdenados
+  // <span><strong>N ${idx + 1}:</strong></span>
     .map(
       (num, idx) => `
-               <span><strong>N ${idx + 1}:</strong></span>
             <span class="pos-num">${num}</span>
     `,
     )
