@@ -721,8 +721,8 @@ function imprimirResultadosPOS() {
     (a, b) => Number(a) - Number(b),
   );
 
-  let numerosTirilla = numerosOrdenados
   // <span><strong>N ${idx + 1}:</strong></span>
+  let numerosTirilla = numerosOrdenados
     .map(
       (num, idx) => `
             <span class="pos-num">${num}</span>
@@ -970,10 +970,10 @@ function imprimirlast() {
 
   let numerosOrdenados = [...arreglo].sort((a, b) => Number(a) - Number(b));
 
+  // <span><strong>N ${idx + 1}:</strong></span>
   let numerosTirilla = numerosOrdenados
     .map(
       (num, idx) => `
-               <span><strong>N ${idx + 1}:</strong></span>
             <span class="pos-num">${num}</span>
     `,
     )
