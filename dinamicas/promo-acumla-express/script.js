@@ -31,7 +31,7 @@ let _rango_fec_estas_ = document.getElementById("_rango_fec_estas_");
 let promocion = "Gana Max";
 
 let url =
-  "https://script.google.com/macros/s/AKfycbyA21iFwwgEgbF2Cj5MziVAR4omRVJKXzjgW9bMTjn7M0ytty0fvqZ2me5UPb3UgqjA/exec";
+  "https://script.google.com/macros/s/AKfycbwigsUfYhORCfZHUsx_di5BchKuBhRIh81UE9GV0lP714bnuAl4Itq44_Pvyf_y7Eb_/exec";
 
 function handleSendSched() {
   let _hor_ini_ = document.getElementById("_hor_ini_");
@@ -293,6 +293,7 @@ function handleCrearPlayer() {
             casino.value = "";
             telefono.value = "";
             loader.style.display = "none";
+            GetAllData();
             Swal.fire({
               icon: "success",
               title: "Jugador Creado",
@@ -342,6 +343,8 @@ function imprimirTickeHora() {
 
   // <span><strong>N ${idx + 1}:</strong></span>
 
+  let horaFinimp = datos.Tiempo_redimido.split("-");
+
   contenedor.innerHTML = `
         <div class="ticket-pos">
             <div class="pos-header">
@@ -363,7 +366,7 @@ function imprimirTickeHora() {
             <div class="pos-numeros">
                 <p><strong>Fecha de registro: </strong>${datos.fec_reg_jugador}</p>
                 <p><strong>Hora de registro: </strong>${datos.hor_reg_jugador}</p>
-                <p><strong>Vende dentro de: </strong>${datos.hor_sobr_jugador}</p>
+                <p><strong>Vence a las: </strong>${horaFinimp[1]} del dia de hoy</p>
                 <p><strong>Harario Valido para redimir: </strong></br>${datos.Tiempo_redimido}</p>
             </div>
             <div class="pos-divider">--------------------------------</div>
@@ -430,9 +433,12 @@ function formatearHora(horaStr) {
 }
 
 GetAllData();
+
 function GetAllData() {
   let _all_register_zxwerz_ = document.getElementById("_all_register_zxwerz_");
   _all_register_zxwerz_.innerHTML = `Cargando...`;
+  let inputBuscar = document.getElementById("numero_bus");
+  if (inputBuscar) inputBuscar.style.display = "none";
 
   fetch(`${url}?hoja=dinamica`)
     .then((res) => res.json())
@@ -453,6 +459,7 @@ function GetAllData() {
                 <th>Cédula</th>
                 <th>Casino</th>
                 <th>Bono</th>
+                <th>Valor Bono</th>
                 <th>Premio</th>
                 <th>Acciones</th>
               </tr>
@@ -479,6 +486,13 @@ function GetAllData() {
                       <td>
                         ${
                           tieneDatos
+                            ? registro.Bono_val || registro.bono_val || ""
+                            : `<input class="table_input_bono_portal" type="text" id="input-bono-val-${i}" value="${registro.Bono_val || registro.bono_val || ""}" placeholder="Valor bono" />`
+                        }
+                      </td>
+                      <td>
+                        ${
+                          tieneDatos
                             ? registro.PremioObt
                             : `<input class="table_input_bono_portal" type="text" id="input-premio-${i}" value="${registro.PremioObt || ""}" placeholder="Ingrese premio" />`
                         }
@@ -498,6 +512,32 @@ function GetAllData() {
           </table>
         </div>
       `;
+
+      if (inputBuscar) {
+        inputBuscar.style.display = "flex";
+        let nuevoInput = inputBuscar.cloneNode(true);
+        inputBuscar.parentNode.replaceChild(nuevoInput, inputBuscar);
+
+        nuevoInput.addEventListener("keyup", () => {
+          const texto = nuevoInput.value.toLowerCase().trim();
+          const filas = _all_register_zxwerz_.querySelectorAll("tbody tr");
+
+          const columnas = [1, 2, 3, 4, 5, 6];
+
+          filas.forEach((fila) => {
+            const textoFila = columnas
+              .map(
+                (colIdx) =>
+                  fila.querySelector(`td:nth-child(${colIdx})`)?.textContent ||
+                  "",
+              )
+              .join(" ")
+              .toLowerCase();
+
+            fila.style.display = textoFila.includes(texto) ? "" : "none";
+          });
+        });
+      }
     })
     .catch((err) => {
       console.error(err);
@@ -508,6 +548,9 @@ function GetAllData() {
 async function actualizarRegistro(identify, cedula, dia, mes, anio, index) {
   loader.style.display = "flex";
   const nuevoBono = document.getElementById(`input-bono-${index}`).value.trim();
+  const nuevoBonoVal = document
+    .getElementById(`input-bono-val-${index}`)
+    .value.trim();
   const nuevoPremio = document
     .getElementById(`input-premio-${index}`)
     .value.trim();
@@ -527,6 +570,7 @@ async function actualizarRegistro(identify, cedula, dia, mes, anio, index) {
       Anio: anio,
     },
     bono: nuevoBono,
+    bono_val: nuevoBonoVal,
     premio: nuevoPremio,
   };
 
@@ -560,3 +604,19 @@ async function actualizarRegistro(identify, cedula, dia, mes, anio, index) {
     alert("Error de conexión al intentar guardar.");
   }
 }
+
+document.getElementById("_btn_imprimir_last_").addEventListener("click", () => {
+  let datosStr = localStorage.getItem("InfoImprimir");
+  if (!datosStr) {
+    Swal.fire({
+      icon: "warning",
+      title: "Sin Datos",
+      text: "No hay un registro previo guardado para imprimir.",
+    });
+    return;
+  }
+
+  window.datosjugadorRango = JSON.parse(datosStr);
+
+  imprimirTickeHora();
+});

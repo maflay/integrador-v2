@@ -2,7 +2,7 @@
 <html lang="es">
 
 <head>
-    <title>Aladdin: Acumula Puntos</title>
+    <title>Aladdin: Gana Max</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/modal.css">
@@ -17,8 +17,10 @@
     </div>
     <div class="_content_main_ax_">
         <div class="_est_sche_">
-            <input id="_hor_ini_" class="form-control" type="number" placeholder="Hora inicio - formato 24H, Ej: 11">
-            <input id="_hor_fin_" class="form-control" type="number" placeholder="Hora final - formato 24H, Ej: 18">
+            <input id="_hor_ini_" min="1" max="24" class="form-control" type="number"
+                placeholder="Hora inicio - formato 24H, Ej: 11">
+            <input id="_hor_fin_" min="1" max="24" class="form-control" type="number"
+                placeholder="Hora final - formato 24H, Ej: 18">
             <button id="_send_sched_" class="btn btn-primary">Enviar</button>
             <p id="_rango_fec_estas_">00:00:00 - 00:00:00</p>
         </div>
@@ -27,7 +29,8 @@
                 <img src="/dinamicas/grandaladdin/resources/Grand-aladdin-Prestige-Logo-otro.png" alt="Aladdin">
                 <h2>Registrar Jugador</h2>
                 <input id="cedula" type="text" class="form-control" placeholder="Cédula">
-                <input onkeyup="this.value = this.value.toUpperCase()" id="nombre" type="text" class="form-control" placeholder="Nombre">
+                <input onkeyup="this.value = this.value.toUpperCase()" id="nombre" type="text" class="form-control"
+                    placeholder="Nombre">
                 <select class="form-control" style="cursor: pointer;" id="casino">
                     <option value="">Casino...</option>
                     <option value="A05">A05</option>
@@ -64,11 +67,16 @@
                     <option value="A127-MESAS">A127-MESAS</option>
                 </select>
                 <input id="telefono" type="number" class="form-control" placeholder="Teléfono">
-                <button class="btn btn-danger">Imprimir ultimo registro</button>
+                <button id="_btn_imprimir_last_" class="btn btn-danger">Imprimir ultimo registro</button>
                 <button id="_btn_crear_player_" class="btn btn-primary">Crear</button>
             </div>
             <div class="_upda_ax_">
-                <!-- <input type="text" class="form-control"> -->
+                <div style="width: 200px; margin-bottom: 20px;">
+
+                    <input style="display: none;" type="text" name="numero_bus" id="numero_bus" class="form-control"
+                        placeholder="Buscar...">
+                </div>
+
                 <div style="color: white;" id="_all_register_zxwerz_"></div>
             </div>
         </div>
