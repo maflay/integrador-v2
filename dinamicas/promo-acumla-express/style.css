@@ -1,0 +1,234 @@
+body {
+    font-family: 'super wonder', sans-serif !important;
+}
+
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #356adc;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+._content_main_ax_ {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    background-color: #0f172aa2;
+}
+
+._est_sche_ {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    gap: 10px;
+    width: 100%;
+    padding: 40px;
+    background-color: #0f172a;
+    color: white;
+}
+
+._est_sche_ input {
+    width: 300px;
+}
+
+._est_sche_ p {
+    position: relative;
+    left: 100px;
+    margin: 0;
+}
+
+._card_actions_ax_ {
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    height: 100%;
+    gap: 40px;
+    padding: 40px;
+}
+
+._register_ax_ {
+    width: 30%;
+    height: auto;
+    border-radius: 30px;
+    padding: 30px;
+    background-color: #0f172a;
+    color: white;
+}
+
+._register_ax_ input,
+._register_ax_ select {
+    margin-bottom: 20px;
+}
+
+._register_ax_ img {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 250px;
+    padding-bottom: 30px;
+}
+
+._register_ax_ button {
+    position: relative;
+    left: 43.5%;
+    transform: translateX(-50%);
+}
+
+._upda_ax_ {
+    width: 70%;
+    height: 80%;
+    overflow-y: auto;
+    border-radius: 30px;
+    padding: 30px;
+    background-color: #0f172a;
+}
+
+
+@media print {
+    body * {
+        visibility: hidden ;
+    }
+
+    #print-container,
+    #print-container * {
+        visibility: visible !important;
+    }
+
+    #print-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+
+    @page {
+        size: 80mm auto;
+        margin: 0;
+    }
+}
+
+.ticket-pos {
+    width: 72mm;
+    margin: 0 auto;
+    padding: 10px 5px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: #000;
+    background: #fff;
+}
+
+.ticket-pos img {
+    width: 200px;
+}
+
+.ticket-pos .pos-header {
+    text-align: center;
+}
+
+.ticket-pos .pos-header h2 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 4px 0;
+}
+
+.ticket-pos .pos-header p {
+    margin: 2px 0;
+    font-size: 11px;
+}
+
+.ticket-pos .pos-divider {
+    text-align: center;
+    font-weight: bold;
+    margin: 4px 0;
+    letter-spacing: -1px;
+}
+
+.ticket-pos .pos-info p {
+    margin: 3px 0;
+    font-size: 11px;
+}
+
+.ticket-pos .pos-title {
+    text-align: center;
+    font-weight: bold;
+    font-size: 12px;
+    margin: 6px 0;
+}
+
+.ticket-pos .pos-row {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 2px 5px;
+    font-size: 10px;
+}
+
+.cont_pos_row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ticket-pos .pos-num {
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.ticket-pos .pos-footer {
+    text-align: center;
+    font-size: 11px;
+    margin-top: 8px;
+}
+
+.ticket-pos .pos-footer p {
+    margin: 2px 0;
+}
+
+@media(max-width: 768px) {
+    ._card_actions_ax_ {
+        flex-direction: column;
+        height: auto;
+    }
+
+    ._register_ax_ {
+        width: 100%;
+    }
+
+    ._upda_ax_ {
+        width: 100%;
+        height: 600px;
+    }
+
+    ._register_ax_ button {
+        left: 30%;
+    }
+}
