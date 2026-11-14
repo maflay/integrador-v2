@@ -28,10 +28,10 @@ if (nivelesOcultos.includes(Number(user.Nivel))) {
 
 let loader = document.getElementById("loader");
 let _rango_fec_estas_ = document.getElementById("_rango_fec_estas_");
-let promocion = "Gana Max";
+let promocion = "Gana Mas";
 
 let url =
-  "https://script.google.com/macros/s/AKfycbwigsUfYhORCfZHUsx_di5BchKuBhRIh81UE9GV0lP714bnuAl4Itq44_Pvyf_y7Eb_/exec";
+  "https://script.google.com/macros/s/AKfycbwbET5s1tkTe5bx-do_9O6UuSuCojmKl2WGHDCZ6_YO8f-zG_Pi7Z5RP22fiLV4-peb/exec";
 
 function handleSendSched() {
   let _hor_ini_ = document.getElementById("_hor_ini_");
@@ -479,7 +479,8 @@ function GetAllData() {
                 <th>Casino</th>
                 <th># Bono</th>
                 <th>Valor Bono</th>
-                <th>Premio - Maq</th>
+                <th>Premio</th>
+                <th>Nº Máquina</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -514,6 +515,13 @@ function GetAllData() {
                           tieneDatos
                             ? registro.PremioObt
                             : `<input class="table_input_bono_portal" type="text" id="input-premio-${i}" value="${registro.PremioObt || ""}" placeholder="Ingrese premio" />`
+                        }
+                      </td>
+                      <td>
+                        ${
+                          tieneDatos
+                            ? registro.Num_maq || registro.num_maq || ""
+                            : `<input class="table_input_bono_portal" type="text" id="input-num-maq-${i}" value="${registro.Num_maq || registro.num_maq || ""}" placeholder="Nº Máquina" />`
                         }
                       </td>
                       <td>
@@ -573,6 +581,9 @@ async function actualizarRegistro(identify, cedula, dia, mes, anio, index) {
   const nuevoPremio = document
     .getElementById(`input-premio-${index}`)
     .value.trim();
+  const nuevoNumMaq = document
+    .getElementById(`input-num-maq-${index}`)
+    .value.trim();
 
   if (nuevoBono === "" || nuevoPremio === "") {
     alert("Por favor ingresa tanto el Bono como el Premio.");
@@ -591,6 +602,7 @@ async function actualizarRegistro(identify, cedula, dia, mes, anio, index) {
     bono: nuevoBono,
     bono_val: nuevoBonoVal,
     premio: nuevoPremio,
+    num_maq: nuevoNumMaq,
   };
 
   try {
