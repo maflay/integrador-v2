@@ -18,10 +18,12 @@ document.getElementById("_send_sched_").addEventListener("click", () => {
 
 let user = inforUser();
 
-if (user.Nivel == 1 && user.Nivel == 2 && user.Nivel == 6) {
-  document.querySelector("._est_sche_").style.opacity = "0";
+const nivelesOcultos = [1, 2, 6];
+
+if (nivelesOcultos.includes(Number(user.Nivel))) {
+  document.querySelector("._est_sche_").classList.remove("dont_screen");
 } else {
-  document.querySelector("._est_sche_").style.opacity = "1";
+  document.querySelector("._est_sche_").classList.add("dont_screen");
 }
 
 let loader = document.getElementById("loader");
