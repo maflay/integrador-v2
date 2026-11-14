@@ -45,6 +45,25 @@ function handleSendSched() {
     return;
   }
 
+  let valIni = parseInt(_hor_ini_.value);
+  let valFin = parseInt(_hor_fin_.value);
+
+  if (
+    _hor_ini_.value == "" ||
+    _hor_fin_.value == "" ||
+    valIni < 1 ||
+    valIni > 24 ||
+    valFin < 1 ||
+    valFin > 24
+  ) {
+    Swal.fire({
+      icon: "warning",
+      title: "Horario incorrecto",
+      text: "Las horas deben estar entre 1 y 24.",
+    });
+    return;
+  }
+
   const fechaCompleta = new Date().toLocaleString("es-CO", {
     timeZone: "America/Bogota",
     year: "numeric",
@@ -458,9 +477,9 @@ function GetAllData() {
                 <th>Hora</th>
                 <th>Cédula</th>
                 <th>Casino</th>
-                <th>Bono</th>
+                <th># Bono</th>
                 <th>Valor Bono</th>
-                <th>Premio</th>
+                <th>Premio - Maq</th>
                 <th>Acciones</th>
               </tr>
             </thead>
