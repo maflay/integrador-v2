@@ -189,6 +189,16 @@ function handleCrearPlayer() {
   let segundosIniRango = horaASegundos(strHoraIni);
   let segundosFinRango = horaASegundos(strHoraFin);
 
+  if (segundosRegistro > segundosFinRango) {
+    loader.style.display = "none";
+    Swal.fire({
+      icon: "warning",
+      title: "Horario Excedido",
+      html: "La hora del registro ha superado la hora fin permitida. No se puede crear el registro.",
+    });
+    return;
+  }
+
   let tiempoResultadoSegundos = 0;
 
   if (segundosRegistro < segundosIniRango) {
