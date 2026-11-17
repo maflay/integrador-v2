@@ -182,24 +182,36 @@ function handleCrearPlayer() {
   let fecha_curren = fecha;
 
   let rangoTexto = _rango_fec_estas_.textContent;
-
   let [strHoraIni, strHoraFin] = rangoTexto.split(" - ");
 
   let segundosRegistro = horaASegundos(hora);
   let segundosIniRango = horaASegundos(strHoraIni);
   let segundosFinRango = horaASegundos(strHoraFin);
 
-  if (segundosRegistro > segundosFinRango) {
+  let segundosFinRangoMax = horaASegundos("23:59:00");
+
+  if (segundosRegistro >= 0 && segundosRegistro < horaASegundos("06:00:00")) {
     loader.style.display = "none";
     Swal.fire({
       icon: "warning",
       title: "Horario Excedido",
-      html: "La hora del registro ha superado la hora fin permitida. No se puede crear el registro.",
+      html: "El horario de la promoción ha finalizado. No se permiten registros en la madrugada.",
+    });
+    return;
+  }
+
+  if (segundosRegistro > segundosFinRangoMax) {
+    loader.style.display = "none";
+    Swal.fire({
+      icon: "warning",
+      title: "Horario Excedido",
+      html: "La hora del registro ha superado el límite máximo permitido para hoy.",
     });
     return;
   }
 
   let tiempoResultadoSegundos = 0;
+  let esMargenDeGracia = false;
 
   if (segundosRegistro < segundosIniRango) {
     tiempoResultadoSegundos = segundosFinRango - segundosIniRango;
@@ -208,8 +220,30 @@ function handleCrearPlayer() {
     segundosRegistro <= segundosFinRango
   ) {
     tiempoResultadoSegundos = segundosFinRango - segundosRegistro;
+  } else if (
+    segundosRegistro > segundosFinRango &&
+    segundosRegistro <= segundosFinRangoMax
+  ) {
+    tiempoResultadoSegundos = 0;
+    esMargenDeGracia = true;
   } else {
     tiempoResultadoSegundos = 0;
+  }
+
+  let esTiempoValido =
+    (segundosRegistro >= segundosIniRango &&
+      segundosRegistro <= segundosFinRango) ||
+    segundosRegistro < segundosIniRango ||
+    esMargenDeGracia;
+
+  if (!esTiempoValido) {
+    loader.style.display = "none";
+    Swal.fire({
+      icon: "warning",
+      title: "Error en la Operación",
+      html: "No hay un horario o esta afuera del rango permitido",
+    });
+    return;
   }
 
   function segundosAHoras(segundos) {
@@ -222,10 +256,10 @@ function handleCrearPlayer() {
     let s = (segundos % 60).toString().padStart(2, "0");
     return `${h}:${m}:${s}`;
   }
-
   let tiempo_valido = segundosAHoras(tiempoResultadoSegundos);
 
-  if (tiempoResultadoSegundos == 0) {
+  if (tiempoResultadoSegundos == 0 && !esMargenDeGracia) {
+    loader.style.display = "none";
     Swal.fire({
       icon: "warning",
       title: "Error en la Operación",
@@ -233,6 +267,7 @@ function handleCrearPlayer() {
     });
     return;
   }
+
   let identify = Date.now();
 
   const DIA = Number(
@@ -449,15 +484,26 @@ function formatearFecha(fechaStr) {
 
 function formatearHora(horaStr) {
   if (!horaStr) return "";
-  if (typeof horaStr === "string" && horaStr.includes("T")) {
-    const d = new Date(horaStr);
-    if (!isNaN(d.getTime())) {
-      const h = String(d.getUTCHours()).padStart(2, "0");
-      const m = String(d.getUTCMinutes()).padStart(2, "0");
-      const s = String(d.getUTCSeconds()).padStart(2, "0");
-      return `${h}:${m}:${s}`;
-    }
+
+  if (typeof horaStr === "string" && /^\d{1,2}:\d{2}(:\d{2})?$/.test(horaStr)) {
+    return horaStr;
   }
+
+  let d = new Date(horaStr);
+  if (isNaN(d.getTime())) {
+    d = new Date(`1970-01-01T${horaStr}`);
+  }
+
+  if (!isNaN(d.getTime())) {
+    return d.toLocaleTimeString("es-CO", {
+      timeZone: "America/Bogota",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+  }
+
   return horaStr;
 }
 
@@ -496,8 +542,9 @@ function GetAllData() {
             </thead>
             <tbody>
               ${data
+                .reverse()
                 .map((registro, i) => {
-                  const tieneDatos = registro.Bono && registro.PremioObt;
+                  const tieneDatos = registro.Bono && registro.PremioObt && registro.Bono_val && registro.Num_maq;
                   return `
                     <tr>
                       <td>${i + 1}</td>
@@ -508,28 +555,28 @@ function GetAllData() {
                       <td>${registro.Casino}</td>
                       <td>
                         ${
-                          tieneDatos
+                          registro.Bono
                             ? registro.Bono
                             : `<input class="table_input_bono_portal" type="text" id="input-bono-${i}" value="${registro.Bono || ""}" placeholder="Ingrese bono" />`
                         }
                       </td>
                       <td>
                         ${
-                          tieneDatos
+                          registro.Bono_val
                             ? registro.Bono_val || registro.bono_val || ""
                             : `<input class="table_input_bono_portal" type="text" id="input-bono-val-${i}" value="${registro.Bono_val || registro.bono_val || ""}" placeholder="Valor bono" />`
                         }
                       </td>
                       <td>
                         ${
-                          tieneDatos
+                          registro.PremioObt
                             ? registro.PremioObt
                             : `<input class="table_input_bono_portal" type="text" id="input-premio-${i}" value="${registro.PremioObt || ""}" placeholder="Ingrese premio" />`
                         }
                       </td>
                       <td>
                         ${
-                          tieneDatos
+                          registro.Num_maq
                             ? registro.Num_maq || registro.num_maq || ""
                             : `<input class="table_input_bono_portal" type="text" id="input-num-maq-${i}" value="${registro.Num_maq || registro.num_maq || ""}" placeholder="Nº Máquina" />`
                         }
