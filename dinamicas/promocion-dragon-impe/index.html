@@ -353,7 +353,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
         import {
-            getDatabase, ref, push, onChildAdded
+            getDatabase, ref, push, onValue
         } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
         const firebaseConfig = {
@@ -400,26 +400,38 @@
                     }).then(() => {
                         Swal.fire("Enviado", "Orden de borrado enviada correctamente.", "success");
                     }).catch((error) => {
-                        // console.error("Error al enviar orden a Firebase:", error);
+                        console.error("Error al enviar orden a Firebase:", error);
                     });
                 }
             });
         };
 
-        onChildAdded(ordenesRef, (snapshot) => {
+        onValue(ordenesRef, (snapshot) => {
             const data = snapshot.val();
             if (!data) return;
 
-            const casinoOrden = data.casinoTarget;
+            const ordenes = Object.values(data);
+            const ultimaOrden = ordenes[ordenes.length - 1];
+
+            if (!ultimaOrden) return;
+
+            const tiempoActual = Date.now();
+            const diferenciaTiempo = tiempoActual - ultimaOrden.timestamp;
+
+            if (diferenciaTiempo > 10000) {
+                return; 
+            }
+
+            const casinoOrden = ultimaOrden.casinoTarget;
             const historialGuardado = JSON.parse(localStorage.getItem("saveLocalHistory"));
 
             if (historialGuardado && historialGuardado.Casino) {
                 if (historialGuardado.Casino === casinoOrden) {
-                    // console.log(`Coincide el casino ${casinoOrden}. Borrando historial local...`);
+                    console.log(`Coincide el casino ${casinoOrden}. Borrando historial local...`);
 
                     localStorage.removeItem("saveLocalHistory");
 
-                    // window.location.reload();
+                    window.location.reload();
                 }
             }
         });
