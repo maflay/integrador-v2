@@ -2,95 +2,6 @@ window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
 });
 
-// function iniciarBusqueda() {
-//   const numeroInput = document.getElementById("numeroInput");
-//   const contenedor = document.querySelector(".content_numeros_gene");
-//   contenedor.innerHTML = "";
-
-//   const cantidad = parseInt(numeroInput.value);
-//   if (isNaN(cantidad) || cantidad <= 0) {
-//     alert("Ingresa una cantidad válida");
-//     return;
-//   }
-
-//   let cargando = document.createElement("p");
-//   cargando.textContent = "Cargando...";
-//   contenedor.appendChild(cargando);
-
-//   const hoyStr = new Date().toISOString().slice(0, 10);
-//   let historialKey = `numeros_usados_${hoyStr}`;
-
-//   let numerosYaUsados = JSON.parse(localStorage.getItem(historialKey)) || [];
-
-//   let numerosDisponibles = [];
-//   for (let i = 1; i <= 9999; i++) {
-//     let numStr = String(i).padStart(4, "0");
-//     if (!numerosYaUsados.includes(numStr)) {
-//       numerosDisponibles.push(numStr);
-//     }
-//   }
-
-//   if (numerosDisponibles.length < cantidad) {
-//     cargando.remove();
-//     Swal.fire({
-//       icon: "error",
-//       title: "¡Límite alcanzado!",
-//       text: "Ya se han agotado los números disponibles para el día de hoy.",
-//     });
-//     return;
-//   }
-
-//   for (let i = numerosDisponibles.length - 1; i > 0; i--) {
-//     let j = Math.floor(Math.random() * (i + 1));
-//     let temp = numerosDisponibles[i];
-//     numerosDisponibles[i] = numerosDisponibles[j];
-//     numerosDisponibles[j] = temp;
-//   }
-
-//   let numerosSeleccionados = numerosDisponibles.slice(0, cantidad);
-
-//   numerosYaUsados.push(...numerosSeleccionados);
-//   localStorage.setItem(historialKey, JSON.stringify(numerosYaUsados));
-
-//   let tiempoTranscurido = 0;
-//   const duracionTotal = 1000;
-//   const intervaloVelocidad = 50;
-//   let elementosCreados = [];
-
-//   for (let i = 0; i < cantidad; i++) {
-//     let valorEntrada = document.createElement("p");
-//     valorEntrada.classList.add("itemt_show", "display-box");
-//     valorEntrada.textContent = "0000";
-//     contenedor.appendChild(valorEntrada);
-//     elementosCreados.push(valorEntrada);
-//   }
-
-//   const intervalId = setInterval(() => {
-//     tiempoTranscurido += intervaloVelocidad;
-
-//     elementosCreados.forEach((el) => {
-//       let randomTemp = Math.floor(Math.random() * 9999) + 1;
-//       el.textContent = String(randomTemp).padStart(4, "0");
-//     });
-
-//     if (tiempoTranscurido >= duracionTotal) {
-//       clearInterval(intervalId);
-//       cargando.remove();
-
-//       elementosCreados.forEach((el, index) => {
-//         let numeroFormateado = numerosSeleccionados[index];
-
-//         el.id = numeroFormateado;
-//         el.textContent = numeroFormateado;
-
-//         setTimeout(() => {
-//           el.classList.add("add_flex");
-//         }, index * 1000);
-//       });
-//     }
-//   }, intervaloVelocidad);
-// }
-
 function procesarGeneracionNumeros(numerosDisponibles, cantidad, contenedor) {
   for (let i = numerosDisponibles.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
@@ -659,6 +570,11 @@ function getAllData() {
         inputBuscar.parentNode.replaceChild(nuevoInput, inputBuscar);
 
         nuevoInput.addEventListener("keyup", () => {
+          if (nuevoInput.value.length < 4) {
+            result_dia_acumula.style.display = "none";
+            return;
+          }
+
           const texto = nuevoInput.value.toLowerCase().trim();
           const filas = result_dia_acumula.querySelectorAll("tbody tr");
 
@@ -852,11 +768,16 @@ document.getElementById("btn_tabla_premios").addEventListener("click", () => {
   getAllConteo();
 });
 
+let datosGlobales = [];
+
 function getAllConteo() {
   let result_dia_acumula = document.getElementById("result_conteo");
+  let conteo_por_jugador = document.getElementById("conteo_por_jugador");
+  let buscador_cedula = document.getElementById("buscador_cedula");
   let url = `https://script.google.com/macros/s/AKfycbwplk_G2VgnwPXupvc2vyA0WpcguP514S-5irHySvN17RbDhOdLbuX5T-rN8j-59EYPqw/exec?hoja=dinamica`;
 
   result_dia_acumula.innerHTML = `Cargando...`;
+  // if (conteo_por_jugador) conteo_por_jugador.innerHTML = `Cargando...`;
 
   fetch(url)
     .then((res) => res.json())
@@ -865,77 +786,157 @@ function getAllConteo() {
         let loader = document.getElementById("loader");
         if (loader) loader.style.display = "none";
         result_dia_acumula.innerHTML = `Sin Registros (0 / 9999)`;
-        result_dia_acumula.style.display = "flex";
+        if (conteo_por_jugador)
+          conteo_por_jugador.innerHTML = `Sin registros por jugador.`;
         return;
       }
 
-      let filasTablaHTML = "";
-      let contadorFila = 1;
+      datosGlobales = data;
+      buscador_cedula.style.display = "flex";
+      calcularYMostrarTotalGeneral(datosGlobales);
 
-      let numerosRegistradosSet = new Set();
-
-      data.forEach((registro) => {
-        let clienteNombre = registro.Nombre || "CLIENTE";
-        let casinoNombre = registro.Casino || "";
-        let cedulaRegistro = registro.Cedula || "";
-        let resultadoTexto = String(registro.Resultado || "");
-        let numerosArray = resultadoTexto.split(/[.,]/);
-
-        let horaFormateada = "";
-        if (registro.Hora) {
-          try {
-            horaFormateada = new Date(registro.Hora).toLocaleTimeString(
-              "es-CO",
-              {
-                hour: "2-digit",
-                minute: "2-digit",
-              },
-            );
-          } catch (e) {
-            horaFormateada = "";
-          }
-        }
-        let fechaStr = registro.Fecha ? registro.Fecha.substring(0, 10) : "";
-        let fechaImpresion = fechaStr
-          ? `${fechaStr} ${horaFormateada}`
-          : new Date().toLocaleString("es-CO");
-
-        numerosArray.forEach((numIndividual) => {
-          let numeroLimpio = numIndividual.trim();
-          if (numeroLimpio) {
-            let numFormateado = String(numeroLimpio).padStart(4, "0");
-
-            numerosRegistradosSet.add(numFormateado);
-
-            filasTablaHTML += `
-              <tr>
-                <td>${contadorFila++}</td>
-                <td>${clienteNombre}</td>
-                <td>${fechaImpresion}</td>
-                <td><strong>${numFormateado}</strong></td>
-                <td>${casinoNombre}</td>
-                <td>${cedulaRegistro}</td>
-              </tr>
-            `;
-          }
-        });
-      });
-
-      const TOTAL_MAXIMO = 9999;
-      let totalOcupados = numerosRegistradosSet.size;
-      let totalFaltantes = TOTAL_MAXIMO - totalOcupados;
-
-      result_dia_acumula.innerHTML = `
-          <div style="margin-bottom: 15px; padding: border-radius: 5px; text-align: center; font-weight: bold;">
-            Conteo de Números: <span style="color: #28a745;">${totalOcupados}</span> / ${TOTAL_MAXIMO} 
-            | Faltantes: <span style="color: #dc3545;">${totalFaltantes}</span>
-          </div>
-        `;
+      renderizarListadoYTabla(datosGlobales, "");
     })
     .catch((error) => {
       console.error("Error en la petición:", error);
       result_dia_acumula.innerHTML = `Error al cargar los datos.`;
+      if (conteo_por_jugador)
+        conteo_por_jugador.innerHTML = `Error al cargar conteo por jugador.`;
     });
+}
+
+function calcularYMostrarTotalGeneral(data) {
+  let result_dia_acumula = document.getElementById("result_conteo");
+  let numerosRegistradosSet = new Set();
+
+  data.forEach((registro) => {
+    let resultadoTexto = String(registro.Resultado || "");
+    let numerosArray = resultadoTexto.split(/[.,]/);
+
+    numerosArray.forEach((numIndividual) => {
+      let numeroLimpio = numIndividual.trim();
+      if (numeroLimpio) {
+        let numFormateado = String(numeroLimpio).padStart(4, "0");
+        numerosRegistradosSet.add(numFormateado);
+      }
+    });
+  });
+
+  const TOTAL_MAXIMO = 9999;
+  let totalOcupados = numerosRegistradosSet.size;
+  let totalFaltantes = TOTAL_MAXIMO - totalOcupados;
+
+  result_dia_acumula.innerHTML = `
+      <div style="margin-bottom: 15px; text-align: center; font-weight: bold;">
+        Conteo de Números: <span style="color: #28a745;">${totalOcupados}</span> / ${TOTAL_MAXIMO} 
+        | Faltantes: <span style="color: #dc3545;">${totalFaltantes}</span>
+      </div>
+    `;
+}
+
+function renderizarListadoYTabla(data, filtroCedula = "") {
+  let conteo_por_jugador = document.getElementById("conteo_por_jugador");
+  let filasTablaHTML = "";
+  let contadorFila = 1;
+  let conteoPorCedula = {};
+
+  let datosFiltrados = data.filter((registro) => {
+    if (!filtroCedula) return true;
+    let cedulaReg = String(registro.Cedula || "");
+    return cedulaReg.toLowerCase().includes(filtroCedula.toLowerCase());
+  });
+
+  datosFiltrados.forEach((registro) => {
+    let clienteNombre = registro.Nombre || "CLIENTE";
+    let casinoNombre = registro.Casino || "";
+    let cedulaRegistro = String(registro.Cedula || "SIN_CEDULA");
+    let resultadoTexto = String(registro.Resultado || "");
+    let numerosArray = resultadoTexto.split(/[.,]/);
+
+    let numerosValidos = numerosArray.filter((num) => num.trim() !== "");
+    let cantidadEnRegistro = numerosValidos.length;
+
+    if (!conteoPorCedula[cedulaRegistro]) {
+      conteoPorCedula[cedulaRegistro] = {
+        nombre: clienteNombre,
+        totalNumeros: 0,
+      };
+    }
+    conteoPorCedula[cedulaRegistro].totalNumeros += cantidadEnRegistro;
+
+    let horaFormateada = "";
+    if (registro.Hora) {
+      try {
+        horaFormateada = new Date(registro.Hora).toLocaleTimeString("es-CO", {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
+      } catch (e) {
+        horaFormateada = "";
+      }
+    }
+    let fechaStr = registro.Fecha ? registro.Fecha.substring(0, 10) : "";
+    let fechaImpresion = fechaStr
+      ? `${fechaStr} ${horaFormateada}`
+      : new Date().toLocaleString("es-CO");
+
+    numerosArray.forEach((numIndividual) => {
+      let numeroLimpio = numIndividual.trim();
+      if (numeroLimpio) {
+        let numFormateado = String(numeroLimpio).padStart(4, "0");
+
+        filasTablaHTML += `
+          <tr>
+            <td>${contadorFila++}</td>
+            <td>${clienteNombre}</td>
+            <td>${fechaImpresion}</td>
+            <td><strong>${numFormateado}</strong></td>
+            <td>${casinoNombre}</td>
+            <td>${cedulaRegistro}</td>
+          </tr>
+        `;
+      }
+    });
+  });
+
+  if (conteo_por_jugador) {
+    let arrayJugadores = Object.keys(conteoPorCedula).map((cedula) => {
+      return {
+        cedula: cedula,
+        nombre: conteoPorCedula[cedula].nombre,
+        totalNumeros: conteoPorCedula[cedula].totalNumeros,
+      };
+    });
+
+    arrayJugadores.sort((a, b) => b.totalNumeros - a.totalNumeros);
+
+    if (arrayJugadores.length === 0) {
+      conteo_por_jugador.innerHTML = `<div style="color: #6c757d; font-style: italic;">No se encontraron registros para esta cédula.</div>`;
+    } else {
+      let htmlJugadores = `<div style="font-weight: bold; margin-bottom: 8px;">Cant. Números por Cédula (Mayor a Menor):</div><ul style="list-style: none; padding: 0; margin: 0;">`;
+
+      arrayJugadores.forEach((jugador) => {
+        htmlJugadores += `
+          <li style="padding: 4px 0; border-bottom: 1px solid #eee;">
+            <strong>${jugador.nombre}</strong> (Cédula: ${jugador.cedula}) — 
+            <span style="color: #003166; font-weight: bold;">${jugador.totalNumeros} números</span>
+          </li>`;
+      });
+
+      htmlJugadores += `</ul>`;
+      conteo_por_jugador.innerHTML = htmlJugadores;
+    }
+  }
+
+  let cuerpoTabla = document.getElementById("tabla_resultados");
+  if (cuerpoTabla) {
+    cuerpoTabla.innerHTML = filasTablaHTML;
+  }
+}
+
+function filtrarPorCedulaInput(event) {
+  let textoBusqueda = event.target.value;
+  renderizarListadoYTabla(datosGlobales, textoBusqueda);
 }
 
 function imprimirlast() {

@@ -211,6 +211,11 @@
                 <div class="info_body_modal">
                     <h2>Conteo</h2>
                     <div class="result_dia_acumula" id="result_conteo"></div>
+                    <div style="margin-bottom: 15px;">
+                        <input type="text" id="buscador_cedula" placeholder="Buscar por número de cédula..."
+                            oninput="filtrarPorCedulaInput(event)" style="display: none;" class="form-control" />
+                    </div>
+                    <div style="width: 100%;" id="conteo_por_jugador"></div>
                 </div>
             </div>
             <div style="display: none;" id="view_registro_dia" class="content_body_modal">
@@ -262,7 +267,7 @@
 
         window.notificarEnvioFirebase = function () {
             update(roomRef, {
-                numero: Date.now() 
+                numero: Date.now()
             });
         };
     </script>
