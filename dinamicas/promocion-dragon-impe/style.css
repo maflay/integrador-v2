@@ -413,6 +413,8 @@ gap: 20px;
 @media(max-width: 768px) {
     .board_2 {
         display: grid;
+        justify-content: center;
+        align-items: center;
         grid-template-columns: repeat(2, 120px);
         gap: 15px;
         position: relative;
@@ -422,5 +424,48 @@ gap: 20px;
         padding: 40px;
         border: 10px solid rgb(133, 108, 0);
         border-radius: 20px;
+    }
+
+    .board {
+        display: none;
+        grid-template-columns: repeat(2, 120px);
+        gap: 15px;
+        position: relative;
+        top: 3px;
+        font-family: 'super wonder', sans-serif !important;
+        background-color: #810000ab;
+        padding: 40px;
+        border: 10px solid rgb(133, 108, 0);
+        border-radius: 20px;
+    }
+
+    .front-c {
+        font-size: 20px;
+    }
+
+    .total_result {
+        font-size: 20px;
+    }
+
+    .content_opcion_head {
+        font-size: 8px;
+    }
+
+    .cell-c,
+    .first_attem_1,
+    .first_attem_2,
+    .first_attem_3,
+    .first_attem_4,
+    .first_attem_5,
+    .first_attem_6,
+    .first_attem_7,
+    .first_attem_8,
+    .first_attem_9,
+    .first_attem_10 {
+        width: 40px;
+        height: 40px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
     }
 }
