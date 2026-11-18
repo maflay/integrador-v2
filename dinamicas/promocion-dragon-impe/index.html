@@ -135,8 +135,8 @@
                 <div class="content_opcion_head">
                     <p id="btn_observacion">Observación</p>
                 </div>
-                <div style="display: none;" class="content_opcion_head">
-                    <p id="btn_tabla_premios">Tabla de Premios</p>
+                <div id="acciones_admin" class="content_opcion_head">
+                    <p id="btn_tabla_premios">Acciones Admin</p>
                 </div>
                 <div class="content_opcion_head">
                     <p id="btn_registro_dia">Registro del Dia</p>
@@ -171,7 +171,7 @@
                                 <option value="A08">A08</option>
                                 <option value="A09">A09</option>
                                 <option value="A10">A10</option>
-                <option value="A10-MESAS">A10-MESAS</option>
+                                <option value="A10-MESAS">A10-MESAS</option>
                                 <option value="A12">A12</option>
                                 <option value="A12-MESAS">A12-MESAS</option>
                                 <option value="A15">A15</option>
@@ -291,8 +291,46 @@
             </div>
             <div style="display: none;" id="view_tabla_premios" class="content_body_modal">
                 <div class="info_body_modal">
-                    <h2>Tabla de premios</h2>
-
+                    <h2>Acciones Admin</h2>
+                    <div>
+                        <select class="form-control" style="cursor: pointer;" id="casino_admin">
+                            <option value="">Casino...</option>
+                            <option value="A05">A05</option>
+                            <option value="A07">A07</option>
+                            <option value="A08">A08</option>
+                            <option value="A09">A09</option>
+                            <option value="A10">A10</option>
+                            <option value="A10-MESAS">A10-MESAS</option>
+                            <option value="A12">A12</option>
+                            <option value="A12-MESAS">A12-MESAS</option>
+                            <option value="A15">A15</option>
+                            <option value="A15-MESAS">A15-MESAS</option>
+                            <option value="A16">A16</option>
+                            <option value="A19">A19</option>
+                            <option value="A35">A35</option>
+                            <option value="A36">A36</option>
+                            <option value="A36-MESAS">A36-MESAS</option>
+                            <option value="A38">A38</option>
+                            <option value="A39">A39</option>
+                            <option value="A43">A43</option>
+                            <option value="A48">A48</option>
+                            <option value="A48-MESAS">A48-MESAS</option>
+                            <option value="A49">A49</option>
+                            <option value="A50">A50</option>
+                            <option value="A53">A53</option>
+                            <option value="A58">A58</option>
+                            <option value="A70">A70</option>
+                            <option value="A781">A781</option>
+                            <option value="A88">A88</option>
+                            <option value="A100">A100</option>
+                            <option value="A108">A108</option>
+                            <option value="A108-MESAS">A108-MESAS</option>
+                            <option value="A127">A127</option>
+                            <option value="A127-MESAS">A127-MESAS</option>
+                        </select>
+                        <br />
+                        <button onclick="deleteHistory()" class="btn btn-danger">Borrar Datos</button>
+                    </div>
                 </div>
             </div>
             <div style="display: none;" id="view_registro_dia" class="content_body_modal">
@@ -312,6 +350,80 @@
     <script src="/dinamicas/actions_js/menu_modal.js"></script>
     <script src="/dinamicas/user.js"></script>
     <script src="/dinamicas/extension.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+        import {
+            getDatabase, ref, push, onChildAdded
+        } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAXCMyH4zx--kZvJ_W1F1KAi5HKjPNxPHo",
+            authDomain: "prueba-f0c25.firebaseapp.com",
+            databaseURL: "https://prueba-f0c25-default-rtdb.firebaseio.com",
+            projectId: "prueba-f0c25",
+            storageBucket: "prueba-f0c25.firebasestorage.app",
+            messagingSenderId: "984894736026",
+            appId: "1:984894736026:web:210df90b981cbef7698123"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const NS = "apps/dragonHistory";
+        const ROOM = "sala_dragon";
+
+        const ordenesRef = ref(db, `${NS}/rooms/${ROOM}/ordenesBorrar`);
+
+        window.deleteHistory = function () {
+            let casino_admin = document.getElementById("casino_admin");
+
+            if (!casino_admin.value) {
+                Swal.fire({
+                    icon: "warning",
+                    title: "Selecciona un casino",
+                    text: "Debes seleccionar el casino para ejecutar la limpieza."
+                });
+                return;
+            }
+
+            Swal.fire({
+                title: "¿Estás seguro?",
+                text: `Se borrará el historial para el casino ${casino_admin.value} en todos los dispositivos conectados.`,
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Sí, borrar",
+                cancelButtonText: "Cancelar"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    push(ordenesRef, {
+                        casinoTarget: casino_admin.value,
+                        timestamp: Date.now()
+                    }).then(() => {
+                        Swal.fire("Enviado", "Orden de borrado enviada correctamente.", "success");
+                    }).catch((error) => {
+                        // console.error("Error al enviar orden a Firebase:", error);
+                    });
+                }
+            });
+        };
+
+        onChildAdded(ordenesRef, (snapshot) => {
+            const data = snapshot.val();
+            if (!data) return;
+
+            const casinoOrden = data.casinoTarget;
+            const historialGuardado = JSON.parse(localStorage.getItem("saveLocalHistory"));
+
+            if (historialGuardado && historialGuardado.Casino) {
+                if (historialGuardado.Casino === casinoOrden) {
+                    // console.log(`Coincide el casino ${casinoOrden}. Borrando historial local...`);
+
+                    localStorage.removeItem("saveLocalHistory");
+
+                    // window.location.reload();
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>

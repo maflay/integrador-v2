@@ -911,9 +911,9 @@ function renderizarListadoYTabla(data, filtroCedula = "") {
     arrayJugadores.sort((a, b) => b.totalNumeros - a.totalNumeros);
 
     if (arrayJugadores.length === 0) {
-      conteo_por_jugador.innerHTML = `<div style="color: #6c757d; font-style: italic;">No se encontraron registros para esta cédula.</div>`;
+      conteo_por_jugador.innerHTML = `<div style="color: #6c757d;">No se encontraron registros para esta cédula.</div>`;
     } else {
-      let htmlJugadores = `<div style="font-weight: bold; margin-bottom: 8px;">Cant. Números por Cédula (Mayor a Menor): Cant. Participantes ${arrayJugadores.length}</div><ul style="list-style: none; padding: 0; margin: 0;">`;
+      let htmlJugadores = `<div style="font-weight: bold; margin-bottom: 8px;">Cant. Números por Cédula (Mayor a Menor): Cant. Participantes : ${Number(arrayJugadores.length) + 1}</div><ul style="list-style: none; padding: 0; margin: 0;">`;
 
       arrayJugadores.forEach((jugador) => {
         htmlJugadores += `

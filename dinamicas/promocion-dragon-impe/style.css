@@ -66,7 +66,7 @@
 ._content_video_show_::before {
     content: "";
     position: absolute;
-    background-image: linear-gradient(180deg , rgba(0, 0, 0, 0.486)) ,url(/dinamicas/promocion-dragon-impe/resources/back_dragon.jpg);
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.486)), url(/dinamicas/promocion-dragon-impe/resources/back_dragon.jpg);
     top: 0;
     left: 0;
     width: 100%;
@@ -93,7 +93,7 @@
 }
 
 
-.board_2{
+.board_2 {
     display: grid;
     grid-template-columns: repeat(5, 120px);
     gap: 15px;
@@ -105,6 +105,7 @@
     border: 10px solid rgb(133, 108, 0);
     border-radius: 20px;
 }
+
 .board {
     display: none;
     grid-template-columns: repeat(5, 120px);
@@ -407,4 +408,19 @@ gap: 20px;
     background-position: center !important;
     background-size: cover !important;
     background-repeat: no-repeat !important;
+}
+
+@media(max-width: 768px) {
+    .board_2 {
+        display: grid;
+        grid-template-columns: repeat(2, 120px);
+        gap: 15px;
+        position: relative;
+        top: 3px;
+        font-family: 'super wonder', sans-serif !important;
+        background-color: #810000ab;
+        padding: 40px;
+        border: 10px solid rgb(133, 108, 0);
+        border-radius: 20px;
+    }
 }

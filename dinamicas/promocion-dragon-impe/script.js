@@ -1,5 +1,6 @@
 window.addEventListener("load", () => {
   document.getElementById("loader").style.display = "none";
+  cargarEstadoJuego();
 });
 
 const audioFicha = new Audio(
@@ -14,6 +15,13 @@ const casino = document.getElementById("casino");
 const loader = document.getElementById("loader");
 
 const user = inforUser();
+const nivelesOcultos = [1, 2, 6];
+
+if (nivelesOcultos.includes(Number(user.Nivel))) {
+  document.getElementById("acciones_admin").style.display = "flex";
+} else {
+  document.getElementById("acciones_admin").style.display = "none";
+}
 
 const PAIRS = [
   { key: "dragon_uno", arts: ["DragonAmarillo-FichasDragonImperial.png"] },
@@ -284,6 +292,95 @@ function resetTurn() {
   lockBoard = false;
 }
 
+function guardarEstadoJuego() {
+  const cellsData = cells.map((cell, index) => {
+    const card = cell.querySelector(".card-c");
+    const backImg =
+      cell.querySelector(".back-c img")?.getAttribute("src") || "";
+    return {
+      index: index,
+      key: cell.dataset.key || "",
+      isFlipped: card ? card.classList.contains("is-flipped") : false,
+      isMatched: cell.classList.contains("is-matched"),
+      backImg: backImg,
+    };
+  });
+
+  const saveLocalHistory = {
+    Casino: casino.value,
+    Categoria: categoria.value,
+    moves: moves,
+    matches: matches,
+    cellsState: cellsData,
+  };
+
+  localStorage.setItem("saveLocalHistory", JSON.stringify(saveLocalHistory));
+}
+
+function cargarEstadoJuego() {
+  const guardado = localStorage.getItem("saveLocalHistory");
+  if (!guardado) return;
+
+  try {
+    const estado = JSON.parse(guardado);
+
+    if (estado.Casino) casino.value = estado.Casino;
+    if (estado.Categoria) categoria.value = estado.Categoria;
+
+    if (estado.Casino && estado.Categoria) {
+      document.querySelector(".board").style.display = "grid";
+      document.getElementById("board_2").style.display = "none";
+      document.getElementById("start_game").style.display = "none";
+      document
+        .querySelector("._content_video_show_")
+        .classList.add("_content_video_");
+    }
+
+    moves = estado.moves || 0;
+    matches = estado.matches || 0;
+    updateHud();
+
+    cells.forEach((cell, i) => {
+      const cellData = estado.cellsState[i];
+      if (!cellData) return;
+
+      cell.dataset.key = cellData.key;
+
+      let card = cell.querySelector(".card-c");
+      if (!card) {
+        cell.innerHTML = `
+          <div class="card-c">
+            <div class="face-c front-c">
+              <span class="card-number">${i + 1}</span>
+            </div>
+            <div class="face-c back-c"></div>
+          </div>`;
+        card = cell.querySelector(".card-c");
+      }
+
+      if (cellData.backImg) {
+        const back = cell.querySelector(".back-c");
+        if (back)
+          back.innerHTML = `<img src="${cellData.backImg}" alt="ficha">`;
+      }
+
+      if (cellData.isFlipped) {
+        card.classList.add("is-flipped");
+      } else {
+        card.classList.remove("is-flipped");
+      }
+
+      if (cellData.isMatched) {
+        cell.classList.add("is-matched");
+      } else {
+        cell.classList.remove("is-matched");
+      }
+    });
+  } catch (e) {
+    console.error("Error al cargar saveLocalHistory:", e);
+  }
+}
+
 function evaluateRevealedPairs(ultimoKey) {
   const flippedCells = document.querySelectorAll(".card-c.is-flipped");
   let board_act = document.querySelector(".board");
@@ -330,7 +427,7 @@ function onCellClick(e) {
 
   const currentKey = cell.dataset.key;
   evaluateRevealedPairs(currentKey);
-
+  guardarEstadoJuego();
   //   if (!firstCell) {
   //     firstCell = cell;
   //     return;
@@ -566,6 +663,7 @@ function handleSendDr() {
     nombre.value = "";
     casino.value = "";
     categoria.value = "";
+    localStorage.removeItem("saveLocalHistory");
     Swal.fire({
       icon: "info",
       title: "Guardado local",
