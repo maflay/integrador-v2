@@ -919,7 +919,7 @@ function renderizarListadoYTabla(data, filtroCedula = "") {
         htmlJugadores += `
           <li style="padding: 4px 0; border-bottom: 1px solid #eee;">
             <strong>${jugador.nombre}</strong> (Cédula: ${jugador.cedula}) — 
-            <span style="color: #003166; font-weight: bold;">${jugador.totalNumeros} números</span>
+            <span style="color: #003166;">${jugador.totalNumeros} números</span>
           </li>`;
       });
 
