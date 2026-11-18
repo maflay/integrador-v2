@@ -913,7 +913,7 @@ function renderizarListadoYTabla(data, filtroCedula = "") {
     if (arrayJugadores.length === 0) {
       conteo_por_jugador.innerHTML = `<div style="color: #6c757d; font-style: italic;">No se encontraron registros para esta cédula.</div>`;
     } else {
-      let htmlJugadores = `<div style="font-weight: bold; margin-bottom: 8px;">Cant. Números por Cédula (Mayor a Menor):</div><ul style="list-style: none; padding: 0; margin: 0;">`;
+      let htmlJugadores = `<div style="font-weight: bold; margin-bottom: 8px;">Cant. Números por Cédula (Mayor a Menor): Cant. Participantes ${arrayJugadores.length}</div><ul style="list-style: none; padding: 0; margin: 0;">`;
 
       arrayJugadores.forEach((jugador) => {
         htmlJugadores += `
