@@ -615,6 +615,7 @@ function GetAllData() {
                 <th>Premio</th>
                 <th>Nº Máquina</th>
                 <th>Acciones</th>
+                <th>ReImprimir</th>
               </tr>
             </thead>
             <tbody>
@@ -670,6 +671,10 @@ function GetAllData() {
                             : `<button class="table_btn_enviar_bono" type="button" onclick="actualizarRegistro('${registro.Identify}', '${registro.Cedula}', '${registro.Dia}', '${registro.Mes}', '${registro.Anio}', ${i},'${formatearHora(registro.Tiempo_redimido)}')">Guardar</button>`
                         }
                       </td>
+                      <td>
+                      <button class="table_btn_enviar_bono" type="button" onclick="reimprimirTicket('${registro.Identify}', '${registro.Cedula}','${registro.Casino}','${formatearFecha(registro.Fecha)}','${formatearHora(registro.Hora)}' ,'${formatearHora(registro.Tiempo_redimido)}','${registro.Nombre}','${registro.Cedula}','${registro.Telefono}','${registro.Tiempo_valido}')">Reimprimir</button>
+                      </td>
+
                     </tr>
                   `;
                 })
@@ -709,6 +714,91 @@ function GetAllData() {
       console.error(err);
       _all_register_zxwerz_.innerHTML = `<p>Error al cargar los datos.</p>`;
     });
+}
+
+function reimprimirTicket(
+  Identify,
+  Cedula,
+  Casino,
+  Fecha,
+  Hora,
+  Tiempo_redimido,
+  Nombre,
+  Cedula,
+  Telefono,
+  Tiempo_valido,
+) {
+ 
+  let contenedor = document.getElementById("print-container");
+  if (!contenedor) {
+    contenedor = document.createElement("div");
+    contenedor.id = "print-container";
+    document.body.appendChild(contenedor);
+  }
+
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+  const [fecha, hora] = fechaCompleta.split(", ");
+  contenedor.innerHTML = `
+        <div class="ticket-pos">
+            <div class="pos-header">
+            <img src="/dinamicas/grandaladdin/resources/Grand-aladdin-Prestige-Logo-otro.png" alt="GrandAladdin">
+            <br />    
+            <br />    
+            <p><strong>PROMO: GANA MÁS</strong></p>
+                <p>CASINO: ${Casino || "GENERAL"}</p>
+                <p>Id UNICO: ${Identify || "GENERAL"}</p>
+            </div>
+            <div class="pos-divider">--------------------------------</div>
+            <div class="pos-info">
+                <p><strong>CLIENTE: </strong><strong>${Nombre}</strong></p>
+                <p><strong>CÉDULA: </strong><strong>${Cedula}</strong></p>
+                <p><strong>TELEFONO: </strong><strong>${Telefono}</strong></p>
+                <p><strong>FECHA DE IMPRESION: </strong><strong><br/>${fecha + " - " + hora}</strong></p>
+            </div>
+            <div class="pos-divider">--------------------------------</div>
+            <div class="pos-numeros">
+                <p><strong>Fecha de registro: </strong>${Fecha}</p>
+                <p><strong>Hora de registro: </strong>${Hora}</p>
+                <p><strong>Vence dentro de: </strong>${Tiempo_valido}</p>
+                <p><strong>Hora limite para redimir: </strong></br>${Tiempo_redimido}</p>
+            </div>
+            <div class="pos-divider">--------------------------------</div>
+            <div class="pos-footer">
+                <p>Aplica Términos y Condiciones</p>
+                <p>¡Gracias por participar!</p>
+                <p>Conserve este tiquete</p>
+            </div>
+        </div>
+    `;
+
+  const logo = contenedor.querySelector("img");
+
+  const ejecutarImpresion = () => {
+    setTimeout(() => {
+      window.print();
+      contenedor.innerHTML = "";
+    }, 500);
+  };
+
+  if (logo) {
+    if (logo.complete) {
+      ejecutarImpresion();
+    } else {
+      logo.onload = ejecutarImpresion;
+      logo.onerror = ejecutarImpresion;
+    }
+  } else {
+    ejecutarImpresion();
+  }
 }
 
 async function actualizarRegistro(
