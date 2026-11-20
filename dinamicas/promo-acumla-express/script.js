@@ -139,7 +139,7 @@ function capturarGanador() {
 }
 
 function onResultadoCapturado(valor, indice) {
-  console.log(`Pieza #${indice + 1} seleccionada -> Valor: "${valor}"`);
+  // console.log(`Pieza #${indice + 1} seleccionada -> Valor: "${valor}"`);
 }
 
 function toggleBotones(deshabilitar) {
@@ -271,40 +271,6 @@ function getHorario() {
 }
 
 document.getElementById("_btn_crear_player_").addEventListener("click", () => {
-  // let cedula = document.getElementById("cedula");
-  // let nombre = document.getElementById("nombre");
-  // let casino = document.getElementById("casino");
-  // let telefono = document.getElementById("telefono");
-  // if (
-  //   cedula.value == "" ||
-  //   nombre.value == "" ||
-  //   casino.value == "" ||
-  //   telefono.value == ""
-  // ) {
-  //   Swal.fire({
-  //     icon: "warning",
-  //     title: "Completa la información",
-  //   });
-  //   return;
-  // }
-  // let numeroRandom = Math.floor(Math.random() * 3 + 1);
-  // loader.style.display = "flex";
-  // loader.style.background = "white";
-  // setTimeout(() => {
-  //   loader.style.display = "none";
-  //   loader.style.background = "#ffffffcc";
-  //   Swal.fire({
-  //     icon: "info",
-  //     title: `Tienes ${numeroRandom} ${numeroRandom == 1 ? "Hora" : "Horas"}`,
-  //     html: `Puedes reclamar tu premio antes de cumplir el horario`,
-  //     allowOutsideClick: false,
-  //   }).then((res) => {
-  //     if(res.isConfirmed){
-  //       handleCrearPlayer(numeroRandom);
-  //     }
-  //   });
-  // }, 3000);
-  // console.log(numeroRandom);
   handleCrearPlayer();
 });
 
@@ -314,11 +280,7 @@ function handleCrearPlayer() {
   let casino = document.getElementById("casino");
   let telefono = document.getElementById("telefono");
 
-  if (
-    cedula.value == "" ||
-    nombre.value == "" ||
-    casino.value == "" 
-  ) {
+  if (cedula.value == "" || nombre.value == "" || casino.value == "") {
     Swal.fire({
       icon: "warning",
       title: "Completa la información",
@@ -334,18 +296,6 @@ function handleCrearPlayer() {
     loader.style.display = "none";
     return;
   }
-
-  // if (
-  //   _rango_fec_estas_.textContent == "Sin Horario" ||
-  //   _rango_fec_estas_.textContent == "00:00:00 - 00:00:00"
-  // ) {
-  //   Swal.fire({
-  //     icon: "info",
-  //     title: "No hay un horario Disponible",
-  //   });
-  //   loader.style.display = "none";
-  //   return;
-  // }
 
   localStorage.removeItem("InfoImprimir");
 
@@ -363,94 +313,6 @@ function handleCrearPlayer() {
 
   let hora_curren = hora;
   let fecha_curren = fecha;
-
-  // let rangoTexto = _rango_fec_estas_.textContent;
-  // let [strHoraIni, strHoraFin] = rangoTexto.split(" - ");
-
-  // let segundosRegistro = horaASegundos(hora);
-  // let segundosIniRango = horaASegundos(strHoraIni);
-  // let segundosFinRango = horaASegundos(strHoraFin);
-
-  // let segundosFinRangoMax = horaASegundos("23:59:00");
-
-  // if (segundosRegistro >= 0 && segundosRegistro < horaASegundos("06:00:00")) {
-  //   loader.style.display = "none";
-  //   Swal.fire({
-  //     icon: "warning",
-  //     title: "Horario Excedido",
-  //     html: "El horario de la promoción ha finalizado. No se permiten registros en la madrugada.",
-  //   });
-  //   return;
-  // }
-
-  // if (segundosRegistro > segundosFinRangoMax) {
-  //   loader.style.display = "none";
-  //   Swal.fire({
-  //     icon: "warning",
-  //     title: "Horario Excedido",
-  //     html: "La hora del registro ha superado el límite máximo permitido para hoy.",
-  //   });
-  //   return;
-  // }
-
-  // let tiempoResultadoSegundos = 0;
-  // let esMargenDeGracia = false;
-
-  // if (segundosRegistro < segundosIniRango) {
-  //   tiempoResultadoSegundos = segundosFinRango - segundosIniRango;
-  // } else if (
-  //   segundosRegistro >= segundosIniRango &&
-  //   segundosRegistro <= segundosFinRango
-  // ) {
-  //   tiempoResultadoSegundos = segundosFinRango - segundosRegistro;
-  // } else if (
-  //   segundosRegistro > segundosFinRango &&
-  //   segundosRegistro <= segundosFinRangoMax
-  // ) {
-  //   tiempoResultadoSegundos = 0;
-  //   esMargenDeGracia = true;
-  // } else {
-  //   tiempoResultadoSegundos = 0;
-  // }
-
-  // let esTiempoValido =
-  //   (segundosRegistro >= segundosIniRango &&
-  //     segundosRegistro <= segundosFinRango) ||
-  //   segundosRegistro < segundosIniRango ||
-  //   esMargenDeGracia;
-
-  // if (!esTiempoValido) {
-  //   loader.style.display = "none";
-  //   Swal.fire({
-  //     icon: "warning",
-  //     title: "Error en la Operación",
-  //     html: "No hay un horario o esta afuera del rango permitido",
-  //   });
-  //   return;
-  // }
-
-  // function segundosAHoras(segundos) {
-  //   let h = Math.floor(segundos / 3600)
-  //     .toString()
-  //     .padStart(2, "0");
-  //   let m = Math.floor((segundos % 3600) / 60)
-  //     .toString()
-  //     .padStart(2, "0");
-  //   let s = (segundos % 60).toString().padStart(2, "0");
-  //   return `${h}:${m}:${s}`;
-  // }
-  // let tiempo_valido = segundosAHoras(tiempoResultadoSegundos);
-
-  // if (tiempoResultadoSegundos == 0 && !esMargenDeGracia) {
-  //   loader.style.display = "none";
-  //   Swal.fire({
-  //     icon: "warning",
-  //     title: "Error en la Operación",
-  //     html: "No hay un horario o esta afuera del rango permitido",
-  //   });
-  //   return;
-  // }
-
   let identify = Date.now();
 
   const DIA = Number(
@@ -490,7 +352,6 @@ function handleCrearPlayer() {
     Anio: ANIO,
   };
 
-  console.log(bodyCreate);
   loader.style.display = "flex";
   fetch(
     `${url}?hoja=dinamica&cedula=${cedula.value}&dia=${DIA}&mes=${MES}&anio=${ANIO}`,
@@ -622,7 +483,6 @@ function imprimirTickeHora() {
     datos.hor_reg_jugador,
     datos.hor_sobr_jugador,
   );
-  console.log("Hora límite:", maxHorario);
 
   contenedor.innerHTML = `
         <div class="ticket-pos">
@@ -650,7 +510,7 @@ function imprimirTickeHora() {
             </div>
             <div class="pos-divider">--------------------------------</div>
             <div class="pos-footer">
-                <p>Aplica Terminos y Condiciones</p>
+                <p>Aplica Términos y Condiciones</p>
                 <p>¡Gracias por participar!</p>
                 <p>Conserve este tiquete</p>
             </div>
@@ -871,8 +731,6 @@ async function actualizarRegistro(
     hour12: false,
   });
   const [fecha, hora] = fechaCompleta.split(", ");
-  console.log(hora);
-  console.log(horaMax);
 
   if (hora > horaMax) {
     Swal.fire({
