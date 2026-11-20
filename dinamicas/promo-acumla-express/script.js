@@ -317,8 +317,7 @@ function handleCrearPlayer() {
   if (
     cedula.value == "" ||
     nombre.value == "" ||
-    casino.value == "" ||
-    telefono.value == ""
+    casino.value == "" 
   ) {
     Swal.fire({
       icon: "warning",
@@ -543,6 +542,7 @@ function handleCrearPlayer() {
             cedula.value = "";
             casino.value = "";
             telefono.value = "";
+            HORAS_ASIGNADA = 0;
             loader.style.display = "none";
             GetAllData();
             Swal.fire({
