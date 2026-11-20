@@ -68,8 +68,10 @@
                 </select>
                 <input id="telefono" type="number" class="form-control" placeholder="Teléfono">
                 <button id="_btn_imprimir_last_" class="btn btn-danger">Imprimir ultimo registro</button>
+                <button id="_btn_generar_horario_" class="btn btn-danger">Generar Horario</button>
                 <button id="_btn_crear_player_" class="btn btn-primary">Crear</button>
             </div>
+
             <div class="_upda_ax_">
                 <div style="width: 200px; margin-bottom: 20px;">
 
@@ -81,7 +83,49 @@
             </div>
         </div>
     </div>
+    <div id="ruleta" class="ruleta">
+        <main class="contenedor-principal">
+            <!-- Sección de la Ruleta -->
+            <section class="panel-ruleta">
+                <div class="ruleta-wrapper">
+                    <div class="puntero"></div>
+                    <canvas id="ruletaCanvas" width="380" height="380"></canvas>
+                    <button id="btnGirar" class="btn-centro">GIRAR</button>
+                </div>
+                <br />
+                <button id="_close_ruleta_" class="btn btn-danger">Cerrar</button>
+            </section>
 
+            <!-- Panel de Configuración y Captura -->
+            <section style="display: none;" class="panel-controles">
+                <h2>Asignar Opciones</h2>
+
+                <div class="grupo-inputs">
+                    <div class="input-item">
+                        <span class="color-dot" style="background: #d90429;"></span>
+                        <input type="text" id="opcion1" value="1 Hora" maxlength="25" placeholder="Texto pieza 1">
+                    </div>
+                    <div class="input-item">
+                        <span class="color-dot" style="background: #f4a261;"></span>
+                        <input type="text" id="opcion2" value="2 Horas" maxlength="25" placeholder="Texto pieza 2">
+                    </div>
+                    <div class="input-item">
+                        <span class="color-dot" style="background: #4b0082;"></span>
+                        <input type="text" id="opcion3" value="3 Horas" maxlength="25" placeholder="Texto pieza 3">
+                    </div>
+                </div>
+
+                <!-- Resultado Capturado -->
+                <div class="caja-resultado">
+                    <span class="etiqueta">VALOR CAPTURADO:</span>
+                    <div id="valorCapturado" class="valor-texto">---</div>
+                    <input type="hidden" id="inputOcultoResultado" name="resultado_ruleta" value="">
+                </div>
+
+                <button id="btnGirarSecundario" class="btn-accion">Girar Ruleta</button>
+            </section>
+        </main>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>

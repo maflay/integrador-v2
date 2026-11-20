@@ -16,6 +16,147 @@ document.getElementById("_send_sched_").addEventListener("click", () => {
   handleSendSched();
 });
 
+let HORAS_ASIGNADA = 0;
+
+document
+  .getElementById("_btn_generar_horario_")
+  .addEventListener("click", () => {
+    document.getElementById("ruleta").style.display = "flex";
+  });
+
+document.getElementById("_close_ruleta_").addEventListener("click", () => {
+  document.getElementById("ruleta").style.display = "none";
+});
+
+const canvas = document.getElementById("ruletaCanvas");
+const ctx = canvas.getContext("2d");
+
+const inputsOpciones = [
+  document.getElementById("opcion1"),
+  document.getElementById("opcion2"),
+  document.getElementById("opcion3"),
+];
+
+const btnGirar = document.getElementById("btnGirar");
+const btnGirarSecundario = document.getElementById("btnGirarSecundario");
+const displayResultado = document.getElementById("valorCapturado");
+const inputOcultoResultado = document.getElementById("inputOcultoResultado");
+
+const colores = ["#d90429", "#f4a261", "#4b0082"];
+const textosColor = ["#ffffff", "#111111", "#ffffff"];
+const numSectores = 3;
+const anguloSector = (2 * Math.PI) / numSectores;
+
+let anguloActual = 0;
+let girando = false;
+
+function dibujarRuleta() {
+  const centroX = canvas.width / 2;
+  const centroY = canvas.height / 2;
+  const radio = canvas.width / 2;
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  for (let i = 0; i < numSectores; i++) {
+    const anguloInicio = anguloActual + i * anguloSector;
+    const anguloFin = anguloInicio + anguloSector;
+
+    ctx.beginPath();
+    ctx.moveTo(centroX, centroY);
+    ctx.arc(centroX, centroY, radio, anguloInicio, anguloFin);
+    ctx.closePath();
+    ctx.fillStyle = colores[i];
+    ctx.fill();
+
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "#ffd700";
+    ctx.stroke();
+
+    ctx.save();
+    ctx.translate(centroX, centroY);
+    ctx.rotate(anguloInicio + anguloSector / 2);
+    ctx.textAlign = "right";
+    ctx.fillStyle = textosColor[i];
+    ctx.font = 'bold 18px "Segoe UI", sans-serif';
+
+    const texto = inputsOpciones[i].value.trim() || `Opción ${i + 1}`;
+    ctx.fillText(texto, radio - 28, 6);
+    ctx.restore();
+  }
+}
+
+function iniciarGiro() {
+  if (girando) return;
+  girando = true;
+  toggleBotones(true);
+  displayResultado.textContent = "Girando...";
+
+  const vueltasExtra = (Math.floor(Math.random() * 4) + 5) * 2 * Math.PI;
+  const anguloAleatorio = Math.random() * 2 * Math.PI;
+  const rotacionTotal = vueltasExtra + anguloAleatorio;
+
+  const anguloInicial = anguloActual;
+  const duracion = 4000;
+  const tiempoInicio = performance.now();
+
+  function animar(tiempoActual) {
+    const transcurrido = tiempoActual - tiempoInicio;
+    const progreso = Math.min(transcurrido / duracion, 1);
+
+    const easeOut = 1 - Math.pow(1 - progreso, 4);
+    anguloActual = anguloInicial + rotacionTotal * easeOut;
+
+    dibujarRuleta();
+
+    if (progreso < 1) {
+      requestAnimationFrame(animar);
+    } else {
+      girando = false;
+      toggleBotones(false);
+      capturarGanador();
+    }
+  }
+
+  requestAnimationFrame(animar);
+}
+
+function capturarGanador() {
+  const anguloPuntero = (3 * Math.PI) / 2;
+  const anguloNormalizado = anguloActual % (2 * Math.PI);
+
+  let diferencia = (anguloPuntero - anguloNormalizado) % (2 * Math.PI);
+  if (diferencia < 0) diferencia += 2 * Math.PI;
+
+  const indiceGanador = Math.floor(diferencia / anguloSector);
+  const valorGanador =
+    inputsOpciones[indiceGanador].value.trim() || `Opción ${indiceGanador + 1}`;
+
+  displayResultado.textContent = valorGanador;
+  HORAS_ASIGNADA = valorGanador;
+  inputOcultoResultado.value = valorGanador;
+
+  onResultadoCapturado(valorGanador, indiceGanador);
+}
+
+function onResultadoCapturado(valor, indice) {
+  console.log(`Pieza #${indice + 1} seleccionada -> Valor: "${valor}"`);
+}
+
+function toggleBotones(deshabilitar) {
+  btnGirar.disabled = deshabilitar;
+  btnGirarSecundario.disabled = deshabilitar;
+  inputsOpciones.forEach((input) => (input.disabled = deshabilitar));
+}
+
+inputsOpciones.forEach((input) => {
+  input.addEventListener("input", dibujarRuleta);
+});
+
+btnGirar.addEventListener("click", iniciarGiro);
+btnGirarSecundario.addEventListener("click", iniciarGiro);
+
+dibujarRuleta();
+
 let user = inforUser();
 
 const nivelesOcultos = [1, 2, 6];
@@ -130,6 +271,40 @@ function getHorario() {
 }
 
 document.getElementById("_btn_crear_player_").addEventListener("click", () => {
+  // let cedula = document.getElementById("cedula");
+  // let nombre = document.getElementById("nombre");
+  // let casino = document.getElementById("casino");
+  // let telefono = document.getElementById("telefono");
+  // if (
+  //   cedula.value == "" ||
+  //   nombre.value == "" ||
+  //   casino.value == "" ||
+  //   telefono.value == ""
+  // ) {
+  //   Swal.fire({
+  //     icon: "warning",
+  //     title: "Completa la información",
+  //   });
+  //   return;
+  // }
+  // let numeroRandom = Math.floor(Math.random() * 3 + 1);
+  // loader.style.display = "flex";
+  // loader.style.background = "white";
+  // setTimeout(() => {
+  //   loader.style.display = "none";
+  //   loader.style.background = "#ffffffcc";
+  //   Swal.fire({
+  //     icon: "info",
+  //     title: `Tienes ${numeroRandom} ${numeroRandom == 1 ? "Hora" : "Horas"}`,
+  //     html: `Puedes reclamar tu premio antes de cumplir el horario`,
+  //     allowOutsideClick: false,
+  //   }).then((res) => {
+  //     if(res.isConfirmed){
+  //       handleCrearPlayer(numeroRandom);
+  //     }
+  //   });
+  // }, 3000);
+  // console.log(numeroRandom);
   handleCrearPlayer();
 });
 
@@ -152,10 +327,7 @@ function handleCrearPlayer() {
     return;
   }
 
-  if (
-    _rango_fec_estas_.textContent == "Sin Horario" ||
-    _rango_fec_estas_.textContent == "00:00:00 - 00:00:00"
-  ) {
+  if (HORAS_ASIGNADA == 0) {
     Swal.fire({
       icon: "info",
       title: "No hay un horario Disponible",
@@ -163,6 +335,18 @@ function handleCrearPlayer() {
     loader.style.display = "none";
     return;
   }
+
+  // if (
+  //   _rango_fec_estas_.textContent == "Sin Horario" ||
+  //   _rango_fec_estas_.textContent == "00:00:00 - 00:00:00"
+  // ) {
+  //   Swal.fire({
+  //     icon: "info",
+  //     title: "No hay un horario Disponible",
+  //   });
+  //   loader.style.display = "none";
+  //   return;
+  // }
 
   localStorage.removeItem("InfoImprimir");
 
@@ -181,92 +365,92 @@ function handleCrearPlayer() {
   let hora_curren = hora;
   let fecha_curren = fecha;
 
-  let rangoTexto = _rango_fec_estas_.textContent;
-  let [strHoraIni, strHoraFin] = rangoTexto.split(" - ");
+  // let rangoTexto = _rango_fec_estas_.textContent;
+  // let [strHoraIni, strHoraFin] = rangoTexto.split(" - ");
 
-  let segundosRegistro = horaASegundos(hora);
-  let segundosIniRango = horaASegundos(strHoraIni);
-  let segundosFinRango = horaASegundos(strHoraFin);
+  // let segundosRegistro = horaASegundos(hora);
+  // let segundosIniRango = horaASegundos(strHoraIni);
+  // let segundosFinRango = horaASegundos(strHoraFin);
 
-  let segundosFinRangoMax = horaASegundos("23:59:00");
+  // let segundosFinRangoMax = horaASegundos("23:59:00");
 
-  if (segundosRegistro >= 0 && segundosRegistro < horaASegundos("06:00:00")) {
-    loader.style.display = "none";
-    Swal.fire({
-      icon: "warning",
-      title: "Horario Excedido",
-      html: "El horario de la promoción ha finalizado. No se permiten registros en la madrugada.",
-    });
-    return;
-  }
+  // if (segundosRegistro >= 0 && segundosRegistro < horaASegundos("06:00:00")) {
+  //   loader.style.display = "none";
+  //   Swal.fire({
+  //     icon: "warning",
+  //     title: "Horario Excedido",
+  //     html: "El horario de la promoción ha finalizado. No se permiten registros en la madrugada.",
+  //   });
+  //   return;
+  // }
 
-  if (segundosRegistro > segundosFinRangoMax) {
-    loader.style.display = "none";
-    Swal.fire({
-      icon: "warning",
-      title: "Horario Excedido",
-      html: "La hora del registro ha superado el límite máximo permitido para hoy.",
-    });
-    return;
-  }
+  // if (segundosRegistro > segundosFinRangoMax) {
+  //   loader.style.display = "none";
+  //   Swal.fire({
+  //     icon: "warning",
+  //     title: "Horario Excedido",
+  //     html: "La hora del registro ha superado el límite máximo permitido para hoy.",
+  //   });
+  //   return;
+  // }
 
-  let tiempoResultadoSegundos = 0;
-  let esMargenDeGracia = false;
+  // let tiempoResultadoSegundos = 0;
+  // let esMargenDeGracia = false;
 
-  if (segundosRegistro < segundosIniRango) {
-    tiempoResultadoSegundos = segundosFinRango - segundosIniRango;
-  } else if (
-    segundosRegistro >= segundosIniRango &&
-    segundosRegistro <= segundosFinRango
-  ) {
-    tiempoResultadoSegundos = segundosFinRango - segundosRegistro;
-  } else if (
-    segundosRegistro > segundosFinRango &&
-    segundosRegistro <= segundosFinRangoMax
-  ) {
-    tiempoResultadoSegundos = 0;
-    esMargenDeGracia = true;
-  } else {
-    tiempoResultadoSegundos = 0;
-  }
+  // if (segundosRegistro < segundosIniRango) {
+  //   tiempoResultadoSegundos = segundosFinRango - segundosIniRango;
+  // } else if (
+  //   segundosRegistro >= segundosIniRango &&
+  //   segundosRegistro <= segundosFinRango
+  // ) {
+  //   tiempoResultadoSegundos = segundosFinRango - segundosRegistro;
+  // } else if (
+  //   segundosRegistro > segundosFinRango &&
+  //   segundosRegistro <= segundosFinRangoMax
+  // ) {
+  //   tiempoResultadoSegundos = 0;
+  //   esMargenDeGracia = true;
+  // } else {
+  //   tiempoResultadoSegundos = 0;
+  // }
 
-  let esTiempoValido =
-    (segundosRegistro >= segundosIniRango &&
-      segundosRegistro <= segundosFinRango) ||
-    segundosRegistro < segundosIniRango ||
-    esMargenDeGracia;
+  // let esTiempoValido =
+  //   (segundosRegistro >= segundosIniRango &&
+  //     segundosRegistro <= segundosFinRango) ||
+  //   segundosRegistro < segundosIniRango ||
+  //   esMargenDeGracia;
 
-  if (!esTiempoValido) {
-    loader.style.display = "none";
-    Swal.fire({
-      icon: "warning",
-      title: "Error en la Operación",
-      html: "No hay un horario o esta afuera del rango permitido",
-    });
-    return;
-  }
+  // if (!esTiempoValido) {
+  //   loader.style.display = "none";
+  //   Swal.fire({
+  //     icon: "warning",
+  //     title: "Error en la Operación",
+  //     html: "No hay un horario o esta afuera del rango permitido",
+  //   });
+  //   return;
+  // }
 
-  function segundosAHoras(segundos) {
-    let h = Math.floor(segundos / 3600)
-      .toString()
-      .padStart(2, "0");
-    let m = Math.floor((segundos % 3600) / 60)
-      .toString()
-      .padStart(2, "0");
-    let s = (segundos % 60).toString().padStart(2, "0");
-    return `${h}:${m}:${s}`;
-  }
-  let tiempo_valido = segundosAHoras(tiempoResultadoSegundos);
+  // function segundosAHoras(segundos) {
+  //   let h = Math.floor(segundos / 3600)
+  //     .toString()
+  //     .padStart(2, "0");
+  //   let m = Math.floor((segundos % 3600) / 60)
+  //     .toString()
+  //     .padStart(2, "0");
+  //   let s = (segundos % 60).toString().padStart(2, "0");
+  //   return `${h}:${m}:${s}`;
+  // }
+  // let tiempo_valido = segundosAHoras(tiempoResultadoSegundos);
 
-  if (tiempoResultadoSegundos == 0 && !esMargenDeGracia) {
-    loader.style.display = "none";
-    Swal.fire({
-      icon: "warning",
-      title: "Error en la Operación",
-      html: "No hay un horario o esta afuera del rango permitido",
-    });
-    return;
-  }
+  // if (tiempoResultadoSegundos == 0 && !esMargenDeGracia) {
+  //   loader.style.display = "none";
+  //   Swal.fire({
+  //     icon: "warning",
+  //     title: "Error en la Operación",
+  //     html: "No hay un horario o esta afuera del rango permitido",
+  //   });
+  //   return;
+  // }
 
   let identify = Date.now();
 
@@ -287,6 +471,8 @@ function handleCrearPlayer() {
     year: "numeric",
   });
 
+  let maxHorario = calcularHorarioMaximo(hora_curren, HORAS_ASIGNADA);
+
   let bodyCreate = {
     tipo: "dinamica",
     Hora: hora_curren,
@@ -298,13 +484,14 @@ function handleCrearPlayer() {
     Telefono: telefono.value,
     Usuario: user.Nombre,
     Promocion: promocion,
-    Tiempo_valido: tiempo_valido,
-    Tiempo_redimido: rangoTexto,
+    Tiempo_valido: HORAS_ASIGNADA,
+    Tiempo_redimido: maxHorario,
     Dia: DIA,
     Mes: MES,
     Anio: ANIO,
   };
 
+  console.log(bodyCreate);
   loader.style.display = "flex";
   fetch(
     `${url}?hoja=dinamica&cedula=${cedula.value}&dia=${DIA}&mes=${MES}&anio=${ANIO}`,
@@ -335,8 +522,8 @@ function handleCrearPlayer() {
               tel_jugador: telefono.value,
               hor_reg_jugador: hora_curren,
               fec_reg_jugador: fecha_curren,
-              hor_sobr_jugador: tiempo_valido,
-              Tiempo_redimido: rangoTexto,
+              hor_sobr_jugador: HORAS_ASIGNADA,
+              // Tiempo_redimido: rangoTexto,
             };
 
             localStorage.setItem("InfoImprimir", JSON.stringify(bodyImprimir));
@@ -349,8 +536,8 @@ function handleCrearPlayer() {
               tel_jugador: telefono.value,
               hor_reg_jugador: hora_curren,
               fec_reg_jugador: fecha_curren,
-              hor_sobr_jugador: tiempo_valido,
-              Tiempo_redimido: rangoTexto,
+              hor_sobr_jugador: HORAS_ASIGNADA,
+              // Tiempo_redimido: rangoTexto,
             };
             nombre.value = "";
             cedula.value = "";
@@ -377,6 +564,28 @@ function handleCrearPlayer() {
           });
       }
     });
+}
+
+function calcularHorarioMaximo(horaRegistro, horasSobrantes) {
+  if (!horaRegistro) return "---";
+
+  const partesHora = String(horaRegistro).trim().split(":");
+  let horas = parseInt(partesHora[0], 10) || 0;
+  const minutos = parseInt(partesHora[1], 10) || 0;
+  const segundos = parseInt(partesHora[2], 10) || 0;
+
+  const matchHoras = String(horasSobrantes ?? "").match(/\d+/);
+  const extraHoras = matchHoras ? parseInt(matchHoras[0], 10) : 0;
+
+  let horaLimite = horas + extraHoras;
+  const pasaMedianoche = horaLimite >= 24;
+  horaLimite = horaLimite % 24;
+
+  const hh = String(horaLimite).padStart(2, "0");
+  const mm = String(minutos).padStart(2, "0");
+  const ss = String(segundos).padStart(2, "0");
+
+  return pasaMedianoche ? `${hh}:${mm}:${ss} (día sig.)` : `${hh}:${mm}:${ss}`;
 }
 
 function imprimirTickeHora() {
@@ -407,7 +616,13 @@ function imprimirTickeHora() {
 
   // <span><strong>N ${idx + 1}:</strong></span>
 
-  let horaFinimp = datos.Tiempo_redimido.split("-");
+  // let horaFinimp = datos.Tiempo_redimido.split("-");
+
+  let maxHorario = calcularHorarioMaximo(
+    datos.hor_reg_jugador,
+    datos.hor_sobr_jugador,
+  );
+  console.log("Hora límite:", maxHorario);
 
   contenedor.innerHTML = `
         <div class="ticket-pos">
@@ -415,7 +630,7 @@ function imprimirTickeHora() {
             <img src="/dinamicas/grandaladdin/resources/Grand-aladdin-Prestige-Logo-otro.png" alt="GrandAladdin">
             <br />    
             <br />    
-            <p><strong>PROMO: GANA MAX</strong></p>
+            <p><strong>PROMO: GANA MÁS</strong></p>
                 <p>CASINO: ${datos.cas_jugador || "GENERAL"}</p>
                 <p>Id UNICO: ${datos.ident_jugador || "GENERAL"}</p>
             </div>
@@ -430,11 +645,12 @@ function imprimirTickeHora() {
             <div class="pos-numeros">
                 <p><strong>Fecha de registro: </strong>${datos.fec_reg_jugador}</p>
                 <p><strong>Hora de registro: </strong>${datos.hor_reg_jugador}</p>
-                <p><strong>Vence a las: </strong>${horaFinimp[1]} del dia de hoy</p>
-                <p><strong>Harario Valido para redimir: </strong></br>${datos.Tiempo_redimido}</p>
+                <p><strong>Vence dentro de: </strong>${datos.hor_sobr_jugador}</p>
+                <p><strong>Hora limite para redimir: </strong></br>${maxHorario}</p>
             </div>
             <div class="pos-divider">--------------------------------</div>
             <div class="pos-footer">
+                <p>Aplica Terminos y Condiciones</p>
                 <p>¡Gracias por participar!</p>
                 <p>Conserve este tiquete</p>
             </div>
@@ -533,6 +749,7 @@ function GetAllData() {
                 <th>Hora</th>
                 <th>Cédula</th>
                 <th>Casino</th>
+                <th>Max. Horario</th>
                 <th># Bono</th>
                 <th>Valor Bono</th>
                 <th>Premio</th>
@@ -544,7 +761,11 @@ function GetAllData() {
               ${data
                 .reverse()
                 .map((registro, i) => {
-                  const tieneDatos = registro.Bono && registro.PremioObt && registro.Bono_val && registro.Num_maq;
+                  const tieneDatos =
+                    registro.Bono &&
+                    registro.PremioObt &&
+                    registro.Bono_val &&
+                    registro.Num_maq;
                   return `
                     <tr>
                       <td>${i + 1}</td>
@@ -553,6 +774,7 @@ function GetAllData() {
                       <td>${formatearHora(registro.Hora)}</td>
                       <td>${registro.Cedula}</td>
                       <td>${registro.Casino}</td>
+                      <td>${formatearHora(registro.Tiempo_redimido)}</td>
                       <td>
                         ${
                           registro.Bono
@@ -585,7 +807,7 @@ function GetAllData() {
                         ${
                           tieneDatos
                             ? "Ya tiene premio"
-                            : `<button class="table_btn_enviar_bono" type="button" onclick="actualizarRegistro('${registro.Identify}', '${registro.Cedula}', '${registro.Dia}', '${registro.Mes}', '${registro.Anio}', ${i})">Guardar</button>`
+                            : `<button class="table_btn_enviar_bono" type="button" onclick="actualizarRegistro('${registro.Identify}', '${registro.Cedula}', '${registro.Dia}', '${registro.Mes}', '${registro.Anio}', ${i},'${formatearHora(registro.Tiempo_redimido)}')">Guardar</button>`
                         }
                       </td>
                     </tr>
@@ -629,7 +851,38 @@ function GetAllData() {
     });
 }
 
-async function actualizarRegistro(identify, cedula, dia, mes, anio, index) {
+async function actualizarRegistro(
+  identify,
+  cedula,
+  dia,
+  mes,
+  anio,
+  index,
+  horaMax,
+) {
+  const fechaCompleta = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+  });
+  const [fecha, hora] = fechaCompleta.split(", ");
+  console.log(hora);
+  console.log(horaMax);
+
+  if (hora > horaMax) {
+    Swal.fire({
+      icon: "warning",
+      title: "Operación incompleta",
+      html: "No puedes completa la operacion, estas fuera del horario",
+    });
+    return;
+  }
+
   loader.style.display = "flex";
   const nuevoBono = document.getElementById(`input-bono-${index}`).value.trim();
   const nuevoBonoVal = document

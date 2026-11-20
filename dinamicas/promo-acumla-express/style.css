@@ -8,7 +8,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(255, 255, 255, 0.8);
+    background: #ffffffcc;
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -237,4 +237,205 @@ body {
     ._register_ax_ button {
         left: 30%;
     }
+}
+
+:root {
+  --bg-dark: #a51300;
+  --panel-bg: #500007;
+  --gold: #b8860b;
+  --gold-dark: #b8860b;
+  --text-light: #ffffff;
+}
+
+
+.contenedor-principal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel-bg);
+  padding: 35px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 215, 0, 0.25);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+  max-width: 850px;
+  width: 100%;
+}
+
+/* Ruleta */
+.ruleta-wrapper {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  border-radius: 50%;
+  border: 8px solid var(--gold);
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+}
+
+.puntero {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 18px solid transparent;
+  border-right: 18px solid transparent;
+  border-top: 32px solid var(--gold);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.7));
+  z-index: 10;
+}
+
+.btn-centro {
+  position: absolute;
+  width: 78px;
+  height: 78px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold), var(--gold-dark));
+  border: 4px solid #111;
+  color: #111;
+  font-weight: 900;
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  transition: transform 0.15s ease;
+}
+
+.btn-centro:hover:not(:disabled) {
+  transform: scale(1.08);
+}
+
+.btn-centro:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Controles */
+.panel-controles {
+  flex: 1;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.panel-controles h2 {
+  color: var(--gold);
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+.grupo-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.input-item {
+  display: flex;
+  align-items: center;
+  background: #23232e;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #333;
+}
+
+.input-item:focus-within {
+  border-color: var(--gold);
+}
+
+.color-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.input-item input {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  width: 100%;
+  outline: none;
+}
+
+/* Caja de captura */
+.caja-resultado {
+  background: #101015;
+  border: 1px dashed var(--gold);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.etiqueta {
+  font-size: 11px;
+  color: #aaa;
+  letter-spacing: 1.5px;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.valor-texto {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--gold);
+  min-height: 32px;
+}
+
+.btn-accion {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: #111;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 800;
+  font-size: 15px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: opacity 0.2s;
+}
+
+.btn-accion:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.btn-accion:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.ruleta {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    background-color: black;
+    width: 100%;
+    height: 100vh;
+}
+
+.ruleta main {
+}
+
+@media (max-width: 450px) {
+  .ruleta-wrapper {
+    width: 300px;
+    height: 300px;
+  }
+  canvas {
+    width: 300px;
+    height: 300px;
+  }
 }

@@ -658,6 +658,7 @@ function handleSendDr() {
   localStorage.setItem(LS_KEY, JSON.stringify(registro));
   loader.style.display = "flex";
   if (typeof GetResgistroDia === "function") GetResgistroDia();
+
   setTimeout(() => {
     loader.style.display = "none";
     nombre.value = "";
@@ -1066,6 +1067,7 @@ function handleSendObs() {
       casino_observacion.value = "";
       descripcion_observacion.value = "";
       loader.style.display = "none";
+      // localStorage.removeItem("saveLocalHistory");
       Swal.fire({
         icon: "success",
         title: "Envio Exitoso",
