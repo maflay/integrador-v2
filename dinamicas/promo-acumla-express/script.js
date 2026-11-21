@@ -511,6 +511,9 @@ function imprimirTickeHora() {
             <div class="pos-divider">--------------------------------</div>
             <div class="pos-footer">
                 <p>Aplica Términos y Condiciones</p>
+                <p>Solo valido en la hora señalada</p>
+                <p>NO ES ACUMULABLE CON OTRAS PROMOCIONES</p>
+                <p>Es Personal e intransferible</p>
                 <p>¡Gracias por participar!</p>
                 <p>Conserve este tiquete</p>
             </div>
@@ -728,7 +731,6 @@ function reimprimirTicket(
   Telefono,
   Tiempo_valido,
 ) {
- 
   let contenedor = document.getElementById("print-container");
   if (!contenedor) {
     contenedor = document.createElement("div");
