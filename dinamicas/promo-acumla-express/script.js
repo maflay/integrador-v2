@@ -157,9 +157,19 @@ btnGirarSecundario.addEventListener("click", iniciarGiro);
 
 dibujarRuleta();
 
+const formatoPesos_monto_efectivo = new Intl.NumberFormat("es-CO", {
+    style: "currency",
+    currency: "COP",
+    minimumFractionDigits: 0,
+  });
+
 let user = inforUser();
 
 const nivelesOcultos = [1, 2, 6];
+
+  document.querySelector("._est_sche_").classList.add("dont_screen");
+  document.querySelector("._est_sche_").style.display = "none";
+
 
 if (nivelesOcultos.includes(Number(user.Nivel))) {
   document.querySelector("._est_sche_").classList.remove("dont_screen");
@@ -358,15 +368,17 @@ function handleCrearPlayer() {
   )
     .then((res) => res.json())
     .then((data) => {
-      if (data.length > 0) {
-        loader.style.display = "none";
-        Swal.fire({
-          icon: "info",
-          title: "Operación incompleta",
-          html: "El Jugador ya se encuentra registrado",
-        });
-        return;
-      } else {
+      // if (data.length > 0) {
+      //   loader.style.display = "none";
+      //   Swal.fire({
+      //     icon: "info",
+      //     title: "Operación incompleta",
+      //     html: "El Jugador ya se encuentra registrado",
+      //   });
+      //   return;
+      // } else {
+      // }
+
         fetch(`${url}?hoja=dinamica`, {
           method: "POST",
           mode: "no-cors",
@@ -423,7 +435,6 @@ function handleCrearPlayer() {
               title: "Error en el Envió",
             });
           });
-      }
     });
 }
 
@@ -649,14 +660,14 @@ function GetAllData() {
                       <td>
                         ${
                           registro.Bono_val
-                            ? registro.Bono_val || registro.bono_val || ""
+                            ? formatoPesos_monto_efectivo.format(registro.Bono_val) || formatoPesos_monto_efectivo.format(registro.bono_val) || ""
                             : `<input class="table_input_bono_portal" type="text" id="input-bono-val-${i}" value="${registro.Bono_val || registro.bono_val || ""}" placeholder="Valor bono" />`
                         }
                       </td>
                       <td>
                         ${
                           registro.PremioObt
-                            ? registro.PremioObt
+                            ? formatoPesos_monto_efectivo.format(registro.PremioObt)
                             : `<input class="table_input_bono_portal" type="text" id="input-premio-${i}" value="${registro.PremioObt || ""}" placeholder="Ingrese premio" />`
                         }
                       </td>
@@ -749,6 +760,9 @@ function reimprimirTicket(
     hour12: true,
   });
   const [fecha, hora] = fechaCompleta.split(", ");
+
+
+
   contenedor.innerHTML = `
         <div class="ticket-pos">
             <div class="pos-header">
@@ -776,6 +790,9 @@ function reimprimirTicket(
             <div class="pos-divider">--------------------------------</div>
             <div class="pos-footer">
                 <p>Aplica Términos y Condiciones</p>
+                <p>Solo valido en la hora señalada</p>
+                <p>NO ES ACUMULABLE CON OTRAS PROMOCIONES</p>
+                <p>Es Personal e intransferible</p>
                 <p>¡Gracias por participar!</p>
                 <p>Conserve este tiquete</p>
             </div>
@@ -906,6 +923,13 @@ document.getElementById("_btn_imprimir_last_").addEventListener("click", () => {
     });
     return;
   }
+
+    const fechaDia = new Date().toLocaleString("es-CO", {
+    timeZone: "America/Bogota",
+    weekday: "long",
+  });
+  const [dia] = fechaDia.split(", ");
+
 
   window.datosjugadorRango = JSON.parse(datosStr);
 
