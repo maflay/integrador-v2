@@ -35,6 +35,8 @@
                         <option value="A07">A07</option>
                         <option value="A08">A08</option>
                         <option value="A09">A09</option>
+                        <option value="A10">A10</option>
+                        <option value="A10-MESAS">A10-MESAS</option>
                         <option value="A12">A12</option>
                         <option value="A12-MESAS">A12-MESAS</option>
                         <option value="A15">A15</option>
@@ -72,10 +74,10 @@
                         <option value="BRONCE">Bronce</option>
                         <option value="SUPERIOR">Superior</option>
                         <option value="ESTANDAR">Estándar</option>
-                        <option value="ADICIONAL">Adicional</option>
+                        <!-- <option value="ADICIONAL">Adicional</option> -->
                     </select>
                     <input class="form-control" type="text" id="nombre" placeholder="Nombre">
-                    <input style="display: none;" class="form-control" type="text" id="cedula" placeholder="Cedula">
+                    <input class="form-control" type="text" id="cedula" placeholder="Cédula">
                     <select class="form-control" name="resultado" id="resultado">
                         <option value="">Seleccionar...</option>
                         <option value="0 a 5" data-valor="1">0 a 5</option>
@@ -83,9 +85,14 @@
                         <option value="10 a 15" data-valor="3">10 a 15</option>
                         <option value="16 en adelante" data-valor="4">16 en adelante</option>
                     </select>
+                     <select style="display: none;" class="form-control" name="premio" id="premio">
+                        <option value="">Seleccionar...</option>
+                        <option value="$ 250.000">$ 250.000</option>
+                        <option value="$ 500.000">$ 500.000</option>
+                    </select>
                 </div>
                 <div>
-                    <button title="Validar el Premio del Participante" id="btn_validar" class="btn btn-primary">Validar
+                    <button style="display: none;" title="Validar el Premio del Participante" id="btn_validar" class="btn btn-primary">Validar
                         Premio</button>
                     <button title="Enviar formulario sin # Bono" id="btn_send" class="btn btn-primary">Enviar</button>
                 </div>
@@ -101,7 +108,7 @@
                 <div class="content_opcion_head">
                     <p id="btn_envio_observacion">Observación</p>
                 </div>
-                <div class="content_opcion_head">
+                <div style="display: none;" class="content_opcion_head">
                     <p id="btn_tabla_premios">Tabla de Premios</p>
                 </div>
                 <div class="content_opcion_head">
@@ -196,6 +203,8 @@
                         <option value="A07">A07</option>
                         <option value="A08">A08</option>
                         <option value="A09">A09</option>
+                        <option value="A10">A10</option>
+                        <option value="A10-MESAS">A10-MESAS</option>
                         <option value="A12">A12</option>
                         <option value="A12-MESAS">A12-MESAS</option>
                         <option value="A15">A15</option>
@@ -225,7 +234,7 @@
                     </select>
                 </div>
                 <div class="datos_column_modal">
-                    <textarea placeholder="Descripcion" name="descripcion" id="descripcion_observacion"></textarea>
+                    <textarea placeholder="Descripción" name="descripcion" id="descripcion_observacion"></textarea>
                 </div>
                 <div>
                     <button style="display: none;" id="btn_clean_observacion"
@@ -377,7 +386,7 @@
             <div style="justify-content: start;" id="view_registro_dia" class="body_modal_acumula">
                 <h2 class="space_title_acumula">Registro del Dia</h2>
                 <div id="Info_result_dia"></div>
-                <div class="result_dia_acumula" id="result_dia_acumula"></div>
+                <div style="width: 100%;" class="result_dia_acumula" id="result_dia_acumula"></div>
 
             </div>
         </div>

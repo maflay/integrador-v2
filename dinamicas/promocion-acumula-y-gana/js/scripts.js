@@ -16,6 +16,16 @@ const close_modal_opciones_acumula = document.getElementById(
   "cerrarmodaleopciones",
 );
 
+casino.addEventListener("change", () => {
+  if (casino.value == "A10" || casino.value == "A10-MESAS") {
+    resultado.style.display = "none";
+    document.getElementById("premio").style.display = "flex";
+  } else {
+    resultado.style.display = "flex";
+    document.getElementById("premio").style.display = "none";
+  }
+});
+
 const loader = document.getElementById("loader");
 
 const promocion = "Acumula y Gana";
@@ -67,18 +77,7 @@ view_tabla_premios.style.display = "none";
 view_registro_dia.style.display = "none";
 btn_envio_observacion.classList.add("select_menu");
 
-btn_send.style.display = "none";
 btn_envio_secundario.style.display = "none";
-
-categoria.addEventListener("change", () => {
-  if (categoria.value === "ADICIONAL") {
-    btn_validar.style.display = "none";
-    btn_send.style.display = "block";
-  } else {
-    btn_validar.style.display = "block";
-    btn_send.style.display = "none";
-  }
-});
 
 btn_envio_secundario.addEventListener("click", () => {
   btn_envio_secundario.classList.add("select_menu");
@@ -213,6 +212,8 @@ function validatePremio(casinoV, categoriaV, resultadoV) {
   }
 }
 
+btn_validar.style.display = "none";
+
 btn_validar.addEventListener("click", () => {
   const casinoValue = casino.value;
   const categoriaValue = categoria.value;
@@ -274,6 +275,7 @@ function handleSubmit() {
   const categoriaValue = categoria.value;
   const cedulaValue = cedula.value;
   const resultadoValue = resultado.value;
+  let premio = document.getElementById("premio");
 
   const opcionSeleccionada = resultado.options[resultado.selectedIndex];
   const valorData = opcionSeleccionada.dataset.valor;
@@ -324,16 +326,14 @@ function handleSubmit() {
       valor_4: cedulaValue,
       valor_5: casinoValue,
       valor_6: categoriaValue,
-      valor_7: resultadoValue,
+      valor_7: casinoValue == "A10" || casinoValue == "A10-MESAS" ? premio.value : resultadoValue,
       valor_9: promocion,
       valBono: "",
     };
     if (
       casinoValue === "" ||
       nombreValue === "" ||
-      categoriaValue === "" ||
-      resultadoValue === ""
-    ) {
+      categoriaValue === ""    ) {
       Swal.fire({
         icon: "warning",
         title: "Advertencia",
@@ -363,8 +363,6 @@ function handleSubmit() {
         resultado.value = "";
         categoria.value = "";
         casino.value = "";
-        btn_validar.style.display = "block";
-        btn_send.style.display = "none";
         setTimeout(() => {
           loader.style.display = "none";
           Swal.fire({
@@ -394,12 +392,11 @@ function handleSubmit() {
     resultado.value = "";
     categoria.value = "";
     casino.value = "";
+    premio.value = "";
   }, 1500);
 
   setTimeout(() => {
     loader.style.display = "none";
-    btn_validar.style.display = "block";
-    btn_send.style.display = "none";
     Swal.fire({
       icon: "info",
       title: "Guardado local",
