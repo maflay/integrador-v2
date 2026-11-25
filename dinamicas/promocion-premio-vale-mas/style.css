@@ -1,0 +1,154 @@
+.loader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.534);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinner {
+    border: 6px solid #ccc;
+    border-top: 6px solid #000275;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+._main__pvm_ {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: auto;
+    background-image: linear-gradient(180deg, #040035, #0400359f, #040035), url(/dinamicas/promocion-premio-vale-mas/resources/7080779_3488060.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    padding: 50px;
+}
+
+._form__pvm_ {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    gap: 15px;
+    background-color: #0a2122a6;
+    border-radius: 20px;
+}
+
+
+button,
+.cm-inner {
+    position: relative;
+    z-index: 30;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 50px;
+    background:
+        linear-gradient(135deg,
+            #fff6b8 0%,
+            #e9bd3f 20%,
+            #b77b00 45%,
+            #f5d66d 63%,
+            #c58b08 82%,
+            #fff0a0 100%);
+    border: 1px solid rgba(255, 244, 180, .95);
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, .95),
+        inset 0 -3px 5px rgba(80, 35, 0, .28),
+        0 0 7px rgba(255, 215, 80, .8),
+        0 0 22px rgba(220, 156, 11, .48),
+        0 0 45px rgba(220, 156, 11, .18);
+    overflow: hidden;
+    transition:
+        transform .45s ease,
+        box-shadow .45s ease,
+        filter .45s ease;
+}
+
+.cm-inner:hover {
+    cursor: pointer;
+}
+
+.cm-menu-text {
+    position: relative;
+    z-index: 40;
+    font-family: "Lato", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #242424;
+    text-shadow:
+        0 1px 0 rgba(255, 255, 255, .35);
+    transition:
+        letter-spacing .45s ease,
+        transform .45s ease;
+}
+
+.cm-menu-star {
+    position: relative;
+    z-index: 40;
+    font-size: 11px;
+    color: #fff8c9;
+    opacity: .9;
+    text-shadow:
+        0 0 4px #fff,
+        0 0 9px #ffe27a,
+        0 0 18px #dc9c0b;
+    transition:
+        transform .45s ease,
+        opacity .45s ease,
+        text-shadow .45s ease;
+}
+
+
+.cm-menu-star:first-child {
+    margin-right: 2px;
+}
+
+
+.cm-menu-star:last-child {
+    margin-left: 2px;
+}
+
+
+button:hover,
+.cm-inner:hover {
+    transform: scale(1.025);
+    filter: brightness(1.1);
+    box-shadow:
+        inset 0 1px 3px rgba(255, 255, 255, 1),
+        inset 0 -3px 5px rgba(80, 35, 0, .2),
+        0 0 10px rgba(255, 225, 110, 1),
+        0 0 30px rgba(220, 156, 11, .9),
+        0 0 60px rgba(255, 195, 40, .5),
+        0 0 95px rgba(255, 190, 30, .18);
+}
