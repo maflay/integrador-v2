@@ -33,6 +33,12 @@
                     transform: rotate(360deg);
                 }
             }
+            #nom_user {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+            }
+           
         </style>
 
         <div id="loader" class="loader-overlay">
@@ -44,6 +50,18 @@
 })();
 
 function viewLoader() {
+  let user = inforUser();
+
+  let container = document.querySelector(".admin-brand");
+  if(container){
+    let nameUser = document.createElement("p");
+    nameUser.id = "nom_user";
+    nameUser.textContent = `Hola, ${user.Nombre}`;
+    container.appendChild(nameUser);
+  }
+  if (document.getElementById("nom_user")) {
+
+  }
   setTimeout(() => {
     if (document.getElementById("loader")) {
       document.getElementById("loader").style.display = "none";
